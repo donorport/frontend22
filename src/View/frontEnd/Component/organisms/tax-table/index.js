@@ -150,10 +150,7 @@ const TaxTable = (props) => {
                             </div> */}
                               </div>
                             </div>
-                            <div
-                              className="d-flex align-items-center flex__1 mb-1 mb-sm-0"
-                              style={{ justifyContent: 'end' }}
-                            >
+                            <div className="d-flex align-items-center justify-content-end flex__1 mb-1 mt-2 mt-sm-0 mb-sm-0 ms-3 ms-sm-0">
                               {/* {
                             item[0].type === 'Donated' &&
 
@@ -202,7 +199,7 @@ const TaxTable = (props) => {
                                 //   </div>
                                 // </div>
 
-                                <div className="d-flex align-items-center flex__1 mb-1 mb-sm-0 ms-2 ms-sm-0">
+                                <div className="d-flex align-items-center justify-content-end fs-6 fw-semibold">
                                   <div className="pe-1 p-sm-2 mr-12p">
                                     <img
                                       loading="lazy"
@@ -289,12 +286,13 @@ const TaxTable = (props) => {
                                 // </Button>
                                 <Button
                                   variant="link"
-                                  className="d-flex align-items-center ms-auto text-white"
+                                  className="flex__1 d-flex align-items-center justify-content-end px-0 fw-semibold text-reset text-decoration-none"
                                   onClick={(e) => e.stopPropagation()}
                                 >
+                                  Pending
                                   <FontAwesomeIcon
                                     icon={solid('clock')}
-                                    className="fs-3 text-warning"
+                                    className="fs-3 ms-1 text-warning"
                                   />
                                 </Button>
                               )}
@@ -438,7 +436,7 @@ const TaxTable = (props) => {
         </ul>
         {props.totalPages > 1 && (
           <div
-            className="py-2 d-flex justify-content-center border-top"
+            className="py-2 mt-2 d-flex justify-content-center border-top"
             style={{ background: '#f8fafd78' }}
           >
             {props.totalPages > 1 ? (

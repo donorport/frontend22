@@ -176,7 +176,7 @@ const AdminAdmin = () => {
 
           </div> */}
 
-          <ul className="list-unstyeld flex__1 ps-0">
+          <ul className="list-unstyled flex__1 ps-0">
             {teamMemberList.length > 0 &&
               teamMemberList.map((member, i) => {
                 // console.log(member)

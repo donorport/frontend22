@@ -77,7 +77,10 @@ function OrganisationItem(props) {
   const btn =
     isFinish || (isFulfiled && !infinite) ? (
       <div className="button__wrap d-flex">
-        <span className="btn btn-outline-danger btn__sold">Sold</span>
+        <span className="d-flex align-items-center btn btn__sold">
+          <FontAwesomeIcon icon={solid('circle-check')} className="sold__icon" />
+          <span>Funded</span>
+        </span>
       </div>
     ) : (
       <div className="button__wrap d-flex">{cart_btn}</div>

@@ -21,7 +21,7 @@ import IconToggle from '../../atoms/icon-toggle';
 // import helper from "../../../../../Common/Helper";
 import noImg from '../../../../../assets/images/noimg.jpg';
 import moment from 'moment';
-import helper, { getCalculatedPrice, priceFormat, isIframe } from '../../../../../Common/Helper';
+import helper, { getCalculatedPrice, priceFormat, isIframe, convertState } from '../../../../../Common/Helper';
 
 import './style.scss';
 import { Link } from 'react-router-dom';
@@ -111,6 +111,10 @@ function ProjectDetailMain(props) {
   };
 
   // console.log(projectDetails)
+  const setState = projectDetails.campaignDetails?.state_id;
+
+  let stateName = setState ? convertState(setState) : '';
+
   return (
     <div className="project__detail-main">
       <div className="d-flex flex-column mb-4">
@@ -138,7 +142,7 @@ function ProjectDetailMain(props) {
           </div>
           <div className="d-flex align-items-center me-2">
             <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
-            {projectDetails?.campaignDetails?.address}
+            {projectDetails.campaignDetails?.city_id}, {stateName}
           </div>
         </div>
 

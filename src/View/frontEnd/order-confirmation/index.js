@@ -270,7 +270,7 @@ const OrderConfirmPage = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="bg-lighter d-flex align-items-center p-20p rounded">
+                  <div className="bg-lighter d-flex align-items-center p-20p rounded-3">
                     <div className="order__logo me-2">
                       <img src={getCardIcon(cardType)} alt="" className="img-fluid" />
                     </div>

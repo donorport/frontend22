@@ -71,10 +71,9 @@ function SimilarItem(props) {
   const btn =
     isFinish || (product.isFulfiled && !product.unlimited) ? (
       // product.soldout === product.quantity
-      <span className="btn btn__sold">
-        {' '}
+      <span className="d-flex align-items-center btn btn__sold">
         <FontAwesomeIcon icon={solid('circle-check')} className="sold__icon" />
-        Funded
+        <span>Funded</span>
       </span>
     ) : (
       cart_btn

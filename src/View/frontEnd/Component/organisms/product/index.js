@@ -151,10 +151,9 @@ const Product = (props) => {
   );
   const btn =
     isFinish || (isFulfiled && !unlimited) ? (
-      <span className="btn btn__sold">
-        {' '}
+      <span className="d-flex align-items-center btn btn__sold">
         <FontAwesomeIcon icon={solid('circle-check')} className="sold__icon" />
-        Funded
+        <span>Funded</span>
       </span>
     ) : (
       cart_btn
@@ -228,7 +227,7 @@ const Product = (props) => {
           {
             // !CampaignAdminAuthToken &&
             // <div className="mt-auto mb-12p"> {!unlimited ? btn : cart_btn}</div>
-            <div className="mt-auto mb-12p"> {btn}</div>
+            <div className="d-flex mt-auto mb-12p"> {btn}</div>
           }
         </div>
         <div className="product__mid d-flex align-items-center justify-content-center">
@@ -242,14 +241,14 @@ const Product = (props) => {
             </Link>
           </div>
         </div>
-        <div className="product__right d-flex flex-column align-items-center pt-12p pb-2">
+        <div className="product__right position-relative d-flex flex-column align-items-center pt-12p pb-2">
           <div className="product__org">
             <Link to={'/organization/' + props.campaignDetails?.slug} className="">
               <img alt="" className="img-fluid org__img charity_avatar_bg" src={organisation} />
             </Link>
           </div>
           {address && (
-            <div className="product__location d-flex align-items-center mt-auto">
+            <div className="product__location position-absolute d-flex align-items-center mt-auto">
               {/* <span className="icon icon__pro"></span> */}
               {/* <FontAwesomeIcon icon="fa-light fa-circle-location-arrow" /> */}
               <FontAwesomeIcon icon={regular('circle-location-arrow')} className="mr-6p" />
@@ -270,9 +269,7 @@ const Product = (props) => {
         <div className="product__meta d-flex align-items-center ms-auto">
           {(props.projectDetails?.length > 0 || props.projectProducts.length > 0) && (
             <span className="product__type icon icon__solid-900 text-success">
-              <Link to={'/project/' + props.projectDetails?.projectMainDetails?.slug}>
-                <FontAwesomeIcon icon={solid('bolt')} />
-              </Link>
+              <FontAwesomeIcon icon={solid('bolt')} style={{ color: '#5f5df8' }} />
             </span>
           )}
 

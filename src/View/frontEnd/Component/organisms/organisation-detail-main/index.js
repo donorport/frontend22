@@ -7,7 +7,6 @@ import IconToggle from '../../atoms/icon-toggle';
 import RoundedIcon from '../../atoms/rounded-icon';
 // import WidgetTitle from "../widget-title"
 import TagTitle from '../../atoms/tag-title';
-
 import IconButton from '../../molecules/icon-button';
 import ShareWidget from '../share-widget';
 import OrganisationWidget from '../organisation-widget';
@@ -15,6 +14,7 @@ import moment from 'moment';
 import helper, { isIframe, convertAddress } from '../../../../../Common/Helper';
 import { useNavigate } from 'react-router-dom';
 import './style.scss';
+import { State, Country } from 'country-state-city';
 
 function OrganisationDetailMain(props) {
   let organizationDetails = props.organizationDetails;
@@ -23,14 +23,16 @@ function OrganisationDetailMain(props) {
   let iconClass = organizationDetails?.categoryDetails?.iconDetails?.class.replace('fa-', '');
 
   const setAddress =
-    organizationDetails?.cityDetails?.city +
+    organizationDetails?.city_id +
     ',' +
+    //cityDetails was used when we had <select> to choose the City (replaced to text bc GB didn't work using <select>)
+    // organizationDetails?.cityDetails?.city_id +
+    //',' +
     organizationDetails?.stateDetails?.state +
     ',' +
     organizationDetails?.countryDetails?.country;
 
-  //const address = setAddress ? convertAddress(setAddress) : '';
-  console.log(setAddress);
+  let address = setAddress ? convertAddress(setAddress) : '';
 
   return (
     <div className="project__detail-main">
@@ -60,7 +62,7 @@ function OrganisationDetailMain(props) {
 
           <div className="d-flex align-items-center me-2">
             <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
-            {/*{address}*/}
+            {address}
           </div>
 
           <div className="d-flex align-items-center me-2">

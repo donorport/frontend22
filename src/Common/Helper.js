@@ -556,17 +556,35 @@ export function countInArray(array, what) {
   return array.filter((item) => item === what).length;
 }
 
-export function convertAddress(myAddress) {
-  const split = myAddress.split(',');
+export function convertAddress(e) {
+  try {
+    const split = e.split(',');
 
-  const countryName = Country.getAllCountries().filter(
-    (c) => c.name === split[split.length - 1].replace(' ', '')
-  );
+    const countryName = Country.getAllCountries().filter(
+      (c) => c.name === split[split.length - 1].replace(' ', '')
+    );
 
-  const resultStateProvince = split[split.length - 2];
+    const resultStateProvince = split[split.length - 2];
 
-  const state = State.getStatesOfCountry(countryName[0].isoCode).filter((s) =>
-    resultStateProvince.includes(s.name)
-  );
-  return `${split[split.length - 3]}${state.length > 0 ? `, ${state[0].isoCode}` : ''}`;
+    const state = State.getStatesOfCountry(countryName[0].isoCode).filter((e) =>
+      resultStateProvince.includes(e.name)
+    );
+
+    return `${split[split.length - 3]}${state.length > 0 ? `, ${state[0].isoCode}` : ''}`;
+    
+  } catch (e) {
+    console.error(`function convertAddress failed with address "${myAddress}"`);
+  }
+}
+
+export function convertState(e) {
+  try {
+    const countryName = Country.getAllCountries().filter((e) => e.name);
+
+    const stateName = State.getStateByCode(stateName[0].id).filter((x) => e.includes(x.name));
+
+    return `${stateName.length > 0 ? `${stateName[0].name}` : ''}`;
+  } catch (e) {
+    console.error('state error');
+  }
 }

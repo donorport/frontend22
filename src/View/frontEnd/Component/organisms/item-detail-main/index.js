@@ -102,7 +102,9 @@ function ProjectDetailMain(props) {
   // sold >= total
   const btn =
     isFinish || (productDetails.isFulfiled && !productDetails.unlimited) ? (
-      // <span className="btn btn-outline-danger btn-lg btn__sold">Sold</span>
+      /*<span className="btn btn-outline-danger btn-lg btn__sold"> 
+        <FontAwesomeIcon icon={solid('circle-check')} className="sold__icon" />
+        Funded</span>*/
       <></>
     ) : (
       cart_btn
@@ -375,7 +377,6 @@ function ProjectDetailMain(props) {
                       src={helper.sponsorLogoResizePath + ad.advertisementsData?.logo}
                       alt="sponsor"
                       className="p-1"
-                      style={{ width: '50px' }}
                     ></img>
                   </a>
                 );

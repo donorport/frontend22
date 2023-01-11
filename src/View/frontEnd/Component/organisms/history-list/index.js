@@ -70,7 +70,7 @@ const HistoryList = (props) => {
 
   return (
     <>
-      <ul className="d-flex flex-column gap-2 history__list list-unstyled mb-0">
+      <ul className="d-flex flex-column gap-2 history__list list-unstyled mb-0 mx-2 mx-sm-0">
         {orderList.length > 0 ? (
           orderList.map((order, i) => {
             // console.log(order.uniqueTransactionId)
@@ -142,7 +142,7 @@ const HistoryList = (props) => {
                                     <div className="text-light mb-3p">
                                       {item.itemDetails?.brand}
                                     </div>
-                                    <div className="fs-5 text-success fw-bold">
+                                    <div className="fs-5 text-light fw-bold">
                                       {order.currencySymbol ? order.currencySymbol : '$'}{' '}
                                       {priceFormat(Number(price))}
                                     </div>
@@ -162,7 +162,7 @@ const HistoryList = (props) => {
                                     {item.xp ? item.xp : 100} xp
                                   </span>
                                   <span
-                                    className="fs-4 fw-bold text-success ms-2"
+                                    className="fs-4 fw-bold text-light ms-2"
                                     style={{ width: '80px', textAlign: 'end' }}
                                   >
                                     {order.currencySymbol ? order.currencySymbol : '$'}
@@ -174,7 +174,7 @@ const HistoryList = (props) => {
                           })}
 
                         <li className="order__transaction my-2">
-                          <div className="bg-lighter d-flex align-items-center pt-20p pb-20p px-2">
+                          <div className="bg-lighter d-flex align-items-center pt-20p pb-20p px-2 rounded-3">
                             <div className="order__logo me-2">
                               <img src={getCardIcon(CardType)} alt="" className="img-fluid" />
                             </div>

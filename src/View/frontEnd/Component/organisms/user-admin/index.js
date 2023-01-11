@@ -240,7 +240,7 @@ const UserAdmin = () => {
               />
             </a>
           </div> */}
-            <ul className="list-unstyeld flex__1 ps-0">
+            <ul className="list-unstyled flex__1 ps-0">
 
             {
               teamMemberList.length > 0 &&

@@ -109,7 +109,7 @@ const LeaderBoard = () => {
                                 </div>
 
                                 <div className="billing__value">
-                                  <div className="d-flex justify-content-end pe-0 pe-sm-4 s-5 fw-bold text-info mb-3p">
+                                  <div className="d-flex justify-content-end pe-0 pe-sm-4 s-5 fw-bold text-info mb-3p text-end">
                                     {Number(person.xp).toLocaleString('en-US', {
                                       maximumFractionDigits: 2
                                     })}{' '}

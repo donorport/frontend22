@@ -79,7 +79,7 @@ const ItemsTable = (props) => {
                         className="me-0 me-sm-2 order-sm-0 order-1 text-sm-start text-end"
                         style={{ width: '65px', minWidth: '65px' }}
                       >
-                        <div className="text-success fw-bold fs-4">
+                        <div className="text-light fw-bold fs-4">
                           {item.currencySymbol}
                           {price}
                         </div>

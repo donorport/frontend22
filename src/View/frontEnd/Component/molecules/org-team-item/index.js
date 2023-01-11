@@ -30,7 +30,7 @@ function OrganisationTeamItem(props) {
     //   </div>
     // </li>
 
-    <li className="org__team__item pt-12p pb-12p d-sm-flex align-items-start">
+    <li className="d-flex org__team__item pt-12p pb-12p d-sm-flex align-items-start">
       <Avatar
         size={46}
         avatarUrl={image ? image : AvatarImg}

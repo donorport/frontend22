@@ -433,7 +433,7 @@ const UserItems = () => {
                     <ShareWidget />
                   </div>
                   <div className="order__widget mb-3">
-                    <div className="d-flex align-items-start bg-lighter p-12p text-dark flex__1 mb-3">
+                    <div className="d-flex align-items-start bg-lighter p-12p text-dark flex__1 mb-3 rounded-3">
                       <div className="">
                         <img
                           alt=""
@@ -474,7 +474,7 @@ const UserItems = () => {
                         {priceFormat(Number(purchasedPrice) * Number(item.quantity))}
                       </span>
                     </div>
-                    <div className="bg-lighter d-flex align-items-center p-20p rounded">
+                    <div className="bg-lighter d-flex align-items-center p-20p rounded-3">
                       <div className="order__logo me-2">
                         <img src={getCardIcon(cardType)} alt="" className="img-fluid" />
                       </div>

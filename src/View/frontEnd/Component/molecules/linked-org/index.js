@@ -181,7 +181,7 @@ function LinkedOrg(props) {
         style={{ display: modelShow ? 'block' : 'none' }}
       >
         <div className="modal-dialog  modal-dialog-centered">
-          <div className="modal-content shadow-lg">
+          <div className="modal-content border-bottom shadow-none rounded-0">
             <div className="modal-body text-center">
               <div className="remove-img-wrap">
                 <img

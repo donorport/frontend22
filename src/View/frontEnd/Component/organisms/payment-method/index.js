@@ -464,6 +464,51 @@ const PaymentMethod = () => {
 
   const removeBank = (id) => {
     confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div className="custom-ui">
+            <h1 className="fw-bolder">Are you sure?</h1>
+            <p>Are you sure you want to remove this bank account?</p>
+            <div className="d-flex gap-1">
+              <button className="btn btn-danger" onClick={onClose}>
+                Cancel
+              </button>
+              <button
+                className="btn btn-success"
+                onClick={async () => {
+                  setLoading(false);
+                  if (id !== '') {
+                    const removeBank = await adminCampaignApi.deleteBankAccount(token, id);
+                    if (removeBank) {
+                      if (removeBank.data.success === false) {
+                        setLoading(false);
+                        ToastAlert({ msg: removeBank.data.message, msgType: 'error' });
+                      } else {
+                        if (removeBank.data.success === true) {
+                          setLoading(false);
+                          setUpdate(!update);
+                          ToastAlert({ msg: removeBank.data.message, msgType: 'success' });
+                        }
+                      }
+                    } else {
+                      setLoading(false);
+                      ToastAlert({ msg: 'Account not Removed', msgType: 'error' });
+                    }
+                  } else {
+                    setLoading(false);
+                    ToastAlert({ msg: 'Account not Removed id Not found', msgType: 'error' });
+                  }
+                }}
+              >
+                Remove Bank
+              </button>
+            </div>
+          </div>
+        );
+      }
+    });
+
+    /* confirmAlert({
       title: 'Confirm to submit',
       message: 'Are you sure to Remove Account.',
       buttons: [
@@ -499,7 +544,7 @@ const PaymentMethod = () => {
           // onClick: () => alert('Click No')
         }
       ]
-    });
+    });*/
   };
 
   const handleChange = (event, newValue) => {

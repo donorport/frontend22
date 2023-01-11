@@ -221,6 +221,7 @@ const CompanySettings = () => {
       [e.target.name]: value
     });
     ChangeTextAreaCount(e.target.value.length);
+
     if (e.target.name === 'promoVideo') {
       let url = value;
       // let id = url && url.split("?v=")[1];

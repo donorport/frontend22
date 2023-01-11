@@ -36,7 +36,7 @@ function SettingsTabsAdmin({ activeKey, data, _onClick, ...otherProps }) {
               <span className="stab__icon">
                 <ProfileIcon active={activeKey === "company"} />
               </span>
-              <span className="stab__text">Company</span>
+              <span className="stab__text">Profile</span>
               <div className="tab__active--indicator"></div>
             </Nav.Link>
           </Nav.Item>

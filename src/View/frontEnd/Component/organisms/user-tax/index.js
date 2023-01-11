@@ -160,12 +160,12 @@ const UserTax = () => {
   return (
     <>
       {/*<FrontLoader loading={loading} />*/}
-      <header className="py-sm-2 pb-2 w-100 d-sm-flex align-items-center d-none">
-        <div className="me-sm-2 flex-grow-1 mb-3 mb-sm-0">
-          <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder">Annual Tax Receipts</h1>
-          <p className="d-none d-sm-block fs-6 text-light">
-            Donorport sends you an email containing a .zip file of all tax deductibule receipts for
-            donations you made each year. Resend this email or download your receipts here.
+      <header className="py-sm-2 pb-2 w-100 d-sm-flex align-items-center">
+        <div className="me-sm-2 flex-grow-1">
+          <h1 className="d-sm-flex page__title fs-3 fw-bolder">Annual Tax Receipts</h1>
+          <p className="d-sm-block fs-6 text-light">
+            View your order history and download your tax receipts here. Your files will be
+            available for download once they have been uploaded by the charity.
           </p>
         </div>
 
@@ -177,7 +177,7 @@ const UserTax = () => {
       <div className="fs-4 fw-bold d-flex align-items-center gap-1 mb-2">
         <span className="fs-7 text-light fw-bolder flex-grow-1">DONATION HISTORY</span>
         Total :
-        <span className="text-success fs-3">
+        <span className="text-success fs-4">
           {userData.symbol}
           {countProjectAmount(all).toLocaleString('en-US', {
             maximumFractionDigits: 2

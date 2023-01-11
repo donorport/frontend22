@@ -248,7 +248,7 @@ const AdminProjects = () => {
       rules = {
         name: 'required',
         headline: 'required',
-        video: 'required',
+       // video: 'required',
         description: 'required',
       }
 
@@ -267,7 +267,7 @@ const AdminProjects = () => {
       'name.required': 'Name is Required',
       'headline.required': 'Headline is Required',
       'description.required': 'Description is Required',
-      'video.required': 'video is Required',
+      //'video.required': 'video is Required',
     }
 
     validateAll(state, rules, message).then(async () => {

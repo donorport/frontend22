@@ -20,11 +20,11 @@ export default function Index(props) {
   const getCalc = getCalculatedPrice();
   let currencySymbol = getCalc.currencySymbol();
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
-  const [loading, setLoading] = useState(true);
   let products;
   const title = {
     color: '#6b68f8'
   };
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -35,8 +35,10 @@ export default function Index(props) {
       setLoading(true);
     })();
   }, []);
-
-  loading ? <CircularProgress/> : (props.productList && props.productList.length > 0) ? {
+  {
+    loading && <CircularProgress />;
+  }
+  if (props.productList && props.productList.length > 0) {
     products = props.productList.map((item, index) => {
       return (
         item.status === 1 && (
@@ -55,11 +57,10 @@ export default function Index(props) {
             />
           </Col>
         )
-        );
-      })
-    } : 
-    {
-   products = (
+      );
+    });
+  } else {
+    products = (
       <div className="container">
         <div className="empty__modal">
           <div id="noSlider" className="empty__block">
@@ -82,7 +83,7 @@ export default function Index(props) {
               </div>
             </div>
           </div>
-         </div>
+        </div>
       </div>
     );
   }

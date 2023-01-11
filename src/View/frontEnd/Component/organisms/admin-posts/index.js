@@ -1359,7 +1359,7 @@ const AdminPosts = (props) => {
         }}
       >
         <div className="modal-dialog  modal-dialog-centered">
-          <div className="modal-content shadow-lg">
+          <div className="modal-content">
             <div className="modal-body text-center">
               <div className="remove-img-wrap">
                 <img

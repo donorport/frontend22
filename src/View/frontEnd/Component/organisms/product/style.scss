@@ -145,6 +145,8 @@
     font-weight: 600;
     font-size: 13px;
     white-space: nowrap;
+    bottom: 9px;
+    right: 0;
     .icon {
       margin-right: 6px;
     }
@@ -180,6 +182,9 @@
     .sold__icon {
       margin-right: 3px;
       height: 12px;
+    }
+    span {
+      height: 15px;
     }
   }
 }
