@@ -1,6 +1,5 @@
 // @import '@styles/scss/components/list-table';
 @import '../../../../../assets/scss/components/list-table';
-
 .szh-accordion__item-btn {
   background: unset;
   border: unset;
@@ -33,8 +32,14 @@
     max-width: 100%;
   }
 }
-li.table__list-item--tax.py-1:first-child {
+li.table__list-item.table__list-item--tax {
+  border-bottom: 1px solid whitesmoke;
+}
+li.table__list-item--tax:first-child {
   border-top: 2px dashed #e0e5ed;
   padding-top: 1.3rem !important;
   margin-top: 1.3rem !important;
+}
+.admin__billing-value {
+  min-width: 46px;
 }

@@ -268,7 +268,8 @@ const UserItems = () => {
               <div className="d-sm-none pt-20p pb-20p">
                 <div className="d-flex align-items-center">
                   <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-1 fw-bold text-light ms-3 ms-sm-0">
-                    {item.itemDetails?.soldout}/{item.itemDetails?.quantity}
+                    {item.itemDetails?.soldout}/
+                    {item.itemDetails?.unlimited ? '∞' : item.itemDetails?.quantity}
                   </span>
                   <ProgressBar
                     variant={!item.itemDetails?.unlimited ? 'success' : 'infinity'}

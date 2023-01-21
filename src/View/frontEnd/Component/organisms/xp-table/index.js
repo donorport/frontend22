@@ -118,7 +118,7 @@ const XpTable = (props) => {
 
   return (
     <>
-      <div className="list__table">
+      <div className="list__table mb-2 mb-sm-0">
         <div className="list__table-sort d-flex justify-content-sort">
           <div className="flex__1">
             <Button

@@ -60,7 +60,7 @@ const DonationConfirmPage = () => {
       <Page title={'Donation | ' + doantionDetails.uniqueTransactionId}>
         <DefaultLayout>
           <div className="container-fluid d-flex flex-wrap">
-            <div className="col-sm-6 d-flex flex-column align-items-sm-center align-items-stretch py-5 text-center pb-0 pb-sm-5">
+            <div className="col-sm-6 d-flex flex-column align-items-sm-center align-items-stretch py-5 text-center pb-0 pb-sm-5 border-end">
               <div className="boat-container relative mb-3">
                 <div className="absolute boat">
                   <ul className="no-bullet">
@@ -123,7 +123,7 @@ const DonationConfirmPage = () => {
                 )}
               </div>
             </div>
-            <div className="email__container border my-5 p-3">
+            <div className="d-flex flex-column ms-5 my-5 p-3 my-5 p-3">
               <div class="order__container d-flex align-items-center justify-content-between m-3 mx-0 border-bottom">
                 <div class="order__wrap">
                   <p class="total__title fs-2 fw-bolder">Donation Details</p>
@@ -194,6 +194,21 @@ const DonationConfirmPage = () => {
                     </div>
                   </div>
                 </div>
+                <div className="bg-lighter d-flex align-items-center p-20p rounded-3">
+                    <div className="order__logo me-2">
+                      <img src={getCardIcon(cardType)} alt="" className="img-fluid" />
+                    </div>
+                    <div className="order__card fs-7">
+                      <div className="text-dark fw-semibold mb-6p">
+                        XXXX XXXX XXXX {lastFourDigits}
+                      </div>
+                      <div className="text-light fw-semibold">
+                        <div>
+                          Transaction: {moment(doantionDetails.created_at).format('MMMM DD,YYYY')}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 <div className="total__box">
                   <div className="order__container d-flex align-items-center justify-content-between mt-3 border-top pt-3">
                     <div className="order__wrap">
@@ -208,21 +223,6 @@ const DonationConfirmPage = () => {
                           {doantionDetails.amount}
                         </b>
                       </p>
-                    </div>
-                  </div>
-                  <div className="bg-lighter d-flex align-items-center p-20p rounded-3">
-                    <div className="order__logo me-2">
-                      <img src={getCardIcon(cardType)} alt="" className="img-fluid" />
-                    </div>
-                    <div className="order__card fs-7">
-                      <div className="text-dark fw-semibold mb-6p">
-                        XXXX XXXX XXXX {lastFourDigits}
-                      </div>
-                      <div className="text-light fw-semibold">
-                        <div>
-                          Transaction: {moment(doantionDetails.created_at).format('MMMM DD,YYYY')}
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>

@@ -36,7 +36,7 @@ function FollowingItem(props) {
 
   return (
     <li
-      className="ad__activity__item p-1 d-flex align-items-center border-bottom"
+      className="ad__activity__item p-1 d-flex align-items-center border-bottom bg-white"
     >
       <div className="d-flex align-items-center flex-grow-1">
         <ListItemImg size={56} imgSrc={avatar} className='charity_avatar_bg' />

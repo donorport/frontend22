@@ -1,3 +1,6 @@
+.history__list > li:nth-last-child(2) {
+  border: unset !important;
+}
 .order__id {
   width: 250px;
 }
@@ -8,5 +11,5 @@
 }
 .img--nobg {
   background: unset;
-  border: unset
+  border: unset;
 }

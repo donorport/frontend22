@@ -30,7 +30,10 @@
   align-items: center;
   padding-right: 1rem;
 }
-li.table__list-item--tax.py-1:first-child {
+li.table__list-item.table__list-item--tax {
+  border-bottom: 1px solid whitesmoke;
+}
+li.table__list-item--tax:first-child {
   border-top: 2px dashed #e0e5ed;
   padding-top: 1.3rem !important;
   margin-top: 1.3rem !important;

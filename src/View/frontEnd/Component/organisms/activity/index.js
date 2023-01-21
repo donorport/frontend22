@@ -5,10 +5,12 @@ import FollowingList from './following-list';
 import NotificationSettings from '../../molecules/notification-settings';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { light, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import './style.scss';
 
 const Activity = (props) => {
+  const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
     empty: false,
     following: false,
@@ -31,6 +33,7 @@ const Activity = (props) => {
 
   const markNotification = async () => {
     // setState({ ...state, allRead: !state.allRead });
+    setLoading(true);
     await props.notificationMarkAsRead(!state.allRead, allNotificationList);
   };
 
@@ -69,6 +72,7 @@ const Activity = (props) => {
           temprray.push(notification);
         }
       });
+      setLoading(false);
       setAllNotificationList(n_id);
       // console.log(temprray.filter(e => e.userNotificationDetails?.watched).length)
 
@@ -163,9 +167,10 @@ const Activity = (props) => {
                   <Button
                     variant="link"
                     className="px-0 btn__link-light mark__feed text-decoration-none"
-                    onClick={() => markNotification()}
+                    onClick={() => !loading && markNotification()}
                   >
                     {state.allRead ? 'Mark all unread' : 'Mark all read'}
+                    {loading && <CircularProgress className="ms-1" color="inherit" size={10} />}
                   </Button>
                   <Button
                     variant="link"

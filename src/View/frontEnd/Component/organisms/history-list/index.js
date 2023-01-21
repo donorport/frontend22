@@ -117,7 +117,7 @@ const HistoryList = (props) => {
                   {
                     // activeDetail && key === order._id ?
                     activeList.includes(order._id) ? (
-                      <ul className="list-unstyled ms-1 mt-2">
+                      <ul className="history__list list-unstyled ms-1 mt-2">
                         {order.orderItems.length > 0 &&
                           order.orderItems.map((item, key) => {
                             // console.log(item)
@@ -128,7 +128,7 @@ const HistoryList = (props) => {
                             // let price = calculatedPrice.priceWithTax(item.productPrice)
 
                             return (
-                              <li className="d-sm-flex align-items-center px-sm-0 py-2">
+                              <li className="d-sm-flex align-items-center px-sm-0 py-2 border-bottom">
                                 <div className="d-flex align-items-center mb-2 mb-sm-0 flex__1">
                                   <ListItemImg
                                     size={68}
@@ -150,7 +150,7 @@ const HistoryList = (props) => {
                                   <ListItemImg
                                     size={54}
                                     style={{ maxWidth: 'auto !important' }}
-                                    className="rounded-circle img--nobg"
+                                    className="rounded-circle img--nobg mb-0 mb-sm-auto"
                                     imgSrc={
                                       helper.CampaignAdminLogoPath +
                                       item?.itemDetails?.campaignadminsDetails.logo
@@ -158,11 +158,11 @@ const HistoryList = (props) => {
                                   />
                                 </div>
                                 <div className="order__values d-flex align-items-center">
-                                  <span className="fs-5 text-info fw-bold flex__1">
-                                    {item.xp ? item.xp : 100} xp
+                                  <span className="fs- text-info fw-bold flex__1">
+                                    {item.xp ? item.xp : 0} xp
                                   </span>
                                   <span
-                                    className="fs-4 fw-bold text-light ms-2"
+                                    className="fs-5 fw-bold text-light ms-2"
                                     style={{ width: '80px', textAlign: 'end' }}
                                   >
                                     {order.currencySymbol ? order.currencySymbol : '$'}
@@ -183,7 +183,6 @@ const HistoryList = (props) => {
                                 XXXX XXXX XXXX {last4}
                               </div>
                               <div className="text-light fw-semibold">
-                                {/* <div>Transaction: July 02, 2019</div> */}
                                 <div>
                                   Transaction: {moment(order.created_at).format('MMMM DD , YYYY')}
                                 </div>

@@ -70,7 +70,7 @@ const TaxTable = (props) => {
 
   return (
     <>
-      <div className="list__table">
+      <div className="list__table mb-2 mb-sm-0">
         <div className="list__table-sort d-flex justify-content-sort">
           <div className="flex__1">
             <Button
@@ -199,7 +199,7 @@ const TaxTable = (props) => {
                                 //   </div>
                                 // </div>
 
-                                <div className="d-flex align-items-center justify-content-end fs-6 fw-semibold">
+                                <div className="d-flex align-items-center justify-content-end fs-6 fw-semibold me-auto">
                                   <div className="pe-1 p-sm-2 mr-12p">
                                     <img
                                       loading="lazy"
@@ -286,7 +286,7 @@ const TaxTable = (props) => {
                                 // </Button>
                                 <Button
                                   variant="link"
-                                  className="flex__1 d-flex align-items-center justify-content-end px-0 fw-semibold text-reset text-decoration-none"
+                                  className="d-flex align-items-center justify-content-end px-0 fw-semibold text-reset text-decoration-none"
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   Pending
@@ -324,7 +324,7 @@ const TaxTable = (props) => {
                                 <li className="table__list-item table__list-item--tax py-1">
                                   <div className="d-flex d-sm-flex align-items-center flex-grow-1">
                                     <div className="d-flex align-items-center mb-1 mb-sm-0 order-1 order-sm-0">
-                                      <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4 text-sm-start text-end">
+                                      <div className="admin__billing-value ms-2 ms-sm-0 me-sm-3 text-sm-start text-end">
                                         <div className="text-light fw-bold fs-5">
                                           {i1.currencySymbol}
                                           {i1.amount.toFixed(2)}

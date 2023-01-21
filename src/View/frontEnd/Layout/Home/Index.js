@@ -24,7 +24,7 @@ export default function Index(props) {
   const title = {
     color: '#6b68f8'
   };
-  const [loading, setLoading] = useState(true);
+  /* const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -37,7 +37,7 @@ export default function Index(props) {
   }, []);
   {
     loading && <CircularProgress />;
-  }
+  }*/
   if (props.productList && props.productList.length > 0) {
     products = props.productList.map((item, index) => {
       return (
