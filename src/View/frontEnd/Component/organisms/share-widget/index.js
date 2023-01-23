@@ -103,7 +103,7 @@ function ShareWidget() {
                 <FontAwesomeIcon icon={brands("twitter")} />
               </a> */}
                 <TwitterShareButton
-                  title={'test'}
+                  title='test'
                   hashtags={['hashtag1', 'hashtag2']}
                   url={currentPageLink}
                   // hashtags={["hashtag1", "hashtag2"]}
@@ -151,8 +151,8 @@ function ShareWidget() {
                 <LinkedinShareButton
                   url={currentPageLink}
                   quote={currentPageLink}
-                  hashtag={'#hashtag #new'}
-                  description={'test'}
+                  hashtag='#hashtag #new'
+                  description='test'
                   className="Demo__some-network__share-button"
                 >
                   <LinkedinIcon size={32} round />

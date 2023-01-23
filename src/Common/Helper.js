@@ -573,7 +573,7 @@ export function convertAddress(e) {
     return `${split[split.length - 3]}${state.length > 0 ? `, ${state[0].isoCode}` : ''}`;
     
   } catch (e) {
-    console.error(`function convertAddress failed with address ""`);
+    console.error(`function convertAddress failed with address "${e}"`);
   }
 }
 

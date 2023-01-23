@@ -17,7 +17,6 @@ import {
 import ToggleSwitch from '../../atoms/toggle-switch';
 import FeedTag from '../../atoms/feed-tag';
 import * as Icon from '../../atoms/category-icons';
-import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
 import categoryApi from '../../../../../Api/admin/category';
 import projectApi from '../../../../../Api/admin/project';
 import productApi from '../../../../../Api/admin/product';

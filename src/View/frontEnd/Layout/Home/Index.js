@@ -28,16 +28,15 @@ export default function Index(props) {
 
   useEffect(() => {
     (async () => {
-      const data = await products();
+      const data = products;
+      // const data = await products();
       if (data) {
         setLoading(false);
       }
       setLoading(true);
     })();
   }, []);
-  {
-    loading && <CircularProgress />;
-  }*/
+ 
   if (props.productList && props.productList.length > 0) {
     products = props.productList.map((item, index) => {
       return (
@@ -128,6 +127,7 @@ export default function Index(props) {
 
   return (
     <>
+     {loading && <CircularProgress />}
       <HeaderGeoController />
       <div className="bg-lighter border-bottom">
         <Container

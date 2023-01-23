@@ -206,7 +206,7 @@ const CompanySettings = () => {
         msg: 'Please upload an image with transparent background',
         msgType: 'error'
       });
-      setstate({
+      setState({
         ...state,
         image: ''
       });
