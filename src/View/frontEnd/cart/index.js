@@ -279,7 +279,7 @@ const Cart = (props) => {
             </a>
           </li>
           <li className="me-3">
-            <a href="/privacy-policy" className="text-subtext">
+            <a href="/privacy" className="text-subtext">
               Privacy policy
             </a>
           </li>

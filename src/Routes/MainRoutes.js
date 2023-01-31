@@ -75,6 +75,7 @@ import Trust from '../View/frontEnd/trust';
 import PlansController from '../Controller/frontEnd/PlansController';
 import VerifiedDonors from '../View/frontEnd/verified-donors';
 import Terms from '../View/frontEnd/terms';
+import Privacy from '../View/frontEnd/privacy';
 import CategoryProductsController from '../Controller/frontEnd/CategoryProductsController';
 import LeaderBoard from '../View/frontEnd/Component/organisms/leaderboard';
 import OrderConfirmPage from '../View/frontEnd/order-confirmation';
@@ -163,6 +164,7 @@ export default function MainRoutes() {
                         <Route path="/about-us" element={<AboutController />} />
                         <Route exact path="/organization/:name" element={<OrganizationDetailsController />} />
                         <Route path="/terms" element={<Terms />} />
+                        <Route path="/privacy" element={<Privacy />} />
 
                         {/* <Route exact path="/change-password" element={<ChangePassword />} /> */}
                         <Route exact path="/item/:name" element={<ItemDetailsController />} />
@@ -207,6 +209,7 @@ export default function MainRoutes() {
                             <Route path="/about-us" element={<AboutController />} />
                             <Route path="/verified" element={<VerifiedDonors />} />
                             <Route path="/terms" element={<Terms />} />
+                            <Route path="/privacy" element={<Privacy />} />
                             <Route path="/media" element={<Media />} />
                             <Route path="/ranks" element={<Ranks />} />
                             <Route path="/trust" element={<Trust />} />
@@ -298,6 +301,7 @@ export default function MainRoutes() {
                         <Route path="/donate/:id" element={<DonationConfirmPage />} />
                         <Route path="/verified" element={<VerifiedDonors />} />
                         <Route path="/terms" element={<Terms />} />
+                        <Route path="/privacy" element={<Privacy />} />
                         <Route path="/pricing" element={<Pricing />} />
                         <Route path="user" element={<UserDetail />} >
                             <Route path="/user/:name/dashboard" element={<UserDashboard />} />

@@ -138,7 +138,7 @@ function Footer() {
           </div>
           <ul className="list-unstyled mb-0 d-flex align-items-center justify-content-center justify-content-sm-start ms-auto mt-3 mt-sm-0">
             <li className="footer__link-item me-4">
-              <a href="#" className="footer__link">
+              <a href="/privacy" className="footer__link">
                 Privacy Policy
               </a>
             </li>

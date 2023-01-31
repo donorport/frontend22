@@ -1235,11 +1235,11 @@ const AddPost = (props) => {
                 <strong>terms of use</strong>
               </Link>
               ,{' '}
-              <Link to="/terms">
+              <Link to="/privacy">
                 <strong>privacy policy</strong>
               </Link>{' '}
               and{' '}
-              <Link to="/terms">
+              <Link to="/privacy">
                 <strong>site policies</strong>
               </Link>
               . Please do not post duplicate ads. You may not edit your post after it has received
