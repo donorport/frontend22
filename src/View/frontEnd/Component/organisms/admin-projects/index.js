@@ -538,7 +538,7 @@ const AdminProjects = () => {
 
   return (
     <>
-      <FrontLoader loading={loading} />
+     {/*<FrontLoader loading={loading} />*/}
 
       {!viewProject ? (
         <div>

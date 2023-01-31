@@ -116,7 +116,7 @@ const UserItems = () => {
 
   return (
     <>
-      <FrontLoader loading={loading} />
+     {/*<FrontLoader loading={loading} />*/}
       {!detail.show ? (
         <div>
           <header className="py-sm-2 pb-2 mb-3 w-100 d-none d-sm-flex align-items-center">

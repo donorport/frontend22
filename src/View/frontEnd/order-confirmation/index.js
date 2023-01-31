@@ -59,7 +59,7 @@ const OrderConfirmPage = () => {
     <>
       <Page title={'Order | ' + orderDetails.uniqueTransactionId}>
         <DefaultLayout>
-          {/* <FrontLoader loading={loading} />*/}
+          {/*<FrontLoader loading={loading} />*/}
           <div className="container-fluid d-flex flex-wrap">
             <div className="col-sm-6 d-flex flex-column align-items-sm-center align-items-stretch py-5 text-center pb-0 pb-sm-5 border-end">
               {/* <img

@@ -69,7 +69,7 @@ const Xp = () => {
   return (
     <>
       <Page title="Donorport | XP"></Page>
-      <FrontLoader loading={loading} />
+     {/*<FrontLoader loading={loading} />*/}
       <DefaultLayout>
         <Container fluid className="pt-5">
           {userAuthToken && (

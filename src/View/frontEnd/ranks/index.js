@@ -58,7 +58,7 @@ const Ranks = () => {
   return (
     <>
       <Page title="Donorport | XP">
-      <FrontLoader loading={loading} />
+     {/*<FrontLoader loading={loading} />*/}
       <DefaultLayout>
         <Container fluid className="pt-5">
           {userAuthToken && (

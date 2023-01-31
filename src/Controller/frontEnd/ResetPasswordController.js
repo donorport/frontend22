@@ -133,7 +133,7 @@ export default function ResetPasswordController() {
 
     return (
         <>
-            <FrontLoader loading={loading} />
+           {/*<FrontLoader loading={loading} />*/}
             <Page title="Donorport | Reset Password" description="Secure access to your account by resetting your password... A confirmation link will be sent to your email. Reset Password ..." >
                 <ResetPassword
                     stateData={state}

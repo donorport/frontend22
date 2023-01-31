@@ -191,7 +191,7 @@ const UserAdmin = () => {
 
   return (
     <>
-      <FrontLoader loading={loading} />
+     {/*<FrontLoader loading={loading} />*/}
       <div className="mw-600">
         <div className="mb-5">
           <div className="d-flex align-items-start">

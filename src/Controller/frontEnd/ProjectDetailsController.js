@@ -368,7 +368,7 @@ export default function ProjectDetailsController() {
     }, [user.countryId])
     return (
         <>
-            <FrontLoader loading={loading} />
+           {/*<FrontLoader loading={loading} />*/}
             <Page title={"Donorport | " + projectDetails?.name} description={projectDetails?.description}>
                 <ProjectDetail
                     projectDetails={projectDetails}

@@ -1345,7 +1345,7 @@ const AdminPosts = (props) => {
   return (
     <>
       {/* {console.log('state', displayPrice)} */}
-      {/* <FrontLoader loading={loading} />*/}
+      {/*<FrontLoader loading={loading} />*/}
 
       <div
         className="modal  common-modal"

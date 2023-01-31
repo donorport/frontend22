@@ -119,7 +119,7 @@ export default function LoginForm() {
 
   return (
     <>
-      <FrontLoader loading={loading} />
+     {/*<FrontLoader loading={loading} />*/}
       <FormikProvider value={formik}>
         {/* {console.log(formik.values)} */}
         <Form autoComplete="off" noValidate onSubmit={handleSubmit}>

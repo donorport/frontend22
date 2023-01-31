@@ -266,7 +266,7 @@ export default function SalesTax(props) {
 
     return (
         <>
-            <FrontLoader loading={loading} />
+           {/*<FrontLoader loading={loading} />*/}
             <Page title="Setting |Sales-Tax">
 
                 <Container>

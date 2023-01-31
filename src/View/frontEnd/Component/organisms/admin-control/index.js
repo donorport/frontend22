@@ -93,7 +93,7 @@ const AdminControl = () => {
 
   return (
     <>
-      <FrontLoader loading={loading} />
+     {/*<FrontLoader loading={loading} />*/}
       <div className="mb-5">
         <h4 className="fw-bolder">Notifications </h4>
         <div className="text-subtext mb-3">Turn off / on notifications</div>

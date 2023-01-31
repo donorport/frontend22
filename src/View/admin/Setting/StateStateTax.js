@@ -231,7 +231,7 @@ export default function StateSalesTax(props) {
     return (
         <>
 
-            <FrontLoader loading={loading} />
+           {/*<FrontLoader loading={loading} />*/}
             <Page title="Setting |Sales-Tax">
 
                 <Container>

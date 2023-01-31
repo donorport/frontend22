@@ -437,7 +437,7 @@ const CompanySettings = () => {
   };
   return (
     <>
-      {/* <FrontLoader loading={loading} />*/}
+      {/*<FrontLoader loading={loading} />*/}
       <div className="mb-5 mw-400">
         <h4 className="fw-bolder">About</h4>
         <div className="text-subtext mb-3">This info appears on your organization's page:</div>

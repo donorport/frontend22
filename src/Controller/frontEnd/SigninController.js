@@ -328,7 +328,7 @@ function SigninController() {
                     setShowPassword={setShowPassword}
 
                 />
-                <FrontLoader loading={loading} />
+               {/*<FrontLoader loading={loading} />*/}
             </Page>
         </>
     )

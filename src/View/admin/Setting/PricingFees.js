@@ -328,7 +328,7 @@ export default function PricingFees(props) {
 
     return (
         <>
-            <FrontLoader loading={loading} />
+           {/*<FrontLoader loading={loading} />*/}
             <Page title="Pricing | Minimal-UI">
 
                 <Container>

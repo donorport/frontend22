@@ -170,7 +170,7 @@ function LinkedOrg(props) {
 
   return (
     <>
-      <FrontLoader loading={loading} />
+     {/*<FrontLoader loading={loading} />*/}
 
       <div
         className="modal  common-modal"
