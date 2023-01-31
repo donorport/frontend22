@@ -14,7 +14,6 @@ import AddBankModal from '../../molecules/add-bank-modal';
 import './style.scss';
 import adminCampaignApi from '../../../../../Api/admin/adminCampaign';
 import FrontLoader from '../../../../../Common/FrontLoader';
-import { CircularProgress } from '@mui/material';
 import { validateAll } from 'indicative/validator';
 import ToastAlert from '../../../../../Common/ToastAlert';
 import { confirmAlert } from 'react-confirm-alert';

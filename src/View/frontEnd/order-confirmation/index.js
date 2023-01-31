@@ -46,7 +46,7 @@ const OrderConfirmPage = () => {
       }
     })();
   }, [params.id]);
-  //
+
   let cardType = JSON.parse(orderDetails?.paymentResponse || '{}')?.data?.payment_method_details
     ?.card?.brand;
   let lastFourDigits = JSON.parse(orderDetails?.paymentResponse || '{}')?.data
@@ -57,7 +57,7 @@ const OrderConfirmPage = () => {
 
   return (
     <>
-      <Page title={'Order | ' + orderDetails.uniqueTransactionId}>
+      <Page showTags={false} title={'Order | ' + orderDetails.uniqueTransactionId}>
         <DefaultLayout>
           {/* <FrontLoader loading={loading} />*/}
           <div className="container-fluid d-flex flex-wrap">
