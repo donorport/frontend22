@@ -34,7 +34,7 @@ const UserXp = () => {
   const getC = getCalculatedPrice();
 
   const getItemList = async (page, field, type) => {
-    setLoading(false);
+    setLoading(true);
     let formData = {};
 
     formData.pageNo = page;

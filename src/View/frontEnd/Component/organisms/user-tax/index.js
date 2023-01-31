@@ -65,7 +65,7 @@ const UserTax = () => {
   };
 
   const getTaxDataList = async (page, field, type, year) => {
-    setLoading(false);
+    setLoading(true);
     let formData = {};
     formData.pageNo = page;
     formData.sortField = field;

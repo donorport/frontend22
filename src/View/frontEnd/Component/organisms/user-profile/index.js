@@ -284,7 +284,7 @@ const UserProfile = () => {
   };
 
   const clearCart = async () => {
-    setLoading(false);
+    setLoading(true);
     const clearCart = await cartApi.clearCart(userAuthToken);
     if (clearCart) {
       if (!clearCart.data.success) {
@@ -300,8 +300,8 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
-    (async () => {
-      setLoading(false);
+        (async () => {
+            setLoading(true);
       // console.log(data)
       // if (data.country_id && data.country_id !== null ) {
       //   await getCountryStateList(data.country_id)
@@ -431,7 +431,7 @@ const UserProfile = () => {
           fdata.image = image;
         }
 
-        setLoading(false);
+        setLoading(true);
         const addUser = await userApi.updateProfile(userAuthToken, fdata);
         if (addUser) {
           if (!addUser.data.success) {
@@ -500,7 +500,7 @@ const UserProfile = () => {
           label: 'Yes',
 
           onClick: async () => {
-            setLoading(false);
+            setLoading(true);
             const deleteUser = await userApi.deleteUser(userAuthToken, id);
             if (deleteUser) {
               if (!deleteUser.data.success) {

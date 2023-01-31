@@ -51,7 +51,7 @@ export default function CartController() {
 
     useEffect(() => {
         (async () => {
-            setLoading(false)
+            setLoading(true)
             if (userAuthToken) {
                 const verifyUser = await authApi.verifyToken(userAuthToken ? userAuthToken : CampaignAdminAuthToken)
                 if (!verifyUser.data.success) {
@@ -79,7 +79,7 @@ export default function CartController() {
     }, [update, token])
 
     const removeCartItem = async (id) => {
-        setLoading(false)
+        setLoading(true)
         const removeCartItem = await cartApi.deleteCartItem(userAuthToken ? userAuthToken : CampaignAdminAuthToken, id);
         if (removeCartItem) {
             if (!removeCartItem.data.success) {
@@ -99,7 +99,7 @@ export default function CartController() {
     }
 
     const clearCart = async () => {
-        setLoading(false)
+        setLoading(true)
         const clearCart = await cartApi.clearCart(userAuthToken ? userAuthToken : CampaignAdminAuthToken);
         if (clearCart) {
             if (!clearCart.data.success) {
@@ -120,7 +120,7 @@ export default function CartController() {
 
 
     const updateCartItem = async (quentity, id, productId, type) => {
-        setLoading(false)
+        setLoading(true)
         const updateCartItem = await cartApi.updateCart(userAuthToken ? userAuthToken : CampaignAdminAuthToken, quentity, id, productId, type);
         if (updateCartItem) {
             if (!updateCartItem.data.success) {

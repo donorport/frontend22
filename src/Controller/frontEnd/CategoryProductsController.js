@@ -252,7 +252,7 @@ export default function CategoryProductsController() {
     const addProductToWishlist = async (productId) => {
         let data = {}
         data.productId = productId
-        setLoading(false)
+        setLoading(true)
         const add = await wishlistApi.add(token, data)
         if (add) {
             if (add.data.success) {
@@ -287,7 +287,7 @@ export default function CategoryProductsController() {
         (async () => {
 
 
-            setLoading(false)
+            setLoading(true)
             let obj = {}
             obj.userCountry = user.countryId
             const getproductList = await productApi.list(token, obj);
@@ -433,7 +433,7 @@ export default function CategoryProductsController() {
         if (token) {
 
 
-            setLoading(false)
+            setLoading(true)
             let data = {}
             data.productId = id
             const addItemToCart = await cartApi.add(userAuthToken, data);
@@ -457,7 +457,7 @@ export default function CategoryProductsController() {
     }
 
     const removeCartItem = async (id) => {
-        setLoading(false)
+        setLoading(true)
         const removeCartItem = await cartApi.removeCartProduct(userAuthToken, id);
         if (removeCartItem) {
             if (!removeCartItem.data.success) {
@@ -596,7 +596,7 @@ export default function CategoryProductsController() {
             // console.log(params)
             // console.log(params.slug)
 
-            setLoading(false)
+            setLoading(true)
             if (categoryDetails?.id) {
                 await filterProduct(lowPrice, HighPrice, resultTags, user.countryId)
             }
@@ -727,7 +727,7 @@ export default function CategoryProductsController() {
                         setresultTags(finalArray)
                         // console.log(finalArray)
 
-                        setLoading(false)
+                        setLoading(true)
                         await filterProduct(lowPrice, HighPrice, finalArray, user.countryId)
                         setLoading(false)
                     }
@@ -971,7 +971,7 @@ export default function CategoryProductsController() {
         }
         setresultTags(finalArray)
 
-        setLoading(false)
+        setLoading(true)
         await filterProduct(lowPrice, HighPrice, finalArray, user.countryId)
         setLoading(false)
     }

@@ -38,7 +38,7 @@ const DonationConfirmPage = () => {
   useEffect(() => {
     (async () => {
       if (params.id) {
-        setLoading(false);
+        setLoading(true);
         await getDonationDetails();
         setLoading(false);
       } else {

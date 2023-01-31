@@ -46,7 +46,7 @@ const AdminAdmin = () => {
   };
 
   const inviteTeamMember = async () => {
-    setLoading(false);
+    setLoading(true);
     let fdata = {};
     fdata.email = email;
     fdata.organizationName = data.name;
@@ -88,7 +88,7 @@ const AdminAdmin = () => {
         {
           label: 'Yes',
           onClick: async () => {
-            setLoading(false);
+            setLoading(true);
             if (id !== '') {
               const deleteAd = await organizationApi.removeTeamMember(token, id);
               if (deleteAd) {

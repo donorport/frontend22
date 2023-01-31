@@ -104,8 +104,8 @@ function ProductController() {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    (async () => {
-      setLoading(false);
+        (async () => {
+            setLoading(true);
 
       if (!hasPermission(adminData.roleName, 'PRODUCT')) {
         navigate('/admin/dashboard');

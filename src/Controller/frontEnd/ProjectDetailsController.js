@@ -134,7 +134,7 @@ export default function ProjectDetailsController() {
     const addToCart = async (id, quantity) => {
         if (token) {
 
-            setLoading(false)
+            setLoading(true)
             let data = {}
             data.productId = id
             data.quantity = quantity
@@ -160,7 +160,7 @@ export default function ProjectDetailsController() {
 
 
     const checkItemInCart = async (id) => {
-        setLoading(false)
+        setLoading(true)
         let res;
         const checkItemInCart = await cartApi.checkItemInCart(userAuthToken, id);
         if (checkItemInCart) {
@@ -206,7 +206,7 @@ export default function ProjectDetailsController() {
                     ...state,
                     error: formaerrror
                 })
-                setLoading(false)
+                setLoading(true)
                 let data = {}
                 data.name = userData.name
                 data.email = userData.email
@@ -320,7 +320,7 @@ export default function ProjectDetailsController() {
 
     useEffect(() => {
         (async () => {
-            setLoading(false)
+            setLoading(true)
             // console.log(params.name)
             let projdata = {}
             const getProjectDetails = await projectApi.details(token, params.name);

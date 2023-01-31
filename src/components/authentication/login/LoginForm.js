@@ -57,7 +57,7 @@ export default function LoginForm() {
     },
     validationSchema: LoginSchema,
     onSubmit: async () => {
-      setLoading(false)
+      setLoading(true)
       const login = await authApi.login(formik.values.email, formik.values.password)
       if (login) {
         if (!login.data.success || login.data.status !== 1) {

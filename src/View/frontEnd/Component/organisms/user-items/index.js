@@ -62,7 +62,7 @@ const UserItems = () => {
   const [totalPriceArray, setTotalPriceArray] = useState([]);
 
   const getOrderItemList = async (page, field, type) => {
-    setLoading(false);
+    setLoading(true);
     let formData = {};
     formData.organizationId = data._id;
     formData.pageNo = page;

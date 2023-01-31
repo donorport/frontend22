@@ -90,7 +90,7 @@ export default function ResetPasswordController() {
                 ...state,
                 error: formaerrror
             })
-            setLoading(false)
+            setLoading(true)
             const resetPassword = await userAuthApi.verifyOtp(email, otp, password)
             if (resetPassword) {
                 if (!resetPassword.data.success) {

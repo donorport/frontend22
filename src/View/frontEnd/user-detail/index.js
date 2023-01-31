@@ -42,8 +42,8 @@ function UserDetail(props) {
   const location = useLocation();
 
   useEffect(() => {
-    (async () => {
-      setLoading(false);
+        (async () => {
+            setLoading(true);
       const getUserDetails = await userApi.getUserDetails(userAuthToken);
       if (getUserDetails) {
         if (getUserDetails.data.success) {

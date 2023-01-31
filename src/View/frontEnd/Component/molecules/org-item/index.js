@@ -45,6 +45,20 @@ function OrganisationItem(props) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    (async () => {
+      setTotalPrice(productPrice.toFixed(2));
+      if (!CampaignAdminAuthToken) {
+        const checkItem = await props.checkItemInCart(productId);
+        if (checkItem === true) {
+          setAddedToCard(true);
+        } else {
+          setAddedToCard(false);
+        }
+      }
+    })();
+  }, [!user.isUpdateCart, productPrice]);
+
   const cart_btn = addedToCard ? (
     <Button variant="success" className="icon icon__pro">
       <FontAwesomeIcon icon={solid('circle-check')} />
@@ -67,13 +81,6 @@ function OrganisationItem(props) {
     </Button>
   );
 
-  // const btn =
-  //   soldout >= quantity ? (
-  //     <span className="btn btn-outline-danger btn-sm btn__sold">Sold</span>
-  //   ) : (
-  //     cart_btn
-  //   );
-
   const btn =
     isFinish || (isFulfiled && !infinite) ? (
       <div className="button__wrap d-flex">
@@ -85,20 +92,6 @@ function OrganisationItem(props) {
     ) : (
       <div className="button__wrap d-flex">{cart_btn}</div>
     );
-
-  useEffect(() => {
-    (async () => {
-      setTotalPrice(productPrice.toFixed(2));
-      if (!CampaignAdminAuthToken) {
-        const checkItem = await props.checkItemInCart(productId);
-        if (checkItem === true) {
-          setAddedToCard(true);
-        } else {
-          setAddedToCard(false);
-        }
-      }
-    })();
-  }, [!user.isUpdateCart, productPrice]);
 
   // console.log("product",product)
   return (

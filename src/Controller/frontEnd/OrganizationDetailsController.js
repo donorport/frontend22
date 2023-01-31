@@ -156,7 +156,7 @@ export default function OrganizationDetailsController() {
         if (token) {
 
 
-            setLoading(false)
+            setLoading(true)
             let data = {}
             data.productId = id
             data.quantity = quantity
@@ -182,7 +182,7 @@ export default function OrganizationDetailsController() {
 
 
     const checkItemInCart = async (id) => {
-        setLoading(false)
+        setLoading(true)
         let res;
         const checkItemInCart = await cartApi.checkItemInCart(userAuthToken, id);
         if (checkItemInCart) {
@@ -227,7 +227,7 @@ export default function OrganizationDetailsController() {
                     ...state,
                     error: formaerrror
                 })
-                setLoading(false)
+                setLoading(true)
                 let data = {}
                 data.name = userData.name
                 data.email = userData.email
@@ -319,7 +319,7 @@ export default function OrganizationDetailsController() {
 
     useEffect(() => {
         (async () => {
-            setLoading(false)
+            setLoading(true)
 
             let orgdata = {}
             const getOrganizationDetails = await organizationApi.details(params.name);

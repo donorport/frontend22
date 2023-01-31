@@ -251,7 +251,7 @@ const CompanySettings = () => {
   useEffect(() => {
     (async () => {
       // console.log(data)
-      setLoading(false);
+      setLoading(true);
       setState({
         ...state,
         name: data.name,

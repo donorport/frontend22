@@ -110,8 +110,8 @@ const AdminTax = () => {
   };
 
   useEffect(() => {
-    (async () => {
-      setLoading(false);
+        (async () => {
+            setLoading(true);
       await getTaxList(pageNo, sortField, order);
       setLoading(false);
     })();
@@ -129,7 +129,7 @@ const AdminTax = () => {
     fdata.organizationCountryId = data.country_id;
     fdata.userId = userId;
 
-    setLoading(false);
+    setLoading(true);
     const uploadTax = await organizationApi.organizatationTaxUpload(token, fdata);
     if (uploadTax) {
       if (uploadTax.data.success === false) {

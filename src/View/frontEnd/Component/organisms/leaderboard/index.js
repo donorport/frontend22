@@ -41,8 +41,8 @@ const LeaderBoard = () => {
   };
 
   useEffect(() => {
-    (async () => {
-      setLoading(false);
+        (async () => {
+            setLoading(true);
       if (user.countryId) {
         await getList();
       }

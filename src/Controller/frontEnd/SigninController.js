@@ -93,7 +93,7 @@ function SigninController() {
                 ...state,
                 error: formaerrror
             })
-            setLoading(false)
+            setLoading(true)
             const uselogin = await userAuthApi.login(email, password)
             // console.log(uselogin)
             if (uselogin) {

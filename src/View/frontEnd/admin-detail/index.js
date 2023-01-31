@@ -74,7 +74,7 @@ function AdminDetail() {
   useEffect(() => {
     (async () => {
       // console.log(location?.state?.type)
-      setLoading(false);
+      setLoading(true);
       const getCampaignDetails = await adminCampaignApi.getCampaignDetails(token);
       if (getCampaignDetails.data.success) {
         // console.log(getCampaignDetails.data.data.description)

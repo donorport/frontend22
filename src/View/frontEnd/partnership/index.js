@@ -74,7 +74,7 @@ const Partnership = () => {
           ...state,
           error: formaerrror
         });
-        setLoading(false);
+        setLoading(true);
         let data = {};
         data.name = name;
         data.email = email;

@@ -32,8 +32,8 @@ const Ranks = () => {
   const { captian, admiral, pirate, narwhal, beluga, fish } = state;
 
   useEffect(() => {
-    (async () => {
-      setLoading(false);
+        (async () => {
+            setLoading(true);
       // if (userAuthToken || CampaignAdminAuthToken) {
 
       const getSettingsValue = await settingApi.list(

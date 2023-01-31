@@ -92,8 +92,8 @@ const UserBilling = () => {
 
 
   useEffect(() => {
-    (async () => {
-      setLoading(false)
+        (async () => {
+            setLoading(true)
       await getUserPaymentHistory()
       setLoading(false)
 

@@ -100,7 +100,7 @@ export default function CheckoutController() {
 
   useEffect(() => {
     (async () => {
-      setLoading(false);
+      setLoading(true);
       if (userAuthToken) {
         const verifyUser = await authApi.verifyToken(userAuthToken);
         if (!verifyUser.data.success) {
@@ -395,7 +395,7 @@ export default function CheckoutController() {
   };
 
   const removeCartItem = async (id) => {
-    setLoading(false);
+    setLoading(true);
     const removeCartItem = await cartApi.deleteCartItem(userAuthToken, id);
     if (removeCartItem) {
       if (!removeCartItem.data.success) {

@@ -25,7 +25,7 @@ export default function OrganizationAdminController() {
 
     useEffect(() => {
         (async () => {
-            setLoading(false)
+            setLoading(true)
             // console.log(params.name)
             if (adminData && adminData.slug === params.name) {
                 let orgdata = {}
@@ -50,7 +50,7 @@ export default function OrganizationAdminController() {
     }, [])
 
     const getProductList = async (id) => {
-        setLoading(false)
+        setLoading(true)
 
         const getOrganizationProducts = await productApi.listByOrganization(CampaignAdminAuthToken, id);
         if (getOrganizationProducts.data.success === true) {
@@ -62,7 +62,7 @@ export default function OrganizationAdminController() {
 
 
     const getProjetList = async (id) => {
-        setLoading(false)
+        setLoading(true)
 
         const getOrganizationProjets = await organizationApi.projectListByOrganization(CampaignAdminAuthToken, id);
         if (getOrganizationProjets.data.success === true) {

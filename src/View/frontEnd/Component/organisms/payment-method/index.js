@@ -423,7 +423,7 @@ const PaymentMethod = () => {
         // data.accountNumber = encryptData(accountNumber.toString())
 
         // Api Call for update Profile
-        setLoading(false);
+        setLoading(true);
         const addBank = await adminCampaignApi.addBankAccount(token, data);
 
         if (addBank) {
@@ -669,7 +669,7 @@ const PaymentMethod = () => {
           error: formaerrror
         });
 
-        setLoading(false);
+        setLoading(true);
         if (key !== 5) {
           setValue(key + 1);
         } else {

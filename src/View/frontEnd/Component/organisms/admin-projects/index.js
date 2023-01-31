@@ -104,8 +104,8 @@ const AdminProjects = () => {
 
 
   useEffect(() => {
-    (async () => {
-      setLoading(false)
+        (async () => {
+            setLoading(true)
       await getProductList()
       await getProjectList(pageNo, sortField, order, listBy)
       setLoading(false)
@@ -303,7 +303,7 @@ const AdminProjects = () => {
 
         let addProject;
 
-        setLoading(false)
+        setLoading(true)
         if (id !== '') {
           addProject = await projectApi.updateProject(token, formData, id)
         } else {
@@ -363,7 +363,7 @@ const AdminProjects = () => {
         {
           label: 'Yes',
           onClick: (async () => {
-            setLoading(false)
+            setLoading(true)
             if (id !== '') {
               const deleteProjectApi = await projectApi.deleteProject(CampaignAdminAuthToken, id)
               if (deleteProjectApi) {
@@ -460,7 +460,7 @@ const AdminProjects = () => {
     if (!projectData.name || !projectData.description || !projectData.video || !projectData.headline || projectData.productDetails.length === 0) {
       ToastAlert({ msg: 'Project not Published please fill Required information', msgType: 'error' });
     } else {
-      setLoading(false)
+      setLoading(true)
       const publish = await projectApi.publishProject(CampaignAdminAuthToken, id)
       if (publish) {
         if (publish.data.success === false) {

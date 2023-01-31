@@ -107,7 +107,7 @@ function SignupController() {
             // data.country_id = Number(country)
 
 
-            setLoading(false)
+            setLoading(true)
             const userSignup = await userAuthApi.register(data)
             if (userSignup) {
                 if (!userSignup.data.success) {

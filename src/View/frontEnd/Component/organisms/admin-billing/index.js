@@ -69,8 +69,8 @@ const AdminBilling = () => {
 
 
   useEffect(() => {
-    (async () => {
-      setLoading(false)
+        (async () => {
+            setLoading(true)
       if (data && data._id) {
         await getPaymentHistory()
 

@@ -218,7 +218,7 @@ export default function ApplyOrganizationController() {
           ...state,
           error: formaerrror
         });
-        setLoading(false);
+        setLoading(true);
 
         let data = {};
         data.name = name;
@@ -275,7 +275,7 @@ export default function ApplyOrganizationController() {
       let data = {};
       data.otp = Number(finalCode);
 
-      setLoading(false);
+      setLoading(true);
       const verifyOtp = await adminCampaignApi.VerifyOtpCampaignAdmin(data);
       deleteCookie('code1');
       deleteCookie('code2');

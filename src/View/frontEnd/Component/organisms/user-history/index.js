@@ -24,7 +24,7 @@ const UserHistory = () => {
 
 
   const getUserOrders = async (page) => {
-    setLoading(false)
+    setLoading(true)
     const getUserOrderDetails = await userApi.getUserOrderDetails(userAuthToken, page)
     if (getUserOrderDetails.data.success) {
       // console.log(getUserOrderDetails.data)

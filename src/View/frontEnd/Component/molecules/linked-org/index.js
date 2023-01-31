@@ -61,7 +61,7 @@ function LinkedOrg(props) {
   }, [!user.isActiveOrg]);
 
   const removeTeamMember = async (id) => {
-    setLoading(false);
+    setLoading(true);
     const deleteAd = await organizationApi.removeTeamMember(token, orgId);
     if (deleteAd) {
       if (deleteAd.data.success === false) {
@@ -127,7 +127,7 @@ function LinkedOrg(props) {
   ));
 
   const activateCode = async () => {
-    setLoading(false);
+    setLoading(true);
     let code1 = getCookie('code1');
     let code2 = getCookie('code2');
     let code3 = getCookie('code3');

@@ -83,7 +83,7 @@ export default function HeaderGeoController() {
   const addProductToWishlist = async (productId) => {
     let data = {};
     data.productId = productId;
-    setLoading(false);
+    setLoading(true);
     const add = await wishlistApi.add(token, data);
     if (add) {
       if (add.data.success) {
@@ -115,7 +115,7 @@ export default function HeaderGeoController() {
 
   useEffect(() => {
     (async () => {
-      setLoading(false);
+      setLoading(true);
 
       if (userAuthToken && user.countryId) {
         // console.log('token')
@@ -145,7 +145,7 @@ export default function HeaderGeoController() {
 
   useEffect(() => {
     (async () => {
-      setLoading(false);
+      setLoading(true);
       if (token) {
         const getSettingsValue = await settingApi.list(
           userAuthToken ? userAuthToken : CampaignAdminAuthToken,
@@ -227,7 +227,7 @@ export default function HeaderGeoController() {
   };
 
   const removeCartItem = async (id) => {
-    setLoading(false);
+    setLoading(true);
     const removeCartItem = await cartApi.deleteCartItem(userAuthToken, id);
     if (removeCartItem) {
       if (!removeCartItem.data.success) {
@@ -252,7 +252,7 @@ export default function HeaderGeoController() {
     // console.log('id',id)
     // console.log('productId',productId)
 
-    setLoading(false);
+    setLoading(true);
     const updateCartItem = await cartApi.updateCart(userAuthToken, quentity, id, productId, type);
     if (updateCartItem) {
       if (!updateCartItem.data.success) {

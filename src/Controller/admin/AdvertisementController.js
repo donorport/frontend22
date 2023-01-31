@@ -557,7 +557,7 @@ export default function AdvertisementController() {
 
             let createAd;
             // Api Call for update Profile
-            setLoading(false)
+            setLoading(true)
             if (id !== '') {
                 createAd = await advertisementApi.updateAdvertisement(adminAuthToken, data, id)
             } else {

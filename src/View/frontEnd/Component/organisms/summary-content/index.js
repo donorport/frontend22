@@ -18,7 +18,8 @@ const SummaryContent = (props) => {
   let transactionFee = props.transactionFee;
 
   // let transactionFee = props.pricingFees?.transactionFee
-  // let platformFee = props.pricingFees?.platformFee
+  let platformFee = props.pricingFees?.platformFee
+  console.log(platformFee);
   // let totalCharge = Number(transactionFee) + Number(platformFee)
 
   return (
@@ -84,6 +85,12 @@ const SummaryContent = (props) => {
         </ul>
 
         <div className=" py-3 border-bottom">
+        <div className="d-flex align-items-center pb-20p">
+            <span className="fw-bolder flex__1">Fee:</span>
+            <span className="fw-bold text-light fs-5">
+              {props.currencySymbol + priceFormat(platformFee)}
+            </span>
+          </div>
           <div className="d-flex align-items-center pb-20p">
             <span className="fw-bolder flex__1">Subtotal:</span>
             <span className="fw-bold text-light fs-5">
