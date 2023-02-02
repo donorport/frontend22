@@ -625,14 +625,14 @@ const CompanySettings = () => {
           </label>
           {error && error.promoVideo && <p className="error">{error.promoVideo}</p>}
         </div>
-        {embedlink && isIframe(embedlink) ? (
-          <div
-            className="project-video-wrap mb-4"
-            dangerouslySetInnerHTML={{ __html: embedlink }}
-          ></div>
-        ) : (
+        {embedlink && (
           <div className="project-video-wrap mb-4">
-            <iframe title="post-video" width="498" height="280" src={embedlink}></iframe>
+            <iframe
+              title="post-video"
+              width="498"
+              height="280"
+              src={embedlink.replace(/\/wa.*=/g, '/embed/')}
+            ></iframe>
           </div>
         )}
         <Button

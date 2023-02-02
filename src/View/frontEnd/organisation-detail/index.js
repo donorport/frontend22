@@ -1,5 +1,5 @@
 // core
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // third party
 // import { Col, Container, Row } from "react-bootstrap";
@@ -19,6 +19,7 @@ import GrabDropdown from '../Component/organisms/grab-dropdown';
 //import HeaderController from '../../../Controller/frontEnd/HeaderController';
 import DonateModal from '../Component/molecules/donate-modal';
 import HeaderController from '../../../Controller/frontEnd/HeaderController';
+import { useSelector } from 'react-redux';
 
 // style
 import './style.scss';
@@ -60,9 +61,20 @@ import './style.scss';
 // }
 
 const OrganisationDetail = (props) => {
+  const user = useSelector((state) => state.user);
   let organizationDetails = props.organizationDetails;
   let projectList = props.projectList;
   const [modalShow, setModalShow] = useState(false);
+  const [organizationListByCountry, setOrganizationListByCountry] = useState([]);
+
+  useEffect(() => {
+    setOrganizationListByCountry(
+      props.organizationList.filter((v) => {
+        return v.country_id === user.countryId;
+      })
+    );
+  }, [props.organizationList]);
+
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const userAuthToken = localStorage.getItem('userAuthToken');
   const token = userAuthToken ? userAuthToken : CampaignAdminAuthToken;
@@ -73,7 +85,7 @@ const OrganisationDetail = (props) => {
       <SuggestionWrapper>
         <div className="suggested__list d-flex align-items-center container-fluid p-0 mb-0">
           <SuggestedList
-            organizationList={props.organizationList}
+            organizationList={organizationListByCountry}
             organizationId={organizationDetails?._id}
             itemTag="organization"
           />

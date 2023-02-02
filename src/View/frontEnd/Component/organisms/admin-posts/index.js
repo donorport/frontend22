@@ -1429,7 +1429,7 @@ const AdminPosts = () => {
                 icon={solid('money-bills-simple')}
                 className="text-dark mr-12p fs-4"
               />
-              $234.56
+              ${(productList && productList.length > 0) ? productList.reduce((a, c) => a + c.displayPrice, 0).toFixed(2) : 0}
             </span>
 
             <div className="d-flex align-items-center ms-sm-auto">
@@ -1805,19 +1805,11 @@ const AdminPosts = () => {
                             <Dropdown.Divider />
                             <Dropdown.Item
                               className="d-flex align-items-center p-2"
-                              onClick={() => {
-                                // console.log(
-                                //   'delete',
-                                //   fulfilProductDetails?.fulfilDetails?._id,
-                                //   fulfilProductDetails?.fulfilDetails?.productId,
-                                //   fulfilProductDetails?.fulfilDetails?.organizationId
-                                // );
-                                deleteFulfilorder(
+                              onClick={() => deleteFulfilorder(
                                   fulfilProductDetails?.fulfilDetails?._id,
                                   fulfilProductDetails?.fulfilDetails?.productId,
                                   fulfilProductDetails?.fulfilDetails?.organizationId
-                                );
-                              }}
+                                )}
                             >
                               <span className="fw-bold fs-7 flex__1">Delete</span>
                               <FontAwesomeIcon icon={regular('trash')} className="ms-1" />
