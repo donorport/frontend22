@@ -1,17 +1,14 @@
 import './style.scss';
-import { Outlet, Link, useLocation, useOutletContext, useNavigate } from 'react-router-dom';
-import React, { useState, useEffect, useContext } from 'react';
-import FrontLoader from '../../../../../Common/FrontLoader';
+import { useOutletContext, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import helper, { isIframe, hasAlpha } from '../../../../../Common/Helper';
 import { validateAll } from 'indicative/validator';
 import ToastAlert from '../../../../../Common/ToastAlert';
 import adminCampaignApi from '../../../../../Api/admin/adminCampaign';
 import { Button } from 'react-bootstrap';
 import CircularProgress from '@mui/material/CircularProgress';
-// import { UserContext } from '../../../../../App';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  setIsUpdateCart,
   setIsUpdateOrganization,
   setProfileImage,
   setLogout
@@ -628,20 +625,16 @@ const CompanySettings = () => {
           </label>
           {error && error.promoVideo && <p className="error">{error.promoVideo}</p>}
         </div>
-        {embedlink && isIframe(embedlink) && (
+        {embedlink && isIframe(embedlink) ? (
           <div
             className="project-video-wrap mb-4"
             dangerouslySetInnerHTML={{ __html: embedlink }}
           ></div>
+        ) : (
+          <div className="project-video-wrap mb-4">
+            <iframe title="post-video" width="498" height="280" src={embedlink}></iframe>
+          </div>
         )}
-        {/* <div className="post__video minh-120 border bg-lighter mb-3">
-          <iframe
-            title="post-video"
-            width="200"
-            height="200"
-            src={embedlink}
-          ></iframe>
-        </div> */}
         <Button
           variant="info"
           className="mt-3 mb-3"

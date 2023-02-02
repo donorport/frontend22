@@ -1,57 +1,29 @@
-import { useState, useEffect } from 'react';
-// import { Button } from "react-bootstrap";
-import { Outlet, useOutletContext, Link, useNavigate } from 'react-router-dom';
-// import {
-//   LadderMenuItems,
-//   PostsTable,
-//   AddPost,
-// } from "@components/organisms";
-import LadderMenuItems from '../ladder-menu-items';
+import { useState, useEffect, useCallback } from 'react';
+import { useOutletContext, Link, useNavigate } from 'react-router-dom';
 import PostsTable from '../posts-table';
 import AddPost from '../add-post';
-// import productApi from "../../../../../Api/frontEnd/product";
 import './style.scss';
-import FrontLoader from '../../../../../Common/FrontLoader';
-
-import ToggleSwitch from '../../atoms/toggle-switch';
-import FeedTag from '../../atoms/feed-tag';
-import * as Icon from '../../atoms/category-icons';
-// import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
 import categoryApi from '../../../../../Api/admin/category';
 import projectApi from '../../../../../Api/admin/project';
 import productApi from '../../../../../Api/admin/product';
-import { WithContext as ReactTags } from 'react-tag-input';
 import noimg from '../../../../../assets/images/noimg.jpg';
 import helper, {
   priceWithOrganizationTax,
   priceFormat,
   isIframe,
-  download,
   hasAlpha
 } from '../../../../../Common/Helper';
 import { validateAll } from 'indicative/validator';
 import ToastAlert from '../../../../../Common/ToastAlert';
 import { confirmAlert } from 'react-confirm-alert';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid, regular, light } from '@fortawesome/fontawesome-svg-core/import.macro';
-import ListItemImg from '../../atoms/list-item-img';
-import { useSelector, useDispatch } from 'react-redux';
-
-import {
-  Button,
-  Accordion,
-  AccordionContext,
-  useAccordionButton,
-  Card,
-  Col,
-  Row,
-  Dropdown
-} from 'react-bootstrap';
+import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { useSelector } from 'react-redux';
+import { Button, Card, Col, Row, Dropdown } from 'react-bootstrap';
 import moment from 'moment';
-import adminCampaignApi from '../../../../../Api/admin/adminCampaign';
+import _ from 'lodash';
 
-const AdminPosts = (props) => {
+const AdminPosts = () => {
   const fileuploadinput = {
     position: 'absolute',
     margin: 0,
@@ -71,9 +43,6 @@ const AdminPosts = (props) => {
   };
   const validExtensions = ['jpg', 'png', 'jpeg'];
   const [viewPost, createPost] = useState(false);
-  // const [productList, setProductList] = useState([])
-  // const [projectList, setProjectList] = useState([])
-  // const [loading, setLoading] = useState(false)
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const type = localStorage.getItem('type');
   const tempCampaignAdminAuthToken = localStorage.getItem('tempCampaignAdminAuthToken');
@@ -82,19 +51,13 @@ const AdminPosts = (props) => {
       ? tempCampaignAdminAuthToken
       : CampaignAdminAuthToken
     : CampaignAdminAuthToken;
-  const [data, setData] = useOutletContext();
-  // const [update, setUpdate] = useState(false)
+  const [data] = useOutletContext();
 
-  // const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
-  const [loading, setLoading] = useState(false);
-  const [totalPriceArray, setTotalPriceArray] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [subcategoryList, setSubCategoryList] = useState([]);
-  const [campaignAdminList, setCampaignAdminList] = useState([]);
   const [tempImg, setTempImg] = useState('');
   const [Img, setImg] = useState('');
   const [productList, setProductList] = useState([]);
-  const [iconList, setIconList] = useState([]);
   const [projectList, setProjectList] = useState([]);
   const [update, setUpdate] = useState(false);
   const navigate = useNavigate();
@@ -114,7 +77,7 @@ const AdminPosts = (props) => {
   const [sortField, setSortField] = useState('created_at');
   const [order, setOrder] = useState('asc');
   const [fulfilProductDetails, setFulfilProductDetails] = useState({});
-  const [primaryBankDetails, setPrimaryBankDetails] = useState({});
+  // const [primaryBankDetails, setPrimaryBankDetails] = useState({});
 
   const [state, setstate] = useState({
     id: '',
@@ -146,20 +109,21 @@ const AdminPosts = (props) => {
     policy: false,
     galleryImg: []
   });
+
   const {
     id,
-    status,
-    title,
-    subtitle,
+    // status,
+    // title,
+    // subtitle,
     category,
     subcategory,
     description,
     price,
     image,
     quantity,
-    organization,
+    // organization,
     slug,
-    error,
+    // error,
     moreImg,
     galleryUrl,
     headline,
@@ -197,27 +161,11 @@ const AdminPosts = (props) => {
   const user = useSelector((state) => state.user);
 
   const [tags, setTags] = useState([]);
-  let url = galleryUrl;
-  let videoid = url?.split('?v=')[1];
-  let embedlink = videoid ? 'http://www.youtube.com/embed/' + videoid : '';
+  // let url = galleryUrl;
+  // let videoid = url?.split('?v=')[1];
+  // let embedlink = videoid ? 'http://www.youtube.com/embed/' + videoid : '';
 
-  useEffect(() => {
-    (async () => {
-      // console.log(data)
-      // console.log(data.country_id)
-      setLoading(false);
-      const getcategoryList = await categoryApi.listCategory(token);
-      if (getcategoryList.data.success === true) {
-        setCategoryList(getcategoryList.data.data);
-      }
-
-      if (data._id) await orgProjectList();
-      await getPrimaryBankAccount();
-      setLoading(false);
-    })();
-  }, [data._id]);
-
-  const orgProjectList = async () => {
+  const orgProjectList = useCallback(async () => {
     let formData = {};
     formData.filter = false;
     formData.sortField = 'created_at';
@@ -229,14 +177,28 @@ const AdminPosts = (props) => {
     if (getProjectList.data.success) {
       setProjectList(getProjectList.data.data);
     }
-  };
+  }, [data._id, token]);
 
-  const getPrimaryBankAccount = async () => {
-    const acc = await adminCampaignApi.getPrimaryBankAccount(token);
-    if (acc.data.success) {
-      setPrimaryBankDetails(acc.data.data);
-    }
-  };
+  // const getPrimaryBankAccount = useCallback(async () => {
+  //   const acc = await adminCampaignApi.getPrimaryBankAccount(token);
+  //   if (acc.data.success) {
+  //     setPrimaryBankDetails(acc.data.data);
+  //   }
+  // }, [token]);
+
+  useEffect(() => {
+    (async () => {
+      // setLoading(false);
+      const getcategoryList = await categoryApi.listCategory(token);
+      if (getcategoryList.data.success === true) {
+        setCategoryList(getcategoryList.data.data);
+      }
+
+      if (data._id) await orgProjectList();
+      // await getPrimaryBankAccount();
+      // setLoading(false);
+    })();
+  }, [data._id, orgProjectList, token]);
 
   const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
@@ -284,7 +246,6 @@ const AdminPosts = (props) => {
 
   const changevalue = async (e) => {
     let value = e.target.value;
-    // console.log(value)
     if (
       e.target.name === 'unlimited' ||
       e.target.name === 'tax' ||
@@ -307,15 +268,7 @@ const AdminPosts = (props) => {
     }
 
     if (e.target.name === 'category') {
-      // setstate({
-      //   ...state,
-      //   'subcategory': ''
-      // })
-
-      // console.log(value)
-
-      //get subCategory List on Category Change
-
+      // get subCategory List on Category Change
       const getsubCategoryList = await categoryApi.listSubCategory(token, value);
       if (getsubCategoryList.data.success === true) {
         setSubCategoryList(getsubCategoryList.data.data);
@@ -551,7 +504,6 @@ const AdminPosts = (props) => {
         //   ...fulfilState,
         //   fulfilMoreImg: ftempMainFileArry
         // })
-
         setFulfilState({
           ...fulfilState,
           fulfilMoreImg: combineMain
@@ -576,7 +528,8 @@ const AdminPosts = (props) => {
       }
     }
   };
-  const resetForm = async (e) => {
+
+  const resetForm = async () => {
     // setModal(false);
     setTags([]);
     setTempImg('');
@@ -759,7 +712,7 @@ const AdminPosts = (props) => {
         // }
         let tagsArray = [];
         if (tags.length > 0) {
-          tags.map((ptage, i) => {
+          tags.map((ptage) => {
             tagsArray.push(ptage.id);
           });
         }
@@ -806,7 +759,7 @@ const AdminPosts = (props) => {
 
           let addProduct;
           // Api Call for update Profile
-          setLoading(false);
+          // setLoading(false);
           if (id !== '') {
             addProduct = await productApi.updateProduct(token, formData, id);
           } else {
@@ -815,12 +768,12 @@ const AdminPosts = (props) => {
 
           if (addProduct) {
             if (addProduct.data.success === false) {
-              setLoading(false);
+              // setLoading(false);
               ToastAlert({ msg: addProduct.data.message, msgType: 'error' });
             } else {
               if (addProduct.data.success === true) {
                 resetForm();
-                setLoading(false);
+                // setLoading(false);
                 setUpdate(!update);
                 createPost(false);
                 setModelShow(false);
@@ -828,7 +781,7 @@ const AdminPosts = (props) => {
               }
             }
           } else {
-            setLoading(false);
+            // setLoading(false);
             ToastAlert({ msg: 'Product not save', msgType: 'error' });
           }
         } else {
@@ -836,7 +789,7 @@ const AdminPosts = (props) => {
         }
       })
       .catch((errors) => {
-        setLoading(false);
+        // setLoading(false);
         // console.log(errors)
         // const formaerrror = {};
         if (errors.length) {
@@ -862,26 +815,72 @@ const AdminPosts = (props) => {
         {
           label: 'Yes',
           onClick: async () => {
-            setLoading(false);
+            // setLoading(false);
             if (id !== '') {
               const deleteProductApi = await productApi.deleteProduct(token, id);
               if (deleteProductApi) {
                 if (deleteProductApi.data.success === false) {
-                  setLoading(false);
+                  // setLoading(false);
                   ToastAlert({ msg: deleteProductApi.data.message, msgType: 'error' });
                 } else {
                   if (deleteProductApi.data.success === true) {
-                    setLoading(false);
+                    // setLoading(false);
                     setUpdate(!update);
+                    createPost(false);
                     ToastAlert({ msg: deleteProductApi.data.message, msgType: 'success' });
                   }
                 }
               } else {
-                setLoading(false);
+                // setLoading(false);
                 ToastAlert({ msg: 'Product not delete', msgType: 'error' });
               }
             } else {
-              setLoading(false);
+              // setLoading(false);
+              ToastAlert({ msg: 'Product not delete id Not found', msgType: 'error' });
+            }
+          }
+        },
+        {
+          label: 'No'
+        }
+      ]
+    });
+  };
+
+  // Delete Product FulFil from a product
+  const deleteFulfilorder = (id, prodcutId, organizationId) => {
+    console.log('Posts, deleteFulfilorder, values: ', { id, prodcutId, organizationId });
+    confirmAlert({
+      title: 'Confirm to submit',
+      message: 'Are you sure to delete Sale Receipt?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: async () => {
+            if (id !== '') {
+              const deleteFulfilOrderApi = await productApi.deleteFulfilOrder(
+                token,
+                id,
+                prodcutId,
+                organizationId
+              );
+              if (deleteFulfilOrderApi) {
+                if (deleteFulfilOrderApi.data.success === false) {
+                  // setLoading(false);
+                  ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'error' });
+                } else {
+                  if (deleteFulfilOrderApi.data.success === true) {
+                    // setLoading(false);
+                    setUpdate(!update);
+                    ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'success' });
+                  }
+                }
+              } else {
+                // setLoading(false);
+                ToastAlert({ msg: 'Product not delete', msgType: 'error' });
+              }
+            } else {
+              // setLoading(false);
               ToastAlert({ msg: 'Product not delete id Not found', msgType: 'error' });
             }
           }
@@ -897,13 +896,13 @@ const AdminPosts = (props) => {
     setGallaryTempImages([]);
     setMoreTempImages([]);
     setTempImg('');
-    setLoading(false);
+    // setLoading(false);
     let formData = {};
     formData.productId = productData._id;
 
     const getProductDetails = await productApi.productDetailsById(token, formData);
     if (getProductDetails.data.success === true) {
-      setLoading(false);
+      // setLoading(false);
 
       productData = getProductDetails.data.data[0];
 
@@ -939,7 +938,7 @@ const AdminPosts = (props) => {
 
         let tempProjectArray = [];
         if (productData.projectDetails.length > 0) {
-          productData.projectDetails.map((project, i) => {
+          productData.projectDetails.map((project) => {
             tempProjectArray.push(project.projectId);
           });
           setSeletedProjectList(tempProjectArray);
@@ -951,7 +950,7 @@ const AdminPosts = (props) => {
         let tempMImgArray = [];
 
         if (productData.imageDetails.length > 0) {
-          productData.imageDetails.map((img, i) => {
+          productData.imageDetails.map((img) => {
             if (img.type === 'moreImage') {
               let tempObj = {};
               tempObj.img = img.image;
@@ -967,7 +966,7 @@ const AdminPosts = (props) => {
         let tempGImgArray = [];
 
         if (productData.imageDetails.length > 0) {
-          productData.imageDetails.map((img, i) => {
+          productData.imageDetails.map((img) => {
             if (img.type === 'galleryImage') {
               let tempObj = {};
               tempObj.img = img.image;
@@ -985,7 +984,7 @@ const AdminPosts = (props) => {
         if (productData.tags.length > 0) {
           addedTags = productData.tags;
 
-          addedTags.map((aadedTag, i) => {
+          addedTags.map((aadedTag) => {
             let tagsObj = {};
             tagsObj.id = aadedTag;
             tagsObj.text = aadedTag;
@@ -1000,9 +999,9 @@ const AdminPosts = (props) => {
           setSubCategoryList(getsubCategoryList.data.data);
         }
         createPost(true);
-        setLoading(false);
+        // setLoading(false);
       } else {
-        setLoading(false);
+        // setLoading(false);
         ToastAlert({
           msg: 'Something went wrong category data not found please try again',
           msgType: 'error'
@@ -1042,35 +1041,36 @@ const AdminPosts = (props) => {
         msgType: 'error'
       });
     } else {
-      setLoading(false);
+      // setLoading(false);
 
       const publish = await productApi.publishProduct(token, id, 'PUBLISH');
       if (publish) {
         if (publish.data.success === false) {
-          setLoading(false);
+          // setLoading(false);
           ToastAlert({ msg: publish.data.message, msgType: 'error' });
         } else {
           if (publish.data.success === true) {
-            setLoading(false);
+            // setLoading(false);
             setUpdate(!update);
             ToastAlert({ msg: publish.data.message, msgType: 'success' });
           }
         }
       } else {
-        setLoading(false);
+        // setLoading(false);
         ToastAlert({ msg: 'Product not Published', msgType: 'error' });
       }
     }
   };
+
   const unPublishProduct = async (id) => {
     const publish = await productApi.publishProduct(token, id, 'UNPUBLISH');
     if (publish) {
       if (publish.data.success === false) {
-        setLoading(false);
+        // setLoading(false);
         // ToastAlert({ msg: publish.data.message, msgType: 'error' });
       } else {
         if (publish.data.success === true) {
-          setLoading(false);
+          // setLoading(false);
           setUpdate(!update);
           setFulfil(false);
           createPost(false);
@@ -1078,40 +1078,60 @@ const AdminPosts = (props) => {
         }
       }
     } else {
-      setLoading(false);
+      // setLoading(false);
       ToastAlert({ msg: 'Product not Published', msgType: 'error' });
     }
   };
 
   // console.log(data)
-  const getProductList = async (page, field, type) => {
-    setLoading(false);
-    let formData = {};
-    formData.organizationId = data._id;
-    formData.pageNo = page;
-    formData.sortField = field;
-    formData.sortType = type;
-    formData.filter = true;
-    formData.type = 'product';
+  const getProductList = useCallback(
+    async (page, field, type) => {
+      let formData = {};
+      formData.organizationId = data._id;
+      formData.pageNo = page;
+      formData.sortField = field;
+      formData.sortType = type;
+      formData.filter = true;
+      formData.type = 'product';
 
-    // console.log(data._id)
+      // console.log(data._id)
 
-    const getOrganizationProducts = await productApi.listByOrganization(token, formData);
-    if (getOrganizationProducts.data.success === true) {
-      if (getOrganizationProducts.data.data.length > 0) {
-        let productDetails = getOrganizationProducts.data.data.filter(
-          (value, index, self) => index === self.findIndex((t) => t._id === value._id)
-        );
-        setProductList(productDetails);
-      } else {
-        setProductList([]);
+      const getOrganizationProducts = await productApi.listByOrganization(token, formData);
+      if (getOrganizationProducts.data.success === true) {
+        if (getOrganizationProducts.data.data.length > 0) {
+          console.log('Posts, getOrganizationProducts: ', getOrganizationProducts.data.data);
+          // const productDetails = [
+          //   ...new Set(getOrganizationProducts.data.data.map((item) => item._id))
+          // ];
+          // const productDetails = getOrganizationProducts.data.data;
+          const productDetails = _.uniqBy(getOrganizationProducts.data.data, '_id');
+          // let productDetails = getOrganizationProducts.data.data.filter((value, index, self) => {
+          //   // console.log('Posts, Details: ', { value, index, self });
+          //   return (
+          //     index ===
+          //     self.findIndex((t) => {
+          //       // console.log('t', { t });
+          //       return t._id === value._id;
+          //     })
+          //   );
+          // });
+          console.log('Posts, productDetails: ', productDetails);
+          setProductList(productDetails);
+        } else {
+          setProductList([]);
+        }
+        // console.log('Posts, getOrganizationProducts: ', getOrganizationProducts.data.data);
+        // setProductList(getOrganizationProducts.data.data);
+        setTotalPages(getOrganizationProducts.data.totalPages);
+        setTotalRecord(getOrganizationProducts.data.totalRecord);
       }
-      // setProductList(getOrganizationProducts.data.data)
-      setTotalPages(getOrganizationProducts.data.totalPages);
-      setTotalRecord(getOrganizationProducts.data.totalRecord);
-    }
-    setLoading(false);
-  };
+    },
+    [data._id, token]
+  );
+
+  useEffect(() => {
+    console.log('Posts, productList: ', productList);
+  }, [productList]);
 
   useEffect(() => {
     (async () => {
@@ -1119,12 +1139,13 @@ const AdminPosts = (props) => {
       await getProductList(pageNo, sortField, order);
       // console.log(data)
     })();
-  }, [data._id, update]);
+  }, [data._id, getProductList, order, pageNo, sortField, update]);
 
   const handleClick = async (e, v) => {
     setPageNo(Number(v));
     await getProductList(Number(v), sortField, order);
   };
+
   const closeFulfilForm = () => {
     createPost(false);
     setFulfil(false);
@@ -1150,7 +1171,7 @@ const AdminPosts = (props) => {
   };
 
   const deleteProductImage = async (id, type) => {
-    setLoading(true);
+    // setLoading(true);
     const deleteImg = await productApi.deleteProductImages(token, id);
 
     if (deleteImg.data.success) {
@@ -1170,7 +1191,7 @@ const AdminPosts = (props) => {
         }
       }
     }
-    setLoading(false);
+    // setLoading(false);
   };
 
   const fulfilOrder = async () => {
@@ -1247,7 +1268,7 @@ const AdminPosts = (props) => {
         }
       })
       .catch((errors) => {
-        setLoading(false);
+        // setLoading(false);
         if (errors.length) {
           errors.forEach((element) => {
             formaerrror[element.field] = element.message;
@@ -1280,7 +1301,7 @@ const AdminPosts = (props) => {
     });
     let tempMImgArray = [];
     if (data.imageDetails.length > 0) {
-      data.imageDetails.map((img, i) => {
+      data.imageDetails.map((img) => {
         if (img.type === 'fulfillImage') {
           let tempObj = {};
           tempObj.img = img.image;
@@ -1335,18 +1356,15 @@ const AdminPosts = (props) => {
     }
   };
 
-  // function download(dataurl, filename) {
-  //   const link = document.createElement("a");
-  //   link.href = dataurl;
-  //   link.download = filename;
-  //   link.click();
-  // }
+  function download(dataurl, filename) {
+    const link = document.createElement('a');
+    link.href = dataurl;
+    link.download = filename;
+    link.click();
+  }
 
   return (
     <>
-      {/* {console.log('state', displayPrice)} */}
-      {/* <FrontLoader loading={loading} />*/}
-
       <div
         className="modal  common-modal"
         id="removeModalTwo"
@@ -1400,272 +1418,222 @@ const AdminPosts = (props) => {
         </div>
       </div>
 
-      {
-        !viewPost ? (
-          <div>
-            <header className="py-sm-2 mb-3 w-100 d-sm-flex align-items-center">
-              <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Posts</h1>
-              <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
+      {!viewPost ? (
+        <div>
+          <header className="py-sm-2 mb-3 w-100 d-sm-flex align-items-center">
+            <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Posts</h1>
+            <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
 
-              <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
-                <FontAwesomeIcon
-                  icon={solid('money-bills-simple')}
-                  className="text-dark mr-12p fs-4"
-                />
-                $234.56
-              </span>
+            <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
+              <FontAwesomeIcon
+                icon={solid('money-bills-simple')}
+                className="text-dark mr-12p fs-4"
+              />
+              $234.56
+            </span>
 
-              <div className="d-flex align-items-center ms-sm-auto">
-                <Button
-                  variant="info"
-                  size="lg"
-                  className="me-2 fw-bold fs-6"
-                  onClick={() => createNewPost()}
-                >
-                  Create New
-                </Button>
-                {/* <LadderMenuItems /> */}
-              </div>
-            </header>
-
-            <PostsTable
-              productList={productList}
-              editProduct={editProduct}
-              deleteProduct={deleteProduct}
-              publishProduct={publishProduct}
-              handleClick={handleClick}
-              totalPages={totalPages}
-              totalRecord={totalRecord}
-              pageNo={pageNo}
-              handleSortingChange={handleSortingChange}
-              order={order}
-              sortField={sortField}
-              organizationDetails={data}
-              setFulfil={setFulfil}
-              createPost={createPost}
-              setFulfilProductDetails={setFulfilProductDetails}
-              showFulfillOrder={showFulfillOrder}
-            />
-          </div>
-        ) : !fulfil ? (
-          <AddPost
-            createPost={createPost}
-            organizationDetails={data}
-            stateData={state}
-            handleDelete={handleDelete}
-            handleAddition={handleAddition}
-            handleDrag={handleDrag}
-            handleTagClick={handleTagClick}
-            onClearAll={onClearAll}
-            onTagUpdate={onTagUpdate}
-            onSelectProject={onSelectProject}
-            changevalue={changevalue}
-            changefile={changefile}
-            resetForm={resetForm}
-            submitProductForm={submitProductForm}
-            tags={tags}
-            categoryList={categoryList}
-            subcategoryList={subcategoryList}
-            Img={Img}
-            tempImg={tempImg}
-            moreTempImages={moreTempImages}
-            moreImages={moreImages}
-            projectList={projectList}
-            seletedProjectList={seletedProjectList}
-            gallaryTempImages={gallaryTempImages}
-            gallaryImages={gallaryImages}
-            setstate={setstate}
-            data={data}
-            deleteProductImage={deleteProductImage}
-            setModelShow={setModelShow}
-            removeGallaryempImages={removeGallaryempImages}
-          />
-        ) : (
-          // fulfil ?
-          <>
-            <div className="d-flex align-items-center flex-grow-1 pb-20p border-bottom">
+            <div className="d-flex align-items-center ms-sm-auto">
               <Button
-                variant="link"
-                className="me-sm-2 me-1"
-                onClick={() => {
-                  closeFulfilForm();
-                }}
+                variant="info"
+                size="lg"
+                className="me-2 fw-bold fs-6"
+                onClick={() => createNewPost()}
               >
-                <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
+                Create New
               </Button>
-              <div className="d-flex align-items-center text-dark me-sm-3 flex__1">
-                <div className="item__image-wrap">
-                  <img
-                    alt=""
-                    height="56"
-                    className="img-fluid"
-                    src={helper.CampaignProductFullImagePath + fulfilProductDetails?.image}
-                  />
-                </div>
-                <div className="ms-3">
-                  <div className="fw-bolder fs-4 mb-3p">{fulfilProductDetails?.headline}</div>
-                  <div className="fs-7">
-                    {moment(fulfilProductDetails.created_at).format('MMMM DD')}
-                    {/* April 20th */}
-                  </div>
+              {/* <LadderMenuItems /> */}
+            </div>
+          </header>
+
+          <PostsTable
+            productList={productList}
+            editProduct={editProduct}
+            deleteProduct={deleteProduct}
+            publishProduct={publishProduct}
+            handleClick={handleClick}
+            totalPages={totalPages}
+            pageNo={pageNo}
+            handleSortingChange={handleSortingChange}
+            order={order}
+            sortField={sortField}
+            organizationDetails={data}
+            setFulfil={setFulfil}
+            createPost={createPost}
+            setFulfilProductDetails={setFulfilProductDetails}
+            showFulfillOrder={showFulfillOrder}
+          />
+        </div>
+      ) : !fulfil ? (
+        <AddPost
+          createPost={createPost}
+          organizationDetails={data}
+          stateData={state}
+          handleDelete={handleDelete}
+          handleAddition={handleAddition}
+          handleDrag={handleDrag}
+          handleTagClick={handleTagClick}
+          onClearAll={onClearAll}
+          onTagUpdate={onTagUpdate}
+          onSelectProject={onSelectProject}
+          changevalue={changevalue}
+          changefile={changefile}
+          resetForm={resetForm}
+          submitProductForm={submitProductForm}
+          tags={tags}
+          categoryList={categoryList}
+          subcategoryList={subcategoryList}
+          Img={Img}
+          tempImg={tempImg}
+          moreTempImages={moreTempImages}
+          moreImages={moreImages}
+          projectList={projectList}
+          seletedProjectList={seletedProjectList}
+          gallaryTempImages={gallaryTempImages}
+          gallaryImages={gallaryImages}
+          setstate={setstate}
+          data={data}
+          deleteProductImage={deleteProductImage}
+          setModelShow={setModelShow}
+          removeGallaryempImages={removeGallaryempImages}
+        />
+      ) : (
+        // fulfil ?
+        <>
+          <div className="d-flex align-items-center flex-grow-1 pb-20p border-bottom">
+            <Button
+              variant="link"
+              className="me-sm-2 me-1"
+              onClick={() => {
+                closeFulfilForm();
+              }}
+            >
+              <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
+            </Button>
+            <div className="d-flex align-items-center text-dark me-sm-3 flex__1">
+              <div className="item__image-wrap">
+                <img
+                  alt=""
+                  height="56"
+                  className="img-fluid"
+                  src={helper.CampaignProductFullImagePath + fulfilProductDetails?.image}
+                />
+              </div>
+              <div className="ms-3">
+                <div className="fw-bolder fs-4 mb-3p">{fulfilProductDetails?.headline}</div>
+                <div className="fs-7">
+                  {moment(fulfilProductDetails.created_at).format('MMMM DD')}
+                  {/* April 20th */}
                 </div>
               </div>
+            </div>
 
-              <div className="d-none d-sm-flex align-items-center flex__1">
-                <div className="d-flex align-items-center flex__1"></div>
-              </div>
+            <div className="d-none d-sm-flex align-items-center flex__1">
+              <div className="d-flex align-items-center flex__1"></div>
+            </div>
 
-              {/* <ListItemImg
+            {/* <ListItemImg
                 size={42}
                 imgSrc={helper.CampaignAdminLogoPath + item.itemDetails?.organizationDetails?.logo}
               /> */}
 
-              <Link
-                variant="link"
-                className="text-light p-0 fw-normal"
-                to={'/item/' + fulfilProductDetails?.slug}
-              >
-                <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" /> Go to Post
-              </Link>
-            </div>
+            <Link
+              variant="link"
+              className="text-light p-0 fw-normal"
+              to={'/item/' + fulfilProductDetails?.slug}
+            >
+              <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" /> Go to Post
+            </Link>
+          </div>
 
-            <div className="empty_state mt-3">
-              <div
-                className="note note-info d-flex align-items-center"
-                style={{ maxWidth: '100%' }}
-              >
-                {/*<span className="post__badge post__badge--sold me-2 text-primary fs-3">
+          <div className="empty_state mt-3">
+            <div className="note note-info d-flex align-items-center" style={{ maxWidth: '100%' }}>
+              {/*<span className="post__badge post__badge--sold me-2 text-primary fs-3">
                   <FontAwesomeIcon icon={solid('party-horn')} />
                 </span>
                 <span className="post__badge post__badge--sold me-2 text-primary fs-3">
                   <FontAwesomeIcon icon={solid('face-party')} />
                 </span>*/}
-                {!fulfilProductDetails?.unlimited && (
-                  <span className="fs-6 text-subtext">
-                    Congratulations! Your post has been fully funded. Upload the sales receipt to
-                    complete your order. A copy of the sales receipt will be shared with your
-                    donors.
-                  </span>
-                )}
-                {fulfilProductDetails?.unlimited && (
-                  <span className="fs-6 text-subtext">
-                    Your item was marked as ongoing. You may upload a sales receipt & followup media
-                    at any time. A copy of the sales receipt will be shared with your donors.
-                  </span>
-                )}
-              </div>
+              {!fulfilProductDetails?.unlimited && (
+                <span className="fs-6 text-subtext">
+                  Congratulations! Your post has been fully funded. Upload the sales receipt to
+                  complete your order. A copy of the sales receipt will be shared with your donors.
+                </span>
+              )}
+              {fulfilProductDetails?.unlimited && (
+                <span className="fs-6 text-subtext">
+                  Your item was marked as ongoing. You may upload a sales receipt & followup media
+                  at any time. A copy of the sales receipt will be shared with your donors.
+                </span>
+              )}
             </div>
+          </div>
 
-            <Card className="mt-5">
-              <Row className="mw-850 ml-5">
-                <Col lg="6">
-                  {!fulfilProductDetails?.isFulfiled && (
-                    <label htmlFor="videoInput" className="form__label mt-3">
-                      Transaction Details
-                    </label>
-                  )}
+          <Card className="mt-5">
+            <Row className="mw-850 ml-5">
+              <Col lg="6">
+                {!fulfilProductDetails?.isFulfiled && (
+                  <label htmlFor="videoInput" className="form__label mt-3">
+                    Transaction Details
+                  </label>
+                )}
 
-                  <div
-                    className="order__widget mt-3 "
-                    //style={{ border: fulfilProductDetails?.isFulfiled ? 'unset' : '' }}
-                  >
-                    <Card.Header className="post__accordion-header pb-3 mb-3">
-                      <span className="fs-3 fw-bolder text-dark">Order Summary</span>
-                    </Card.Header>
-                    <div className="border-bottom">
-                      <div className="d-flex align-items-center fw-bolder mb-20p">
-                        <span className="flex__1">
-                          {fulfilProductDetails?.unlimited ? 'Sold' : 'Qty'} :
-                        </span>
-                        <span className="fs-4 fw-bold">
-                          {Number(fulfilProductDetails?.unlimited).toLocaleString('en-US', {
-                            maximumFractionDigits: 2
-                          })
-                            ? fulfilProductDetails?.soldout
-                            : Number(fulfilProductDetails?.quantity).toLocaleString('en-US', {
-                                maximumFractionDigits: 2
-                              })}
-                        </span>
-                      </div>
-                      <div className="d-flex align-items-center pt-1 mb-2">
-                        <span className="fw-bolder flex__1">Each:</span>
-                        <span className="fs-4 fw-bold text-light">
-                          {data?.symbol}
-                          {priceFormat(
-                            fulfilProductDetails?.displayPrice
-                              ? fulfilProductDetails?.displayPrice
-                              : fulfilProductDetails?.price
-                          )}
-                        </span>
-                      </div>
+                <div className="order__widget mt-3 ">
+                  <Card.Header className="post__accordion-header pb-3 mb-3">
+                    <span className="fs-3 fw-bolder text-dark">Order Summary</span>
+                  </Card.Header>
+                  <div className="border-bottom">
+                    <div className="d-flex align-items-center fw-bolder mb-20p">
+                      <span className="flex__1">
+                        {fulfilProductDetails?.unlimited ? 'Sold' : 'Qty'} :
+                      </span>
+                      <span className="fs-4 fw-bold">
+                        {Number(fulfilProductDetails?.unlimited).toLocaleString('en-US', {
+                          maximumFractionDigits: 2
+                        })
+                          ? fulfilProductDetails?.soldout
+                          : Number(fulfilProductDetails?.quantity).toLocaleString('en-US', {
+                              maximumFractionDigits: 2
+                            })}
+                      </span>
                     </div>
-                    <div className="d-flex align-items-center pt-3 mb-2">
-                      <span className="fw-bolder flex__1">Total:</span>
-                      <span className="text-dark fw-bold fs-4">
+                    <div className="d-flex align-items-center pt-1 mb-2">
+                      <span className="fw-bolder flex__1">Each:</span>
+                      <span className="fs-4 fw-bold text-light">
                         {data?.symbol}
                         {priceFormat(
-                          (fulfilProductDetails?.displayPrice
+                          fulfilProductDetails?.displayPrice
                             ? fulfilProductDetails?.displayPrice
-                            : fulfilProductDetails?.price) *
-                            (fulfilProductDetails?.unlimited
-                              ? fulfilProductDetails?.soldout
-                              : fulfilProductDetails?.quantity)
+                            : fulfilProductDetails?.price
                         )}
                       </span>
                     </div>
                   </div>
+                  <div className="d-flex align-items-center pt-3 mb-2">
+                    <span className="fw-bolder flex__1">Total:</span>
+                    <span className="text-dark fw-bold fs-4">
+                      {data?.symbol}
+                      {priceFormat(
+                        (fulfilProductDetails?.displayPrice
+                          ? fulfilProductDetails?.displayPrice
+                          : fulfilProductDetails?.price) *
+                          (fulfilProductDetails?.unlimited
+                            ? fulfilProductDetails?.soldout
+                            : fulfilProductDetails?.quantity)
+                      )}
+                    </span>
+                  </div>
+                </div>
 
-                  {/* {fulfilProductDetails?.isFulfiled && (
-                    <>
-                      <div className="linked__item d-flex align-items-center p-1 border mt-3">
-                        <div className="accounts__icon">
-                          <ListItemImg
-                            size={45}
-                            className="bg-white"
-                            // imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/62277f679099844cc42cc1d1_5b5e656493af1e0441cd892a_mc_vrt_pos.svg"
-                            icon={
-                              <FontAwesomeIcon
-                                icon={regular('building-columns')}
-                                className="fs-3 text-subtext"
-                              />
-                            }
-                          />
-                        </div>
-                        <div className=" flex__1 mx-2 text-break">
-                          <div className="accounts__email fw-bold">
-                            {primaryBankDetails?.businessName
-                              ? primaryBankDetails?.businessName
-                              : primaryBankDetails?.firstName + ' ' + primaryBankDetails?.lastName}
-                          </div>
-                          <div className="fs-7 mb-3p">{primaryBankDetails?.bankName}</div>
+                {!fulfilProductDetails?.isFulfiled ? (
+                  <>
+                    <label htmlFor="videoInput" className="form__label mt-3">
+                      Upload Receipt &nbsp;
+                      <span className="post-type-text" style={{ color: '#dd4646' }}>
+                        (required)
+                      </span>
+                    </label>
 
-                          <div className="fs-7 text-subtext">
-                            {primaryBankDetails?.accountNumber}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="note note--info mt-3" style={{ padding: '16px' }}>
-                        <FontAwesomeIcon
-                          icon={regular('circle-info')}
-                          className="text-info icon-method mr-3p"
-                        />
-                        <span className="text-dark">
-                          Funds were dispersed to your bank account on 03/04/2022
-                        </span>
-                      </div>
-                    </>
-                  )}*/}
-                  {!fulfilProductDetails?.isFulfiled ? (
-                    <>
-                      <label htmlFor="videoInput" className="form__label mt-3">
-                        Upload Receipt &nbsp;
-                        <span className="post-type-text" style={{ color: '#dd4646' }}>
-                          (required)
-                        </span>
-                      </label>
-
-                      {/* <div className="upload-picture-video-block mb-2" style={{ display: "contents" }}>
+                    {/* <div className="upload-picture-video-block mb-2" style={{ display: "contents" }}>
                           <div className="upload-wrap" style={{ width: "100%", height: "200px" }}>
                             <FontAwesomeIcon
                               icon={solid("cloud-arrow-up")}
@@ -1678,354 +1646,334 @@ const AdminPosts = (props) => {
                             </label>
                           </div>
 
-
                         </div> */}
 
-                      <div
-                        className="image-upload-wrap mb-3 fs-2"
-                        style={{
-                          ...imageuploadwrap,
-                          backgroundColor: '#e5f4ff',
-                          borderRadius: '9px',
-                          fontSize: '60px',
-                          border:
-                            tempImgName === '' && fulfilError.receiptFile
-                              ? '2px dashed red'
-                              : '2px dashed rgba(62, 170, 255, 0.58)'
+                    <div
+                      className="image-upload-wrap mb-3 fs-2"
+                      style={{
+                        ...imageuploadwrap,
+                        backgroundColor: '#e5f4ff',
+                        borderRadius: '9px',
+                        fontSize: '60px',
+                        border:
+                          tempImgName === '' && fulfilError.receiptFile
+                            ? '2px dashed red'
+                            : '2px dashed rgba(62, 170, 255, 0.58)'
+                      }}
+                    >
+                      <input
+                        className="file-upload-input"
+                        type="file"
+                        // name="identityDocumentImage"
+                        // onChange={props.changevalue}
+                        name="receiptFile"
+                        id="receiptFile"
+                        onChange={(e) => {
+                          changefile(e);
                         }}
-                      >
-                        <input
-                          className="file-upload-input"
-                          type="file"
-                          // name="identityDocumentImage"
-                          // onChange={props.changevalue}
-                          name="receiptFile"
-                          id="receiptFile"
-                          onChange={(e) => {
-                            changefile(e);
-                          }}
-                          style={fileuploadinput}
-                          title=" "
-                        />
-                        <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
-                          <h3 style={{ fontSize: 'inherit' }}>
-                            {tempImgName && tempImgName !== ''
-                              ? tempImgName
-                              : fulfilError.receiptFile
-                              ? 'Please Select File'
-                              : 'Drag and drop or select File'}
-                          </h3>
-                        </div>
+                        style={fileuploadinput}
+                        title=" "
+                      />
+                      <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
+                        <h3 style={{ fontSize: 'inherit' }}>
+                          {tempImgName && tempImgName !== ''
+                            ? tempImgName
+                            : fulfilError.receiptFile
+                            ? 'Please Select File'
+                            : 'Drag and drop or select File'}
+                        </h3>
                       </div>
-                      {fulfilError && fulfilError.receiptFile && (
-                        <p className="error">
-                          {fulfilError
+                    </div>
+                    {fulfilError && fulfilError.receiptFile && (
+                      <p className="error">
+                        {fulfilError
+                          ? fulfilError.receiptFile
                             ? fulfilError.receiptFile
-                              ? fulfilError.receiptFile
-                              : ''
-                            : ''}
-                        </p>
-                      )}
-                    </>
-                  ) : (
-                    <>
-                      <label htmlFor="videoInput" className="form__label mt-3">
-                        Update Receipt &nbsp;
-                        <span className="post-type-text" style={{ color: '#dd4646' }}>
-                          (required)
+                            : ''
+                          : ''}
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <label htmlFor="videoInput" className="form__label mt-3">
+                      Update Receipt &nbsp;
+                      <span className="post-type-text" style={{ color: '#dd4646' }}>
+                        (required)
+                      </span>
+                    </label>
+
+                    <div
+                      className="image-upload-wrap mb-3 fs-2"
+                      style={{
+                        ...imageuploadwrap,
+                        backgroundColor: '#e5f4ff',
+                        borderRadius: '9px',
+                        fontSize: '60px',
+                        border:
+                          tempImgName === '' && fulfilError.receiptFile
+                            ? '2px dashed red'
+                            : '2px dashed rgba(62, 170, 255, 0.58)'
+                      }}
+                    >
+                      <input
+                        className="file-upload-input"
+                        type="file"
+                        // name="identityDocumentImage"
+                        // onChange={props.changevalue}
+                        name="receiptFile"
+                        id="receiptFile"
+                        onChange={(e) => {
+                          changefile(e);
+                        }}
+                        style={fileuploadinput}
+                        title=" "
+                      />
+                      <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
+                        <h3 style={{ fontSize: 'inherit' }}>
+                          {tempImgName && tempImgName !== ''
+                            ? tempImgName
+                            : fulfilError.receiptFile
+                            ? 'Please Select File'
+                            : 'Drag and drop or select File'}
+                        </h3>
+                      </div>
+                    </div>
+                    {fulfilError && fulfilError.receiptFile && (
+                      <p className="error">
+                        {fulfilError
+                          ? fulfilError.receiptFile
+                            ? fulfilError.receiptFile
+                            : ''
+                          : ''}
+                      </p>
+                    )}
+
+                    <Card.Header className="post__accordion-header pb-3 mt-5">
+                      <span className="fs-3 fw-bolder text-dark">Sales Receipt</span>
+                    </Card.Header>
+                    <div className="my-3 pb-5  d-flex align-item-center">
+                      <div className="nn d-flex position-relative justify-content-center align-items-center me-2">
+                        <span className="post__badge post__badge--sold fs-3">
+                          <FontAwesomeIcon icon={solid('receipt')} />
                         </span>
-                      </label>
-
-                      <div
-                        className="image-upload-wrap mb-3 fs-2"
-                        style={{
-                          ...imageuploadwrap,
-                          backgroundColor: '#e5f4ff',
-                          borderRadius: '9px',
-                          fontSize: '60px',
-                          border:
-                            tempImgName === '' && fulfilError.receiptFile
-                              ? '2px dashed red'
-                              : '2px dashed rgba(62, 170, 255, 0.58)'
-                        }}
-                      >
-                        <input
-                          className="file-upload-input"
-                          type="file"
-                          // name="identityDocumentImage"
-                          // onChange={props.changevalue}
-                          name="receiptFile"
-                          id="receiptFile"
-                          onChange={(e) => {
-                            changefile(e);
-                          }}
-                          style={fileuploadinput}
-                          title=" "
-                        />
-                        <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
-                          <h3 style={{ fontSize: 'inherit' }}>
-                            {tempImgName && tempImgName !== ''
-                              ? tempImgName
-                              : fulfilError.receiptFile
-                              ? 'Please Select File'
-                              : 'Drag and drop or select File'}
-                          </h3>
+                      </div>
+                      <div className="ps-2">
+                        <text className="post__title fw-semibold">
+                          {fulfilProductDetails?.fulfilDetails?.receipt}
+                        </text>
+                        <div className="date__name fw-semibold">
+                          Added &nbsp;
+                          {moment(fulfilProductDetails?.fulfilDetails.created_at).fromNow()}
                         </div>
                       </div>
-                      {fulfilError && fulfilError.receiptFile && (
-                        <p className="error">
-                          {fulfilError
-                            ? fulfilError.receiptFile
-                              ? fulfilError.receiptFile
-                              : ''
-                            : ''}
-                        </p>
-                      )}
-
-                      <Card.Header className="post__accordion-header pb-3 mt-5">
-                        <span className="fs-3 fw-bolder text-dark">Sales Receipt</span>
-                      </Card.Header>
-                      <div className="my-3 pb-5  d-flex align-item-center">
-                        <div className="nn d-flex position-relative justify-content-center align-items-center me-2">
-                          <span className="post__badge post__badge--sold fs-3">
-                            <FontAwesomeIcon icon={solid('receipt')} />
-                          </span>
-                        </div>
-                        <div className="ps-2">
-                          <text className="post__title fw-semibold">
-                            {fulfilProductDetails?.fulfilDetails?.receipt}
-                          </text>
-                          <div className="date__name fw-semibold">
-                            Added &nbsp;
-                            {moment(fulfilProductDetails?.fulfilDetails.created_at).fromNow()}
-                          </div>
-                        </div>
-                        <div className="ms-auto">
-                          <Dropdown className="d-flex ms-auto" autoClose="outside">
-                            <Dropdown.Toggle
-                              variant="link"
-                              className="no-caret text-decoration-none"
+                      <div className="ms-auto">
+                        <Dropdown className="d-flex ms-auto" autoClose="outside">
+                          <Dropdown.Toggle variant="link" className="no-caret text-decoration-none">
+                            <FontAwesomeIcon
+                              icon={regular('ellipsis-vertical')}
+                              className="text-light fs-3"
+                            />
+                          </Dropdown.Toggle>
+                          {/* {'1800'} */}
+                          <Dropdown.Menu className="">
+                            <Dropdown.Item className="d-flex align-items-center p-2">
+                              <span className="fw-bold fs-7 flex__1">View</span>
+                              <FontAwesomeIcon icon={solid('magnifying-glass')} className="ms-1" />
+                            </Dropdown.Item>
+                            <Dropdown.Divider />
+                            <Dropdown.Item
+                              className="d-flex align-items-center p-2"
+                              onClick={() =>
+                                download(
+                                  helper.FulfilRecieptPath +
+                                    fulfilProductDetails?.fulfilDetails?.receipt,
+                                  fulfilProductDetails?.fulfilDetails?.receipt
+                                )
+                              }
                             >
-                              <FontAwesomeIcon
-                                icon={regular('ellipsis-vertical')}
-                                className="text-light fs-3"
-                              />
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu className="">
-                              <Dropdown.Item className="d-flex align-items-center p-2">
-                                <span className="fw-bold fs-7 flex__1">View</span>
-                                <FontAwesomeIcon
-                                  icon={solid('magnifying-glass')}
-                                  className="ms-1"
-                                />
-                              </Dropdown.Item>
-                              <Dropdown.Divider />
-                              <Dropdown.Item
-                                className="d-flex align-items-center p-2"
-                                onClick={() =>
-                                  download(
-                                    helper.FulfilRecieptPath +
-                                      fulfilProductDetails?.fulfilDetails?.receipt,
-                                    fulfilProductDetails?.fulfilDetails?.receipt
-                                  )
-                                }
-                              >
-                                <span className="fw-bold fs-7 flex__1">Download</span>
-                                {/* <a href={helper.FulfilRecieptPath + fulfilProductDetails?.fulfilDetails?.receipt} download
+                              <span className="fw-bold fs-7 flex__1">Download</span>
+                              {/* <a href={helper.FulfilRecieptPath + fulfilProductDetails?.fulfilDetails?.receipt} download
                                     // variant="info"
                                     // target="_blank"
                                     className="fw-bold fs-7 flex__1"
                                   >
                                     Download
                                   </a> */}
-                                <FontAwesomeIcon icon={regular('download')} className="ms-1" />
-                              </Dropdown.Item>
-                              <Dropdown.Divider />
-                              <Dropdown.Item className="d-flex align-items-center p-2">
-                                <span className="fw-bold fs-7 flex__1">Delete</span>
-                                <FontAwesomeIcon icon={regular('trash')} className="ms-1" />
-                              </Dropdown.Item>
-                            </Dropdown.Menu>
-                          </Dropdown>
-                        </div>
+                              <FontAwesomeIcon icon={regular('download')} className="ms-1" />
+                            </Dropdown.Item>
+                            <Dropdown.Divider />
+                            <Dropdown.Item
+                              className="d-flex align-items-center p-2"
+                              onClick={() => {
+                                // console.log(
+                                //   'delete',
+                                //   fulfilProductDetails?.fulfilDetails?._id,
+                                //   fulfilProductDetails?.fulfilDetails?.productId,
+                                //   fulfilProductDetails?.fulfilDetails?.organizationId
+                                // );
+                                deleteFulfilorder(
+                                  fulfilProductDetails?.fulfilDetails?._id,
+                                  fulfilProductDetails?.fulfilDetails?.productId,
+                                  fulfilProductDetails?.fulfilDetails?.organizationId
+                                );
+                              }}
+                            >
+                              <span className="fw-bold fs-7 flex__1">Delete</span>
+                              <FontAwesomeIcon icon={regular('trash')} className="ms-1" />
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
                       </div>
-                    </>
-                  )}
-                </Col>
-                <Col lg="6">
-                  <Card.Header className="post__accordion-header pb-3">
-                    <span className="fs-3 fw-bolder text-dark">Follow-up Media</span>
-                  </Card.Header>
-                  <form className="video-detail-form mt-3">
-                    <div className="form-group mb-5">
-                      <label htmlFor="videoUrl" className="form__label mb-4">
-                        Video (iframe)&nbsp;
-                        <span className="post-type-text">(optional)</span>
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control form-control-lg"
-                        placeholder="Video URL"
-                        name="videoUrl"
-                        id="videoUrl"
-                        value={videoUrl}
-                        onChange={(e) => {
-                          changevalue(e);
-                        }}
-                      />
                     </div>
-
-                    {videoUrl && isIframe(videoUrl) && (
-                      <div
-                        className="project-video-wrap mb-4"
-                        dangerouslySetInnerHTML={{ __html: videoUrl }}
-                      >
-                        {/* <iframe src={embedlink} title="YouTube video player"></iframe> */}
-                      </div>
-                    )}
-                    <label htmlFor="videoUrl" className="form__label">
-                      Images &nbsp;
+                  </>
+                )}
+              </Col>
+              <Col lg="6">
+                <Card.Header className="post__accordion-header pb-3">
+                  <span className="fs-3 fw-bolder text-dark">Follow-up Media</span>
+                </Card.Header>
+                <form className="video-detail-form mt-3">
+                  <div className="form-group mb-5">
+                    <label htmlFor="videoUrl" className="form__label mb-4">
+                      Video (iframe)&nbsp;
                       <span className="post-type-text">(optional)</span>
                     </label>
-                    <div className="">
-                      <div
-                        className="upload-picture-video-block mb-2"
-                        style={{ display: 'contents' }}
-                      >
-                        {
-                          // !fulfilProductDetails?.isFulfiled &&
-
-                          // <div className="upload-wrap" style={{ width: "100%" }}>
-                          //   <FontAwesomeIcon
-                          //     icon={solid("cloud-arrow-up")}
-                          //     className="icon-cloud"
-                          //   />
-                          //   <label>
-                          //     <input name='fulfilmoreImages[]' id='fulfilmoreImages' type="file" accept=".jpg,.gif,.png" multiple
-                          //       onChange={(e) => { changefile(e) }}
-                          //     />
-                          //   </label>
-                          // </div>
-                          <div
-                            className="image-upload-wrap mb-3 fs-2"
-                            style={{
-                              ...imageuploadwrap,
-                              backgroundColor: '#e5f4ff',
-                              borderRadius: '9px',
-                              fontSize: '60px',
-                              border: '2px dashed rgba(62, 170, 255, 0.58)'
-                            }}
-                          >
-                            <input
-                              className="file-upload-input"
-                              type="file"
-                              name="fulfilmoreImages[]"
-                              id="fulfilmoreImages"
-                              accept=".jpg,.gif,.png"
-                              multiple
-                              onChange={(e) => {
-                                changefile(e);
-                              }}
-                              style={fileuploadinput}
-                              title=" "
-                            />
-                            <div
-                              className="drag-text"
-                              style={{ textAlign: 'center', padding: '70px' }}
-                            >
-                              <FontAwesomeIcon
-                                icon={solid('cloud-arrow-up')}
-                                className="icon-cloud"
-                              />
-                            </div>
-                          </div>
-                        }
-
-                        <div className="grid mt-3 mb-3" style={{ display: 'grid' }}>
-                          {fulfilMoreTempImages?.length ? (
-                            fulfilMoreTempImages.map((img, key) => {
-                              return (
-                                <div className="img-wrap">
-                                  <span
-                                    className="close"
-                                    onClick={() => removeFulfilTempImages(key)}
-                                  >
-                                    &times;
-                                  </span>
-                                  <img
-                                    src={img ? img : noimg}
-                                    alt="lk"
-                                    style={{ width: '100px', height: '100px' }}
-                                  />
-                                </div>
-                              );
-                            })
-                          ) : (
-                            <></>
-                          )}
-                          {fulfilmoreImages?.length
-                            ? fulfilmoreImages.map((img, key) => {
-                                return (
-                                  <>
-                                    <div className="img-wrap">
-                                      <span
-                                        className="close"
-                                        onClick={() => deleteProductImage(img.id, 'Fulfil')}
-                                        style={{ right: '7px' }}
-                                      >
-                                        &times;
-                                      </span>
-                                      <img
-                                        src={
-                                          img.img
-                                            ? img.img !== ''
-                                              ? helper.CampaignProductFullImagePath + img.img
-                                              : noimg
-                                            : noimg
-                                        }
-                                        alt="lk"
-                                        style={{ width: '100px', height: '100px' }}
-                                      />
-                                    </div>
-                                  </>
-                                );
-                              })
-                            : ''}
-                        </div>
-                        {fulfilError && fulfilError.fulfilMoreImg && (
-                          <p className="error">
-                            {fulfilError
-                              ? fulfilError.fulfilMoreImg
-                                ? fulfilError.fulfilMoreImg
-                                : ''
-                              : ''}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </form>
-                </Col>
-              </Row>
-            </Card>
-
-            {
-              // !fulfilProductDetails?.isFulfiled &&
-              <>
-                <div className="fulfilling-check-wrap pb-4">
-                  <div className="form-check">
                     <input
-                      type="checkbox"
-                      className="form-check-input"
-                      name="fulfilPolicy"
-                      id="fulfilPolicy"
-                      checked={fulfilPolicy}
+                      type="text"
+                      className="form-control form-control-lg"
+                      placeholder="Video URL"
+                      name="videoUrl"
+                      id="videoUrl"
+                      value={videoUrl}
                       onChange={(e) => {
                         changevalue(e);
                       }}
                     />
-                    <label className="form-check-label" htmlFor="policy">
-                      {/* By posting your ad, you are agreeing to our{" "}
+                  </div>
+
+                  {videoUrl && isIframe(videoUrl) && (
+                    <div
+                      className="project-video-wrap mb-4"
+                      dangerouslySetInnerHTML={{ __html: videoUrl }}
+                    >
+                      {/* <iframe src={embedlink} title="YouTube video player"></iframe> */}
+                    </div>
+                  )}
+                  <label htmlFor="videoUrl" className="form__label">
+                    Images &nbsp;
+                    <span className="post-type-text">(optional)</span>
+                  </label>
+                  <div className="">
+                    <div
+                      className="upload-picture-video-block mb-2"
+                      style={{ display: 'contents' }}
+                    >
+                      <div
+                        className="image-upload-wrap mb-3 fs-2"
+                        style={{
+                          ...imageuploadwrap,
+                          backgroundColor: '#e5f4ff',
+                          borderRadius: '9px',
+                          fontSize: '60px',
+                          border: '2px dashed rgba(62, 170, 255, 0.58)'
+                        }}
+                      >
+                        <input
+                          className="file-upload-input"
+                          type="file"
+                          name="fulfilmoreImages[]"
+                          id="fulfilmoreImages"
+                          accept=".jpg,.gif,.png"
+                          multiple
+                          onChange={(e) => {
+                            changefile(e);
+                          }}
+                          style={fileuploadinput}
+                          title=" "
+                        />
+                        <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
+                          <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
+                        </div>
+                      </div>
+
+                      <div className="grid mt-3 mb-3" style={{ display: 'grid' }}>
+                        {fulfilMoreTempImages?.length ? (
+                          fulfilMoreTempImages.map((img, key) => {
+                            return (
+                              <div className="img-wrap" key={key}>
+                                <span className="close" onClick={() => removeFulfilTempImages(key)}>
+                                  &times;
+                                </span>
+                                <img
+                                  src={img ? img : noimg}
+                                  alt="lk"
+                                  style={{ width: '100px', height: '100px' }}
+                                />
+                              </div>
+                            );
+                          })
+                        ) : (
+                          <></>
+                        )}
+                        {fulfilmoreImages?.length
+                          ? fulfilmoreImages.map((img, key) => (
+                              <>
+                                <div className="img-wrap" key={key}>
+                                  <span
+                                    className="close"
+                                    onClick={() => deleteProductImage(img.id, 'Fulfil')}
+                                    style={{ right: '7px' }}
+                                  >
+                                    &times;
+                                  </span>
+                                  <img
+                                    src={
+                                      img.img
+                                        ? img.img !== ''
+                                          ? helper.CampaignProductFullImagePath + img.img
+                                          : noimg
+                                        : noimg
+                                    }
+                                    alt="lk"
+                                    style={{ width: '100px', height: '100px' }}
+                                  />
+                                </div>
+                              </>
+                            ))
+                          : ''}
+                      </div>
+                      {fulfilError && fulfilError.fulfilMoreImg && (
+                        <p className="error">
+                          {fulfilError
+                            ? fulfilError.fulfilMoreImg
+                              ? fulfilError.fulfilMoreImg
+                              : ''
+                            : ''}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </form>
+              </Col>
+            </Row>
+          </Card>
+
+          <>
+            <div className="fulfilling-check-wrap pb-4">
+              <div className="form-check">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  name="fulfilPolicy"
+                  id="fulfilPolicy"
+                  checked={fulfilPolicy}
+                  onChange={(e) => {
+                    changevalue(e);
+                  }}
+                />
+                <label className="form-check-label" htmlFor="policy">
+                  {/* By posting your ad, you are agreeing to our{" "}
                   <a href="#" target="_blank">
                     <strong>terms of use</strong>
                   </a>
@@ -2041,61 +1989,57 @@ const AdminPosts = (props) => {
                   after it has received funding. If you delete your post after it
                   has received donations, the donors will receive a full refund and
                   the post will be closed. */}
-                      By fulfilling your order, you are agreeing that you have purchased the product
-                      as it was presented at the time the post was created for the amount of items
-                      you requested. The sales receipt for your order will be shared with your
-                      donors on their order page.
-                    </label>
-                  </div>
-                </div>
-                {fulfilError && fulfilError.fulfilPolicy && (
-                  <p className="error">
-                    {fulfilError ? (fulfilError.fulfilPolicy ? fulfilError.fulfilPolicy : '') : ''}
-                  </p>
-                )}
+                  By fulfilling your order, you are agreeing that you have purchased the product as
+                  it was presented at the time the post was created for the amount of items you
+                  requested. The sales receipt for your order will be shared with your donors on
+                  their order page.
+                </label>
+              </div>
+            </div>
+            {fulfilError && fulfilError.fulfilPolicy && (
+              <p className="error">
+                {fulfilError ? (fulfilError.fulfilPolicy ? fulfilError.fulfilPolicy : '') : ''}
+              </p>
+            )}
 
-                <div className="products-detial-footer py-5">
-                  {!fulfilProductDetails?.isFulfiled && (
-                    <Button
-                      variant="danger"
-                      size="lg"
-                      className="fw-bold fs-6"
-                      onClick={() => {
-                        closeFulfilForm();
-                      }}
-                    >
-                      Disregard
-                    </Button>
-                  )}
-                  {fulfilProductDetails?.isFulfiled && fulfilProductDetails.status === 1 && (
-                    <Button
-                      variant="info"
-                      size="lg"
-                      className="fw-bold fs-6"
-                      onClick={() => {
-                        unPublishProduct(fulfilProductDetails._id);
-                      }}
-                    >
-                      Unpublish
-                    </Button>
-                  )}
+            <div className="products-detial-footer py-5">
+              {!fulfilProductDetails?.isFulfiled && (
+                <Button
+                  variant="danger"
+                  size="lg"
+                  className="fw-bold fs-6"
+                  onClick={() => {
+                    closeFulfilForm();
+                  }}
+                >
+                  Disregard
+                </Button>
+              )}
+              {fulfilProductDetails?.isFulfiled && fulfilProductDetails.status === 1 && (
+                <Button
+                  variant="info"
+                  size="lg"
+                  className="fw-bold fs-6"
+                  onClick={() => {
+                    unPublishProduct(fulfilProductDetails._id);
+                  }}
+                >
+                  Unpublish
+                </Button>
+              )}
 
-                  <Button
-                    variant="success"
-                    size="lg"
-                    className="fw-bold fs-6"
-                    onClick={() => fulfilOrder()}
-                  >
-                    {fulfilProductDetails?.isFulfiled ? 'Update' : 'Fulfil Order'}
-                  </Button>
-                </div>
-              </>
-            }
+              <Button
+                variant="success"
+                size="lg"
+                className="fw-bold fs-6"
+                onClick={() => fulfilOrder()}
+              >
+                {fulfilProductDetails?.isFulfiled ? 'Update' : 'Fulfil Order'}
+              </Button>
+            </div>
           </>
-        )
-
-        // : ""
-      }
+        </>
+      )}
     </>
   );
 };
