@@ -19,9 +19,10 @@ import { confirmAlert } from 'react-confirm-alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { useSelector } from 'react-redux';
-import { Button, Card, Col, Row, Dropdown } from 'react-bootstrap';
+import { Button, Card, Col, Row, Dropdown, Modal } from 'react-bootstrap';
 import moment from 'moment';
 import _ from 'lodash';
+import { GalleryImg } from '../../atoms';
 
 const AdminPosts = () => {
   const fileuploadinput = {
@@ -77,6 +78,7 @@ const AdminPosts = () => {
   const [sortField, setSortField] = useState('created_at');
   const [order, setOrder] = useState('asc');
   const [fulfilProductDetails, setFulfilProductDetails] = useState({});
+  const [showReceipt, setShowReceipt] = useState(false);
   // const [primaryBankDetails, setPrimaryBankDetails] = useState({});
 
   const [state, setstate] = useState({
@@ -1429,7 +1431,10 @@ const AdminPosts = () => {
                 icon={solid('money-bills-simple')}
                 className="text-dark mr-12p fs-4"
               />
-              ${(productList && productList.length > 0) ? productList.reduce((a, c) => a + c.displayPrice, 0).toFixed(2) : 0}
+              $
+              {productList && productList.length > 0
+                ? productList.reduce((a, c) => a + c.displayPrice, 0).toFixed(2)
+                : 0}
             </span>
 
             <div className="d-flex align-items-center ms-sm-auto">
@@ -1767,6 +1772,27 @@ const AdminPosts = () => {
                           {moment(fulfilProductDetails?.fulfilDetails.created_at).fromNow()}
                         </div>
                       </div>
+                      {/* <Modal
+                        size="lg"
+                        show={showReceipt}
+                        onHide={() => setShowReceipt(false)}
+                        aria-labelledby="show-sales-receipt"
+                      >
+                        <Modal.Header>
+                          <Modal.Title id="show-sales-receipt"></Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                          <GalleryImg
+                            thumbImgSrc={
+                              helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
+                            }
+                            bigImgSrc={
+                              helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
+                            }
+                          />
+                        </Modal.Body>
+                      </Modal> */}
+
                       <div className="ms-auto">
                         <Dropdown className="d-flex ms-auto" autoClose="outside">
                           <Dropdown.Toggle variant="link" className="no-caret text-decoration-none">
@@ -1775,9 +1801,11 @@ const AdminPosts = () => {
                               className="text-light fs-3"
                             />
                           </Dropdown.Toggle>
-                          {/* {'1800'} */}
                           <Dropdown.Menu className="">
-                            <Dropdown.Item className="d-flex align-items-center p-2">
+                            <Dropdown.Item
+                              className="d-flex align-items-center p-2"
+                              onClick={() => setShowReceipt(true)}
+                            >
                               <span className="fw-bold fs-7 flex__1">View</span>
                               <FontAwesomeIcon icon={solid('magnifying-glass')} className="ms-1" />
                             </Dropdown.Item>
@@ -1805,11 +1833,13 @@ const AdminPosts = () => {
                             <Dropdown.Divider />
                             <Dropdown.Item
                               className="d-flex align-items-center p-2"
-                              onClick={() => deleteFulfilorder(
+                              onClick={() =>
+                                deleteFulfilorder(
                                   fulfilProductDetails?.fulfilDetails?._id,
                                   fulfilProductDetails?.fulfilDetails?.productId,
                                   fulfilProductDetails?.fulfilDetails?.organizationId
-                                )}
+                                )
+                              }
                             >
                               <span className="fw-bold fs-7 flex__1">Delete</span>
                               <FontAwesomeIcon icon={regular('trash')} className="ms-1" />
@@ -1818,6 +1848,21 @@ const AdminPosts = () => {
                         </Dropdown>
                       </div>
                     </div>
+                    {showReceipt && (
+                      <div className="saleReceipt">
+                        <span className="close" onClick={() => setShowReceipt(false)}>
+                          &times;
+                        </span>
+                        <GalleryImg
+                          thumbImgSrc={
+                            helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
+                          }
+                          bigImgSrc={
+                            helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
+                          }
+                        />
+                      </div>
+                    )}
                   </>
                 )}
               </Col>
