@@ -146,6 +146,24 @@ const AdminTax = () => {
     }
   };
 
+  const deleteReceipt = async (userId) => {
+    setLoading(false);
+    const uploadTax = await organizationApi.organizatationDeleteTaxReceipt(token, userId);
+    if (uploadTax) {
+      if (uploadTax.data.success === false) {
+        setLoading(false);
+        ToastAlert({ msg: uploadTax.data.message, msgType: 'error' });
+      } else {
+        setUpdate(!update);
+        setLoading(false);
+        ToastAlert({ msg: uploadTax.data.message, msgType: 'success' });
+      }
+    } else {
+      setLoading(false);
+      ToastAlert({ msg: 'something Went wrong', msgType: 'error' });
+    }
+  };
+
   const handleClick = async (e, v) => {
     setPageNo(Number(v));
     await getTaxList(Number(v), sortField, order);
@@ -213,6 +231,7 @@ const AdminTax = () => {
         totalPages={totalPages}
         totalRecord={totalRecord}
         pageNo={pageNo}
+        deleteReceipt={deleteReceipt}
         handleClick={handleClick}
         handleSortingChange={handleSortingChange}
         order={order}

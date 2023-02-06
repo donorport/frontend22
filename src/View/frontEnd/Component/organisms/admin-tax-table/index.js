@@ -1,11 +1,12 @@
-import { Button, Dropdown } from 'react-bootstrap';
+import { Button, Dropdown, Modal } from 'react-bootstrap';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid, regular, light } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 // import Avatar from "@components/atoms/avatar";
 // import AvatarImg from "@assets/images/avatar.jpeg";
 import helper from '../../../../../Common/Helper';
-
+import { confirmAlert } from 'react-confirm-alert';
 import Avatar from '../../atoms/avatar';
 import AvatarImg from '../../../../../assets/images/avatar.png';
 import moment from 'moment';
@@ -20,6 +21,9 @@ let PageSize = 10;
 
 const AdminTaxTable = (props) => {
   const taxList = props.taxList;
+
+  const [showModal, setShowModal] = useState(false);
+  const [currentItem, setCurrentItem] = useState(null);
 
   const totalVal = (data) => {
     let tempSub = [];
@@ -73,6 +77,38 @@ const AdminTaxTable = (props) => {
     }
   }));
   const classes = useStyles();
+
+  const viewItem = (item) => {
+    console.log('View Item: ', item);
+    setCurrentItem(item);
+    setShowModal(true);
+  };
+
+  const deleteItem = (item) => {
+    console.log('Delete Item: ', item);
+    confirmAlert({
+      title: 'DELETE RECEIPT',
+      message: 'Are you sure to delete this tax receipt? This cannot be revert',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            if (props.deleteReceipt) {
+              props.deleteReceipt(item.userDetails?._id);
+            }
+          }
+        },
+        {
+          label: 'No'
+        }
+      ]
+    });
+  };
+
+  const onModalClose = () => {
+    setShowModal(false);
+    setCurrentItem(null);
+  };
 
   return (
     <>
@@ -301,7 +337,10 @@ const AdminTaxTable = (props) => {
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu className="">
-                                      <Dropdown.Item className="d-flex align-items-center p-2">
+                                      <Dropdown.Item
+                                        className="d-flex align-items-center p-2"
+                                        onClick={() => viewItem(item[0])}
+                                      >
                                         <span className="fw-bold fs-7 flex__1">View</span>
                                         <FontAwesomeIcon
                                           icon={solid('magnifying-glass')}
@@ -309,7 +348,10 @@ const AdminTaxTable = (props) => {
                                         />
                                       </Dropdown.Item>
                                       <Dropdown.Divider />
-                                      <Dropdown.Item className="d-flex align-items-center p-2">
+                                      <Dropdown.Item
+                                        className="d-flex align-items-center p-2"
+                                        onClick={() => deleteItem(item[0])}
+                                      >
                                         <span className="fw-bold fs-7 flex__1">Delete</span>
                                         <FontAwesomeIcon icon={regular('trash')} className="ms-1" />
                                       </Dropdown.Item>
@@ -614,6 +656,22 @@ const AdminTaxTable = (props) => {
             </div>
           </li> */}
         </ul>
+        <Modal size="lg" show={showModal && currentItem != null} onHide={onModalClose}>
+          <Modal.Header>
+            <Modal.Title>Tax Receipt</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="container">
+              {currentItem && currentItem.receipt && (
+                <img
+                  src={`${helper.recieptPath}${currentItem.receipt}`}
+                  alt="tax-receipt"
+                  className="img-fluid"
+                />
+              )}
+            </div>
+          </Modal.Body>
+        </Modal>
       </div>
     </>
   );
