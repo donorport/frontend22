@@ -2049,7 +2049,7 @@ const AdminPosts = () => {
                     closeFulfilForm();
                   }}
                 >
-                  Disregard
+                  Discard
                 </Button>
               )}
               {fulfilProductDetails?.isFulfiled && fulfilProductDetails.status === 1 && (
