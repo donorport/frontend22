@@ -11,8 +11,8 @@
     "eject": "craco eject",
     "lint": "eslint --ext .js,.jsx ./src",
     "lint:fix": "eslint --fix --ext .js,.jsx ./src",
-    "serve:dev": "NODE_ENV=\"development\" nodemon server.js",
-    "serve:prod": "NODE_ENV=\"production\" nodemon server.js"
+    "serve:dev": "SET NODE_ENV=\"development\" && nodemon server.js",
+    "serve:prod": "SET NODE_ENV=\"production\" && nodemon server.js"
   },
   "eslintConfig": {
     "extends": [

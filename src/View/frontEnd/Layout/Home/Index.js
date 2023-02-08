@@ -127,7 +127,7 @@ export default function Index(props) {
 
   return (
     <>
-      {loading && <CircularProgress />}
+      {/* {loading && <CircularProgress />} */}
       <HeaderGeoController />
       <div className="bg-lighter border-bottom">
         <Container
