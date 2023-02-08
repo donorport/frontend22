@@ -1,6 +1,7 @@
 import { Button } from 'react-bootstrap';
 // import { LadderMenuXp, AdminTaxTable } from "@components/organisms";
-import LadderMenuXp from '../ladder-menu-xp';
+// import LadderMenuXp from '../ladder-menu-xp';
+import LadderMenu from '../ladder-menu';
 import AdminTaxTable from '../admin-tax-table';
 import './style.scss';
 import organizationApi from '../../../../../Api/frontEnd/organization';
@@ -23,6 +24,8 @@ const AdminTax = () => {
       : CampaignAdminAuthToken
     : CampaignAdminAuthToken;
   const [taxList, setTaxList] = useState([]);
+  const [activeKey, setActiveKey] = useState(0);
+  const [activeYear, setActiveYear] = useState('Show All');
   const [loading, setLoading] = useState(false);
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -56,13 +59,14 @@ const AdminTax = () => {
     return pr;
   };
 
-  const getTaxList = async (page, field, type) => {
+  const getTaxList = async (page, field, type, year) => {
     let formData = {};
     formData.pageNo = page;
     formData.sortField = field;
     formData.sortType = type;
     formData.organizationId = data._id;
     formData.isAll = false;
+    formData.year = year;
 
     const taxList = await organizationApi.organizatationTaxlist(token, formData);
     if (taxList.data.success === true) {
@@ -112,7 +116,7 @@ const AdminTax = () => {
   useEffect(() => {
     (async () => {
       setLoading(false);
-      await getTaxList(pageNo, sortField, order);
+      await getTaxList(pageNo, sortField, order, activeYear);
       setLoading(false);
     })();
   }, [data._id, update]);
@@ -166,7 +170,7 @@ const AdminTax = () => {
 
   const handleClick = async (e, v) => {
     setPageNo(Number(v));
-    await getTaxList(Number(v), sortField, order);
+    await getTaxList(Number(v), sortField, order, activeYear);
   };
 
   const totalVal = (data) => {
@@ -189,9 +193,15 @@ const AdminTax = () => {
     const sortOrder = accessor === sortField && order === 'asc' ? 'desc' : 'asc';
     setSortField(accessor);
     setOrder(sortOrder);
-    await getTaxList(pageNo, accessor, sortOrder);
+    await getTaxList(pageNo, accessor, sortOrder, activeYear);
   };
 
+  const onChangeFilterOption = async (e, v) => {
+    await getTaxList(pageNo, sortField, order, v);
+    setActiveYear(v);
+    setActiveKey(e);
+  };
+  console.log('helllo');
   return (
     <>
       <FrontLoader loading={loading} />
@@ -206,14 +216,16 @@ const AdminTax = () => {
             where they will be able to view & download.
           </p>
         </div>
-        <div className="ms-sm-auto d-flex">
+        <div className="ms-sm-auto d-flex me-1">
           {/* <Button variant="info" size="lg" className='me-2 flex__1'>Download CSV</Button> */}
           {taxList.length > 0 && (
             <CSVExportBtn headers={headers} csvData={csvData} label="Download CSV" prifix="_tax" />
           )}
           {/* <LadderMenuXp /> */}
         </div>
-
+        <div className="ms-sm-auto">
+          <LadderMenu activeKey={activeKey} onChangeFilterOption={onChangeFilterOption} />
+        </div>
         {/*  <div className="d-flex align-items-center me-sm-2 flex-grow-1 mb-3 mb-sm-0">
           <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Tax</h1>
           <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
