@@ -90,7 +90,7 @@ const PaymentMethod = () => {
     error: [],
     taxRate: '',
     paymentLoginId: '',
-    transectionKey: '',
+    TransactionKey: '',
     currency: 'USD'
   });
   const {
@@ -124,7 +124,7 @@ const PaymentMethod = () => {
     confirmAccountNumber,
     taxRate,
     paymentLoginId,
-    transectionKey,
+    TransactionKey,
     currency
   } = state;
 
@@ -197,7 +197,7 @@ const PaymentMethod = () => {
         ...state,
         taxRate: data.taxRate,
         paymentLoginId: data.paymentLoginId,
-        transectionKey: data.transectionKey
+        TransactionKey: data.TransactionKey
       });
       setBankAccount({
         ...bankAccount,
@@ -769,7 +769,7 @@ const PaymentMethod = () => {
     const message = {
       'taxRate.required': 'Tax Rate is Required.',
       'paymentLoginId.required': 'Api Login Id is Required.',
-      'transectionKey.required': 'Transection Key is Required.'
+      'TransactionKey.required': 'Transaction Key is Required.'
     };
     validateAll(state, rules, message)
       .then(async () => {
@@ -788,8 +788,8 @@ const PaymentMethod = () => {
           fdata.value = paymentLoginId;
         }
 
-        if (field === 'transectionKey') {
-          fdata.value = transectionKey;
+        if (field === 'TransactionKey') {
+          fdata.value = TransactionKey;
         }
         // console.log('first')
         const updateSalesTax = await adminCampaignApi.updateSalesTax(token, fdata);
@@ -1192,13 +1192,13 @@ const PaymentMethod = () => {
 
           <div className="input__wrap mb-3">
             <label className="input__label flex__1">
-              <input type="text" placeholder="EX : 74AZP5Hxr972nPEn" name="transectionKey" value={transectionKey} className={state.error && state.error.transectionKey ? 'inputerror' : ""} onChange={(e) => onChangeTaxRate(e)}
+              <input type="text" placeholder="EX : 74AZP5Hxr972nPEn" name="TransactionKey" value={TransactionKey} className={state.error && state.error.TransactionKey ? 'inputerror' : ""} onChange={(e) => onChangeTaxRate(e)}
               // onFocu={()=>alert('okk')} 
-              onBlur={() => myFunction('transectionKey')}
+              onBlur={() => myFunction('TransactionKey')}
               />
               <span className="input__span">TRANSACTION KEY</span>
             </label>
-            {state.error && state.error.transectionKey && <p className="error">{state.error.transectionKey}</p>}
+            {state.error && state.error.TransactionKey && <p className="error">{state.error.TransactionKey}</p>}
           </div>
 
 

@@ -109,13 +109,13 @@ const AdminTaxTable = (props) => {
                 <>
                   <Accordion allowMultiple>
                     <AccordionItem
-                      className="py-2"
+                      className="d-flex flex-column"
                       hideChevron={disableHeader}
                       buttonProps={{ disabled: disableHeader }}
                       header={
                         <li className="flex-grow-1 table__list-item px-2 py-2">
                           <div className="d-sm-flex align-items-center flex-grow-1">
-                            <div className="d-flex align-items-center me-sm-2 mb-1 mb-sm-0">
+                            <div className="d-flex align-items-center me-sm-2 mb-3 mb-sm-0">
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                                 <div className="text-light fw-bold fs-5">
                                   {item[0].currencySymbol}
@@ -366,7 +366,7 @@ const AdminTaxTable = (props) => {
                             return (
                               <>
                                 <li className="table__list-item table__list-item--tax py-1">
-                                  <div className="d-sm-flex align-items-center flex-grow-1">
+                                  <div className="d-flex d-sm-flex align-items-center flex-grow-1">
                                     <div className="d-flex align-items-center mb-1 mb-sm-0 order-1 order-sm-0">
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                                         <div className="text-light fw-bold fs-5">

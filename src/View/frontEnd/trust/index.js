@@ -67,7 +67,7 @@ const Trust = () => {
   */}
               <ul className="list-unstyled mb-0 mb-sm-5">
                 <li className="d-sm-flex text-center align-items-center py-3">
-                  <div className="trust__thumb-wrap text-center mr-20p">
+                  <div className="trust__thumb-wrap text-center mr-0 mr-sm-20p">
                     <div className="trust__thumb d-flex align-items-center justify-content-center mb-20p">
                       <img
                         src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f3194a906bdd9bf150bc222_shake-hands.svg"
@@ -87,7 +87,7 @@ const Trust = () => {
                   </div>
                 </li>
                 <li className="d-sm-flex text-center align-items-center py-3">
-                  <div className="trust__thumb-wrap text-center mr-20p">
+                  <div className="trust__thumb-wrap text-center mr-0 mr-sm-20p">
                     <div className="trust__thumb d-flex align-items-center justify-content-center mb-20p">
                       <img
                         src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f318805aa3067a8b480d12c_star.svg"
@@ -113,7 +113,7 @@ const Trust = () => {
                   </div>
                 </li>
                 <li className="d-sm-flex text-center align-items-center py-3">
-                  <div className="trust__thumb-wrap text-center mr-20p">
+                  <div className="trust__thumb-wrap text-center mr-0 mr-sm-20p">
                     <div className="trust__thumb d-flex align-items-center justify-content-center mb-20p">
                       <img
                         src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f3188cda54a4429120ee945_contract.svg"
@@ -138,7 +138,7 @@ const Trust = () => {
           <div className="about__banner position-relative d-flex justify-content-center align-items-center border-top bg-lighter fs-5 text-center">
             <div className="about__text">
               We're here to help with any issues you may have, with a friendly&nbsp;
-              <a href="/help-contact" className="link">
+              <a href="#" className="link">
                 customer support team&nbsp;
               </a>
               at your service 24/7.

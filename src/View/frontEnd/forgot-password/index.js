@@ -3,6 +3,7 @@ import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Link } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 // import { Logo } from "@components/atoms";
 // import { Footer } from "@components/organisms";
 
@@ -81,8 +82,16 @@ const ForgotPassword = (props) => {
                   )}
                 </div>
 
-                <Button size="lg" className="w-100 mb-4" onClick={() => props.sendOtp()}>
-                  Submit
+                <Button
+                  style={{ width: '100%', opacity: props.isLoading ? '0.7' : '1' }}
+                  size="lg"
+                  className="w-100 mb-4"
+                  onClick={() => !props.isLoading && props.sendOtp()}
+                >
+                  Submit{' '}
+                  {props.isLoading && (
+                    <CircularProgress className="ms-2" color="inherit" size={14} />
+                  )}
                 </Button>
 
                 <Link className="text-light w-100 p-0 fw-normal" to="/signin">

@@ -21,16 +21,10 @@ export default function CheckoutController() {
   const [loading, setLoading] = useState(false);
   const [update, setIsUpdate] = useState(false);
   const [subtotal, setSubTotal] = useState(0);
-  const [subtotalWithTax, setSubtotalWithTax] = useState(0);
-
   const [total, setTotal] = useState(0);
-  const [salesTax, setSalesTax] = useState(0);
-  const [stripeTax, setStripeTax] = useState(0);
-
   const [xp, setXp] = useState(0);
   const CalculatedPrice = getCalculatedPrice();
   const currencySymbol = CalculatedPrice.currencySymbol();
-  const getPricewithoutTax = CalculatedPrice.priceWithoutTax();
   const [xpForeEachItem, setXpForeEachItem] = useState(0);
   const dispatch = useDispatch();
 
@@ -157,36 +151,20 @@ export default function CheckoutController() {
           let sum = tempPriceArray.reduce(function (a, b) {
             return a + b;
           }, 0);
-          let sumSubTotal = tempProductPriceArray.reduce(function (a, b) {
-            return a + b;
-          }, 0);
-
-          // console.log(sumSubTotal)
 
           let xpSum = ProductItems.reduce(function (a, b) {
             return a + b;
           }, 0);
           setXp(xpSum * xpForeEachItem);
-          setSubtotalWithTax(Number(sumSubTotal));
-          let salesTax = CalculatedPrice.calculateSalesTax(sum);
-          // setSalesTax(salesTax)
+          setSubTotal(sum);
           setTotal(sum + 0.3);
-          // setStripeTax(CalculatedPrice.getTaxValueOfPrice(sum))
-          setSalesTax(CalculatedPrice.getTaxValueOfPrice(sum));
-
-          // setTotal(sum + salesTax)
-
-          // setTotal(sum)
-
-          setSubTotal(sum + 0.3);
         } else {
           navigate('/');
         }
       }
       setLoading(false);
-      // console.log(salesTax,user.salesTax)
     })();
-  }, [update, user.transactionFee, xpForeEachItem]);
+  }, [update, user.transactionFee, user.platformFee, xpForeEachItem]);
 
   const pay = async () => {
     // if (cartItem.find(e => e.productDetails.tax === true)) {
@@ -324,18 +302,17 @@ export default function CheckoutController() {
             orderDetails.currencySymbol = user.currencySymbol;
             orderDetails.transactionId = payment.data.data.id;
             orderDetails.paymentResponse = JSON.stringify(payment.data);
-            orderDetails.subtotal = Number(subtotalWithTax);
             orderDetails.appliedTaxPercentage =
               Number(user.platformFee) + Number(user.transactionFee);
             orderDetails.platformFees = user.platformFee;
+            orderDetails.platformCost = ((user.platformFee / 100) * Number(subtotal));
             orderDetails.transactionFees = user.transactionFee;
-            orderDetails.tax = Number(subtotal) - Number(Number(subtotalWithTax));
+            orderDetails.subtotal = subtotal;
             orderDetails.total = total;
+            orderDetails.grandTotal = Number(user.platformCost) + Number(subtotal);
             orderDetails.transactionStatus = payment.data.data.status;
             orderDetails.products = productDetails;
             orderDetails.xpToadd = xp;
-            orderDetails.salesTaxPer = user.salesTax;
-            orderDetails.salesTax = salesTax;
 
             if (cartItem.find((e) => e.productDetails.tax === true)) {
               orderDetails.taxRecipt = true;
@@ -427,13 +404,10 @@ export default function CheckoutController() {
           CalculatedPrice={CalculatedPrice}
           currencySymbol={currencySymbol}
           xp={xp}
-          salesTax={salesTax}
           subtotal={subtotal}
-          salesTaxPer={user.salesTax}
           transactionFee={user.transactionFee}
-          stripeTax={stripeTax}
+          platformFee={user.platformFee}
           isLoading={loading}
-          // pricingFees={pricingFees}
         />
       </Page>
     </>

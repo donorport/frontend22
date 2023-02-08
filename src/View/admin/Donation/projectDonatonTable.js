@@ -112,7 +112,7 @@ export default function ProjectDonation(props) {
         },
         // {
         //     id: 'transactionid',
-        //     name: "Transection Id",
+        //     name: "Transaction Id",
         //     cell: (row) => <>
 
         //         {row.transactionId}
@@ -125,7 +125,7 @@ export default function ProjectDonation(props) {
 
         {
             id: 'trsansection_id',
-            name: "Transection Id",
+            name: "Transaction Id",
             cell: (row) => <>
 
                 <span>

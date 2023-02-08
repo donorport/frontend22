@@ -88,7 +88,7 @@ const OrderDetails = (props) => {
 
                         </div>
                         <div className="col-3">
-                            <h5 className="almost-gray">Transection Id:</h5>
+                            <h5 className="almost-gray">Transaction Id:</h5>
 
                             <Label
                                 variant="ghost"
@@ -100,7 +100,7 @@ const OrderDetails = (props) => {
 
                             </Label>
 
-                            <h5 className="almost-gray">Transection Status:</h5>
+                            <h5 className="almost-gray">Transaction Status:</h5>
 
                             <Label
                                 variant="ghost"
@@ -164,7 +164,7 @@ const OrderDetails = (props) => {
                                 </tr>
                                 <tr>
                                     <td colSpan="3"></td>
-                                    <td colSpan="2">TRANSECTION FEES ( {orderDetails.transactionFees ? orderDetails.transactionFees : 0} %)</td>
+                                    <td colSpan="2">Transaction FEES ( {orderDetails.transactionFees ? orderDetails.transactionFees : 0} %)</td>
                                     <td>{(orderDetails.currencySymbol ? orderDetails.currencySymbol : "$") + priceFormat(Math.round((Number(orderDetails.transactionFees ? orderDetails.transactionFees : 0) / 100) * Number(orderDetails.subtotal)))}</td>
                                 </tr>
                                 <tr>

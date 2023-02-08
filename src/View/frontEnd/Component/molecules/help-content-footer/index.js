@@ -1,6 +1,6 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from 'react-bootstrap';
 
-import "./style.scss";
+import './style.scss';
 
 const HelpContentFooter = () => {
   return (
@@ -18,8 +18,7 @@ const HelpContentFooter = () => {
               <div className="fs-5">
                 <h4 className="fw-semibold mb-0">Can't find your answer?</h4>
                 <p className="text-light mb-0 lh-1.5">
-                  Get in touch and we’ll get back to you as soon as we
-                  can.&nbsp;
+                  Get in touch and we’ll get back to you as soon as we can.&nbsp;
                   <a href="/help-contact" className="link">
                     Contact us.
                   </a>
@@ -38,8 +37,12 @@ const HelpContentFooter = () => {
               <div className="fs-5">
                 <h4 className="fw-semibold mb-0">Policy questions?</h4>
                 <p className="text-light mb-0 lh-1.5">
-                  Take a look at our Terms of Service and review our
-                  <a href="/privacy-policy" className="link">
+                  Take a look at our{' '}
+                  <a href="/terms" className="link">
+                    Terms of Service
+                  </a>
+                  and review our
+                  <a href="/privacy" className="link">
                     Privacy Policy.
                   </a>
                 </p>

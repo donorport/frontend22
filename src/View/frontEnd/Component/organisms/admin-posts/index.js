@@ -1556,11 +1556,11 @@ const AdminPosts = (props) => {
               </div>
             </div>
 
-            <Card className="mt-5">
+            <Card className="mt-0 mt-sm-5">
               <Row className="mw-850 ml-5">
                 <Col lg="6">
                   {!fulfilProductDetails?.isFulfiled && (
-                    <label htmlFor="videoInput" className="form__label mt-3">
+                    <label htmlFor="videoInput" className="form__label mt-sm-0 mt-3">
                       Transaction Details
                     </label>
                   )}
@@ -1659,7 +1659,7 @@ const AdminPosts = (props) => {
                   {!fulfilProductDetails?.isFulfiled ? (
                     <>
                       <label htmlFor="videoInput" className="form__label mt-3">
-                        Upload Receipt &nbsp;
+                        Sales Receipt &nbsp;
                         <span className="post-type-text" style={{ color: '#dd4646' }}>
                           (required)
                         </span>

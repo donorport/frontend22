@@ -3,6 +3,7 @@ import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Link } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 // import { Logo } from "@components/atoms";
 // import { Footer } from "@components/organisms";
 
@@ -208,8 +209,16 @@ const Register = (props) => {
                   />
                   <span className="fw-bold">Sign Up with Google</span>
               </Button>*/}
-                <Button size="lg" className="w-100 mb-4 mt-4" onClick={() => props.signUp()}>
+                <Button
+                  size="lg"
+                  style={{ width: '100%', opacity: props.isLoading ? '0.7' : '1' }}
+                  className="w-100 mb-4 mt-4"
+                  onClick={() => !props.isLoading && props.signUp()}
+                >
                   Register
+                  {props.isLoading && (
+                    <CircularProgress className="ms-2" color="inherit" size={14} />
+                  )}
                 </Button>
                 {/* <Button
                   variant="link"

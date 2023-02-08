@@ -24,6 +24,8 @@ const Checkout = (props) => {
   let subtotal = props.subtotal;
   let total = props.total;
   let cartItem = props.cartItem;
+  let platformCost = ((props.platformFee / 100) * Number(subtotal)).toFixed(2);
+  let grandTotal = (Number(subtotal) + Number(platformCost)).toFixed(2);
   const [summary, showSummary] = useState(false);
   const isTab = useWindowSize() <= 991;
   const summaryElementRef = useRef(null);
@@ -99,6 +101,7 @@ const Checkout = (props) => {
                 salesTaxPer={props.salesTaxPer}
                 transactionFee={props.transactionFee}
                 stripeTax={props.stripeTax}
+                platformFee={props.platformFee}
               />
             </div>
           </div>
@@ -351,8 +354,8 @@ const Checkout = (props) => {
               </div>
 
               <div className="">
-                Donorport is a free service run by a small group of volunteers and relies on the
-                genorosity of donors like you to stay up and running.
+                Donorport is run by a small group of volunteers and relies on the genorosity of
+                donors like you to stay up and running.
               </div>
             </div>
 
@@ -426,7 +429,7 @@ const Checkout = (props) => {
             <div className="note note--info mb-3 mt-5">
               Your payment will be processed when you click Pay. By doing so you agree to the
               Donorport{' '}
-              <a href="#">
+              <a href="/terms">
                 <span className="text-subtext">Terms and Conditions.</span>
               </a>
             </div>
@@ -438,7 +441,7 @@ const Checkout = (props) => {
                 className="d-flex align-items-center justify-content-center fs-6 fw-bold"
                 onClick={() => !props.isLoading && props.pay()}
               >
-                Pay {props.currencySymbol + priceFormat(total)}
+                Pay {props.currencySymbol + priceFormat(grandTotal)}
                 {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={14} />}
               </Button>
             </div>
@@ -492,6 +495,7 @@ const Checkout = (props) => {
               subtotal={props.subtotal}
               salesTaxPer={props.salesTaxPer}
               transactionFee={props.transactionFee}
+              platformFee={props.platformFee}
               stripeTax={props.stripeTax}
             />
           </div>

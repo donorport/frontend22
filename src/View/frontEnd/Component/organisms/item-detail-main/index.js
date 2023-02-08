@@ -187,7 +187,12 @@ function ProjectDetailMain(props) {
           </div>
         </div>
         <div className="category__icons d-flex align-items-center mb-4 order--1 order-sm-0">
-          <Button size="lg" variant="link" className="btn__category text-decoration-none">
+          <Link
+            size="lg"
+            variant="link"
+            className="btn__category text-decoration-none"
+            to={'/categories/' + productDetails?.categoryDetails?.slug}
+          >
             <span
               className="d-flex align-items-center icon__category ms-1"
               style={{
@@ -207,7 +212,7 @@ function ProjectDetailMain(props) {
             <span className="fs-6 text-dark fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
               {productDetails?.subCategoryDetails?.name}
             </span>
-          </Button>
+          </Link>
           <Link
             size="lg"
             variant="link"

@@ -483,7 +483,7 @@ const AddPost = (props) => {
                         <span className="text-dark">
                           Enter the unit price before taxes. Your{' '}
                           <Link
-                            to={'/campaign/' + props?.slug + '/settings/paymentMethod'}
+                            to={'/campaign/settings/paymentMethod'}
                             style={{ color: '#3a94d4' }}
                           >
                             regional sales tax

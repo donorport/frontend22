@@ -69,7 +69,7 @@ export default function PricingFees(props) {
             transactionFee: tf
         })
         setChangePlatform(type === 'PLATFORM')
-        setChangeTransaction(type === 'TRANSECTION')
+        setChangeTransaction(type === 'Transaction')
 
     }
 
@@ -93,7 +93,7 @@ export default function PricingFees(props) {
 
         const message = {
             'platformFee.required': 'Platform Fee is Required.',
-            'transactionFee.required': 'STransection Fee is Required.',
+            'transactionFee.required': 'Transaction Fee is Required.',
 
         }
 
@@ -436,8 +436,8 @@ export default function PricingFees(props) {
                                         <div className="mt-auto">
                                             {
                                                 changeTransaction ?
-                                                    <button className="btn btn-lg btn-outline-primary" onClick={() => savePricingFeeSettings('TRANSECTION')}>Save</button> :
-                                                    <button className="btn btn-lg btn-outline-primary" onClick={() => editPrice('TRANSECTION')}>Change</button>
+                                                    <button className="btn btn-lg btn-outline-primary" onClick={() => savePricingFeeSettings('Transaction')}>Save</button> :
+                                                    <button className="btn btn-lg btn-outline-primary" onClick={() => editPrice('Transaction')}>Change</button>
 
                                             }
                                         </div>

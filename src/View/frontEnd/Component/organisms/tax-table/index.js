@@ -108,11 +108,10 @@ const TaxTable = (props) => {
                 <>
                   <Accordion allowMultiple>
                     <AccordionItem
-                      className="py-2"
                       hideChevron={disableHeader}
                       buttonProps={{ disabled: disableHeader }}
                       header={
-                        <li className="flex-grow-1 table__list-item px-0 px-sm-2">
+                        <li className="flex-grow-1 table__list-item px-2 py-2">
                           <div className="d-sm-flex align-items-center flex-grow-1">
                             <div className="tax__left d-flex align-items-center me-sm-2 mb-1 mb-sm-0 ps-2 ps-sm-0">
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4 text-sm-start text-end">
@@ -289,7 +288,7 @@ const TaxTable = (props) => {
                                   className="d-flex align-items-center justify-content-end px-0 fw-semibold text-reset text-decoration-none"
                                   onClick={(e) => e.stopPropagation()}
                                 >
-                                  Pending
+                                  Waiting
                                   <FontAwesomeIcon
                                     icon={solid('clock')}
                                     className="fs-3 ms-1 text-warning"
@@ -334,7 +333,7 @@ const TaxTable = (props) => {
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="d-flex align-items-center flex__1 mb-1 mb-sm-0">
+                                    <div className="d-flex align-items-center justify-content-start flex__1 mb-1 mb-sm-0">
                                       <div className="pe-1 p-sm-2 mr-12p">
                                         <img loading="lazy" width={36} src={Aimg} alt="" />
                                       </div>
@@ -459,7 +458,7 @@ const TaxTable = (props) => {
       </div>
 
       {props.taxList.length > 0 && (
-        <div className="mt-5  mb-5">
+        <div className="mt-5 mb-5">
           <CSVExportBtn
             headers={props.headers}
             csvData={props.csvData}

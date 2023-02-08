@@ -175,7 +175,7 @@ const Payout = (props) => {
         },
         {
             id: 'transactionid',
-            name: "Transection Id",
+            name: "Transaction Id",
             cell: (row) => <>
 
                 {row.transactionId}
@@ -191,9 +191,9 @@ const Payout = (props) => {
     ];
     const data = [];
 
-    if (props.orgTransectionHistory && props.orgTransectionHistory.length > 0) {
+    if (props.orgTransactionHistory && props.orgTransactionHistory.length > 0) {
 
-        props.orgTransectionHistory.map((item) => {
+        props.orgTransactionHistory.map((item) => {
             data.push(item);
         },
         );

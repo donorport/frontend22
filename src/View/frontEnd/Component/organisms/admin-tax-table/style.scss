@@ -2,8 +2,6 @@
 @import '../../../../../assets//scss/components/list-table';
 
 .admin__billing-value {
-  width: 46px;
-
   @include media-breakpoint-down(sm) {
     order: 2;
   }
@@ -37,4 +35,16 @@ li.table__list-item--tax:first-child {
   border-top: 2px dashed #e0e5ed;
   padding-top: 1.3rem !important;
   margin-top: 1.3rem !important;
+}
+li.table__list-item--tax:last-child {
+  margin-bottom: 0.9rem !important;
+}
+.dropdown-item,
+.dropdown-item:focus,
+.dropdown-item:hover {
+  color: inherit !important;
+}
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: hsl(217deg 15% 78% / 15%) !important;
 }

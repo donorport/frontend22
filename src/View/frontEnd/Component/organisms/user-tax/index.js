@@ -29,7 +29,7 @@ const UserTax = () => {
   const headers = [
     { label: 'Date', key: 'date' },
     { label: 'Amount', key: 'amount' },
-    { label: 'Transection Id', key: 'transectionId' },
+    { label: 'Transaction Id', key: 'TransactionId' },
     // { label: "Type", key: "type" },
     { label: 'Products', key: 'products' }
   ];
@@ -86,7 +86,7 @@ const UserTax = () => {
           let tempobj = {};
           tempobj.date = moment(item.created_at).format('DD MMMM YY');
           tempobj.amount = item[0].currencySymbol + totalVal(item);
-          tempobj.transectionId = item[0].uniqueTransactionId
+          tempobj.TransactionId = item[0].uniqueTransactionId
             ? item[0].uniqueTransactionId
             : item[0].orderId;
           // tempobj.type = item.type

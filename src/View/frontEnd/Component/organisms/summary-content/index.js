@@ -16,10 +16,10 @@ const SummaryContent = (props) => {
   let subtotal = props.subtotal;
   let salesTaxPer = props.salesTaxPer;
   let transactionFee = props.transactionFee;
+  let platformCost = ((props.platformFee / 100) * Number(subtotal)).toFixed(2);
+  let grandTotal = (Number(subtotal) + Number(platformCost)).toFixed(2);
 
   // let transactionFee = props.pricingFees?.transactionFee
-  let platformFee = props.pricingFees?.platformFee
-  console.log(platformFee);
   // let totalCharge = Number(transactionFee) + Number(platformFee)
 
   return (
@@ -85,16 +85,16 @@ const SummaryContent = (props) => {
         </ul>
 
         <div className=" py-3 border-bottom">
-        <div className="d-flex align-items-center pb-20p">
-            <span className="fw-bolder flex__1">Fee:</span>
-            <span className="fw-bold text-light fs-5">
-              {props.currencySymbol + priceFormat(platformFee)}
-            </span>
-          </div>
           <div className="d-flex align-items-center pb-20p">
             <span className="fw-bolder flex__1">Subtotal:</span>
             <span className="fw-bold text-light fs-5">
               {props.currencySymbol + priceFormat(subtotal)}
+            </span>
+          </div>
+          <div className="d-flex align-items-center pb-20p">
+            <span className="fw-semibold fs-7 text-light flex__1">Service Charge:</span>
+            <span className="fw-bold text-light fs-5">
+              {props.currencySymbol + priceFormat(platformCost)}
             </span>
           </div>
           {/*    <div className="d-flex align-items-center pb-20p">
@@ -115,14 +115,16 @@ const SummaryContent = (props) => {
       <div className="d-flex align-items-center pt-1 pb-2">
         <span className="fw-bolder flex__1">Total:</span>
         {/* <span className="text-subtext me-2 fs-7">USD</span> */}
-        <span className="fw-bolder text-light fs-4">
+        <span className="fw-bold text-light fs-4">
           {/* {props.currencySymbol + priceFormat(total ? total : 0)} */}
-          {props.currencySymbol + priceFormat(total)}
+          {props.currencySymbol + priceFormat(grandTotal)}
         </span>
       </div>
       <div className="checkout__legend d-flex my-3 fs-7 p-2">
         <FontAwesomeIcon icon={solid('calculator')} className="fs-4 text-info me-1" />
-        <span> You'll receive a tax deductabile receipt for this donation.</span>
+        <span style={{ lineHeight: '2' }}>
+          You'll receive a tax deductabile receipt for this donation.
+        </span>
       </div>
       <div className="note note--info px-0 text-start">
         All prices include merchant fees & sales tax. The organization(s) will receive the exact
@@ -131,13 +133,13 @@ const SummaryContent = (props) => {
         <a href="/pricing">Click here</a> to learn more.
         <br />
         <br />
-        <div className="d-flex">
+        {/*  <div className="d-flex">
           <FontAwesomeIcon icon={solid('shield-halved')} className="fs-6 text-info me-2" />
           <span>
             {' '}
             Your donation is gauranteed under our <a href="/">Giving Gaurantee.</a>
           </span>
-        </div>
+        </div>*/}
         <br />
       </div>
     </div>

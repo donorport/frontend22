@@ -20,6 +20,10 @@ const OrderConfirmPage = () => {
   const userData = JSON.parse(localStorage.getItem('userData'));
   let newSlug = userData?.name.split(/\s/).join('');
 
+  let platformCost = ((orderDetails.platformFees / 100) * Number(orderDetails.subtotal)).toFixed(2);
+  console.log(platformCost);
+  let grandTotal = (Number(orderDetails.subtotal) + Number(platformCost)).toFixed(2);
+
   const getOrderDetails = async () => {
     let data = {};
     data.orderId = params.id;
@@ -51,9 +55,6 @@ const OrderConfirmPage = () => {
     ?.card?.brand;
   let lastFourDigits = JSON.parse(orderDetails?.paymentResponse || '{}')?.data
     ?.payment_method_details?.card?.last4;
-
-  console.log(cardType);
-  console.log(lastFourDigits);
 
   return (
     <>
@@ -225,7 +226,18 @@ const OrderConfirmPage = () => {
                       </p>
                     </div>
                   </div>
-
+                  <div className="total__sub d-flex justify-content-between">
+                    <div className="fw-semibold fs-7 text-light">Service Charge:</div>
+                    <div className="total__value">
+                      <p className="fw-semibold text-light fs-7">
+                        {' '}
+                        {orderDetails.currencySymbol}
+                        {/* {purchasedPriceWithTax(Number(orderDetails.subtotal), Number(orderDetails.appliedTaxPercentage))} */}
+                        {/* {orderDetails.subtotal} */}
+                        {priceFormat(Number(platformCost))}
+                      </p>
+                    </div>
+                  </div>
                   {/*    <div
                 style={{
                   textAlign: 'left',
@@ -249,7 +261,7 @@ const OrderConfirmPage = () => {
                     </p>
                   </div> */}
 
-                  <div className="total__sub d-flex justify-content-between">
+                  <div className="total__sub d-flex justify-content-between mt-3">
                     <p className="total__title fw-bolder">XP:</p>
                     <div className="order__xp text-info fw-bold">{orderDetails.xp} xp</div>
                   </div>
@@ -280,7 +292,7 @@ const OrderConfirmPage = () => {
                         <b className="fs-4 text-light">
                           {' '}
                           {orderDetails.currencySymbol}
-                          {priceFormat(Number(orderDetails.subtotal) + 0.3)}
+                          {priceFormat(Number(grandTotal))}
                         </b>
                       </p>
                     </div>

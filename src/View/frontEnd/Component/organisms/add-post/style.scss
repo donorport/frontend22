@@ -182,8 +182,8 @@
   }
 
   .form-check .form-check-input {
-    width: 2.25rem;
-    height: 1.3rem;
+    min-width: 1.3rem;
+    min-height: 1.3rem;
     border: 2px solid #4e8dff;
     cursor: pointer;
   }

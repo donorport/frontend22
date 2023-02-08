@@ -58,11 +58,11 @@ function FooterCategoryLinks({ categoryName, list, ...otherProps }) {
               Apply to Post
             </a>
           </li>
-          <li className="footer__link-item">
+          {/* <li className="footer__link-item">
             <a href="/help" className="footer__link">
               Help Center
             </a>
-          </li>
+          </li>*/}
           <li className="footer__link-item">
             <a href="/partnership" className="footer__link">
               Partnerships

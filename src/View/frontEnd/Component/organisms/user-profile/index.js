@@ -300,8 +300,8 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
-        (async () => {
-            setLoading(true);
+    (async () => {
+      setLoading(true);
       // console.log(data)
       // if (data.country_id && data.country_id !== null ) {
       //   await getCountryStateList(data.country_id)
@@ -595,7 +595,7 @@ const UserProfile = () => {
           </label>
         </div>
 
-        {/*  <div className="d-flex align-items-center py-3">
+        <div className="d-flex align-items-center py-3">
           <ToggleSwitch
             isOn={check}
             handleToggle={() => setCheck(!check)}
@@ -606,7 +606,7 @@ const UserProfile = () => {
             Hide your order history on public posts for items & organizations you donate to.
           </span>
           <FontAwesomeIcon icon={solid('eye-slash')} className="icon__hide fs-4 ms-2" />
-        </div>*/}
+        </div>
       </div>
 
       <div className="mb-5">

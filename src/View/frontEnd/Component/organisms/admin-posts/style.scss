@@ -29,3 +29,12 @@
   background: #edf6fd;
   border-radius: 6px;
 }
+.dropdown-item,
+.dropdown-item:focus,
+.dropdown-item:hover {
+  color: inherit !important;
+}
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: hsl(217deg 15% 78% / 15%) !important;
+}
