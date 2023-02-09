@@ -284,9 +284,7 @@ const AddPost = (props) => {
                         </div>
                         <div className="info-wrap">
                           <div className="fs-6 mb-3p">Your post will be posted in</div>
-                          <h3 className="mb-0 fs-4 fw-bolder">
-                            {location.locationName}
-                          </h3>
+                          <h3 className="mb-0 fs-4 fw-bolder">{location.locationName}</h3>
                         </div>
                       </div>
                     </div>
@@ -815,7 +813,7 @@ const AddPost = (props) => {
                             {moreTempImages?.length ? (
                               moreTempImages.map((img, key) => {
                                 return (
-                                  <div className="img-wrap">
+                                  <div key={key} className="img-wrap">
                                     <span
                                       className="close"
                                       onClick={() => props.removeGallaryempImages(key, 'moreImg')}
@@ -835,7 +833,6 @@ const AddPost = (props) => {
                             )}
                             {moreImages?.length
                               ? moreImages.map((img, key) => {
-                                  // console.log(img)
                                   return (
                                     <>
                                       {/* <img src={img ? img !== "" ? helper.CampaignProductImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} />

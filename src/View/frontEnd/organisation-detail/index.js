@@ -1,64 +1,19 @@
-// core
 import React, { useState, useEffect } from 'react';
 
-// third party
-// import { Col, Container, Row } from "react-bootstrap";
 import { Col, Container, Row, Button } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
-// app specific
-
-import Header from '../Component/organisms/header';
 import Footer from '../Component/organisms/footer';
 import OrganisationDetailMain from '../Component/organisms/organisation-detail-main';
 import History from '../Component/organisms/history';
 import SuggestionWrapper from '../Component/molecules/suggestion-wrapper';
 import SuggestedList from '../Component/organisms/suggested-list';
-import OrganisationTeamWidget from '../Component/organisms/org-team-widget';
 import OrganisationProjectsWidget from '../Component/organisms/org-projects-widget';
-import GrabDropdown from '../Component/organisms/grab-dropdown';
-//import HeaderController from '../../../Controller/frontEnd/HeaderController';
 import DonateModal from '../Component/molecules/donate-modal';
 import HeaderController from '../../../Controller/frontEnd/HeaderController';
-import { useSelector } from 'react-redux';
 
-// style
 import './style.scss';
-
-// class OrganisationDetail extends React.Component {
-//   render() {
-//     return (
-//       <>
-//         <Header />
-//         <SuggestionWrapper>
-//           <SuggestedList />
-//         </SuggestionWrapper>
-//         <Container fluid className="py-5">
-//           <Row>
-//             <Col md="7" className="mb-4">
-//               <OrganisationDetailMain progress={70} />
-//             </Col>
-//             <Col md="5">
-//               <div className="mb-4">
-//               <OrganisationTeamWidget />
-//               </div>
-//               <History />
-//             </Col>
-//           </Row>
-//         </Container>
-//         <Container fluid>
-//           <Row className="py-5">
-//             <Col md="6" className="mb-4 mb-0">
-//               <OrganisationProjectsWidget />
-//             </Col>
-//             <Col md="6"></Col>
-//           </Row>
-//         </Container>
-
-//         <Footer />
-//       </>
-//     );
-//   }
-// }
 
 const OrganisationDetail = (props) => {
   const user = useSelector((state) => state.user);
@@ -73,11 +28,9 @@ const OrganisationDetail = (props) => {
         return v.country_id === user.countryId;
       })
     );
-  }, [props.organizationList]);
+  }, [props.organizationList, user.countryId]);
 
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
-  const userAuthToken = localStorage.getItem('userAuthToken');
-  const token = userAuthToken ? userAuthToken : CampaignAdminAuthToken;
 
   return (
     <>
@@ -114,8 +67,6 @@ const OrganisationDetail = (props) => {
               setSelectedValue={props.setSelectedValue}
               dCardIcon={props.dCardIcon}
             />
-
-            {/* <GrabDropdown /> */}
           </div>
         </div>
       </SuggestionWrapper>
@@ -131,9 +82,6 @@ const OrganisationDetail = (props) => {
             />
           </Col>
           <Col md="5">
-            {/*}  <div className="mb-4">
-              <OrganisationTeamWidget />
-          </div>*/}
             <History list={props.purchasedItemList} donationList={props.donationList} />
           </Col>
         </Row>
@@ -146,10 +94,37 @@ const OrganisationDetail = (props) => {
           <Col md="6"></Col>
         </Row>
       </Container>
-
       <Footer />
     </>
   );
+};
+
+OrganisationDetail.propTypes = {
+  organizationDetails: PropTypes.object.isRequired,
+  stateData: PropTypes.object.isRequired,
+  changevalue: PropTypes.func.isRequired,
+  donate: PropTypes.func.isRequired,
+  setSelectedValue: PropTypes.func.isRequired,
+  followToOrganization: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
+  checkItemInCart: PropTypes.func.isRequired,
+  cardNumberWithSpace: PropTypes.string,
+  dCardIcon: PropTypes.string,
+  selectedValue: PropTypes.number,
+  isFollow: PropTypes.bool,
+  projectList: PropTypes.arrayOf(PropTypes.object),
+  organizationList: PropTypes.arrayOf(PropTypes.object),
+  purchasedItemList: PropTypes.arrayOf(PropTypes.object),
+  donationList: PropTypes.arrayOf(PropTypes.object)
+};
+
+OrganisationDetail.defaultProps = {
+  cardNumberWithSpace: '',
+  dCardIcon: '',
+  selectedValue: 25,
+  isFollow: false,
+  projectList: [],
+  organizationList: []
 };
 
 export default OrganisationDetail;

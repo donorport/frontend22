@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
 
-// import { WidgetTitle, TagTitle } from "../../Component";
+import { Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+
 import WidgetTitle from '../../atoms/widget-title';
 import TagTitle from '../../atoms/tag-title';
 import HistoryItem from '../../molecules/history-item';
 import './style.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 function History(props) {
   const [loadMore, setLoadMore] = useState(false);
@@ -18,14 +19,13 @@ function History(props) {
   let list = props.list;
   let donationList = props.donationList;
 
-  let tempOrderList = [];
-  let tempDonationList = [];
-
   useEffect(() => {
+    let tempOrderList = [];
+    let tempDonationList = [];
     if (list?.length > 0) {
-      list.map((v, k) => {
+      list.map((v) => {
         v.listType = 'order';
-        tempOrderList = tempOrderList.filter(function (item, pos, self) {
+        tempOrderList = tempOrderList.filter((item, pos, self) => {
           return self.indexOf(item) === pos;
         });
         tempOrderList.push(v);
@@ -33,9 +33,9 @@ function History(props) {
     }
 
     if (donationList?.length > 0) {
-      donationList.map((v1, k1) => {
+      donationList.map((v1) => {
         v1.listType = 'donation';
-        tempDonationList = tempDonationList.filter(function (item, pos, self) {
+        tempDonationList = tempDonationList.filter((item, pos, self) => {
           return self.indexOf(item) === pos;
         });
         tempDonationList.push(v1);
@@ -47,9 +47,6 @@ function History(props) {
     setLoadMore(false);
   }, [list, donationList]);
 
-  // console.log("donationList", donationList)
-  // console.log("list", list)
-
   return (
     <>
       <TagTitle>History</TagTitle>
@@ -59,7 +56,6 @@ function History(props) {
         <div className="log__recent border-bottom">
           <div className="log__avatar avatar--title">
             <div className="log__avatar__img avatar__img--recent">
-              {/* <i className="fa-solid fa-clock"></i> */}
               <FontAwesomeIcon icon={solid('clock')} />
             </div>
           </div>
@@ -73,15 +69,13 @@ function History(props) {
         <ul className="list-unstyled">
           {historyList?.length > 0 &&
             historyList
-              .sort(function (a, b) {
+              .sort((a, b) => {
                 let keyA = userAuthToken ? userData.id : new Date(a.created_at);
                 let keyB = userAuthToken
                   ? a.listType === 'donation'
                     ? a?.userDetails?._id
                     : a?.orderDetails.userDetails?._id
                   : new Date(b.created_at);
-                // Compare the 2 dates
-                // console.log(keyA,keyB)
                 if (!userAuthToken) {
                   if (keyA < keyB) return 1;
                   if (keyA > keyB) return -1;
@@ -93,13 +87,14 @@ function History(props) {
                 return 0;
               })
               .slice(0, loadMore ? historyList.length : 6)
-              .map((item, i) => {
+              .map((item, index) => {
                 let uid =
                   item.listType === 'donation'
                     ? item?.userDetails?._id
                     : item?.orderDetails.userDetails?._id;
                 return (
                   <HistoryItem
+                    key={index}
                     categoryName="Fish"
                     type={item.listType}
                     categoryColor="hsla(0, 96.46%, 76.14%, 1.00)"
@@ -155,5 +150,15 @@ function History(props) {
     </>
   );
 }
+
+History.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.object),
+  donationList: PropTypes.arrayOf(PropTypes.object)
+};
+
+History.defaultProps = {
+  list: [],
+  donationList: []
+};
 
 export default History;
