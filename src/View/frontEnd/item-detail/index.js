@@ -1,5 +1,5 @@
 // core
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // third party
 import { Col, Container, Row, Button } from 'react-bootstrap';
@@ -26,6 +26,7 @@ import helper from '../../../Common/Helper';
 import { GalleryImg } from '../Component/atoms';
 import WidgetTitle from '../Component/atoms/widget-title';
 import TagTitle from '../Component/atoms/tag-title';
+import { useSelector } from 'react-redux';
 
 // style
 import './style.scss';
@@ -73,6 +74,7 @@ import { Link } from 'react-router-dom';
 // }
 
 const ItemDetail = (props) => {
+  const user = useSelector((state) => state.user);
   let productDetails = props.productDetails;
   let categoryProducts = props.categoryProducts;
   let similerProductsCount = categoryProducts.filter((e) => e._id !== productDetails._id).length;
@@ -80,7 +82,14 @@ const ItemDetail = (props) => {
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const userAuthToken = localStorage.getItem('userAuthToken');
   const token = CampaignAdminAuthToken ? CampaignAdminAuthToken : userAuthToken;
-
+  const [productListByCountry, setProductListByCountry] = useState([]);
+  useEffect(() => {
+    setProductListByCountry(
+      props.productList.filter((v) => {
+        return v.campaignDetails.country_id === user.countryId;
+      })
+    );
+  }, [props.productList]);
   // const isSold = productDetails.unlimited
   //   ? productDetails.isFulfiled
   //   : productDetails.quantity <= productDetails.soldout;
@@ -101,7 +110,7 @@ const ItemDetail = (props) => {
       <SuggestionWrapper>
         <SuggestedList
           itemTag="product"
-          productList={props.productList}
+          productList={productListByCountry}
           productId={productDetails?._id}
           productDetails={productDetails}
         />

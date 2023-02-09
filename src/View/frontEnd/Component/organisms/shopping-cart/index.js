@@ -10,7 +10,6 @@ import CartList from './cart-list';
 import './style.scss';
 
 const ShoppingCart = (props) => {
-  // console.log(props.cartItem)
   const [state, setState] = useState({
     empty: false,
     subTotal: '',

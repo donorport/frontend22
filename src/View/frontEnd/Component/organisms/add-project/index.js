@@ -358,7 +358,7 @@ const AddProject = (props) => {
             className="fw-bold fs-6 mb-2 mb-sm-0"
             onClick={() => discardProject()}
           >
-            Disregard
+            Discard
           </Button>
           <Button
             variant="success"

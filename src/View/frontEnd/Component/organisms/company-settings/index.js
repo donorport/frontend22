@@ -1,37 +1,55 @@
-import './style.scss';
-import { Outlet, Link, useLocation, useOutletContext, useNavigate } from 'react-router-dom';
-import React, { useState, useEffect, useContext } from 'react';
-import FrontLoader from '../../../../../Common/FrontLoader';
-import helper, { isIframe, hasAlpha } from '../../../../../Common/Helper';
+import React, { useState, useEffect, useCallback } from 'react';
+
+import { useOutletContext, useNavigate } from 'react-router-dom';
 import { validateAll } from 'indicative/validator';
-import ToastAlert from '../../../../../Common/ToastAlert';
-import adminCampaignApi from '../../../../../Api/admin/adminCampaign';
 import { Button } from 'react-bootstrap';
 import CircularProgress from '@mui/material/CircularProgress';
-// import { UserContext } from '../../../../../App';
 import { useSelector, useDispatch } from 'react-redux';
+import Select from 'react-select';
+import { confirmAlert } from 'react-confirm-alert';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+
+import helper, { hasAlpha } from '../../../../../Common/Helper';
+import ToastAlert from '../../../../../Common/ToastAlert';
+import adminCampaignApi from '../../../../../Api/admin/adminCampaign';
+import noImg from '../../../../../assets/images/noimg.jpg';
 import {
-  setIsUpdateCart,
   setIsUpdateOrganization,
   setProfileImage,
   setLogout
 } from '../../../../../user/user.action';
 import locationApi from '../../../../../Api/frontEnd/location';
-import Select from 'react-select';
-import { confirmAlert } from 'react-confirm-alert';
 import categoryApi from '../../../../../Api/admin/category';
+
+import './style.scss';
+
+const imageuploadwrap = {
+  marginTop: '20px',
+  position: 'relative',
+  width: '100%'
+};
+const fileuploadinput = {
+  position: 'absolute',
+  margin: 0,
+  padding: 0,
+  width: '100%',
+  height: '100%',
+  outline: 'none',
+  opacity: 0,
+  cursor: 'pointer'
+};
+
+const validExtensions = ['jpg', 'png', 'jpeg', 'gif'];
 
 const CompanySettings = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
-
-  // const user = useContext(UserContext)
   const dispatch = useDispatch();
   const [data, setData] = useOutletContext();
   const [loading, setLoading] = useState(false);
   const [embedlink, setEmbedlink] = useState('');
   const [tempImg, setTempImg] = useState('');
-  // const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const type = localStorage.getItem('type');
   const tempCampaignAdminAuthToken = localStorage.getItem('tempCampaignAdminAuthToken');
@@ -52,7 +70,10 @@ const CompanySettings = () => {
 
   const [defaultCategory, setDefaultCategory] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
-
+  const [galleryImages, setGalleryImages] = useState([]);
+  const [viewGalleryImages, setViewGalleryImages] = useState([]);
+  const [deletedImages, setDeletedImages] = useState([]);
+  const [textAreaCount, ChangeTextAreaCount] = useState(0);
   const [state, setState] = useState({
     logo: '',
     name: '',
@@ -65,8 +86,10 @@ const CompanySettings = () => {
     country: '',
     category: '',
     url: '',
-    error: []
+    error: [],
+    images: []
   });
+
   const {
     name,
     headline,
@@ -82,58 +105,64 @@ const CompanySettings = () => {
     error
   } = state;
 
-  const getCountryStateList = async (countryId) => {
-    let tempArray = [];
-    const getCountryStateList = await locationApi.stateListByCountry(token, Number(countryId));
-    if (getCountryStateList) {
-      if (getCountryStateList.data.success) {
-        if (getCountryStateList.data.data.length > 0) {
-          getCountryStateList.data.data.map((state, i) => {
-            let Obj = {};
-            Obj.value = state.id;
-            Obj.label = state.state;
-            tempArray.push(Obj);
-          });
-          setDefaultState([]);
-          setStateList(tempArray);
-        } else {
-          setDefaultState([]);
-          setStateList([]);
+  const getCountryStateList = useCallback(
+    async (countryId) => {
+      let tempArray = [];
+      const getCountryStateList = await locationApi.stateListByCountry(token, Number(countryId));
+      if (getCountryStateList) {
+        if (getCountryStateList.data.success) {
+          if (getCountryStateList.data.data.length > 0) {
+            getCountryStateList.data.data.map((state) => {
+              let Obj = {};
+              Obj.value = state.id;
+              Obj.label = state.state;
+              tempArray.push(Obj);
+            });
+            setDefaultState([]);
+            setStateList(tempArray);
+          } else {
+            setDefaultState([]);
+            setStateList([]);
+          }
         }
       }
-    }
-  };
+    },
+    [token]
+  );
 
-  const getStateCityList = async (stateId) => {
-    let tempArray = [];
-    const getStateCityList = await locationApi.cityListByState(token, stateId);
-    if (getStateCityList) {
-      if (getStateCityList.data.success) {
-        if (getStateCityList.data.data.length > 0) {
-          getStateCityList.data.data.map((city, i) => {
-            let Obj = {};
-            Obj.value = city._id.id;
-            Obj.label = city._id.city;
-            tempArray.push(Obj);
-          });
-          setDefaultCity([]);
-          setCityList(tempArray);
-        } else {
-          setDefaultCity([]);
-          setCityList([]);
+  const getStateCityList = useCallback(
+    async (stateId) => {
+      let tempArray = [];
+      const getStateCityList = await locationApi.cityListByState(token, stateId);
+      if (getStateCityList) {
+        if (getStateCityList.data.success) {
+          if (getStateCityList.data.data.length > 0) {
+            getStateCityList.data.data.map((city) => {
+              let Obj = {};
+              Obj.value = city._id.id;
+              Obj.label = city._id.city;
+              tempArray.push(Obj);
+            });
+            setDefaultCity([]);
+            setCityList(tempArray);
+          } else {
+            setDefaultCity([]);
+            setCityList([]);
+          }
         }
       }
-    }
-  };
+    },
+    [token]
+  );
 
-  const getCountryList = async () => {
+  const getCountryList = useCallback(async () => {
     let tempArray = [];
 
     const getCountryList = await locationApi.countryList(token);
     if (getCountryList) {
       if (getCountryList.data.success) {
         if (getCountryList.data.data.length > 0) {
-          getCountryList.data.data.map((country, i) => {
+          getCountryList.data.data.map((country) => {
             let Obj = {};
 
             Obj.value = country.id;
@@ -146,7 +175,7 @@ const CompanySettings = () => {
         }
       }
     }
-  };
+  }, [token]);
 
   const onChangeCountry = async (e) => {
     setDefaultCountry(e);
@@ -185,13 +214,13 @@ const CompanySettings = () => {
     // }
   };
 
-  const onClickCity = async (e) => {
-    setDefaultCity(e);
-    setState({
-      ...state,
-      city: e.value
-    });
-  };
+  // const onClickCity = async (e) => {
+  //   setDefaultCity(e);
+  //   setState({
+  //     ...state,
+  //     city: e.value
+  //   });
+  // };
 
   const changefile = async (e) => {
     let file = e.target.files[0] ? e.target.files[0] : '';
@@ -213,7 +242,7 @@ const CompanySettings = () => {
       setTempImg('');
     }
   };
-  const [textAreaCount, ChangeTextAreaCount] = useState(0);
+
   const changevalue = (e) => {
     let value = e.target.value;
     setState({
@@ -235,7 +264,7 @@ const CompanySettings = () => {
     if (getCategoryList.data.success === true) {
       if (getCategoryList.data.data.length > 0) {
         let tempArray = [];
-        getCategoryList.data.data.map((category, i) => {
+        getCategoryList.data.data.map((category) => {
           let Obj = {};
           Obj.value = category._id;
           Obj.label = category.name;
@@ -250,10 +279,9 @@ const CompanySettings = () => {
 
   useEffect(() => {
     (async () => {
-      // console.log(data)
       setLoading(false);
-      setState({
-        ...state,
+      setState((s) => ({
+        ...s,
         name: data.name,
         mission: data.description,
         headline: data.headline,
@@ -264,8 +292,10 @@ const CompanySettings = () => {
         stateId: data.state_id,
         category: data.category_id,
         ein: data.ein,
-        url: data.url
-      });
+        url: data.url,
+        images: data.images
+      }));
+      setViewGalleryImages(data.images);
       let urlV = data.promoVideo;
       // let id = url && url.split("?v=")[1];
       // let embedUrl = url ? "http://www.youtube.com/embed/" + id : "";
@@ -282,7 +312,25 @@ const CompanySettings = () => {
 
       setLoading(false);
     })();
-  }, [data._id, user.isUpdateOrg]);
+  }, [
+    data._id,
+    data.category_id,
+    data.city_id,
+    data.country_id,
+    data.description,
+    data.ein,
+    data.headline,
+    data.logo,
+    data.name,
+    data.promoVideo,
+    data.state_id,
+    data.url,
+    data.images,
+    getCountryList,
+    getCountryStateList,
+    getStateCityList,
+    user.isUpdateOrg
+  ]);
 
   useEffect(() => {
     if (countryList.length > 0) {
@@ -298,10 +346,9 @@ const CompanySettings = () => {
     if (categoryList.length > 0 && data.category_id) {
       setDefaultCategory(categoryList.find((x) => x.value === data.category_id));
     }
-  }, [countryList, data.country_id, data.category_id, categoryList]);
+  }, [countryList, data.country_id, data.category_id, categoryList, stateList, data.state_id]);
 
   const updateProfile = () => {
-    // alert('k')
     const rules = {
       name: 'required',
       mission: 'required',
@@ -345,10 +392,14 @@ const CompanySettings = () => {
         fdata.ein = ein;
         fdata.url = url ? url : '';
 
-        // data.password = password
         if (logo) {
           fdata.logo = logo;
-          // console.log(logo)
+        }
+        if (galleryImages && galleryImages.length > 0) {
+          fdata.galleryImages = galleryImages;
+        }
+        if (deletedImages && deletedImages.length > 0) {
+          fdata.deletedImages = deletedImages;
         }
 
         setLoading(true);
@@ -374,7 +425,6 @@ const CompanySettings = () => {
         }
       })
       .catch((errors) => {
-        console.log(errors);
         setLoading(false);
         const formaerrror = {};
         if (errors.length) {
@@ -435,6 +485,41 @@ const CompanySettings = () => {
     });
     setDefaultCategory(e);
   };
+
+  const onGalleryImagesChange = (e) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      let mImgtempArry = [];
+      let tempMainFileArry = [];
+      for (let i = 0; i < files.length; i++) {
+        let extension = files[i].name.substr(files[i].name.lastIndexOf('.') + 1);
+        if (validExtensions.includes(extension)) {
+          tempMainFileArry.push(files[i]);
+          mImgtempArry.push(URL.createObjectURL(files[i]));
+        }
+      }
+      let oldG = [...galleryImages];
+      let combined = oldG.concat(tempMainFileArry);
+      setGalleryImages(combined);
+      let showImages = [...viewGalleryImages];
+      let showCombined = showImages.concat(mImgtempArry);
+      setViewGalleryImages(showCombined);
+    }
+  };
+
+  const removeGallaryempImages = (id) => {
+    let imgs = [...galleryImages];
+    imgs.splice(id, 1);
+    setGalleryImages(imgs);
+    let viewImgs = [...viewGalleryImages];
+    const image = viewImgs[id];
+    if (image.image && image._id) {
+      setDeletedImages((d) => [...d, image._id]);
+    }
+    viewImgs.splice(id, 1);
+    setViewGalleryImages(viewImgs);
+  };
+
   return (
     <>
       {/* <FrontLoader loading={loading} />*/}
@@ -628,20 +713,75 @@ const CompanySettings = () => {
           </label>
           {error && error.promoVideo && <p className="error">{error.promoVideo}</p>}
         </div>
-        {embedlink && isIframe(embedlink) && (
-          <div
-            className="project-video-wrap mb-4"
-            dangerouslySetInnerHTML={{ __html: embedlink }}
-          ></div>
+        {embedlink && (
+          <div className="project-video-wrap mb-4">
+            <iframe
+              title="post-video"
+              width="498"
+              height="280"
+              src={embedlink.replace(/\/wa.*=/g, '/embed/')}
+            ></iframe>
+          </div>
         )}
-        {/* <div className="post__video minh-120 border bg-lighter mb-3">
-          <iframe
-            title="post-video"
-            width="200"
-            height="200"
-            src={embedlink}
-          ></iframe>
-        </div> */}
+
+        <div>
+          <div className="project-tilte-optional">
+            <div className="form__label">Gallery</div>
+          </div>
+          <div className="d-flex align-items-center flex-wrap gap-2 mb-3">
+            <div
+              className="image-upload-wrap mb-3 fs-2"
+              style={{
+                ...imageuploadwrap,
+                backgroundColor: '#e5f4ff',
+                borderRadius: '9px',
+                border: '2px dashed rgba(62, 170, 255, 0.58)',
+                fontSize: '60px'
+              }}
+            >
+              <input
+                className="file-upload-input"
+                type="file"
+                name="moreImg[]"
+                id="moreImg"
+                accept=".jpg,.gif,.png"
+                multiple
+                onChange={onGalleryImagesChange}
+                style={fileuploadinput}
+              />
+              <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
+                <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
+              </div>
+            </div>
+            <div className="grid mt-3 mb-3" style={{ display: 'contents' }}>
+              {viewGalleryImages?.length ? (
+                viewGalleryImages.map((img, key) => (
+                  <div key={key} className="img-wrap">
+                    <span className="close" onClick={() => removeGallaryempImages(key)}>
+                      &times;
+                    </span>
+                    {img._id && img.image ? (
+                      <img
+                        src={img.image ? helper.CampaignAdminGalleryFullPath + img.image : noImg}
+                        alt="lk"
+                        style={{ width: '100px', height: '100px' }}
+                      />
+                    ) : (
+                      <img
+                        src={img ? img : noImg}
+                        alt="lk"
+                        style={{ width: '100px', height: '100px' }}
+                      />
+                    )}
+                  </div>
+                ))
+              ) : (
+                <></>
+              )}
+            </div>
+          </div>
+        </div>
+
         <Button
           variant="info"
           className="mt-3 mb-3"
@@ -669,11 +809,8 @@ const CompanySettings = () => {
               <div>This cannot be undone.</div>
             </li>
           </ul>
-          {/* <a href="#" className="btn btn--deactivate">
-            Deactivate
-          </a> */}
-
           <button
+            type="button"
             className="btn btn--deactivate"
             onClick={() => !loading && deleteAccount(data._id)}
             style={{

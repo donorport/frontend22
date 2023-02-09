@@ -1,27 +1,16 @@
-import { useState, useEffect, useContext, useRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import React, { useState, useEffect, useCallback } from 'react';
 import { validateAll } from 'indicative/validator';
 import ToastAlert from '../../../../../Common/ToastAlert';
-// import { ToggleSwitch } from "@components/atoms";
-// import { LadderMenu } from "@components/organisms";
-import ToggleSwitch from '../../atoms/toggle-switch';
-import LadderMenu from '../ladder-menu';
-import { Outlet, Link, useLocation, useOutletContext, useNavigate } from 'react-router-dom';
-import FrontLoader from '../../../../../Common/FrontLoader';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import locationApi from '../../../../../Api/frontEnd/location';
 import userApi from '../../../../../Api/frontEnd/user';
-// import { UserContext } from '../../../../../App';
 import { Button } from 'react-bootstrap';
 import helper from '../../../../../Common/Helper';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   setIsUpdateUserDetails,
   setCurrency,
-  setCurrencyPrice,
-  setUserCountrySort,
-  setUserLanguage,
   setProfileImage,
   setUserCountry,
   setUserState,
@@ -29,14 +18,11 @@ import {
 } from '../../../../../user/user.action';
 import noImg from '../../../../../assets/images/noimg.jpg';
 import cartApi from '../../../../../Api/frontEnd/cart';
-// import { useSelector, useDispatch } from "react-redux";
-// import { setCurrency,setUserLanguage, setCurrencyPrice } from "../../../../../user/user.action";
 import { confirmAlert } from 'react-confirm-alert';
-
 import './style.scss';
 
 const UserProfile = () => {
-  const [check, setCheck] = useState(false);
+  // const [check, setCheck] = useState(false);
   // const user = useContext(UserContext)
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -54,11 +40,12 @@ const UserProfile = () => {
   const [defaultCity, setDefaultCity] = useState([]);
 
   const [defaultLanguage, setDefaultLanguage] = useState([]);
-  const [defaultCurrency, setDefaultCurrency] = useState([]);
+  // const [defaultCurrency, setDefaultCurrency] = useState([]);
 
   const [countryCurrency, setCountryCurrency] = useState([]);
+  const [tempImg, setTempImg] = useState('');
 
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
     image: '',
     name: '',
@@ -70,62 +57,68 @@ const UserProfile = () => {
     currency: '',
     language: '',
     zip: '',
-    error: []
+    error: [],
+    galleryImages: []
   });
-  const { name, email, street, city, stateId, country, zip, error, image, currency, language } =
-    state;
-  const [tempImg, setTempImg] = useState('');
 
-  const getCountryStateList = async (countryId) => {
-    let tempArray = [];
-    const getCountryStateList = await locationApi.stateListByCountry(
-      userAuthToken,
-      Number(countryId)
-    );
-    if (getCountryStateList) {
-      if (getCountryStateList.data.success) {
-        if (getCountryStateList.data.data.length > 0) {
-          getCountryStateList.data.data.map((state, i) => {
-            let Obj = {};
-            Obj.value = state.id;
-            Obj.label = state.state;
-            tempArray.push(Obj);
-          });
-          setDefaultState([]);
-          setStateList(tempArray);
-        } else {
-          setDefaultState([]);
-          setStateList([]);
+  const { name, email, street, city, stateId, country, zip, error, image } = state;
+
+  const getCountryStateList = useCallback(
+    async (countryId) => {
+      let tempArray = [];
+      const getCountryStateList = await locationApi.stateListByCountry(
+        userAuthToken,
+        Number(countryId)
+      );
+      if (getCountryStateList) {
+        if (getCountryStateList.data.success) {
+          if (getCountryStateList.data.data.length > 0) {
+            getCountryStateList.data.data.map((state) => {
+              let Obj = {};
+              Obj.value = state.id;
+              Obj.label = state.state;
+              tempArray.push(Obj);
+            });
+            setDefaultState([]);
+            setStateList(tempArray);
+          } else {
+            setDefaultState([]);
+            setStateList([]);
+          }
         }
       }
-    }
-  };
+    },
+    [userAuthToken]
+  );
 
-  const getStateCityList = async (stateId) => {
-    let tempArray = [];
-    const getStateCityList = await locationApi.cityListByState(userAuthToken, stateId);
-    if (getStateCityList) {
-      if (getStateCityList.data.success) {
-        if (getStateCityList.data.data.length > 0) {
-          getStateCityList.data.data.map((city, i) => {
-            let Obj = {};
-            // Obj.value = city.id
-            // Obj.label = city.city
-            Obj.value = city._id.id;
-            Obj.label = city._id.city;
-            tempArray.push(Obj);
-          });
-          setDefaultCity([]);
-          setCityList(tempArray);
-        } else {
-          setDefaultCity([]);
-          setCityList([]);
+  const getStateCityList = useCallback(
+    async (stateId) => {
+      let tempArray = [];
+      const getStateCityList = await locationApi.cityListByState(userAuthToken, stateId);
+      if (getStateCityList) {
+        if (getStateCityList.data.success) {
+          if (getStateCityList.data.data.length > 0) {
+            getStateCityList.data.data.map((city) => {
+              let Obj = {};
+              // Obj.value = city.id
+              // Obj.label = city.city
+              Obj.value = city._id.id;
+              Obj.label = city._id.city;
+              tempArray.push(Obj);
+            });
+            setDefaultCity([]);
+            setCityList(tempArray);
+          } else {
+            setDefaultCity([]);
+            setCityList([]);
+          }
         }
       }
-    }
-  };
+    },
+    [userAuthToken]
+  );
 
-  const getCountryList = async () => {
+  const getCountryList = useCallback(async () => {
     let tempArray = [];
     let tempCurrencyArray = [];
     let tempCountryCurrencyArray = [];
@@ -134,7 +127,7 @@ const UserProfile = () => {
     if (getCountryList) {
       if (getCountryList.data.success) {
         if (getCountryList.data.data.length > 0) {
-          getCountryList.data.data.map((country, i) => {
+          getCountryList.data.data.map((country) => {
             let Obj = {};
             let currencyObj = {};
 
@@ -166,9 +159,10 @@ const UserProfile = () => {
         }
       }
     }
-  };
+  }, [userAuthToken]);
+
   const onChangeCountry = async (e) => {
-    let tempArray = [];
+    // let tempArray = [];
     setDefaultCountry(e);
     setState({
       ...state,
@@ -194,6 +188,7 @@ const UserProfile = () => {
     //   }
     // }
   };
+
   const onChangeState = async (e) => {
     setDefaultState(e);
     setState({
@@ -227,13 +222,13 @@ const UserProfile = () => {
     // setTotalFees(Number(platformFees) + Number(transactionFees))
   };
 
-  const onClickCity = async (e) => {
-    setDefaultCity(e);
-    setState({
-      ...state,
-      city: e.value
-    });
-  };
+  // const onClickCity = async (e) => {
+  //   setDefaultCity(e);
+  //   setState({
+  //     ...state,
+  //     city: e.value
+  //   });
+  // };
 
   const changefile = (e) => {
     let file = e.target.files[0] ? e.target.files[0] : '';
@@ -254,55 +249,54 @@ const UserProfile = () => {
     }
   };
 
-  const onChangeCurrency = (e) => {
-    // console.log(e)
+  // const onChangeCurrency = (e) => {
 
-    setDefaultCurrency(e);
-    setState({
-      ...state,
-      currency: e.value
-    });
-  };
-  const onChangeLanguage = (e) => {
-    setDefaultLanguage(e);
-    setState({
-      ...state,
-      language: e.value
-    });
-  };
+  //   setDefaultCurrency(e);
+  //   setState({
+  //     ...state,
+  //     currency: e.value
+  //   });
+  // };
 
-  const convertCurrency = async (currency) => {
-    const getCurrencyPrice = await locationApi.convertCurrency(currency);
-    if (getCurrencyPrice) {
-      // console.log(getCurrencyPrice)
-      // console.log(getCurrencyPrice.data.result)
+  // const onChangeLanguage = (e) => {
+  //   setDefaultLanguage(e);
+  //   setState({
+  //     ...state,
+  //     language: e.value
+  //   });
+  // };
 
-      if (getCurrencyPrice.data.success) {
-        dispatch(setCurrencyPrice(getCurrencyPrice.data.result));
-      }
-    }
-  };
+  // const convertCurrency = async (currency) => {
+  //   const getCurrencyPrice = await locationApi.convertCurrency(currency);
+  //   if (getCurrencyPrice) {
+
+  //     if (getCurrencyPrice.data.success) {
+  //       dispatch(setCurrencyPrice(getCurrencyPrice.data.result));
+  //     }
+  //   }
+  // };
 
   const clearCart = async () => {
-    setLoading(false);
+    // setLoading(false);
     const clearCart = await cartApi.clearCart(userAuthToken);
     if (clearCart) {
       if (!clearCart.data.success) {
-        setLoading(false);
+        // setLoading(false);
         // ToastAlert({ msg: clearCart.data.message, msgType: 'error' });
-      } else {
-        setLoading(false);
       }
-    } else {
-      setLoading(false);
-      // ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+      // else {
+      //   setLoading(false);
+      // }
     }
+    // else {
+    //   setLoading(false);
+    //   // ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+    // }
   };
 
   useEffect(() => {
     (async () => {
-      setLoading(false);
-      // console.log(data)
+      // setLoading(false);
       // if (data.country_id && data.country_id !== null ) {
       //   await getCountryStateList(data.country_id)
       // }
@@ -312,9 +306,8 @@ const UserProfile = () => {
       // }
       // await getCountryList()
 
-      // console.log(data)
-      setState({
-        ...state,
+      setState((s) => ({
+        ...s,
         name: data.name,
         image: data.image,
         email: data.email,
@@ -325,7 +318,7 @@ const UserProfile = () => {
         language: data.language,
         currency: data.currency,
         zip: data.zip
-      });
+      }));
 
       if (data.country_id && data.country_id !== null) {
         await getCountryStateList(data.country_id);
@@ -334,22 +327,19 @@ const UserProfile = () => {
         await getStateCityList(data.state_id);
       }
       await getCountryList();
-      // console.log('contex', data.country_id)
       // setDefaultCountry(countryList.find(x => x.value === data.country_id));
-      // console.log(countryList.find(x => x.value === data.country_id))
-      setLoading(false);
+      // setLoading(false);
     })();
-  }, [data]);
+  }, [data, getCountryList, getCountryStateList, getStateCityList]);
 
-  const options = [
-    { value: 'english', label: 'English' },
-    { value: 'manderin', label: 'Manderin' },
-    { value: 'french', label: 'French' }
-  ];
   // const countrySelect = useRef(null)
-  useEffect(() => {
-    // console.log(data.country_id)
 
+  useEffect(() => {
+    const options = [
+      { value: 'english', label: 'English' },
+      { value: 'manderin', label: 'Manderin' },
+      { value: 'french', label: 'French' }
+    ];
     // dispatch(setUserCountry(data.country_id))
 
     if (countryList.length > 0) {
@@ -363,8 +353,7 @@ const UserProfile = () => {
     }*/
 
     setDefaultLanguage(options.find((x) => x.value === data.language));
-    let tempCurrencyObj = {};
-    // console.log(countryCurrency.find(x => x.id === data.country_id))
+    // let tempCurrencyObj = {};
     // let temp = countryCurrency.find(x => x.id === data.country_id)
 
     // let UsercountryObj = {}
@@ -382,7 +371,7 @@ const UserProfile = () => {
     //   // currencyData.currencySymbol = userCurrency.split('=')[1]
     //   // dispatch(setCurrency(currencyData))
     // }
-  }, [countryList, data.country_id]);
+  }, [countryList, data.country_id, data.language, data.state_id, stateList]);
 
   const updateProfile = () => {
     const rules = {
@@ -400,11 +389,9 @@ const UserProfile = () => {
       'name.required': 'Name is Required.',
       'street.required': 'Street is Required.',
       'zip.required': 'zip is Required.',
-
       'stateId.required': 'State is Required.',
       'city.required': 'City is Required.',
       'country.required': 'Country is Required.',
-
       'language.required': 'Language is Required.',
       'currency.required': 'Currency is Required.'
     };
@@ -423,7 +410,6 @@ const UserProfile = () => {
         fdata.city_id = city;
         fdata.state_id = stateId;
         fdata.country_id = country;
-
         // fdata.language = language
         // fdata.currency = currency
 
@@ -431,15 +417,14 @@ const UserProfile = () => {
           fdata.image = image;
         }
 
-        setLoading(false);
+        // setLoading(false);
         const addUser = await userApi.updateProfile(userAuthToken, fdata);
         if (addUser) {
           if (!addUser.data.success) {
-            setLoading(false);
+            // setLoading(false);
             ToastAlert({ msg: addUser.data.message, msgType: 'error' });
           } else {
             await clearCart();
-            // console.log(country,country)
             dispatch(setUserCountry(country));
 
             let temp = countryCurrency.find((x) => x.id === country);
@@ -463,17 +448,16 @@ const UserProfile = () => {
             // user.setUpdateOrg(!user.isUpdateOrg)
             dispatch(setIsUpdateUserDetails(!user.isUpdateUserDetails));
             setData(fdata);
-            setLoading(false);
+            // setLoading(false);
             ToastAlert({ msg: addUser.data.message, msgType: 'success' });
           }
         } else {
-          setLoading(false);
+          // setLoading(false);
           ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
         }
       })
       .catch((errors) => {
-        // console.log(errors)
-        setLoading(false);
+        // setLoading(false);
         const formaerrror = {};
         if (errors.length) {
           errors.forEach((element) => {
@@ -500,21 +484,21 @@ const UserProfile = () => {
           label: 'Yes',
 
           onClick: async () => {
-            setLoading(false);
+            // setLoading(false);
             const deleteUser = await userApi.deleteUser(userAuthToken, id);
             if (deleteUser) {
               if (!deleteUser.data.success) {
-                setLoading(false);
+                // setLoading(false);
                 ToastAlert({ msg: deleteUser.data.message, msgType: 'error' });
               } else {
                 dispatch(setLogout());
                 navigate('/signin');
                 //
-                setLoading(false);
+                // setLoading(false);
                 ToastAlert({ msg: deleteUser.data.message, msgType: 'success' });
               }
             } else {
-              setLoading(false);
+              // setLoading(false);
               ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
             }
           }
@@ -526,18 +510,18 @@ const UserProfile = () => {
     });
   };
 
-  const colourStyles = {
-    control: (styles) => ({ ...styles, backgroundColor: 'white' }),
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-      // eslint-disable-next-line no-undef
-      const color = chroma(data.color);
-      return {
-        backgroundColor: isDisabled ? 'red' : 'blue',
-        color: '#FFF',
-        cursor: isDisabled ? 'not-allowed' : 'default'
-      };
-    }
-  };
+  // const colourStyles = {
+  //   control: (styles) => ({ ...styles, backgroundColor: 'white' }),
+  //   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+  //     // eslint-disable-next-line no-undef
+  //     const color = chroma(data.color);
+  //     return {
+  //       backgroundColor: isDisabled ? 'red' : 'blue',
+  //       color: '#FFF',
+  //       cursor: isDisabled ? 'not-allowed' : 'default'
+  //     };
+  //   }
+  // };
 
   return (
     <>
@@ -700,7 +684,7 @@ const UserProfile = () => {
         </div>
         <div className="w-400">
           <div className="mb-2">
-    
+
             <Select
               className="basic-single"
               classNamePrefix="select"
@@ -716,7 +700,6 @@ const UserProfile = () => {
           </div>
           {error && error.language && <p className="error">{error.language}</p>}
 
-      
           <Select
             className="basic-single"
             classNamePrefix="select"
@@ -725,10 +708,9 @@ const UserProfile = () => {
             options={currencyList}
             getOptionLabel={e => (
               <div style={{ display: '', alignItems: 'center' }}>
-           
+
                 <span className="" style={{ float: "right" }}>{e.icon}</span>
                 <span >{e.label}</span>
-
 
               </div>
             )}
@@ -742,12 +724,12 @@ const UserProfile = () => {
 
       </div> */}
 
-      <Button variant="info" className="mb-3" onClick={() => updateProfile()}>
+      <Button variant="info" className="mb-3" onClick={updateProfile}>
         Save Details
       </Button>
 
       <div className="mb-5 mt-5">
-        <h4 className="fw-bolder">Account Deactivation</h4>
+        <h4 className="fw-bolder">Account Deactivation-1</h4>
         <div className="text-subtext mb-3">Permanently delete your Donorport account</div>
         <div className="w-400 mw-100">
           <div className="deactivate">
@@ -766,10 +748,11 @@ const UserProfile = () => {
                 <div>This cannot be undone.</div>
               </li>
             </ul>
-            {/* <a href="#" className="btn btn--deactivate">
-              Deactivate
-            </a> */}
-            <button className="btn btn--deactivate" onClick={() => deleteUser(data._id)}>
+            <button
+              type="button"
+              className="btn btn--deactivate"
+              onClick={() => deleteUser(data._id)}
+            >
               Deactivate
             </button>
           </div>

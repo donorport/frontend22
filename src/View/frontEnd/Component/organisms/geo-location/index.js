@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Dropdown, FormControl, InputGroup } from 'react-bootstrap';
+import { Button, Dropdown, InputGroup } from 'react-bootstrap';
 import { ReactComponent as SearchIcon } from '../../../../../assets/svg/search.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { light, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -9,16 +9,9 @@ import 'rc-slider/assets/index.css';
 
 import './style.scss';
 import helper from '../../../../../Common/Helper';
-import ReactMapboxGl, {
-  Layer,
-  Feature,
-  Marker,
-  ScaleControl,
-  GeoJSONLayer,
-  Source
-} from 'react-mapbox-gl';
+import ReactMapboxGl, { Marker, ScaleControl } from 'react-mapbox-gl';
 
-import mapboxgl, { MapTouchEvent } from 'mapbox-gl';
+import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,10 +19,9 @@ import {
   setDistance,
   setLatLong,
   setLocationFilter,
-  setMapLock
+  setMapLock,
+  setZoomLevel
 } from '../../../../../user/user.action';
-
-// require('mapbox-gl/dist/mapbox-gl.css');
 
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default; // eslint-disable-line
 
@@ -59,9 +51,8 @@ const GeoLocation = () => {
     locationName: '',
     lng: 0,
     lat: 0,
-    zoomlevel: 7
+    zoomlevel: 0
   });
-
   // const scale = new mapboxgl.ScaleControl({
   //   unit: "imperial"
   // });
@@ -118,7 +109,6 @@ const GeoLocation = () => {
     //   lng: lng,
 
     // })
-
     setLocation({
       ...location,
       locationName: result,
@@ -137,7 +127,8 @@ const GeoLocation = () => {
       ...location,
       organizationLocation: user.countrySortName,
       lat: user.lat ? Number(user.lat) : 0,
-      lng: user.lng ? Number(user.lng) : 0
+      lng: user.lng ? Number(user.lng) : 0,
+      zoomlevel: user.zoom ? Number(user.zoom) : 0
     });
 
     setState({ ...state, locked: user.isMapLocked });
@@ -351,7 +342,10 @@ const GeoLocation = () => {
                 value={location.zoomlevel * 10}
                 railStyle={{ backgroundColor: '#C7E3FB', height: '9px' }}
                 disabled={state.locked}
-                onChange={(e) => setLocation({ ...location, zoomlevel: e / 10 })}
+                onChange={(e) => {
+                  setLocation({ ...location, zoomlevel: e / 10 });
+                  dispatch(setZoomLevel(e / 10));
+                }}
               />
             </div>
 

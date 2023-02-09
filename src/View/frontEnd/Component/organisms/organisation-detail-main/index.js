@@ -1,26 +1,28 @@
+import React from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 // import { IconToggle, RoundedIcon, TagTitle } from "../../Component";
 import IconToggle from '../../atoms/icon-toggle';
 import RoundedIcon from '../../atoms/rounded-icon';
 // import WidgetTitle from "../widget-title"
-import TagTitle from '../../atoms/tag-title';
+// import TagTitle from '../../atoms/tag-title';
 import IconButton from '../../molecules/icon-button';
 import ShareWidget from '../share-widget';
 import OrganisationWidget from '../organisation-widget';
-import moment from 'moment';
 import helper, { isIframe, convertAddress } from '../../../../../Common/Helper';
-import { useNavigate } from 'react-router-dom';
 import './style.scss';
-import { State, Country } from 'country-state-city';
+import { GalleryImg } from '../../atoms';
+// import { State, Country } from 'country-state-city';
 
 function OrganisationDetailMain(props) {
   let organizationDetails = props.organizationDetails;
   const navigate = useNavigate();
-  // console.log(organizationDetails)
-  let iconClass = organizationDetails?.categoryDetails?.iconDetails?.class.replace('fa-', '');
+  // let iconClass = organizationDetails?.categoryDetails?.iconDetails?.class.replace('fa-', '');
 
   const setAddress =
     organizationDetails?.city_id +
@@ -85,7 +87,6 @@ function OrganisationDetailMain(props) {
               name="organization"
               onClickFilter={(e) => props.followToOrganization(e)}
             />
-
             <ShareWidget />
           </div>
         </div>
@@ -147,6 +148,23 @@ function OrganisationDetailMain(props) {
           ></div>
         )}
 
+        <div className="gallery__container my-2">
+          {organizationDetails.images &&
+          Array.isArray(organizationDetails.images) &&
+          organizationDetails.images.length > 0 ? (
+            organizationDetails.images.map((image) => (
+              <div key={image._id}>
+                <GalleryImg
+                  thumbImgSrc={helper.CampaignAdminGalleryPath + image.image}
+                  bigImgSrc={helper.CampaignAdminGalleryPath + image.image}
+                />
+              </div>
+            ))
+          ) : (
+            <></>
+          )}
+        </div>
+
         <h4 className="page__blurb">{organizationDetails?.headline}</h4>
         <div className="page__paragraph">{organizationDetails?.description}</div>
         <div className="mt-2">
@@ -169,5 +187,17 @@ function OrganisationDetailMain(props) {
     </div>
   );
 }
+
+OrganisationDetailMain.propTypes = {
+  organizationDetails: PropTypes.object.isRequired,
+  followToOrganization: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
+  checkItemInCart: PropTypes.func.isRequired,
+  isFollow: PropTypes.bool
+};
+
+OrganisationDetailMain.defaultProps = {
+  isFollow: false
+};
 
 export default OrganisationDetailMain;

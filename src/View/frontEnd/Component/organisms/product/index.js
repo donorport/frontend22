@@ -55,7 +55,7 @@ const Product = (props) => {
 
   // console.log(props.campaignDetails?.logo)
   let img = props.image;
-  let date = moment(props.created_at).format('MMM DD');
+  let date = moment(props.updated_at).format('MMM DD');
   let catIcon = props.categoryDetails?.iconDetails?.class;
   // let subCatIcon = props.subCategoryDetails?.iconDetails?.class;
   let subCatIcon = props.subCategoryDetails?.icon;

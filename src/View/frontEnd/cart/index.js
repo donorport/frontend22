@@ -23,8 +23,12 @@ const Cart = (props) => {
   const getCalc = getCalculatedPrice();
   let currencySymbol = getCalc.currencySymbol();
 
-  const onQtyChange = (e) => {
-    console.log(e);
+  const onQtyChange = async (value, id, productId) => {
+    console.log({ value, id });
+    // if (value.length < 1 || value === '0') {
+    //   value = 1;
+    // }
+    await props.updateCartItem(value, id, productId, 'plus');
   };
 
   const minusValue = async (value, id, productId) => {
@@ -34,6 +38,7 @@ const Cart = (props) => {
     }
     // setQuantity(value)
   };
+
   const plusValue = async (value, id, productId) => {
     value++;
     // setQuantity(value)
@@ -65,6 +70,7 @@ const Cart = (props) => {
       setTotal(getCalc.priceWithTax(sum));
     }
   }, [props.cartItem]);
+
   return (
     <Container fluid className="cart__page py-sm-5 mw-1280">
       <header className="pt-sm-5">
@@ -176,7 +182,13 @@ const Cart = (props) => {
                           className="qty__input"
                           id={item._id}
                           value={item?.quantity}
-                          onChange={() => onQtyChange(item._id)}
+                          onChange={(e) =>
+                            onQtyChange(e.target.value, item._id, item?.productDetails?._id)
+                          }
+                          onBlur={() => {
+                            console.log('OnBlur');
+                            props.refreshCart();
+                          }}
                         />
                         <Button
                           variant="link"
