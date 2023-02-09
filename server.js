@@ -130,13 +130,19 @@ app.get('/project/:name', async (request, response) => {
     const title = `Donorport | ${project?.name || ''}`;
     const description = `${project?.description || ''}`;
     const url = `${BASE_URL.replace('api/', '').replace('app/', '')}project/${name}`;
+    const img = `${project?.campaignDetails?.promoVideo ? project?.campaignDetails?.promoVideo : ""}`
     data = data.replace(/\$OG_TITLE/g, title);
     data = data.replace(/\$OG_DESCRIPTION/g, description);
     data = data.replace(/\$OG_URL/g, url);
+    data = data.replace(/\$OG_IMAGE/g, img);
+
 
     data = data.replace(/\$TWITTER_TITLE/g, title);
     data = data.replace(/\$TWITTER_DESCRIPTION/g, description);
     data = data.replace(/\$TWITTER_URL/g, url);
+    data = data.replace(/\$TWITTER_IMAGE/g, img);
+
+
     return response.send(data);
   });
 });
@@ -155,7 +161,7 @@ app.get('/order/:id', async (request, response) => {
     },
 
     data: {
-      data: id
+      orderId: id
     }
   }).then((response) => {
     if (response.data?.data) {
@@ -163,22 +169,36 @@ app.get('/order/:id', async (request, response) => {
     }
     return null;
   });
-
+  console.log("order: ", order)
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       return console.log(err);
     }
-
-    const title = `Donorport | ${order?.name || ''}`;
-    const description = `${order?.description || ''}`;
+    let items = {}
+    const amountOfItems = order.orderItems.length
+    order.orderItems.forEach((item) => {
+      items = {
+        ...items,
+        [item.productName] : item.quantity
+      }
+    })
+    const title = `'I just donated ${amountOfItems} item${amountOfItems > 1 ? "s" : ""} to charity`;
+    const description = `I donated ${Object.keys(items).map((item, idx) => {
+      return (`${items[item]} ${Object.getOwnPropertyNames(items)[idx]}`)
+    })} `;
     const url = `${BASE_URL.replace('api/', '').replace('app/', '')}order/${id}`;
+    const img = `${AWS_S3_BUCKET_BASE_URL}/images/campaign/product/${order.orderItems[0].productImage}`;
+
     data = data.replace(/\$OG_TITLE/g, title);
     data = data.replace(/\$OG_DESCRIPTION/g, description);
     data = data.replace(/\$OG_URL/g, url);
+    data = data.replace(/\$OG_IMAGE/g, img);
 
     data = data.replace(/\$TWITTER_TITLE/g, title);
     data = data.replace(/\$TWITTER_DESCRIPTION/g, description);
     data = data.replace(/\$TWITTER_URL/g, url);
+    data = data.replace(/\$TWITTER_IMAGE/g, img);
+
     return response.send(data);
   });
 });
@@ -215,11 +235,16 @@ app.get('/donate/:id', async (request, response) => {
     data = data.replace(/\$OG_TITLE/g, title);
     data = data.replace(/\$OG_DESCRIPTION/g, description);
     data = data.replace(/\$OG_URL/g, url);
+    // data = data.replace(/\$TWITTER_IMAGE/g, img);
+
 
     data = data.replace(/\$TWITTER_TITLE/g, title);
     data = data.replace(/\$TWITTER_DESCRIPTION/g, description);
     data = data.replace(/\$TWITTER_URL/g, url);
+    // data = data.replace(/\$TWITTER_IMAGE/g, img);
+
     return response.send(data);
+
   });
 });
 
