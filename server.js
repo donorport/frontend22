@@ -1,7 +1,7 @@
 const fs = require('fs');
 const axios = require('axios');
 const express = require('express');
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -22,7 +22,7 @@ let BASE_URL = 'https://www.donorport.org/app/';
 if (process.env.NODE_ENV === 'development') {
   BASE_URL = 'http://localhost:8080/';
 }
-BASE_URL = BASE_URL + 'api/';
+BASE_URL += 'api/';
 
 app.use(cookieParser());
 
@@ -82,7 +82,7 @@ app.get('/organization/:name', async (request, response) => {
     if (response.data?.data) {
       return response.data.data[0];
     }
-    res = response;
+    let res = response;
     return null;
   });
   fs.readFile(filePath, 'utf8', (err, data) => {
@@ -142,7 +142,7 @@ app.get('/project/:name', async (request, response) => {
 });
 
 app.get('/order/:id', async (request, response) => {
-  token = request.cookies['userAuthToken'];
+  let token = request.cookies['userAuthToken'];
   const id = request.params.id;
   const filePath = path.resolve(__dirname, './build', 'index.html');
   const order = await axios({
@@ -184,7 +184,7 @@ app.get('/order/:id', async (request, response) => {
 });
 
 app.get('/donate/:id', async (request, response) => {
-  token = request.cookies['userAuthToken'];
+  let token = request.cookies['userAuthToken'];
   const id = request.params.id;
   const filePath = path.resolve(__dirname, './build', 'index.html');
 
@@ -230,4 +230,4 @@ app.get('*', (request, response) => {
   response.sendFile(filePath);
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, '0.0.0.0', () => console.log(`Listening on port ${port}`));
