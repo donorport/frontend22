@@ -50,7 +50,7 @@ const OrderConfirmPage = () => {
       }
     })();
   }, [params.id]);
-  //
+
   let cardType = JSON.parse(orderDetails?.paymentResponse || '{}')?.data?.payment_method_details
     ?.card?.brand;
   let lastFourDigits = JSON.parse(orderDetails?.paymentResponse || '{}')?.data
@@ -58,7 +58,7 @@ const OrderConfirmPage = () => {
 
   return (
     <>
-      <Page title={'Order | ' + orderDetails.uniqueTransactionId}>
+      <Page showTags={false} title={'Order | ' + orderDetails.uniqueTransactionId}>
         <DefaultLayout>
           {/*<FrontLoader loading={loading} />*/}
           <div className="container-fluid d-flex flex-wrap">
@@ -118,12 +118,12 @@ const OrderConfirmPage = () => {
                 </Link>
               </div>
             </div>
-            <div className="d-flex flex-column ms-5 my-5 p-3">
-              <div class="order__container d-flex align-items-center justify-content-between m-3 mx-0 border-bottom">
-                <div class="order__wrap">
-                  <p class="total__title fs-2 fw-bolder">Order Details</p>
+            <div className="email__container border my-5 p-3">
+              <div className="order__container d-flex align-items-center justify-content-between m-3 mx-0 border-bottom">
+                <div className="order__wrap">
+                  <p className="total__title fs-2 fw-bolder">Order Details</p>
                 </div>
-                <div class="order__value text-light">
+                <div className="order__value text-light">
                   <ShareWidget />
                 </div>
               </div>
@@ -137,6 +137,7 @@ const OrderConfirmPage = () => {
                           data-id="product"
                           role="listitem"
                           className="email__item border-bottom"
+                          key={i}
                         >
                           <div className="checkout__top d-flex flex-row align-items-start flex-nowrap">
                             <div className="checkout__left d-flex flex-row align-items-start flex-nowrap">

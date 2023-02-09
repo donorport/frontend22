@@ -17,7 +17,7 @@ import { CircularProgress } from '@mui/material';
 import Slider from '@material-ui/core/Slider';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { priceFormat } from 'src/Common/Helper';
+import { priceFormat } from '../../../Common/Helper';
 
 const Checkout = (props) => {
   const user = useSelector((state) => state.user);

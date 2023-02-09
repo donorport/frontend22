@@ -24,20 +24,19 @@ export default function Index(props) {
   const title = {
     color: '#6b68f8'
   };
-  /* const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
-      const data = await products();
+      const data = products;
+      // const data = await products();
       if (data) {
         setLoading(false);
       }
       setLoading(true);
     })();
   }, []);
-  {
-    loading && <CircularProgress />;
-  }*/
+
   if (props.productList && props.productList.length > 0) {
     products = props.productList.map((item, index) => {
       return (
@@ -128,6 +127,7 @@ export default function Index(props) {
 
   return (
     <>
+      {/* {loading && <CircularProgress />} */}
       <HeaderGeoController />
       <div className="bg-lighter border-bottom">
         <Container

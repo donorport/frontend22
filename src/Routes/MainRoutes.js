@@ -79,7 +79,7 @@ import Privacy from '../View/frontEnd/privacy';
 import CategoryProductsController from '../Controller/frontEnd/CategoryProductsController';
 import LeaderBoard from '../View/frontEnd/Component/organisms/leaderboard';
 import OrderConfirmPage from '../View/frontEnd/order-confirmation';
-import DonationConfirmPage from '../View/frontEnd/donation-confirmation/index.js';
+import DonationConfirmPage from '../View/frontEnd/donation-confirmation/index';
 import Pricing from '../View/frontEnd/pricing';
 
 const HeaderStyle = styled('header')(({ theme }) => ({

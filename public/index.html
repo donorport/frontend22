@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/favicon.ico" />
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon/favicon-32x32.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon/favicon-16x16.png"> -->
 
-<head>
-  <meta charset="utf-8" />
-  <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/favicon.ico">
-  <!-- <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon/favicon-32x32.png"> -->
-  <!-- <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon/favicon-16x16.png"> -->
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon.ico" />
 
-  <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon.ico">
+    <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-  <meta name="theme-color" content="#000000" />
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- MapBox Css Starts -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css" rel="stylesheet" />
+    <!-- MapBox Css Ends -->
 
-  <!-- MapBox Css Starts -->
-  <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css" rel="stylesheet" />
-  <!-- MapBox Css Ends -->
-
-  <!-- weglot -->
-  <!-- <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script> -->
-  <!-- <script>
+    <!-- weglot -->
+    <!-- <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script> -->
+    <!-- <script>
     Weglot.initialize({
       api_key: 'wg_65366e5f1028677575b7771f4e2877413'
     });
   </script> -->
 
-  <!-- weglot Ends -->
+    <!-- weglot Ends -->
 
-  <!--<title>Donorport | Home</title>
+    <!--<title>Donorport | Home</title>
   <meta content="Donorport | Crowdfunding for charities & non-profits" property="og:title">
   <meta content="Bananas for the monkeys at the Zoo? Baseball bats for inner-city baseball programs? Fundraising for consumer products that your favorite organization needs." property="og:description">
   <meta content="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/62a2a53cbe42aa72ffb4d583_meta(2).png" property="og:image">
@@ -36,37 +35,47 @@
   <meta content="Bananas for the monkeys at the Zoo? Baseball bats for inner-city baseball programs? Fundraising for consumer products that your favorite organization needs." property="twitter:description">
   <meta content="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/62a2a53cbe42aa72ffb4d583_meta(2).png" property="twitter:image">
   -->
-  <meta name="keywords" content="react,material,kit,application,dashboard,admin,template" />
-  <meta name="author" content="Donorport" />
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <!-- Front-End css -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.co">
-  <meta name="apple-mobile-web-app-title" content="Flatkit">
-  <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <link rel="shortcut icon" sizes="196x196" href="%PUBLIC_URL%/favicon.co">
+    <meta name="keywords" content="react,material,kit,application,dashboard,admin,template" />
+    <meta name="author" content="Donorport" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <!-- Front-End css -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.co" />
+    <meta name="apple-mobile-web-app-title" content="Flatkit" />
+    <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="shortcut icon" sizes="196x196" href="%PUBLIC_URL%/favicon.co" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4PY3HFKKJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4PY3HFKKJ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-N4PY3HFKKJ');
+    </script>
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'G-N4PY3HFKKJ');
-  </script>
+    <title>$OG_TITLE</title>
+    <meta name="description" content="$OG_DESCRIPTION" />
+    <meta property="og:title" content="$OG_TITLE" />
+    <meta property="og:description" content="$OG_DESCRIPTION" />
+    <meta property="og:image" content="$OG_IMAGE" />
+    <meta property="og:url" content="$OG_URL" />
 
-</head>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="donorport.org" />
+    <meta name="twitter:title" content="$TWITTER_TITLE" />
+    <meta name="twitter:description" content="$TWITTER_DESCRIPTION" />
+    <meta name="twitter:image" content="$TWITTER_IMAGE" />
+    <meta property="twitter:url" content="$TWITTER_URL" />
+  </head>
 
-<body>
-  <!-- <noscript>You need to enable JavaScript to run this app.</noscript> -->
-  <div id="root"></div>
-
-</body>
-
+  <body>
+    <!-- <noscript>You need to enable JavaScript to run this app.</noscript> -->
+    <div id="root"></div>
+  </body>
 </html>

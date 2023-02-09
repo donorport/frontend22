@@ -1,35 +1,17 @@
-import Index from '../../View/frontEnd/Layout/Home/Index';
-// import productApi from "../../Api/admin/product";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import FrontLoader from '../../Common/FrontLoader';
-import OrganisationDetail from '../../View/frontEnd/organisation-detail';
-import organizationApi from '../../Api/frontEnd/organization';
 import ItemDetail from '../../View/frontEnd/item-detail';
 import productApi from '../../Api/frontEnd/product';
 import { useSelector, useDispatch } from 'react-redux';
 import ToastAlert from '../../Common/ToastAlert';
 import cartApi from '../../Api/frontEnd/cart';
 import wishlistApi from '../../Api/frontEnd/wishlist';
-import helper from '../../Common/Helper';
-import {
-  setCurrency,
-  setUserLanguage,
-  setCurrencyPrice,
-  setIsUpdateCart,
-  setProfileImage,
-  setUserCountry,
-  setUserAddress,
-  setUserState,
-  setSalesTax
-} from '../../user/user.action';
+import { setIsUpdateCart } from '../../user/user.action';
 import followApi from '../../Api/frontEnd/follow';
 import Page from '../../components/Page';
 
 export default function ItemDetailsController() {
   const [productList, setProductList] = useState([]);
-  const adminAuthToken = localStorage.getItem('adminAuthToken');
-  const [loading, setLoading] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
   const [productDetails, setProductDetails] = useState({});
@@ -42,8 +24,9 @@ export default function ItemDetailsController() {
   const [wishListproductIds, setWishListProductIds] = useState([]);
   const dispatch = useDispatch();
   const [isFollow, setIsFollow] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const allProductList = async () => {
+  const allProductList = useCallback(async () => {
     let data = {};
     data.userCountry = user.countryId;
     const getproductList = await productApi.list(
@@ -51,57 +34,60 @@ export default function ItemDetailsController() {
       data
     );
     if (getproductList.data.success === true) {
-      // console.log(getproductList.data.data)
       setProductList(getproductList.data.data);
     }
-  };
+  }, [CampaignAdminAuthToken, user, userAuthToken]);
 
-  const productListByCategory = async (id) => {
-    let userCountry = user.countryId;
-    const getCategoryProducts = await productApi.listByCategory(token, id, userCountry);
-    if (getCategoryProducts.data.success === true) {
-      if (getCategoryProducts.data.data.length > 0) {
-        let tempArray = [];
-        getCategoryProducts.data.data.slice(0, 3).map((product, i) => {
-          if (product._id !== productDetails._id) {
-            tempArray.push(product);
-          }
-        });
-        setCategoryProducts(tempArray);
-      } else {
-        setCategoryProducts([]);
+  const productListByCategory = useCallback(
+    async (id) => {
+      let userCountry = user.countryId;
+      const getCategoryProducts = await productApi.listByCategory(token, id, userCountry);
+      if (getCategoryProducts.data.success === true) {
+        if (getCategoryProducts.data.data.length > 0) {
+          let tempArray = [];
+          getCategoryProducts.data.data.slice(0, 3).map((product, i) => {
+            if (product._id !== productDetails._id) {
+              tempArray.push(product);
+            }
+          });
+          setCategoryProducts(tempArray);
+        } else {
+          setCategoryProducts([]);
+        }
       }
-    }
-  };
+    },
+    [productDetails._id, token, user.countryId]
+  );
 
-  const getPurchasedItems = async (id) => {
-    const getPurchasedItems = await productApi.itemPurchasedHistory(
-      userAuthToken ? userAuthToken : CampaignAdminAuthToken,
-      id
-    );
-    if (getPurchasedItems.data.success === true) {
-      setPurchasedItemList(getPurchasedItems.data.data);
-    }
-  };
+  const getPurchasedItems = useCallback(
+    async (id) => {
+      const getPurchasedItems = await productApi.itemPurchasedHistory(
+        userAuthToken ? userAuthToken : CampaignAdminAuthToken,
+        id
+      );
+      if (getPurchasedItems.data.success === true) {
+        setPurchasedItemList(getPurchasedItems.data.data);
+      }
+    },
+    [CampaignAdminAuthToken, userAuthToken]
+  );
 
-  const getWishListProductList = async () => {
+  const getWishListProductList = useCallback(async () => {
     const list = await wishlistApi.list(token);
     if (list) {
       if (list.data.success) {
-        // setWishListProductList(list.data.data)
         if (list.data.data.length > 0) {
           let temp = [];
           list.data.data.map((item, i) => {
             temp.push(item.productDetails._id);
           });
-          // console.log(temp)
           setWishListProductIds(temp);
         } else {
           setWishListProductIds([]);
         }
       }
     }
-  };
+  }, [token]);
 
   const addProductToWishlist = async (productId) => {
     let data = {};
@@ -110,38 +96,35 @@ export default function ItemDetailsController() {
     const add = await wishlistApi.add(token, data);
     if (add) {
       if (add.data.success) {
-        setLoading(false);
-        // await getWishListProductList()
         dispatch(setIsUpdateCart(!user.isUpdateCart));
       } else {
-        setLoading(false);
-
         ToastAlert({ msg: add.data.message, msgType: 'error' });
       }
     } else {
-      setLoading(false);
       ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
     }
   };
-  const checkUserFollow = async (productId) => {
-    let data = {};
-    data.typeId = productId;
-    data.type = 'PRODUCT';
-    const check = await followApi.checkUserFollow(userAuthToken, data);
-    if (check) {
-      setIsFollow(check.data.success);
-    }
-  };
+  const checkUserFollow = useCallback(
+    async (productId) => {
+      let data = {};
+      data.typeId = productId;
+      data.type = 'PRODUCT';
+      const check = await followApi.checkUserFollow(userAuthToken, data);
+      if (check) {
+        setIsFollow(check.data.success);
+      }
+    },
+    [userAuthToken]
+  );
 
   useEffect(() => {
     (async () => {
       if (token) {
         setLoading(true);
         await getWishListProductList();
-        setLoading(false);
       }
     })();
-  }, [user.isUpdateCart]);
+  }, [getWishListProductList, token, user.isUpdateCart]);
 
   useEffect(() => {
     (async () => {
@@ -150,18 +133,13 @@ export default function ItemDetailsController() {
       // window.scrollTo(0, 0);
       let mydata = {};
       const getproductDetails = await productApi.details(params.name);
-      // console.log(getproductDetails)
       if (getproductDetails.data.success === true) {
         if (getproductDetails.data.data.length) {
           mydata = getproductDetails.data.data[0];
           if (user.countryId && user.countryId > 0) {
             if (mydata.campaignDetails.country_id !== user.countryId || mydata.status === -1) {
-              navigate('/');
+              // navigate('/');
             }
-            // if(mydata.status === -1){
-            //     navigate('/')
-
-            // }
           }
 
           setProductDetails(mydata);
@@ -172,17 +150,22 @@ export default function ItemDetailsController() {
             await checkUserFollow(mydata._id);
           }
         } else {
-          // console.log('first1')
-          navigate('/');
+          // navigate('/');
         }
       } else {
-        // console.log('first2')
-
-        navigate('/');
+        // navigate('/');
       }
-      setLoading(false);
     })();
-  }, [params.name, user]);
+  }, [
+    allProductList,
+    checkUserFollow,
+    getPurchasedItems,
+    navigate,
+    params.name,
+    productListByCategory,
+    user,
+    userAuthToken
+  ]);
 
   const checkItemInCart = async (id) => {
     setLoading(true);
@@ -191,13 +174,10 @@ export default function ItemDetailsController() {
     if (checkItemInCart) {
       if (checkItemInCart.data.success) {
         res = true;
-        setLoading(false);
       } else {
         res = false;
-        setLoading(false);
       }
     } else {
-      setLoading(false);
       ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
       res = false;
     }
@@ -214,15 +194,11 @@ export default function ItemDetailsController() {
       const addItemToCart = await cartApi.add(userAuthToken, data);
       if (addItemToCart) {
         if (!addItemToCart.data.success) {
-          setLoading(false);
           ToastAlert({ msg: addItemToCart.data.message, msgType: 'error' });
         } else {
           dispatch(setIsUpdateCart(!user.isUpdateCart));
-          /*ToastAlert({ msg: addItemToCart.data.message, msgType: 'success' });*/
-          setLoading(false);
         }
       } else {
-        setLoading(false);
         ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
       }
     } else {
@@ -235,14 +211,9 @@ export default function ItemDetailsController() {
     const removeCartItem = await cartApi.removeCartProduct(userAuthToken, id);
     if (removeCartItem) {
       if (!removeCartItem.data.success) {
-        setLoading(false);
         ToastAlert({ msg: removeCartItem.data.message, msgType: 'error' });
-      } else {
-        /*ToastAlert({ msg: removeCartItem.data.message, msgType: 'success' });*/
-        setLoading(false);
       }
     } else {
-      setLoading(false);
       ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
     }
   };
@@ -266,13 +237,7 @@ export default function ItemDetailsController() {
 
   return (
     <>
-      {/* {console.log(wishListproductIds)} */}
-      {/*<FrontLoader loading={loading} />*/}
-      <Page
-        title={'Donorport | ' + productDetails?.headline}
-        description={productDetails?.description}
-        img={helper.CampaignProductFullImagePath + productDetails?.image}
-      >
+      <Page showTags={false}>
         <ItemDetail
           productDetails={productDetails}
           categoryProducts={categoryProducts}

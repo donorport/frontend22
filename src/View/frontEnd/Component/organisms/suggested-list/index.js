@@ -18,6 +18,7 @@ function SuggestedList(props) {
             return (
               org._id !== props.organizationId && (
                 <SuggestedItem
+                  key={org._id}
                   imgUrl={helper.CampaignAdminLogoPath + org.logo}
                   organization={org}
                   itemTag={props.itemTag}
@@ -35,10 +36,11 @@ function SuggestedList(props) {
             let isFulfiled = pro.isFulfiled;
 
             const isSold = isFinish || (isFulfiled && !pro.unlimited) ? true : false;
-            // console.log(pro)
             return (
-              pro._id !== props.productId && !isFinish && (
+              pro._id !== props.productId &&
+              !isFinish && (
                 <SuggestedItem
+                  key={pro._id}
                   imgUrl={helper.CampaignProductImagePath + pro.image}
                   product={pro}
                   sold={isSold}

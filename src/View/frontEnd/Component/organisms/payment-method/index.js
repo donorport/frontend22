@@ -14,7 +14,6 @@ import AddBankModal from '../../molecules/add-bank-modal';
 import './style.scss';
 import adminCampaignApi from '../../../../../Api/admin/adminCampaign';
 import FrontLoader from '../../../../../Common/FrontLoader';
-import { CircularProgress } from '@mui/material';
 import { validateAll } from 'indicative/validator';
 import ToastAlert from '../../../../../Common/ToastAlert';
 import { confirmAlert } from 'react-confirm-alert';
@@ -26,6 +25,7 @@ import Label from '../../../../../components/Label';
 import CheckIcon from '@mui/icons-material/Check';
 import { setIsAccountAdd } from '../../../../../user/user.action';
 import { useSelector, useDispatch } from 'react-redux';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const PaymentMethod = () => {
   const [modalShow, setModalShow] = useState(false);

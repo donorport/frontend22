@@ -5,28 +5,18 @@ import Avatar from '../../atoms/avatar';
 import ListItemImg from '../../atoms/list-item-img';
 import './style.scss';
 import { makeStyles } from '@material-ui/core/styles';
-import React, { useEffect } from 'react';
-import helper, { priceFormat, getCalculatedPrice } from '../../../../../Common/Helper';
+import React from 'react';
+import helper, { priceFormat } from '../../../../../Common/Helper';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import noimg from '../../../../../assets/images/noimg.jpg';
+import PropTypes from 'prop-types';
 
 const PostsTable = (props) => {
   let organizationDetails = props.organizationDetails;
-  // getProductList={props.getProductList}
   let productList = props.productList;
-  const getC = getCalculatedPrice();
-  // const CampaignAdmin = JSON.parse(localStorage.getItem('CampaignAdmin'));
-
-  // useEffect(() => {
-  //   (async () => {
-  //     props.getProductList(organizationDetails._id)
-  //   })()
-  // }, [organizationDetails])
-
-  // console.log(productList)
 
   const useStyles = makeStyles(() => ({
     ul: {
@@ -69,18 +59,17 @@ const PostsTable = (props) => {
         <ul
           className="list-unstyled mb-0 list__table-list"
           style={{
-            // maxHeight: productList.length > 0 && '600px',
             minHeight: productList.length > 0 && '600px'
           }}
         >
           {productList.length > 0 ? (
-            productList.map((product, i) => {
+            productList.map((product) => {
               let revenue = Number(product.displayPrice * product.soldout).toLocaleString('en-US', {
                 maximumFractionDigits: 2
               });
-              // console.log(product)
+              if (product._id === '631f84a614725993eb90cd39') console.log('Product Map: ', product);
               return (
-                <li className="table__list-item p-2 border-bottom">
+                <li key={product._id} className="table__list-item p-2 border-bottom">
                   <div className="d-xl-flex align-items-center flex-grow-1">
                     <div className="d-flex align-items-center text-dark me-sm-3 mb-2">
                       <div className="ms-auto ms-sm-0 me-sm-2 post__value">
@@ -253,7 +242,10 @@ const PostsTable = (props) => {
                             <Button
                               variant="link"
                               className="p-0"
-                              onClick={() => props.showFulfillOrder(product)}
+                              onClick={() => {
+                                console.log('Product: ', product);
+                                props.showFulfillOrder(product);
+                              }}
                             >
                               <FontAwesomeIcon
                                 icon={solid('square-up-right')}
@@ -476,6 +468,46 @@ const PostsTable = (props) => {
       </div>
     </>
   );
+};
+
+PostsTable.propTypes = {
+  organizationDetails: PropTypes.object,
+  order: PropTypes.object,
+  productList: PropTypes.arrayOf(PropTypes.object),
+  totalPages: PropTypes.number,
+  pageNo: PropTypes.number,
+  sortField: PropTypes.string,
+  editProduct: PropTypes.func,
+  deleteProduct: PropTypes.func,
+  publishProduct: PropTypes.func,
+  handleClick: PropTypes.func,
+  handleSortingChange: PropTypes.func,
+  setFulfil: PropTypes.func,
+  createPost: PropTypes.func,
+  setFulfilProductDetails: PropTypes.func,
+  showFulfillOrder: PropTypes.func
+};
+
+PostsTable.defaultProps = {
+  organizationDetails: {},
+  order: {},
+  productList: [],
+  totalPages: 0,
+  pageNo: 0,
+  sortField: '',
+  editProduct: () => console.log('editProduct function is required in the PostTable component'),
+  deleteProduct: () => console.log('deleteProduct function is required in the PostTable component'),
+  publishProduct: () =>
+    console.log('publishProduct function is required in the PostTable component'),
+  handleClick: () => console.log('handleClick function is required in the PostTable component'),
+  handleSortingChange: () =>
+    console.log('handleSortingChange function is required in the PostTable component'),
+  setFulfil: () => console.log('setFulfil function is required in the PostTable component'),
+  createPost: () => console.log('createPost function is required in the PostTable component'),
+  setFulfilProductDetails: () =>
+    console.log('setFulfilProductDetails function is required in the PostTable component'),
+  showFulfillOrder: () =>
+    console.log('showFulfillOrder function is required in the PostTable component')
 };
 
 export default PostsTable;

@@ -184,7 +184,7 @@ const Apply = (props) => {
                     <label className="input__label flex__1">
                       <input
                         type="email"
-                        autoComplete="new-password"
+                        autoComplete="email"
                         name="email"
                         value={email}
                         onChange={(e) => changevalue(e)}
@@ -201,7 +201,7 @@ const Apply = (props) => {
                       <input
                         type="email"
                         name="confirmEmail"
-                        autoComplete="new-password"
+                        autoComplete="email"
                         value={confirmEmail}
                         onChange={(e) => changevalue(e)}
                       />

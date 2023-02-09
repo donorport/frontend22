@@ -3,23 +3,25 @@ import CryptoJS from 'crypto-js';
 import { useSelector, useDispatch } from 'react-redux';
 import IconButton from '../View/frontEnd/Component/molecules/icon-button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { State, Country } from 'country-state-city';
 
 let Mode = 'production';
 // let BASE_URL = 'https://donorport.herokuapp.com/'
 let BASE_URL = 'https://www.donorport.org/app/';
 
-if (window.location.hostname === 'localhost') {
-  Mode = 'development';
-  BASE_URL = 'http://localhost:8080/';
-}
+// if (window.location.hostname === 'localhost') {
+//   Mode = 'development';
+//   BASE_URL = 'http://localhost:8080/';
+// }
 const AWS_S3_BUCKET_BASE_URL = 'https://donorport.s3.us-west-2.amazonaws.com/';
 
 let helper = {
   ApiUrl: BASE_URL + 'api/',
   CampaignAdminLogoPath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/logo/resize/',
   CampaignAdminLogoFullPath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/logo/',
+  CampaignAdminGalleryPath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/gallery/resize/',
+  CampaignAdminGalleryFullPath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/gallery/',
   CampaignProductImagePath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/product/resize/',
   ProjectImagePath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/project/resize/',
   ProjectFullImagePath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/project/',
@@ -571,9 +573,8 @@ export function convertAddress(e) {
     );
 
     return `${split[split.length - 3]}${state.length > 0 ? `, ${state[0].isoCode}` : ''}`;
-    
   } catch (e) {
-    console.error(`function convertAddress failed with address ""`);
+    console.error(`function convertAddress failed with address "${e}"`);
   }
 }
 
