@@ -26,16 +26,16 @@ export default function Index(props) {
   };
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    (async () => {
-      const data = products;
-      // const data = await products();
-      if (data) {
-        setLoading(false);
-      }
-      setLoading(true);
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const data = products;
+  //     // const data = await products();
+  //     if (data) {
+  //       setLoading(false);
+  //     }
+  //     setLoading(true);
+  //   })();
+  // }, []);
 
   if (props.productList && props.productList.length > 0) {
     products = props.productList.map((item, index) => {
