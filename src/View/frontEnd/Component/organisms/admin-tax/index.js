@@ -221,7 +221,6 @@ const AdminTax = () => {
             <CSVExportBtn headers={headers} csvData={csvData} label="Download CSV" prifix="_tax" />
           )}
           {/* <LadderMenuXp /> */}
-          <LadderMenu activeKey={activeKey} onChangeFilterOption={onChangeFilterOption} />
         </div>
         <div className="ms-sm-auto">
           <LadderMenu activeKey={activeKey} onChangeFilterOption={onChangeFilterOption} />
