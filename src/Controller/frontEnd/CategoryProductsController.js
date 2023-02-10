@@ -280,8 +280,17 @@ export default function CategoryProductsController() {
             const getproductList = await productApi.list(token, obj);
             if (getproductList.data.success === true) {
 
-                if (getproductList.data.data.length > 0) {
-
+              if(getproductList.data.data.length > 0) {
+                let min = Math.min(
+                  ...getproductList.data.data.map((item) =>
+                    item?.displayPrice ? item?.displayPrice : item.price
+                  )
+                );
+                let max = Math.max(
+                  ...getproductList.data.data.map((item) =>
+                    item?.displayPrice ? item?.displayPrice : item.price
+                  )
+                );
           setprodctFilterData({
             ...prodctFilterData,
             highestPrice: max,
@@ -966,5 +975,5 @@ export default function CategoryProductsController() {
             </Page>
         </>
     )
-
+  }
 }
