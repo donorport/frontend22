@@ -76,7 +76,7 @@ import PlansController from '../Controller/frontEnd/PlansController';
 import VerifiedDonors from '../View/frontEnd/verified-donors';
 import Terms from '../View/frontEnd/terms';
 import Privacy from '../View/frontEnd/privacy';
-import CategoryProductsController from '../Controller/frontEnd/CategoryProductsController';
+import {CategoryProductsController} from '../Controller/frontEnd/CategoryProductsController';
 import LeaderBoard from '../View/frontEnd/Component/organisms/leaderboard';
 import OrderConfirmPage from '../View/frontEnd/order-confirmation';
 import DonationConfirmPage from '../View/frontEnd/donation-confirmation/index';
