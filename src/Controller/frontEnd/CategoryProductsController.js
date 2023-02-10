@@ -28,7 +28,7 @@ import wishlistApi from '../../Api/frontEnd/wishlist';
 import { getDistance } from 'geolib';
 import Page from '../../components/Page';
 
-export function CategoryProductsController() {
+export function CategoryProductsController(){
   const [productList, setProductList] = useState([]);
   const [advertisementList, setAdvertisementList] = useState([]);
   const [homeadvertisementList, setHomeAdvertisementList] = useState([]);
@@ -238,31 +238,29 @@ export function CategoryProductsController() {
     }
   };
 
-    const addProductToWishlist = async (productId) => {
-        let data = {}
-        data.productId = productId
-        setLoading(true)
-        const add = await wishlistApi.add(token, data)
-        if (add) {
-            if (add.data.success) {
-                setLoading(false)
-                await getWishListProductList()
-                dispatch(setIsUpdateCart(!user.isUpdateCart))
-            } else {
-                setLoading(false)
-                ToastAlert({ msg: add.data.message, msgType: 'error' });
-
-            }
-
-        } else {
-            setLoading(false)
-            ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
-        }
+  const addProductToWishlist = async (productId) => {
+    let data = {};
+    data.productId = productId;
+    setLoading(false);
+    const add = await wishlistApi.add(token, data);
+    if (add) {
+      if (add.data.success) {
+        setLoading(false);
+        await getWishListProductList();
+        dispatch(setIsUpdateCart(!user.isUpdateCart));
+      } else {
+        setLoading(false);
+        ToastAlert({ msg: add.data.message, msgType: 'error' });
+      }
+    } else {
+      setLoading(false);
+      ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
     }
-    useEffect(() => {
-        (async () => {
-            if (userAuthToken) {
-                await getCartList()
+  };
+  useEffect(() => {
+    (async () => {
+      if (userAuthToken) {
+        await getCartList();
 
         await getWishListProductList();
         setLoading(false);
@@ -270,27 +268,25 @@ export function CategoryProductsController() {
     })();
   }, [user.isUpdateCart]);
 
-    useEffect(() => {
-        (async () => {
+  useEffect(() => {
+    (async () => {
+      setLoading(false);
+      let obj = {};
+      obj.userCountry = user.countryId;
+      const getproductList = await productApi.list(token, obj);
+      if (getproductList.data.success === true) {
+        if (getproductList.data.data.length > 0) {
+          let min = Math.min(
+            ...getproductList.data.data.map((item) =>
+              item?.displayPrice ? item?.displayPrice : item.price
+            )
+          );
+          let max = Math.max(
+            ...getproductList.data.data.map((item) =>
+              item?.displayPrice ? item?.displayPrice : item.price
+            )
+          );
 
-
-            setLoading(false)
-            let obj = {}
-            obj.userCountry = user.countryId
-            const getproductList = await productApi.list(token, obj);
-            if (getproductList.data.success === true) {
-
-              if(getproductList.data.data.length > 0) {
-                let min = Math.min(
-                  ...getproductList.data.data.map((item) =>
-                    item?.displayPrice ? item?.displayPrice : item.price
-                  )
-                );
-                let max = Math.max(
-                  ...getproductList.data.data.map((item) =>
-                    item?.displayPrice ? item?.displayPrice : item.price
-                  )
-                );
           setprodctFilterData({
             ...prodctFilterData,
             highestPrice: max,
@@ -400,51 +396,47 @@ export function CategoryProductsController() {
     return res;
   };
 
-    const addToCart = async (id) => {
-        if (token) {
-
-
-            setLoading(true)
-            let data = {}
-            data.productId = id
-            const addItemToCart = await cartApi.add(userAuthToken, data);
-            if (addItemToCart) {
-                if (!addItemToCart.data.success) {
-                    setLoading(false)
-                    ToastAlert({ msg: addItemToCart.data.message, msgType: 'error' });
-                } else {
-                    setIsUpdate(!update)
-                    /*ToastAlert({ msg: addItemToCart.data.message, msgType: 'success' });*/
-                    setLoading(false)
-                }
-
-            } else {
-                setLoading(false)
-                ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
-            }
+  const addToCart = async (id) => {
+    if (token) {
+      setLoading(false);
+      let data = {};
+      data.productId = id;
+      const addItemToCart = await cartApi.add(userAuthToken, data);
+      if (addItemToCart) {
+        if (!addItemToCart.data.success) {
+          setLoading(false);
+          ToastAlert({ msg: addItemToCart.data.message, msgType: 'error' });
         } else {
-            navigate('/signin')
+          setIsUpdate(!update);
+          /*ToastAlert({ msg: addItemToCart.data.message, msgType: 'success' });*/
+          setLoading(false);
         }
+      } else {
+        setLoading(false);
+        ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+      }
+    } else {
+      navigate('/signin');
     }
+  };
 
-    const removeCartItem = async (id) => {
-        setLoading(true)
-        const removeCartItem = await cartApi.removeCartProduct(userAuthToken, id);
-        if (removeCartItem) {
-            if (!removeCartItem.data.success) {
-                setLoading(false)
-                ToastAlert({ msg: removeCartItem.data.message, msgType: 'error' });
-            } else {
-                setIsUpdate(!update)
-                /*ToastAlert({ msg: removeCartItem.data.message, msgType: 'success' });*/
-                setLoading(false)
-            }
-
-        } else {
-            setLoading(false)
-            ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
-        }
+  const removeCartItem = async (id) => {
+    setLoading(false);
+    const removeCartItem = await cartApi.removeCartProduct(userAuthToken, id);
+    if (removeCartItem) {
+      if (!removeCartItem.data.success) {
+        setLoading(false);
+        ToastAlert({ msg: removeCartItem.data.message, msgType: 'error' });
+      } else {
+        setIsUpdate(!update);
+        /*ToastAlert({ msg: removeCartItem.data.message, msgType: 'success' });*/
+        setLoading(false);
+      }
+    } else {
+      setLoading(false);
+      ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
     }
+  };
 
   const onChangeFilterOption = (index) => {
     setSelectedKey(index);
@@ -553,11 +545,11 @@ export function CategoryProductsController() {
       // console.log(params)
       // console.log(params.slug)
 
-            setLoading(true)
-            if (categoryDetails?.id) {
-                await filterProduct(lowPrice, HighPrice, resultTags, user.countryId)
-            }
-            setLoading(false)
+      setLoading(false);
+      if (categoryDetails?.id) {
+        await filterProduct(lowPrice, HighPrice, resultTags, user.countryId);
+      }
+      setLoading(false);
 
       // let arr = arrayUnique(categoryadvertisementList.concat(homeadvertisementList))
       // setAdvertisementList(categoryadvertisementList);
@@ -692,19 +684,18 @@ export function CategoryProductsController() {
             setresultTags(finalArray);
             // console.log(finalArray)
 
-                        setLoading(true)
-                        await filterProduct(lowPrice, HighPrice, finalArray, user.countryId)
-                        setLoading(false)
-                    }
-                }
-            } else {
-                setSuggestionTag('')
-
-            }
-        } else {
-            setSuggestionTag('')
-
+            setLoading(false);
+            await filterProduct(lowPrice, HighPrice, finalArray, user.countryId);
+            setLoading(false);
+          }
         }
+      } else {
+        setSuggestionTag('');
+      }
+    } else {
+      setSuggestionTag('');
+    }
+  };
 
   const onChangeDonatePrice = async (e) => {
     let value = e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, '');
@@ -923,57 +914,51 @@ export function CategoryProductsController() {
     }
     setresultTags(finalArray);
 
-        setLoading(true)
-        await filterProduct(lowPrice, HighPrice, finalArray, user.countryId)
-        setLoading(false)
-    }
-    return (
-        <>
-
-            {/*<FrontLoader loading={loading} />*/}
-            <Page title={"Donorport | " + categoryDetails?.name}
-                description="Donorport promises to remain a neutral platform and will never 
-            prevent a registered charity from posting and reciving funds from our donors.">
-                <Index
-                    productList={productList}
-                    addToCart={addToCart}
-                    removeCartItem={removeCartItem}
-                    checkItemInCart={checkItemInCart}
-                    pricingFees={pricingFees}
-                    organizationList={organizationList}
-                    categoryList={categoryList}
-                    seletedCategoryList={seletedCategoryList}
-                    setfilters={setfilters}
-                    filters={filters}
-                    onClickFilter={onClickFilter}
-                    selectedKey={selectedKey}
-                    setSelectedKey={setSelectedKey}
-                    onChangeFilterOption={onChangeFilterOption}
-                    onChangePriceSlider={onChangePriceSlider}
-                    onSearchProduct={onSearchProduct}
-                    advertisementList={categoryadvertisementList}
-                    module='CATEGORY'
-                    categoryDetails={categoryDetails}
-                    addProductToWishlist={addProductToWishlist}
-                    wishListproductIds={wishListproductIds}
-                    price={price}
-                    onChangeDonatePrice={onChangeDonatePrice}
-                    cartProductList={cartProductList}
-                    onClickAddToCart={onClickAddToCart}
-                    cartProductIds={cartProductIds}
-
-                    searchTag={searchTag}
-                    deSelectTag={deSelectTag}
-                    suggestionTag={suggestionTag}
-                    prodctFilterData={prodctFilterData}
-
-
-
-
-
-                />
-            </Page>
-        </>
-    )
-  }
+    setLoading(false);
+    await filterProduct(lowPrice, HighPrice, finalArray, user.countryId);
+    setLoading(false);
+  };
+  return (
+    <>
+      {/*<FrontLoader loading={loading} />*/}
+      <Page
+        title={'Donorport | ' + categoryDetails?.name}
+        description="Donorport promises to remain a neutral platform and will never 
+            prevent a registered charity from posting and reciving funds from our donors."
+      >
+        <Index
+          productList={productList}
+          addToCart={addToCart}
+          removeCartItem={removeCartItem}
+          checkItemInCart={checkItemInCart}
+          pricingFees={pricingFees}
+          organizationList={organizationList}
+          categoryList={categoryList}
+          seletedCategoryList={seletedCategoryList}
+          setfilters={setfilters}
+          filters={filters}
+          onClickFilter={onClickFilter}
+          selectedKey={selectedKey}
+          setSelectedKey={setSelectedKey}
+          onChangeFilterOption={onChangeFilterOption}
+          onChangePriceSlider={onChangePriceSlider}
+          onSearchProduct={onSearchProduct}
+          advertisementList={categoryadvertisementList}
+          module="CATEGORY"
+          categoryDetails={categoryDetails}
+          addProductToWishlist={addProductToWishlist}
+          wishListproductIds={wishListproductIds}
+          price={price}
+          onChangeDonatePrice={onChangeDonatePrice}
+          cartProductList={cartProductList}
+          onClickAddToCart={onClickAddToCart}
+          cartProductIds={cartProductIds}
+          searchTag={searchTag}
+          deSelectTag={deSelectTag}
+          suggestionTag={suggestionTag}
+          prodctFilterData={prodctFilterData}
+        />
+      </Page>
+    </>
+  );
 }
