@@ -25,17 +25,7 @@ export default function Index(props) {
     color: '#6b68f8'
   };
   const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const data = products;
-  //     // const data = await products();
-  //     if (data) {
-  //       setLoading(false);
-  //     }
-  //     setLoading(true);
-  //   })();
-  // }, []);
+  const [productsList, setProductsList] = useState('');
 
   if (props.productList && props.productList.length > 0) {
     products = props.productList.map((item, index) => {
@@ -86,6 +76,25 @@ export default function Index(props) {
       </div>
     );
   }
+
+useEffect(() => {
+  const intervalId = setInterval(() => {
+    setLoading(false);
+  }, 4000);
+  return () => {
+    clearInterval(intervalId);
+  };
+}, []);
+
+useEffect(() => {
+  if(products && props.productList.length > 0){
+    setProductsList(products)
+    setLoading(false)
+  } else{
+    setProductsList(products)
+  }
+}, [props.productList]);
+
 
   const items = [
     <div className="fw-semibold text-dark">
@@ -430,10 +439,16 @@ export default function Index(props) {
           </div>
         </div>
       </Container>
-
+      {loading ? (
+        <div style={{display: 'flex', justifyContent: 'center'}}>
+          <CircularProgress />
+        </div>
+      )
+        :
       <Container fluid className="py-2">
-        <Row>{products}</Row>
+        <Row>{productsList}</Row>
       </Container>
+      }
     </>
   );
 }
