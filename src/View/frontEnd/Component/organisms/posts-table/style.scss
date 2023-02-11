@@ -10,3 +10,10 @@
 .table__list-item:last-child {
   border: none !important;
 }
+.progress__wrap {
+  width: 100%;
+  max-width: 300px;
+  @include media-breakpoint-down(sm) {
+    max-width: 100%;
+  }
+}

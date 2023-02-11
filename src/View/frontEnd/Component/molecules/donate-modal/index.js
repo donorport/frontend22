@@ -4,7 +4,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Button, Modal } from 'react-bootstrap';
 import Avatar from '../../atoms/avatar';
 import AvatarImg from '../../../../../assets/images/avatar.jpeg';
-import helper from '../../../../../Common/Helper';
+import helper, { getCalculatedPrice } from '../../../../../Common/Helper';
 import { useSelector, useDispatch } from 'react-redux';
 import { CircularProgress } from '@mui/material';
 
@@ -27,6 +27,11 @@ const DonateModal = (props) => {
   const setSelectedValue = props.setSelectedValue;
 
   let type = props.type;
+
+  const getCalc = getCalculatedPrice();
+  let currencySymbol = getCalc.currencySymbol();
+
+  let platformCost = ((props.pricingFees?.platformFee / 100) * Number(selectedValue)).toFixed(2);
 
   const onValueChange = (clr, event) => {
     setSelectedValue(Number(event.target.value));
@@ -166,8 +171,12 @@ const DonateModal = (props) => {
                 />
               )}
             </div>
-            <div className="donation__review text-dark d-flex align-items-center justify-content-center">
+            <div className="donation__review text-dark d-flex flex-column align-items-center justify-content-center">
               <span className="fw-semibold">${selectedValue}</span>
+              <div className="d-flex align-items-center">
+                <span className="fw-semibold fs-7 text-light flex__1">Service Charge:</span>
+                <span className="fw-bold text-light fs-5">{currencySymbol + platformCost}</span>
+              </div>
               {/* <span className="m-1">/</span>
               <span>One-time</span> */}
             </div>

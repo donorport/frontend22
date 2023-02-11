@@ -41,6 +41,7 @@ function UserDetail(props) {
   const [profileImg, setProfileImg] = useState('');
   const location = useLocation();
 
+  
   useEffect(() => {
         (async () => {
             setLoading(true);

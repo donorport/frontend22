@@ -215,13 +215,6 @@ const AdminTax = () => {
             where they will be able to view & download.
           </p>
         </div>
-        <div className="ms-sm-auto d-flex me-1">
-          {/* <Button variant="info" size="lg" className='me-2 flex__1'>Download CSV</Button> */}
-          {taxList.length > 0 && (
-            <CSVExportBtn headers={headers} csvData={csvData} label="Download CSV" prifix="_tax" />
-          )}
-          {/* <LadderMenuXp /> */}
-        </div>
         <div className="ms-sm-auto">
           <LadderMenu activeKey={activeKey} onChangeFilterOption={onChangeFilterOption} />
         </div>

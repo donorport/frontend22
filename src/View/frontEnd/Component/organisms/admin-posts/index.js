@@ -1105,14 +1105,14 @@ const AdminPosts = () => {
   // console.log(data)
   const getProductList = useCallback(
     async (page, field, type) => {
-    setLoading(true);
-    let formData = {};
-    formData.organizationId = data._id;
-    formData.pageNo = page;
-    formData.sortField = field;
-    formData.sortType = type;
-    formData.filter = true;
-    formData.type = 'product';
+      setLoading(true);
+      let formData = {};
+      formData.organizationId = data._id;
+      formData.pageNo = page;
+      formData.sortField = field;
+      formData.sortType = type;
+      formData.filter = true;
+      formData.type = 'product';
 
       // console.log(data._id)
 
@@ -1458,7 +1458,7 @@ const AdminPosts = () => {
                 : 0}
             </span>
 
-            <div className="d-flex align-items-center ms-sm-auto">
+            <div className="d-flex align-items-center ms-sm-auto justify-content-end">
               <Button
                 variant="info"
                 size="lg"
@@ -1594,16 +1594,16 @@ const AdminPosts = () => {
             </div>
           </div>
 
-            <Card className="mt-0 mt-sm-5">
-              <Row className="mw-850 ml-5">
-                <Col lg="6">
-                  {!fulfilProductDetails?.isFulfiled && (
-                    <label htmlFor="videoInput" className="form__label mt-sm-0 mt-3">
-                      Transaction Details
-                    </label>
-                  )}
+          <Card className="mt-0 mt-sm-5">
+            <Row className="mw-850 ml-5">
+              <Col lg="6">
+                {!fulfilProductDetails?.isFulfiled && (
+                  <label htmlFor="videoInput" className="form__label mt-sm-0 mt-3">
+                    Transaction Details
+                  </label>
+                )}
 
-                <div className="order__widget mt-3 ">
+                <div className="order__widget">
                   <Card.Header className="post__accordion-header pb-3 mb-3">
                     <span className="fs-3 fw-bolder text-dark">Order Summary</span>
                   </Card.Header>
@@ -1612,7 +1612,7 @@ const AdminPosts = () => {
                       <span className="flex__1">
                         {fulfilProductDetails?.unlimited ? 'Sold' : 'Qty'} :
                       </span>
-                      <span className="fs-4 fw-bold">
+                      <span className="fs-4 fw-bold text-light">
                         {Number(fulfilProductDetails?.unlimited).toLocaleString('en-US', {
                           maximumFractionDigits: 2
                         })
@@ -1650,7 +1650,7 @@ const AdminPosts = () => {
                   </div>
                 </div>
 
-                  {/* {fulfilProductDetails?.isFulfiled && (
+                {/* {fulfilProductDetails?.isFulfiled && (
                     <>
                       <div className="linked__item d-flex align-items-center p-1 border mt-3">
                         <div className="accounts__icon">
@@ -1691,14 +1691,14 @@ const AdminPosts = () => {
                       </div>
                     </>
                   )}*/}
-                  {!fulfilProductDetails?.isFulfiled ? (
-                    <>
-                      <label htmlFor="videoInput" className="form__label mt-3">
-                        Sales Receipt &nbsp;
-                        <span className="post-type-text" style={{ color: '#dd4646' }}>
-                          (required)
-                        </span>
-                      </label>
+                {!fulfilProductDetails?.isFulfiled ? (
+                  <>
+                    <label htmlFor="videoInput" className="form__label mt-3">
+                      Sales Receipt &nbsp;
+                      <span className="post-type-text" style={{ color: '#dd4646' }}>
+                        (required)
+                      </span>
+                    </label>
 
                     {/* <div className="upload-picture-video-block mb-2" style={{ display: "contents" }}>
                           <div className="upload-wrap" style={{ width: "100%", height: "200px" }}>
@@ -1764,7 +1764,7 @@ const AdminPosts = () => {
                 ) : (
                   <>
                     <label htmlFor="videoInput" className="form__label mt-3">
-                      Update Receipt &nbsp;
+                      Sales Receipt &nbsp;
                       <span className="post-type-text" style={{ color: '#dd4646' }}>
                         (required)
                       </span>
@@ -1935,7 +1935,7 @@ const AdminPosts = () => {
                 <form className="video-detail-form mt-3">
                   <div className="form-group mb-5">
                     <label htmlFor="videoUrl" className="form__label mb-4">
-                      Video (iframe)&nbsp;
+                      Video [YouTube]&nbsp;
                       <span className="post-type-text">(optional)</span>
                     </label>
                     <input

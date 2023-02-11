@@ -197,7 +197,7 @@ const AddProject = (props) => {
           <form className="video-detail-form">
             <div className="form-group mb-2">
               <label htmlFor="videoInput" className="form__label">
-                Pictures & Video (iframe)
+                Pictures & Video (YouTube)
               </label>
               <input
                 type="text"

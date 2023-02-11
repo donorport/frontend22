@@ -534,7 +534,7 @@ export default function AddProductForm(props) {
                     </div>
 
                     <div className="form-group row">
-                        <label htmlFor="name" className="col-sm-2 col-form-label">Need Gallery <small>(optional)</small> <small>(Iframe)</small></label>
+                        <label htmlFor="name" className="col-sm-2 col-form-label">Need Gallery <small>(optional)</small> <small>[YouTube]</small></label>
                         <div className="col-sm-10">
                             <input type="text" className="form-control " name='galleryUrl' id="galleryUrl" value={stateData.galleryUrl} onChange={(e) => { props.changevalue(e) }} />
 

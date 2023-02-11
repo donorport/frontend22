@@ -698,7 +698,7 @@ const CompanySettings = () => {
       </div>
 
       <div className="mb-5 mw-400">
-        <h4 className="fw-bolder">Promo Video (Iframe)</h4>
+        <h4 className="fw-bolder">Promo Video [YouTube]</h4>
         <div className="text-subtext mb-3">This video appears on your organization's page:</div>
         <div className="input__wrap mb-3">
           <label className="input__label">

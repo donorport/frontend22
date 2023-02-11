@@ -2,6 +2,8 @@
 @import '../../../../../assets//scss/components/list-table';
 
 .admin__billing-value {
+  min-width: 60px;
+  max-width: 60px;
   @include media-breakpoint-down(sm) {
     order: 2;
   }

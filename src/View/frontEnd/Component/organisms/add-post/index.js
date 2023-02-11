@@ -1025,7 +1025,7 @@ const AddPost = (props) => {
                   <form className="video-detail-form">
                     <div className="form-group mb-2">
                       <label htmlFor="videoInput" className="form__label">
-                        Need Gallery (iframe)&nbsp;
+                        Need Gallery [YouTube]&nbsp;
                         <span className="post-type-text">(optional)</span>
                       </label>
                       <input
@@ -1248,7 +1248,7 @@ const AddPost = (props) => {
           <p className="error">{error ? (error.policy ? error.policy : '') : ''}</p>
         )}
 
-        <div className="products-detial-footer py-5">
+        <div className="products-detial-footer d-sm-flex py-3 py-sm-5">
           {stateData.status === 1 && (
             <Button
               style={{ opacity: props.isLoading ? '0.7' : '1' }}

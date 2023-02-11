@@ -71,7 +71,7 @@ const PostsTable = (props) => {
               return (
                 <li key={product._id} className="table__list-item p-2 border-bottom">
                   <div className="d-xl-flex align-items-center flex-grow-1">
-                    <div className="d-flex align-items-center text-dark me-sm-3 mb-2">
+                    <div className="progress__wrap d-flex align-items-center text-dark me-sm-3 mb-2">
                       <div className="ms-auto ms-sm-0 me-sm-2 post__value">
                         {product.status === 1 && (
                           <div className="text-light fw-bold fs-5">
@@ -146,37 +146,43 @@ const PostsTable = (props) => {
                         {product.status === 1 && (
                           // }
                           <div className="d-flex align-items-center progress__wrap me-2 flex__1">
-                            {!product.unlimited && (
-                              <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-sm-1 fw-bold text-light">
-                                {product.soldout}/{product.quantity}
-                              </span>
-                            )}
-                            <ProgressBar
-                              variant={!product.unlimited ? 'success' : 'infinity'}
-                              now={
-                                !product.unlimited
-                                  ? Math.round((product.soldout / product.quantity) * 100)
-                                  : 100
-                              }
-                              className="flex__1"
-                            />
-                            {!product.unlimited ? (
-                              <span className="text-light ms-1 fw-bold">
-                                {Math.round((product.soldout / product.quantity) * 100)}%
-                              </span>
-                            ) : (
-                              <div
-                                className="unlimited unlimited--home"
-                                style={{ marginLeft: '10px' }}
-                              >
-                                <div className="tag tag--ongoing _2">
-                                  <div className="d-flex icon icon--unlimited">
-                                    <FontAwesomeIcon icon={solid('infinity')} className="" />
+                            <div
+                              className="d-flex flex__1 align-items-center"
+                              style={{ maxWidth: '200px' }}
+                            >
+                              {!product.unlimited && (
+                                <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-sm-1 fw-bold text-light">
+                                  {product.soldout}/{product.quantity}
+                                </span>
+                              )}
+                              <ProgressBar
+                                variant={!product.unlimited ? 'success' : 'infinity'}
+                                now={
+                                  !product.unlimited
+                                    ? Math.round((product.soldout / product.quantity) * 100)
+                                    : 100
+                                }
+                                className="flex__1"
+                                style={{ maxWidth: '200px' }}
+                              />
+                              {!product.unlimited ? (
+                                <span className="text-light ms-1 fw-bold">
+                                  {Math.round((product.soldout / product.quantity) * 100)}%
+                                </span>
+                              ) : (
+                                <div
+                                  className="unlimited unlimited--home"
+                                  style={{ marginLeft: '10px' }}
+                                >
+                                  <div className="tag tag--ongoing _2">
+                                    <div className="d-flex icon icon--unlimited">
+                                      <FontAwesomeIcon icon={solid('infinity')} className="" />
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            )}
-                            <div className="qty__tag ms-3 p-2 fw-bold text-light">
+                              )}
+                            </div>
+                            <div className="qty__tag ms-3 p-2 fw-bold text-light ms-auto">
                               <FontAwesomeIcon icon={solid('up')} className="text-success me-1" />{' '}
                               {organizationDetails.symbol}
                               {revenue}

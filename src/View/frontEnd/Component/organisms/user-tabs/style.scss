@@ -9,7 +9,7 @@
 
   &.active {
     background-color: $gray-100;
-    border-color:  var(--border-input);
+    border-color: var(--border-input);
     border-radius: 25px;
   }
 
@@ -17,8 +17,8 @@
     text-decoration: none;
   }
 }
-.nav__tab * .tab__btn {
-margin-bottom: 12px
+.tab__nav > * a:not(.active) {
+  margin-bottom: 12px;
 }
 .tab__icon {
   display: flex;
@@ -40,7 +40,7 @@ margin-bottom: 12px
   }
 }
 @media screen and (min-width: 576px) {
-/*.tab__btn {
+  /*.tab__btn {
   margin: 3px 0
 }*/
 }

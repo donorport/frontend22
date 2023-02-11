@@ -199,7 +199,7 @@ export default function AddProjectForm(props) {
 
           <div className="form-group row">
             <label htmlFor="name" className="col-sm-2 col-form-label">
-              Pictures & Video (Iframe)
+              Pictures & Video [YouTube]
             </label>
             <div className="col-sm-10">
               <input
