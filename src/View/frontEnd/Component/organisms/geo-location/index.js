@@ -258,7 +258,7 @@ const GeoLocation = () => {
                 </Button>
               </div>
             </div>
-            <div className="mapboxgl-map">
+            <div className="mapboxgl-map" style={{ maxWidth: '100% !important' }}>
               <Map
                 style={mapStyles.day}
                 zoom={[location.zoomlevel]}
@@ -267,7 +267,8 @@ const GeoLocation = () => {
                   setObjectVal(e.boxZoom._container.outerText);
                 }} //boxZoom._container.outerText
                 containerStyle={{
-                  height: '300px'
+                  height: '300px',
+                  maxWidth: '100% !important'
                   //width: '310px'
                 }}
                 center={[location.lng, location.lat]}

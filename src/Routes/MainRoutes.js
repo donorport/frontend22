@@ -40,7 +40,7 @@ import AdminTax from '../View/frontEnd/Component/organisms/admin-tax';
 import AdminProjects from '../View/frontEnd/Component/organisms/admin-projects';
 import AdminSettingsTab from '../View/frontEnd/Component/organisms/admin-settings-tab';
 import CompanySettings from '../View/frontEnd/Component/organisms/company-settings'
-import PaymentMethod from '../View/frontEnd/Component/organisms/payment-method';
+import payments from '../View/frontEnd/Component/organisms/payment-method';
 import AdminAdmin from '../View/frontEnd/Component/organisms/admin-admin';
 import AdminBilling from '../View/frontEnd/Component/organisms/admin-billing';
 import AdminControl from '../View/frontEnd/Component/organisms/admin-control';
@@ -129,8 +129,8 @@ export default function MainRoutes() {
                         <Route path="/campaign/:name/project" element={<AdminProjects />} />
                         <Route path="/campaign/:name/settings" element={<AdminSettingsTab />} >
                             <Route path="/campaign/:name/settings/company" element={<CompanySettings />} />
-                            <Route path="/campaign/:name/settings/paymentMethod" element={<PaymentMethod />} />
-                            <Route path="/campaign/:name/settings/paymentMethod/:accountId" element={<PaymentMethod />} />
+                            <Route path="/campaign/:name/settings/payments" element={<payments />} />
+                            <Route path="/campaign/:name/settings/payments/:accountId" element={<payments />} />
                             <Route path="/campaign/:name/settings/administrators" element={<AdminAdmin />} />
                             <Route path="/campaign/:name/settings/billing" element={<AdminBilling />} />
                             <Route path="/campaign/:name/settings/controls" element={<AdminControl />} />

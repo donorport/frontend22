@@ -199,7 +199,7 @@ export default function AddProjectForm(props) {
 
           <div className="form-group row">
             <label htmlFor="name" className="col-sm-2 col-form-label">
-              Pictures & Video [YouTube]
+              Pictures & Videos
             </label>
             <div className="col-sm-10">
               <input
@@ -254,11 +254,15 @@ export default function AddProjectForm(props) {
                 {props.tempImages?.length
                   ? props.tempImages.map((img, key) => {
                       return (
-                        <img
-                          src={img ? img : noimg}
+                        <div
+                          className="gallery__img"
+                          style={{
+                            backgroundImage: `url(${img ? img : noimg})`,
+                            width: '100px',
+                            height: '100px'
+                          }}
                           alt="lk"
-                          style={{ width: '100px', height: '100px' }}
-                        />
+                        ></div>
                       );
                     })
                   : props.projectImages?.length

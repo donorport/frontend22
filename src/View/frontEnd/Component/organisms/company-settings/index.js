@@ -698,7 +698,7 @@ const CompanySettings = () => {
       </div>
 
       <div className="mb-5 mw-400">
-        <h4 className="fw-bolder">Promo Video [YouTube]</h4>
+        <h4 className="fw-bolder">Promo Video</h4>
         <div className="text-subtext mb-3">This video appears on your organization's page:</div>
         <div className="input__wrap mb-3">
           <label className="input__label">
@@ -707,7 +707,7 @@ const CompanySettings = () => {
               type="text"
               name="promoVideo"
               onChange={(e) => changevalue(e)}
-              placeholder="Video URL"
+              placeholder="YouTube URL"
               value={promoVideo}
             />
           </label>
@@ -761,17 +761,27 @@ const CompanySettings = () => {
                       &times;
                     </span>
                     {img._id && img.image ? (
-                      <img
-                        src={img.image ? helper.CampaignAdminGalleryFullPath + img.image : noImg}
+                      <div
+                        className="gallery__img"
+                        style={{
+                          backgroundImage: `url(${
+                            img.image ? helper.CampaignAdminGalleryFullPath + img.image : noImg
+                          })`,
+                          width: '100px',
+                          height: '100px'
+                        }}
                         alt="lk"
-                        style={{ width: '100px', height: '100px' }}
-                      />
+                      ></div>
                     ) : (
-                      <img
-                        src={img ? img : noImg}
+                      <div
+                        className="gallery__img"
+                        style={{
+                          backgroundImage: `url(${img ? img : noImg})`,
+                          width: '100px',
+                          height: '100px'
+                        }}
                         alt="lk"
-                        style={{ width: '100px', height: '100px' }}
-                      />
+                      ></div>
                     )}
                   </div>
                 ))

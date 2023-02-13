@@ -1,7 +1,8 @@
 @import '../../../../../assets/scss/components/list-table';
 
 .post__value {
-  width: 65px;
+  min-width: 60px;
+  max-width: 60px;
 }
 .project--btn {
   background: unset;

@@ -71,7 +71,7 @@ export { default as AdminSettingsTab } from './admin-settings-tab';
 export { default as SettingsTabsAdmin } from './settings-tabs-admin';
 
 export { default as CompanySettings } from './company-settings';
-export { default as PaymentMethod } from './payment-method';
+export { default as payments } from './payment-method';
 export { default as AdminAdmin } from './admin-admin';
 
 export { default as AdminBilling } from './admin-billing';

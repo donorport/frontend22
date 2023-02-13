@@ -61,7 +61,7 @@ const Pricing = () => {
   return (
     <Page
       title="Donorport | Pricing"
-      description="Pricing and Fees ; Platform Fee. 0%. Donorport does not take a fee. Organizations receive 100% of your donation ; Transaction Fees. 2.9%. + $0.30 per item donated"
+      description="Pricing and Fees: Platform Fee: 2%; Merchant Fees: 2.9%. + $0.30 per item donated"
     >
       <DefaultLayout>
         <div className="password-reset position-relative">
@@ -70,23 +70,17 @@ const Pricing = () => {
               <h1 className="text-dark fw-bolder mb-6p pt-2">Pricing and Fees</h1>
               <div className="fs-5 text-light pb-2 mb-3 mw-600">
                 It is 100% free for organizations to create posts and receive funding on Donorport.
-                100% of each donation goes directly to the organization so they receive every penny
-                they need.
+                Each donation goes directly to the organization so they receive every penny they
+                need.
               </div>
               <div className="note fs-5 mb-3">
-                Donorport includes local tax and merchant fees into the display price to ensure the
-                charity has exactly what they need to purchase the items at the store. We don't
-                charge for our services, but our payment merchants require 2.9% to process each
-                transaction. We include this cost, along with the Charity's local tax rate, in the
-                display price for products posted by our Charities. For More information please
-                visit our{' '}
-                <a
-                  href="https://www.youtube.com/watch?v=G3Y5PcuH23Y"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Terms of Service
-                </a>{' '}
+                Donorport includes sales tax and merchant fees in the display price of each post to
+                ensure the charity has the exact amount required to purchase their items. Donorport
+                includes a 2% service charge at checkout so that we can continue to offer our
+                services to the Donorport community. For More information please visit our{' '}
+                <a href="/terms" className="link">
+                  Terms of service
+                </a>
               </div>
               <div className="row py-4 justify-content-center">
                 <div className="col-sm-4 mb-3 mb-md-0">
@@ -99,7 +93,8 @@ const Pricing = () => {
                       </div>
 
                       <p style={{ color: 'rgba(151,150,177,.48)' }}>
-                        Donorport does not take a fee. Organizations receive 100% of your donation
+                        Donorport adds 2% at checkout so that we can to continue offer our services
+                        to donors like you.
                       </p>
                     </div>
                   </div>
@@ -114,7 +109,7 @@ const Pricing = () => {
                   <div className=" text-center h-100">
                     <div className="card-body d-flex flex-column">
                       <div className="mb-4">
-                        <h5>Transaction Fees</h5>
+                        <h5>Merchant Fees</h5>
                         <span className="display-4">{user?.transactionFee}%</span>
                         {/* <span className="display-4">3%</span> */}
                       </div>

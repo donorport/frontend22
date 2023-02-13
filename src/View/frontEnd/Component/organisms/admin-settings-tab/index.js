@@ -3,7 +3,7 @@ import { Tab } from "react-bootstrap";
 
 // import {
 //   SettingsTabsAdmin,
-//   PaymentMethod,
+//   payments,
 //   CompanySettings,
 //   AdminBilling,
 //   AdminControl,
@@ -11,7 +11,7 @@ import { Tab } from "react-bootstrap";
 // } from "@components/organisms";
 
 import SettingsTabsAdmin from "../settings-tabs-admin";
-import PaymentMethod from "../payment-method";
+import payments from "../payment-method";
 import CompanySettings from "../company-settings";
 import AdminBilling from "../admin-billing";
 import AdminControl from "../admin-control";
@@ -61,8 +61,8 @@ const AdminSettingsTab = () => {
             <Tab.Pane eventKey="company">
               <CompanySettings />
             </Tab.Pane>
-            <Tab.Pane eventKey="paymentMethod">
-              <PaymentMethod />
+            <Tab.Pane eventKey="payments">
+              <payments />
             </Tab.Pane>
             <Tab.Pane eventKey="administrators">
               <AdminAdmin />

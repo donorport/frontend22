@@ -27,7 +27,7 @@ import { setIsAccountAdd } from '../../../../../user/user.action';
 import { useSelector, useDispatch } from 'react-redux';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const PaymentMethod = () => {
+const payments = () => {
   const [modalShow, setModalShow] = useState(false);
   const [bankAccountList, setBankAccountList] = useState([]);
   // const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
@@ -1274,4 +1274,4 @@ const PaymentMethod = () => {
   );
 };
 
-export default PaymentMethod;
+export default payments;

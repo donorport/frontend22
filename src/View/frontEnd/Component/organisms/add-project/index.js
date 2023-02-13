@@ -203,7 +203,7 @@ const AddProject = (props) => {
                 type="text"
                 className="form-control form-control-lg"
                 // id="videoInput"
-                placeholder="Video URL"
+                placeholder="YouTube URL"
                 name="video"
                 id="video"
                 value={video}
@@ -276,11 +276,21 @@ const AddProject = (props) => {
                         <span className="close" onClick={() => props.removeTempImages(key)}>
                           &times;
                         </span>
-                        <img
+                        {/* <img
                           src={img ? img : noimg}
                           alt="lk"
                           style={{ width: '100px', height: '100px' }}
-                        />
+                        />*/}
+                        <div
+                          className="gallery__img"
+                          style={{
+                            backgroundImage: `url(${img ? img : noimg})`,
+                            width: '100px',
+                            height: '100px'
+                          }}
+                          alt="lk"
+                          data-id="103"
+                        ></div>
                       </div>
                     );
                   })
@@ -296,7 +306,7 @@ const AddProject = (props) => {
                           <span className="close" onClick={() => props.deleteProjectImage(img.id)}>
                             &times;
                           </span>
-                          <img
+                          {/* <img
                             src={
                               img.img
                                 ? img.img !== ''
@@ -307,7 +317,23 @@ const AddProject = (props) => {
                             alt="lk"
                             style={{ width: '100px', height: '100px' }}
                             data-id="103"
-                          />
+                          />*/}
+                          <div
+                            className="gallery__img"
+                            style={{
+                              backgroundImage: `url(${
+                                img.img
+                                  ? img.img !== ''
+                                    ? helper.ProjectImagePath + img.img
+                                    : noimg
+                                  : noimg
+                              })`,
+                              width: '100px',
+                              height: '100px'
+                            }}
+                            alt="lk"
+                            data-id="103"
+                          ></div>
                         </div>
                       );
                     })
@@ -351,7 +377,7 @@ const AddProject = (props) => {
         <p className="error">{error ? (error.products ? error.products : '') : ''}</p>
       )}
       <div>
-        <div className="products-detial-footer d-sm-flex py-3 py-sm-5">
+        <div className="products-detial-footer d-flex py-3 py-sm-5 gap-2">
           <Button
             variant="danger"
             size="lg"

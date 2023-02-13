@@ -17,8 +17,10 @@
     text-decoration: none;
   }
 }
-.tab__nav > * a:not(.active) {
-  margin-bottom: 12px;
+@include media-breakpoint-down(sm) {
+  .tab__nav > * a:not(.active) {
+    margin-bottom: 12px;
+  }
 }
 .tab__icon {
   display: flex;

@@ -1034,7 +1034,7 @@ const AdminPosts = () => {
       resetForm();
       createPost(true);
     } else {
-      let path = '/campaign/' + data.slug + '/settings/paymentMethod';
+      let path = '/campaign/' + data.slug + '/settings/payments';
       navigate(path);
       ToastAlert({ msg: 'Please add Bank Account.', msgType: 'error' });
     }
@@ -1935,13 +1935,13 @@ const AdminPosts = () => {
                 <form className="video-detail-form mt-3">
                   <div className="form-group mb-5">
                     <label htmlFor="videoUrl" className="form__label mb-4">
-                      Video [YouTube]&nbsp;
+                      Video
                       <span className="post-type-text">(optional)</span>
                     </label>
                     <input
                       type="text"
                       className="form-control form-control-lg"
-                      placeholder="Video URL"
+                      placeholder="YouTube URL"
                       name="videoUrl"
                       id="videoUrl"
                       value={videoUrl}
@@ -2004,11 +2004,23 @@ const AdminPosts = () => {
                                 <span className="close" onClick={() => removeFulfilTempImages(key)}>
                                   &times;
                                 </span>
+                                {/*
                                 <img
                                   src={img ? img : noimg}
                                   alt="lk"
                                   style={{ width: '100px', height: '100px' }}
                                 />
+                                */}
+                                <div
+                                  className="gallery__img"
+                                  style={{
+                                    backgroundImage: `url(${img ? img : noimg})`,
+                                    width: '100px',
+                                    height: '100px'
+                                  }}
+                                  alt="lk"
+                                  data-id="103"
+                                ></div>
                               </div>
                             );
                           })
@@ -2026,7 +2038,7 @@ const AdminPosts = () => {
                                   >
                                     &times;
                                   </span>
-                                  <img
+                                  {/*<img
                                     src={
                                       img.img
                                         ? img.img !== ''
@@ -2036,7 +2048,23 @@ const AdminPosts = () => {
                                     }
                                     alt="lk"
                                     style={{ width: '100px', height: '100px' }}
-                                  />
+                                  />*/}
+                                  <div
+                                    className="gallery__img"
+                                    style={{
+                                      backgroundImage: `url(${
+                                        img.img
+                                          ? img.img !== ''
+                                            ? helper.CampaignProductFullImagePath + img.img
+                                            : noimg
+                                          : noimg
+                                      })`,
+                                      width: '100px',
+                                      height: '100px'
+                                    }}
+                                    alt="lk"
+                                    data-id="103"
+                                  ></div>
                                 </div>
                               </>
                             ))
