@@ -78,9 +78,58 @@
   background: url('../../../src/assets/images/loader2.gif') 50% 50% no-repeat rgb(255, 255, 255);
 }
 
+.react-confirm-alert-blur {
+  -webkit-filter: unset !important;
+  filter: unset !important;
+  filter: unset !important;
+  -webkit-filter: unset !important;
+}
+
+.react-confirm-alert-overlay {
+  background: hsl(0deg 0% 100% / 45%) !important;
+  -webkit-animation: react-confirm-alert-fadeIn .2s .2s forwards;
+  animation: react-confirm-alert-fadeIn .2s .2s forwards;
+}
+
+.react-confirm-alert-body {
+  font-size: 16px;
+  color: inherit;
+  font-family: inherit;
+  padding: 40px 60px;
+  text-align: left;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: -7px 7px 20px 10px #0000000d;
+  max-width: 500px;
+}
+
+.react-confirm-alert-body>h1 {
+  margin-bottom: 1.3rem;
+  text-decoration: underline;
+}
+
+.react-confirm-alert-button-group {
+  margin-top: 2.3rem;
+  justify-content: end;
+}
+
 .react-confirm-alert-button-group>button {
-  background-color: #007b55 !important;
   z-index: 9999999999999 !important;
+  font-size: 16px;
+  padding: 12px 45px;
+  font-weight: 900;
+}
+
+.react-confirm-alert-button-group>button:first-child {
+  background-color: unset;
+  color: inherit;
+  padding: 12px 21px;
+}
+
+.react-confirm-alert-button-group>button:last-child {
+  background-color: #87c387 !important;
+  padding: 12px 32px !important;
+  color: white;
 }
 
 .react-confirm-alert-button-group .frntlogout {
@@ -206,7 +255,7 @@
   bottom: auto;
 }
 
-.pace-running .pace-inactive {
+.pace-running .pace-Inactive {
   display: none !important;
 }
 

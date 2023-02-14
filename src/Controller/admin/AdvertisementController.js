@@ -628,8 +628,8 @@ export default function AdvertisementController() {
 
     const deleteAd = (id) => {
         confirmAlert({
-            title: 'Confirm to submit',
-            message: 'Are you sure to delete Advertisement.',
+            title: 'Delete Ad?',
+            message: 'Are you sure you want to delete this Advertisement?',
             buttons: [
                 {
                     label: 'Yes',

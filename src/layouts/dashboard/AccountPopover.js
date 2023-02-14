@@ -56,20 +56,20 @@ export default function AccountPopover() {
 
   const logOut = () => {
     confirmAlert({
-      title: 'Logout',
-      message: 'Are you sure to do Logout ?',
+      title: 'Logout?',
+      message: 'Are you sure you want to logout?',
       buttons: [
         {
-          label: 'Yes',
+          label: 'Cancel',
+        },
+        {
+          label: 'Logout',
 
           onClick: () => {
             // user.logout()
             dispatch(setLogout());
             navigate('/admin/login')
           }
-        },
-        {
-          label: 'No',
         }
       ]
     });

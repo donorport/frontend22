@@ -164,7 +164,7 @@ function LinkedOrg(props) {
       deleteCookie('code3');
       deleteCookie('code4');
 
-      ToastAlert({ msg: 'Please Enter Valid an Activation Code', msgType: 'error' });
+      ToastAlert({ msg: 'Please enter a valid activation code', msgType: 'error' });
     }
   };
 
@@ -309,7 +309,7 @@ function LinkedOrg(props) {
                       <div className="linked__item-label fs-7 fw-bold pl-12p">
                         <div className="mb-3p">{name}</div>
                         <div className="team__role fs-7 fw-normal">
-                          {member.status ? 'Active' : 'InActive'}
+                          {member.status ? 'Active' : 'Inactive'}
                         </div>
                         <div className="org__team__item__price fs-7 text-light">
                           {member?.campaignadminDetails?.name}

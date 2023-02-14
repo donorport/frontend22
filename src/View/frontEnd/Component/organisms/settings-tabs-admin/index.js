@@ -27,7 +27,7 @@ function SettingsTabsAdmin({ activeKey, data, _onClick, ...otherProps }) {
 
       <Nav variant="link" {...otherProps} onClick={_onClick}>
 
-        <Link to={'/campaign/' + data?.slug + '/settings/company'}>
+        <Link to={'/campaign/' + data?.slug + '/settings/profile'}>
           <Nav.Item>
             <Nav.Link
               eventKey="company"

@@ -615,12 +615,12 @@ const AdminPosts = () => {
 
     let checkImg = id ? gallaryImages?.length + galleryImg?.length : galleryImg?.length;
     if (checkImg > MAX_IMAGE_LENGTH) {
-      formaerrror['galleryImg'] = 'Image length Must be less then ' + MAX_IMAGE_LENGTH;
+      formaerrror['galleryImg'] = 'Maximum images allowed: ' + MAX_IMAGE_LENGTH;
     }
 
     let checkMore = id ? moreImages?.length + moreImg?.length : moreImg?.length;
     if (checkMore > MAX_IMAGE_LENGTH) {
-      formaerrror['moreImg'] = 'Image length Must be less then ' + MAX_IMAGE_LENGTH;
+      formaerrror['moreImg'] = 'Maximum images allowed: ' + MAX_IMAGE_LENGTH;
     }
 
     // console.log(formaerrror)
@@ -828,11 +828,14 @@ const AdminPosts = () => {
 
   const deleteProduct = (id) => {
     confirmAlert({
-      title: 'Confirm to submit',
-      message: 'Are you sure to delete Product.',
+      title: 'Delete Post?',
+      message: 'Are you sure to delete this post?',
       buttons: [
         {
-          label: 'Yes',
+          label: 'Cancel'
+        },
+        {
+          label: 'Delete',
           onClick: async () => {
             setLoading(true);
             if (id !== '') {
@@ -858,9 +861,6 @@ const AdminPosts = () => {
               ToastAlert({ msg: 'Product not delete id Not found', msgType: 'error' });
             }
           }
-        },
-        {
-          label: 'No'
         }
       ]
     });
@@ -870,11 +870,14 @@ const AdminPosts = () => {
   const deleteFulfilorder = (id, prodcutId, organizationId) => {
     console.log('Posts, deleteFulfilorder, values: ', { id, prodcutId, organizationId });
     confirmAlert({
-      title: 'Confirm to submit',
-      message: 'Are you sure to delete Sale Receipt?',
+      title: 'Delete Receipt?',
+      message: 'Are you sure you want to delete the Sales Receipt?',
       buttons: [
         {
-          label: 'Yes',
+          label: 'Cancel'
+        },
+        {
+          label: 'Delete',
           onClick: async () => {
             if (id !== '') {
               const deleteFulfilOrderApi = await productApi.deleteFulfilOrder(
@@ -903,9 +906,6 @@ const AdminPosts = () => {
               ToastAlert({ msg: 'Product not delete id Not found', msgType: 'error' });
             }
           }
-        },
-        {
-          label: 'No'
         }
       ]
     });
@@ -1036,7 +1036,7 @@ const AdminPosts = () => {
     } else {
       let path = '/campaign/' + data.slug + '/settings/payments';
       navigate(path);
-      ToastAlert({ msg: 'Please add Bank Account.', msgType: 'error' });
+      ToastAlert({ msg: 'You need to add a Bank Account before posting.', msgType: 'error' });
     }
   };
 
@@ -1076,7 +1076,7 @@ const AdminPosts = () => {
         }
       } else {
         // setLoading(false);
-        ToastAlert({ msg: 'Product not Published', msgType: 'error' });
+        ToastAlert({ msg: 'Product not published', msgType: 'error' });
       }
     }
   };
@@ -1224,11 +1224,11 @@ const AdminPosts = () => {
       ? fulfilmoreImages?.length + fulfilMoreImg?.length
       : fulfilMoreImg?.length;
     if (checkMore > MAX_IMAGE_LENGTH) {
-      formaerrror['fulfilMoreImg'] = 'Image length Must be less then ' + MAX_IMAGE_LENGTH;
+      formaerrror['fulfilMoreImg'] = 'Maximum images allowed: ' + MAX_IMAGE_LENGTH;
     }
 
     // if (fulfilMoreImg.length > helper.MAX_IMAGE_LENGTH) {
-    //   formaerrror['fulfilMoreImg'] = "Image length Must be less then " + helper.MAX_IMAGE_LENGTH
+    //   formaerrror['fulfilMoreImg'] = "Maximum images allowed: " + helper.MAX_IMAGE_LENGTH
 
     // }
     // console.log(fulfilMoreImg)

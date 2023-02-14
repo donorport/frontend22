@@ -225,7 +225,7 @@ const AdminProjects = () => {
 
     let checkImg = id ? projectImages?.length + images?.length : images?.length;
     if (checkImg > helper.MAX_IMAGE_LENGTH) {
-      formaerrror['images'] = 'Image length Must be less then ' + helper.MAX_IMAGE_LENGTH;
+      formaerrror['images'] = 'Maximum images allowed: ' + helper.MAX_IMAGE_LENGTH;
     }
 
     const message = {
@@ -289,7 +289,7 @@ const AdminProjects = () => {
             }
           } else {
             setLoading(false);
-            ToastAlert({ msg: 'Project not save', msgType: 'error' });
+            ToastAlert({ msg: 'Project not saved', msgType: 'error' });
           }
         }
       })
@@ -314,11 +314,14 @@ const AdminProjects = () => {
 
   const deleteProject = (id) => {
     confirmAlert({
-      title: 'Confirm to submit',
-      message: 'Are you sure to delete Project.',
+      title: 'Delete Project?',
+      message: 'Are you sure you want to delete this Project?',
       buttons: [
         {
-          label: 'Yes',
+          label: 'Cancel'
+        },
+        {
+          label: 'Delete',
           onClick: (async () => {
             setLoading(true)
             if (id !== '') {
@@ -343,9 +346,6 @@ const AdminProjects = () => {
               ToastAlert({ msg: 'Project not delete id Not found', msgType: 'error' });
             }
           })
-        },
-        {
-          label: 'No'
         }
       ]
     });

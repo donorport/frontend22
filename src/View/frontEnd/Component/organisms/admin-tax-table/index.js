@@ -87,19 +87,19 @@ const AdminTaxTable = (props) => {
   const deleteItem = (item) => {
     console.log('Delete Item: ', item);
     confirmAlert({
-      title: 'DELETE RECEIPT',
-      message: 'Are you sure to delete this tax receipt? This cannot be revert',
+      title: 'Delete Receipt?',
+      message: 'Are you sure to delete this tax receipt?',
       buttons: [
         {
-          label: 'Yes',
+          label: 'Cancel'
+        },
+        {
+          label: 'Delete',
           onClick: () => {
             if (props.deleteReceipt) {
               props.deleteReceipt(item.userDetails?._id);
             }
           }
-        },
-        {
-          label: 'No'
         }
       ]
     });

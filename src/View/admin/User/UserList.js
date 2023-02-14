@@ -37,7 +37,7 @@ export default function UserList(props) {
         // {
         //     name: "Role",
         //     cell: (row) => <>
-        //         {/* <span className={row.status === 1 ? "badge badge-success" : "badge badge-danger"}>{row.status === 1 ? 'Active' : 'InActive'}</span> */}
+        //         {/* <span className={row.status === 1 ? "badge badge-success" : "badge badge-danger"}>{row.status === 1 ? 'Active' : 'Inactive'}</span> */}
         //         <Label
         //             variant="ghost"
         //             color={(row.role === 2 && 'info') || 'success'}
@@ -51,7 +51,7 @@ export default function UserList(props) {
         {
             name: "Status",
             cell: (row) => <>
-                {/* <span className={row.status === 1 ? "badge badge-success" : "badge badge-danger"}>{row.status === 1 ? 'Active' : 'InActive'}</span> */}
+                {/* <span className={row.status === 1 ? "badge badge-success" : "badge badge-danger"}>{row.status === 1 ? 'Active' : 'Inactive'}</span> */}
                 <Label
                     variant="ghost"
                     color={(row.status === 1 && 'success') || 'error'}

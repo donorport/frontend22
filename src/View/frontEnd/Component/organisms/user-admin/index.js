@@ -1,40 +1,39 @@
-import { Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { regular,solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import OrganisationTeamItem from "../../molecules/org-team-item";
-import helper, { getCookie, setCookie, deleteCookie } from "../../../../../Common/Helper";
-import React, { useState, useEffect } from "react";
-import "./style.scss";
-import organizationApi from "../../../../../Api/frontEnd/organization";
-import ToastAlert from "../../../../../Common/ToastAlert";
-import FrontLoader from "../../../../../Common/FrontLoader";
-import { useSelector, useDispatch } from "react-redux";
-import { setIsActiveOrg } from "../../../../../user/user.action";
-import { confirmAlert } from "react-confirm-alert"
+import { Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import OrganisationTeamItem from '../../molecules/org-team-item';
+import helper, { getCookie, setCookie, deleteCookie } from '../../../../../Common/Helper';
+import React, { useState, useEffect } from 'react';
+import './style.scss';
+import organizationApi from '../../../../../Api/frontEnd/organization';
+import ToastAlert from '../../../../../Common/ToastAlert';
+import FrontLoader from '../../../../../Common/FrontLoader';
+import { useSelector, useDispatch } from 'react-redux';
+import { setIsActiveOrg } from '../../../../../user/user.action';
+import { confirmAlert } from 'react-confirm-alert';
 
 const UserAdmin = () => {
   const userAuthToken = localStorage.getItem('userAuthToken');
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const CampaignAdmin = JSON.parse(localStorage.getItem('CampaignAdmin'));
   const userData = JSON.parse(localStorage.getItem('userData'));
-  const currentId = CampaignAdminAuthToken ? CampaignAdmin.id : userData.id
+  const currentId = CampaignAdminAuthToken ? CampaignAdmin.id : userData.id;
   // const type = localStorage.getItem('type');
   // const tempCampaignAdminAuthToken = localStorage.getItem('tempCampaignAdminAuthToken');
   // const token = type ? type === 'temp' ? tempCampaignAdminAuthToken : CampaignAdminAuthToken : CampaignAdminAuthToken
 
-
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const [teamMemberList, setTeamMemberList] = useState([])
+  const [teamMemberList, setTeamMemberList] = useState([]);
 
   const elemRefs = [];
   const inputStyle = {
-    backgroundColor: "#f8fafd"
-  }
+    backgroundColor: '#f8fafd'
+  };
 
   const autoTab = (e, i) => {
-    setCookie(e.target.name, e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, ""), 1)
+    setCookie(e.target.name, e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, ''), 1);
     const BACKSPACE_KEY = 8;
     const DELETE_KEY = 46;
     let tabindex = i || 0;
@@ -48,7 +47,6 @@ const UserAdmin = () => {
     if (elem) {
       elem.current.focus();
     }
-
   };
 
   const Input = (props) => {
@@ -60,7 +58,7 @@ const UserAdmin = () => {
         data-index={props.index}
         ref={ref}
         maxLength={1}
-        name={"code" + (props.index + 1)}
+        name={'code' + (props.index + 1)}
         // value={val}
         // onChange={(e) => setCode(e, props.index)}
         onKeyUp={(e) => props.autoTab(e, props.index)}
@@ -73,125 +71,108 @@ const UserAdmin = () => {
     <Input key={index} index={index} autoTab={autoTab} />
   ));
 
-  
   const activateCode = async () => {
-    setLoading(true)
-    let code1 = getCookie("code1")
-    let code2 = getCookie("code2")
-    let code3 = getCookie("code3")
-    let code4 = getCookie("code4")
+    setLoading(true);
+    let code1 = getCookie('code1');
+    let code2 = getCookie('code2');
+    let code3 = getCookie('code3');
+    let code4 = getCookie('code4');
 
     if (code1 && code2 && code3 && code4) {
-      let finalCode = code1 + code2 + code3 + code4
+      let finalCode = code1 + code2 + code3 + code4;
 
+      let data = {};
+      data.otp = Number(finalCode);
 
-      let data = {}
-      data.otp = Number(finalCode)
-
-      const verifyOtp = await organizationApi.teamMemberActivation(userAuthToken, data)
-      deleteCookie("code1")
-      deleteCookie("code2")
-      deleteCookie("code3")
-      deleteCookie("code4")
+      const verifyOtp = await organizationApi.teamMemberActivation(userAuthToken, data);
+      deleteCookie('code1');
+      deleteCookie('code2');
+      deleteCookie('code3');
+      deleteCookie('code4');
       if (verifyOtp) {
-
         if (!verifyOtp.data.success) {
-
-          setLoading(false)
+          setLoading(false);
           ToastAlert({ msg: verifyOtp.data.message, msgType: 'error' });
         } else {
-
-          setLoading(false)
+          setLoading(false);
           ToastAlert({ msg: verifyOtp.data.message, msgType: 'success' });
-          dispatch(setIsActiveOrg(!user.isActiveOrg))
-     
+          dispatch(setIsActiveOrg(!user.isActiveOrg));
         }
       } else {
-        setLoading(false)
+        setLoading(false);
         ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
       }
     } else {
-
-      deleteCookie("code1")
-      deleteCookie("code2")
-      deleteCookie("code3")
-      deleteCookie("code4")
+      deleteCookie('code1');
+      deleteCookie('code2');
+      deleteCookie('code3');
+      deleteCookie('code4');
 
       ToastAlert({ msg: 'Please Enter Valid an Activation Code', msgType: 'error' });
     }
-
-  }
+  };
 
   useEffect(() => {
     (async () => {
-      await listTeamMembers()
-
-    })()
-
-  }, [])
+      await listTeamMembers();
+    })();
+  }, []);
 
   const listTeamMembers = async () => {
-  
-
-    const list = await organizationApi.listUserTeamMember(userAuthToken)
+    const list = await organizationApi.listUserTeamMember(userAuthToken);
     if (list) {
       if (list.data.success) {
-        setTeamMemberList(list.data.data)
+        setTeamMemberList(list.data.data);
       } else {
-        setTeamMemberList([])
+        setTeamMemberList([]);
       }
     }
-
-  }
+  };
 
   const removeTeamMember = async (id) => {
-
     confirmAlert({
-      title: 'Confirm to submit',
-      message: 'Are you sure to Remove Member.',
+      title: 'Remove User?',
+      message: 'Are you sure you want to remove this user?',
       buttons: [
         {
-          label: 'Yes',
-          onClick: (async () => {
-            setLoading(true)
+          label: 'Cancel'
+        },
+        {
+          label: 'Remove User',
+          onClick: async () => {
+            setLoading(true);
             if (id !== '') {
-              const deleteAd = await organizationApi.removeTeamMember(userAuthToken, id)
+              const deleteAd = await organizationApi.removeTeamMember(userAuthToken, id);
               if (deleteAd) {
                 if (deleteAd.data.success === false) {
-                  setLoading(false)
+                  setLoading(false);
                   ToastAlert({ msg: deleteAd.data.message, msgType: 'error' });
                 } else {
                   if (deleteAd.data.success === true) {
                     // setEmail('')
                     // setisValid(false)
                     ToastAlert({ msg: deleteAd.data.message, msgType: 'success' });
-                    await listTeamMembers()
-                    setLoading(false)
-
+                    await listTeamMembers();
+                    setLoading(false);
                   }
                 }
               } else {
-                setLoading(false)
+                setLoading(false);
                 ToastAlert({ msg: 'Member not Removed', msgType: 'error' });
               }
             } else {
-              setLoading(false)
+              setLoading(false);
               ToastAlert({ msg: 'Member not delete id Not found', msgType: 'error' });
             }
-          })
-        },
-        {
-          label: 'No',
+          }
         }
       ]
     });
-
-  }
-
+  };
 
   return (
     <>
-     {/*<FrontLoader loading={loading} />*/}
+      {/*<FrontLoader loading={loading} />*/}
       <div className="mw-600">
         <div className="mb-5">
           <div className="d-flex align-items-start">
@@ -206,12 +187,10 @@ const UserAdmin = () => {
 
           <div className="activate">
             <div className="activate__icon">
-              <FontAwesomeIcon icon={regular("fingerprint")} />
+              <FontAwesomeIcon icon={regular('fingerprint')} />
             </div>
             <div className="activate__code">
-              {
-                blocks
-              }
+              {blocks}
               {/* <input type="text" className="activate__input" name="verifyCode1" />
             <input type="text" className="activate__input" name="verifyCode2" />
             <input type="text" className="activate__input" name="verifyCode3" />
@@ -241,27 +220,24 @@ const UserAdmin = () => {
             </a>
           </div> */}
             <ul className="list-unstyled flex__1 ps-0">
-
-            {
-              teamMemberList.length > 0 &&
-              teamMemberList.map((member, i) => {
-                // console.log(member)
-                return (
-                  <OrganisationTeamItem
-                    showEmail={true}
-                    member={member}
-                    isCurrent={member.typeId === currentId}
-                    removeTeamMember={removeTeamMember}
-                    rightElement={
-                      <FontAwesomeIcon
-                        icon={solid("shield-halved")}
-                        className="text-info fs-4 ms-auto"
-                      />
-                    }
-                  />
-                )
-              })
-            }
+              {teamMemberList.length > 0 &&
+                teamMemberList.map((member, i) => {
+                  // console.log(member)
+                  return (
+                    <OrganisationTeamItem
+                      showEmail={true}
+                      member={member}
+                      isCurrent={member.typeId === currentId}
+                      removeTeamMember={removeTeamMember}
+                      rightElement={
+                        <FontAwesomeIcon
+                          icon={solid('shield-halved')}
+                          className="text-info fs-4 ms-auto"
+                        />
+                      }
+                    />
+                  );
+                })}
               {/* <OrganisationTeamItem
               showEmail={true}
               rightElement={
@@ -289,8 +265,8 @@ const UserAdmin = () => {
           </div>
 
           <div className="note note--info">
-            If this User Profile is the admin for the associated Admin Profile,
-            the user may remove users or transfer administrator privileges here.
+            If this User Profile is the admin for the associated Admin Profile, the user may remove
+            users or transfer administrator privileges here.
           </div>
         </div>
       </div>

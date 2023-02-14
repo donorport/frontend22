@@ -11,6 +11,7 @@ import ToastAlert from '../../../../../Common/ToastAlert';
 import { confirmAlert } from 'react-confirm-alert';
 import FrontLoader from '../../../../../Common/FrontLoader';
 import { Outlet, useOutletContext } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const AdminAdmin = () => {
   const [email, setEmail] = useState();
@@ -82,11 +83,14 @@ const AdminAdmin = () => {
 
   const removeTeamMember = async (id) => {
     confirmAlert({
-      title: 'Confirm to submit',
-      message: 'Are you sure to Remove Member.',
+      title: 'Remove User?',
+      message: 'Are you sure you want to remove this user?',
       buttons: [
         {
-          label: 'Yes',
+          label: 'Cancel'
+        },
+        {
+          label: 'Remove User',
           onClick: async () => {
             setLoading(true);
             if (id !== '') {
@@ -106,16 +110,13 @@ const AdminAdmin = () => {
                 }
               } else {
                 setLoading(false);
-                ToastAlert({ msg: 'Member not Removed', msgType: 'error' });
+                ToastAlert({ msg: 'User not Removed', msgType: 'error' });
               }
             } else {
               setLoading(false);
-              ToastAlert({ msg: 'Member not delete id Not found', msgType: 'error' });
+              ToastAlert({ msg: 'User not deleted, ID Not found', msgType: 'error' });
             }
           }
-        },
-        {
-          label: 'No'
         }
       ]
     });
@@ -123,7 +124,7 @@ const AdminAdmin = () => {
 
   return (
     <>
-     {/*<FrontLoader loading={loading} />*/}
+      {/*<FrontLoader loading={loading} />*/}
       <div className="mw-600">
         <div className="mb-5">
           <h4 className="fw-bolder">Administrators</h4>
@@ -145,10 +146,13 @@ const AdminAdmin = () => {
               variant="info"
               disabled={!isValid}
               size="lg"
-              className="rounded fw-bold text-white"
-              onClick={() => inviteTeamMember()}
+              className="d-flex rounded fw-bold text-white"
+              onClick={() => !loading && inviteTeamMember()}
+              style={{
+                opacity: loading ? '0.7' : '1'
+              }}
             >
-              Invite
+              Invite {loading && <CircularProgress className="ms-2" color="inherit" size={14} />}
             </Button>
 
             <span className="rounded text-nowrap fw-bold">

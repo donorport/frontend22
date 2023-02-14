@@ -483,10 +483,13 @@ const UserProfile = () => {
     confirmAlert({
       title: 'Deactivate Account',
       message:
-        "Are you sure to want to deactivate this account? If you will do this then you won't be able to do login again...",
+        "Are you sure to want to deactivate this account? If you will do this then you won't be able to do login again.",
       buttons: [
         {
-          label: 'Yes',
+          label: 'Cancel'
+        },
+        {
+          label: 'Delete Account',
 
           onClick: async () => {
             setLoading(true);
@@ -507,9 +510,6 @@ const UserProfile = () => {
               ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
             }
           }
-        },
-        {
-          label: 'No'
         }
       ]
     });

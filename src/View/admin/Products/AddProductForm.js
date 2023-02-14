@@ -864,7 +864,7 @@ export default function AddProductForm(props) {
                   selected={stateData ? (stateData.status === 0 ? 'selected' : '') : ''}
                   value="0"
                 >
-                  InActive
+                  Inactive
                 </option>
               </select>
 
