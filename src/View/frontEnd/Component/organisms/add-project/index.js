@@ -197,7 +197,7 @@ const AddProject = (props) => {
           <form className="video-detail-form">
             <div className="form-group mb-2">
               <label htmlFor="videoInput" className="form__label">
-                Pictures & Video (iframe)
+                Pictures & Video
               </label>
               <input
                 type="text"
@@ -216,8 +216,16 @@ const AddProject = (props) => {
               )}
             </div>
             {/* <div className="project-video-wrap mb-4"> */}
-            <div className="project-video-wrap mb-4" dangerouslySetInnerHTML={{ __html: video }}>
-              {/* <iframe src={embedlink} title="YouTube video player"></iframe> */}
+            <div className="project-video-wrap mb-4">
+              <iframe
+                title="project-video"
+                key="project-video"
+                width="498"
+                height="280"
+                src={video}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
             </div>
             {/* <div className="">
               <div className="upload-picture-video-block mb-2">

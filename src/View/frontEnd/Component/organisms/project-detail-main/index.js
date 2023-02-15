@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { Button, ProgressBar } from 'react-bootstrap';
+import { ProgressBar } from 'react-bootstrap';
 
 // import { IconToggle, RoundedIcon, TagTitle } from "@components/atoms";
 // import {
@@ -13,20 +13,26 @@ import { Button, ProgressBar } from 'react-bootstrap';
 import ShareWidget from '../share-widget';
 import OrganisationWidget from '../organisation-widget';
 import ProjectGallery from '../project-gallery';
-import OrganisationTeamWidget from '../org-team-widget';
+// import OrganisationTeamWidget from '../org-team-widget';
 // import IconButton from "../../molecules/icon-button";
-import RoundedIcon from '../../atoms/rounded-icon';
+// import RoundedIcon from '../../atoms/rounded-icon';
 import TagTitle from '../../atoms/tag-title';
 import IconToggle from '../../atoms/icon-toggle';
 // import helper from "../../../../../Common/Helper";
-import noImg from '../../../../../assets/images/noimg.jpg';
+// import noImg from '../../../../../assets/images/noimg.jpg';
 import moment from 'moment';
-import helper, { getCalculatedPrice, priceFormat, isIframe, convertState } from '../../../../../Common/Helper';
+import helper, {
+  // getCalculatedPrice,
+  // priceFormat,
+  // isIframe,
+  convertState
+} from '../../../../../Common/Helper';
 
 import './style.scss';
 import { Link } from 'react-router-dom';
 
 function ProjectDetailMain(props) {
+  console.log('iFrame, ProjectDetailMain');
   let projectDetails = props.projectDetails;
   let productDetails = props.productDetails;
   let video = projectDetails?.video;
@@ -270,11 +276,18 @@ function ProjectDetailMain(props) {
 
         </div>*/}
 
-        {video && isIframe(video) && (
-          <div
-            className="project-video-wrap mb-4"
-            dangerouslySetInnerHTML={{ __html: video }}
-          ></div>
+        {video && (
+          <div className="project-video-wrap mb-4">
+            <iframe
+              title="project-details-video"
+              key="project-details-video"
+              width="498"
+              height="280"
+              src={video}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
         )}
 
         {projectDetails?.images && projectDetails?.images.length > 0 && (

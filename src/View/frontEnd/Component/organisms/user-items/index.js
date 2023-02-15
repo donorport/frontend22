@@ -1,103 +1,83 @@
-import { useState, useEffect } from 'react';
-// import { ProgressBar, Button, Row, Col } from "react-bootstrap";
+import { useState, useEffect, useCallback } from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
-// import ListItemImg from "@components/atoms/list-item-img";
-
 import ListItemImg from '../../atoms/list-item-img';
-// import {
-//   LadderMenuItems,
-//   ItemsTable,
-//   ShareWidget,
-// } from "@components/organisms";
-import LadderMenuItems from '../ladder-menu-items';
 import ShareWidget from '../share-widget';
 import ItemsTable from '../items-table';
-import { Outlet, Link, useLocation, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import userApi from '../../../../../Api/frontEnd/user';
 import FrontLoader from '../../../../../Common/FrontLoader';
 import moment from 'moment';
 import helper, {
-  getCalculatedPrice,
   priceFormat,
-  purchasedPriceWithTax,
   download,
-  isIframe,
   getCardIcon,
   convertAddress
 } from '../../../../../Common/Helper';
 import { GalleryImg } from '../../atoms';
-
-import {
-  Button,
-  Accordion,
-  AccordionContext,
-  useAccordionButton,
-  Card,
-  Col,
-  Row,
-  Dropdown,
-  ProgressBar
-} from 'react-bootstrap';
+import { Button, Card, Col, Row, Dropdown, ProgressBar } from 'react-bootstrap';
 
 import './style.scss';
 
 const UserItems = () => {
+  console.log('iFrame, UserItems');
   const [detail, setDetail] = useState({
     key: null,
     show: false
   });
-  const { key, show } = detail;
   const userAuthToken = localStorage.getItem('userAuthToken');
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useOutletContext();
+  const [showReceipt, setShowReceipt] = useState(false);
+  const [data] = useOutletContext();
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalRecord, setTotalRecord] = useState(1);
   const [sortField, setSortField] = useState('created_at');
   const [order, setOrder] = useState('asc');
   const [orderItemList, setOrderItemList] = useState([]);
-  const calculatedPrice = getCalculatedPrice();
-  const [totalPurchase, setTotalPurchase] = useState(0);
   const [totalPriceArray, setTotalPriceArray] = useState([]);
 
-  const getOrderItemList = async (page, field, type) => {
-    setLoading(false);
-    let formData = {};
-    formData.organizationId = data._id;
-    formData.pageNo = page;
-    formData.sortField = field;
-    formData.sortType = type;
-    formData.filter = true;
+  const getOrderItemList = useCallback(
+    async (page, field, type) => {
+      setLoading(false);
+      let formData = {};
+      formData.organizationId = data._id;
+      formData.pageNo = page;
+      formData.sortField = field;
+      formData.sortType = type;
+      formData.filter = true;
 
-    const getOrderItem = await userApi.userOrderItemslist(userAuthToken, formData);
-    if (getOrderItem.data.success === true) {
-      setOrderItemList(getOrderItem.data.data);
-      setTotalPages(getOrderItem.data.totalPages);
-      setTotalRecord(getOrderItem.data.totalRecord);
-      // setTotalPriceArray(getOrderItem.data.totalPriceArray)
-      // console.log(getOrderItem.data.totalPriceArray)
-      // if (getOrderItem.data.data.length > 0) {
-      //   let tempPriceArray = []
-      //   getOrderItem.data.data.map((item, i) => {
-      //     let purchasedPrice = (Math.round(calculatedPrice.priceWithTax(Number(item.productPrice))))
-      //     tempPriceArray.push(purchasedPrice)
-      //   })
-      //   let sum = tempPriceArray.reduce(function (a, b) { return a + b; }, 0);
-      setTotalPriceArray(Object.entries(getOrderItem.data.totalPurchase));
-      // console.log(getOrderItem.data.totalPurchase)
-      // setTotalPurchase(priceFormat(Math.round(calculatedPrice.priceWithTax(Number(getOrderItem.data.totalPurchase)))))
-      // }
-    }
-    setLoading(false);
-  };
+      const getOrderItem = await userApi.userOrderItemslist(userAuthToken, formData);
+      if (getOrderItem.data.success === true) {
+        setOrderItemList(getOrderItem.data.data);
+        setTotalPages(getOrderItem.data.totalPages);
+        setTotalRecord(getOrderItem.data.totalRecord);
+        // setTotalPriceArray(getOrderItem.data.totalPriceArray)
+        // console.log(getOrderItem.data.totalPriceArray)
+        // if (getOrderItem.data.data.length > 0) {
+        //   let tempPriceArray = []
+        //   getOrderItem.data.data.map((item, i) => {
+        //     let purchasedPrice = (Math.round(calculatedPrice.priceWithTax(Number(item.productPrice))))
+        //     tempPriceArray.push(purchasedPrice)
+        //   })
+        //   let sum = tempPriceArray.reduce(function (a, b) { return a + b; }, 0);
+        setTotalPriceArray(Object.entries(getOrderItem.data.totalPurchase));
+        // console.log(getOrderItem.data.totalPurchase)
+        // setTotalPurchase(priceFormat(Math.round(calculatedPrice.priceWithTax(Number(getOrderItem.data.totalPurchase)))))
+        // }
+      }
+      setLoading(false);
+    },
+    [data._id, userAuthToken]
+  );
 
   useEffect(() => {
     (async () => {
       // console.log(totalPriceArray)
       await getOrderItemList(pageNo, sortField, order);
     })();
-  }, [data._id]);
+  }, [data._id, getOrderItemList, order, pageNo, sortField]);
 
   const handleClick = async (e, v) => {
     setPageNo(Number(v));
@@ -336,14 +316,20 @@ const UserItems = () => {
                       </span>
                     </a>
                     {/* // item.fulfilDetails.length === 0 ? */}
-
                     <div>
                       {item.itemDetails.galleryUrl && (
                         <>
-                          <div
-                            className="project-video-wrap mt-4"
-                            dangerouslySetInnerHTML={{ __html: item.itemDetails.galleryUrl }}
-                          ></div>
+                          <div className="project-video-wrap mt-4">
+                            <iframe
+                              title="project-video"
+                              key="project-video"
+                              width="498"
+                              height="280"
+                              src={item.itemDetails.galleryUrl}
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            ></iframe>
+                          </div>
                         </>
                       )}
 
@@ -383,16 +369,19 @@ const UserItems = () => {
                           <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
                         </Card.Header>
 
-                        {item.itemDetails?.isFulfiled &&
-                          item.fulfilDetails[0].video &&
-                          isIframe(item.fulfilDetails[0].video) && (
-                            <div
-                              className="project-video-wrap mt-4"
-                              dangerouslySetInnerHTML={{ __html: item.fulfilDetails[0].video }}
-                            >
-                              {/* <iframe src={embedlink} title="YouTube video player"></iframe> */}
-                            </div>
-                          )}
+                        {item.itemDetails?.isFulfiled && item.fulfilDetails[0].video && (
+                          <div className="project-video-wrap mt-4">
+                            <iframe
+                              title="user-item-video"
+                              key="user-item-video"
+                              width="498"
+                              height="280"
+                              src={item.fulfilDetails[0].video}
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            ></iframe>
+                          </div>
+                        )}
 
                         <div className="gallery__container my-2">
                           {item.itemDetails?.fulfil.length > 0 &&
@@ -534,12 +523,7 @@ const UserItems = () => {
                             <Dropdown.Menu className="">
                               <Dropdown.Item
                                 className="d-flex align-items-center p-2"
-                                onClick={() =>
-                                  download(
-                                    helper.FulfilRecieptPath + item.fulfilDetails[0].receipt,
-                                    item.fulfilDetails[0].receipt
-                                  )
-                                }
+                                onClick={() => setShowReceipt(true)}
                               >
                                 <span className="fw-bold fs-7 flex__1">View</span>
                                 <FontAwesomeIcon
@@ -579,6 +563,17 @@ const UserItems = () => {
                           </Dropdown>
                         </div>
                       </div>
+                      {showReceipt && (
+                        <div className="saleReceipt">
+                          <span className="close" onClick={() => setShowReceipt(false)}>
+                            &times;
+                          </span>
+                          <GalleryImg
+                            thumbImgSrc={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
+                            bigImgSrc={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
+                          />
+                        </div>
+                      )}
                     </>
                   )}
                 </Col>

@@ -10,7 +10,6 @@ import noimg from '../../../../../assets/images/noimg.jpg';
 import helper, {
   priceWithOrganizationTax,
   priceFormat,
-  isIframe,
   hasAlpha
 } from '../../../../../Common/Helper';
 import { validateAll } from 'indicative/validator';
@@ -19,12 +18,13 @@ import { confirmAlert } from 'react-confirm-alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { useSelector } from 'react-redux';
-import { Button, Card, Col, Row, Dropdown, Modal } from 'react-bootstrap';
+import { Button, Card, Col, Row, Dropdown } from 'react-bootstrap';
 import moment from 'moment';
 import _ from 'lodash';
 import { GalleryImg } from '../../atoms';
 
 const AdminPosts = () => {
+  console.log('iFrame, AdminPosts');
   const fileuploadinput = {
     position: 'absolute',
     margin: 0,
@@ -344,6 +344,7 @@ const AdminPosts = () => {
           [e.target.name]: value
         });
       } else if (e.target.name === 'videoUrl') {
+        console.log('iFrame, videoUrl: ', value);
         setFulfilState({
           ...fulfilState,
           videoUrl: value
@@ -1873,7 +1874,7 @@ const AdminPosts = () => {
                 <form className="video-detail-form mt-3">
                   <div className="form-group mb-5">
                     <label htmlFor="videoUrl" className="form__label mb-4">
-                      Video (iframe)&nbsp;
+                      Video &nbsp;
                       <span className="post-type-text">(optional)</span>
                     </label>
                     <input
@@ -1889,12 +1890,17 @@ const AdminPosts = () => {
                     />
                   </div>
 
-                  {videoUrl && isIframe(videoUrl) && (
-                    <div
-                      className="project-video-wrap mb-4"
-                      dangerouslySetInnerHTML={{ __html: videoUrl }}
-                    >
-                      {/* <iframe src={embedlink} title="YouTube video player"></iframe> */}
+                  {videoUrl && (
+                    <div className="project-video-wrap mb-4">
+                      <iframe
+                        title="admin-post-video"
+                        key="admin-post-video"
+                        width="498"
+                        height="280"
+                        src={videoUrl}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
                     </div>
                   )}
                   <label htmlFor="videoUrl" className="form__label">

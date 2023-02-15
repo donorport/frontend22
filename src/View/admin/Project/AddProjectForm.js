@@ -3,8 +3,8 @@ import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Modal } from 'react-bootstrap';
-import { Button, Card } from '@mui/material';
-import helper, { isIframe } from '../../../Common/Helper';
+import { Button } from '@mui/material';
+import helper from '../../../Common/Helper';
 import noimg from '../../../assets/images/noimg.jpg';
 
 const productv = {
@@ -32,6 +32,7 @@ let variantStyle = {
 };
 
 export default function AddProjectForm(props) {
+  console.log('iFrame, AddProjectForm');
   let stateData = props.stateData;
   const adminData = JSON.parse(localStorage.getItem('adminData'));
   let url = stateData.video;
@@ -199,7 +200,7 @@ export default function AddProjectForm(props) {
 
           <div className="form-group row">
             <label htmlFor="name" className="col-sm-2 col-form-label">
-              Pictures & Video (Iframe)
+              Pictures & Video
             </label>
             <div className="col-sm-10">
               <input
@@ -213,11 +214,18 @@ export default function AddProjectForm(props) {
                 }}
               />
               {
-                stateData.video && isIframe(stateData.video) && (
-                  <div
-                    className="project-video-wrap mb-4 mt-4"
-                    dangerouslySetInnerHTML={{ __html: stateData.video }}
-                  ></div>
+                stateData.video && (
+                  <div className="project-video-wrap mb-4 mt-4">
+                    <iframe
+                      title="project-video"
+                      key="project-video"
+                      width="498"
+                      height="280"
+                      src={stateData.video}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
                 )
 
                 // <iframe className='mt-4' width="400" height="200" title="myFrame" src={embedlink} frameBorder="0" allowFullScreen=""></iframe>

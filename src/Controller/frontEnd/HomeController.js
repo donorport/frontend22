@@ -1,32 +1,25 @@
 import Index from '../../View/frontEnd/Layout/Home/Index';
 import productApi from '../../Api/frontEnd/product';
-import React, { useState, useEffect, useContext } from 'react';
-import FrontLoader from '../../Common/FrontLoader';
+import React, { useState, useEffect } from 'react';
 import ToastAlert from '../../Common/ToastAlert';
 import cartApi from '../../Api/frontEnd/cart';
-import settingApi from '../../Api/admin/setting';
-// import { UserContext } from '../../App';
-import adminCampaignApi from '../../Api/admin/adminCampaign';
+// import adminCampaignApi from '../../Api/admin/adminCampaign';
 import categoryApi from '../../Api/admin/category';
 import locationApi from '../../Api/frontEnd/location';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   setCurrency,
-  setUserLanguage,
-  setCurrencyPrice,
   setIsUpdateCart,
-  setProfileImage,
   setUserCountry,
   setUserAddress,
   setUserState,
   setSalesTax,
   setUserCountrySort,
   setProductCount,
-  setLocationFilter,
-  setDistance
+  setLocationFilter
 } from '../../user/user.action';
 import advertisementApi from '../../Api/admin/advertisement';
-import { arrayUnique, getCalculatedPrice } from '../../Common/Helper';
+import { arrayUnique } from '../../Common/Helper';
 import wishlistApi from '../../Api/frontEnd/wishlist';
 import { useNavigate } from 'react-router-dom';
 import { getDistance } from 'geolib';
@@ -46,8 +39,6 @@ export default function HomeController() {
   const [suggestionTag, setSuggestionTag] = useState('');
   const [resultTags, setresultTags] = useState([]);
   const [tempProductList, setTempProductList] = useState([]);
-
-  const getCalc = getCalculatedPrice();
 
   const navigate = useNavigate();
   // const adminAuthToken = localStorage.getItem('adminAuthToken');
@@ -75,14 +66,6 @@ export default function HomeController() {
     lowestPrice: 0
   });
 
-  const [address, setAddress] = useState({
-    stateName: '',
-    zip: '',
-    cityName: '',
-    area: '',
-    countryName: ''
-  });
-
   const [filters, setfilters] = useState({
     taxEligible: false,
     postTag: false,
@@ -108,11 +91,11 @@ export default function HomeController() {
     highToLow,
     oldEst,
     newEst,
-    leastFunded,
-    mostFunded,
+    // leastFunded,
+    // mostFunded,
     HighPrice,
-    lowPrice,
-    search
+    lowPrice
+    // search
   } = filters;
 
   const [pricingFees, setPricingFees] = useState({
@@ -120,14 +103,14 @@ export default function HomeController() {
     transactionFee: 0
   });
 
-  const { platformFee, transactionFee } = pricingFees;
+  // const { platformFee, transactionFee } = pricingFees;
 
-  const getOrganizationList = async () => {
-    const getOrganizationList = await adminCampaignApi.list(token);
-    if (getOrganizationList.data.success === true) {
-      setOrganizationList(getOrganizationList.data.data);
-    }
-  };
+  // const getOrganizationList = async () => {
+  //   const getOrganizationList = await adminCampaignApi.list(token);
+  //   if (getOrganizationList.data.success === true) {
+  //     setOrganizationList(getOrganizationList.data.data);
+  //   }
+  // };
 
   const onClickFilter = (e) => {
     setfilters({
@@ -307,7 +290,7 @@ export default function HomeController() {
         setWishListProductList(list.data.data);
         if (list.data.data.length > 0) {
           let temp = [];
-          list.data.data.map((item, i) => {
+          list.data.data.map((item) => {
             temp.push(item.productDetails._id);
           });
           setWishListProductIds(temp);
@@ -389,7 +372,7 @@ export default function HomeController() {
         let productArray = [];
 
         // if (Number(d) > 1) {
-        allProductList.map((p, i) => {
+        allProductList.map((p) => {
           if (p.lat && p.lng) {
             let dis = getDistance(
               { latitude: user.lat, longitude: user.lng },
@@ -422,12 +405,10 @@ export default function HomeController() {
       // let p = productList.filter(e => getCalc.getData(e.price) < value)
       // console.log(Math.floor(10000000 + Math.random() * 90000000))
     })();
-  }, [user.distance, allProductList]);
+  }, [user.distance, allProductList, user.lat, user.lng, dispatch]);
 
   useEffect(() => {
     (async () => {
-      // console.log(432)
-
       // console.log(user.isUpdateLocationFilter)
       // if (user.isMapLocked) {
       if (user.isUpdateLocationFilter === 'true') {
@@ -437,9 +418,9 @@ export default function HomeController() {
         if (tempProductList.length > 0) {
           let productTagsArray = [];
           await Promise.all(
-            tempProductList.map(async (p, i) => {
+            tempProductList.map(async (p) => {
               await Promise.all(
-                p.tags.map((value, i) => {
+                p.tags.map((value) => {
                   let tempObj = {};
                   tempObj.color = p.categoryDetails.color ? p.categoryDetails.color : 'red';
 
@@ -454,7 +435,6 @@ export default function HomeController() {
           );
 
           setProductTags(productTagsArray);
-
           setProductList(tempProductList);
         }
         dispatch(setLocationFilter('false'));
@@ -465,7 +445,7 @@ export default function HomeController() {
       //     dispatch(setProductCount(0))
       // }
     })();
-  }, [user.isUpdateLocationFilter]);
+  }, [allProductList, dispatch, tempProductList, user.isUpdateLocationFilter]);
 
   useEffect(() => {
     (async () => {
@@ -512,9 +492,9 @@ export default function HomeController() {
 
             let productTagsArray = [];
             await Promise.all(
-              getproductList.data.data.map(async (p, i) => {
+              getproductList.data.data.map(async (p) => {
                 await Promise.all(
-                  p.tags.map((value, i) => {
+                  p.tags.map((value) => {
                     let tempObj = {};
                     tempObj.color = p.categoryDetails.color ? p.categoryDetails.color : 'red';
 
@@ -601,7 +581,7 @@ export default function HomeController() {
     if (getCartList.data.success === true) {
       if (getCartList.data.data.length > 0) {
         let productIds = [];
-        getCartList.data.data.map((p, i) => {
+        getCartList.data.data.map((p) => {
           productIds.push(p.productId);
         });
         setCartProductIds(productIds);
@@ -661,7 +641,7 @@ export default function HomeController() {
   const onSelectCategory = async (e) => {
     if (e.target.checked) {
       setSeletedCategoryList([...seletedCategoryList, e.target.value]);
-      let data = {};
+      // let data = {};
       // data.categoryId = [...seletedCategoryList, e.target.value]
       // await filterProduct(data)
     } else {
@@ -736,7 +716,7 @@ export default function HomeController() {
         });
         break;
       case 4:
-        productList.sort(function (a, b) {
+        productList.sort((a, b) => {
           let firstPer = (a.soldout / a.quantity) * 100;
           let secPer = (b.soldout / b.quantity) * 100;
           return firstPer - secPer;
@@ -753,7 +733,7 @@ export default function HomeController() {
         });
         break;
       case 5:
-        productList.sort(function (a, b) {
+        productList.sort((a, b) => {
           let firstPer = (a.soldout / a.quantity) * 100;
           let secPer = (b.soldout / b.quantity) * 100;
           return secPer - firstPer;
@@ -948,7 +928,7 @@ export default function HomeController() {
     if (value) {
       let tempPtag = [...productTags];
       let tags = tempPtag
-        .sort(function (a, b) {
+        .sort((a, b) => {
           if (a.tag < b.tag) {
             return -1;
           }
@@ -982,7 +962,7 @@ export default function HomeController() {
 
             let finalArray = [];
             if (t.length > 0) {
-              t.map((t1, key) => {
+              t.map((t1) => {
                 finalArray.push(t1.tag);
               });
             }
@@ -1027,7 +1007,7 @@ export default function HomeController() {
 
     let finalArray = [];
     if (tags.length > 0) {
-      tags.map((t1, key) => {
+      tags.map((t1) => {
         finalArray.push(t1.tag);
       });
     }
@@ -1048,9 +1028,9 @@ export default function HomeController() {
       if (getCountryAdvertisementList.data.success) {
         if (getCountryAdvertisementList.data.data.length > 0) {
           let tempArray = [];
-          getCountryAdvertisementList.data.data.map((ad, i) => {
+          getCountryAdvertisementList.data.data.map((ad) => {
             if (ad.advertisementsDetails.length > 0) {
-              ad.advertisementsDetails.map((a, i) => {
+              ad.advertisementsDetails.map((a) => {
                 tempArray.push(a);
               });
             }
@@ -1073,7 +1053,7 @@ export default function HomeController() {
       let p = productList.filter((e) => Number(e.displayPrice ? e.displayPrice : e.price) < value);
 
       if (p.length > 0) {
-        p.map((itm, key) => {
+        p.map((itm) => {
           let price1 = Number(itm.displayPrice ? itm.displayPrice : itm.price);
           // if (value > cartTotal + getCalc.getData(itm.price)) {
           if (value > cartTotal + price1) {
@@ -1091,7 +1071,7 @@ export default function HomeController() {
                 cartTotal += price1 * 2;
               }
             } else {
-              let counts = {};
+              // let counts = {};
               // cart.forEach(function (x) { counts[x] = (counts[x] || 0) + 1 })
               let checkQ = Number(itm.quantity) - Number(itm.soldout);
               if (!p_ids[itm._id]) {
@@ -1160,7 +1140,7 @@ export default function HomeController() {
             }
 
             if (p.length > 0) {
-              p.map((itm, key) => {
+              p.map((itm) => {
                 let price3 = itm.displayPrice ? itm.displayPrice : itm.price;
                 // if (value > cartTotal + getCalc.getData(itm.price)) {
                 if (value > cartTotal + price3) {
@@ -1218,7 +1198,7 @@ export default function HomeController() {
       if (cartProductList.length > 0) {
         let data = {};
         let tempArray = [];
-        cartProductList.map((itm, i) => {
+        cartProductList.map((itm) => {
           let tempobj = {};
           if (tempArray.some((e) => e.productId === itm)) {
             let objIndex = tempArray.findIndex((obj) => obj.productId === itm);

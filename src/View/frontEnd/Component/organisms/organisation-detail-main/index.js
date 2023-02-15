@@ -14,12 +14,13 @@ import RoundedIcon from '../../atoms/rounded-icon';
 import IconButton from '../../molecules/icon-button';
 import ShareWidget from '../share-widget';
 import OrganisationWidget from '../organisation-widget';
-import helper, { isIframe, convertAddress } from '../../../../../Common/Helper';
+import helper, { convertAddress } from '../../../../../Common/Helper';
 import './style.scss';
 import { GalleryImg } from '../../atoms';
 // import { State, Country } from 'country-state-city';
 
 function OrganisationDetailMain(props) {
+  console.log('iFrame, OrganisationDetailMain');
   let organizationDetails = props.organizationDetails;
   const navigate = useNavigate();
   // let iconClass = organizationDetails?.categoryDetails?.iconDetails?.class.replace('fa-', '');
@@ -141,11 +142,18 @@ function OrganisationDetailMain(props) {
             <span className="fs-6" style={{ textTransform: "capitalize" }}>{organizationDetails?.countryDetails?.country}</span>
           </Button>*/}
         </div>
-        {organizationDetails.promoVideo && isIframe(organizationDetails.promoVideo) && (
-          <div
-            className="project-video-wrap mb-4"
-            dangerouslySetInnerHTML={{ __html: organizationDetails.promoVideo }}
-          ></div>
+        {organizationDetails.promoVideo && (
+          <div className="project-video-wrap mb-4">
+            <iframe
+              title="organization-promo-video"
+              key="organization-promo-video"
+              width="498"
+              height="280"
+              src={organizationDetails.promoVideo}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
         )}
 
         <div className="gallery__container my-2">
