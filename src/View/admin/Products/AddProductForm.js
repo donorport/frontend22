@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { Modal } from 'react-bootstrap';
-import { Button, Card } from '@mui/material';
-import helper, { isIframe } from '../../../Common/Helper';
+import { Button } from '@mui/material';
+import helper from '../../../Common/Helper';
 import noimg from '../../../assets/images/noimg.jpg';
-import { unescape } from 'lodash';
-
-// import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import ListItemText from '@mui/material/ListItemText';
-import ListItem from '@mui/material/ListItem';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -21,17 +14,12 @@ import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import { WithContext as ReactTags } from 'react-tag-input';
-// import helper from '../../../Common/Helper';
 import Chip from '@mui/material/Chip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
-
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
-// import { useSelector, useDispatch } from "react-redux";
-import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
-// import 'mapbox-gl/dist/mapbox-gl.css';
+import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 import mapboxgl from 'mapbox-gl';
-// require('mapbox-gl/dist/mapbox-gl.css');
 
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default; // eslint-disable-line
 
@@ -42,9 +30,6 @@ const Map = ReactMapboxGl({
 const Transition = React.forwardRef(function Transition(propss, ref) {
   return <Slide direction="up" {...propss} />;
 });
-const DialogTransition = (props) => {
-  return <Slide direction="up" {...props} />;
-};
 const productv = {
   cursor: 'pointer',
   display: 'block',
@@ -78,6 +63,7 @@ let variantStyle = {
 };
 
 export default function AddProductForm(props) {
+  console.log('iFrame, AddProductForm');
   const mapStyles = {
     londonCycle: 'mapbox://styles/mapbox/light-v9',
     light: 'mapbox://styles/mapbox/light-v9',
@@ -737,11 +723,18 @@ export default function AddProductForm(props) {
               />
 
               {
-                stateData.galleryUrl && isIframe(stateData.galleryUrl) && (
-                  <div
-                    className="project-video-wrap mb-4 mt-4"
-                    dangerouslySetInnerHTML={{ __html: stateData.galleryUrl }}
-                  ></div>
+                stateData.galleryUrl && (
+                  <div className="project-video-wrap mb-4 mt-4">
+                    <iframe
+                      title="product-video"
+                      key="product-video"
+                      width="498"
+                      height="280"
+                      src={stateData.galleryUrl}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
                 )
                 // <iframe className='mt-4' width="400" height="200" title="myFrame" src={embedlink} frameBorder="0" allowFullScreen=""></iframe>
                 // <iframe id="video1" width="520" title="myFrame" height="360" src={stateData.video} frameBorder="0" allowtransparency="true" ></iframe>

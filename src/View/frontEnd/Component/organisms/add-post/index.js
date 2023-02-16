@@ -1077,11 +1077,16 @@ const AddPost = (props) => {
                       />
                     </div>
 
-                    <div
-                      className="project-video-wrap mb-4"
-                      dangerouslySetInnerHTML={{ __html: galleryUrl }}
-                    >
-                      {/* <iframe src={embedlink} title="YouTube video player"></iframe> */}
+                    <div className="project-video-wrap mb-4">
+                      <iframe
+                        title="product-video"
+                        key="product-video"
+                        width="498"
+                        height="280"
+                        src={galleryUrl}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
                     </div>
                     <div className="">
                       <div

@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
+
 import { Button, Dropdown, InputGroup } from 'react-bootstrap';
-import { ReactComponent as SearchIcon } from '../../../../../assets/svg/search.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { light, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-
-import './style.scss';
-import helper from '../../../../../Common/Helper';
 import ReactMapboxGl, { Marker, ScaleControl } from 'react-mapbox-gl';
-
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { ReactComponent as SearchIcon } from '../../../../../assets/svg/search.svg';
+import helper from '../../../../../Common/Helper';
 import {
   setDistance,
   setLatLong,
@@ -22,6 +20,7 @@ import {
   setMapLock,
   setZoomLevel
 } from '../../../../../user/user.action';
+import './style.scss';
 
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default; // eslint-disable-line
 
@@ -32,38 +31,19 @@ let Map = ReactMapboxGl({
 const GeoLocation = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [hidden, setHidden] = useState(false);
   const mapStyles = {
     day: 'mapbox://styles/mapbox/navigation-day-v1',
     night: 'mapbox://styles/mapbox/navigation-night-v1'
   };
 
-  const [state, setState] = useState({
-    locked: false
-  });
-  const onDropdownToggle = (state) => {
-    setHidden(state);
-  };
+  const [locked, setLocked] = useState(false);
+  const [zoomLevel, setZoom] = useState(0);
+  const [hidden, setHidden] = useState(false);
   const [objectVal, setObjectVal] = useState();
 
-  const [location, setLocation] = useState({
-    organizationLocation: '',
-    locationName: '',
-    lng: 0,
-    lat: 0,
-    zoomlevel: 0
-  });
-  // const scale = new mapboxgl.ScaleControl({
-  //   unit: "imperial"
-  // });
-  // scale.setUnit("metric");
-  // Map.addControl(scale)
-  // scale.setUnit('metric')
-  // console.log(scale)
-  // document.getElementById("scale").appendChild(scale.onAdd(Map));
-  // scale.onAdd(Map)
-  //
+  const onDropdownToggle = (state) => setHidden(state);
 
+  // eslint-disable-next-line react/prop-types
   const ToggleButton = React.forwardRef(({ children, onClick }, ref) => {
     return (
       <Button
@@ -81,41 +61,16 @@ const GeoLocation = () => {
   });
 
   const toggleState = () => {
-    if (state.locked) {
-      setState({ ...state, locked: false });
+    if (locked) {
+      setLocked(false);
       dispatch(setMapLock(false));
     } else {
-      // setLocation({
-      //   ...location,
-      //   lat: user.lat ? Number(user.lat) : 0,
-      //   lng: user.lng ? Number(user.lng) : 0,
-      //   zoomlevel: 13
-      // })
-      setState({ ...state, locked: true });
+      setLocked(true);
       dispatch(setMapLock(true));
     }
   };
 
-  const sugg = (result, lat, lng, text) => {
-    // console.log("result", result)
-    // console.log("lat", lat)
-    // console.log("lng", lng)
-    // console.log("text", text)
-
-    // setLocation({
-    //   ...stateData,
-    //   address: result,
-    //   lat: lat,
-    //   lng: lng,
-
-    // })
-    setLocation({
-      ...location,
-      locationName: result,
-      lat: lat,
-      lng: lng
-    });
-
+  const sugg = (result, lat, lng) => {
     let locationData = {};
     locationData.lat = lat;
     locationData.lng = lng;
@@ -123,42 +78,14 @@ const GeoLocation = () => {
   };
 
   useEffect(() => {
-    setLocation({
-      ...location,
-      organizationLocation: user.countrySortName,
-      lat: user.lat ? Number(user.lat) : 0,
-      lng: user.lng ? Number(user.lng) : 0,
-      zoomlevel: user.zoom ? Number(user.zoom) : 0
-    });
-
-    setState({ ...state, locked: user.isMapLocked });
+    if (user) {
+      setZoom(user.zoom ? Number(user.zoom) : 0);
+      setLocked(user.isMapLocked);
+    }
   }, [user]);
 
-  /*let Obj = {
-    // "circle-radius": 100,
-    'circle-radius': {
-      stops: [
-        [0, 0],
-        // [12, 100]
-        // [12, 2],
-        [10, 220]
-      ],
-      base: 2
-    },
-
-    'circle-color': 'rgba(29,161,242,.2)',
-    // "circle-stroke-color": "purple",
-    'circle-stroke-color': 'rgba(29,161,242,.2)',
-
-    'circle-opacity': 1,
-    'circle-stroke-opacity': 1,
-    'circle-stroke-width': 1
-  };*/
-
   useEffect(() => {
-    // console.log(objectVal)
-
-    if (user.distance === '') {
+    if (user?.distance === '') {
       if (objectVal?.includes('© Mapbox ')) {
         const after_ = objectVal?.substring(objectVal.indexOf('map') + 3);
         dispatch(setDistance(after_));
@@ -169,35 +96,21 @@ const GeoLocation = () => {
 
     if (!user.isMapLocked) {
       dispatch(setLocationFilter('false'));
-      // console.log(objectVal)
       if (objectVal?.includes('© Mapbox ')) {
         const after_ = objectVal?.substring(objectVal.indexOf('map') + 3);
-        // console.log(after_)
         dispatch(setDistance(after_));
       } else {
-        dispatch(setDistance(objectVal));
+        if (objectVal?.trim() !== '0 m') {
+          dispatch(setDistance(objectVal));
+        }
       }
     }
+  }, [dispatch, objectVal, user.distance, user.isMapLocked]);
 
-    // console.log(objectVal)
-
-    // Map.setPaintProperty("point-blip", "circle-radius", 8)
-    // Map.on("load", () => {
-    //   Map.addLayer({
-    //     id: "snotel-sites-circle",
-    //     type: "circle",
-    //     source: "snotel-sites",
-    //     paint: {
-    //       "circle-color": "#1d1485",
-    //       "circle-radius": 8,
-    //       "circle-stroke-color": "#ffffff",
-    //       "circle-stroke-width": 2,
-    //     },
-    //   })
-    // })
-
-    // console.log(Map)
-  }, [objectVal]);
+  const onUpdateResults = () => {
+    dispatch(setLocationFilter('true'));
+    setHidden(false);
+  };
 
   return (
     <>
@@ -249,7 +162,7 @@ const GeoLocation = () => {
                   onClick={() => toggleState()}
                 >
                   <span className="d-flex align-items-center icon fs-5">
-                    {!state.locked ? (
+                    {!locked ? (
                       <FontAwesomeIcon icon={light('lock-open')} />
                     ) : (
                       <FontAwesomeIcon icon={solid('lock')} />
@@ -258,74 +171,28 @@ const GeoLocation = () => {
                 </Button>
               </div>
             </div>
-            <div className="mapboxgl-map" style={{ maxWidth: '100% !important' }}>
-              <Map
-                style={mapStyles.day}
-                zoom={[location.zoomlevel]}
-                onRender={(e) => {
-                  // console.log('e.boxZoom._container.outerText', e.boxZoom._container.outerText)
-                  setObjectVal(e.boxZoom._container.outerText);
-                }} //boxZoom._container.outerText
-                containerStyle={{
-                  height: '300px',
-                  maxWidth: '100% !important'
-                  //width: '310px'
-                }}
-                center={[location.lng, location.lat]}
-
-                // onStyleLoad={onStyleLoad}
-              >
-                <div className="radius-container">
-                  <div className="radius-circle"></div>
-                </div>
-
-                {/* <Layer
-                  type="circle"
-                  id="circle"
-                  paint={Obj}
-                  coordinates={[location.lng, location.lat]}
+            <div className="mapboxgl-map">
+              {user.zoom && user.lat && user.lng ? (
+                <Map
+                  style={mapStyles.day}
+                  containerStyle={{
+                    height: '300px'
+                  }}
+                  zoom={[user.zoom]}
+                  center={[user.lng, user.lat]}
+                  onRender={(e) => setObjectVal(e.boxZoom._container.outerText)}
                 >
-                  <Feature coordinates={[location.lng, location.lat]} />
-                </Layer>*/}
-
-                {/*     <Source
-                  id="point"
-                  geoJsonSource={{
-                    type: 'geojson',
-                    data: {
-                      type: 'Point',
-                      coordinates: [0, 0]
-                    }
-                  }}
-                />
-
-                <Layer
-                  id="point-blip"
-                  type="circle"
-                  sourceId="point"
-                  paint={{
-                    'circle-radius': 8,
-                    'circle-radius-transition': { duration: 0 },
-                    'circle-opacity-transition': { duration: 0 },
-                    'circle-color': '#007cbf'
-                  }}
-                />
-                <Layer
-                  id="point"
-                  type="circle"
-                  sourceId="point"
-                  paint={{
-                    'circle-radius': 8,
-                    'circle-color': '#007cbf'
-                  }}
-                />
-                */}
-                <ScaleControl style={{ zIndex: '-1' }} />
-
-                <Marker coordinates={[location.lng, location.lat]} anchor="bottom">
-                  <div className="mapboxgl-user-location-dot"></div>
-                </Marker>
-              </Map>
+                  <div className="radius-container">
+                    <div className="radius-circle"></div>
+                  </div>
+                  <ScaleControl style={{ zIndex: '-1' }} />
+                  <Marker coordinates={[user.lng, user.lat]} anchor="bottom">
+                    <div className="mapboxgl-user-location-dot"></div>
+                  </Marker>
+                </Map>
+              ) : (
+                <></>
+              )}
             </div>
 
             <div className="geo__slider">
@@ -338,24 +205,20 @@ const GeoLocation = () => {
                   marginTop: '-10px',
                   opacity: '1'
                 }}
-                min={1}
+                min={0}
                 max={220}
-                value={location.zoomlevel * 10}
+                value={zoomLevel * 10}
                 railStyle={{ backgroundColor: '#C7E3FB', height: '9px' }}
-                disabled={state.locked}
+                disabled={locked}
                 onChange={(e) => {
-                  setLocation({ ...location, zoomlevel: e / 10 });
+                  setZoom(e / 10);
                   dispatch(setZoomLevel(e / 10));
                 }}
               />
             </div>
 
             <div className="d-grid gap-2 p-2">
-              <Button
-                className="toggle__btn"
-                variant="success"
-                onClick={() => dispatch(setLocationFilter('true'))}
-              >
+              <Button className="toggle__btn" variant="success" onClick={onUpdateResults}>
                 Update Results{' '}
                 {user.locationProductCount > 0 ? ' ( ' + user.locationProductCount + ' ) ' : ''}
               </Button>
@@ -367,4 +230,4 @@ const GeoLocation = () => {
   );
 };
 
-export default GeoLocation;
+export default React.memo(GeoLocation);

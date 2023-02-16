@@ -6,20 +6,17 @@ import 'rc-slider/assets/index.css';
 
 import IconToggle from '../../atoms/icon-toggle';
 import ShareWidget from '../share-widget';
-import { ReactComponent as CategoryIcon } from '../../../../../assets/svg/child.svg';
 import IconText from '../../molecules/icon-text';
 import ProjectGallery from '../project-gallery';
 import moment from 'moment';
 import helper, {
   getCalculatedPrice,
   priceFormat,
-  isIframe,
   convertAddress
 } from '../../../../../Common/Helper';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setIsUpdateCart } from '../../../../../user/user.action';
 import './style.scss';
 import { GalleryImg } from '../../atoms';
 
@@ -27,6 +24,7 @@ import { GalleryImg } from '../../atoms';
 // import WidgetTitle from "../../atoms";
 
 function ProjectDetailMain(props) {
+  console.log('iFrame, ProjectDetailMain');
   let productDetails = props.productDetails;
   const getCalc = getCalculatedPrice();
   // let price = getCalc.getData(productDetails?.price)
@@ -252,11 +250,18 @@ function ProjectDetailMain(props) {
         </div>
       </div>
 
-      {productDetails.galleryUrl && isIframe(productDetails.galleryUrl) && (
-        <div
-          className="project-video-wrap mb-4"
-          dangerouslySetInnerHTML={{ __html: productDetails.galleryUrl }}
-        ></div>
+      {productDetails.galleryUrl && (
+        <div className="project-video-wrap mb-4">
+          <iframe
+            title="product-details-video"
+            key="product-details-video"
+            width="498"
+            height="280"
+            src={productDetails.galleryUrl}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
       )}
 
       <h4 className="page__blurb">{productDetails.needheadline}</h4>
@@ -413,41 +418,44 @@ function ProjectDetailMain(props) {
               </span>
             </div> */}
 
-          {productDetails.isFulfiled &&
-            productDetails.fulfiledproductsDetails.video &&
-            isIframe(productDetails.fulfiledproductsDetails.video) && (
-              <>
-                <div className="note note-info align-items-center mt-5">
-                  <Card.Header className="post__accordion-header pb-2 pt-2">
-                    <span className="fs-3 fw-bolder text-dark">Followup</span>
-                    <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
-                  </Card.Header>
+          {productDetails.isFulfiled && productDetails.fulfiledproductsDetails.video && (
+            <>
+              <div className="note note-info align-items-center mt-5">
+                <Card.Header className="post__accordion-header pb-2 pt-2">
+                  <span className="fs-3 fw-bolder text-dark">Followup</span>
+                  <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
+                </Card.Header>
 
-                  <div
-                    className="project-video-wrap mb-4"
-                    dangerouslySetInnerHTML={{
-                      __html: productDetails.fulfiledproductsDetails.video
-                    }}
-                  ></div>
-
-                  <div className="gallery__container my-2">
-                    {productDetails?.productImages &&
-                      productDetails?.productImages.length > 0 &&
-                      productDetails?.productImages.map((img, i) => {
-                        if (img.type === 'fulfillImage') {
-                          return (
-                            <GalleryImg
-                              key={i}
-                              thumbImgSrc={helper.CampaignProductFullImagePath + img.image}
-                              bigImgSrc={helper.CampaignProductFullImagePath + img.image}
-                            />
-                          );
-                        }
-                      })}
-                  </div>
+                <div className="project-video-wrap mb-4">
+                  <iframe
+                    title="product-details-video"
+                    key="product-details-video"
+                    width="498"
+                    height="280"
+                    src={productDetails.fulfiledproductsDetails.video}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
                 </div>
-              </>
-            )}
+
+                <div className="gallery__container my-2">
+                  {productDetails?.productImages &&
+                    productDetails?.productImages.length > 0 &&
+                    productDetails?.productImages.map((img, i) => {
+                      if (img.type === 'fulfillImage') {
+                        return (
+                          <GalleryImg
+                            key={i}
+                            thumbImgSrc={helper.CampaignProductFullImagePath + img.image}
+                            bigImgSrc={helper.CampaignProductFullImagePath + img.image}
+                          />
+                        );
+                      }
+                    })}
+                </div>
+              </div>
+            </>
+          )}
         </>
       ) : (
         <></>
