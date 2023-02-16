@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Dropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { light, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Link } from 'react-router-dom';
-import helper, { getCalculatedPrice, priceFormat } from '../../../../../Common/Helper';
+import PropTypes from 'prop-types';
+
+import { getCalculatedPrice, priceFormat } from '../../../../../Common/Helper';
 import EmptyCart from '../../atoms/empty-cart';
 import CartList from './cart-list';
 
@@ -15,10 +17,12 @@ const ShoppingCart = (props) => {
     subTotal: '',
     totalQuantity: 0
   });
+  const [calculate, setCalculate] = useState(false);
 
   const CalculatePrice = getCalculatedPrice();
   let currencySymbol = CalculatePrice.currencySymbol();
 
+  // eslint-disable-next-line react/prop-types
   const CartButton = React.forwardRef(({ children, onClick }, ref) => {
     return (
       <Button
@@ -44,8 +48,7 @@ const ShoppingCart = (props) => {
       let tempPriceArray = [];
       let tempQuantityArray = [];
 
-      props.cartItem.map((item, i) => {
-        // let price = CalculatePrice.getData(item.productDetails?.price)
+      props.cartItem.map((item) => {
         let price = item.productDetails?.displayPrice
           ? item.productDetails?.displayPrice
           : item.productDetails?.price;
@@ -54,21 +57,26 @@ const ShoppingCart = (props) => {
         tempQuantityArray.push(item.quantity);
       });
 
-      let sum = tempPriceArray.reduce(function (a, b) {
+      let sum = tempPriceArray.reduce((a, b) => {
         return a + b;
       }, 0);
-      let quantitySum = tempQuantityArray.reduce(function (a, b) {
+      let quantitySum = tempQuantityArray.reduce((a, b) => {
         return a + b;
       }, 0);
 
-      setState({
-        ...state,
+      setState((s) => ({
+        ...s,
         empty: false,
         subTotal: Number(sum),
         totalQuantity: Number(quantitySum)
-      });
+      }));
     }
-  }, [props.cartItem]);
+  }, [props, calculate]);
+
+  const updateCart = (quantity, id, producId, type) => {
+    props.updateCartItem(quantity, id, producId, type);
+    setCalculate((s) => !s);
+  };
 
   return (
     <>
@@ -108,8 +116,9 @@ const ShoppingCart = (props) => {
                 <CartList
                   cartItem={props.cartItem}
                   removeCartItem={props.removeCartItem}
-                  updateCartItem={props.updateCartItem}
-                  CalculatePrice={CalculatePrice}
+                  // updateCartItem={props.updateCartItem}
+                  updateCartItem={updateCart}
+                  // CalculatePrice={CalculatePrice}
                   currencySymbol={currencySymbol}
                 />
               )}
@@ -121,22 +130,29 @@ const ShoppingCart = (props) => {
                       {currencySymbol + priceFormat(Number(state?.subTotal))}
                     </span>
                   </div>
-                  {/* <Button variant="info" href="/checkout" className="ms-auto">
-                  Checkout
-                </Button> */}
                   <Link to="/checkout" className=" btn btn-info ms-auto">
                     Checkout
                   </Link>
                 </div>
               )}
             </div>
-
             <div className="cart__dropdown-footer"></div>
           </div>
         </Dropdown.Menu>
       </Dropdown>
     </>
   );
+};
+
+ShoppingCart.propTypes = {
+  cartItem: PropTypes.arrayOf(PropTypes.object).isRequired,
+  removeCartItem: PropTypes.func,
+  updateCartItem: PropTypes.func
+};
+
+ShoppingCart.defaultProps = {
+  removeCartItem: () => console.log('removeCartItem, required'),
+  updateCartItem: () => console.log('updateCartItem, required')
 };
 
 export default ShoppingCart;

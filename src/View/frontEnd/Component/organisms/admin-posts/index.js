@@ -1369,7 +1369,7 @@ const AdminPosts = () => {
   return (
     <>
       <div
-        className="modal  common-modal"
+        className="modal common-modal"
         id="removeModalTwo"
         tabIndex="-1"
         aria-labelledby="removeModalTwoLabel"
@@ -1434,7 +1434,13 @@ const AdminPosts = () => {
               />
               $
               {productList && productList.length > 0
-                ? productList.reduce((a, c) => a + c.displayPrice, 0).toFixed(2)
+                ? productList
+                    .reduce(
+                      (previousTotal, current) =>
+                        previousTotal + Number(current.displayPrice * current.soldout),
+                      0
+                    )
+                    .toFixed(2)
                 : 0}
             </span>
 

@@ -2,20 +2,19 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Button } from 'react-bootstrap';
-import ListItemImg from '../../atoms/list-item-img';
-import helper, { priceFormat, getCalculatedPrice } from '../../../../../Common/Helper';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+
+import ListItemImg from '../../atoms/list-item-img';
+import helper, { priceFormat } from '../../../../../Common/Helper';
 
 import './style.scss';
 import { debounce } from 'lodash';
 
 function CartItem(props) {
   let cartItem = props.cartItem;
-  console.log(cartItem);
-  // console.log(cartItem)
   const [quantity, setQuantity] = useState();
   // const CalculatePrice = getCalculatedPrice()
-  // console.log(cartItem)
 
   // let transactionFee = props.pricingFees?.transactionFee
   // let platformFee = props.pricingFees?.platformFee
@@ -27,41 +26,21 @@ function CartItem(props) {
 
   let currencySymbol = props.currencySymbol;
 
-  // console.log(location)
-
-  const minusValue = async (value) => {
-    // console.log('minusValue', value)
-    if (value > 1) {
-      value--;
-      await props.updateCartItem(value, cartItem?._id, cartItem?.productDetails?._id, 'minus');
-    }
-    // setQuantity(value)
-  };
-
-  const plusValue = async (value) => {
-    // console.log('plusValue', value)
-    //value++;
-    // setQuantity(value)
-  };
-  // console.log(props.cartItem)
-
-  // const myfunction = debounce(async (quantity) => {
-  //   // await props.updateCartItem(quantity, cartItem?._id, cartItem?.productDetails?._id, 'plus');
-  //   console.log('My function: ', quantity);
-  // }, 5000);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateQuantity = useCallback(
     debounce(async (quantity) => {
       await props.updateCartItem(quantity, cartItem?._id, cartItem?.productDetails?._id, 'plus');
     }, 1000),
     []
   );
+
   useEffect(() => {
     setQuantity(cartItem?.quantity);
   }, [cartItem]);
 
   useEffect(() => {
     updateQuantity(quantity);
-  }, [quantity]);
+  }, [quantity, updateQuantity]);
 
   return (
     <li className="cd__cart__item px-1 py-2 d-flex align-items-center border-bottom">
@@ -133,5 +112,18 @@ function CartItem(props) {
     </li>
   );
 }
+
+CartItem.propTypes = {
+  cartItem: PropTypes.object.isRequired,
+  removeCartItem: PropTypes.func,
+  updateCartItem: PropTypes.func,
+  currencySymbol: PropTypes.string
+};
+
+CartItem.defaultProps = {
+  removeCartItem: () => console.log('removeCartItem, required'),
+  updateCartItem: () => console.log('updateCartItem, required'),
+  currencySymbol: ''
+};
 
 export default CartItem;

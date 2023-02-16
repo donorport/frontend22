@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Container, Button } from 'react-bootstrap';
-// import { Logo, ListItemImg } from "@components/atoms";
 import Logo from '../Component/atoms/logo';
 import ListItemImg from '../Component/atoms/list-item-img';
 import helper, { getCalculatedPrice, priceFormat } from '../../../Common/Helper';
@@ -11,7 +10,6 @@ import { Link } from 'react-router-dom';
 import './style.scss';
 
 const Cart = (props) => {
-  // console.log(props.cartItem)
   let cartItem = props.cartItem;
   const [total, setTotal] = useState(0);
   const [subTotal, setSubTotal] = useState(0);
