@@ -6,6 +6,7 @@ import ListItemImg from '../../atoms/list-item-img';
 import helper, { priceFormat } from '../../../../../Common/Helper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { Link } from 'react-router-dom';
 import './style.scss';
 
 const SummaryContent = (props) => {
@@ -33,7 +34,7 @@ const SummaryContent = (props) => {
               // let price = props.CalculatedPrice(item.productDetails?.price)
 
               return (
-                <li className="d-flex align-items-center py-2" key={i}>
+                <li className="d-flex align-items-start py-2" key={i}>
                   <div className="d-flex align-items-center mb-2 mb-sm-0 flex__1">
                     <div className="position-relative">
                       <ListItemImg
@@ -51,7 +52,9 @@ const SummaryContent = (props) => {
                       >
                         {item?.productDetails?.headline}
                       </Button>
-                      <div className="text-light mb-1">{item?.productDetails?.brand} ®</div>
+                      <div className="text-light mb-1">
+                        {item?.productDetails?.organizationDetails?.name}
+                      </div>
                       <Button
                         variant="link"
                         className="btn__remove p-0 fs-7 text-decoration-none"
@@ -66,7 +69,7 @@ const SummaryContent = (props) => {
                       <FontAwesomeIcon icon={solid('calculator')} className="text-info fs-4" />
                     </div>
                   )}
-                  <span className="checkout__subtotal--price text-end fs-4 fw-bold text-light ms-3 fs-sm-4 fs-4">
+                  <span className="checkout__subtotal--price text-end mt-6p fs-5 fw-bold text-light ms-3 fs-sm-4 fs-4">
                     {props.currencySymbol +
                       // priceFormat(
                       //   props.CalculatedPrice.getData(item.productDetails?.price) * item.quantity
@@ -92,7 +95,9 @@ const SummaryContent = (props) => {
             </span>
           </div>
           <div className="d-flex align-items-center pb-20p">
-            <span className="fw-semibold fs-7 text-light flex__1">Service Charge:</span>
+            <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
+              Service Charge:
+            </Link>
             <span className="fw-bold text-light fs-5">
               {props.currencySymbol + priceFormat(platformCost)}
             </span>
@@ -120,12 +125,34 @@ const SummaryContent = (props) => {
           {props.currencySymbol + priceFormat(grandTotal)}
         </span>
       </div>
-      <div className="checkout__legend d-flex my-3 fs-7 p-2">
-        <FontAwesomeIcon icon={solid('calculator')} className="fs-4 text-info me-1" />
-        <span style={{ lineHeight: '2' }}>
-          You'll receive a tax deductabile receipt for this donation.
-        </span>
-      </div>
+      {cartItem.findIndex((p) => p?.productDetails?.tax).length >= 0 ? (
+        <div className="checkout__legend d-flex my-3 fs-7 p-2">
+          <FontAwesomeIcon icon={solid('calculator')} className="fs-4 text-info me-1" />
+          <span style={{ lineHeight: '2' }}>
+            You'll receive a tax deductabile receipt for this donation.
+          </span>
+        </div>
+      ) : (
+        <></>
+      )}
+      {cartItem.findIndex((p) => p?.tax).length >= 0 ? (
+        <div className="checkout__legend d-flex my-3 fs-7 p-2">
+          <FontAwesomeIcon icon={solid('calculator')} className="fs-4 text-info me-1" />
+          <span style={{ lineHeight: '2' }}>
+            You'll receive a tax deductabile receipt for this donation.
+          </span>
+        </div>
+      ) : (
+        <></>
+      )}
+      {/* {cartItem.indexOf(props.productDetails?.tax) > -1 && (
+        <div className="checkout__legend d-flex my-3 fs-7 p-2">
+          <FontAwesomeIcon icon={solid('calculator')} className="fs-4 text-info me-1" />
+          <span style={{ lineHeight: '2' }}>
+            You'll receive a tax deductabile receipt for this donation.
+          </span>
+        </div>
+      )}*/}
       <div className="note note--info px-0 text-start">
         All prices include merchant fees & sales tax. The organization(s) will receive the exact
         amount required to purchase each unit. Your donation is not a gift-in-kind transaction. No

@@ -174,6 +174,12 @@ const Terms = () => {
                 .{' '}
               </p>
               <p>
+                <u>Display Price:</u> The price of an item shown on the Fundraising Post is an
+                all-inclusive amount, representing the cost per unit of an item, as well as a
+                regional sales tax as set by the charity and a transaction fee determined by the
+                Payment Processor.{' '}
+              </p>
+              <p>
                 <u>Transaction Fee:</u> Although there are no fees to start or maintain a
                 Fundraiser, please keep in mind that a transaction fee, including credit and debit
                 charges, and merchant fees are added to the unit price of each charitable item
@@ -181,13 +187,14 @@ const Terms = () => {
                 fee is the exact amount charged by our Payment Processor to process the transaction.
                 Donorport retains no part of the transaction fee. Any Transaction Fees exceeding the
                 de facto cost of an item (inclusive of all of Transaction fees and tax) will be kept
-                by the Organizer as an additional charitable donation.
+                by the Organizer as an additional charitable donation. Transaction Fees paid by the
+                Donor are not tax deductible and Tax Receipts will not be provided for the
+                Transaction Fee.
               </p>
               <p>
-                <u>Display Price:</u> The price of an item shown on the Fundraising Post is an
-                all-inclusive amount, representing the cost per unit of an item, as well as a
-                regional sales tax as set by the charity and a transaction fee determined by the
-                Payment Processor.{' '}
+                <u>Platform Fee:</u> Donorport includes a service charge paid for by the donor upon
+                completion of each transaction and retains this amount from each transaction.
+                (hereinafter and on the website referred to as "Platform Fee").
               </p>
               <p>
                 <u>Tax Receipts:</u> If your organization is not a registered charity, the platform
@@ -385,9 +392,9 @@ const Terms = () => {
                   <ul>
                     {' '}
                     <li>
-                      1. The Charity has control over the Donations by our Payment Processor,
-                      Stripe, and the Charity, rather than Donorport or Stripe, is responsible for
-                      issuing refunds and handling chargebacks directly with Donors.{' '}
+                      1. Donorport may initiate refunds by reversing transactions made from our
+                      Payment Processor and will do so at it's own discretion. Refunds are not
+                      gauranteed and are processed on a case-by-case basis.{' '}
                     </li>
                   </ul>
                 </li>

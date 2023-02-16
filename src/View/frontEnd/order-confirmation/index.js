@@ -228,7 +228,9 @@ const OrderConfirmPage = () => {
                     </div>
                   </div>
                   <div className="total__sub d-flex justify-content-between">
-                    <div className="fw-semibold fs-7 text-light">Service Charge:</div>
+                    <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
+                      Service Charge:
+                    </Link>
                     <div className="total__value">
                       <p className="fw-semibold text-light fs-7">
                         {' '}

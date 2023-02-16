@@ -76,8 +76,8 @@ const Pricing = () => {
               <div className="note fs-5 mb-3">
                 Donorport includes sales tax and merchant fees in the display price of each post to
                 ensure the charity has the exact amount required to purchase their items. Donorport
-                includes a 2% service charge at checkout so that we can continue to offer our
-                services to the Donorport community. For More information please visit our{' '}
+                adds a 2% service charge at checkout to continue offering our services to the
+                Donorport community. For more information, please visit our{' '}
                 <a href="/terms" className="link">
                   Terms of service
                 </a>
@@ -93,8 +93,8 @@ const Pricing = () => {
                       </div>
 
                       <p style={{ color: 'rgba(151,150,177,.48)' }}>
-                        Donorport adds 2% at checkout so that we can to continue offer our services
-                        to donors like you.
+                        Donorport adds 2% at checkout to continue offering our services to donors
+                        like you.
                       </p>
                     </div>
                   </div>
@@ -139,7 +139,7 @@ const Pricing = () => {
                       </div>
 
                       <p style={{ color: 'rgba(151,150,177,.48)' }}>
-                        Paid by the Donor at checkout
+                        Paid by the Donor at checkout (non-deductible)
                       </p>
                     </div>
                   </div>

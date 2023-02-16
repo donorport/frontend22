@@ -219,7 +219,7 @@ const Cart = (props) => {
               </span>
             </div>
             <div className="d-flex align-items-center py-3 border-bottom">
-              <span className="fw-semibold fs-7 text-light flex__1">Service Charge:</span>
+              <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">Service Charge:</Link>
               <span className="fw-bold text-light fs-5">{currencySymbol + platformCost}</span>
             </div>
 

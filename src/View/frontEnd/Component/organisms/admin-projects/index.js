@@ -414,7 +414,7 @@ const AdminProjects = () => {
       projectData.productDetails.length === 0
     ) {
       ToastAlert({
-        msg: 'Project not Published please fill Required information',
+        msg: 'Project not published. Please fill Required information',
         msgType: 'error'
       });
     } else {

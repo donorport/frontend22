@@ -23,7 +23,7 @@ function WishlistItem(props) {
           <Link variant="link" className="wishlist__item__name text-decoration-none" to={'/item/' + item.productDetails.slug}>
           {item.productDetails.headline}
            </Link>
-           <div className="cd__cart__location">
+           <div className="fs-7 ad__activity__sub-name mt-3p">
               {item?.productDetails?.organizationDetails?.name}
             </div>
             {/* <div className="wishlist__item__location">Canada</div> */}

@@ -7,6 +7,7 @@ import AvatarImg from '../../../../../assets/images/avatar.jpeg';
 import helper, { getCalculatedPrice } from '../../../../../Common/Helper';
 import { useSelector, useDispatch } from 'react-redux';
 import { CircularProgress } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 import './style.scss';
 
@@ -174,7 +175,9 @@ const DonateModal = (props) => {
             <div className="donation__review text-dark d-flex flex-column align-items-center justify-content-center">
               <span className="fw-semibold">${selectedValue}</span>
               <div className="d-flex align-items-center">
-                <span className="fw-semibold fs-7 text-light flex__1">Service Charge:</span>
+                <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
+                  Service Charge:
+                </Link>
                 <span className="fw-bold text-light fs-5">{currencySymbol + platformCost}</span>
               </div>
               {/* <span className="m-1">/</span>
