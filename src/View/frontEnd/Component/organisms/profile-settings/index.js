@@ -722,7 +722,7 @@ const ProfileSettings = () => {
           {error && error.promoVideo && <p className="error">{error.promoVideo}</p>}
         </div>
         {embedlink && (
-          <div className="project-video-wrap mb-4">
+          <div className="project-video-wrap">
             <iframe
               title="post-video"
               width="498"

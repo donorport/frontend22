@@ -277,7 +277,7 @@ function ProjectDetailMain(props) {
         </div>*/}
 
         {video && (
-          <div className="project-video-wrap mb-4">
+          <div className="project-video-wrap">
             <iframe
               title="project-details-video"
               key="project-details-video"

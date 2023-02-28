@@ -211,59 +211,58 @@ export default function ApplyOrganizationController() {
       'country.required': 'Please Select Country.',
       'category.required': 'Category is Required.'
     };
-    setLoading(true);
-    setTimeout(() => {
-      validateAll(state, rules, message)
-        .then(async () => {
-          const formaerrror = {};
-          setstate({
-            ...state,
-            error: formaerrror
-          });
-          //setLoading(true);
 
-          let data = {};
-          data.name = name;
-          data.email = email;
-          data.type = selected;
-          data.ein = ein;
-          data.organization = organization;
-          data.password = password;
-          data.country = country;
-          data.category = category;
+    validateAll(state, rules, message)
+      .then(async () => {
+        setLoading(true);
+        const formaerrror = {};
+        setstate({
+          ...state,
+          error: formaerrror
+        });
+        //setLoading(true);
 
-          const applyCampaignAdmin = await adminCampaignApi.applyCampaignAdmin(data);
-          if (applyCampaignAdmin) {
-            if (!applyCampaignAdmin.data.success) {
-              setLoading(false);
-              ToastAlert({ msg: applyCampaignAdmin.data.message, msgType: 'error' });
-            } else {
-              setLoading(false);
-              ToastAlert({ msg: applyCampaignAdmin.data.message, msgType: 'success' });
-              resetForm();
-            }
+        let data = {};
+        data.name = name;
+        data.email = email;
+        data.type = selected;
+        data.ein = ein;
+        data.organization = organization;
+        data.password = password;
+        data.country = country;
+        data.category = category;
+
+        const applyCampaignAdmin = await adminCampaignApi.applyCampaignAdmin(data);
+        if (applyCampaignAdmin) {
+          if (!applyCampaignAdmin.data.success) {
+            setLoading(false);
+            ToastAlert({ msg: applyCampaignAdmin.data.message, msgType: 'error' });
           } else {
             setLoading(false);
-            ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+            ToastAlert({ msg: applyCampaignAdmin.data.message, msgType: 'success' });
+            resetForm();
           }
-        })
-        .catch((errors) => {
+        } else {
           setLoading(false);
-          const formaerrror = {};
-          if (errors.length) {
-            errors.forEach((element) => {
-              formaerrror[element.field] = element.message;
-            });
-          } else {
-            ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
-          }
-
-          setstate({
-            ...state,
-            error: formaerrror
+          ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+        }
+      })
+      .catch((errors) => {
+        setLoading(false);
+        const formaerrror = {};
+        if (errors.length) {
+          errors.forEach((element) => {
+            formaerrror[element.field] = element.message;
           });
+        } else {
+          ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+        }
+
+        setstate({
+          ...state,
+          error: formaerrror
         });
-    }, 3000000);
+      });
   };
 
   const activateCode = async () => {

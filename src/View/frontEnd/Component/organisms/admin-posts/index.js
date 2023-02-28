@@ -1958,7 +1958,7 @@ const AdminPosts = () => {
                   </div>
 
                   {videoUrl && (
-                    <div className="project-video-wrap mb-4">
+                    <div className="project-video-wrap">
                       <iframe
                         title="admin-post-video"
                         key="admin-post-video"

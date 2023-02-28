@@ -252,7 +252,7 @@ function ProjectDetailMain(props) {
       </div>
 
       {productDetails.galleryUrl && (
-        <div className="project-video-wrap mb-4">
+        <div className="project-video-wrap">
           <iframe
             title="product-details-video"
             key="product-details-video"
@@ -427,7 +427,7 @@ function ProjectDetailMain(props) {
                   <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
                 </Card.Header>
 
-                <div className="project-video-wrap mb-4">
+                <div className="project-video-wrap">
                   <iframe
                     title="product-details-video"
                     key="product-details-video"

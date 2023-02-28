@@ -54,7 +54,7 @@ const Apply = (props) => {
                   Let us know if you want to post on Donorport. For more information about the
                   application process <a className="link" href="/about">click here</a>
                 </div>
-                <Form className="mb-5">
+                <Form className="mb-5" autocomplete="off">
                   {/*    <div className="py-1 d-flex justify-content-between fs-4 mb-3">
                     <RadioToggle
                       outline={true}

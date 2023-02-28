@@ -215,8 +215,8 @@ const AddProject = (props) => {
                 <p className="error">{error ? (error.video ? error.video : '') : ''}</p>
               )}
             </div>
-            {/* <div className="project-video-wrap mb-4"> */}
-            <div className="project-video-wrap mb-4">
+            {/* <div className="project-video-wrap"> */}
+            <div className="project-video-wrap">
               <iframe
                 title="project-video"
                 key="project-video"

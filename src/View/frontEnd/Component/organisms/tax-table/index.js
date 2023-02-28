@@ -22,8 +22,8 @@ const TaxTable = (props) => {
       data.map((i, k) => {
         //tempSub.push(i.amount);
         let productTotal = i.orderItemDetails?.totalPrice;
-        //let donationTotal = (i.amount - 0.3) / 1.049;
-        let donationTotal = i.amount;
+        let donationTotal = (i.amount - 0.3) / 1.049;
+        //let donationTotal = i.amount;
         let taxableProduct = priceFormat(Number(productTotal));
         let taxableDonation = priceFormat(Number(donationTotal));
 
