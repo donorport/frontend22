@@ -171,15 +171,15 @@
           opacity: 0.8;
         }
       }
-
-      span {
+      //circular loader fix test Feb 27 KU
+      /*span {
         display: inline-block;
         flex: 1;
         font-size: 14px;
         font-weight: 500;
         font-family: 'Roboto', sans-serif;
         color: #72727d;
-      }
+      }*/
 
       img {
         width: 19px;
@@ -275,16 +275,13 @@
     &::placeholder {
       color: #e6e6e6;
       opacity: 1;
-      /* Firefox */
     }
 
     &:-ms-input-placeholder {
-      /* Internet Explorer 10-11 */
       color: #e6e6e6;
     }
 
     &::-ms-input-placeholder {
-      /* Microsoft Edge */
       color: #e6e6e6;
     }
   }

@@ -151,13 +151,15 @@ export default function CheckoutController() {
           let sum = tempPriceArray.reduce(function (a, b) {
             return a + b;
           }, 0);
-
           let xpSum = ProductItems.reduce(function (a, b) {
             return a + b;
           }, 0);
           setXp(xpSum * xpForeEachItem);
           setSubTotal(sum);
-          setTotal(sum + 0.3);
+          // seTotal sent to Stripe. Confirmed in logs.
+          let fees = sum * 0.049 + 0.3;
+          let grandTotal = sum + fees;
+          setTotal(grandTotal);
         } else {
           navigate('/');
         }
@@ -165,7 +167,7 @@ export default function CheckoutController() {
       setLoading(false);
     })();
   }, [update, user.transactionFee, user.platformFee, xpForeEachItem]);
-
+  console.log(total);
   const pay = async () => {
     // if (cartItem.find(e => e.productDetails.tax === true)) {
     //     console.log(true)
@@ -179,6 +181,7 @@ export default function CheckoutController() {
     setLoading(true);
 
     let chargesArray = [];
+    console.log(chargesArray);
 
     if (cartItem && cartItem.length > 0) {
       cartItem.map((item, i) => {
@@ -233,6 +236,7 @@ export default function CheckoutController() {
         data.line1 = line1;
         data.country = country;
         // data.amount = CalculatedPrice.getData(total)
+        //This is where amount is set to equal the total from setTotal above:
         data.amount = total;
         data.cardNumber = cardNumber;
         data.cardExpMonth = cardExpMonth;
@@ -305,7 +309,7 @@ export default function CheckoutController() {
             orderDetails.appliedTaxPercentage =
               Number(user.platformFee) + Number(user.transactionFee);
             orderDetails.platformFees = user.platformFee;
-            orderDetails.platformCost = ((user.platformFee / 100) * Number(subtotal));
+            orderDetails.platformCost = (user.platformFee / 100) * Number(subtotal);
             orderDetails.transactionFees = user.transactionFee;
             orderDetails.subtotal = subtotal;
             orderDetails.total = total;

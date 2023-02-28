@@ -2,9 +2,6 @@ import { Button, Dropdown, Modal } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
-
-// import Avatar from "@components/atoms/avatar";
-// import AvatarImg from "@assets/images/avatar.jpeg";
 import helper from '../../../../../Common/Helper';
 import { confirmAlert } from 'react-confirm-alert';
 import Avatar from '../../atoms/avatar';
@@ -16,7 +13,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Accordion, AccordionItem as Item } from '@szhsin/react-accordion';
 import chevronDown from '../../../../../assets/images/chevron-down.svg';
-// import AvatarImg from "../../../assets/images/avatar.png";
+
 let PageSize = 10;
 
 const AdminTaxTable = (props) => {
@@ -184,7 +181,7 @@ const AdminTaxTable = (props) => {
                                 <div className="text-light">
                                   {item[0].userDetails.street +
                                     ', ' +
-                                    item[0].userDetails.cityDetails[0]?.city}
+                                    item[0].userDetails.cityDetails[0]?.city}&nbsp;
                                   {item[0].userDetails.stateDetails[0]?.state +
                                     ', ' +
                                     item[0].userDetails.zip}

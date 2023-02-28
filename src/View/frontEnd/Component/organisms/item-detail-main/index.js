@@ -19,6 +19,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './style.scss';
 import { GalleryImg } from '../../atoms';
+import { CircularProgress } from '@mui/material';
 
 //import { TagTitle,WidgetTitle } from "../../atoms";
 // import WidgetTitle from "../../atoms";
@@ -37,7 +38,7 @@ function ProjectDetailMain(props) {
   let address = productDetails?.address ? convertAddress(productDetails?.address) : '';
 
   const [quantity, setQuantity] = useState(1);
-
+  const [loading, setLoading] = useState(false);
   const [addedToCard, setAddedToCard] = useState(false);
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const user = useSelector((state) => state.user);

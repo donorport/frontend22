@@ -211,56 +211,59 @@ export default function ApplyOrganizationController() {
       'country.required': 'Please Select Country.',
       'category.required': 'Category is Required.'
     };
-    validateAll(state, rules, message)
-      .then(async () => {
-        const formaerrror = {};
-        setstate({
-          ...state,
-          error: formaerrror
-        });
-        setLoading(true);
+    setLoading(true);
+    setTimeout(() => {
+      validateAll(state, rules, message)
+        .then(async () => {
+          const formaerrror = {};
+          setstate({
+            ...state,
+            error: formaerrror
+          });
+          //setLoading(true);
 
-        let data = {};
-        data.name = name;
-        data.email = email;
-        data.type = selected;
-        data.ein = ein;
-        data.organization = organization;
-        data.password = password;
-        data.country = country;
-        data.category = category;
+          let data = {};
+          data.name = name;
+          data.email = email;
+          data.type = selected;
+          data.ein = ein;
+          data.organization = organization;
+          data.password = password;
+          data.country = country;
+          data.category = category;
 
-        const applyCampaignAdmin = await adminCampaignApi.applyCampaignAdmin(data);
-        if (applyCampaignAdmin) {
-          if (!applyCampaignAdmin.data.success) {
-            setLoading(false);
-            ToastAlert({ msg: applyCampaignAdmin.data.message, msgType: 'error' });
+          const applyCampaignAdmin = await adminCampaignApi.applyCampaignAdmin(data);
+          if (applyCampaignAdmin) {
+            if (!applyCampaignAdmin.data.success) {
+              setLoading(false);
+              ToastAlert({ msg: applyCampaignAdmin.data.message, msgType: 'error' });
+            } else {
+              setLoading(false);
+              ToastAlert({ msg: applyCampaignAdmin.data.message, msgType: 'success' });
+              resetForm();
+            }
           } else {
             setLoading(false);
-            ToastAlert({ msg: applyCampaignAdmin.data.message, msgType: 'success' });
-            resetForm();
+            ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
           }
-        } else {
+        })
+        .catch((errors) => {
           setLoading(false);
-          ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
-        }
-      })
-      .catch((errors) => {
-        setLoading(false);
-        const formaerrror = {};
-        if (errors.length) {
-          errors.forEach((element) => {
-            formaerrror[element.field] = element.message;
-          });
-        } else {
-          ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
-        }
+          const formaerrror = {};
+          if (errors.length) {
+            errors.forEach((element) => {
+              formaerrror[element.field] = element.message;
+            });
+          } else {
+            ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+          }
 
-        setstate({
-          ...state,
-          error: formaerrror
+          setstate({
+            ...state,
+            error: formaerrror
+          });
         });
-      });
+    }, 3000000);
   };
 
   const activateCode = async () => {
@@ -306,7 +309,6 @@ export default function ApplyOrganizationController() {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
       <Page
         title="Donorport | Apply"
         url="https://donorport.org/apply"
@@ -327,6 +329,7 @@ export default function ApplyOrganizationController() {
           categoryList={categoryList}
           defaultCategory={defaultCategory}
           onChangeCategory={onChangeCategory}
+          loading={loading}
         />
       </Page>
     </>

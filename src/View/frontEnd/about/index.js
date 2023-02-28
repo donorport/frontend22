@@ -5,6 +5,14 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import MarqueeList from '../Component/molecules/marquee-list';
 import DefaultLayout from '../Component/templates/default-layout';
+import file from '../../../assets/images/contract.svg';
+import ad1 from '../../../assets/images/ad1.svg';
+import ad2 from '../../../assets/images/ad2.svg';
+import ad3 from '../../../assets/images/ad3.png';
+import ad4 from '../../../assets/images/ad4.svg';
+import ad5 from '../../../assets/images/ad5.svg';
+import ad6 from '../../../assets/images/ad6.svg';
+import ad7 from '../../../assets/images/ad7.svg';
 
 import './style.scss';
 
@@ -44,7 +52,7 @@ const About = (props) => {
             <Col md="7">
               <div className="mw-600 d-flex align-items-center  justify-content-sm-center">
                 <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/626f21b70f1d0f40951a1eb6_Savings-amico.svg"
+                  src={file}
                   className="img-fluid"
                   alt=""
                 />
@@ -217,49 +225,49 @@ const About = (props) => {
         <Row className="section--hero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5 row row d-flex justify-content-between">
           <div className="ourbrand__item d-flex align-items-center justify-content-cente gap-1">
             <img
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/626cb8aafbea8678573371cd_Tim_Hortons_logo.svg"
+              src={ad1}
               className="img-fluid ourbrand__img"
               alt=""
             />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
             <img
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/626f437fab93d764b284564d_McDonald%27s_Golden_Arches.svg"
+              src={ad2}
               className="img-fluid ourbrand__img"
               alt=""
             />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
             <img
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/6271d71d721c60e1ee063619_Crocs_wordmark.svg"
+              src={ad3}
               className="img-fluid ourbrand__img"
               alt=""
             />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
             <img
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/626f4471dc441c225745284c_Target_logo.svg"
+              src={ad4}
               className="img-fluid ourbrand__img"
               alt=""
             />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
             <img
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/624de9e9e4496f32fd5463ad_brand_chichis.png"
+              src={ad5}
               className="img-fluid ourbrand__img"
               alt=""
             />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
             <img
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/626f44aef1df651c17c8f3e6_Purina-logo.svg"
+              src={ad6}
               className="img-fluid ourbrand__img"
               alt=""
             />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
             <img
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/61f88ffad85ed5121f3c986c_Dunkin-Donuts-01.svg"
+              src={ad7}
               className="img-fluid ourbrand__img"
               alt=""
             />

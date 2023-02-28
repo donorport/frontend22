@@ -211,13 +211,13 @@ const Register = (props) => {
               </Button>*/}
                 <Button
                   size="lg"
-                  style={{ width: '100%', opacity: props.isLoading ? '0.7' : '1' }}
-                  className="w-100 mb-4 mt-4"
-                  onClick={() => !props.isLoading && props.signUp()}
+                  style={{ width: '100%', opacity: props.loading ? '0.7' : '1' }}
+                  className="fw-bold w-100 mb-4 mt-4"
+                  onClick={() => !props.loading && props.signUp()}
                 >
                   Register
-                  {props.isLoading && (
-                    <CircularProgress className="ms-2" color="inherit" size={14} />
+                  {props.loading && (
+                    <CircularProgress className="ms-2" color="inherit" size={12} />
                   )}
                 </Button>
                 {/* <Button

@@ -48,7 +48,7 @@ function Footer() {
                   type="text"
                   name="Newsletter"
                 />
-                <Button size="lg" className="btn__newsletter ms-2 flex-shrink-0">
+                <Button size="lg" className="fw-bold btn__newsletter ms-2 flex-shrink-0">
                   Sign up
                 </Button>
               </div>

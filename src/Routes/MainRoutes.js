@@ -161,7 +161,7 @@ export default function MainRoutes() {
                         <Route path="/item-tags" element={<ItemTags />} />
                         <Route path="/media" element={<Media />} />
                         <Route path="/ranks" element={<Ranks />} />
-                        <Route path="/about-us" element={<AboutController />} />
+                        <Route path="/about" element={<AboutController />} />
                         <Route exact path="/organization/:name" element={<OrganizationDetailsController />} />
                         <Route path="/terms" element={<Terms />} />
                         <Route path="/privacy" element={<Privacy />} />
@@ -206,7 +206,7 @@ export default function MainRoutes() {
                             <Route exact path="/apply" element={<ApplyOrganizationController />} />
                             <Route path="/sponsors" element={<Sponsors />} />
                             <Route path="/partnership" element={<Partnership />} />
-                            <Route path="/about-us" element={<AboutController />} />
+                            <Route path="/about" element={<AboutController />} />
                             <Route path="/verified" element={<VerifiedDonors />} />
                             <Route path="/terms" element={<Terms />} />
                             <Route path="/privacy" element={<Privacy />} />
@@ -252,7 +252,7 @@ export default function MainRoutes() {
                 //     <Route exact path="/apply" element={<ApplyOrganizationController />} />
                 //     <Route path="/sponsors" element={<Sponsors />} />
                 //     <Route path="/partnership" element={<Partnership />} />
-                //     <Route path="/about-us" element={<AboutController />} />
+                //     <Route path="/about" element={<AboutController />} />
                 //     <Route path="/verified" element={<VerifiedDonors />} />
                 //     <Route path="/terms" element={<Terms />} />
                 //     <Route path="/media" element={<Media />} />
@@ -277,7 +277,7 @@ export default function MainRoutes() {
                         <Route path="/" element={<HomeController />} />
                         <Route path="/categories/:slug" element={<CategoryProductsController />} />
                         <Route exact path="/apply" element={<ApplyOrganizationController />} />
-                        <Route path="/about-us" element={<AboutController />} />
+                        <Route path="/about" element={<AboutController />} />
                         <Route path="/xp" element={<Xp />} />
                         <Route path="/leaderboard" element={<LeaderBoard />} />
                         <Route path="/partnership" element={<Partnership />} />

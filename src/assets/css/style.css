@@ -67,7 +67,7 @@
   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
 }
 
-#pageLoader {
+/*#pageLoader {
   position: fixed;
   opacity: 1;
   left: 0px;
@@ -76,7 +76,7 @@
   height: 100%;
   z-index: 999999999999999999 !important;
   background: url('../../../src/assets/images/loader2.gif') 50% 50% no-repeat rgb(255, 255, 255);
-}
+}*/
 
 .react-confirm-alert-blur {
   -webkit-filter: unset !important;

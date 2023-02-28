@@ -22,11 +22,11 @@ const Partnership = () => {
   const [state, setstate] = useState({
     name: '',
     organization: '',
-    reson: '',
+    reason: '',
     email: '',
     error: []
   });
-  const { name, organization, reson, email, error } = state;
+  const { name, organization, reason, email, error } = state;
   const [textAreaCount, ChangeTextAreaCount] = useState(0);
 
   const changevalue = (e) => {
@@ -48,7 +48,7 @@ const Partnership = () => {
       ...state,
       name: '',
       organization: '',
-      reson: '',
+      reason: '',
       email: '',
       error: []
     });
@@ -59,12 +59,12 @@ const Partnership = () => {
     const rules = {
       name: 'required',
       email: 'required|email',
-      reson: 'required'
+      reason: 'required'
     };
 
     const message = {
       'name.required': 'name is Required.',
-      'reson.required': 'This Field is Required.',
+      'reason.required': 'This Field is Required.',
       'email.required': 'email is Required.'
     };
     validateAll(state, rules, message)
@@ -79,7 +79,7 @@ const Partnership = () => {
         data.name = name;
         data.email = email;
         data.type = selected;
-        data.reson = reson;
+        data.reason = reason;
         data.organization = organization;
 
         const applyPartership = await userApi.applyPartership(data);
@@ -199,17 +199,17 @@ const Partnership = () => {
                     <textarea
                       maxLength={250}
                       rows={5}
-                      name="reson"
-                      value={reson}
+                      name="reason"
+                      value={reason}
                       onChange={(e) => changevalue(e)}
                     >
-                      {reson}
+                      {reason}
                     </textarea>
                     <span className="input__span">How can we partner?</span>
                   </label>
                 </div>
-                {error && error.reson && (
-                  <p className="error">{error ? (error.reson ? error.reson : '') : ''}</p>
+                {error && error.reason && (
+                  <p className="error">{error ? (error.reason ? error.reason : '') : ''}</p>
                 )}
 
                 <div className="text-end text-dark mb-2">

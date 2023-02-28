@@ -57,7 +57,7 @@ export default function Details(props) {
                     <div className="form-group row">
                         <label htmlFor="name" className="col-sm-2 col-form-label">Tell us why you want to be vefified </label>
                         <div className="col-sm-10">
-                            <textarea id="reson" name="reson" rows="8" disabled cols="100">{stateData.reson}</textarea>
+                            <textarea id="reason" name="reason" rows="8" disabled cols="100">{stateData.reason}</textarea>
 
                         </div>
                     </div>

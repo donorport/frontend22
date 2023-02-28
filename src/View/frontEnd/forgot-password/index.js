@@ -85,12 +85,12 @@ const ForgotPassword = (props) => {
                 <Button
                   style={{ width: '100%', opacity: props.isLoading ? '0.7' : '1' }}
                   size="lg"
-                  className="w-100 mb-4"
+                  className="fw-bold w-100 mb-4"
                   onClick={() => !props.isLoading && props.sendOtp()}
                 >
-                  Submit{' '}
+                  Submit
                   {props.isLoading && (
-                    <CircularProgress className="ms-2" color="inherit" size={14} />
+                    <CircularProgress className="ms-2" color="inherit" size={12} />
                   )}
                 </Button>
 

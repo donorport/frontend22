@@ -3,9 +3,9 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { regular, solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
-import AreaChart from "../../../../../assets/images/area-chart.jpg";
-import BarChart from "../../../../../assets/images/bar-chart.jpg";
-import PieChart from "../../../../../assets/images/piechart.jpg";
+//import AreaChart from "../../../../../assets/images/area-chart.jpg";
+//import BarChart from "../../../../../assets/images/bar-chart.jpg";
+//import PieChart from "../../../../../assets/images/piechart.jpg";
 
 import { Col, Row, Button } from "react-bootstrap";
 

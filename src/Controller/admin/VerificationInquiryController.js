@@ -20,9 +20,9 @@ export default function VerificationInquiryController() {
     const [state, setstate] = useState({
         name: '',
         email: '',
-        reson: '',
+        reason: '',
     })
-    const { name, email,reson } = state
+    const { name, email,reason } = state
 
 
     const params = useParams();
@@ -55,7 +55,7 @@ export default function VerificationInquiryController() {
             ...state,
             name:data.name,
             email:data.email,
-            reson:data.reson,
+            reason:data.reason,
 
         })
         setModal(true)

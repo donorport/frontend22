@@ -1453,7 +1453,6 @@ const AdminPosts = () => {
                 icon={solid('money-bills-simple')}
                 className="text-dark mr-12p fs-4"
               />
-              $
               {productList && productList.length > 0
                 ? productList
                     .reduce(

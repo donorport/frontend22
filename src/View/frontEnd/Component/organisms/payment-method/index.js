@@ -464,51 +464,44 @@ const Payments = () => {
 
   const removeBank = (id) => {
     confirmAlert({
-      customUI: ({ onClose }) => {
-        return (
-          <div className="custom-ui">
-            <h1 className="fw-bolder">Are you sure?</h1>
-            <p>Are you sure you want to remove this bank account?</p>
-            <div className="d-flex gap-1">
-              <button className="btn btn-danger" onClick={onClose}>
-                Cancel
-              </button>
-              <button
-                className="btn btn-success"
-                onClick={async () => {
+      title: 'Logout',
+      message: 'Are you sure you want to logout?',
+      buttons: [
+        {
+          label: 'Cancel'
+        },
+        {
+          label: 'Remove Bank',
+          onClick: async () => {
+            setLoading(false);
+            if (id !== '') {
+              const removeBank = await adminCampaignApi.deleteBankAccount(token, id);
+              if (removeBank) {
+                if (removeBank.data.success === false) {
                   setLoading(false);
-                  if (id !== '') {
-                    const removeBank = await adminCampaignApi.deleteBankAccount(token, id);
-                    if (removeBank) {
-                      if (removeBank.data.success === false) {
-                        setLoading(false);
-                        ToastAlert({ msg: removeBank.data.message, msgType: 'error' });
-                      } else {
-                        if (removeBank.data.success === true) {
-                          setLoading(false);
-                          setUpdate(!update);
-                          ToastAlert({ msg: removeBank.data.message, msgType: 'success' });
-                        }
-                      }
-                    } else {
-                      setLoading(false);
-                      ToastAlert({ msg: 'Account not Removed', msgType: 'error' });
-                    }
-                  } else {
+                  ToastAlert({ msg: removeBank.data.message, msgType: 'error' });
+                } else {
+                  if (removeBank.data.success === true) {
                     setLoading(false);
-                    ToastAlert({ msg: 'Account not Removed id Not found', msgType: 'error' });
+                    setUpdate(!update);
+                    ToastAlert({ msg: removeBank.data.message, msgType: 'success' });
                   }
-                }}
-              >
-                Remove Bank
-              </button>
-            </div>
-          </div>
-        );
-      }
+                }
+              } else {
+                setLoading(false);
+                ToastAlert({ msg: 'Account not Removed', msgType: 'error' });
+              }
+            } else {
+              setLoading(false);
+              ToastAlert({ msg: 'Account not Removed id Not found', msgType: 'error' });
+            }
+          }
+        }
+      ]
     });
+  };
 
-    /* confirmAlert({
+  /* confirmAlert({
       title: 'Confirm to submit',
       message: 'Are you sure to Remove Account.',
       buttons: [
@@ -545,7 +538,6 @@ const Payments = () => {
         }
       ]
     });*/
-  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -986,7 +978,7 @@ const Payments = () => {
             opacity: loading ? '0.7' : '1'
           }}
         >
-          Save {loading && <CircularProgress className="ms-2" color="inherit" size={14} />}
+          Save {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
         </Button>
 
         <div className="mb-5 mt-5">

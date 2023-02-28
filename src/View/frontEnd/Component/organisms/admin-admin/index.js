@@ -152,7 +152,7 @@ const AdminAdmin = () => {
                 opacity: loading ? '0.7' : '1'
               }}
             >
-              Invite {loading && <CircularProgress className="ms-2" color="inherit" size={14} />}
+              Invite {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
             </Button>
 
             <span className="rounded text-nowrap fw-bold">

@@ -25,7 +25,7 @@ function FooterCategoryLinks({ categoryName, list, ...otherProps }) {
       {sharedProps.categoryName === 'Home' && (
         <ul className="list-unstyled footer__links">
           <li className="footer__link-item">
-            <a href="/about-us" className="footer__link">
+            <a href="/about" className="footer__link">
               About Us
             </a>
           </li>

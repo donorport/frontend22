@@ -150,7 +150,7 @@ const Pricing = () => {
 
               <p style={{ color: '#9796b1' }} className="mt-3">
                 Learn more about how Donorport can help you raise money for your non-profit or
-                charity <Link to="/about-us">here</Link> .
+                charity <Link to="/about">here</Link> .
               </p>
             </div>
           </Container>

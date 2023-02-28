@@ -170,21 +170,21 @@ function ActivityItem(props) {
 
             {/* <div className="ad__activity__name">{ notification.type}</div> */}
             {info ? (
-              <div className="fs-7 ad__activity__sub-name mt-3p">{info}</div>
+              <div className="fs-7 ad__activity__sub-name mt-3p fw-semibold">{info}</div>
             ) : (
-              <div className="fs-7 ad__activity__sub-name mt-3p">{organizationName}</div>
+              <div className="fs-7 ad__activity__sub-name mt-3p fw-semibold">{organizationName}</div>
             )}
 
             {/*  {infoType === 'TAX_RECEIPT' ? (
               <Link
                 to={'/user/' + newSlug + '/tax/'}
-                className="fs-7 ad__activity__sub-name mt-3p"
+                className="fs-7 ad__activity__sub-name mt-3p fw-semibold"
                 style={{ border: '1px solid' }}
               >
                 {info}
               </Link>
             ) : (
-              <div className="fs-7 ad__activity__sub-name mt-3p">{organizationName}</div>
+              <div className="fs-7 ad__activity__sub-name mt-3p fw-semibold">{organizationName}</div>
             )}*/}
 
             {notification.type === 'PROJECT' && infoType !== 'FUNDED' && !info && (

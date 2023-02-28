@@ -473,7 +473,7 @@ const UserItems = () => {
                           XXXX XXXX XXXX {lastFourDigits}
                         </div>
                         <div className="text-light fw-semibold">
-                          <div>Transaction: {moment(item.created_at).format('MMMM DD,YYYY')}</div>
+                          <div>Transaction: {moment(item.created_at).format('MMMM DD, YYYY')}</div>
                         </div>
                       </div>
                     </div>

@@ -17,7 +17,13 @@ const SummaryContent = (props) => {
   let subtotal = props.subtotal;
   let salesTaxPer = props.salesTaxPer;
   let transactionFee = props.transactionFee;
-  let platformCost = ((props.platformFee / 100) * Number(subtotal)).toFixed(2);
+  let platformFee = props.platformFee;
+  //let platformCost = ((props.platformFee / 100) * Number(subtotal)).toFixed(2);
+  //let grandTotal = (Number(subtotal) + Number(platformCost)).toFixed(2);
+
+  let platformCost = ((platformFee / 100 + transactionFee / 100) * Number(subtotal) + 0.3).toFixed(
+    2
+  );
   let grandTotal = (Number(subtotal) + Number(platformCost)).toFixed(2);
 
   // let transactionFee = props.pricingFees?.transactionFee
@@ -45,19 +51,23 @@ const SummaryContent = (props) => {
                       <span className="badge item__img-badge fw-bold fs-8">{item.quantity}</span>
                     </div>
 
-                    <div className="ms-2">
-                      <Button
+                    <div className="d-flex flex-column ms-2 justify-content-start">
+                      <Link
                         variant="link"
+                        to={'/item/' + item?.productDetails?.slug}
                         className="text-dark text-start fw-bolder p-0 mb-3p fs-4"
                       >
                         {item?.productDetails?.headline}
-                      </Button>
-                      <div className="text-light mb-1">
+                      </Link>
+                      <a
+                        href={'/organization/' + item?.productDetails?.organizationDetails?.slug}
+                        className="text-light mb-1"
+                      >
                         {item?.productDetails?.organizationDetails?.name}
-                      </div>
+                      </a>
                       <Button
                         variant="link"
-                        className="btn__remove p-0 fs-7 text-decoration-none"
+                        className="btn__remove p-0 fs-7 text-decoration-none text-start"
                         onClick={() => props.removeCartItem(item._id)}
                       >
                         remove
@@ -125,7 +135,7 @@ const SummaryContent = (props) => {
           {props.currencySymbol + priceFormat(grandTotal)}
         </span>
       </div>
-      {cartItem.findIndex((p) => p?.productDetails?.tax).length >= 0 ? (
+      {cartItem.findIndex((p) => p?.productDetails?.tax) !== -1 ? (
         <div className="checkout__legend d-flex my-3 fs-7 p-2">
           <FontAwesomeIcon icon={solid('calculator')} className="fs-4 text-info me-1" />
           <span style={{ lineHeight: '2' }}>
@@ -135,29 +145,11 @@ const SummaryContent = (props) => {
       ) : (
         <></>
       )}
-      {cartItem.findIndex((p) => p?.tax).length >= 0 ? (
-        <div className="checkout__legend d-flex my-3 fs-7 p-2">
-          <FontAwesomeIcon icon={solid('calculator')} className="fs-4 text-info me-1" />
-          <span style={{ lineHeight: '2' }}>
-            You'll receive a tax deductabile receipt for this donation.
-          </span>
-        </div>
-      ) : (
-        <></>
-      )}
-      {/* {cartItem.indexOf(props.productDetails?.tax) > -1 && (
-        <div className="checkout__legend d-flex my-3 fs-7 p-2">
-          <FontAwesomeIcon icon={solid('calculator')} className="fs-4 text-info me-1" />
-          <span style={{ lineHeight: '2' }}>
-            You'll receive a tax deductabile receipt for this donation.
-          </span>
-        </div>
-      )}*/}
       <div className="note note--info px-0 text-start">
-        All prices include merchant fees & sales tax. The organization(s) will receive the exact
-        amount required to purchase each unit. Your donation is not a gift-in-kind transaction. No
-        physical goods are ordered or delivered to the organization upon the completion of the sale.{' '}
-        <a href="/pricing">Click here</a> to learn more.
+        The organization(s) will receive the exact amount required to purchase each unit including
+        local sales tax. Your donation is not a gift-in-kind transaction. No physical goods are
+        ordered or delivered to the organization upon the completion of the sale.{' '}
+        <a href="/pricing">Click here</a> to learn more. Service charges are not tax deductible.
         <br />
         <br />
         {/*  <div className="d-flex">

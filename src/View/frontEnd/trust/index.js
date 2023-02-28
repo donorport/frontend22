@@ -1,12 +1,9 @@
-import { Button, Container } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-// import ListItemImg from "@components/atoms/list-item-img";
-import ListItemImg from '../Component/atoms/list-item-img';
-
-// import DefaultLayout from "@templates/default-layout";
+import { Container } from 'react-bootstrap';
 import DefaultLayout from '../Component/templates/default-layout';
 import Page from '../../../components/Page';
+import shake from '../../../assets/images/shake-hands.svg';
+import star from '../../../assets/images/star.svg';
+import file from '../../../assets/images/contract.svg';
 
 import './style.scss';
 
@@ -25,7 +22,7 @@ const Trust = () => {
               {/*  <div className="about__list d-flex align-items-center">
               <div className="about__item d-flex flex-column align-items-center justify-content-center fs-5 text-center pb-20p">
                 <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f319c8063bf1f134af89412_money.svg"
+                  src=""
                   alt=""
                   className="about__img"
                 />
@@ -35,7 +32,7 @@ const Trust = () => {
               </div>
               <div className="about__item d-flex flex-column align-items-center justify-content-center fs-5 text-center pb-20p">
                 <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f319cf3b6241e858ba0cc59_fingerprint.svg"
+                  src=""
                   alt=""
                   className="about__img"
                 />
@@ -45,7 +42,7 @@ const Trust = () => {
               </div>
               <div className="about__item d-flex flex-column align-items-center justify-content-center fs-5 text-center pb-20p">
                 <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f319d819b2de82ef204fce9_search.svg"
+                  src=""
                   alt=""
                   className="about__img"
                 />
@@ -55,7 +52,7 @@ const Trust = () => {
               </div>
               <div className="about__item d-flex flex-column align-items-center justify-content-center fs-5 text-center pb-20p">
                 <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f319db1af9e9ad6a11f01f8_tie.svg"
+                  src=""
                   alt=""
                   className="about__img"
                 />
@@ -69,11 +66,7 @@ const Trust = () => {
                 <li className="d-sm-flex text-center align-items-center py-3">
                   <div className="trust__thumb-wrap text-center mr-0 mr-sm-20p">
                     <div className="trust__thumb d-flex align-items-center justify-content-center mb-20p">
-                      <img
-                        src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f3194a906bdd9bf150bc222_shake-hands.svg"
-                        alt=""
-                        className="img-fluid"
-                      />
+                      <img src={shake} alt="" className="img-fluid" />
                     </div>
                     <div className="fs-4 fw-bolder text-dark">Established</div>
                   </div>
@@ -89,11 +82,7 @@ const Trust = () => {
                 <li className="d-sm-flex text-center align-items-center py-3">
                   <div className="trust__thumb-wrap text-center mr-0 mr-sm-20p">
                     <div className="trust__thumb d-flex align-items-center justify-content-center mb-20p">
-                      <img
-                        src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f318805aa3067a8b480d12c_star.svg"
-                        alt=""
-                        className="img-fluid"
-                      />
+                      <img src={star} alt="" className="img-fluid" />
                     </div>
                     <div className="fs-4 fw-bolder text-dark">Top Rated</div>
                   </div>
@@ -115,11 +104,7 @@ const Trust = () => {
                 <li className="d-sm-flex text-center align-items-center py-3">
                   <div className="trust__thumb-wrap text-center mr-0 mr-sm-20p">
                     <div className="trust__thumb d-flex align-items-center justify-content-center mb-20p">
-                      <img
-                        src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f3188cda54a4429120ee945_contract.svg"
-                        alt=""
-                        className="img-fluid"
-                      />
+                      <img src={file} alt="" className="img-fluid" />
                     </div>
                     <div className="fs-4 fw-bolder text-dark">Hand-Selected</div>
                   </div>

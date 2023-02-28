@@ -1,5 +1,4 @@
 import Avatar from '../../atoms/avatar';
-// import AvatarImg from "../../../../../assets/images/avatar.jpeg";
 import { Button } from 'react-bootstrap';
 import './style.scss';
 import helper from '../../../../../Common/Helper';

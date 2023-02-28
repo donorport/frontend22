@@ -133,14 +133,12 @@ const Login = (props) => {
   </Button>*/}
                 <Button
                   size="lg"
-                  className="w-100 mb-4"
-                  style={{ width: '100%', opacity: props.isLoading ? '0.7' : '1' }}
-                  onClick={() => !props.isLoading && props.signIn()}
+                  className="fw-bold w-100 mb-4"
+                  style={{ width: '100%', opacity: props.loading ? '0.7' : '1' }}
+                  onClick={() => !props.loading && props.signIn()}
                 >
                   Login
-                  {props.isLoading && (
-                    <CircularProgress className="ms-2" color="inherit" size={14} />
-                  )}
+                  {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
                 </Button>
                 {/* <Button
                   variant="link"

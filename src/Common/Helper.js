@@ -7,8 +7,8 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { State, Country } from 'country-state-city';
 
 let Mode = 'production';
-// let BASE_URL = 'https://donorport.herokuapp.com/'
 let BASE_URL = 'https://www.donorport.org/app/';
+//let BASE_URL = 'http://localhost:3000/';
 
 // if (window.location.hostname === 'localhost') {
 //   Mode = 'development';
@@ -380,7 +380,7 @@ export function getCardIcon(card) {
 
     case 'mastercard':
       img =
-        'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5b5e656493af1e0441cd892a_mc_vrt_pos.svg';
+        'images/campaign/logo/mastercard.png';
       break;
 
     case 'amex':
@@ -411,8 +411,8 @@ export function getCardIcon(card) {
 }
 
 export function priceWithOrganizationTax(price, salesTax) {
-  let taxPrice = price + (Number(salesTax + 2.9) / 100) * price;
-
+  //let taxPrice = price + (Number(salesTax + 2.9) / 100) * price;
+  let taxPrice = price + (Number(salesTax) / 100) * price;
   return taxPrice;
 }
 

@@ -808,7 +808,7 @@ const ProfileSettings = () => {
             opacity: loading ? '0.7' : '1'
           }}
         >
-          Save Details {loading && <CircularProgress className="ms-2" color="inherit" size={14} />}
+          Save Details {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
         </Button>
         <div className="fw-bolder mb-3">Account Deactivation</div>
         <div className="deactivate">
@@ -835,7 +835,7 @@ const ProfileSettings = () => {
               opacity: loading ? '0.7' : '1'
             }}
           >
-            Deactivate {loading && <CircularProgress className="ms-2" color="inherit" size={14} />}
+            Deactivate {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
           </button>
         </div>
       </div>

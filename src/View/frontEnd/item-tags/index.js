@@ -16,9 +16,10 @@ const ItemTags = () => {
             <div className="mw-600">
               <h1 className="text-dark fw-bolder mb-6p pt-2">Post Tags</h1>
               <div className="fs-5 text-light pb-5 mb-3 mw-600">
-                Every item posted by the Organization is marked with symbols representing the item's
-                eligibility for tax receipts, whether the item has already been purchased and your
-                donation is helping pick up the tab, or if the item is related to a project.
+                Every item posted by an organization is marked with symbols to quickly show the
+                donors the status and type of each item. From the item's eligibility for tax
+                receipts, whether the item has already been purchased, whether your donation is
+                helping pick up the tab, or if the item is related to a project.
               </div>
 
               <ul className="list-unstyled mb-0 mb-sm-5">
@@ -56,8 +57,8 @@ const ItemTags = () => {
                     <div className="fs-4 fw-bolder text-dark">Tab Item</div>
                     <div className="text-light fs-5 lh-1.5">
                       These are items that the organization has already purchased. By donating to
-                      Tab items, you are essentially helping the organization recouperate the costs
-                      of their purchase.
+                      Tab items, you are helping the organization recouperate the costs of the
+                      purchase they've already made.
                     </div>
                   </div>
                 </li>
@@ -73,8 +74,8 @@ const ItemTags = () => {
                     <div className="fs-4 fw-bolder text-dark">Project Item</div>
                     <div className="text-light fs-5 lh-1.5">
                       Items marked with a lightening bolt belong to a group of items the
-                      organization has created such as a christmas drive. Projects are great for
-                      donating to specific causes or events.
+                      organization has created for a specific event or cause, like a toy drive or
+                      fundraiser.
                     </div>
                   </div>
                 </li>
@@ -94,9 +95,8 @@ const ItemTags = () => {
                     <div className="fs-4 fw-bolder text-dark">Unlimited Quantity</div>
                     <div className="text-light fs-5 lh-1.5">
                       Items without a set quantity are marked with the infinity symbol and represent
-                      an ongoing need of the organization. Products like hot dogs for weekend BBQ's
-                      or Cans of Soup for a soup kitchen; items that are always needed for ongoing
-                      events.
+                      an ongoing need of the organization. The are items that are always needed for
+                      day-to-day operations.
                     </div>
                   </div>
                 </li>

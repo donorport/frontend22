@@ -6,6 +6,7 @@ import './style.scss';
 import DefaultLayout from '../Component/templates/default-layout';
 import RadioToggle from '../Component/atoms/radio-toggle';
 import Select from 'react-select';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Apply = (props) => {
   const { error, name, organization, ein, email, confirmEmail, password, cpassword } =
@@ -28,7 +29,7 @@ const Apply = (props) => {
             <div className="mw-600">
               <h1 className="text-dark fw-bolder mb-6p pt-2">New Charities</h1>
               <div className="fs-5 text-light mb-4">
-                Active your account to create your organization's administration page or apply to
+                Activate your account to create your organization's administration page or apply to
                 receive your activation code.
               </div>
 
@@ -51,7 +52,7 @@ const Apply = (props) => {
                 <h4 className="fw-bolder text-dark">Apply for an account</h4>
                 <div className="text-light mb-2">
                   Let us know if you want to post on Donorport. For more information about the
-                  application process click here
+                  application process <a className="link" href="/about">click here</a>
                 </div>
                 <Form className="mb-5">
                   {/*    <div className="py-1 d-flex justify-content-between fs-4 mb-3">
@@ -256,9 +257,13 @@ const Apply = (props) => {
                     variant="info"
                     size="lg"
                     className="fw-bold px-4"
-                    onClick={() => applyOrganization()}
+                    style={{ width: '100%', opacity: props.loading ? '0.7' : '1' }}
+                    onClick={() => !props.loading && applyOrganization()}
                   >
                     Submit
+                    {props.loading && (
+                      <CircularProgress className="ms-1" color="inherit" size={12} />
+                    )}
                   </Button>
                 </Form>
               </div>

@@ -1,17 +1,15 @@
 import { Container } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import DefaultLayout from '../Component/templates/default-layout';
-import AvatarImg from '../../../assets/images/avatar.jpeg';
 import Avatar from '../Component/atoms/avatar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import IconButton from '../Component/molecules/icon-button';
-import ListItemImg from '../Component/atoms/list-item-img';
 import settingApi from '../../../Api/admin/setting';
 import FrontLoader from '../../../Common/FrontLoader';
 import './style.scss';
-import { useSelector, useDispatch } from 'react-redux';
-import helper, { priceFormat, getCalculatedPrice } from '../../../Common/Helper';
+import { useSelector } from 'react-redux';
+import helper, { getCalculatedPrice } from '../../../Common/Helper';
 import { Link } from 'react-router-dom';
 import Page from '../../../components/Page';
 

@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Button, Modal } from 'react-bootstrap';
 import Avatar from '../../atoms/avatar';
-import AvatarImg from '../../../../../assets/images/avatar.jpeg';
 import helper, { getCalculatedPrice } from '../../../../../Common/Helper';
 import { useSelector, useDispatch } from 'react-redux';
 import { CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { priceFormat } from '../../../../../Common/Helper';
 
 import './style.scss';
 
@@ -32,7 +32,10 @@ const DonateModal = (props) => {
   const getCalc = getCalculatedPrice();
   let currencySymbol = getCalc.currencySymbol();
 
-  let platformCost = ((props.pricingFees?.platformFee / 100) * Number(selectedValue)).toFixed(2);
+  let platformCost = (0.049 * selectedValue + 0.3).toFixed(2);
+  console.log(platformCost);
+  let grandTotal = (Number(selectedValue) + Number(platformCost)).toFixed(2);
+  console.log(grandTotal);
 
   const onValueChange = (clr, event) => {
     setSelectedValue(Number(event.target.value));
@@ -77,7 +80,7 @@ const DonateModal = (props) => {
                     checked={selectedValue === 5}
                     onChange={(e) => onValueChange('#63b2ea', e)}
                   />
-                  <label>$5</label>
+                  <label>{currencySymbol}5</label>
                 </div>
                 <div className="option__item">
                   <input
@@ -87,7 +90,7 @@ const DonateModal = (props) => {
                     checked={selectedValue === 25}
                     onChange={(e) => onValueChange('#5ac7b5', e)}
                   />
-                  <label>$25</label>
+                  <label>{currencySymbol}25</label>
                 </div>
                 <div className="option__item">
                   <input
@@ -97,7 +100,7 @@ const DonateModal = (props) => {
                     checked={selectedValue === 50}
                     onChange={(e) => onValueChange('#7abed8', e)}
                   />
-                  <label>$50</label>
+                  <label>{currencySymbol}50</label>
                 </div>
                 <div className="option__item">
                   <input
@@ -107,7 +110,7 @@ const DonateModal = (props) => {
                     checked={selectedValue === 100}
                     onChange={(e) => onValueChange('#f3a648', e)}
                   />
-                  <label>$100</label>
+                  <label>{currencySymbol}100</label>
                 </div>
                 <div className="option__item">
                   <input
@@ -117,11 +120,14 @@ const DonateModal = (props) => {
                     checked={selectedValue === 250}
                     onChange={(e) => onValueChange('#dc6d6d', e)}
                   />
-                  <label>$250</label>
+                  <label>{currencySymbol}250</label>
                 </div>
                 <div className="option__item">
                   <input type="radio" disabled name="donation" />
-                  <label className="autowidth">${selectedValue}</label>
+                  <label className="autowidth">
+                    {currencySymbol}
+                    {selectedValue}
+                  </label>
                 </div>
               </div>
             </div>
@@ -132,7 +138,10 @@ const DonateModal = (props) => {
                   <div style={{ textTransform: 'capitalize' }}>
                     {userAuthToken && userData.name}
                   </div>
-                  <div>$ {selectedValue}</div>
+                  <div>
+                    {currencySymbol}
+                    {selectedValue}
+                  </div>
                 </div>
 
                 <span className="ms-auto fs-7">
@@ -163,7 +172,10 @@ const DonateModal = (props) => {
           <>
             <div className="donation__logo pt-3 pb-1 text-center">
               {type === 'project' ? (
-                <span>{props.projectDetails.name}</span>
+                <div>
+                  Donate to the project:
+                  <span className="ms-1 fw-bold">{props.projectDetails.name}</span>
+                </div>
               ) : (
                 <img
                   alt=""
@@ -173,12 +185,17 @@ const DonateModal = (props) => {
               )}
             </div>
             <div className="donation__review text-dark d-flex flex-column align-items-center justify-content-center">
-              <span className="fw-semibold">${selectedValue}</span>
-              <div className="d-flex align-items-center">
+              <span className="fw-bold">
+                {currencySymbol}
+                {selectedValue}
+              </span>
+              <div className="mt-2 d-flex align-items-center">
                 <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
                   Service Charge:
                 </Link>
-                <span className="fw-bold text-light fs-5">{currencySymbol + platformCost}</span>
+                <span className="ms-1 fw-semibold text-light fs-7">
+                  {currencySymbol + platformCost}
+                </span>
               </div>
               {/* <span className="m-1">/</span>
               <span>One-time</span> */}
@@ -192,7 +209,7 @@ const DonateModal = (props) => {
                 onClick={() => !props.isLoading && setShowPaymentForm(true)}
               >
                 Credit Card
-                {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={14} />}
+                {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={12} />}
               </Button>
               {/*   <Button
                 size="lg"
@@ -276,7 +293,7 @@ const DonateModal = (props) => {
               </div>
 
               <div className="container">
-                <div className="checkout__input">
+                {/* <div className="checkout__input">
                   <p>
                     Name on card<span>*</span>
                   </p>
@@ -291,7 +308,7 @@ const DonateModal = (props) => {
                   <p className="error">
                     {stateData.error ? (stateData.error.name ? stateData.error.name : '') : ''}
                   </p>
-                </div>
+                </div>*/}
                 <div className="checkout__input">
                   <p>
                     Card number<span>*</span>
@@ -389,9 +406,9 @@ const DonateModal = (props) => {
           )
         )}
       </Modal.Body>
-      <Modal.Footer className="border-0 overflow-hidden justify-content-center">
+      <Modal.Footer className="border-0 overflow-hidden justify-content-center mb-3">
         {next && !showPaymentForm ? (
-          <div className="text-dark fs-7">100% of your donation goes to the Organization ♥</div>
+          <div className="text-dark fs-7">Your donation goes directly to the Organization ♥</div>
         ) : !next && !showPaymentForm ? (
           <Button
             variant="primary"
@@ -406,13 +423,14 @@ const DonateModal = (props) => {
           showPaymentForm && (
             <Button
               variant="primary"
-              style={{ width: '100%', opacity: props.isLoading ? '0.7' : '1' }}
-              onClick={() => !props.isLoading && props.donate()}
+              style={{ width: '100%', opacity: props.loading ? '0.7' : '1' }}
+              onClick={() => !props.loading && props.donate()}
               className="d-flex flex__1 fw-bold justify-content-center fs-6"
               size="lg"
             >
-              Donate ${selectedValue}
-              {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={14} />}
+              Donate {currencySymbol}
+              {priceFormat(grandTotal)}
+              {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
             </Button>
           )
         )}

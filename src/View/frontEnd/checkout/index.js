@@ -24,8 +24,14 @@ const Checkout = (props) => {
   let subtotal = props.subtotal;
   let total = props.total;
   let cartItem = props.cartItem;
-  let platformCost = ((props.platformFee / 100) * Number(subtotal)).toFixed(2);
+
+  let transactionFee = props.transactionFee;
+  let platformFee = props.platformFee;
+  let platformCost = ((platformFee / 100 + transactionFee / 100) * Number(subtotal) + 0.3).toFixed(
+    2
+  );
   let grandTotal = (Number(subtotal) + Number(platformCost)).toFixed(2);
+
   const [summary, showSummary] = useState(false);
   const isTab = useWindowSize() <= 991;
   const summaryElementRef = useRef(null);
@@ -355,7 +361,8 @@ const Checkout = (props) => {
 
               <div className="">
                 Donorport is run by a small group of volunteers and relies on the genorosity of
-                donors like you to stay up and running.
+                donors like you to stay up and running. Tips are not tax deductible but are used to
+                cover site maitenance costs.
               </div>
             </div>
 
@@ -442,7 +449,7 @@ const Checkout = (props) => {
                 onClick={() => !props.isLoading && props.pay()}
               >
                 Pay {props.currencySymbol + priceFormat(grandTotal)}
-                {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={14} />}
+                {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={12} />}
               </Button>
             </div>
             <div className="fs-6 d-flex justify-content-center mt-3 pb-20p">
