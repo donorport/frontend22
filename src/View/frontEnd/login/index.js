@@ -126,7 +126,7 @@ const Login = (props) => {
                 >
                   <img
                     className="img-fluid"
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5e42d16e0a69c19be816de35_Google__G__Logo.svg"
+                    src=""
                     alt=""
                   />
                   <span className="fw-bold">Sign in with Google</span>

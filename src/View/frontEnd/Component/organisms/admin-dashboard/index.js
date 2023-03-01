@@ -1,20 +1,19 @@
-import React from "react";
+import React from 'react';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { regular, solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 //import AreaChart from "../../../../../assets/images/area-chart.jpg";
 //import BarChart from "../../../../../assets/images/bar-chart.jpg";
 //import PieChart from "../../../../../assets/images/piechart.jpg";
 
-import { Col, Row, Button } from "react-bootstrap";
+import { Col, Row, Button } from 'react-bootstrap';
 
-import "./style.scss";
-import {Outlet, useOutletContext } from 'react-router-dom';
+import './style.scss';
+import { Outlet, useOutletContext } from 'react-router-dom';
 // import { useOutlet } from "react-router-dom";
 
-
-const AdminDashboard =() =>{
+const AdminDashboard = () => {
   // const context = useOutletContext();
   // console.log(context);
 
@@ -30,18 +29,15 @@ const AdminDashboard =() =>{
         </div>
 
         <div className="d-flex align-items-center me-2">
-          <FontAwesomeIcon icon={solid("folders")} className="fs-4 me-2" />
+          <FontAwesomeIcon icon={solid('folders')} className="fs-4 me-2" />
           <span className="fw-bold fs-5">2</span>
         </div>
         <span className="d-flex item__total-wrap d-flex">
-          <FontAwesomeIcon
-            icon={solid("money-bills-simple")}
-            className="text-dark mr-12p fs-4"
-          />
+          <FontAwesomeIcon icon={solid('money-bills-simple')} className="text-dark mr-12p fs-4" />
           USD $1,309.00
         </span>
         <Button variant="info" className="rounded-pill ms-auto">
-          Free Plan <FontAwesomeIcon icon={solid("cloud")} className="ms-1" />
+          Free Plan <FontAwesomeIcon icon={solid('cloud')} className="ms-1" />
         </Button>
       </header>
 
@@ -52,7 +48,7 @@ const AdminDashboard =() =>{
               <div className="d-flex align-items-center">
                 <h2 className="dash__section__title mb-0">Stats</h2>
                 <FontAwesomeIcon
-                  icon={regular("chart-line")}
+                  icon={regular('chart-line')}
                   className="dash__icon text-light ms-1 fs-5"
                 />
               </div>
@@ -102,12 +98,12 @@ const AdminDashboard =() =>{
             <div className="d-flex align-items-center mb-2">
               <h2 className="dash__section__title mb-0">Interactions</h2>
               <FontAwesomeIcon
-                icon={regular("computer-mouse")}
+                icon={regular('computer-mouse')}
                 className="dash__icon text-light ms-1 fs-5"
               />
             </div>
             <div className="dash__chart">
-              <img src={AreaChart} alt="" className="img-fluid" />
+              {/* <img src={AreaChart} alt="" className="img-fluid" />*/}
             </div>
           </div>
         </Col>
@@ -118,12 +114,12 @@ const AdminDashboard =() =>{
             <div className="d-flex align-items-center mb-2">
               <h2 className="dash__section__title mb-0">Traffic</h2>
               <FontAwesomeIcon
-                icon={regular("traffic-cone")}
+                icon={regular('traffic-cone')}
                 className="dash__icon text-light ms-1 fs-5"
               />
             </div>
             <div className="dash__chart">
-              <img src={BarChart} alt="" className="img-fluid" />
+              {/* <img src={BarChart} alt="" className="img-fluid" />*/}
             </div>
           </div>
         </Col>
@@ -132,7 +128,7 @@ const AdminDashboard =() =>{
             <div className="d-flex align-items-center mb-2">
               <h2 className="dash__section__title mb-0">Coverage</h2>
               <FontAwesomeIcon
-                icon={regular("planet-moon")}
+                icon={regular('planet-moon')}
                 className="dash__icon text-light ms-1 fs-5"
               />
             </div>
@@ -141,7 +137,7 @@ const AdminDashboard =() =>{
                 Your contribution coverage over each category & location
               </div>
               <div className="pie__chart text-center d-flex align-items-center">
-                <img src={PieChart} alt="" className="img-fluid" />
+                {/*<img src={PieChart} alt="" className="img-fluid" />*/}
               </div>
             </div>
           </div>
@@ -149,7 +145,6 @@ const AdminDashboard =() =>{
       </Row>
     </>
   );
-
-}
+};
 
 export default AdminDashboard;

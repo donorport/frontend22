@@ -1,8 +1,118 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="32" height="32">
-	<circle cx="24" cy="24" r="24" fill="rgba(255,255,255,0.2)"/>
-	<circle cx="24" cy="24" r="22" fill="#1c202b" class="brand-color"/>
-	<circle cx="24" cy="24" r="10" fill="#ffffff"/>
-	<circle cx="13" cy="13" r="2"  fill="#ffffff" class="brand-animate"/>
-	<path d="M 14 24 L 24 24 L 14 44 Z" fill="#FFFFFF" />
-	<circle cx="24" cy="24" r="3" fill="#000000"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="117.38382"
+   height="117.38382"
+   viewBox="0 0 31.057801 31.057802"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   sodipodi:docname="2022 Logo Icon (2).svg"
+   inkscape:export-filename="/Users/kyleunderhill/Desktop/Desktop/Donorport/2022 Logo/Logo2(32).png"
+   inkscape:export-xdpi="26.170557"
+   inkscape:export-ydpi="26.170557"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.47308757"
+     inkscape:cx="195.52405"
+     inkscape:cy="269.50613"
+     inkscape:window-width="1312"
+     inkscape:window-height="969"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     units="px"
+     inkscape:snap-global="false"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-41.905334,140.11797)">
+    <g
+       id="g277">
+      <circle
+         style="fill:#5f5df8;fill-opacity:1;stroke:none;stroke-width:3.44196;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+         id="circle156"
+         cx="57.434235"
+         cy="-124.58907"
+         r="15.528901" />
+      <g
+         id="g6831"
+         transform="translate(-0.4182,-1.016604)"
+         style="fill:#ffffff">
+        <rect
+           style="fill:#ffffff;fill-opacity:1;stroke-width:3.6081;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+           id="rect743"
+           width="2.6185026"
+           height="16.804039"
+           x="52.834274"
+           y="-131.97449"
+           rx="1.2052821"
+           ry="1.2472566" />
+        <g
+           id="g6311"
+           transform="matrix(0.86231347,0,0,0.85329596,9.8287899,-18.029547)"
+           style="fill:#ffffff">
+          <path
+             id="path4490"
+             style="fill:#ffffff;stroke-width:3.30991;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+             d="m 64.296043,-122.19249 -3.05316,-3.44404 h -9.682982 v 2.83191 0.61213 1.03811 h 11.751476 c 0.545505,0 0.984666,-0.463 0.984666,-1.03811 z m 0,-6.88807 -3.05316,3.44403 h -9.682982 v -2.8319 -0.61213 -1.03811 h 11.751476 c 0.545505,0 0.984666,0.46299 0.984666,1.03811 z" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="g139">
+      <circle
+         style="fill:#5f5df8;fill-opacity:1;stroke:none;stroke-width:3.44196;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+         id="circle129"
+         cx="57.434235"
+         cy="-124.58907"
+         r="15.528901" />
+      <g
+         id="g137"
+         transform="translate(-0.4182,-1.016604)"
+         style="fill:#ffffff">
+        <rect
+           style="fill:#ffffff;fill-opacity:1;stroke-width:3.6081;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+           id="rect131"
+           width="2.6185026"
+           height="16.804039"
+           x="52.834274"
+           y="-131.97449"
+           rx="1.2052821"
+           ry="1.2472566" />
+        <g
+           id="g135"
+           transform="matrix(0.86231347,0,0,0.85329596,9.8287899,-18.029547)"
+           style="fill:#ffffff">
+          <path
+             id="path133"
+             style="fill:#ffffff;stroke-width:3.30991;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+             d="m 64.296043,-122.19249 -3.05316,-3.44404 h -9.682982 v 2.83191 0.61213 1.03811 h 11.751476 c 0.545505,0 0.984666,-0.463 0.984666,-1.03811 z m 0,-6.88807 -3.05316,3.44403 h -9.682982 v -2.8319 -0.61213 -1.03811 h 11.751476 c 0.545505,0 0.984666,0.46299 0.984666,1.03811 z" />
+        </g>
+      </g>
+    </g>
+  </g>
 </svg>

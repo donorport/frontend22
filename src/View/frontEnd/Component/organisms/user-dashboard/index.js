@@ -107,7 +107,7 @@ const UserDashboard = () => {
               />
             </div>
             <div className="dash__chart">
-              <img src={AreaChart} alt="" className="img-fluid" />
+              {/* <img src={AreaChart} alt="" className="img-fluid" />*/}
             </div>
           </div>
         </Col>
@@ -120,7 +120,7 @@ const UserDashboard = () => {
               <FontAwesomeIcon icon={regular('sack')} className="dash__icon text-light ms-1 fs-5" />
             </div>
             <div className="dash__chart">
-              <img src={BarChart} alt="" className="img-fluid" />
+              {/*<img src={BarChart} alt="" className="img-fluid" />*/}
             </div>
           </div>
         </Col>
@@ -138,7 +138,7 @@ const UserDashboard = () => {
                 Your contribution coverage over each category & location
               </div>
               <div className="pie__chart text-center d-flex align-items-center">
-                <img src={PieChart} alt="" className="img-fluid" />
+                {/*<img src={PieChart} alt="" className="img-fluid" />*/}
               </div>
             </div>
           </div>

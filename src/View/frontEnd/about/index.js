@@ -13,6 +13,23 @@ import ad4 from '../../../assets/images/ad4.svg';
 import ad5 from '../../../assets/images/ad5.svg';
 import ad6 from '../../../assets/images/ad6.svg';
 import ad7 from '../../../assets/images/ad7.svg';
+import emoji from '../../../assets/images/emoji.svg';
+import building from '../../../assets/images/architectonic.svg';
+import logo from '../../../assets/images/logo.svg';
+import hero from '../../../assets/images/hero.svg';
+import bank from '../../../assets/images/bank.svg';
+import donate from '../../../assets/images/donate.svg';
+import box from '../../../assets/images/box.svg';
+import list from '../../../assets/images/list.svg';
+import stripe from '../../../assets/images/stripe.svg';
+import mobile from '../../../assets/images/mobile.svg';
+import bike from '../../../assets/images/bike.png';
+import banana from '../../../assets/images/banana.png';
+import nike from '../../../assets/images/nike.png';
+import city from '../../../assets/images/city.svg';
+import crypto1 from '../../../assets/images/crypto1.svg';
+import crypto2 from '../../../assets/images/crypto2.svg';
+import crypto3 from '../../../assets/images/crypto3.svg';
 
 import './style.scss';
 
@@ -51,11 +68,7 @@ const About = (props) => {
             </Col>
             <Col md="7">
               <div className="mw-600 d-flex align-items-center  justify-content-sm-center">
-                <img
-                  src={file}
-                  className="img-fluid"
-                  alt=""
-                />
+                <img src={hero} className="img-fluid" alt="" />
               </div>
             </Col>
           </Row>
@@ -67,7 +80,7 @@ const About = (props) => {
           <Col md="6">
             <div className="d-flex align-items-center  justify-content-sm-center">
               <img
-                src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/626df2f3a0717a4b4ca2d22c_Profile%20pic-rafiki%20(1).svg"
+                src={mobile}
                 className="img-fluid"
                 alt=""
               />
@@ -88,27 +101,15 @@ const About = (props) => {
             </div>
             <div className="d-flex align-items-center flex-wrap mw-600">
               <div className="page__circle d-flex align-items-center bg-lighter rounded-circle p-3 justify-content-center">
-                <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f47d53712617fc3ca56b307_emoji.svg"
-                  className="img-fluid"
-                  alt=""
-                />
+                <img src={emoji} className="img-fluid" alt="" />
               </div>
               <div className="seperator flex__1"></div>
               <div className="page__circle d-flex align-items-center bg-lighter rounded-circle p-3 justify-content-center">
-                <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/61fed883243c845a8478a637_2022%20(Icon).svg"
-                  className="img-fluid"
-                  alt=""
-                />
+                <img src={logo} className="img-fluid" alt="" />
               </div>
               <div className="seperator flex__1"></div>
               <div className="page__circle d-flex align-items-center bg-lighter rounded-circle p-3 justify-content-center">
-                <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5eb5c601301ea31f94e1caa8_town.svg"
-                  className="img-fluid"
-                  alt=""
-                />
+                <img src={building} className="img-fluid" alt="" />
               </div>
             </div>
           </Col>
@@ -130,21 +131,21 @@ const About = (props) => {
             <div className="d-flex justify-content-center justify-content-sm-between mb-0 mb-sm-5 flex-wrap gap-5 gap-sm-0">
               <div className="bigcircle">
                 <img
-                  src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/624ba8a3688ae7c3ef86a416_20139509001_front_a06_%402.png"
+                  src={banana}
                   className="img-fluid"
                   alt=""
                 />
               </div>
               <div className="bigcircle _2 bigcircle _2 mb-0 mb-sm-5">
                 <img
-                  src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5f7b731470e7e18043959c58_s-l300.png"
+                  src={bike}
                   className="img-fluid"
                   alt=""
                 />
               </div>
               <div className="bigcircle">
                 <img
-                  src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5c2c24cdbda7359a71d94025_aj1_top3.png"
+                  src={nike}
                   className="img-fluid"
                   alt=""
                 />
@@ -155,7 +156,7 @@ const About = (props) => {
       </Container>
       <div className="section--hero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5 row row section--cityscape">
         <img
-          src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/621fbd2a971cc27a3898b387_60e47ee6c4af646a50d5b8e3_hero-illustration.svg"
+          src={city}
           className="cityscape"
           alt=""
         />
@@ -180,11 +181,7 @@ const About = (props) => {
           <Row className="mt-5">
             <Col md="4" className="position-relative mb-5 mb-sm-0">
               <div className="d-flex justify-content-center mb-2">
-                <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f3af12f2f29c830ab1e3a3c_box.svg"
-                  className="about__step-icon"
-                  alt=""
-                />
+                <img src={box} className="about__step-icon" alt="" />
               </div>
               <h4 className="mb-1 fw-bolder text-dark text-center">Charity creates a post</h4>
               <p className="text-light text-center fs-5">
@@ -193,11 +190,7 @@ const About = (props) => {
             </Col>
             <Col md="4" className="position-relative mb-5 mb-sm-0">
               <div className="d-flex justify-content-center mb-2">
-                <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/60088347cb80b5186f9e1ead_donate.svg"
-                  className="about__step-icon"
-                  alt=""
-                />
+                <img src={donate} className="about__step-icon" alt="" />
               </div>
               <h4 className="mb-1 fw-bolder text-dark text-center">Donors provide the funding</h4>
               <p className="text-light text-center fs-5">
@@ -206,11 +199,7 @@ const About = (props) => {
             </Col>
             <Col md="4" className="position-relative">
               <div className="d-flex justify-content-center mb-2">
-                <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ea77ef8debb84eec8354d5b_bank.svg"
-                  className="about__step-icon"
-                  alt=""
-                />
+                <img src={bank} className="about__step-icon" alt="" />
               </div>
               <h4 className="mb-1 fw-bolder text-dark text-center">Charity buys the products</h4>
               <p className="text-light text-center fs-5">
@@ -224,53 +213,25 @@ const About = (props) => {
       <Container fluid>
         <Row className="section--hero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5 row row d-flex justify-content-between">
           <div className="ourbrand__item d-flex align-items-center justify-content-cente gap-1">
-            <img
-              src={ad1}
-              className="img-fluid ourbrand__img"
-              alt=""
-            />
+            <img src={ad1} className="img-fluid ourbrand__img" alt="" />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
-            <img
-              src={ad2}
-              className="img-fluid ourbrand__img"
-              alt=""
-            />
+            <img src={ad2} className="img-fluid ourbrand__img" alt="" />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
-            <img
-              src={ad3}
-              className="img-fluid ourbrand__img"
-              alt=""
-            />
+            <img src={ad3} className="img-fluid ourbrand__img" alt="" />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
-            <img
-              src={ad4}
-              className="img-fluid ourbrand__img"
-              alt=""
-            />
+            <img src={ad4} className="img-fluid ourbrand__img" alt="" />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
-            <img
-              src={ad5}
-              className="img-fluid ourbrand__img"
-              alt=""
-            />
+            <img src={ad5} className="img-fluid ourbrand__img" alt="" />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
-            <img
-              src={ad6}
-              className="img-fluid ourbrand__img"
-              alt=""
-            />
+            <img src={ad6} className="img-fluid ourbrand__img" alt="" />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
-            <img
-              src={ad7}
-              className="img-fluid ourbrand__img"
-              alt=""
-            />
+            <img src={ad7} className="img-fluid ourbrand__img" alt="" />
           </div>
         </Row>
       </Container>
@@ -336,7 +297,7 @@ const About = (props) => {
           <Col md="6">
             <div className="d-flex align-items-center justify-content-center pe-sm-5 mb-5">
               <img
-                src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/6271b1e2ec98d212a842735e_To%20do%20list-rafiki.svg"
+                src={list}
                 className="mw-600 w-100 img-fluid"
                 alt=""
               />
@@ -421,14 +382,14 @@ const About = (props) => {
               </div>
               <div className="crypto__icon-24">
                 <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620f2668a5060779fa814fd9_stripe-seeklogo.com.svg"
+                  src={stripe}
                   className="img-fluid"
                   alt=""
                 />
               </div>
               {/*<div className="crypto__icon-24">
                 <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620f25f58e8ffe7b1df84772_PayPal.svg"
+                  src=""
                   className="img-fluid"
                   alt=""
                 />
@@ -436,7 +397,7 @@ const About = (props) => {
 
               <div className="crypto__icon-24">
                 <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620f2720b58d094391f75d07_Google_Pay_(GPay)_Logo_(2018-2020).svg"
+                  src=""
                   className="img-fluid"
                   alt=""
                 />
@@ -451,21 +412,21 @@ const About = (props) => {
             <div className="d-flex gap-2 mb-3">
               <div className="crypto__icon p-0">
                 <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620e5d6c9582b74e722c3122_ethereum-eth.svg"
+                  src={crypto1}
                   className="img-fluid"
                   alt=""
                 />
               </div>
               <div className="crypto__icon p-0">
                 <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620e5d4c36e4c982f37e9894_Bitcoin.svg"
+                  src={crypto2}
                   className="img-fluid"
                   alt=""
                 />
               </div>
               <div className="crypto__icon p-0">
                 <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620e5ca7ee8035585abb93b9_usd-coin-usdc-logo.svg"
+                  src={crypto3}
                   className="img-fluid"
                   alt=""
                 />

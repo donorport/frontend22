@@ -7,6 +7,7 @@ import DefaultLayout from '../Component/templates/default-layout';
 import './style.scss';
 import { Link } from 'react-router-dom';
 import Page from '../../../components/Page';
+import full from '../../../assets/images/full-logo-noborder.svg';
 
 const Sponsors = () => {
   return (
@@ -27,12 +28,8 @@ const Sponsors = () => {
                 </div>
                 <div className="sponsor__list d-flex flex-wrap align-items-center flex__1">
                   <div className="sponsor__item mb-2 mb-sm-0">
-                    <a href="https://www.dunkindonuts.com/en" className="sponsor__link">
-                      <img
-                        src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/61f88ffad85ed5121f3c986c_Dunkin-Donuts-01.svg"
-                        alt=""
-                        className="sponsor__logo"
-                      />
+                    <a href="#" className="sponsor__link">
+                      <img style={{ width: '155px' }} src={full} alt="" className="sponsor__logo" />
                     </a>
                   </div>
                 </div>

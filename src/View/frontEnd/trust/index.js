@@ -4,6 +4,7 @@ import Page from '../../../components/Page';
 import shake from '../../../assets/images/shake-hands.svg';
 import star from '../../../assets/images/star.svg';
 import file from '../../../assets/images/contract.svg';
+import phone from '../../../assets/images/support.svg';
 
 import './style.scss';
 
@@ -129,10 +130,7 @@ const Trust = () => {
               at your service 24/7.
             </div>
             <div className="about__bubble">
-              <img
-                src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f30ba89dcebe93f96e7655e_support.svg"
-                alt=""
-              />
+              <img src={phone} alt="" />
             </div>
           </div>
         </div>

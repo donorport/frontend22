@@ -38,7 +38,7 @@ import './style.scss';
 //                 <img
 //                   className="img-fluid"
 //                   alt=""
-//                   src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5c2c26551110ec14dd05ef15_image%20(1).png"
+//                   src=""
 //                 />
 //               </div>
 //               <History />

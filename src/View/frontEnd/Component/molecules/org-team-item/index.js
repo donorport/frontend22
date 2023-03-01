@@ -48,14 +48,14 @@ function OrganisationTeamItem(props) {
         </div>
 
         {member.campaignadminDetails ? (
-          <div className="org__team__item__price fs-8 text-light mb-2">
+          <div className="fw-semibold org__team__item__price fs-6 text-light mb-1">
             {member?.campaignadminDetails?.name}
           </div>
         ) : (
           ''
         )}
 
-        <div className="org__team__item__price fs-7 text-light">
+        <div className="org__team__item__price fs-7 text-lighter">
           {moment(member?.created_at).format('MMMM DD, YYYY')}
         </div>
       </div>

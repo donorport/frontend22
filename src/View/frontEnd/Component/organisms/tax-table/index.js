@@ -1,7 +1,6 @@
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { useState, useEffect } from 'react';
 import ListItemImg from '../../atoms/list-item-img';
 import './style.scss';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,7 +8,6 @@ import moment from 'moment';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import helper, { priceFormat } from '../../../../../Common/Helper';
-import { List } from '@mui/material';
 import CSVExportBtn from '../../../CSVExportBtn';
 import { Accordion, AccordionItem as Item } from '@szhsin/react-accordion';
 import chevronDown from '../../../../../assets/images/chevron-down.svg';

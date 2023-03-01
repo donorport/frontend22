@@ -4,10 +4,12 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import DefaultLayout from '../Component/templates/default-layout';
 import './style.scss';
 import Page from '../../../components/Page';
-import logo from '../../../assets/images/grid.svg';
+import spacing from '../../../assets/images/grid.svg';
+import logo from '../../../assets/images/logo.svg';
+import full from '../../../assets/images/full-logo.svg';
+import white from '../../../assets/images/full-logo(white).svg';
 
 const Media = () => {
-
   return (
     <Page title="Donorport | Sponsors">
       <DefaultLayout>
@@ -36,12 +38,7 @@ const Media = () => {
             <Row className="mb-5">
               <Col md="6">
                 <div className="media__box media__box--lg position-relative d-flex mt-1 p-3 justify-content-center align-items-center rounded border bg-lighter border-2 mw-400 mb-2 mb-sm-0">
-                  <img
-                    src={logo}
-                    //src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/6257805fe1b46b1a89f97f4e_grid.svg"
-                    alt=""
-                    className="img-fluid"
-                  />
+                  <img src={spacing} alt="" className="img-fluid" />
                 </div>
               </Col>
               <Col md="6" className="d-flex align-items-center">
@@ -83,11 +80,7 @@ const Media = () => {
             <h4 className="fw-bolder text-dark mb-1">Logo</h4>
             <div className="d-sm-flex align-items-center gap-3 mb-5">
               <div className="media__box position-relative d-flex p-3 justify-content-center align-items-center rounded border border-2 mb-2 mb-sm-0">
-                <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/625781532af0a52d384352bf_2022(best).svg"
-                  alt=""
-                  className="img-fluid"
-                />
+                <img src={full} alt="" className="img-fluid" />
                 <div className="btn__wrap d-flex align-items-center justify-content-center">
                   <Button variant="info" size="lg" className="btn__download fw-bold">
                     Download
@@ -95,11 +88,7 @@ const Media = () => {
                 </div>
               </div>
               <div className="media__box position-relative d-flex p-3 justify-content-center align-items-center rounded border border-2 bg-black mb-2 mb-sm-0">
-                <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/625781466fd7471302db33fd_2022(best-white).svg"
-                  alt=""
-                  className="img-fluid"
-                />
+                <img src={white} alt="" className="img-fluid" />
                 <div className="btn__wrap d-flex align-items-center justify-content-center">
                   <Button variant="info" size="lg" className="btn__download fw-bold">
                     Download
@@ -107,11 +96,7 @@ const Media = () => {
                 </div>
               </div>
               <div className="media__box position-relative d-flex p-3 justify-content-center align-items-center rounded border border-2">
-                <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/61fed883243c845a8478a637_2022%20(Icon).svg"
-                  alt=""
-                  className="img-fluid"
-                />
+                <img src={logo} alt="" className="img-fluid" />
                 <div className="btn__wrap d-flex align-items-center justify-content-center">
                   <Button variant="info" size="lg" className="btn__download fw-bold">
                     Download
