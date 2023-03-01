@@ -102,9 +102,9 @@ const AdminDashboard = () => {
                 className="dash__icon text-light ms-1 fs-5"
               />
             </div>
-            <div className="dash__chart">
-              {/* <img src={AreaChart} alt="" className="img-fluid" />*/}
-            </div>
+            {/* <div className="dash__chart">
+              <img src={AreaChart} alt="" className="img-fluid" />
+            </div> */}
           </div>
         </Col>
       </Row>
@@ -118,9 +118,9 @@ const AdminDashboard = () => {
                 className="dash__icon text-light ms-1 fs-5"
               />
             </div>
-            <div className="dash__chart">
-              {/* <img src={BarChart} alt="" className="img-fluid" />*/}
-            </div>
+            {/* <div className="dash__chart">
+              <img src={BarChart} alt="" className="img-fluid" />
+            </div> */}
           </div>
         </Col>
         <Col md="6" className="mb-4">
@@ -136,9 +136,9 @@ const AdminDashboard = () => {
               <div className="text-light fs-7">
                 Your contribution coverage over each category & location
               </div>
-              <div className="pie__chart text-center d-flex align-items-center">
-                {/*<img src={PieChart} alt="" className="img-fluid" />*/}
-              </div>
+              {/* <div className="pie__chart text-center d-flex align-items-center">
+                <img src={PieChart} alt="" className="img-fluid" />
+              </div> */}
             </div>
           </div>
         </Col>

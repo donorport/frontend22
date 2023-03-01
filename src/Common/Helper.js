@@ -8,12 +8,13 @@ import { State, Country } from 'country-state-city';
 
 let Mode = 'production';
 let BASE_URL = 'https://www.donorport.com/app/';
-//let BASE_URL = 'http://localhost:3000/';
+// let BASE_URL = 'http://localhost:8080/';
 
-// if (window.location.hostname === 'localhost') {
-//   Mode = 'development';
-//   BASE_URL = 'http://localhost:8080/';
-// }
+if (window.location.hostname === 'localhost') {
+  Mode = 'development';
+  BASE_URL = 'http://localhost:8080/';
+}
+
 const AWS_S3_BUCKET_BASE_URL = 'https://donorport.s3.us-west-2.amazonaws.com/';
 
 let helper = {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-import { useOutletContext, useNavigate } from 'react-router-dom';
+import { useOutletContext, useNavigate, Link } from 'react-router-dom';
 import { validateAll } from 'indicative/validator';
 import { Button } from 'react-bootstrap';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -21,7 +21,6 @@ import {
 } from '../../../../../user/user.action';
 import locationApi from '../../../../../Api/frontEnd/location';
 import categoryApi from '../../../../../Api/admin/category';
-import { Link } from 'react-router-dom';
 
 import './style.scss';
 

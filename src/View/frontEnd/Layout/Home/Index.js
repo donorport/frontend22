@@ -62,9 +62,9 @@ export default function Index(props) {
               </div>
               <div className="empty__message">
                 <div className="title title--small w-embed">
-                  <text className="item__title project__title">
+                  <p className="item__title project__title">
                     There are no results in this range
-                  </text>
+                  </p>
                 </div>
                 <div className="empty__text">
                   <p>Try broadening your search.</p>
