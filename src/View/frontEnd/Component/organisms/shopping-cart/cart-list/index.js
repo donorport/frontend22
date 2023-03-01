@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 import CartItem from '../../../molecules/cart-item';
 
-function CartList(props) {
+function CartList(props) { 
   return (
     <ul className="cd__cart__list list-unstyled mb-0">
       {props.cartItem?.length > 0 &&
         props.cartItem.map((item, i) => {
           return (
             <CartItem
+              updateChildCart={props.updateChildCart}
               cartItem={item}
               key={i}
               removeCartItem={props.removeCartItem}
@@ -28,7 +29,8 @@ CartList.propTypes = {
   removeCartItem: PropTypes.func,
   updateCartItem: PropTypes.func,
   // CalculatePrice: PropTypes.func,
-  currencySymbol: PropTypes.string
+  currencySymbol: PropTypes.string,
+  updateChildCart: PropTypes.func,
 };
 
 CartList.defaultProps = {

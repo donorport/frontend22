@@ -69,7 +69,6 @@ const Cart = (props) => {
       //(getCalc.getTaxValueOfPrice(sum));
       // setTotal(sum + salesTax);
       //setTotal(getCalc.priceWithTax(sum));
-      setTotal(sum);
     }
   }, [props.cartItem]);
 
