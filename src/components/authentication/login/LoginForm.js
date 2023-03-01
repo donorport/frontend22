@@ -54,9 +54,8 @@ export default function LoginForm() {
     },
     validationSchema: LoginSchema,
     onSubmit: async () => {
-      setLoading(false);
-      const login = await authApi.login(formik.values.email, formik.values.password);
-
+      setLoading(true)
+      const login = await authApi.login(formik.values.email, formik.values.password)
       if (login) {
         if (!login.data.success || login.data.status !== 1) {
           setLoading(false);
@@ -115,7 +114,7 @@ export default function LoginForm() {
 
   return (
     <>
-      <FrontLoader loading={loading} />
+     {/*<FrontLoader loading={loading} />*/}
       <FormikProvider value={formik}>
         {/* {console.log(formik.values)} */}
         <Form autoComplete="off" noValidate onSubmit={handleSubmit}>

@@ -155,7 +155,7 @@ function CmsController() {
 
             let addCms;
 
-            setLoading(false)
+            setLoading(true)
             if (id !== '') {
 
 

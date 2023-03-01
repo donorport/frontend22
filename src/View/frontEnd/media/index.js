@@ -4,8 +4,10 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import DefaultLayout from '../Component/templates/default-layout';
 import './style.scss';
 import Page from '../../../components/Page';
+import logo from '../../../assets/images/grid.svg';
 
 const Media = () => {
+
   return (
     <Page title="Donorport | Sponsors">
       <DefaultLayout>
@@ -35,7 +37,8 @@ const Media = () => {
               <Col md="6">
                 <div className="media__box media__box--lg position-relative d-flex mt-1 p-3 justify-content-center align-items-center rounded border bg-lighter border-2 mw-400 mb-2 mb-sm-0">
                   <img
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/6257805fe1b46b1a89f97f4e_grid.svg"
+                    src={logo}
+                    //src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/6257805fe1b46b1a89f97f4e_grid.svg"
                     alt=""
                     className="img-fluid"
                   />

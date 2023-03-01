@@ -19,6 +19,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './style.scss';
 import { GalleryImg } from '../../atoms';
+import { CircularProgress } from '@mui/material';
 
 //import { TagTitle,WidgetTitle } from "../../atoms";
 // import WidgetTitle from "../../atoms";
@@ -37,7 +38,7 @@ function ProjectDetailMain(props) {
   let address = productDetails?.address ? convertAddress(productDetails?.address) : '';
 
   const [quantity, setQuantity] = useState(1);
-
+  const [loading, setLoading] = useState(false);
   const [addedToCard, setAddedToCard] = useState(false);
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const user = useSelector((state) => state.user);
@@ -185,7 +186,12 @@ function ProjectDetailMain(props) {
           </div>
         </div>
         <div className="category__icons d-flex align-items-center mb-4 order--1 order-sm-0">
-          <Button size="lg" variant="link" className="btn__category text-decoration-none">
+          <Link
+            size="lg"
+            variant="link"
+            className="btn__category text-decoration-none"
+            to={'/categories/' + productDetails?.categoryDetails?.slug}
+          >
             <span
               className="d-flex align-items-center icon__category ms-1"
               style={{
@@ -205,7 +211,7 @@ function ProjectDetailMain(props) {
             <span className="fs-6 text-dark fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
               {productDetails?.subCategoryDetails?.name}
             </span>
-          </Button>
+          </Link>
           <Link
             size="lg"
             variant="link"
@@ -246,7 +252,7 @@ function ProjectDetailMain(props) {
       </div>
 
       {productDetails.galleryUrl && (
-        <div className="project-video-wrap mb-4">
+        <div className="project-video-wrap">
           <iframe
             title="product-details-video"
             key="product-details-video"
@@ -421,7 +427,7 @@ function ProjectDetailMain(props) {
                   <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
                 </Card.Header>
 
-                <div className="project-video-wrap mb-4">
+                <div className="project-video-wrap">
                   <iframe
                     title="product-details-video"
                     key="product-details-video"

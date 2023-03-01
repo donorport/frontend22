@@ -28,7 +28,7 @@ import wishlistApi from '../../Api/frontEnd/wishlist';
 import { getDistance } from 'geolib';
 import Page from '../../components/Page';
 
-export default function CategoryProductsController() {
+export function CategoryProductsController(){
   const [productList, setProductList] = useState([]);
   const [advertisementList, setAdvertisementList] = useState([]);
   const [homeadvertisementList, setHomeAdvertisementList] = useState([]);

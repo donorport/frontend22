@@ -41,9 +41,10 @@ function UserDetail(props) {
   const [profileImg, setProfileImg] = useState('');
   const location = useLocation();
 
+  
   useEffect(() => {
-    (async () => {
-      setLoading(false);
+        (async () => {
+            setLoading(true);
       const getUserDetails = await userApi.getUserDetails(userAuthToken);
       if (getUserDetails) {
         if (getUserDetails.data.success) {

@@ -39,8 +39,8 @@ import AdminActivity from '../View/frontEnd/Component/organisms/admin-activity';
 import AdminTax from '../View/frontEnd/Component/organisms/admin-tax';
 import AdminProjects from '../View/frontEnd/Component/organisms/admin-projects';
 import AdminSettingsTab from '../View/frontEnd/Component/organisms/admin-settings-tab';
-import CompanySettings from '../View/frontEnd/Component/organisms/company-settings'
-import PaymentMethod from '../View/frontEnd/Component/organisms/payment-method';
+import ProfileSettings from '../View/frontEnd/Component/organisms/profile-settings'
+import Payments from '../View/frontEnd/Component/organisms/payment-method';
 import AdminAdmin from '../View/frontEnd/Component/organisms/admin-admin';
 import AdminBilling from '../View/frontEnd/Component/organisms/admin-billing';
 import AdminControl from '../View/frontEnd/Component/organisms/admin-control';
@@ -75,7 +75,8 @@ import Trust from '../View/frontEnd/trust';
 import PlansController from '../Controller/frontEnd/PlansController';
 import VerifiedDonors from '../View/frontEnd/verified-donors';
 import Terms from '../View/frontEnd/terms';
-import CategoryProductsController from '../Controller/frontEnd/CategoryProductsController';
+import Privacy from '../View/frontEnd/privacy';
+import {CategoryProductsController} from '../Controller/frontEnd/CategoryProductsController';
 import LeaderBoard from '../View/frontEnd/Component/organisms/leaderboard';
 import OrderConfirmPage from '../View/frontEnd/order-confirmation';
 import DonationConfirmPage from '../View/frontEnd/donation-confirmation/index';
@@ -127,9 +128,9 @@ export default function MainRoutes() {
                         <Route path="/campaign/:name/tax" element={<AdminTax />} />
                         <Route path="/campaign/:name/project" element={<AdminProjects />} />
                         <Route path="/campaign/:name/settings" element={<AdminSettingsTab />} >
-                            <Route path="/campaign/:name/settings/company" element={<CompanySettings />} />
-                            <Route path="/campaign/:name/settings/paymentMethod" element={<PaymentMethod />} />
-                            <Route path="/campaign/:name/settings/paymentMethod/:accountId" element={<PaymentMethod />} />
+                            <Route path="/campaign/:name/settings/profile" element={<ProfileSettings />} />
+                            <Route path="/campaign/:name/settings/payments" element={<Payments />} />
+                            <Route path="/campaign/:name/settings/payments/:accountId" element={<Payments />} />
                             <Route path="/campaign/:name/settings/administrators" element={<AdminAdmin />} />
                             <Route path="/campaign/:name/settings/billing" element={<AdminBilling />} />
                             <Route path="/campaign/:name/settings/controls" element={<AdminControl />} />
@@ -160,9 +161,10 @@ export default function MainRoutes() {
                         <Route path="/item-tags" element={<ItemTags />} />
                         <Route path="/media" element={<Media />} />
                         <Route path="/ranks" element={<Ranks />} />
-                        <Route path="/about-us" element={<AboutController />} />
+                        <Route path="/about" element={<AboutController />} />
                         <Route exact path="/organization/:name" element={<OrganizationDetailsController />} />
                         <Route path="/terms" element={<Terms />} />
+                        <Route path="/privacy" element={<Privacy />} />
 
                         {/* <Route exact path="/change-password" element={<ChangePassword />} /> */}
                         <Route exact path="/item/:name" element={<ItemDetailsController />} />
@@ -204,9 +206,10 @@ export default function MainRoutes() {
                             <Route exact path="/apply" element={<ApplyOrganizationController />} />
                             <Route path="/sponsors" element={<Sponsors />} />
                             <Route path="/partnership" element={<Partnership />} />
-                            <Route path="/about-us" element={<AboutController />} />
+                            <Route path="/about" element={<AboutController />} />
                             <Route path="/verified" element={<VerifiedDonors />} />
                             <Route path="/terms" element={<Terms />} />
+                            <Route path="/privacy" element={<Privacy />} />
                             <Route path="/media" element={<Media />} />
                             <Route path="/ranks" element={<Ranks />} />
                             <Route path="/trust" element={<Trust />} />
@@ -249,7 +252,7 @@ export default function MainRoutes() {
                 //     <Route exact path="/apply" element={<ApplyOrganizationController />} />
                 //     <Route path="/sponsors" element={<Sponsors />} />
                 //     <Route path="/partnership" element={<Partnership />} />
-                //     <Route path="/about-us" element={<AboutController />} />
+                //     <Route path="/about" element={<AboutController />} />
                 //     <Route path="/verified" element={<VerifiedDonors />} />
                 //     <Route path="/terms" element={<Terms />} />
                 //     <Route path="/media" element={<Media />} />
@@ -274,7 +277,7 @@ export default function MainRoutes() {
                         <Route path="/" element={<HomeController />} />
                         <Route path="/categories/:slug" element={<CategoryProductsController />} />
                         <Route exact path="/apply" element={<ApplyOrganizationController />} />
-                        <Route path="/about-us" element={<AboutController />} />
+                        <Route path="/about" element={<AboutController />} />
                         <Route path="/xp" element={<Xp />} />
                         <Route path="/leaderboard" element={<LeaderBoard />} />
                         <Route path="/partnership" element={<Partnership />} />
@@ -298,6 +301,7 @@ export default function MainRoutes() {
                         <Route path="/donate/:id" element={<DonationConfirmPage />} />
                         <Route path="/verified" element={<VerifiedDonors />} />
                         <Route path="/terms" element={<Terms />} />
+                        <Route path="/privacy" element={<Privacy />} />
                         <Route path="/pricing" element={<Pricing />} />
                         <Route path="user" element={<UserDetail />} >
                             <Route path="/user/:name/dashboard" element={<UserDashboard />} />

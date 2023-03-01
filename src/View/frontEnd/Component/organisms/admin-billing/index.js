@@ -69,8 +69,8 @@ const AdminBilling = () => {
 
 
   useEffect(() => {
-    (async () => {
-      setLoading(false)
+        (async () => {
+            setLoading(true)
       if (data && data._id) {
         await getPaymentHistory()
 
@@ -89,7 +89,7 @@ const AdminBilling = () => {
 
   return (
     <>
-      <FrontLoader loading={loading} />
+     {/*<FrontLoader loading={loading} />*/}
       <div className="mw-600">
         <div className="mb-5">
           <div className="flex__1 mb-3">

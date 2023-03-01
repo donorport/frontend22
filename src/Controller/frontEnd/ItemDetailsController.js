@@ -24,6 +24,7 @@ export default function ItemDetailsController() {
   const [wishListproductIds, setWishListProductIds] = useState([]);
   const dispatch = useDispatch();
   const [isFollow, setIsFollow] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const allProductList = useCallback(async () => {
     let data = {};
@@ -91,6 +92,7 @@ export default function ItemDetailsController() {
   const addProductToWishlist = async (productId) => {
     let data = {};
     data.productId = productId;
+    setLoading(true);
     const add = await wishlistApi.add(token, data);
     if (add) {
       if (add.data.success) {
@@ -118,6 +120,7 @@ export default function ItemDetailsController() {
   useEffect(() => {
     (async () => {
       if (token) {
+        setLoading(true);
         await getWishListProductList();
       }
     })();
@@ -125,6 +128,9 @@ export default function ItemDetailsController() {
 
   useEffect(() => {
     (async () => {
+      setLoading(true);
+      // console.log(params.name)
+      // window.scrollTo(0, 0);
       let mydata = {};
       const getproductDetails = await productApi.details(params.name);
       if (getproductDetails.data.success === true) {
@@ -162,6 +168,7 @@ export default function ItemDetailsController() {
   ]);
 
   const checkItemInCart = async (id) => {
+    setLoading(true);
     let res;
     const checkItemInCart = await cartApi.checkItemInCart(userAuthToken, id);
     if (checkItemInCart) {
@@ -179,6 +186,7 @@ export default function ItemDetailsController() {
 
   const addToCart = async (id, quantity) => {
     if (token) {
+      setLoading(true);
       let data = {};
       data.productId = id;
       data.quantity = quantity === undefined ? 1 : quantity;
@@ -199,6 +207,7 @@ export default function ItemDetailsController() {
   };
 
   const removeCartItem = async (id) => {
+    setLoading(true);
     const removeCartItem = await cartApi.removeCartProduct(userAuthToken, id);
     if (removeCartItem) {
       if (!removeCartItem.data.success) {

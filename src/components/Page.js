@@ -20,7 +20,7 @@ const Page = forwardRef(({ children, title, img, description, url, showTags, ...
         <meta property="og:image" content={img} />
         {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="donorport.org" />
+        <meta property="twitter:domain" content="donorport.com" />
         <meta property="twitter:url" content={url} />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />

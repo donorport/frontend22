@@ -21,9 +21,9 @@ export default function PartnershipInquiryController() {
         name: '',
         email: '',
         organization: '',
-        reson: '',
+        reason: '',
     })
-    const { name, email, organization, reson } = state
+    const { name, email, organization, reason } = state
 
 
     const params = useParams();
@@ -57,7 +57,7 @@ export default function PartnershipInquiryController() {
             name:data.name,
             email:data.email,
             organization:data.organization,
-            reson:data.reson,
+            reason:data.reason,
 
         })
         setModal(true)

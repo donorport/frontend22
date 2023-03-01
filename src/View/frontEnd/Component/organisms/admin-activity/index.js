@@ -29,7 +29,7 @@ const AdminActivity = () => {
   const [urlIcon, seturlIcon] = useState("");
 
   const getActivityList = async (page, field, type) => {
-    setLoading(false)
+    setLoading(true)
     let formData = {}
     formData.organizationId = data._id
     formData.pageNo = page

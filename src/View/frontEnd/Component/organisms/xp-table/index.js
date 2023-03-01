@@ -36,8 +36,9 @@ const XpTable = (props) => {
               </span>
             </div>
             <div className="d-flex align-items-center">
-              <span className="text-light fw-bold fs-4 d-none d-sm-flex">
-                {data.currencySymbol} {data.amount.toFixed(2)}
+              <span className="text-light fw-semibold fs-5 d-none d-sm-flex">
+                {data.currencySymbol}
+                {data.amount.toFixed(2)}
               </span>
             </div>
           </div>

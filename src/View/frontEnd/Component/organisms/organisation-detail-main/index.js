@@ -143,7 +143,7 @@ function OrganisationDetailMain(props) {
           </Button>*/}
         </div>
         {organizationDetails.promoVideo && (
-          <div className="project-video-wrap mb-4">
+          <div className="project-video-wrap">
             <iframe
               title="organization-promo-video"
               key="organization-promo-video"

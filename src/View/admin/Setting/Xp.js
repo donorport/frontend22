@@ -143,7 +143,7 @@ export default function Xp(props) {
 
     return (
         <>
-            <FrontLoader loading={loading} />
+           {/*<FrontLoader loading={loading} />*/}
             <Page title="XP | Minimal-UI">
 
                 <Container>

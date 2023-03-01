@@ -19,7 +19,7 @@
     }
 
     .qty__input {
-      border: 1px solid var(--border-input);
+      border: unset;
       background-color: var(--bkg-color);
       color: var(--text-subtext);
       flex: 0;

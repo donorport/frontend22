@@ -211,14 +211,16 @@ export default function ApplyOrganizationController() {
       'country.required': 'Please Select Country.',
       'category.required': 'Category is Required.'
     };
+
     validateAll(state, rules, message)
       .then(async () => {
+        setLoading(true);
         const formaerrror = {};
         setstate({
           ...state,
           error: formaerrror
         });
-        setLoading(false);
+        //setLoading(true);
 
         let data = {};
         data.name = name;
@@ -275,7 +277,7 @@ export default function ApplyOrganizationController() {
       let data = {};
       data.otp = Number(finalCode);
 
-      setLoading(false);
+      setLoading(true);
       const verifyOtp = await adminCampaignApi.VerifyOtpCampaignAdmin(data);
       deleteCookie('code1');
       deleteCookie('code2');
@@ -306,10 +308,9 @@ export default function ApplyOrganizationController() {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
       <Page
         title="Donorport | Apply"
-        url="https://donorport.org/apply"
+        url="https://donorport.com/apply"
         img="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/62fd822512caf007efb3e4a1_emoji.png"
         description="Apply for an account. Let us know if you want to post on Donorport. For more information about the application process click here. Charity Nonprofit"
       >
@@ -327,6 +328,7 @@ export default function ApplyOrganizationController() {
           categoryList={categoryList}
           defaultCategory={defaultCategory}
           onChangeCategory={onChangeCategory}
+          loading={loading}
         />
       </Page>
     </>

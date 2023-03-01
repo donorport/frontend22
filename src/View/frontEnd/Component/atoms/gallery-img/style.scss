@@ -3,6 +3,17 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  background-position: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: -webkit-transform .15s ease 0s;
+  transition: transform .15s ease 0s;
+  transition: transform .15s ease 0s,-webkit-transform .15s ease 0s;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  height: 100%;
+  width: 100%;
+  border-radius: 9px;
 }
 
 .gallery__thumb {

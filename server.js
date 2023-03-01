@@ -17,7 +17,8 @@ const headers = {
 
 const AWS_S3_BUCKET_BASE_URL = 'https://donorport.s3.us-west-2.amazonaws.com/';
 
-let BASE_URL = 'https://www.donorport.org/app/';
+//let BASE_URL = 'https://www.donorport.com/app/';
+let BASE_URL = 'http://localhost:3000/';
 
 if (process.env.NODE_ENV === 'development') {
   BASE_URL = 'http://localhost:8080/';

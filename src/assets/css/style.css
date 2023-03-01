@@ -67,7 +67,7 @@
   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
 }
 
-#pageLoader {
+/*#pageLoader {
   position: fixed;
   opacity: 1;
   left: 0px;
@@ -76,11 +76,60 @@
   height: 100%;
   z-index: 999999999999999999 !important;
   background: url('../../../src/assets/images/loader2.gif') 50% 50% no-repeat rgb(255, 255, 255);
+}*/
+
+.react-confirm-alert-blur {
+  -webkit-filter: unset !important;
+  filter: unset !important;
+  filter: unset !important;
+  -webkit-filter: unset !important;
+}
+
+.react-confirm-alert-overlay {
+  background: hsl(0deg 0% 100% / 45%) !important;
+  -webkit-animation: react-confirm-alert-fadeIn .2s .2s forwards;
+  animation: react-confirm-alert-fadeIn .2s .2s forwards;
+}
+
+.react-confirm-alert-body {
+  font-size: 16px;
+  color: inherit;
+  font-family: inherit;
+  padding: 40px 60px;
+  text-align: left;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: -7px 7px 20px 10px #0000000d;
+  max-width: 500px;
+}
+
+.react-confirm-alert-body>h1 {
+  margin-bottom: 1.3rem;
+  text-decoration: underline;
+}
+
+.react-confirm-alert-button-group {
+  margin-top: 2.3rem;
+  justify-content: end;
 }
 
 .react-confirm-alert-button-group>button {
-  background-color: #007b55 !important;
   z-index: 9999999999999 !important;
+  font-size: 16px;
+  padding: 12px 45px;
+  font-weight: 900;
+}
+
+.react-confirm-alert-button-group>button:first-child {
+  background-color: unset;
+  color: inherit;
+  padding: 12px 21px;
+}
+
+.react-confirm-alert-button-group>button:last-child {
+  background-color: #87c387 !important;
+  padding: 12px 32px !important;
+  color: white;
 }
 
 .react-confirm-alert-button-group .frntlogout {
@@ -206,7 +255,7 @@
   bottom: auto;
 }
 
-.pace-running .pace-inactive {
+.pace-running .pace-Inactive {
   display: none !important;
 }
 
@@ -397,19 +446,28 @@
 }
 
 .ReactTags__tagInputField {
-  display: block !important;
-  width: 100% !important;
-  height: calc(1.90625rem + 2px) !important;
-  padding: 0.25rem 0.7rem !important;
-  font-size: 0.9375rem !important;
-  font-weight: 400 !important;
-  line-height: 1.5 !important;
-  color: #495057 !important;
-  background-color: #fff !important;
-  background-clip: padding-box !important;
-  border: 1px solid #ced4da !important;
-  border-radius: 0.2rem !important;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #585a83;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #e6e6e6;
+  -webkit-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  min-height: calc(1.25em + 1.5rem + 2px);
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.ReactTags__tagInputField::placeholder {
+  color: rgba(0, 0, 0, .2509803922);
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .ReactTags__selected {

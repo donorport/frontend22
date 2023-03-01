@@ -2,9 +2,6 @@ import { Button, Dropdown, Modal } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
-
-// import Avatar from "@components/atoms/avatar";
-// import AvatarImg from "@assets/images/avatar.jpeg";
 import helper from '../../../../../Common/Helper';
 import { confirmAlert } from 'react-confirm-alert';
 import Avatar from '../../atoms/avatar';
@@ -16,7 +13,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Accordion, AccordionItem as Item } from '@szhsin/react-accordion';
 import chevronDown from '../../../../../assets/images/chevron-down.svg';
-// import AvatarImg from "../../../assets/images/avatar.png";
+
 let PageSize = 10;
 
 const AdminTaxTable = (props) => {
@@ -87,19 +84,19 @@ const AdminTaxTable = (props) => {
   const deleteItem = (item) => {
     console.log('Delete Item: ', item);
     confirmAlert({
-      title: 'DELETE RECEIPT',
-      message: 'Are you sure to delete this tax receipt? This cannot be revert',
+      title: 'Delete Receipt?',
+      message: 'Are you sure to delete this tax receipt?',
       buttons: [
         {
-          label: 'Yes',
+          label: 'Cancel'
+        },
+        {
+          label: 'Delete',
           onClick: () => {
             if (props.deleteReceipt) {
               props.deleteReceipt(item.userDetails?._id);
             }
           }
-        },
-        {
-          label: 'No'
         }
       ]
     });
@@ -145,13 +142,13 @@ const AdminTaxTable = (props) => {
                 <>
                   <Accordion allowMultiple>
                     <AccordionItem
-                      className="py-2"
+                      className="d-flex flex-column"
                       hideChevron={disableHeader}
                       buttonProps={{ disabled: disableHeader }}
                       header={
                         <li className="flex-grow-1 table__list-item px-2 py-2">
                           <div className="d-sm-flex align-items-center flex-grow-1">
-                            <div className="d-flex align-items-center me-sm-2 mb-1 mb-sm-0">
+                            <div className="d-flex align-items-center me-sm-2 mb-3 mb-sm-0">
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                                 <div className="text-light fw-bold fs-5">
                                   {item[0].currencySymbol}
@@ -184,7 +181,7 @@ const AdminTaxTable = (props) => {
                                 <div className="text-light">
                                   {item[0].userDetails.street +
                                     ', ' +
-                                    item[0].userDetails.cityDetails[0]?.city}
+                                    item[0].userDetails.cityDetails[0]?.city}&nbsp;
                                   {item[0].userDetails.stateDetails[0]?.state +
                                     ', ' +
                                     item[0].userDetails.zip}
@@ -408,7 +405,7 @@ const AdminTaxTable = (props) => {
                             return (
                               <>
                                 <li className="table__list-item table__list-item--tax py-1">
-                                  <div className="d-sm-flex align-items-center flex-grow-1">
+                                  <div className="d-flex d-sm-flex align-items-center flex-grow-1">
                                     <div className="d-flex align-items-center mb-1 mb-sm-0 order-1 order-sm-0">
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                                         <div className="text-light fw-bold fs-5">

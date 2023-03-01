@@ -20,7 +20,7 @@ const UserBilling = () => {
   const headers = [
     { label: "Date", key: "date" },
     { label: "Amount", key: "amount" },
-    { label: "Transection Id", key: "transectionId" },
+    { label: "Transaction Id", key: "TransactionId" },
     { label: "Type", key: "type" },
     { label: "Description", key: "description" },
     { label: "Card", key: "card" },
@@ -40,7 +40,7 @@ const UserBilling = () => {
           // let tempObj = {}
           // tempObj.date = moment(list.created_at).format('DD/MM/YYYY')
           // tempObj.amount = list.type === 'ORDER' ? list.total : list.amount
-          // tempObj.transectionId = list.uniqueTransactionId ? list.uniqueTransactionId : list.transactionId
+          // tempObj.TransactionId = list.uniqueTransactionId ? list.uniqueTransactionId : list.transactionId
           // tempObj.type = list.type === 'ORDER' ? 'Bought' : 'Donate'
           // tempObj.description = list.type === 'ORDER' ? 'Debited' : list.type === 'PROJECT' ? list.projectDetails.name : list.organizationDetails.name
           // tempObj.card = list.type === 'ORDER' ? JSON.parse(list.paymentResponse).data?.payment_method_details?.card?.brand : JSON.parse(list.paymentResponse).payment_method_details?.card?.brand
@@ -52,7 +52,7 @@ const UserBilling = () => {
             let tempObj = {}
             tempObj.date = moment(list.created_at).format('DD/MM/YYYY')
             tempObj.amount = list.type === 'ORDER' ? list.total : list.amount
-            tempObj.transectionId = list.uniqueTransactionId ? list.uniqueTransactionId : list.transactionId
+            tempObj.TransactionId = list.uniqueTransactionId ? list.uniqueTransactionId : list.transactionId
             tempObj.type = list.type === 'ORDER' ? 'Bought' : 'Donate'
             tempObj.description = list.type === 'ORDER' ? 'Debited' : list.type === 'PROJECT' ? list.projectDetails.name : list.organizationDetails.name
             tempObj.card = list.type === 'ORDER' ? JSON.parse(list.paymentResponse).data?.payment_method_details?.card?.brand : JSON.parse(list.paymentResponse).payment_method_details?.card?.brand
@@ -65,7 +65,7 @@ const UserBilling = () => {
               let tempObj = {}
               tempObj.date = moment(list.created_at).format('DD/MM/YYYY')
               tempObj.amount = Number(o_itm.productPrice) * o_itm.quantity
-              tempObj.transectionId = list.uniqueTransactionId ? list.uniqueTransactionId : list.transactionId
+              tempObj.TransactionId = list.uniqueTransactionId ? list.uniqueTransactionId : list.transactionId
               tempObj.type = list.type === 'ORDER' ? 'Bought' : 'Donate'
               tempObj.description = o_itm.quantity + '' + o_itm.productName
               tempObj.card = list.type === 'ORDER' ? JSON.parse(list.paymentResponse).data?.payment_method_details?.card?.brand : JSON.parse(list.paymentResponse).payment_method_details?.card?.brand
@@ -92,8 +92,8 @@ const UserBilling = () => {
 
 
   useEffect(() => {
-    (async () => {
-      setLoading(false)
+        (async () => {
+            setLoading(true)
       await getUserPaymentHistory()
       setLoading(false)
 
@@ -139,7 +139,7 @@ const UserBilling = () => {
               let PurchaseType = list.type === 'ORDER' ? 'Bought' : 'Donated'
               let PurchaseIcon = list.type === 'ORDER' ? <FontAwesomeIcon icon={solid("bag-shopping")} className="mr-3p" /> : <FontAwesomeIcon icon={solid("heart")} className="mr-3p" />
               let PurchaseName = list.type === 'ORDER' ? 'Debited' : list.type === 'PROJECT' ? list.projectDetails.name : list.organizationDetails.name
-              let transectionId = list.uniqueTransactionId ? list.uniqueTransactionId : list.transactionId
+              let TransactionId = list.uniqueTransactionId ? list.uniqueTransactionId : list.transactionId
               let CardType = list.type === 'ORDER' ? JSON.parse(list.paymentResponse).data?.payment_method_details?.card?.brand : JSON.parse(list.paymentResponse).payment_method_details?.card?.brand
 
               let cardIcon = CardType === 'visa' ? <img alt="Visa" height="30" src={helper.CampaignAdminLogoFullPath + 'visa.png'} style={{ border: 0, margin: 0, padding: 0, verticalAlign: "text-bottom", color: "blue" }} width="30"></img> :
@@ -172,7 +172,7 @@ const UserBilling = () => {
 
                         </div>
                         <div className="d-sm-none order__link text-subtext mt-6p me-sm-3">
-                          #{transectionId}
+                          #{TransactionId}
                         </div>
                       </div>
 
@@ -204,7 +204,7 @@ const UserBilling = () => {
                       </div>
 
                       <div className="d-none d-sm-block order__link text-subtext mt-6p me-3">
-                        #{transectionId}
+                        #{TransactionId}
                       </div>
                     </div>
                   </div>
@@ -222,7 +222,7 @@ const UserBilling = () => {
 
                             </div>
                             <div className="d-sm-none order__link text-subtext mt-6p me-sm-3">
-                              #{transectionId}
+                              #{TransactionId}
                             </div>
                           </div>
 
@@ -255,7 +255,7 @@ const UserBilling = () => {
                           </div>
 
                           <div className="d-none d-sm-block order__link text-subtext mt-6p me-3">
-                            #{transectionId}
+                            #{TransactionId}
                           </div>
                         </div>
                       </div>

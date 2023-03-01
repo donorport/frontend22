@@ -171,15 +171,15 @@
           opacity: 0.8;
         }
       }
-
-      span {
+      //circular loader fix test Feb 27 KU
+     /* span {
         display: inline-block;
         flex: 1;
         font-size: 14px;
         font-weight: 500;
         font-family: 'Roboto', sans-serif;
         color: #72727d;
-      }
+      }*/
 
       img {
         width: 19px;
@@ -275,16 +275,13 @@
     &::placeholder {
       color: #e6e6e6;
       opacity: 1;
-      /* Firefox */
     }
 
     &:-ms-input-placeholder {
-      /* Internet Explorer 10-11 */
       color: #e6e6e6;
     }
 
     &::-ms-input-placeholder {
-      /* Microsoft Edge */
       color: #e6e6e6;
     }
   }
@@ -310,8 +307,8 @@
     gap: 0.5rem;
 
     .form-check-input {
-      width: 1.3rem;
-      height: 1.3rem;
+      min-width: 1.3rem;
+      min-height: 1.3rem;
       border: 2px solid #4e8dff;
       cursor: pointer;
     }
@@ -327,11 +324,10 @@
   .login {
     @include media-breakpoint-up(sm) {
       display: flex;
-      height: 900px;
       flex-direction: row;
       justify-content: flex-start;
       align-items: stretch;
-      flex: 0 0 auto;
+      flex: 1;
     }
 
     .login__left {
@@ -386,8 +382,8 @@
     bottom: auto;
     display: flex;
     padding-top: 24px;
+    margin-bottom: 4.3rem;
     height: 80px;
-
     @include media-breakpoint-up(sm) {
       position: absolute;
       top: 3.6rem;

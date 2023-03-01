@@ -66,6 +66,7 @@ const OrganisationDetail = (props) => {
               selectedValue={props.selectedValue}
               setSelectedValue={props.setSelectedValue}
               dCardIcon={props.dCardIcon}
+              loading={props.loading}
             />
           </div>
         </div>

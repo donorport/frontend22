@@ -99,11 +99,11 @@ const AdminProjects = () => {
   };
 
   useEffect(() => {
-    (async () => {
-      setLoading(false);
-      await getProductList();
-      await getProjectList(pageNo, sortField, order, listBy);
-      setLoading(false);
+        (async () => {
+            setLoading(true)
+      await getProductList()
+      await getProjectList(pageNo, sortField, order, listBy)
+      setLoading(false)
       // console.log(location?.state?.type)
     })();
   }, [data._id, update]);
@@ -225,7 +225,7 @@ const AdminProjects = () => {
 
     let checkImg = id ? projectImages?.length + images?.length : images?.length;
     if (checkImg > helper.MAX_IMAGE_LENGTH) {
-      formaerrror['images'] = 'Image length Must be less then ' + helper.MAX_IMAGE_LENGTH;
+      formaerrror['images'] = 'Maximum images allowed: ' + helper.MAX_IMAGE_LENGTH;
     }
 
     const message = {
@@ -265,12 +265,13 @@ const AdminProjects = () => {
 
           let addProject;
 
-          setLoading(false);
-          if (id !== '') {
-            addProject = await projectApi.updateProject(token, formData, id);
-          } else {
-            addProject = await projectApi.add(token, formData);
-          }
+        setLoading(true)
+        if (id !== '') {
+          addProject = await projectApi.updateProject(token, formData, id)
+        } else {
+          addProject = await projectApi.add(token, formData)
+        }
+
 
           if (addProject) {
             if (addProject.data.success === false) {
@@ -288,7 +289,7 @@ const AdminProjects = () => {
             }
           } else {
             setLoading(false);
-            ToastAlert({ msg: 'Project not save', msgType: 'error' });
+            ToastAlert({ msg: 'Project not saved', msgType: 'error' });
           }
         }
       })
@@ -313,13 +314,16 @@ const AdminProjects = () => {
 
   const deleteProject = (id) => {
     confirmAlert({
-      title: 'Confirm to submit',
-      message: 'Are you sure to delete Project.',
+      title: 'Delete Project?',
+      message: 'Are you sure you want to delete this Project?',
       buttons: [
         {
-          label: 'Yes',
-          onClick: async () => {
-            setLoading(false);
+          label: 'Cancel'
+        },
+        {
+          label: 'Delete',
+          onClick: (async () => {
+            setLoading(true)
             if (id !== '') {
               const deleteProjectApi = await projectApi.deleteProject(CampaignAdminAuthToken, id);
               if (deleteProjectApi) {
@@ -341,10 +345,7 @@ const AdminProjects = () => {
               setLoading(false);
               ToastAlert({ msg: 'Project not delete id Not found', msgType: 'error' });
             }
-          }
-        },
-        {
-          label: 'No'
+          })
         }
       ]
     });
@@ -413,12 +414,12 @@ const AdminProjects = () => {
       projectData.productDetails.length === 0
     ) {
       ToastAlert({
-        msg: 'Project not Published please fill Required information',
+        msg: 'Project not published. Please fill Required information',
         msgType: 'error'
       });
     } else {
-      setLoading(false);
-      const publish = await projectApi.publishProject(CampaignAdminAuthToken, id);
+      setLoading(true)
+      const publish = await projectApi.publishProject(CampaignAdminAuthToken, id)
       if (publish) {
         if (publish.data.success === false) {
           setLoading(false);
@@ -481,7 +482,7 @@ const AdminProjects = () => {
 
   return (
     <>
-      <FrontLoader loading={loading} />
+     {/*<FrontLoader loading={loading} />*/}
 
       {!viewProject ? (
         <div>
@@ -489,7 +490,7 @@ const AdminProjects = () => {
             <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Projects</h1>
             <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
 
-            <div className="d-flex align-items-center ms-sm-auto text-nowrap">
+            <div className="d-flex align-items-center ms-sm-auto justify-content-end text-nowrap">
               <Button
                 variant="info"
                 size="lg"

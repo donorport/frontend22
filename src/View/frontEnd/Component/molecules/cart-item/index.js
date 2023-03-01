@@ -57,7 +57,7 @@ function CartItem(props) {
             >
               {cartItem?.productDetails?.headline}
             </Link>
-            <div className="cd__cart__location fw-semibold fs-7 mb-3p mt-3p">
+            <div className="fs-7 ad__activity__sub-name mt-3p fw-semibold">
               {cartItem?.productDetails?.organizationDetails?.name}
             </div>
           </div>

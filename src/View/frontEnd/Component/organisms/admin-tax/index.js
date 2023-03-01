@@ -71,7 +71,6 @@ const AdminTax = () => {
     const taxList = await organizationApi.organizatationTaxlist(token, formData);
     if (taxList.data.success === true) {
       setTaxList(taxList.data.data);
-      // console.log(taxList.data.data)
       setTotalPages(taxList.data.totalPages);
       setTotalRecord(taxList.data.totalRecord);
 
@@ -80,7 +79,7 @@ const AdminTax = () => {
         taxList.data.allData.map((v, k) => {
           console.log(v);
           let tempObj = {};
-          tempObj.date = moment(v[0].created_at).format('DD MMMM YYYY');
+          tempObj.date = moment(v.created_at).format('DD MMMM YY');
           tempObj.amount = v[0].currencySymbol + totalVal(v);
           tempObj.name = v[0].userDetails?.name;
           tempObj.email = v[0].userDetails?.email;
@@ -115,7 +114,7 @@ const AdminTax = () => {
 
   useEffect(() => {
     (async () => {
-      setLoading(false);
+      setLoading(true);
       await getTaxList(pageNo, sortField, order, activeYear);
       setLoading(false);
     })();
@@ -133,7 +132,7 @@ const AdminTax = () => {
     fdata.organizationCountryId = data.country_id;
     fdata.userId = userId;
 
-    setLoading(false);
+    setLoading(true);
     const uploadTax = await organizationApi.organizatationTaxUpload(token, fdata);
     if (uploadTax) {
       if (uploadTax.data.success === false) {
@@ -204,8 +203,8 @@ const AdminTax = () => {
   console.log('helllo');
   return (
     <>
-      <FrontLoader loading={loading} />
-      <header className="py-sm-2 pb-2 w-100 d-sm-flex align-items-center d-none">
+      {/*<FrontLoader loading={loading} />*/}
+      <header className="py-sm-2 pb-2 w-100 d-flex align-items-center">
         <div className="me-sm-2 flex-grow-1 mb-3 mb-sm-0">
           <div className="d-flex align-items-center mb-1">
             <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Tax Receipts</h1>
@@ -215,13 +214,6 @@ const AdminTax = () => {
             Tax receipts uploaded here will be encrypted and sent directly to the donor's profile
             where they will be able to view & download.
           </p>
-        </div>
-        <div className="ms-sm-auto d-flex me-1">
-          {/* <Button variant="info" size="lg" className='me-2 flex__1'>Download CSV</Button> */}
-          {taxList.length > 0 && (
-            <CSVExportBtn headers={headers} csvData={csvData} label="Download CSV" prifix="_tax" />
-          )}
-          {/* <LadderMenuXp /> */}
         </div>
         <div className="ms-sm-auto">
           <LadderMenu activeKey={activeKey} onChangeFilterOption={onChangeFilterOption} />
@@ -248,7 +240,14 @@ const AdminTax = () => {
         handleSortingChange={handleSortingChange}
         order={order}
         sortField={sortField}
+        headers={headers}
       />
+      {/* <Button variant="info" size="lg" className='me-2 flex__1'>Download CSV</Button> */}
+      {taxList.length > 0 && (
+        <div className="mt-5 mb-5">
+          <CSVExportBtn headers={headers} csvData={csvData} label="Download CSV" prifix="_tax" />
+        </div>
+      )}
     </>
   );
 };

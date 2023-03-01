@@ -6,8 +6,9 @@ import { Outlet, Link, useLocation, useOutletContext } from 'react-router-dom';
 import userApi from '../../../../../Api/frontEnd/user';
 import FrontLoader from '../../../../../Common/FrontLoader';
 import moment from 'moment';
-import helper from '../../../../../Common/Helper';
+import helper, { priceFormat } from '../../../../../Common/Helper';
 import './style.scss';
+import { validateBBox } from '@turf/turf';
 
 const UserTax = () => {
   const userAuthToken = localStorage.getItem('userAuthToken');
@@ -29,7 +30,7 @@ const UserTax = () => {
   const headers = [
     { label: 'Date', key: 'date' },
     { label: 'Amount', key: 'amount' },
-    { label: 'Transection Id', key: 'transectionId' },
+    { label: 'Transaction Id', key: 'TransactionId' },
     // { label: "Type", key: "type" },
     { label: 'Products', key: 'products' }
   ];
@@ -53,9 +54,15 @@ const UserTax = () => {
     let sum;
     if (data.length > 0) {
       data.map((i, k) => {
-        tempSub.push(i.amount);
+        //tempSub.push(i.amount);
+        if (i.type === 'Purchased') {
+          tempSub.push(i.orderItemDetails?.totalPrice);
+        } else {
+          tempSub.push(i.amount);
+        }
       });
       sum = tempSub.reduce(function (a, b) {
+        // return parseInt(a) + parseInt(b);
         return a + b;
       }, 0);
     } else {
@@ -65,7 +72,7 @@ const UserTax = () => {
   };
 
   const getTaxDataList = async (page, field, type, year) => {
-    setLoading(false);
+    setLoading(true);
     let formData = {};
     formData.pageNo = page;
     formData.sortField = field;
@@ -82,16 +89,17 @@ const UserTax = () => {
       setAll(getTaxDataList.data.allData);
       if (getTaxDataList.data.allData.length > 0) {
         let tempAr = [];
-        getTaxDataList.data.allData.map((item, k) => {
+        getTaxDataList.data.allData.map((v, k) => {
+          console.log(v);
           let tempobj = {};
-          tempobj.date = moment(item.created_at).format('DD MMMM YY');
-          tempobj.amount = item[0].currencySymbol + totalVal(item);
-          tempobj.transectionId = item[0].uniqueTransactionId
-            ? item[0].uniqueTransactionId
-            : item[0].orderId;
-          // tempobj.type = item.type
-          // if (item.type === 'Purchased') {
-          tempobj.products = getProductsName(item);
+          tempobj.date = moment(v.created_at).format('DD MMMM YY');
+          tempobj.amount = v[0].currencySymbol + totalVal(v);
+          tempobj.TransactionId = v[0].uniqueTransactionId
+            ? v[0].uniqueTransactionId
+            : v[0].orderId;
+          // tempobj.type = v.type
+          // if (v.type === 'Purchased') {
+          tempobj.products = getProductsName(v);
 
           // } else {
           //   tempobj.products = ' - '
@@ -131,6 +139,8 @@ const UserTax = () => {
     setActiveKey(e);
   };
 
+  //let platformCost = ((orderDetails.platformFees / 100) * Number(all)).toFixed(2);
+
   const countProjectAmount = (data) => {
     // console.log(data)
     let totalQArray = [];
@@ -140,21 +150,31 @@ const UserTax = () => {
     if (data?.length > 0) {
       data?.map((p, i) => {
         p?.map((p1, i1) => {
+          let productTotal = p1.orderItemDetails?.totalPrice;
+          let donationTotal = (p1.amount - 0.3) / 1.049;
+          let taxableProduct = priceFormat(Number(productTotal));
+          let taxableDonation = priceFormat(Number(donationTotal));
+
+          //totalQArray.push(Number(p1.amount));
+
           if (p1.currency === userData.currency) {
-            totalQArray.push(Number(p1.amount));
+            totalQArray.push(p1.type === 'Purchased' ? taxableProduct : taxableDonation);
           }
         });
 
         // console.log(p.itemDetails)
       });
 
-      const total = totalQArray.reduce((partialSum, a) => partialSum + a, 0);
+      const total = totalQArray.reduce(
+        (partialSum, a) => parseFloat(partialSum) + parseFloat(a),
+        0
+      );
 
       per = total;
     } else {
       per = 0;
     }
-    return per;
+    return priceFormat(per);
   };
 
   return (
@@ -165,7 +185,9 @@ const UserTax = () => {
           <h1 className="d-sm-flex page__title fs-3 fw-bolder">Annual Tax Receipts</h1>
           <p className="d-sm-block fs-6 text-light">
             View your order history and download your tax receipts here. Your files will be
-            available for download once they have been uploaded by the charity.
+            available for download once they have been uploaded by the charity. The values listed in
+            the table below represent the amount paid to the charity less any non-deductible service
+            charges. Transaction & Platform fees are not tax deductible.
           </p>
         </div>
 
@@ -174,16 +196,26 @@ const UserTax = () => {
         </div>
       </header>
 
-      <div className="fs-4 fw-bold d-flex align-items-center gap-1 mb-2">
+      <div className="fs-5 fw-bolder d-flex align-items-center gap-1 mb-2">
         <span className="fs-7 text-light fw-bolder flex-grow-1">DONATION HISTORY</span>
-        Total :
+        <div className="fs-6 text-light fw-semibold d-flex align-items-center gap-1 mb-2 justify-content-end">
+          taxable amount:
+          <span className="fw-bold text-light fs-5">
+            {userData.symbol}
+            {countProjectAmount(all).toLocaleString('en-US', {
+              maximumFractionDigits: 2
+            })}
+          </span>
+          <small className="fs-5 text-light">{userData.currency} </small>{' '}
+        </div>
+        {/* Total:
         <span className="text-success fs-4">
           {userData.symbol}
           {countProjectAmount(all).toLocaleString('en-US', {
             maximumFractionDigits: 2
           })}
         </span>
-        <small className="fs-5 text-light">{userData.currency} </small>{' '}
+        <small className="fs-5 text-light">{userData.currency} </small>{' '}*/}
       </div>
 
       <TaxTable

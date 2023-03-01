@@ -44,7 +44,7 @@ const FAQ = () => {
             <Accordion.Body className="pt-0 pb-4 text-light fs-5">
               Donorport is free for non-profits and charities to create posts
               and receive funding. In order to cover the administration costs,
-              3% is added to the donor's subtotal at checkout.
+              2% is added to the donor's subtotal at checkout.
             </Accordion.Body>
           </Accordion.Item>
 

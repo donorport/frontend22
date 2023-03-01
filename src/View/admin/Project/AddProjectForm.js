@@ -215,7 +215,7 @@ export default function AddProjectForm(props) {
               />
               {
                 stateData.video && (
-                  <div className="project-video-wrap mb-4 mt-4">
+                  <div className="project-video-wrap mt-4">
                     <iframe
                       title="project-video"
                       key="project-video"
@@ -262,11 +262,15 @@ export default function AddProjectForm(props) {
                 {props.tempImages?.length
                   ? props.tempImages.map((img, key) => {
                       return (
-                        <img
-                          src={img ? img : noimg}
+                        <div
+                          className="gallery__img"
+                          style={{
+                            backgroundImage: `url(${img ? img : noimg})`,
+                            width: '100px',
+                            height: '100px'
+                          }}
                           alt="lk"
-                          style={{ width: '100px', height: '100px' }}
-                        />
+                        ></div>
                       );
                     })
                   : props.projectImages?.length

@@ -20,9 +20,12 @@ import noImg from '../../../../../assets/images/noimg.jpg';
 import cartApi from '../../../../../Api/frontEnd/cart';
 import { confirmAlert } from 'react-confirm-alert';
 import './style.scss';
+import ToggleSwitch from '../../atoms/toggle-switch/index';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const UserProfile = () => {
-  // const [check, setCheck] = useState(false);
+  const [check, setCheck] = useState(false);
   // const user = useContext(UserContext)
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -44,6 +47,7 @@ const UserProfile = () => {
 
   const [countryCurrency, setCountryCurrency] = useState([]);
   const [tempImg, setTempImg] = useState('');
+  const [loading, setLoading] = useState('');
 
   // const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
@@ -277,7 +281,7 @@ const UserProfile = () => {
   // };
 
   const clearCart = async () => {
-    // setLoading(false);
+    setLoading(true);
     const clearCart = await cartApi.clearCart(userAuthToken);
     if (clearCart) {
       if (!clearCart.data.success) {
@@ -296,7 +300,8 @@ const UserProfile = () => {
 
   useEffect(() => {
     (async () => {
-      // setLoading(false);
+      setLoading(true);
+      // console.log(data)
       // if (data.country_id && data.country_id !== null ) {
       //   await getCountryStateList(data.country_id)
       // }
@@ -417,7 +422,7 @@ const UserProfile = () => {
           fdata.image = image;
         }
 
-        // setLoading(false);
+        setLoading(true);
         const addUser = await userApi.updateProfile(userAuthToken, fdata);
         if (addUser) {
           if (!addUser.data.success) {
@@ -478,13 +483,16 @@ const UserProfile = () => {
     confirmAlert({
       title: 'Deactivate Account',
       message:
-        "Are you sure to want to deactivate this account? If you will do this then you won't be able to do login again...",
+        "Are you sure to want to deactivate this account? If you will do this then you won't be able to do login again.",
       buttons: [
         {
-          label: 'Yes',
+          label: 'Cancel'
+        },
+        {
+          label: 'Delete Account',
 
           onClick: async () => {
-            // setLoading(false);
+            setLoading(true);
             const deleteUser = await userApi.deleteUser(userAuthToken, id);
             if (deleteUser) {
               if (!deleteUser.data.success) {
@@ -502,9 +510,6 @@ const UserProfile = () => {
               ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
             }
           }
-        },
-        {
-          label: 'No'
         }
       ]
     });
@@ -579,7 +584,7 @@ const UserProfile = () => {
           </label>
         </div>
 
-        {/*  <div className="d-flex align-items-center py-3">
+        <div className="d-flex align-items-center py-3">
           <ToggleSwitch
             isOn={check}
             handleToggle={() => setCheck(!check)}
@@ -590,7 +595,7 @@ const UserProfile = () => {
             Hide your order history on public posts for items & organizations you donate to.
           </span>
           <FontAwesomeIcon icon={solid('eye-slash')} className="icon__hide fs-4 ms-2" />
-        </div>*/}
+        </div>
       </div>
 
       <div className="mb-5">

@@ -79,6 +79,7 @@ const AdminPosts = () => {
   const [order, setOrder] = useState('asc');
   const [fulfilProductDetails, setFulfilProductDetails] = useState({});
   const [showReceipt, setShowReceipt] = useState(false);
+  const [loading, setLoading] = useState(false);
   // const [primaryBankDetails, setPrimaryBankDetails] = useState({});
 
   const [state, setstate] = useState({
@@ -166,6 +167,22 @@ const AdminPosts = () => {
   // let url = galleryUrl;
   // let videoid = url?.split('?v=')[1];
   // let embedlink = videoid ? 'http://www.youtube.com/embed/' + videoid : '';
+
+  useEffect(() => {
+    (async () => {
+      // console.log(data)
+      // console.log(data.country_id)
+      setLoading(true);
+      const getcategoryList = await categoryApi.listCategory(token);
+      if (getcategoryList.data.success === true) {
+        setCategoryList(getcategoryList.data.data);
+      }
+
+      if (data._id) await orgProjectList();
+      // await getPrimaryBankAccount();
+      // setLoading(false);
+    })();
+  }, [data._id]);
 
   const orgProjectList = useCallback(async () => {
     let formData = {};
@@ -599,12 +616,12 @@ const AdminPosts = () => {
 
     let checkImg = id ? gallaryImages?.length + galleryImg?.length : galleryImg?.length;
     if (checkImg > MAX_IMAGE_LENGTH) {
-      formaerrror['galleryImg'] = 'Image length Must be less then ' + MAX_IMAGE_LENGTH;
+      formaerrror['galleryImg'] = 'Maximum images allowed: ' + MAX_IMAGE_LENGTH;
     }
 
     let checkMore = id ? moreImages?.length + moreImg?.length : moreImg?.length;
     if (checkMore > MAX_IMAGE_LENGTH) {
-      formaerrror['moreImg'] = 'Image length Must be less then ' + MAX_IMAGE_LENGTH;
+      formaerrror['moreImg'] = 'Maximum images allowed: ' + MAX_IMAGE_LENGTH;
     }
 
     // console.log(formaerrror)
@@ -762,7 +779,7 @@ const AdminPosts = () => {
 
           let addProduct;
           // Api Call for update Profile
-          // setLoading(false);
+          setLoading(true);
           if (id !== '') {
             addProduct = await productApi.updateProduct(token, formData, id);
           } else {
@@ -812,13 +829,16 @@ const AdminPosts = () => {
 
   const deleteProduct = (id) => {
     confirmAlert({
-      title: 'Confirm to submit',
-      message: 'Are you sure to delete Product.',
+      title: 'Delete Post?',
+      message: 'Are you sure to delete this post?',
       buttons: [
         {
-          label: 'Yes',
+          label: 'Cancel'
+        },
+        {
+          label: 'Delete',
           onClick: async () => {
-            // setLoading(false);
+            setLoading(true);
             if (id !== '') {
               const deleteProductApi = await productApi.deleteProduct(token, id);
               if (deleteProductApi) {
@@ -842,9 +862,6 @@ const AdminPosts = () => {
               ToastAlert({ msg: 'Product not delete id Not found', msgType: 'error' });
             }
           }
-        },
-        {
-          label: 'No'
         }
       ]
     });
@@ -854,11 +871,14 @@ const AdminPosts = () => {
   const deleteFulfilorder = (id, prodcutId, organizationId) => {
     console.log('Posts, deleteFulfilorder, values: ', { id, prodcutId, organizationId });
     confirmAlert({
-      title: 'Confirm to submit',
-      message: 'Are you sure to delete Sale Receipt?',
+      title: 'Delete Receipt?',
+      message: 'Are you sure you want to delete the Sales Receipt?',
       buttons: [
         {
-          label: 'Yes',
+          label: 'Cancel'
+        },
+        {
+          label: 'Delete',
           onClick: async () => {
             if (id !== '') {
               const deleteFulfilOrderApi = await productApi.deleteFulfilOrder(
@@ -887,9 +907,6 @@ const AdminPosts = () => {
               ToastAlert({ msg: 'Product not delete id Not found', msgType: 'error' });
             }
           }
-        },
-        {
-          label: 'No'
         }
       ]
     });
@@ -899,7 +916,7 @@ const AdminPosts = () => {
     setGallaryTempImages([]);
     setMoreTempImages([]);
     setTempImg('');
-    // setLoading(false);
+    setLoading(true);
     let formData = {};
     formData.productId = productData._id;
 
@@ -1018,9 +1035,9 @@ const AdminPosts = () => {
       resetForm();
       createPost(true);
     } else {
-      let path = '/campaign/' + data.slug + '/settings/paymentMethod';
+      let path = '/campaign/' + data.slug + '/settings/payments';
       navigate(path);
-      ToastAlert({ msg: 'Please add Bank Account.', msgType: 'error' });
+      ToastAlert({ msg: 'You need to add a Bank Account before posting.', msgType: 'error' });
     }
   };
 
@@ -1060,7 +1077,7 @@ const AdminPosts = () => {
         }
       } else {
         // setLoading(false);
-        ToastAlert({ msg: 'Product not Published', msgType: 'error' });
+        ToastAlert({ msg: 'Product not published', msgType: 'error' });
       }
     }
   };
@@ -1089,6 +1106,7 @@ const AdminPosts = () => {
   // console.log(data)
   const getProductList = useCallback(
     async (page, field, type) => {
+      setLoading(true);
       let formData = {};
       formData.organizationId = data._id;
       formData.pageNo = page;
@@ -1207,11 +1225,11 @@ const AdminPosts = () => {
       ? fulfilmoreImages?.length + fulfilMoreImg?.length
       : fulfilMoreImg?.length;
     if (checkMore > MAX_IMAGE_LENGTH) {
-      formaerrror['fulfilMoreImg'] = 'Image length Must be less then ' + MAX_IMAGE_LENGTH;
+      formaerrror['fulfilMoreImg'] = 'Maximum images allowed: ' + MAX_IMAGE_LENGTH;
     }
 
     // if (fulfilMoreImg.length > helper.MAX_IMAGE_LENGTH) {
-    //   formaerrror['fulfilMoreImg'] = "Image length Must be less then " + helper.MAX_IMAGE_LENGTH
+    //   formaerrror['fulfilMoreImg'] = "Maximum images allowed: " + helper.MAX_IMAGE_LENGTH
 
     // }
     // console.log(fulfilMoreImg)
@@ -1368,6 +1386,9 @@ const AdminPosts = () => {
 
   return (
     <>
+      {/* {console.log('state', displayPrice)} */}
+      {/*<FrontLoader loading={loading} />*/}
+
       <div
         className="modal common-modal"
         id="removeModalTwo"
@@ -1432,7 +1453,6 @@ const AdminPosts = () => {
                 icon={solid('money-bills-simple')}
                 className="text-dark mr-12p fs-4"
               />
-              $
               {productList && productList.length > 0
                 ? productList
                     .reduce(
@@ -1444,7 +1464,7 @@ const AdminPosts = () => {
                 : 0}
             </span>
 
-            <div className="d-flex align-items-center ms-sm-auto">
+            <div className="d-flex align-items-center ms-sm-auto justify-content-end">
               <Button
                 variant="info"
                 size="lg"
@@ -1580,16 +1600,16 @@ const AdminPosts = () => {
             </div>
           </div>
 
-          <Card className="mt-5">
+          <Card className="mt-0 mt-sm-5">
             <Row className="mw-850 ml-5">
               <Col lg="6">
                 {!fulfilProductDetails?.isFulfiled && (
-                  <label htmlFor="videoInput" className="form__label mt-3">
+                  <label htmlFor="videoInput" className="form__label mt-sm-0 mt-3">
                     Transaction Details
                   </label>
                 )}
 
-                <div className="order__widget mt-3 ">
+                <div className="order__widget">
                   <Card.Header className="post__accordion-header pb-3 mb-3">
                     <span className="fs-3 fw-bolder text-dark">Order Summary</span>
                   </Card.Header>
@@ -1598,7 +1618,7 @@ const AdminPosts = () => {
                       <span className="flex__1">
                         {fulfilProductDetails?.unlimited ? 'Sold' : 'Qty'} :
                       </span>
-                      <span className="fs-4 fw-bold">
+                      <span className="fs-4 fw-bold text-light">
                         {Number(fulfilProductDetails?.unlimited).toLocaleString('en-US', {
                           maximumFractionDigits: 2
                         })
@@ -1636,10 +1656,51 @@ const AdminPosts = () => {
                   </div>
                 </div>
 
+                {/* {fulfilProductDetails?.isFulfiled && (
+                    <>
+                      <div className="linked__item d-flex align-items-center p-1 border mt-3">
+                        <div className="accounts__icon">
+                          <ListItemImg
+                            size={45}
+                            className="bg-white"
+                            // imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/62277f679099844cc42cc1d1_5b5e656493af1e0441cd892a_mc_vrt_pos.svg"
+                            icon={
+                              <FontAwesomeIcon
+                                icon={regular('building-columns')}
+                                className="fs-3 text-subtext"
+                              />
+                            }
+                          />
+                        </div>
+                        <div className=" flex__1 mx-2 text-break">
+                          <div className="accounts__email fw-bold">
+                            {primaryBankDetails?.businessName
+                              ? primaryBankDetails?.businessName
+                              : primaryBankDetails?.firstName + ' ' + primaryBankDetails?.lastName}
+                          </div>
+                          <div className="fs-7 mb-3p">{primaryBankDetails?.bankName}</div>
+
+                          <div className="fs-7 text-subtext">
+                            {primaryBankDetails?.accountNumber}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="note note--info mt-3" style={{ padding: '16px' }}>
+                        <FontAwesomeIcon
+                          icon={regular('circle-info')}
+                          className="text-info icon-method mr-3p"
+                        />
+                        <span className="text-dark">
+                          Funds were dispersed to your bank account on 03/04/2022
+                        </span>
+                      </div>
+                    </>
+                  )}*/}
                 {!fulfilProductDetails?.isFulfiled ? (
                   <>
                     <label htmlFor="videoInput" className="form__label mt-3">
-                      Upload Receipt &nbsp;
+                      Sales Receipt &nbsp;
                       <span className="post-type-text" style={{ color: '#dd4646' }}>
                         (required)
                       </span>
@@ -1709,7 +1770,7 @@ const AdminPosts = () => {
                 ) : (
                   <>
                     <label htmlFor="videoInput" className="form__label mt-3">
-                      Update Receipt &nbsp;
+                      Sales Receipt &nbsp;
                       <span className="post-type-text" style={{ color: '#dd4646' }}>
                         (required)
                       </span>
@@ -1880,13 +1941,13 @@ const AdminPosts = () => {
                 <form className="video-detail-form mt-3">
                   <div className="form-group mb-5">
                     <label htmlFor="videoUrl" className="form__label mb-4">
-                      Video &nbsp;
+                      Video
                       <span className="post-type-text">(optional)</span>
                     </label>
                     <input
                       type="text"
                       className="form-control form-control-lg"
-                      placeholder="Video URL"
+                      placeholder="YouTube URL"
                       name="videoUrl"
                       id="videoUrl"
                       value={videoUrl}
@@ -1897,7 +1958,7 @@ const AdminPosts = () => {
                   </div>
 
                   {videoUrl && (
-                    <div className="project-video-wrap mb-4">
+                    <div className="project-video-wrap">
                       <iframe
                         title="admin-post-video"
                         key="admin-post-video"
@@ -1954,11 +2015,23 @@ const AdminPosts = () => {
                                 <span className="close" onClick={() => removeFulfilTempImages(key)}>
                                   &times;
                                 </span>
+                                {/*
                                 <img
                                   src={img ? img : noimg}
                                   alt="lk"
                                   style={{ width: '100px', height: '100px' }}
                                 />
+                                */}
+                                <div
+                                  className="gallery__img"
+                                  style={{
+                                    backgroundImage: `url(${img ? img : noimg})`,
+                                    width: '100px',
+                                    height: '100px'
+                                  }}
+                                  alt="lk"
+                                  data-id="103"
+                                ></div>
                               </div>
                             );
                           })
@@ -1976,7 +2049,7 @@ const AdminPosts = () => {
                                   >
                                     &times;
                                   </span>
-                                  <img
+                                  {/*<img
                                     src={
                                       img.img
                                         ? img.img !== ''
@@ -1986,7 +2059,23 @@ const AdminPosts = () => {
                                     }
                                     alt="lk"
                                     style={{ width: '100px', height: '100px' }}
-                                  />
+                                  />*/}
+                                  <div
+                                    className="gallery__img"
+                                    style={{
+                                      backgroundImage: `url(${
+                                        img.img
+                                          ? img.img !== ''
+                                            ? helper.CampaignProductFullImagePath + img.img
+                                            : noimg
+                                          : noimg
+                                      })`,
+                                      width: '100px',
+                                      height: '100px'
+                                    }}
+                                    alt="lk"
+                                    data-id="103"
+                                  ></div>
                                 </div>
                               </>
                             ))

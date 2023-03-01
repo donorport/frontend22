@@ -28,8 +28,8 @@ const UserControl = () => {
 
 
   useEffect(() => {
-    (async () => {
-      setLoading(false)
+        (async () => {
+            setLoading(true)
       const getControlSetting = await controlsApi.list(userAuthToken)
       if (getControlSetting.data.success) {
         // console.log(getControlSetting.data.data)
@@ -44,7 +44,7 @@ const UserControl = () => {
   }, [update])
 
   const saveControls = async () => {
-    setLoading(false)
+    setLoading(true)
 
     let data = {}
     data.push = push
@@ -82,7 +82,7 @@ const UserControl = () => {
   }
   return (
     <>
-      <FrontLoader loading={loading} />
+     {/*<FrontLoader loading={loading} />*/}
       <div className="mb-5">
         <h4 className="fw-bolder">Notifciations</h4>
         <div className="text-subtext mb-3">Turn off / on notifications</div>

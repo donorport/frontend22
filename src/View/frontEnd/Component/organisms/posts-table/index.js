@@ -71,10 +71,7 @@ const PostsTable = (props) => {
               return (
                 <li key={product._id} className="table__list-item p-2 border-bottom">
                   <div className="d-xl-flex align-items-center flex-grow-1">
-                    <div
-                      className="d-flex align-items-center text-dark me-sm-3 mb-2"
-                      style={{ width: '300px' }}
-                    >
+                    <div className="progress__wrap d-flex align-items-center text-dark me-sm-3 mb-2">
                       <div className="ms-auto ms-sm-0 me-sm-2 post__value">
                         {product.status === 1 && (
                           <div className="text-light fw-bold fs-5">
@@ -89,12 +86,46 @@ const PostsTable = (props) => {
                           {moment(product.created_at).fromNow()}
                         </div>
                       </div>
-                      <ListItemImg
-                        size={68}
-                        imgSrc={
-                          product.image ? helper.CampaignProductImagePath + product.image : noimg
-                        }
-                      />
+                      <div className="position-relative">
+                        <ListItemImg
+                          size={68}
+                          imgSrc={
+                            product.image ? helper.CampaignProductImagePath + product.image : noimg
+                          }
+                        />
+                        {product.projectDetails.length > 0 && (
+                          <Link
+                            variant="link"
+                            className="position-absolute top-0 start-100 translate-middle borde fs-4"
+                            to={'/project/' + product.projectDetails[0].projectMainDetails.slug}
+                          >
+                            <div className="d-flex align-items-center justify-content-center">
+                              <FontAwesomeIcon icon={solid('bolt')} className="text-primary me-1" />
+                              {/*  {product.projectDetails[0].projectMainDetails.projectImages.length >
+                              0 ? (
+                                <Avatar
+                                  size={26}
+                                  border={0}
+                                  shadow={false}
+                                  avatarUrl={
+                                    helper.ProjectImagePath +
+                                    product.projectDetails[0].projectMainDetails.projectImages[0]
+                                      .image
+                                  }
+                                />
+                              ) : (
+                                <FontAwesomeIcon
+                                  icon={solid('bolt')}
+                                  className="text-primary me-1"
+                                />
+                              )}
+                               <span className="ms-1 fs-6 fw-semibold">
+                                {product.projectDetails[0].projectMainDetails.name}
+                              </span>*/}
+                            </div>
+                          </Link>
+                        )}
+                      </div>
                       <div className="ms-2">
                         <div className="fw-bolder fs-5 mb-3p">{product.headline}</div>
                         <div className="fs-7 text-light mb-6p">{product.brand}</div>
@@ -115,37 +146,43 @@ const PostsTable = (props) => {
                         {product.status === 1 && (
                           // }
                           <div className="d-flex align-items-center progress__wrap me-2 flex__1">
-                            {!product.unlimited && (
-                              <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-sm-1 fw-bold text-light">
-                                {product.soldout}/{product.quantity}
-                              </span>
-                            )}
-                            <ProgressBar
-                              variant={!product.unlimited ? 'success' : 'infinity'}
-                              now={
-                                !product.unlimited
-                                  ? Math.round((product.soldout / product.quantity) * 100)
-                                  : 100
-                              }
-                              className="flex__1"
-                            />
-                            {!product.unlimited ? (
-                              <span className="text-light ms-1 fw-bold">
-                                {Math.round((product.soldout / product.quantity) * 100)}%
-                              </span>
-                            ) : (
-                              <div
-                                className="unlimited unlimited--home"
-                                style={{ marginLeft: '10px' }}
-                              >
-                                <div className="tag tag--ongoing _2">
-                                  <div className="d-flex icon icon--unlimited">
-                                    <FontAwesomeIcon icon={solid('infinity')} className="" />
+                            <div
+                              className="d-flex flex__1 align-items-center"
+                              style={{ maxWidth: '200px' }}
+                            >
+                              {!product.unlimited && (
+                                <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-sm-1 fw-bold text-light">
+                                  {product.soldout}/{product.quantity}
+                                </span>
+                              )}
+                              <ProgressBar
+                                variant={!product.unlimited ? 'success' : 'infinity'}
+                                now={
+                                  !product.unlimited
+                                    ? Math.round((product.soldout / product.quantity) * 100)
+                                    : 100
+                                }
+                                className="flex__1"
+                                style={{ maxWidth: '200px' }}
+                              />
+                              {!product.unlimited ? (
+                                <span className="text-light ms-1 fw-bold">
+                                  {Math.round((product.soldout / product.quantity) * 100)}%
+                                </span>
+                              ) : (
+                                <div
+                                  className="unlimited unlimited--home"
+                                  style={{ marginLeft: '10px' }}
+                                >
+                                  <div className="tag tag--ongoing _2">
+                                    <div className="d-flex icon icon--unlimited">
+                                      <FontAwesomeIcon icon={solid('infinity')} className="" />
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            )}
-                            <div className="qty__tag ms-3 p-2 fw-bold text-light">
+                              )}
+                            </div>
+                            <div className="qty__tag ms-3 p-2 fw-bold text-light ms-auto">
                               <FontAwesomeIcon icon={solid('up')} className="text-success me-1" />{' '}
                               {organizationDetails.symbol}
                               {revenue}
@@ -155,35 +192,6 @@ const PostsTable = (props) => {
                       </div>
                     </div>
                     <div className="billing__buttons d-flex align-items-center">
-                      {product.projectDetails.length > 0 && (
-                        <Button className="project--btn me-auto pt-6p pb-6p pl-6p pr-12p">
-                          <div className="d-flex align-items-center justify-content-center">
-                            {product.projectDetails[0].projectMainDetails.projectImages.length >
-                            0 ? (
-                              <Avatar
-                                size={26}
-                                border={0}
-                                shadow={false}
-                                avatarUrl={
-                                  helper.ProjectImagePath +
-                                  product.projectDetails[0].projectMainDetails.projectImages[0]
-                                    .image
-                                }
-                              />
-                            ) : (
-                              <Avatar
-                                size={26}
-                                border={0}
-                                shadow={false}
-                                avatarUrl="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f4ab31be9fe7d7453a60b1f_user.svg"
-                              />
-                            )}
-                            <span className="ms-1 fs-7">
-                              {product.projectDetails[0].projectMainDetails.name}
-                            </span>
-                          </div>
-                        </Button>
-                      )}
                       <div className="ms-auto">
                         {/* <Button variant="link" className="p-0" onClick={() => props.editProduct(product)}>
                             <FontAwesomeIcon
@@ -272,7 +280,44 @@ const PostsTable = (props) => {
                         ) : (
                           <></>
                         )}
-                        {!product.isFulfiled && (
+                        {/*Product is unlimited: show edit, allow delte if non sold, & allow publish (assuming unpublish is made)*/}
+                        {product.unlimited && (
+                          <>
+                            <Button
+                              variant="link"
+                              className="p-0 mr-2"
+                              onClick={() => props.editProduct(product)}
+                            >
+                              <FontAwesomeIcon
+                                icon={solid('edit')}
+                                className="text-warning fs-2 me-2"
+                              />
+                            </Button>
+                            {product.soldout <= 0 && (
+                              <Button
+                                variant="link"
+                                className="p-0  mr-2"
+                                onClick={() => props.deleteProduct(product._id)}
+                              >
+                                <FontAwesomeIcon
+                                  icon={solid('trash')}
+                                  className="text-danger fs-2 me-2"
+                                />
+                              </Button>
+                            )}
+
+                            {product.status === -1 && (
+                              <Button
+                                variant="info"
+                                className=" mr-2"
+                                onClick={() => props.publishProduct(product._id, product)}
+                              >
+                                Publish
+                              </Button>
+                            )}
+                          </>
+                        )}
+                        {!product.isFulfiled && !product.unlimited && (
                           <>
                             <Button
                               variant="link"

@@ -3,16 +3,16 @@ import { Tab } from "react-bootstrap";
 
 // import {
 //   SettingsTabsAdmin,
-//   PaymentMethod,
-//   CompanySettings,
+//   payments,
+//   ProfileSettings,
 //   AdminBilling,
 //   AdminControl,
 //   AdminAdmin,
 // } from "@components/organisms";
 
 import SettingsTabsAdmin from "../settings-tabs-admin";
-import PaymentMethod from "../payment-method";
-import CompanySettings from "../company-settings";
+import Payments from "../payment-method";
+import ProfileSettings from "../profile-settings";
 import AdminBilling from "../admin-billing";
 import AdminControl from "../admin-control";
 import AdminAdmin from "../admin-admin";
@@ -59,10 +59,10 @@ const AdminSettingsTab = () => {
           </div>
           {/* <Tab.Content className="user__settings-content flex-grow-1">
             <Tab.Pane eventKey="company">
-              <CompanySettings />
+              <ProfileSettings />
             </Tab.Pane>
-            <Tab.Pane eventKey="paymentMethod">
-              <PaymentMethod />
+            <Tab.Pane eventKey="payments">
+              <Payments />
             </Tab.Pane>
             <Tab.Pane eventKey="administrators">
               <AdminAdmin />

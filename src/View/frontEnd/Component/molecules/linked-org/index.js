@@ -61,7 +61,7 @@ function LinkedOrg(props) {
   }, [!user.isActiveOrg]);
 
   const removeTeamMember = async (id) => {
-    setLoading(false);
+    setLoading(true);
     const deleteAd = await organizationApi.removeTeamMember(token, orgId);
     if (deleteAd) {
       if (deleteAd.data.success === false) {
@@ -127,7 +127,7 @@ function LinkedOrg(props) {
   ));
 
   const activateCode = async () => {
-    setLoading(false);
+    setLoading(true);
     let code1 = getCookie('code1');
     let code2 = getCookie('code2');
     let code3 = getCookie('code3');
@@ -164,13 +164,13 @@ function LinkedOrg(props) {
       deleteCookie('code3');
       deleteCookie('code4');
 
-      ToastAlert({ msg: 'Please Enter Valid an Activation Code', msgType: 'error' });
+      ToastAlert({ msg: 'Please enter a valid activation code', msgType: 'error' });
     }
   };
 
   return (
     <>
-      <FrontLoader loading={loading} />
+     {/*<FrontLoader loading={loading} />*/}
 
       <div
         className="modal  common-modal"
@@ -309,7 +309,7 @@ function LinkedOrg(props) {
                       <div className="linked__item-label fs-7 fw-bold pl-12p">
                         <div className="mb-3p">{name}</div>
                         <div className="team__role fs-7 fw-normal">
-                          {member.status ? 'Active' : 'InActive'}
+                          {member.status ? 'Active' : 'Inactive'}
                         </div>
                         <div className="org__team__item__price fs-7 text-light">
                           {member?.campaignadminDetails?.name}
@@ -325,7 +325,7 @@ function LinkedOrg(props) {
           <h6 className="mb-0 fs-7">Add an Organization</h6>
 
           <a
-            href="https://donorport.org/apply"
+            href="https://donorport.com/apply"
             className="p-0 btn__link-light linked__item-unlink ms-auto fs-7 me-1 fw-normal"
           >
             request access

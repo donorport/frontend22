@@ -89,11 +89,11 @@ export default function HeaderController() {
     const addProductToWishlist = async (productId) => {
         let data = {}
         data.productId = productId
-        setLoading(false)
+        setLoading(true)
         const add = await wishlistApi.add(token, data)
         if (add) {
             if (add.data.success) {
-                setLoading(false)
+                setLoading(true)
                 await getWishListProductList()
                 dispatch(setIsUpdateCart(!user.isUpdateCart))
             } else {
@@ -125,7 +125,7 @@ export default function HeaderController() {
 
     useEffect(() => {
         (async () => {
-            setLoading(false)
+            setLoading(true)
 
             if (userAuthToken && user.countryId) {
                 // console.log('token')
@@ -161,7 +161,7 @@ export default function HeaderController() {
 
     useEffect(() => {
         (async () => {
-            setLoading(false)
+            setLoading(true)
             if (token) {
                 const getSettingsValue = await settingApi.list(userAuthToken ? userAuthToken : CampaignAdminAuthToken, Object.keys(pricingFees));
 
@@ -250,7 +250,7 @@ export default function HeaderController() {
     }
 
     const removeCartItem = async (id) => {
-        setLoading(false)
+        setLoading(true)
         const removeCartItem = await cartApi.deleteCartItem(userAuthToken, id);
         if (removeCartItem) {
             if (!removeCartItem.data.success) {
@@ -279,7 +279,7 @@ export default function HeaderController() {
 
 
 
-        setLoading(false)
+        setLoading(true)
         const updateCartItem = await cartApi.updateCart(userAuthToken, quentity, id, productId, type);
         if (updateCartItem) {
             if (!updateCartItem.data.success) {

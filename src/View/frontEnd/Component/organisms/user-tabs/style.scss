@@ -9,12 +9,17 @@
 
   &.active {
     background-color: $gray-100;
-    border-color:  var(--border-input);
+    border-color: var(--border-input);
     border-radius: 25px;
   }
 
   &:hover {
     text-decoration: none;
+  }
+}
+@include media-breakpoint-down(sm) {
+  .tab__nav > * a:not(.active) {
+    margin-bottom: 12px;
   }
 }
 
@@ -38,7 +43,7 @@
   }
 }
 @media screen and (min-width: 576px) {
-/*.tab__btn {
+  /*.tab__btn {
   margin: 3px 0
 }*/
 }

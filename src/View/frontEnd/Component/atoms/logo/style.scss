@@ -15,12 +15,3 @@
   width: 26px;
   height: 26px;
 }
-
-@include media-breakpoint-down(sm) {
-  .logo-span {
-    position: absolute;
-    font-size: 9px;
-    top: -3px;
-    right: -6px;
-  }
-}

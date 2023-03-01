@@ -77,24 +77,23 @@ export default function Index(props) {
     );
   }
 
-useEffect(() => {
-  const intervalId = setInterval(() => {
-    setLoading(false);
-  }, 4000);
-  return () => {
-    clearInterval(intervalId);
-  };
-}, []);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setLoading(false);
+    }, 4000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
-useEffect(() => {
-  if(products && props.productList.length > 0){
-    setProductsList(products)
-    setLoading(false)
-  } else{
-    setProductsList(products)
-  }
-}, [props.productList]);
-
+  useEffect(() => {
+    if (products && props.productList.length > 0) {
+      setProductsList(products);
+      setLoading(false);
+    } else {
+      setProductsList(products);
+    }
+  }, [props.productList]);
 
   const items = [
     <div className="fw-semibold text-dark">
@@ -256,7 +255,7 @@ useEffect(() => {
             <div className="fs-6 p-sm-2 p-0 py-2 d-sm-flex align-items-center flex-grow-1 mt-sm-0 mt-2">
               <FontAwesomeIcon icon={regular('circle-question')} style={{ color: '#5f5df8' }} />
               &nbsp; How does it work?&nbsp;
-              <Link to="/about-us" className="text-light d-inline-block">
+              <Link to="/about" className="text-light d-inline-block">
                 click here
               </Link>
             </div>
@@ -440,15 +439,14 @@ useEffect(() => {
         </div>
       </Container>
       {loading ? (
-        <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div className="mt-5 d-flex justify-content-center">
           <CircularProgress />
         </div>
-      )
-        :
-      <Container fluid className="py-2">
-        <Row>{productsList}</Row>
-      </Container>
-      }
+      ) : (
+        <Container fluid className="py-2">
+          <Row>{productsList}</Row>
+        </Container>
+      )}
     </>
   );
 }

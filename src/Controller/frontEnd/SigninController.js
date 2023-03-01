@@ -79,14 +79,16 @@ function SigninController() {
       'email.email': 'please enter valid email.',
       'password.required': 'Password is Required.'
     };
+
     validateAll(state, rules, message)
       .then(async () => {
+        setLoading(true);
         const formaerrror = {};
         setstate({
           ...state,
           error: formaerrror
         });
-        setLoading(false);
+        //setLoading(false);
         const uselogin = await userAuthApi.login(email, password);
         // console.log(uselogin)
         if (uselogin) {
@@ -304,8 +306,8 @@ function SigninController() {
           stateData={state}
           showPassword={showPassword}
           setShowPassword={setShowPassword}
+          loading={loading}
         />
-        <FrontLoader loading={loading} />
       </Page>
     </>
   );

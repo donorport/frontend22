@@ -75,7 +75,7 @@ const Footer = () => {
             <span className="footer-title">Support</span>
             <div className="footer-links">
               <a href="#">Apply to Post</a>
-              <a href="#">Help Center</a>
+              {/*<a href="#">Help Center</a>*/}
               <a href="#">Partnerships</a>
             </div>
           </div>
@@ -109,11 +109,11 @@ const Footer = () => {
           </div>
         </div>
         <div className="row footer-bottom">
-          <div className="col-md-6">&copy; 2021 Donorport, Inc.</div>
+          <div className="col-md-6">&copy; 2023 Donorport, Inc.</div>
           <div className="col-md-6">
             <div className="footer-bottoms-links">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
+              <a href="/privacy">Privacy Policy</a>
+              <a href="/terms">Terms of Service</a>
             </div>
           </div>
         </div>

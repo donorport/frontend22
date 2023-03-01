@@ -5,6 +5,14 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import MarqueeList from '../Component/molecules/marquee-list';
 import DefaultLayout from '../Component/templates/default-layout';
+import file from '../../../assets/images/contract.svg';
+import ad1 from '../../../assets/images/ad1.svg';
+import ad2 from '../../../assets/images/ad2.svg';
+import ad3 from '../../../assets/images/ad3.png';
+import ad4 from '../../../assets/images/ad4.svg';
+import ad5 from '../../../assets/images/ad5.svg';
+import ad6 from '../../../assets/images/ad6.svg';
+import ad7 from '../../../assets/images/ad7.svg';
 
 import './style.scss';
 
@@ -23,8 +31,8 @@ const About = (props) => {
                 </h1>
                 <p className="fs-5 text-light fw-regular mb-4 lh-1.5">
                   Charities post products they need, donors provide the funding, the charity
-                  purchases the products. No fees, No costs, No gift-in-kind - You choose how
-                  charities spend your money.
+                  purchases the products. The only platoform that brings you complete transaprency;
+                  you choose how charities spend your money.
                 </p>
                 <div className="d-flex align-items-center gap-2 mb-2 pb-5">
                   <Button
@@ -44,7 +52,7 @@ const About = (props) => {
             <Col md="7">
               <div className="mw-600 d-flex align-items-center  justify-content-sm-center">
                 <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/626f21b70f1d0f40951a1eb6_Savings-amico.svg"
+                  src={file}
                   className="img-fluid"
                   alt=""
                 />
@@ -114,7 +122,7 @@ const About = (props) => {
               <h3 className="fs-1 fw-bolder text-dark pt-3">Tangible Giving</h3>
               <p className="fs-5 text-light mb-3 lh-1.5">
                 Charities are often asked what they need, not how much they need. Donorport allows
-                you to see the needs and provide funding for them.
+                you to see these needs and provide the funding.
               </p>
             </div>
           </Col>
@@ -161,7 +169,7 @@ const About = (props) => {
                 <h3 className="fs-1 fw-bolder text-dark pt-3">Transparent</h3>
                 <p className="fs-5 text-light mb-3 lh-1.5">
                   A simple solution to the charity fundraising problem. Now you can see where your
-                  money goes; hand pick from a list of needs posted by hundreds of organizations.
+                  money goes; hand pick from needs posted by hundreds of organizations.
                 </p>
               </div>
             </Col>
@@ -217,49 +225,49 @@ const About = (props) => {
         <Row className="section--hero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5 row row d-flex justify-content-between">
           <div className="ourbrand__item d-flex align-items-center justify-content-cente gap-1">
             <img
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/626cb8aafbea8678573371cd_Tim_Hortons_logo.svg"
+              src={ad1}
               className="img-fluid ourbrand__img"
               alt=""
             />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
             <img
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/626f437fab93d764b284564d_McDonald%27s_Golden_Arches.svg"
+              src={ad2}
               className="img-fluid ourbrand__img"
               alt=""
             />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
             <img
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/6271d71d721c60e1ee063619_Crocs_wordmark.svg"
+              src={ad3}
               className="img-fluid ourbrand__img"
               alt=""
             />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
             <img
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/626f4471dc441c225745284c_Target_logo.svg"
+              src={ad4}
               className="img-fluid ourbrand__img"
               alt=""
             />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
             <img
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/624de9e9e4496f32fd5463ad_brand_chichis.png"
+              src={ad5}
               className="img-fluid ourbrand__img"
               alt=""
             />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
             <img
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/626f44aef1df651c17c8f3e6_Purina-logo.svg"
+              src={ad6}
               className="img-fluid ourbrand__img"
               alt=""
             />
           </div>
           <div className="ourbrand__item d-flex align-items-center justify-content-center">
             <img
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/61f88ffad85ed5121f3c986c_Dunkin-Donuts-01.svg"
+              src={ad7}
               className="img-fluid ourbrand__img"
               alt=""
             />
@@ -275,9 +283,9 @@ const About = (props) => {
                 <div className="pe-sm-5 me-sm-4">
                   <h3 className="fs-1 fw-bolder text-dark">Our Standard</h3>
                   <p className="fs-5 text-light mb-3 lh-1.5">
-                    Donorport promises to remain a platform for the people which is why we will
-                    never censor or ban any posts created by our approved non-profits & charities.
-                    We approve non-profits.
+                    Donorport promises to remain a platform for the people which is why we bring you
+                    all types of content created by our approved non-profits & charities. We approve
+                    non-profits.
                   </p>
                   <p className="fs-5 text-light lh-1.5">
                     To learn more check out our&nbsp;
@@ -326,7 +334,7 @@ const About = (props) => {
       <Container fluid>
         <Row className="section--hero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5">
           <Col md="6">
-            <div className="d-flex align-items-center justify-content-center pe-sm-5">
+            <div className="d-flex align-items-center justify-content-center pe-sm-5 mb-5">
               <img
                 src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/6271b1e2ec98d212a842735e_To%20do%20list-rafiki.svg"
                 className="mw-600 w-100 img-fluid"
@@ -389,8 +397,8 @@ const About = (props) => {
               <h3 className="fs-1 fw-bolder text-dark pt-3">Modern Solutions</h3>
               <p className="fs-5 text-light mb-3 lh-1.5">
                 As technology advances, so does the neeed for platforms to adopt the latest
-                solutions. Donorport accepts all major forms of payment making it easier than ever
-                to donate.
+                solutions. Donorport is committed to accepting all major forms of payment making it
+                easier than ever to donate.
               </p>
             </div>
           </Col>
@@ -418,7 +426,7 @@ const About = (props) => {
                   alt=""
                 />
               </div>
-              <div className="crypto__icon-24">
+              {/*<div className="crypto__icon-24">
                 <img
                   src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620f25f58e8ffe7b1df84772_PayPal.svg"
                   className="img-fluid"
@@ -432,12 +440,11 @@ const About = (props) => {
                   className="img-fluid"
                   alt=""
                 />
-              </div>
+              </div>*/}
             </div>
             <p className="fs-5 text-light mb-3 mb-sm-3 pb-sm-5 pb-0 lh-1.5">
-              Donorport accepts several forms of traditional payment methods including credit cards,
-              Google Pay, PayPal and Stripe. Choose the payment method that works best for your
-              giving.
+              Donorport accepts several forms of traditional payment methods including credit cards
+              & interac debit. Choose the payment method that works best for your giving.
             </p>
           </Col>
           <Col md="6">
@@ -465,8 +472,9 @@ const About = (props) => {
               </div>
             </div>
             <p className="fs-5 text-light mb-0 mb-sm-3 pb-sm-5 pb-0 lh-1.5">
-              Donorport understands the importance of privacy which is why we have adopted
-              cryptocurrency on our platform so you can send your donations anonymously.
+              Donorport understands the importance of privacy, which is why we have pledged to
+              integrate cryptocurrency on our platform so you can send your donations anonymously
+              (coming soon).
             </p>
           </Col>
         </Row>

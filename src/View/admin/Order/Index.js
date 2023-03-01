@@ -37,7 +37,7 @@ export default function Index(props) {
 
         {
             id: 'trsansection_id',
-            name: "Transection Id",
+            name: "Transaction Id",
             cell: (row) => <>
 
                 <span>

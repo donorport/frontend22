@@ -9,6 +9,7 @@ import moment from 'moment';
 import helper, { priceFormat, getCalculatedPrice, getCardIcon } from '../../../../../Common/Helper';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import { Link } from 'react-router-dom';
 
 import './style.scss';
 import { head } from 'lodash';
@@ -74,6 +75,16 @@ const HistoryList = (props) => {
         {orderList.length > 0 ? (
           orderList.map((order, i) => {
             // console.log(order.uniqueTransactionId)
+            //let platformCost = ((order.platformFees / 100) * Number(order.subtotal)).toFixed(2);
+            let transactionFee = order.transactionFees;
+            let platformFee = order.platformFees;
+
+            let platformCost = (
+              (platformFee / 100 + transactionFee / 100) * Number(order.subtotal) +
+              0.3
+            ).toFixed(2);
+            let grandTotal = (Number(order.subtotal) + Number(platformCost)).toFixed(2);
+
             let last4 = JSON.parse(order.paymentResponse).data?.payment_method_details?.card?.last4;
             let CardType = JSON.parse(order.paymentResponse).data?.payment_method_details?.card
               ?.brand;
@@ -84,20 +95,22 @@ const HistoryList = (props) => {
                 <li className="history__list-item">
                   <div className="py-2 border-bottom">
                     <div className="d-flex align-items-center">
-                      <span className="flex__1 me-2">
-                        <FontAwesomeIcon
+                      <span className="bg-lighter d-flex align-items-center pt-2 pb-2 px-2 rounded-3">
+                        {/* <FontAwesomeIcon
                           icon={solid('receipt')}
                           className="mr-12p text-dark fs-4"
-                        />
-                        <span className="text-dark fw-bolder fs-4">
-                          {order.currencySymbol ? order.currencySymbol : '$'}{' '}
-                          {priceFormat(Number(order.total))}
+                        />*/}
+                        <span className="text-light fw-bold fs-4">
+                          {order.currencySymbol ? order.currencySymbol : '$'}
+                          {priceFormat(Number(grandTotal))}
                         </span>
                         <span className="ml-6p text-light fs-8">
                           {order.currency ? order.currency : 'CAD'}
                         </span>
                       </span>
-                      <span className="text-info fs-5 fw-bold">{order.xp ? order.xp : 200} xp</span>
+                      <span className="ms-auto text-info fs-5 fw-bold">
+                        {order.xp ? order.xp : 200} xp
+                      </span>
                     </div>
                     <div>
                       <Button
@@ -148,7 +161,7 @@ const HistoryList = (props) => {
                                     </div>
                                   </div>
                                   <ListItemImg
-                                    size={54}
+                                    size={42}
                                     style={{ maxWidth: 'auto !important' }}
                                     className="rounded-circle img--nobg mb-0 mb-sm-auto"
                                     imgSrc={
@@ -172,8 +185,15 @@ const HistoryList = (props) => {
                               </li>
                             );
                           })}
-
-                        <li className="order__transaction my-2">
+                        <div className="d-flex align-items-center py-3">
+                          <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
+                            Service Charge:
+                          </Link>
+                          <span className="fw-bold text-light fs-6">
+                            {order.currencySymbol + platformCost}
+                          </span>
+                        </div>
+                        <li className="order__transaction pb-5">
                           <div className="bg-lighter d-flex align-items-center pt-20p pb-20p px-2 rounded-3">
                             <div className="order__logo me-2">
                               <img src={getCardIcon(CardType)} alt="" className="img-fluid" />

@@ -21,16 +21,10 @@ export default function CheckoutController() {
   const [loading, setLoading] = useState(false);
   const [update, setIsUpdate] = useState(false);
   const [subtotal, setSubTotal] = useState(0);
-  const [subtotalWithTax, setSubtotalWithTax] = useState(0);
-
   const [total, setTotal] = useState(0);
-  const [salesTax, setSalesTax] = useState(0);
-  const [stripeTax, setStripeTax] = useState(0);
-
   const [xp, setXp] = useState(0);
   const CalculatedPrice = getCalculatedPrice();
   const currencySymbol = CalculatedPrice.currencySymbol();
-  const getPricewithoutTax = CalculatedPrice.priceWithoutTax();
   const [xpForeEachItem, setXpForeEachItem] = useState(0);
   const dispatch = useDispatch();
 
@@ -100,7 +94,7 @@ export default function CheckoutController() {
 
   useEffect(() => {
     (async () => {
-      setLoading(false);
+      setLoading(true);
       if (userAuthToken) {
         const verifyUser = await authApi.verifyToken(userAuthToken);
         if (!verifyUser.data.success) {
@@ -157,37 +151,23 @@ export default function CheckoutController() {
           let sum = tempPriceArray.reduce(function (a, b) {
             return a + b;
           }, 0);
-          let sumSubTotal = tempProductPriceArray.reduce(function (a, b) {
-            return a + b;
-          }, 0);
-
-          // console.log(sumSubTotal)
-
           let xpSum = ProductItems.reduce(function (a, b) {
             return a + b;
           }, 0);
           setXp(xpSum * xpForeEachItem);
-          setSubtotalWithTax(Number(sumSubTotal));
-          let salesTax = CalculatedPrice.calculateSalesTax(sum);
-          // setSalesTax(salesTax)
-          setTotal(sum + 0.3);
-          // setStripeTax(CalculatedPrice.getTaxValueOfPrice(sum))
-          setSalesTax(CalculatedPrice.getTaxValueOfPrice(sum));
-
-          // setTotal(sum + salesTax)
-
-          // setTotal(sum)
-
-          setSubTotal(sum + 0.3);
+          setSubTotal(sum);
+          // seTotal sent to Stripe. Confirmed in logs.
+          let fees = sum * 0.049 + 0.3;
+          let grandTotal = sum + fees;
+          setTotal(grandTotal);
         } else {
           navigate('/');
         }
       }
       setLoading(false);
-      // console.log(salesTax,user.salesTax)
     })();
-  }, [update, user.transactionFee, xpForeEachItem]);
-
+  }, [update, user.transactionFee, user.platformFee, xpForeEachItem]);
+  console.log(total);
   const pay = async () => {
     // if (cartItem.find(e => e.productDetails.tax === true)) {
     //     console.log(true)
@@ -201,6 +181,7 @@ export default function CheckoutController() {
     setLoading(true);
 
     let chargesArray = [];
+    console.log(chargesArray);
 
     if (cartItem && cartItem.length > 0) {
       cartItem.map((item, i) => {
@@ -255,6 +236,7 @@ export default function CheckoutController() {
         data.line1 = line1;
         data.country = country;
         // data.amount = CalculatedPrice.getData(total)
+        //This is where amount is set to equal the total from setTotal above:
         data.amount = total;
         data.cardNumber = cardNumber;
         data.cardExpMonth = cardExpMonth;
@@ -324,18 +306,17 @@ export default function CheckoutController() {
             orderDetails.currencySymbol = user.currencySymbol;
             orderDetails.transactionId = payment.data.data.id;
             orderDetails.paymentResponse = JSON.stringify(payment.data);
-            orderDetails.subtotal = Number(subtotalWithTax);
             orderDetails.appliedTaxPercentage =
               Number(user.platformFee) + Number(user.transactionFee);
             orderDetails.platformFees = user.platformFee;
+            orderDetails.platformCost = (user.platformFee / 100) * Number(subtotal);
             orderDetails.transactionFees = user.transactionFee;
-            orderDetails.tax = Number(subtotal) - Number(Number(subtotalWithTax));
+            orderDetails.subtotal = subtotal;
             orderDetails.total = total;
+            orderDetails.grandTotal = Number(user.platformCost) + Number(subtotal);
             orderDetails.transactionStatus = payment.data.data.status;
             orderDetails.products = productDetails;
             orderDetails.xpToadd = xp;
-            orderDetails.salesTaxPer = user.salesTax;
-            orderDetails.salesTax = salesTax;
 
             if (cartItem.find((e) => e.productDetails.tax === true)) {
               orderDetails.taxRecipt = true;
@@ -395,7 +376,7 @@ export default function CheckoutController() {
   };
 
   const removeCartItem = async (id) => {
-    setLoading(false);
+    setLoading(true);
     const removeCartItem = await cartApi.deleteCartItem(userAuthToken, id);
     if (removeCartItem) {
       if (!removeCartItem.data.success) {
@@ -427,13 +408,10 @@ export default function CheckoutController() {
           CalculatedPrice={CalculatedPrice}
           currencySymbol={currencySymbol}
           xp={xp}
-          salesTax={salesTax}
           subtotal={subtotal}
-          salesTaxPer={user.salesTax}
           transactionFee={user.transactionFee}
-          stripeTax={stripeTax}
+          platformFee={user.platformFee}
           isLoading={loading}
-          // pricingFees={pricingFees}
         />
       </Page>
     </>

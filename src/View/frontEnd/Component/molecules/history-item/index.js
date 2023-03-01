@@ -42,11 +42,13 @@ function HistoryItem({ active, ...otherProps }) {
   };
   let item = sharedProps.item;
   let type = sharedProps.type;
+  let donationAmount = Number((item?.amount - 0.3) / 1.049).toFixed(2);
   let avatar =
     type === 'donation' ? item?.userDetails?.image : item?.orderDetails?.userDetails?.image;
 
   let name = type === 'donation' ? item?.userDetails?.name : item?.orderDetails?.userDetails?.name;
-  let amount = type === 'donation' ? item?.amount : item?.totalPrice;
+  //let amount = type === 'donation' ? item?.amount : item?.totalPrice;
+  let amount = type === 'donation' ? donationAmount : item?.totalPrice;
   let date = type === 'donation' ? item?.created_at : item?.orderDetails?.created_at;
   let currencySymbol =
     type === 'donation' ? item?.currencySymbol : item?.orderDetails?.currencySymbol;

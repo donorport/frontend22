@@ -91,6 +91,7 @@ const ProjectDetail = (props) => {
               cardNumberWithSpace={props.cardNumberWithSpace}
               donate={props.donate}
               dCardIcon={props.dCardIcon}
+              loading={props.loading}
             />
             {/* <GrabDropdown /> */}
           </div>

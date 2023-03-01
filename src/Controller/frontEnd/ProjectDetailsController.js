@@ -175,14 +175,14 @@ export default function ProjectDetailsController() {
   const donate = async () => {
     if (token) {
       const rules = {
-        name: 'required',
+       //name: 'required',
         cardNumber: 'required|number',
         month: 'required',
         year: 'required',
         cvv: 'required|number'
       };
       const message = {
-        'name.required': 'Card holder name is Required.',
+       // 'name.required': 'Card holder name is Required.',
         'cardNumber.required': 'Card number is Required.',
         'cardNumber.number': 'Card number can not be string.',
         'month.required': 'Month is Required.',
@@ -192,12 +192,14 @@ export default function ProjectDetailsController() {
       };
       validateAll(state, rules, message)
         .then(async () => {
+          setLoading(true);
           const formaerrror = {};
           setstate({
             ...state,
             error: formaerrror
           });
-          setLoading(false);
+          let platformCost = (0.049 * Number(selectedValue) + 0.3).toFixed(2);
+          let grandTotal = (Number(selectedValue) + Number(platformCost)).toFixed(2);
           let data = {};
           data.name = userData.name;
           data.email = userData.email;
@@ -205,7 +207,7 @@ export default function ProjectDetailsController() {
           data.state = user.stateName;
           data.line1 = user.area;
           data.country = user.countryName;
-          data.amount = selectedValue;
+          data.amount = grandTotal;
           data.cardNumber = cardNumber;
           data.cardExpMonth = month;
           data.cardExpYear = year;
@@ -223,25 +225,26 @@ export default function ProjectDetailsController() {
           const donateToProject = await projectApi.donate(userAuthToken, data);
           if (donateToProject) {
             if (!donateToProject.data.success) {
-              setLoading(false);
+              //setLoading(false);
               ToastAlert({ msg: donateToProject.data.message, msgType: 'error' });
             } else {
               // let addXp = Number(selectedValue * 10)
               let addXp = Number(donateToProject.data.xpToAdd);
               dispatch(setUserXp(user.xp + addXp));
+              navigate('/donate/' + donateToProject.data.donationId);
               // await getUserRank()
               /*ToastAlert({ msg: donateToProject.data.message, msgType: 'success' });*/
-              setLoading(false);
+              //setLoading(false);
               // navigate('/')
               // navigate('/donate/' + donateToProject.data.donationId)
             }
           } else {
-            setLoading(false);
+            //setLoading(false);
             ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
           }
         })
         .catch((errors) => {
-          setLoading(false);
+          //setLoading(false);
           const formaerrror = {};
           if (errors.length) {
             errors.forEach((element) => {
@@ -257,9 +260,10 @@ export default function ProjectDetailsController() {
           });
         });
     } else {
-      // navigate('/signin')
+      navigate('/signin')
     }
   };
+
   const checkUserFollow = async (projectId) => {
     let data = {};
     data.typeId = projectId;
@@ -339,7 +343,6 @@ export default function ProjectDetailsController() {
   }, [user.countryId]);
   return (
     <>
-      <FrontLoader loading={loading} />
       <Page
         showTags={false}
         title={'Donorport | ' + projectDetails?.name}
@@ -361,6 +364,7 @@ export default function ProjectDetailsController() {
           followToProject={followToProject}
           isFollow={isFollow}
           dCardIcon={dCardIcon}
+          loading={loading}
         />
       </Page>
     </>

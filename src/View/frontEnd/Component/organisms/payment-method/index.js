@@ -27,7 +27,7 @@ import { setIsAccountAdd } from '../../../../../user/user.action';
 import { useSelector, useDispatch } from 'react-redux';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const PaymentMethod = () => {
+const Payments = () => {
   const [modalShow, setModalShow] = useState(false);
   const [bankAccountList, setBankAccountList] = useState([]);
   // const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
@@ -90,7 +90,7 @@ const PaymentMethod = () => {
     error: [],
     taxRate: '',
     paymentLoginId: '',
-    transectionKey: '',
+    TransactionKey: '',
     currency: 'USD'
   });
   const {
@@ -124,7 +124,7 @@ const PaymentMethod = () => {
     confirmAccountNumber,
     taxRate,
     paymentLoginId,
-    transectionKey,
+    TransactionKey,
     currency
   } = state;
 
@@ -197,7 +197,7 @@ const PaymentMethod = () => {
         ...state,
         taxRate: data.taxRate,
         paymentLoginId: data.paymentLoginId,
-        transectionKey: data.transectionKey
+        TransactionKey: data.TransactionKey
       });
       setBankAccount({
         ...bankAccount,
@@ -423,7 +423,7 @@ const PaymentMethod = () => {
         // data.accountNumber = encryptData(accountNumber.toString())
 
         // Api Call for update Profile
-        setLoading(false);
+        setLoading(true);
         const addBank = await adminCampaignApi.addBankAccount(token, data);
 
         if (addBank) {
@@ -464,51 +464,44 @@ const PaymentMethod = () => {
 
   const removeBank = (id) => {
     confirmAlert({
-      customUI: ({ onClose }) => {
-        return (
-          <div className="custom-ui">
-            <h1 className="fw-bolder">Are you sure?</h1>
-            <p>Are you sure you want to remove this bank account?</p>
-            <div className="d-flex gap-1">
-              <button className="btn btn-danger" onClick={onClose}>
-                Cancel
-              </button>
-              <button
-                className="btn btn-success"
-                onClick={async () => {
+      title: 'Logout',
+      message: 'Are you sure you want to logout?',
+      buttons: [
+        {
+          label: 'Cancel'
+        },
+        {
+          label: 'Remove Bank',
+          onClick: async () => {
+            setLoading(false);
+            if (id !== '') {
+              const removeBank = await adminCampaignApi.deleteBankAccount(token, id);
+              if (removeBank) {
+                if (removeBank.data.success === false) {
                   setLoading(false);
-                  if (id !== '') {
-                    const removeBank = await adminCampaignApi.deleteBankAccount(token, id);
-                    if (removeBank) {
-                      if (removeBank.data.success === false) {
-                        setLoading(false);
-                        ToastAlert({ msg: removeBank.data.message, msgType: 'error' });
-                      } else {
-                        if (removeBank.data.success === true) {
-                          setLoading(false);
-                          setUpdate(!update);
-                          ToastAlert({ msg: removeBank.data.message, msgType: 'success' });
-                        }
-                      }
-                    } else {
-                      setLoading(false);
-                      ToastAlert({ msg: 'Account not Removed', msgType: 'error' });
-                    }
-                  } else {
+                  ToastAlert({ msg: removeBank.data.message, msgType: 'error' });
+                } else {
+                  if (removeBank.data.success === true) {
                     setLoading(false);
-                    ToastAlert({ msg: 'Account not Removed id Not found', msgType: 'error' });
+                    setUpdate(!update);
+                    ToastAlert({ msg: removeBank.data.message, msgType: 'success' });
                   }
-                }}
-              >
-                Remove Bank
-              </button>
-            </div>
-          </div>
-        );
-      }
+                }
+              } else {
+                setLoading(false);
+                ToastAlert({ msg: 'Account not Removed', msgType: 'error' });
+              }
+            } else {
+              setLoading(false);
+              ToastAlert({ msg: 'Account not Removed id Not found', msgType: 'error' });
+            }
+          }
+        }
+      ]
     });
+  };
 
-    /* confirmAlert({
+  /* confirmAlert({
       title: 'Confirm to submit',
       message: 'Are you sure to Remove Account.',
       buttons: [
@@ -545,7 +538,6 @@ const PaymentMethod = () => {
         }
       ]
     });*/
-  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -669,7 +661,7 @@ const PaymentMethod = () => {
           error: formaerrror
         });
 
-        setLoading(false);
+        setLoading(true);
         if (key !== 5) {
           setValue(key + 1);
         } else {
@@ -769,7 +761,7 @@ const PaymentMethod = () => {
     const message = {
       'taxRate.required': 'Tax Rate is Required.',
       'paymentLoginId.required': 'Api Login Id is Required.',
-      'transectionKey.required': 'Transection Key is Required.'
+      'TransactionKey.required': 'Transaction Key is Required.'
     };
     validateAll(state, rules, message)
       .then(async () => {
@@ -788,8 +780,8 @@ const PaymentMethod = () => {
           fdata.value = paymentLoginId;
         }
 
-        if (field === 'transectionKey') {
-          fdata.value = transectionKey;
+        if (field === 'TransactionKey') {
+          fdata.value = TransactionKey;
         }
         // console.log('first')
         const updateSalesTax = await adminCampaignApi.updateSalesTax(token, fdata);
@@ -986,7 +978,7 @@ const PaymentMethod = () => {
             opacity: loading ? '0.7' : '1'
           }}
         >
-          Save {loading && <CircularProgress className="ms-2" color="inherit" size={14} />}
+          Save {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
         </Button>
 
         <div className="mb-5 mt-5">
@@ -1192,13 +1184,13 @@ const PaymentMethod = () => {
 
           <div className="input__wrap mb-3">
             <label className="input__label flex__1">
-              <input type="text" placeholder="EX : 74AZP5Hxr972nPEn" name="transectionKey" value={transectionKey} className={state.error && state.error.transectionKey ? 'inputerror' : ""} onChange={(e) => onChangeTaxRate(e)}
+              <input type="text" placeholder="EX : 74AZP5Hxr972nPEn" name="TransactionKey" value={TransactionKey} className={state.error && state.error.TransactionKey ? 'inputerror' : ""} onChange={(e) => onChangeTaxRate(e)}
               // onFocu={()=>alert('okk')} 
-              onBlur={() => myFunction('transectionKey')}
+              onBlur={() => myFunction('TransactionKey')}
               />
               <span className="input__span">TRANSACTION KEY</span>
             </label>
-            {state.error && state.error.transectionKey && <p className="error">{state.error.transectionKey}</p>}
+            {state.error && state.error.TransactionKey && <p className="error">{state.error.TransactionKey}</p>}
           </div>
 
 
@@ -1274,4 +1266,4 @@ const PaymentMethod = () => {
   );
 };
 
-export default PaymentMethod;
+export default Payments;

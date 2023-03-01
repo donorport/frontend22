@@ -20,7 +20,7 @@ export default function OrganizationDetailsController() {
   const userAuthToken = localStorage.getItem('userAuthToken');
   const [organizationList, setOrganizationList] = useState([]);
   const token = CampaignAdminAuthToken ? CampaignAdminAuthToken : userAuthToken;
-
+  const [loading, setLoading] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
   const [organizationDetails, setOrganizationDetails] = useState({});
@@ -183,14 +183,14 @@ export default function OrganizationDetailsController() {
   const donate = async () => {
     if (token) {
       const rules = {
-        name: 'required',
+        //name: 'required',
         cardNumber: 'required|number',
         month: 'required',
         year: 'required',
         cvv: 'required|number'
       };
       const message = {
-        'name.required': 'Card holder name is Required.',
+        // 'name.required': 'Card holder name is Required.',
         'cardNumber.required': 'Card number is Required.',
         'cardNumber.number': 'Card number can not be string.',
         'month.required': 'Month is Required.',
@@ -200,19 +200,22 @@ export default function OrganizationDetailsController() {
       };
       validateAll(state, rules, message)
         .then(async () => {
+          setLoading(true);
           const formaerrror = {};
           setstate({
             ...state,
             error: formaerrror
           });
           let data = {};
+          let platformCost = (0.049 * Number(selectedValue) + 0.3).toFixed(2);
+          let grandTotal = (Number(selectedValue) + Number(platformCost)).toFixed(2);
           data.name = userData.name;
           data.email = userData.email;
           data.city = user.cityName;
           data.state = user.stateName;
           data.line1 = user.area;
           data.country = user.countryName;
-          data.amount = selectedValue;
+          data.amount = grandTotal;
           data.cardNumber = cardNumber;
           data.cardExpMonth = month;
           data.cardExpYear = year;
@@ -361,6 +364,7 @@ export default function OrganizationDetailsController() {
           followToOrganization={followToOrganization}
           isFollow={isFollow}
           dCardIcon={dCardIcon}
+          loading={loading}
         />
       </Page>
     </>

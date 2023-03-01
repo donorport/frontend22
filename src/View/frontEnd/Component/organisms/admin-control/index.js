@@ -46,8 +46,8 @@ const AdminControl = () => {
   }
 
   useEffect(() => {
-    (async () => {
-      setLoading(false)
+        (async () => {
+            setLoading(true)
       const getControlSetting = await controlsApi.organizationControlsList(token)
       if (getControlSetting.data.success) {
         setControls({
@@ -62,7 +62,7 @@ const AdminControl = () => {
 
 
   const saveControls = async () => {
-    setLoading(false)
+    setLoading(true)
 
     let data = {}
     data.notifications = notifications
@@ -93,7 +93,7 @@ const AdminControl = () => {
 
   return (
     <>
-      <FrontLoader loading={loading} />
+     {/*<FrontLoader loading={loading} />*/}
       <div className="mb-5">
         <h4 className="fw-bolder">Notifications </h4>
         <div className="text-subtext mb-3">Turn off / on notifications</div>

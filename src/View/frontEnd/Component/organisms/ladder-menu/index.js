@@ -25,11 +25,11 @@ const LadderMenu = ({ items, activeKey, onChangeFilterOption }) => {
     <ClickAwayListener onClickAway={handleClose}>
       <div className="ladder__menu position-relative" style={{ minWidth: '200px' }}>
         <div className="ladder__dropdown--selected" onClick={() => setActive(true)}>
-          <div className="ladder__selected">{items[activeKey]}</div>
+          <div className="ladder__selected fw-semibold">{items[activeKey]}</div>
           <FontAwesomeIcon icon={solid('chevron-down')} className="icon chevron__icon" />
         </div>
 
-        <ul className={`ladder__ul ladder__ul--listing ${active ? 'active' : ''}`}>
+        <ul className={`ladder__ul ladder__ul--listing fw-semibold ${active ? 'active' : ''}`}>
           {items.map((item, index) => (
             <li
               className="ladder__menu-item"

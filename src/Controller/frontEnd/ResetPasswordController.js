@@ -90,7 +90,7 @@ export default function ResetPasswordController() {
                 ...state,
                 error: formaerrror
             })
-            setLoading(false)
+            setLoading(true)
             const resetPassword = await userAuthApi.verifyOtp(email, otp, password)
             if (resetPassword) {
                 if (!resetPassword.data.success) {
@@ -133,7 +133,7 @@ export default function ResetPasswordController() {
 
     return (
         <>
-            <FrontLoader loading={loading} />
+           {/*<FrontLoader loading={loading} />*/}
             <Page title="Donorport | Reset Password" description="Secure access to your account by resetting your password... A confirmation link will be sent to your email. Reset Password ..." >
                 <ResetPassword
                     stateData={state}

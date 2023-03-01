@@ -27,7 +27,7 @@ function SettingsTabsAdmin({ activeKey, data, _onClick, ...otherProps }) {
 
       <Nav variant="link" {...otherProps} onClick={_onClick}>
 
-        <Link to={'/campaign/' + data?.slug + '/settings/company'}>
+        <Link to={'/campaign/' + data?.slug + '/settings/profile'}>
           <Nav.Item>
             <Nav.Link
               eventKey="company"
@@ -42,14 +42,14 @@ function SettingsTabsAdmin({ activeKey, data, _onClick, ...otherProps }) {
           </Nav.Item>
         </Link>
 
-        <Link to={'/campaign/' + data?.slug + '/settings/paymentMethod'}>
+        <Link to={'/campaign/' + data?.slug + '/settings/payments'}>
           <Nav.Item >
             <Nav.Link
-              eventKey="paymentMethod"
-              className={currentOption === 'paymentMethod' ? "stab__btn d-flex align-items-center nav-link active" : 'stab__btn d-flex align-items-center nav-link '}
+              eventKey="payments"
+              className={currentOption === 'payments' ? "stab__btn d-flex align-items-center nav-link active" : 'stab__btn d-flex align-items-center nav-link '}
             >
               <span className="stab__icon">
-                <PaymentIcon active={activeKey === "paymentMethod"} />
+                <PaymentIcon active={activeKey === "payments"} />
               </span>
               <span className="stab__text">Payments</span>
               <div className="tab__active--indicator"></div>

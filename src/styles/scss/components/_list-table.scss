@@ -99,14 +99,14 @@
     gap: 8px;
   }
   
-  .progress__wrap {
+ /* .progress__wrap {
     max-width: 300px;
   
     @include media-breakpoint-down(md) {
       width: 200px;
     }
   }
-  
+  */
   .table__list-item + .table__list-item {
     //border-top: 1px solid #e6e6e6;
   }

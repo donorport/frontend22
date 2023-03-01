@@ -120,7 +120,7 @@ const ProjectsTable = (props) => {
                     <div className="billing__main d-flex align-items-center text-dark me-sm-3 mb-2">
                       <div className="ms-auto ms-sm-0 me-sm-2 post__value">
                         {project.status === 1 && (
-                          <div className="text-success fw-bold fs-5">
+                          <div className="text-light fw-bold fs-5">
                             {props.data?.symbol}
                             {countProjectAmount(project.productDetails)}
                           </div>

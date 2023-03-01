@@ -61,7 +61,7 @@ const ChangePassword = () => {
           ...state,
           error: formaerrror
         });
-        setLoading(false);
+        setLoading(true);
         let data = {};
         data.current_password = currentPassword;
         data.new_password = newPassword;
@@ -106,7 +106,7 @@ const ChangePassword = () => {
 
   return (
     <>
-      <FrontLoader loading={loading} />
+     {/*<FrontLoader loading={loading} />*/}
       <DefaultLayout>
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-3">

@@ -113,7 +113,7 @@ export default function StateSalesTax(props) {
 
     const updateStateSalesTax = async () => {
         if (selectedCountryData.salesTax === '') {
-            ToastAlert({ msg: 'SalesTax is required', msgType: 'error' });
+            ToastAlert({ msg: 'Sales Tax is required', msgType: 'error' });
 
         } else {
             setLoading(false)
@@ -231,7 +231,7 @@ export default function StateSalesTax(props) {
     return (
         <>
 
-            <FrontLoader loading={loading} />
+           {/*<FrontLoader loading={loading} />*/}
             <Page title="Setting |Sales-Tax">
 
                 <Container>

@@ -30,7 +30,6 @@ const Map = ReactMapboxGl({
 const Transition = React.forwardRef(function Transition(propss, ref) {
   return <Slide direction="up" {...propss} />;
 });
-
 const productv = {
   cursor: 'pointer',
   display: 'block',
@@ -381,11 +380,15 @@ export default function AddProductForm(props) {
                 {props.moreTempImages?.length
                   ? props.moreTempImages.map((img, key) => {
                       return (
-                        <img
-                          src={img ? img : noimg}
+                        <div
+                          className="gallery__img"
+                          style={{
+                            backgroundImage: `url(${img ? img : noimg})`,
+                            width: '100px',
+                            height: '100px'
+                          }}
                           alt="lk"
-                          style={{ width: '100px', height: '100px' }}
-                        />
+                        ></div>
                       );
                     })
                   : props.moreImages?.length
@@ -721,7 +724,7 @@ export default function AddProductForm(props) {
 
               {
                 stateData.galleryUrl && (
-                  <div className="project-video-wrap mb-4 mt-4">
+                  <div className="project-video-wrap mt-4">
                     <iframe
                       title="product-video"
                       key="product-video"
@@ -793,11 +796,15 @@ export default function AddProductForm(props) {
                 {props.gallaryTempImages?.length
                   ? props.gallaryTempImages.map((img, key) => {
                       return (
-                        <img
-                          src={img ? img : noimg}
+                        <div
+                          className="gallery__img"
+                          style={{
+                            backgroundImage: `url(${img ? img : noimg})`,
+                            width: '100px',
+                            height: '100px'
+                          }}
                           alt="lk"
-                          style={{ width: '100px', height: '100px' }}
-                        />
+                        ></div>
                       );
                     })
                   : props.gallaryImages?.length
@@ -850,7 +857,7 @@ export default function AddProductForm(props) {
                   selected={stateData ? (stateData.status === 0 ? 'selected' : '') : ''}
                   value="0"
                 >
-                  InActive
+                  Inactive
                 </option>
               </select>
 

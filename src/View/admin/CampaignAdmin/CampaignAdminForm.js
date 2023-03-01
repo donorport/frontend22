@@ -252,7 +252,7 @@ export default function CampaignAdminForm(props) {
                         <div className="col-sm-10">
                             <select className="form-control" onChange={(e) => { props.changevalue(e) }} id="status" name="status">
                                 <option selected={stateData ? stateData.status === 1 ? "selected" : "" : ""} value="1">Active</option>
-                                <option selected={stateData ? stateData.status === 0 ? "selected" : "" : ""} value="0">InActive</option>
+                                <option selected={stateData ? stateData.status === 0 ? "selected" : "" : ""} value="0">Inactive</option>
                             </select>
 
                             {stateData.error && stateData.error.status && <p className="error">{stateData.error ? stateData.error.status ? stateData.error.status : "" : ""}</p>}

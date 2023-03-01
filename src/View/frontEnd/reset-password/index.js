@@ -160,7 +160,7 @@ const ResetPassword = (props) => {
                   {stateData.error && stateData.error.cpassword && <p className="error">{stateData.error ? stateData.error.cpassword ? stateData.error.cpassword : "" : ""}</p>}
                 </div> */}
 
-                <Button size="lg" className="w-100 mb-4 mt-3" onClick={() => props.reset()}>
+                <Button size="lg" className="fw-bold w-100 mb-4 mt-3" onClick={() => props.reset()}>
                   Submit
                 </Button>
 

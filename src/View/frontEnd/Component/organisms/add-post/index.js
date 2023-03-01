@@ -242,7 +242,7 @@ const AddPost = (props) => {
       </div>*/}
 
       <div>
-        <Accordion className="mb-5 pb-5" alwaysOpen>
+        <Accordion alwaysOpen>
           <Card>
             <Card.Header className="post__accordion-header">
               <AccordionToggle>
@@ -402,67 +402,72 @@ const AddPost = (props) => {
                           <p className="error">{error ? (error.slug ? error.slug : '') : ''}</p>
                         )}
                       </div>
-                      <div className="price-group-wrap d-flex align-items-center gap-2 mb-3">
-                        <div className="form-group">
-                          <label htmlFor="priceInput" className="form__label">
-                            Unit Price
-                          </label>
-                          <input
-                            type="text"
-                            placeholder="$0"
-                            className="form-control form-control-lg"
-                            // id="priceInput"
-                            name="price"
-                            id="price"
-                            value={price}
-                            onChange={(e) => {
-                              changevalue(e);
-                            }}
-                          />
+                      <div className="d-flex flex-wrap price-group-wrap gap-2 mb-3">
+                        <div className="d-flex gap-3">
+                          <div className="form-group">
+                            <label htmlFor="priceInput" className="form__label">
+                              Unit Price
+                            </label>
+                            <input
+                              type="text"
+                              placeholder="$0"
+                              className="form-control form-control-lg"
+                              // id="priceInput"
+                              name="price"
+                              id="price"
+                              value={price}
+                              onChange={(e) => {
+                                changevalue(e);
+                              }}
+                            />
 
-                          {error && error.price && (
-                            <p className="error">{error ? (error.price ? error.price : '') : ''}</p>
-                          )}
+                            {error && error.price && (
+                              <p className="error">
+                                {error ? (error.price ? error.price : '') : ''}
+                              </p>
+                            )}
+                          </div>
+
+                          <div className="form-group">
+                            <label htmlFor="priceInput" className="form__label">
+                              Display Price
+                            </label>
+                            <input
+                              type="text"
+                              placeholder="$0"
+                              className="form-control form-control-lg"
+                              disabled
+                              // id="priceInput"
+                              name="displayprice"
+                              id="displayprice"
+                              value={priceFormat(Number(displayPrice))}
+                            />
+                          </div>
+                          <div className="form-group quantity-from-group">
+                            <label htmlFor="quantityInput" className="form__label">
+                              Quantity
+                            </label>
+                            <input
+                              type="text"
+                              className="form-control form-control-lg studio__input--quantity"
+                              // id="quantityInput"
+                              placeholder="12"
+                              name="quantity"
+                              id="quantity"
+                              disabled={unlimited}
+                              value={quantity}
+                              onChange={(e) => {
+                                changevalue(e);
+                              }}
+                            />
+                            {error && error.quantity && (
+                              <p className="error">
+                                {error ? (error.quantity ? error.quantity : '') : ''}
+                              </p>
+                            )}
+                          </div>
                         </div>
 
-                        <div className="form-group">
-                          <label htmlFor="priceInput" className="form__label">
-                            Display Price
-                          </label>
-                          <input
-                            type="text"
-                            placeholder="$0"
-                            className="form-control form-control-lg"
-                            disabled
-                            // id="priceInput"
-                            name="displayprice"
-                            id="displayprice"
-                            value={priceFormat(Number(displayPrice))}
-                          />
-                        </div>
-                        <div className="form-group quantity-from-group">
-                          <label htmlFor="quantityInput" className="form__label">
-                            Quantity
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control form-control-lg studio__input--quantity"
-                            // id="quantityInput"
-                            placeholder="12"
-                            name="quantity"
-                            id="quantity"
-                            disabled={unlimited}
-                            value={quantity}
-                            onChange={(e) => {
-                              changevalue(e);
-                            }}
-                          />
-                          {error && error.quantity && (
-                            <p className="error">
-                              {error ? (error.quantity ? error.quantity : '') : ''}
-                            </p>
-                          )}
-                        </div>
                         <div className="form-group unlimited-switch-wrap">
                           <div className="bg-purple text-nowrap fs-8 fw-semibold rounded-3 p-6p mb-2 text-white">
                             Unlimited
@@ -479,10 +484,7 @@ const AddPost = (props) => {
                       <div className="note note--info mb-3">
                         <span className="text-dark">
                           Enter the unit price before taxes. Your{' '}
-                          <Link
-                            to={'/campaign/' + props?.slug + '/settings/paymentMethod'}
-                            style={{ color: '#3a94d4' }}
-                          >
+                          <Link to="/campaign/settings/payments" style={{ color: '#3a94d4' }}>
                             regional sales tax
                           </Link>{' '}
                           & merchant fees will be automatically applied to the price of the item to
@@ -820,11 +822,21 @@ const AddPost = (props) => {
                                     >
                                       &times;
                                     </span>
-                                    <img
+                                    {/* <img
                                       src={img ? img : noimg}
                                       alt="lk"
                                       style={{ width: '100px', height: '100px' }}
-                                    />
+                                    />*/}
+                                    <div
+                                      className="gallery__img"
+                                      style={{
+                                        backgroundImage: `url(${img ? img : noimg})`,
+                                        width: '100px',
+                                        height: '100px'
+                                      }}
+                                      alt="lk"
+                                      data-id="103"
+                                    ></div>
                                   </div>
                                 );
                               })
@@ -837,8 +849,31 @@ const AddPost = (props) => {
                                     <>
                                       {/* <img src={img ? img !== "" ? helper.CampaignProductImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} />
                                     <span> X</span> */}
-
                                       <div className="img-wrap">
+                                        <span
+                                          className="close"
+                                          onClick={() => props.deleteProductImage(img.id, 'More')}
+                                        >
+                                          &times;
+                                        </span>
+                                        <div
+                                          className="gallery__img"
+                                          style={{
+                                            backgroundImage: `url(${
+                                              img.img
+                                                ? img.img !== ''
+                                                  ? helper.CampaignProductImagePath + img.img
+                                                  : noimg
+                                                : noimg
+                                            })`,
+                                            width: '100px',
+                                            height: '100px'
+                                          }}
+                                          alt="lk"
+                                          data-id="103"
+                                        ></div>
+                                      </div>
+                                      {/*  <div className="img-wrap">
                                         <span
                                           className="close"
                                           onClick={() => props.deleteProductImage(img.id, 'More')}
@@ -857,7 +892,7 @@ const AddPost = (props) => {
                                           style={{ width: '100px', height: '100px' }}
                                           data-id="103"
                                         />
-                                      </div>
+                                      </div>*/}
                                     </>
                                   );
                                 })
@@ -1025,14 +1060,14 @@ const AddPost = (props) => {
                   <form className="video-detail-form">
                     <div className="form-group mb-2">
                       <label htmlFor="videoInput" className="form__label">
-                        Need Gallery &nbsp;
+                        Need Media&nbsp;
                         <span className="post-type-text">(optional)</span>
                       </label>
                       <input
                         type="text"
                         className="form-control form-control-lg"
                         // id="videoInput"
-                        placeholder="Video URL"
+                        placeholder="YouTube URL"
                         name="galleryUrl"
                         id="galleryUrl"
                         value={galleryUrl}
@@ -1042,7 +1077,7 @@ const AddPost = (props) => {
                       />
                     </div>
 
-                    <div className="project-video-wrap mb-4">
+                    <div className="project-video-wrap">
                       <iframe
                         title="product-video"
                         key="product-video"
@@ -1114,11 +1149,15 @@ const AddPost = (props) => {
                                   >
                                     &times;
                                   </span>
-                                  <img
-                                    src={img ? img : noimg}
+                                  <div
+                                    className="gallery__img"
+                                    style={{
+                                      backgroundImage: `url(${img ? img : noimg})`,
+                                      width: '100px',
+                                      height: '100px'
+                                    }}
                                     alt="lk"
-                                    style={{ width: '100px', height: '100px' }}
-                                  />
+                                  ></div>
                                 </div>
                               );
                             })
@@ -1139,7 +1178,7 @@ const AddPost = (props) => {
                                       >
                                         &times;
                                       </span>
-                                      <img
+                                      {/* <img
                                         src={
                                           img.img
                                             ? img.img !== ''
@@ -1150,7 +1189,23 @@ const AddPost = (props) => {
                                         alt="lk"
                                         style={{ width: '100px', height: '100px' }}
                                         data-id="103"
-                                      />
+                                      />*/}
+                                      <div
+                                        className="gallery__img"
+                                        style={{
+                                          backgroundImage: `url(${
+                                            img.img
+                                              ? img.img !== ''
+                                                ? helper.CampaignProductImagePath + img.img
+                                                : noimg
+                                              : noimg
+                                          })`,
+                                          width: '100px',
+                                          height: '100px'
+                                        }}
+                                        alt="lk"
+                                        data-id="103"
+                                      ></div>
                                     </div>
                                   </>
                                 );
@@ -1231,21 +1286,10 @@ const AddPost = (props) => {
               }}
             />
             <label className="form-check-label" htmlFor="policy">
-              By posting your ad, you are agreeing to our{' '}
-              <Link to="/terms">
-                <strong>terms of use</strong>
-              </Link>
-              ,{' '}
-              <Link to="/terms">
-                <strong>privacy policy</strong>
-              </Link>{' '}
-              and{' '}
-              <Link to="/terms">
-                <strong>site policies</strong>
-              </Link>
-              . Please do not post duplicate ads. You may not edit your post after it has received
-              funding. If you delete your post after it has received donations, the donors will
-              receive a full refund and the post will be closed.
+              By posting your ad, you are agreeing to our <Link to="/terms">terms of service</Link>
+              &nbsp; & <Link to="/privacy">privacy policy</Link> . Please do not post duplicate ads.
+              You may not edit your post after it has received funding. You cannot delete your post
+              after it has received donations.
             </label>
           </div>
         </div>
@@ -1253,7 +1297,7 @@ const AddPost = (props) => {
           <p className="error">{error ? (error.policy ? error.policy : '') : ''}</p>
         )}
 
-        <div className="products-detial-footer py-5">
+        <div className="products-detial-footer d-flex py-3 py-sm-5 gap-2">
           {stateData.status === 1 && (
             <Button
               style={{ opacity: props.isLoading ? '0.7' : '1' }}
@@ -1273,7 +1317,7 @@ const AddPost = (props) => {
             onClick={() => !props.isLoading && submitProductForm(1)}
           >
             Post Ad{' '}
-            {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={14} />}
+            {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={12} />}
           </Button>
         </div>
       </div>

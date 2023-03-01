@@ -20,14 +20,23 @@ const TaxTable = (props) => {
     let sum;
     if (data.length > 0) {
       data.map((i, k) => {
-        tempSub.push(i.amount);
+        //tempSub.push(i.amount);
+        let productTotal = i.orderItemDetails?.totalPrice;
+        let donationTotal = (i.amount - 0.3) / 1.049;
+        //let donationTotal = i.amount;
+        let taxableProduct = priceFormat(Number(productTotal));
+        let taxableDonation = priceFormat(Number(donationTotal));
+
+        tempSub.push(i.type === 'Purchased' ? taxableProduct : taxableDonation);
       });
       sum = tempSub.reduce(function (a, b) {
-        return a + b;
+        return parseFloat(a) + parseFloat(b);
+        //return a + b;
       }, 0);
     } else {
       sum = 0;
     }
+    //return priceFormat(sum);
     return sum.toFixed(2);
   };
 
@@ -108,17 +117,16 @@ const TaxTable = (props) => {
                 <>
                   <Accordion allowMultiple>
                     <AccordionItem
-                      className="py-2"
                       hideChevron={disableHeader}
                       buttonProps={{ disabled: disableHeader }}
                       header={
-                        <li className="flex-grow-1 table__list-item px-0 px-sm-2">
+                        <li className="flex-grow-1 table__list-item px-2 py-2">
                           <div className="d-sm-flex align-items-center flex-grow-1">
                             <div className="tax__left d-flex align-items-center me-sm-2 mb-1 mb-sm-0 ps-2 ps-sm-0">
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4 text-sm-start text-end">
                                 <div className="text-light fw-bold fs-5">
                                   {item[0].currencySymbol}
-                                  {totalVal(item)}
+                                  {priceFormat(totalVal(item))}
                                 </div>
                                 <div className="text-light fs-8">
                                   {moment(item[0].created_at).fromNow()}
@@ -289,7 +297,7 @@ const TaxTable = (props) => {
                                   className="d-flex align-items-center justify-content-end px-0 fw-semibold text-reset text-decoration-none"
                                   onClick={(e) => e.stopPropagation()}
                                 >
-                                  Pending
+                                  Waiting
                                   <FontAwesomeIcon
                                     icon={solid('clock')}
                                     className="fs-3 ms-1 text-warning"
@@ -304,6 +312,13 @@ const TaxTable = (props) => {
                       <div className="container-fluid px-2">
                         {item.length > 1 &&
                           item.map((i1, k) => {
+                            //Subtract the 2.9% from the subtotal to get actual amount sent to Charity:
+                            let productTotal = i1.orderItemDetails?.totalPrice;
+                            //let donationTotal = (i1.amount - 0.3) / 1.049;
+                            let donationTotal = i1.amount;
+                            let taxableProduct = priceFormat(Number(productTotal));
+                            let taxableDonation = priceFormat(Number(donationTotal));
+
                             let Aimg =
                               i1.type === 'Purchased'
                                 ? helper.CampaignProductImagePath +
@@ -327,14 +342,17 @@ const TaxTable = (props) => {
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-3 text-sm-start text-end">
                                         <div className="text-light fw-bold fs-5">
                                           {i1.currencySymbol}
-                                          {i1.amount.toFixed(2)}
+                                          {/*{i1.amount}*/}
+                                          {i1.type === 'Purchased'
+                                            ? taxableProduct
+                                            : taxableDonation}
                                         </div>
                                         <div className="text-light fs-8">
                                           {moment(i1.created_at).fromNow()}
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="d-flex align-items-center flex__1 mb-1 mb-sm-0">
+                                    <div className="d-flex align-items-center justify-content-start flex__1 mb-1 mb-sm-0">
                                       <div className="pe-1 p-sm-2 mr-12p">
                                         <img loading="lazy" width={36} src={Aimg} alt="" />
                                       </div>
@@ -459,7 +477,7 @@ const TaxTable = (props) => {
       </div>
 
       {props.taxList.length > 0 && (
-        <div className="mt-5  mb-5">
+        <div className="mt-5 mb-5">
           <CSVExportBtn
             headers={props.headers}
             csvData={props.csvData}

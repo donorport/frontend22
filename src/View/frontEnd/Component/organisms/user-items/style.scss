@@ -19,3 +19,12 @@
   border: 1px solid var(--border-input);
   border-radius: 8px;
 }
+.dropdown-item,
+.dropdown-item:focus,
+.dropdown-item:hover {
+  color: inherit !important;
+}
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: hsl(217deg 15% 78% / 15%) !important;
+}

@@ -1,7 +1,8 @@
 @import '../../../../../assets/scss/components/list-table';
 
 .post__value {
-  width: 65px;
+  min-width: 60px;
+  max-width: 60px;
 }
 .project--btn {
   background: unset;
@@ -9,4 +10,11 @@
 }
 .table__list-item:last-child {
   border: none !important;
+}
+.progress__wrap {
+  width: 100%;
+  max-width: 300px;
+  @include media-breakpoint-down(sm) {
+    max-width: 100%;
+  }
 }

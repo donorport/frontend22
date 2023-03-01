@@ -26,7 +26,7 @@ function CampaignAdminController() {
     const [payoutModal, setPayoutModal] = useState(false)
     const [organizationDetails, setOrganizationDetails] = useState({})
     const [bankDetails, setBankDetailsDetails] = useState({})
-    const [orgTransectionHistory, setOrgTransectionHistory] = useState([])
+    const [orgTransactionHistory, setOrgTransactionHistory] = useState([])
 
 
 
@@ -553,7 +553,7 @@ function CampaignAdminController() {
 
     }
     const payoutToAdmin = async (data) => {
-        await transectionHistory(data._id)
+        await TransactionHistory(data._id)
         setPayoutModal(true)
         setOrganizationDetails(data)
         setBankDetailsDetails({})
@@ -648,7 +648,7 @@ function CampaignAdminController() {
 
     }
 
-    const transectionHistory = async (organizationId) => {
+    const TransactionHistory = async (organizationId) => {
         let data = {}
         data.organizationId = organizationId
         const history = await adminCampaignApi.CampaignAdminPayHistory(adminAuthToken, data)
@@ -657,7 +657,7 @@ function CampaignAdminController() {
                 setLoading(false)
                 ToastAlert({ msg: history.data.message, msgType: 'error' });
             } else {
-                setOrgTransectionHistory(history.data.data)
+                setOrgTransactionHistory(history.data.data)
             }
 
         } else {
@@ -696,7 +696,7 @@ function CampaignAdminController() {
 
             />
 
-            <Payout payoutModal={payoutModal} setPayoutModal={setPayoutModal} organizationDetails={organizationDetails} stateData={state} onSelectBank={onSelectBank} payToOrganization={payToOrganization} changevalue={changevalue} orgTransectionHistory={orgTransectionHistory} />
+            <Payout payoutModal={payoutModal} setPayoutModal={setPayoutModal} organizationDetails={organizationDetails} stateData={state} onSelectBank={onSelectBank} payToOrganization={payToOrganization} changevalue={changevalue} orgTransactionHistory={orgTransactionHistory} />
         </>
     )
 

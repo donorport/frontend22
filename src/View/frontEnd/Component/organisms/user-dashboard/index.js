@@ -11,9 +11,9 @@ import IconButton from '../../molecules/icon-button';
 // import BarChart from "@assets/images/bar-chart.jpg";
 // import PieChart from "@assets/images/piechart.jpg";
 
-import AreaChart from '../../../../../assets/images/area-chart.jpg';
-import BarChart from '../../../../../assets/images/bar-chart.jpg';
-import PieChart from '../../../../../assets/images/piechart.jpg';
+//import AreaChart from '../../../../../assets/images/area-chart.jpg';
+//import BarChart from '../../../../../assets/images/bar-chart.jpg';
+//import PieChart from '../../../../../assets/images/piechart.jpg';
 import { useSelector, useDispatch } from 'react-redux';
 import helper, { priceFormat, getCalculatedPrice } from '../../../../../Common/Helper';
 

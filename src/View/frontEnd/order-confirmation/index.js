@@ -20,6 +20,14 @@ const OrderConfirmPage = () => {
   const userData = JSON.parse(localStorage.getItem('userData'));
   let newSlug = userData?.name.split(/\s/).join('');
 
+  let transactionFee = orderDetails.transactionFees;
+  let platformFee = orderDetails.platformFees;
+  let platformCost = (
+    (platformFee / 100 + transactionFee / 100) * Number(orderDetails.subtotal) +
+    0.3
+  ).toFixed(2);
+  //let grandTotal = (Number(orderDetails.subtotal) + Number(platformCost)).toFixed(2);
+
   const getOrderDetails = async () => {
     let data = {};
     data.orderId = params.id;
@@ -52,16 +60,13 @@ const OrderConfirmPage = () => {
   let lastFourDigits = JSON.parse(orderDetails?.paymentResponse || '{}')?.data
     ?.payment_method_details?.card?.last4;
 
-  console.log(cardType);
-  console.log(lastFourDigits);
-
   return (
     <>
       <Page showTags={false} title={'Order | ' + orderDetails.uniqueTransactionId}>
         <DefaultLayout>
-          {/* <FrontLoader loading={loading} />*/}
-          <div className="container-fluid d-flex flex-wrap">
-            <div className="col-sm-6 d-flex flex-column align-items-sm-center align-items-stretch py-5 text-center pb-0 pb-sm-5 border-end">
+          {/*<FrontLoader loading={loading} />*/}
+          <div className="container-fluid d-flex flex-wrap gap-2">
+            <div className="flex__1 d-flex flex-column align-items-sm-center align-items-stretch py-5 text-center pb-0 pb-sm-5 border-end">
               {/* <img
                 style={{ width: '320px' }}
                 src="https://i.pinimg.com/originals/7f/91/19/7f9119b483a3b4c966bdbad251f0b483.gif"
@@ -117,7 +122,7 @@ const OrderConfirmPage = () => {
                 </Link>
               </div>
             </div>
-            <div className="email__container border my-5 p-3">
+            <div className="flex__1 email__container my-5 p-3">
               <div className="order__container d-flex align-items-center justify-content-between m-3 mx-0 border-bottom">
                 <div className="order__wrap">
                   <p className="total__title fs-2 fw-bolder">Order Details</p>
@@ -212,7 +217,7 @@ const OrderConfirmPage = () => {
                     })}
                 </div>
               </div>
-              <div className="total__container mt-3 pt-3 border-top">
+              <div className="total__container">
                 <div>
                   <div className="total__sub d-flex justify-content-between">
                     <div className="total__title fw-bolder">Subtotal:</div>
@@ -226,7 +231,20 @@ const OrderConfirmPage = () => {
                       </p>
                     </div>
                   </div>
-
+                  <div className="total__sub d-flex justify-content-between">
+                    <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
+                      Service Charge:
+                    </Link>
+                    <div className="total__value">
+                      <p className="fw-semibold text-light fs-7">
+                        {' '}
+                        {orderDetails.currencySymbol}
+                        {/* {purchasedPriceWithTax(Number(orderDetails.subtotal), Number(orderDetails.appliedTaxPercentage))} */}
+                        {/* {orderDetails.subtotal} */}
+                        {priceFormat(Number(platformCost))}
+                      </p>
+                    </div>
+                  </div>
                   {/*    <div
                 style={{
                   textAlign: 'left',
@@ -250,7 +268,7 @@ const OrderConfirmPage = () => {
                     </p>
                   </div> */}
 
-                  <div className="total__sub d-flex justify-content-between">
+                  <div className="total__sub d-flex justify-content-between mt-3">
                     <p className="total__title fw-bolder">XP:</p>
                     <div className="order__xp text-info fw-bold">{orderDetails.xp} xp</div>
                   </div>
@@ -265,7 +283,7 @@ const OrderConfirmPage = () => {
                     </div>
                     <div className="text-light fw-semibold">
                       <div>
-                        Transaction: {moment(orderDetails.created_at).format('MMMM DD,YYYY')}
+                        Transaction: {moment(orderDetails.created_at).format('MMMM DD, YYYY')}
                       </div>
                     </div>
                   </div>
@@ -273,17 +291,14 @@ const OrderConfirmPage = () => {
                 <div className="total__box">
                   <div className="order__container d-flex align-items-center justify-content-between mt-3 border-top pt-3">
                     <div className="order__wrap">
-                      <p className="total__title fs-5 fw-bolder">Total Paid:</p>
+                      <span className="total__title fs-5 fw-bolder">Total Paid:</span>
                     </div>
-                    <div className="order__value text-light">
-                      <p>
-                        {orderDetails.currency}
-                        <b className="fs-4 text-light">
-                          {' '}
-                          {orderDetails.currencySymbol}
-                          {priceFormat(Number(orderDetails.subtotal) + 0.3)}
-                        </b>
-                      </p>
+                    <div className=" d-flex align-items-centerorder__value text-light">
+                      {orderDetails.currency}
+                      <span className="fs-4 fw-bold text-light ms-1">
+                        {orderDetails.currencySymbol}
+                        {priceFormat(Number(orderDetails.total))}
+                      </span>
                     </div>
                   </div>
                 </div>

@@ -557,7 +557,7 @@ export default function AdvertisementController() {
 
             let createAd;
             // Api Call for update Profile
-            setLoading(false)
+            setLoading(true)
             if (id !== '') {
                 createAd = await advertisementApi.updateAdvertisement(adminAuthToken, data, id)
             } else {
@@ -628,8 +628,8 @@ export default function AdvertisementController() {
 
     const deleteAd = (id) => {
         confirmAlert({
-            title: 'Confirm to submit',
-            message: 'Are you sure to delete Advertisement.',
+            title: 'Delete Ad?',
+            message: 'Are you sure you want to delete this Advertisement?',
             buttons: [
                 {
                     label: 'Yes',
@@ -696,7 +696,7 @@ export default function AdvertisementController() {
 
     return (
         <>
-            <FrontLoader loading={loading} />
+           {/*<FrontLoader loading={loading} />*/}
             <Index
                 advertiseList={advertiseList}
                 openModel={openModel}

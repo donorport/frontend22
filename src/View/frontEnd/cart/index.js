@@ -13,11 +13,14 @@ const Cart = (props) => {
   let cartItem = props.cartItem;
   const [total, setTotal] = useState(0);
   const [subTotal, setSubTotal] = useState(0);
-  const [salesTax, setSalesTax] = useState(0);
-
-  // let transactionFee = props.pricingFees?.transactionFee
-  // let platformFee = props.pricingFees?.platformFee
-  // let totalCharge = Number(transactionFee) + Number(platformFee)
+  //const [salesTax, setSalesTax] = useState(0);
+  let transactionFee = props.pricingFees?.transactionFee;
+  let platformFee = props.pricingFees?.platformFee;
+  let platformCost = ((platformFee / 100 + transactionFee / 100) * Number(subTotal) + 0.3).toFixed(
+    2
+  );
+  let grandTotal = (Number(subTotal) + Number(platformCost)).toFixed(2);
+  //let totalCharge = Number(transactionFee) + Number(platformFee);
   const getCalc = getCalculatedPrice();
   let currencySymbol = getCalc.currencySymbol();
 
@@ -63,9 +66,10 @@ const Cart = (props) => {
 
       // console.log(getCalc.getTaxValueOfPrice(sum))
       // let salesTax = getCalc.calculateSalesTax(sum)
-      setSalesTax(getCalc.getTaxValueOfPrice(sum));
+      //(getCalc.getTaxValueOfPrice(sum));
       // setTotal(sum + salesTax);
-      setTotal(getCalc.priceWithTax(sum));
+      //setTotal(getCalc.priceWithTax(sum));
+      setTotal(sum);
     }
   }, [props.cartItem]);
 
@@ -128,7 +132,9 @@ const Cart = (props) => {
                         >
                           {item?.productDetails?.headline}
                         </Link>
-                        <div className="text-light mb-1">{item?.productDetails?.brand} ®</div>
+                        <div className="text-light mb-1">
+                          {item?.productDetails?.organizationDetails.name}
+                        </div>
                         <Button
                           variant="link"
                           className="btn__remove p-0 fs-7 text-decoration-none"
@@ -141,30 +147,25 @@ const Cart = (props) => {
 
                     <div className="d-flex align-items-center flex-grow-sm-0 flex-grow-1 justify-content-start justify-content-sm-end ">
                       {item.productDetails?.tax && (
-                        <ListItemImg
-                          size={52}
-                          className="rounded-circle ms-2 d-none d-sm-flex"
-                          icon={<FontAwesomeIcon icon={solid('calculator')} className="fs-4" />}
-                        />
+                        <div className="checkout__tax p-1 d-flex align-items-center justify-content-center order-sm-0 order-1">
+                          <FontAwesomeIcon icon={solid('calculator')} className="text-info fs-4" />
+                        </div>
                       )}
                       <Link
                         className="d-flex align-items-center justify-content-center"
                         to={'/organization/' + item?.productDetails?.organizationDetails.slug}
                       >
-                        <ListItemImg
+                        {/*  <ListItemImg
                           size={52}
-                          className="list__item-img ms-0 ms-sm-2 no-bg"
+                          className="list__item-img ms-0 ms-sm-2 no-bg me-sm-5 me-0"
                           imgSrc={
                             helper.CampaignAdminLogoPath +
                             item.productDetails?.organizationDetails?.logo
                           }
-                        />
+                        />*/}
                       </Link>
 
-                      <span
-                        className="cart_controller d-flex align-items-center fw-bold text-subtext flex-grow-1 flex-sm-grow-0"
-                        style={{ width: '200px' }}
-                      >
+                      <span className="cart_controller d-flex align-items-center fw-bold text-subtext flex-grow-1 flex-sm-grow-0">
                         {/*<span className="mr-6p d-none d-sm-block">Qty:</span>{' '}*/}
                         <Button
                           variant="link"
@@ -199,7 +200,7 @@ const Cart = (props) => {
                         </Button>
                       </span>
                       <span
-                        className="fs-4 fw-bold text-light text-end"
+                        className="fs-5 fw-bold text-light text-end order-1"
                         style={{ minWidth: '90px' }}
                       >
                         {currencySymbol +
@@ -216,11 +217,17 @@ const Cart = (props) => {
               })}
             </ul>
 
-            <div className="d-flex align-items-center py-3 border-bottom">
+            <div className="d-flex align-items-center pt-3">
               <span className="fw-bolder flex__1">Subtotal:</span>
               <span className="fw-bold text-light fs-5">
                 {currencySymbol + priceFormat(subTotal)}
               </span>
+            </div>
+            <div className="d-flex align-items-center py-3 border-bottom">
+              <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
+                Service Charge:
+              </Link>
+              <span className="fw-bold text-light fs-5">{currencySymbol + platformCost}</span>
             </div>
 
             {/*<div className="d-flex align-items-center py-3 border-bottom">
@@ -243,11 +250,11 @@ const Cart = (props) => {
           </div>
           <div className="d-flex align-items-center py-1">
             <span className="fw-bolder flex__1">Total:</span>
-            <span className="fw-bolder text-light fs-4">
+            <span className="fw-bold text-light fs-4">
               {' '}
               {currencySymbol +
-                (total
-                  ? Number(total).toLocaleString('en-US', {
+                (grandTotal
+                  ? Number(grandTotal).toLocaleString('en-US', {
                       maximumFractionDigits: 2
                     })
                   : 0)}
@@ -289,7 +296,7 @@ const Cart = (props) => {
             </a>
           </li>
           <li className="me-3">
-            <a href="/privacy-policy" className="text-subtext">
+            <a href="/privacy" className="text-subtext">
               Privacy policy
             </a>
           </li>

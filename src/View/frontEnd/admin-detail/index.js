@@ -3,26 +3,7 @@ import { Tab, Button, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import Page from '../../../components/Page';
-// import { UserContext } from '../../../App';
-// import {
-//   AdminDashboard,
-//   AdminTabs,
-//   AdminPosts,
-//   UserXp,
-//   UserTax,
-//   UserHistory,
-//   UserSettingsTab,
-// } from "@components/organisms";
-
-import AdminDashboard from '../Component/organisms/admin-dashboard';
 import AdminTabs from '../Component/organisms/admin-tabs';
-import AdminPosts from '../Component/organisms/admin-posts';
-import UserXp from '../Component/organisms/user-history';
-import UserTax from '../Component/organisms/user-tax';
-// import UserXp from "../Component/organisms/user-history";
-import UserSettingsTab from '../Component/organisms/user-settings-tab';
-// import { BrowserRouter as Router, Route, Routes, useLocation, Link as RouterLink } from 'react-router-dom'
-// import useWindowSize from "@hooks/device-check";
 import useWindowSize from '../../../hooks/device-check';
 import {
   DashboardIcon,
@@ -32,18 +13,12 @@ import {
   ProjectIcon,
   SettingsIcon
 } from '../Component/organisms/admin-tabs/tab-icons';
-// import { Outlet } from 'react-router-dom';
-
-import DefaultLayout from '../Component/templates/default-layout';
-
 import './style.scss';
-import helper, { ImageExist } from '../../../Common/Helper';
+import helper from '../../../Common/Helper';
 import adminCampaignApi from '../../../Api/admin/adminCampaign';
-import FrontLoader from '../../../Common/FrontLoader';
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import noimg from '../../../assets/images/noimg.jpg';
-import { useSelector, useDispatch } from 'react-redux';
-// import { setLogout } from "../../../user/user.action"
+import { useSelector } from 'react-redux';
 import NoFooter from '../Component/templates/no-footer';
 
 function AdminDetail() {
@@ -74,7 +49,7 @@ function AdminDetail() {
   useEffect(() => {
     (async () => {
       // console.log(location?.state?.type)
-      setLoading(false);
+      setLoading(true);
       const getCampaignDetails = await adminCampaignApi.getCampaignDetails(token);
       if (getCampaignDetails.data.success) {
         // console.log(getCampaignDetails.data.data.description)

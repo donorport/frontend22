@@ -104,8 +104,8 @@ function ProductController() {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    (async () => {
-      setLoading(false);
+        (async () => {
+            setLoading(true);
 
       if (!hasPermission(adminData.roleName, 'PRODUCT')) {
         navigate('/admin/dashboard');
@@ -678,7 +678,10 @@ function ProductController() {
       message: 'Are you sure to delete Product.',
       buttons: [
         {
-          label: 'Yes',
+          label: 'Cancel'
+        },
+        {
+          label: 'Delete',
           onClick: async () => {
             setLoading(false);
             if (id !== '') {
@@ -703,9 +706,6 @@ function ProductController() {
               ToastAlert({ msg: 'Product not delete id Not found', msgType: 'error' });
             }
           }
-        },
-        {
-          label: 'No'
         }
       ]
     });

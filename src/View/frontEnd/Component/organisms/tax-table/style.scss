@@ -40,6 +40,6 @@ li.table__list-item--tax:first-child {
   padding-top: 1.3rem !important;
   margin-top: 1.3rem !important;
 }
-.admin__billing-value {
-  min-width: 46px;
+li.table__list-item--tax:last-child {
+  margin-bottom: 0.9rem !important;
 }

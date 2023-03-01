@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Select from 'react-select';
 import { confirmAlert } from 'react-confirm-alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 import helper, { hasAlpha } from '../../../../../Common/Helper';
 import ToastAlert from '../../../../../Common/ToastAlert';
@@ -21,6 +21,7 @@ import {
 } from '../../../../../user/user.action';
 import locationApi from '../../../../../Api/frontEnd/location';
 import categoryApi from '../../../../../Api/admin/category';
+import { Link } from 'react-router-dom';
 
 import './style.scss';
 
@@ -42,7 +43,7 @@ const fileuploadinput = {
 
 const validExtensions = ['jpg', 'png', 'jpeg', 'gif'];
 
-const CompanySettings = () => {
+const ProfileSettings = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -76,6 +77,7 @@ const CompanySettings = () => {
   const [textAreaCount, ChangeTextAreaCount] = useState(0);
   const [state, setState] = useState({
     logo: '',
+    slug: '',
     name: '',
     ein: '',
     headline: '',
@@ -92,6 +94,7 @@ const CompanySettings = () => {
 
   const {
     name,
+    slug,
     headline,
     mission,
     promoVideo,
@@ -279,9 +282,10 @@ const CompanySettings = () => {
 
   useEffect(() => {
     (async () => {
-      setLoading(false);
+      setLoading(true);
       setState((s) => ({
         ...s,
+        slug: data.slug,
         name: data.name,
         mission: data.description,
         headline: data.headline,
@@ -322,6 +326,7 @@ const CompanySettings = () => {
     data.headline,
     data.logo,
     data.name,
+    data.slug,
     data.promoVideo,
     data.state_id,
     data.url,
@@ -446,10 +451,13 @@ const CompanySettings = () => {
     confirmAlert({
       title: 'Deactivate Account',
       message:
-        "Are you sure to want to deactivate this account? If you will do this then you won't be able to do login again...",
+        "Are you sure to want to deactivate this account? If you will do this then you won't be able to do login again.",
       buttons: [
         {
-          label: 'Yes',
+          label: 'Cancel'
+        },
+        {
+          label: 'Delete Account',
 
           onClick: async () => {
             setLoading(true);
@@ -470,9 +478,6 @@ const CompanySettings = () => {
               ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
             }
           }
-        },
-        {
-          label: 'No'
         }
       ]
     });
@@ -522,13 +527,13 @@ const CompanySettings = () => {
 
   return (
     <>
-      {/* <FrontLoader loading={loading} />*/}
+      {/*<FrontLoader loading={loading} />*/}
       <div className="mb-5 mw-400">
         <h4 className="fw-bolder">About</h4>
         <div className="text-subtext mb-3">This info appears on your organization's page:</div>
 
         <div className="ml-3 mb-5">
-          <div className="row">
+          <div className="d-flex gap-2">
             <label className="filelabel col-sm-3">
               <i className="fa fa-paperclip "></i>
               <span className="title">Logo</span>
@@ -561,6 +566,9 @@ const CompanySettings = () => {
             <span className="input__span">Organization Name</span>
           </label>
           {error && error.name && <p className="error">{error.name}</p>}
+          <Link variant="link" className="text-light p-0 fw-normal" to={'/organization/' + slug}>
+            <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" /> Go to Profile
+          </Link>
         </div>
 
         <div className="input__wrap d-flex">
@@ -698,7 +706,7 @@ const CompanySettings = () => {
       </div>
 
       <div className="mb-5 mw-400">
-        <h4 className="fw-bolder">Promo Video (Iframe)</h4>
+        <h4 className="fw-bolder">Promo Video</h4>
         <div className="text-subtext mb-3">This video appears on your organization's page:</div>
         <div className="input__wrap mb-3">
           <label className="input__label">
@@ -707,14 +715,14 @@ const CompanySettings = () => {
               type="text"
               name="promoVideo"
               onChange={(e) => changevalue(e)}
-              placeholder="Video URL"
+              placeholder="YouTube URL"
               value={promoVideo}
             />
           </label>
           {error && error.promoVideo && <p className="error">{error.promoVideo}</p>}
         </div>
         {embedlink && (
-          <div className="project-video-wrap mb-4">
+          <div className="project-video-wrap">
             <iframe
               title="post-video"
               width="498"
@@ -761,17 +769,27 @@ const CompanySettings = () => {
                       &times;
                     </span>
                     {img._id && img.image ? (
-                      <img
-                        src={img.image ? helper.CampaignAdminGalleryFullPath + img.image : noImg}
+                      <div
+                        className="gallery__img"
+                        style={{
+                          backgroundImage: `url(${
+                            img.image ? helper.CampaignAdminGalleryFullPath + img.image : noImg
+                          })`,
+                          width: '100px',
+                          height: '100px'
+                        }}
                         alt="lk"
-                        style={{ width: '100px', height: '100px' }}
-                      />
+                      ></div>
                     ) : (
-                      <img
-                        src={img ? img : noImg}
+                      <div
+                        className="gallery__img"
+                        style={{
+                          backgroundImage: `url(${img ? img : noImg})`,
+                          width: '100px',
+                          height: '100px'
+                        }}
                         alt="lk"
-                        style={{ width: '100px', height: '100px' }}
-                      />
+                      ></div>
                     )}
                   </div>
                 ))
@@ -790,7 +808,7 @@ const CompanySettings = () => {
             opacity: loading ? '0.7' : '1'
           }}
         >
-          Save Details {loading && <CircularProgress className="ms-2" color="inherit" size={14} />}
+          Save Details {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
         </Button>
         <div className="fw-bolder mb-3">Account Deactivation</div>
         <div className="deactivate">
@@ -817,7 +835,7 @@ const CompanySettings = () => {
               opacity: loading ? '0.7' : '1'
             }}
           >
-            Deactivate {loading && <CircularProgress className="ms-2" color="inherit" size={14} />}
+            Deactivate {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
           </button>
         </div>
       </div>
@@ -825,4 +843,4 @@ const CompanySettings = () => {
   );
 };
 
-export default CompanySettings;
+export default ProfileSettings;
