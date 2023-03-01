@@ -310,7 +310,7 @@ export default function ApplyOrganizationController() {
     <>
       <Page
         title="Donorport | Apply"
-        url="https://donorport.org/apply"
+        url="https://donorport.com/apply"
         img="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/62fd822512caf007efb3e4a1_emoji.png"
         description="Apply for an account. Let us know if you want to post on Donorport. For more information about the application process click here. Charity Nonprofit"
       >

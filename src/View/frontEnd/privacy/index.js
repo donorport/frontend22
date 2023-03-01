@@ -30,7 +30,7 @@ const Privacy = () => {
                   </li>
                   <li>
                     Describes the types of information we may collect from you or that you
-                    mayprovide when you visit the website: https://donorport.org (our "
+                    mayprovide when you visit the website: https://donorport.com (our "
                     <span className="fw-semibold">Website</span>").
                   </li>
                   <li>

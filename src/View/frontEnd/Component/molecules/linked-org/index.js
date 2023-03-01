@@ -325,7 +325,7 @@ function LinkedOrg(props) {
           <h6 className="mb-0 fs-7">Add an Organization</h6>
 
           <a
-            href="https://donorport.org/apply"
+            href="https://donorport.com/apply"
             className="p-0 btn__link-light linked__item-unlink ms-auto fs-7 me-1 fw-normal"
           >
             request access

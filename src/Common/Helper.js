@@ -7,7 +7,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { State, Country } from 'country-state-city';
 
 let Mode = 'production';
-let BASE_URL = 'https://www.donorport.org/app/';
+let BASE_URL = 'https://www.donorport.com/app/';
 //let BASE_URL = 'http://localhost:3000/';
 
 // if (window.location.hostname === 'localhost') {
@@ -37,7 +37,7 @@ let helper = {
   websitePath:
     window.location.hostname === 'localhost'
       ? 'http://localhost:3000'
-      : 'https://www.donorport.org',
+      : 'https://www.donorport.com',
   FulfilRecieptPath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/product/fulfil/receipt/',
 
   MapBoxPrimaryKey:
