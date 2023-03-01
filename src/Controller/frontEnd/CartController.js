@@ -25,6 +25,8 @@ export default function CartController() {
     transactionFee: 0
   });
   const { platformFee, transactionFee } = pricingFees;
+  
+  const refreshCart = () => setIsUpdate(!update);
 
   const getFeesValues = async () => {
     const getSettingsValue = await settingApi.list(
@@ -46,7 +48,7 @@ export default function CartController() {
       // user.setPlatformFee(data.platformFee)
     }
   };
-
+  
   useEffect(() => {
     (async () => {
       setLoading(false);
@@ -75,7 +77,7 @@ export default function CartController() {
       //     transactionFee:user.transactionFee
       // })
     })();
-  }, [update, token]);
+  }, [update, token, cartItem]);
 
   const removeCartItem = async (id) => {
     setLoading(false);
@@ -118,22 +120,23 @@ export default function CartController() {
     }
   };
 
-  const updateCartItem = async (quentity, id, productId, type) => {
+  const updateCartItem = async (quantity, id, productId, type) => {
+    console.log("cartController")
     setLoading(false);
     setCartItem((items) =>
       items.map((i) => {
         if (i._id === id) {
-          i.quantity = quentity;
+          i.quantity = quantity;
         }
         return i;
       })
     );
-    if (quentity.length < 1) {
+    if (quantity.length < 1) {
       return;
     }
     const updateCartItem = await cartApi.updateCart(
       userAuthToken ? userAuthToken : CampaignAdminAuthToken,
-      quentity,
+      quantity,
       id,
       productId,
       type
@@ -151,13 +154,13 @@ export default function CartController() {
       setLoading(false);
       ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
     }
+    refreshCart()
   };
 
   const checkout = () => {
     navigate('/checkout');
   };
 
-  const refreshCart = () => setIsUpdate(!update);
 
   return (
     <>
