@@ -3,11 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Button, Modal } from 'react-bootstrap';
 import Avatar from '../../atoms/avatar';
-import helper, { getCalculatedPrice } from '../../../../../Common/Helper';
+import helper, { getCalculatedPrice, priceFormat } from '../../../../../Common/Helper';
 import { useSelector, useDispatch } from 'react-redux';
 import { CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { priceFormat } from '../../../../../Common/Helper';
 
 import './style.scss';
 
