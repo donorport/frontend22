@@ -40,6 +40,7 @@ export default function HeaderGeoController() {
   const navigate = useNavigate();
   // const user = useContext(UserContext)
   const user = useSelector((state) => state.user);
+  const {isUpdateCart} = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
 
@@ -112,11 +113,9 @@ export default function HeaderGeoController() {
       }
     }
   };
-
   useEffect(() => {
     (async () => {
-      setLoading(true);
-
+      
       if (userAuthToken && user.countryId) {
         // console.log('token')
         await getNotificationList();
@@ -127,21 +126,22 @@ export default function HeaderGeoController() {
           localStorage.clear();
           navigate('/login');
         }
-
+        
         const getCartList = await cartApi.list(token);
         if (getCartList.data.success === true) {
+          console.log("list: ", getCartList.data.data)
           setCartItem(getCartList.data.data);
           // console.log(getCartList.data.data)
         }
         // console.log('first')
         await getWishListProductList();
       }
-
-      setLoading(false);
-
+      
+      if(loading) setLoading(false);
+      
       // console.log(user.isUpdateCart)
     })();
-  }, [token, userAuthToken, update, !user.isUpdateCart, user.countryId]);
+  }, [token, userAuthToken, update, isUpdateCart, user.countryId, loading]);
 
   useEffect(() => {
     (async () => {
@@ -246,22 +246,19 @@ export default function HeaderGeoController() {
     }
   };
 
-  const updateCartItem = async (quentity, id, productId, type) => {
-    // console.log('type',type)
-    // console.log('quentity',quentity)
-    // console.log('id',id)
-    // console.log('productId',productId)
+  const updateCartItem = async (quantity, id, productId, type) => {
+    console.log('HeaderGeoController ', "here") 
 
     setLoading(true);
-    const updateCartItem = await cartApi.updateCart(userAuthToken, quentity, id, productId, type);
+    const updateCartItem = await cartApi.updateCart(userAuthToken, quantity, id, productId, type);
     if (updateCartItem) {
       if (!updateCartItem.data.success) {
         setLoading(false);
         ToastAlert({ msg: updateCartItem.data.message, msgType: 'error' });
       } else {
-        // setIsUpdate(!update)
+        setIsUpdate(!update)
         // user.setCart(!user.isUpdateCart)
-        dispatch(setIsUpdateCart(!user.isUpdateCart));
+        dispatch(setIsUpdateCart(!isUpdateCart));
         /*ToastAlert({ msg: updateCartItem.data.message, msgType: 'success' });*/
         setLoading(false);
       }
@@ -338,7 +335,7 @@ export default function HeaderGeoController() {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
+      {/* <FrontLoader loading={loading} /> */}
       <HeaderGeo
         cartItem={cartItem}
         removeCartItem={removeCartItem}

@@ -18,10 +18,15 @@ const ShoppingCart = (props) => {
     totalQuantity: 0
   });
   const [calculate, setCalculate] = useState(false);
+  const [update, setUpdate] = useState(0);
 
   const CalculatePrice = getCalculatedPrice();
   let currencySymbol = CalculatePrice.currencySymbol();
 
+  const updateChildCart = () => {
+    let upd = update
+    setUpdate(upd += 1)
+  }
   // eslint-disable-next-line react/prop-types
   const CartButton = React.forwardRef(({ children, onClick }, ref) => {
     return (
@@ -64,14 +69,16 @@ const ShoppingCart = (props) => {
         return a + b;
       }, 0);
 
-      setState((s) => ({
-        ...s,
+      setState({
         empty: false,
         subTotal: Number(sum),
         totalQuantity: Number(quantitySum)
-      }));
+      });
     }
-  }, [props, calculate]);
+    console.log(props)
+    console.log("state: ", state)
+
+  }, [props, calculate, state.totalQuantity]);
 
   const updateCart = (quantity, id, producId, type) => {
     props.updateCartItem(quantity, id, producId, type);
@@ -92,7 +99,7 @@ const ShoppingCart = (props) => {
           </span>
         </Dropdown.Toggle>
 
-        <Dropdown.Menu
+        <Dropdown.Menu 
           className="cart__dropdown w-310 dropdown-top-arrow"
           style={{ transform: 'translate(45px, 30px) !important' }}
         >
@@ -116,6 +123,7 @@ const ShoppingCart = (props) => {
                 <CartList
                   cartItem={props.cartItem}
                   removeCartItem={props.removeCartItem}
+                  updateChildCart={updateChildCart}
                   // updateCartItem={props.updateCartItem}
                   updateCartItem={updateCart}
                   // CalculatePrice={CalculatePrice}

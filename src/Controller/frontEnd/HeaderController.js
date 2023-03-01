@@ -275,7 +275,7 @@ export default function HeaderController() {
         // console.log('type',type)
         // console.log('quentity',quentity)
         // console.log('id',id)
-        // console.log('productId',productId)
+        console.log('headerController ',productId)
 
 
 

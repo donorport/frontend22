@@ -19,3 +19,14 @@
   border-radius: 3px;
   width: 49px;
 }
+
+.max-quantity::before {
+  content: "Max";
+  color: rgb(177, 10, 10);
+  display: list-item;
+  padding-bottom: 5px;
+  margin-left: -5px;
+  width: 5px;
+  height: 5px;
+  font-size: 10px;
+}

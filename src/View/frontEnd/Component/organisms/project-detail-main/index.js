@@ -32,12 +32,13 @@ import './style.scss';
 import { Link } from 'react-router-dom';
 
 function ProjectDetailMain(props) {
-  console.log('iFrame, ProjectDetailMain');
   let projectDetails = props.projectDetails;
   let productDetails = props.productDetails;
   let video = projectDetails?.video;
-  // let videoid = url ? url.split("?v=")[1] : "";
-  // let embedlink = url ? "http://www.youtube.com/embed/" + videoid : "";
+
+  console.log("video1: ", video)
+  let videoid = video ? video.split("?v=")[1] : "";
+  let embedlink = video ? "http://www.youtube.com/embed/" + videoid : "";
 
   // const countProjectProcess = (data) => {
   //   // console.log(data)

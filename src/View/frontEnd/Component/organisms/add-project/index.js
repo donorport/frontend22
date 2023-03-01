@@ -17,10 +17,10 @@ import { Link } from 'react-router-dom';
 const AddProject = (props) => {
   const { id, status, name, headline, video, description, error, images, infinite } =
     props.stateData;
-
-  let url = video;
-  let videoid = url.split('?v=')[1];
-  let embedlink = url ? 'http://www.youtube.com/embed/' + videoid : '';
+console.log('video: ', video)
+  // let url = video;
+  // let videoid = url.split('?v=')[1];
+  // let embedlink = url ? 'http://www.youtube.com/embed/' + videoid : '';
 
   let tempImages = props.tempImages;
   let projectImages = props.projectImages;
