@@ -151,9 +151,9 @@ const AddPost = (props) => {
   });
 
   // console.log(galleryUrl)
-  // let url = galleryUrl;
-  // let videoid = url ?url?.split("?v=")[1] :"";
-  // let embedlink = videoid ? "http://www.youtube.com/embed/" + videoid : "";
+  let url = galleryUrl;
+  let videoid = url ?url?.split("?v=")[1] :"";
+  let embedlink = videoid ? "http://www.youtube.com/embed/" + videoid : "";
 
   // console.log(gallaryImages)
 
@@ -1083,7 +1083,7 @@ const AddPost = (props) => {
                         key="product-video"
                         width="498"
                         height="280"
-                        src={galleryUrl}
+                        src={embedlink}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       ></iframe>

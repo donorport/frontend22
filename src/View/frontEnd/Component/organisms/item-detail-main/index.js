@@ -25,8 +25,12 @@ import { CircularProgress } from '@mui/material';
 // import WidgetTitle from "../../atoms";
 
 function ProjectDetailMain(props) {
-  console.log('iFrame, ProjectDetailMain');
+  console.log('iFrame, item-detail-main');
   let productDetails = props.productDetails;
+  
+  console.log('productDetails.galleryUrl: ', productDetails.galleryUrl);
+  let videoid = productDetails.galleryUrl ? productDetails.galleryUrl.split("?v=")[1] : "";
+  let embedlink = videoid ? "http://www.youtube.com/embed/" + videoid : "";
   const getCalc = getCalculatedPrice();
   // let price = getCalc.getData(productDetails?.price)
   let price = productDetails?.displayPrice ? productDetails?.displayPrice : productDetails?.price;
@@ -251,14 +255,14 @@ function ProjectDetailMain(props) {
         </div>
       </div>
 
-      {productDetails.galleryUrl && (
+      {embedlink && (
         <div className="project-video-wrap">
           <iframe
             title="product-details-video"
             key="product-details-video"
             width="498"
             height="280"
-            src={productDetails.galleryUrl}
+            src={embedlink}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>

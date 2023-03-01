@@ -163,6 +163,10 @@ const AdminPosts = () => {
 
   const user = useSelector((state) => state.user);
 
+  let videoid = fulfilState.videoUrl ? fulfilState.videoUrl.split("?v=")[1] : "";
+
+  let embedlink = videoid ? "http://www.youtube.com/embed/" + videoid : "";
+
   const [tags, setTags] = useState([]);
   // let url = galleryUrl;
   // let videoid = url?.split('?v=')[1];
@@ -1964,7 +1968,7 @@ const AdminPosts = () => {
                         key="admin-post-video"
                         width="498"
                         height="280"
-                        src={videoUrl}
+                        src={embedlink}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       ></iframe>
