@@ -302,7 +302,7 @@ const UserItems = () => {
                       </div>
                     </div>
 
-                    {/* <h5 className="page__blurb">{item.itemDetails?.needheadline}</h5> */}
+                    {/* <h5 className="page__blurb mt-1 fw-bolder">{item.itemDetails?.needheadline}</h5> */}
                     <div className="page__paragraph mb-3">{item.itemDetails?.descriptions}</div>
                     <a
                       href={helper.websitePath + '/item/' + item.itemDetails?.slug}
@@ -333,7 +333,7 @@ const UserItems = () => {
                         </>
                       )}
 
-                      <h5 className="page__blurb  mt-2">{item.itemDetails?.needheadline}</h5>
+                      <h5 className="page__blurb mt-1 fw-bolder">{item.itemDetails?.needheadline}</h5>
                       <p className="page__paragraph mt-2">{item.itemDetails?.description}</p>
 
                       <div className="gallery__container my-2">

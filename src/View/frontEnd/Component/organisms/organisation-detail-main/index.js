@@ -92,7 +92,7 @@ function OrganisationDetailMain(props) {
           </div>
         </div>
 
-        <div className="category__icons d-flex align-items-center mb-4 order--1 order-sm-0">
+        <div className="category__icons d-flex align-items-center mb-3 order--1 order-sm-0">
           <Button
             size="lg"
             variant="link"
@@ -173,7 +173,7 @@ function OrganisationDetailMain(props) {
           )}
         </div>
 
-        <h4 className="page__blurb">{organizationDetails?.headline}</h4>
+        <h4 className="page__blurb mt-1 fw-bolder">{organizationDetails?.headline}</h4>
         <div className="page__paragraph">{organizationDetails?.description}</div>
         <div className="mt-2">
           <IconButton

@@ -185,7 +185,7 @@ function ProjectDetailMain(props) {
             <ShareWidget />
           </div>
         </div>
-        <div className="category__icons d-flex align-items-center mb-4 order--1 order-sm-0">
+        <div className="category__icons d-flex align-items-center mb-3 order--1 order-sm-0">
           <Link
             size="lg"
             variant="link"
@@ -252,7 +252,7 @@ function ProjectDetailMain(props) {
       </div>
 
       {productDetails.galleryUrl && (
-        <div className="project-video-wrap">
+        <div className="project-video-wrap mb-2">
           <iframe
             title="product-details-video"
             key="product-details-video"
@@ -265,7 +265,7 @@ function ProjectDetailMain(props) {
         </div>
       )}
 
-      <h4 className="page__blurb">{productDetails.needheadline}</h4>
+      <h4 className="page__blurb mt-1 fw-bolder">{productDetails.needheadline}</h4>
       <div className="page__paragraph">
         {productDetails?.description?.replace(/<\/?[^>]+(>|$)/g, '')}
       </div>
@@ -369,7 +369,7 @@ function ProjectDetailMain(props) {
               className="pt-12p pb-12p"
               icon={<FontAwesomeIcon icon={solid('image')} className="fs-3 text-info" />}
             >
-              The organization has indicated that they will upload follow-up media from their
+              The organization has indicated that they will upload Media from their
               purchase.
             </IconText>
           )}

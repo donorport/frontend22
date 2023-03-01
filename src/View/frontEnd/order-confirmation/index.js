@@ -103,7 +103,7 @@ const OrderConfirmPage = () => {
                 <br></br>
                 The organization(s) have received your donation and will purchase the items on your
                 behalf. Navigate to your profile to track updates to your orders including
-                tax-receipts & follow-up media.
+                tax-receipts & Media.
               </p>
 
               <div className="d-flex align-items-center justify-content-center gap-3">

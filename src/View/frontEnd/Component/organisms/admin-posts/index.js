@@ -1936,12 +1936,12 @@ const AdminPosts = () => {
               </Col>
               <Col lg="6">
                 <Card.Header className="post__accordion-header pb-3">
-                  <span className="fs-3 fw-bolder text-dark">Follow-up Media</span>
+                  <span className="fs-3 fw-bolder text-dark">Media</span>
                 </Card.Header>
                 <form className="video-detail-form mt-3">
-                  <div className="form-group mb-5">
+                  <div className="form-group mb-1">
                     <label htmlFor="videoUrl" className="form__label mb-4">
-                      Video
+                      Video&nbsp;
                       <span className="post-type-text">(optional)</span>
                     </label>
                     <input
@@ -1958,7 +1958,7 @@ const AdminPosts = () => {
                   </div>
 
                   {videoUrl && (
-                    <div className="project-video-wrap">
+                    <div className="project-video-wrap mb-5">
                       <iframe
                         title="admin-post-video"
                         key="admin-post-video"

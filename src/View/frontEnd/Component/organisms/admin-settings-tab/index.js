@@ -46,7 +46,7 @@ const AdminSettingsTab = () => {
           paddingBottom: '9px',
           background: '#fffbdf',
           color: '#3d4279',
-        }}><div>Your account is actively receiving donations. Please add a <span className="note__span note__span--text" style={{ color: "#3a94d4" }}>payment method</span> to receive your deposits.</div></div>
+        }}><div>Your account is actively receiving donations. Please add a <Link to={'/campaign/' + data?.slug + '/settings/payments'} className="note__span note__span--text" style={{ color: "#3a94d4" }}>payment method</Link> to receive your deposits.</div></div>
       }
       <Tab.Container
         defaultActiveKey={selectedTabKey}

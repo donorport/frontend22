@@ -2,7 +2,7 @@ import "./style.scss";
 
 const WidgetTitle = (props) => {
   return (
-    <div className="project__detail-subtitle mb-12p fw-bold">
+    <div className="project__detail-subtitle fw-bold">
       {props.href ? (
         <div className="text-decoration-none">
           {props.children}
