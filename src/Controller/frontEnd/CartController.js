@@ -121,7 +121,7 @@ export default function CartController() {
   };
 
   const updateCartItem = async (quantity, id, productId, type) => {
-    console.log("cartController")
+    console.log("cartController_________________")
     setLoading(false);
     setCartItem((items) =>
       items.map((i) => {

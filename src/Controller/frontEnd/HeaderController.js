@@ -125,8 +125,6 @@ export default function HeaderController() {
 
     useEffect(() => {
         (async () => {
-            setLoading(true)
-
             if (userAuthToken && user.countryId) {
                 // console.log('token')
                 await getNotificationList()
@@ -154,7 +152,7 @@ export default function HeaderController() {
             // console.log(user.isUpdateCart)
 
         })()
-    }, [token, userAuthToken, update, !user.isUpdateCart, user.countryId])
+    }, [token, userAuthToken, update, user.isUpdateCart, user.countryId, loading])
 
 
 
@@ -271,16 +269,16 @@ export default function HeaderController() {
         }
     }
 
-    const updateCartItem = async (quentity, id, productId, type) => {
+    const updateCartItem = async (quantity, id, productId, type) => {
         // console.log('type',type)
         // console.log('quentity',quentity)
         // console.log('id',id)
-        console.log('headerController ',productId)
+        console.log('headerController_____________ ',productId)
 
 
 
         setLoading(true)
-        const updateCartItem = await cartApi.updateCart(userAuthToken, quentity, id, productId, type);
+        const updateCartItem = await cartApi.updateCart(userAuthToken, quantity, id, productId, type);
         if (updateCartItem) {
             if (!updateCartItem.data.success) {
                 setLoading(false)
