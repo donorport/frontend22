@@ -24,7 +24,8 @@ function OrganisationDetailMain(props) {
   let organizationDetails = props.organizationDetails;
   const navigate = useNavigate();
   // let iconClass = organizationDetails?.categoryDetails?.iconDetails?.class.replace('fa-', '');
-
+  let videoid = organizationDetails.promoVideo ? organizationDetails.promoVideo.split("?v=")[1] : "";
+  let embedlink = videoid ? "http://www.youtube.com/embed/" + videoid : "";
   const setAddress =
     organizationDetails?.city_id +
     ',' +
@@ -149,7 +150,7 @@ function OrganisationDetailMain(props) {
               key="organization-promo-video"
               width="498"
               height="280"
-              src={organizationDetails.promoVideo}
+              src={embedlink}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>

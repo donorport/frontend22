@@ -22,6 +22,7 @@ import IconToggle from '../../atoms/icon-toggle';
 // import noImg from '../../../../../assets/images/noimg.jpg';
 import moment from 'moment';
 import helper, {
+  convertAddress,
   // getCalculatedPrice,
   // priceFormat,
   // isIframe,
@@ -30,15 +31,18 @@ import helper, {
 
 import './style.scss';
 import { Link } from 'react-router-dom';
+import { countryToAlpha2, countryToAlpha3 } from "country-to-iso";
+
 
 function ProjectDetailMain(props) {
   let projectDetails = props.projectDetails;
   let productDetails = props.productDetails;
   let video = projectDetails?.video;
 
-  console.log("video1: ", video)
   let videoid = video ? video.split("?v=")[1] : "";
   let embedlink = video ? "http://www.youtube.com/embed/" + videoid : "";
+
+  
 
   // const countProjectProcess = (data) => {
   //   // console.log(data)
@@ -121,7 +125,22 @@ function ProjectDetailMain(props) {
   const setState = projectDetails.campaignDetails?.state_id;
 
   let stateName = setState ? convertState(setState) : '';
+  let addy = projectDetails.productDetails?.length ? projectDetails?.productDetails[0].itemDetails.address : 0
+  let addyList = addy?.length ? addy.split(" ") : ""
+  let stateL = addyList[1].split(",")
+  let country = addyList[2]
 
+  
+  let setAddress = addyList.length? 
+  projectDetails?.campaignDetails?.city_id +
+    ',' +
+    //cityDetails was used when we had <select> to choose the City (replaced to text bc GB didn't work using <select>)
+    // organizationDetails?.cityDetails?.city_id +
+    //',' +
+    stateL[0] + ','+ 
+    country
+    : ""
+  let address = setAddress ? convertAddress(setAddress) : '';
   return (
     <div className="project__detail-main">
       <div className="d-flex flex-column mb-4">
@@ -149,7 +168,8 @@ function ProjectDetailMain(props) {
           </div>
           <div className="d-flex align-items-center me-2">
             <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
-            {projectDetails.campaignDetails?.city_id}, {stateName}
+            {/* {`${addyList[0]} ${addyList[1]} ${countryToAlpha2(addyList[2])}`} */}
+            {address}
           </div>
         </div>
 
@@ -284,7 +304,7 @@ function ProjectDetailMain(props) {
               key="project-details-video"
               width="498"
               height="280"
-              src={video}
+              src={embedlink}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>

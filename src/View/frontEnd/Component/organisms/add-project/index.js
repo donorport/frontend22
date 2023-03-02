@@ -310,7 +310,7 @@ const AddProject = (props) => {
                       return (
                         // <img src={img ? img !== "" ? helper.ProjectImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} />
 
-                        <div className="img-wrap">
+                        <div className="img-wrap" key={key}>
                           <span className="close" onClick={() => props.deleteProjectImage(img.id)}>
                             &times;
                           </span>
