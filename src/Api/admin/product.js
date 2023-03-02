@@ -14,6 +14,7 @@ function product() {
         data.append('galleryImg', cdata.galleryImg[i]);
       }
     }
+    console.log({cdata})
     if (cdata.prjects && cdata.prjects.length > 0) {
       data.append('projects', JSON.stringify(cdata.prjects));
     }

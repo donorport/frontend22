@@ -64,6 +64,8 @@ function project() {
   };
 
   const deleteProject = async (authToken, id) => {
+    console.log({authToken})
+    console.log({id})
     let res = {};
     await axios({
       method: 'delete',
@@ -83,7 +85,9 @@ function project() {
     return res;
   };
 
-  const updateProject = async (authToken, cdata, id) => {
+  const updateProject = async (authToken, cdata, id, isAd) => {
+    console.log({cdata})
+    console.log("cdata.products: ", cdata.products)
     const data = new FormData();
 
     if (cdata.images && cdata.images.length > 0) {

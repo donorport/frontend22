@@ -16,7 +16,8 @@ import './style.scss';
 
 const AdminProjects = () => {
   const [data, setData] = useOutletContext();
-  const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
+  const userAuthToken = localStorage.getItem('userAuthToken');
+  const CampaignAdminAuthToken = localStorage.getItem('');
   const type = localStorage.getItem('type');
   const tempCampaignAdminAuthToken = localStorage.getItem('tempCampaignAdminAuthToken');
   const token = type
@@ -325,7 +326,7 @@ const AdminProjects = () => {
           onClick: (async () => {
             setLoading(true)
             if (id !== '') {
-              const deleteProjectApi = await projectApi.deleteProject(CampaignAdminAuthToken, id);
+              const deleteProjectApi = await projectApi.deleteProject(CampaignAdminAuthToken ? CampaignAdminAuthToken : userAuthToken, id);
               if (deleteProjectApi) {
                 if (deleteProjectApi.data.success === false) {
                   setLoading(false);
@@ -419,7 +420,7 @@ const AdminProjects = () => {
       });
     } else {
       setLoading(true)
-      const publish = await projectApi.publishProject(CampaignAdminAuthToken, id)
+      const publish = await projectApi.publishProject(CampaignAdminAuthToken ? CampaignAdminAuthToken : userAuthToken, id)
       if (publish) {
         if (publish.data.success === false) {
           setLoading(false);

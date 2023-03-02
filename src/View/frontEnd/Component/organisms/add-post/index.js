@@ -142,7 +142,7 @@ const AddPost = (props) => {
   let gallaryImages = props.gallaryImages;
 
   const setModelShow = props.setModelShow;
-
+console.log({seletedProjectList})
   const [location, setLocation] = useState({
     organizationLocation: '',
     locationName: '',
@@ -970,6 +970,7 @@ const AddPost = (props) => {
                       projectList.map((project, i) => {
                         return (
                           <FeedTag
+                            key={i}
                             data={project}
                             name={project.name}
                             onSelect={onSelectProject}
@@ -1314,7 +1315,7 @@ const AddPost = (props) => {
             variant="success"
             size="lg"
             className="d-flex align-items-center justify-content-center fs-6 fw-bold"
-            onClick={() => !props.isLoading && submitProductForm(1)}
+            onClick={() => !props.isLoading && submitProductForm(1, seletedProjectList)}
           >
             Post Ad{' '}
             {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={12} />}
