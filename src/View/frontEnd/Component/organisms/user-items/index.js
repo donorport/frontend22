@@ -319,7 +319,7 @@ const UserItems = () => {
                     <div>
                       {item.itemDetails.galleryUrl && (
                         <>
-                          <div className="project-video-wrap mt-4">
+                          <div className="project-video-wrap mb-1 mt-4">
                             <iframe
                               title="project-video"
                               key="project-video"
@@ -370,7 +370,7 @@ const UserItems = () => {
                         </Card.Header>
 
                         {item.itemDetails?.isFulfiled && item.fulfilDetails[0].video && (
-                          <div className="project-video-wrap mt-4">
+                          <div className="project-video-wrap mb-1 mt-4">
                             <iframe
                               title="user-item-video"
                               key="user-item-video"

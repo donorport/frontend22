@@ -215,7 +215,7 @@ export default function AddProjectForm(props) {
               />
               {
                 stateData.video && (
-                  <div className="project-video-wrap mt-4">
+                  <div className="project-video-wrap mb-1 mt-4">
                     <iframe
                       title="project-video"
                       key="project-video"

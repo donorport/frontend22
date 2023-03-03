@@ -215,8 +215,8 @@ console.log('video: ', video)
                 <p className="error">{error ? (error.video ? error.video : '') : ''}</p>
               )}
             </div>
-            {/* <div className="project-video-wrap"> */}
-            <div className="project-video-wrap">
+            {/* <div className="project-video-wrap mb-1"> */}
+            <div className="project-video-wrap mb-1">
               <iframe
                 title="project-video"
                 key="project-video"

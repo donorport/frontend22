@@ -134,7 +134,7 @@ const ShoppingCart = (props) => {
                 <div className="cd__cart__controls d-flex align-items-center">
                   <div className="cd__cart__value fs-5 fw-semibold">
                     <span>Total:</span>
-                    <span className="cd__cart__total text-light ml-6p fs-4 fw-bold">
+                    <span className="cd__cart__total text-light ml-6p fs-5 fw-bold">
                       {currencySymbol + priceFormat(Number(state?.subTotal))}
                     </span>
                   </div>

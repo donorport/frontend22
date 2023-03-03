@@ -278,13 +278,13 @@ function ProjectDetailMain(props) {
         </div>*/}
 
         {video && (
-          <div className="project-video-wrap">
+          <div className="project-video-wrap mb-1">
             <iframe
               title="project-details-video"
               key="project-details-video"
               width="498"
               height="280"
-              src={video}
+              src={embedlink}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>

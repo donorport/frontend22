@@ -2,7 +2,7 @@ import { Button, Dropdown, Modal } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
-import helper from '../../../../../Common/Helper';
+import helper, { priceFormat } from '../../../../../Common/Helper';
 import { confirmAlert } from 'react-confirm-alert';
 import Avatar from '../../atoms/avatar';
 import AvatarImg from '../../../../../assets/images/avatar.png';
@@ -27,10 +27,16 @@ const AdminTaxTable = (props) => {
     let sum;
     if (data.length > 0) {
       data.map((i, k) => {
-        tempSub.push(i.amount);
+        //tempSub.push(i.amount);
+        let productTotal = i.orderItemDetails?.totalPrice;
+        let donationTotal = (i.amount - 0.3) / 1.049;
+        let taxableProduct = priceFormat(Number(productTotal));
+        let taxableDonation = priceFormat(Number(donationTotal));
+        tempSub.push(i.type === 'Purchased' ? taxableProduct : taxableDonation);
       });
       sum = tempSub.reduce(function (a, b) {
-        return a + b;
+        return parseFloat(a) + parseFloat(b);
+        // return a + b;
       }, 0);
     } else {
       sum = 0;
@@ -181,7 +187,9 @@ const AdminTaxTable = (props) => {
                                 <div className="text-light">
                                   {item[0].userDetails.street +
                                     ', ' +
-                                    item[0].userDetails.cityDetails[0]?.city}&nbsp;
+                                    //item[0].userDetails.cityDetails[0]?.city}
+                                    item[0].userDetails?.city_id}
+                                  &nbsp;
                                   {item[0].userDetails.stateDetails[0]?.state +
                                     ', ' +
                                     item[0].userDetails.zip}
@@ -387,6 +395,13 @@ const AdminTaxTable = (props) => {
                       <div className="container-fluid px-2">
                         {item.length > 1 &&
                           item.map((i1, k) => {
+                            //Subtract the 2.9% from the subtotal to get actual amount sent to Charity:
+                            let productTotal = i1.orderItemDetails?.totalPrice;
+                            //let donationTotal = (i1.amount - 0.3) / 1.049;
+                            let donationTotal = (i1.amount - 0.3) / 1.049;
+                            let taxableProduct = priceFormat(Number(productTotal));
+                            let taxableDonation = priceFormat(Number(donationTotal));
+
                             let Aimg =
                               i1.type === 'Purchased'
                                 ? helper.CampaignProductImagePath +
@@ -410,7 +425,9 @@ const AdminTaxTable = (props) => {
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                                         <div className="text-light fw-bold fs-5">
                                           {i1.currencySymbol}
-                                          {i1.amount.toFixed(2)}
+                                          {i1.type === 'Purchased'
+                                            ? taxableProduct
+                                            : taxableDonation}
                                         </div>
                                         <div className="text-light fs-8">
                                           {moment(i1.created_at).fromNow()}

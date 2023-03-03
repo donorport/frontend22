@@ -27,10 +27,16 @@ import { CircularProgress } from '@mui/material';
 function ProjectDetailMain(props) {
   console.log('iFrame, item-detail-main');
   let productDetails = props.productDetails;
-  
+
   console.log('productDetails.galleryUrl: ', productDetails.galleryUrl);
-  let videoid = productDetails.galleryUrl ? productDetails.galleryUrl.split("?v=")[1] : "";
-  let embedlink = videoid ? "http://www.youtube.com/embed/" + videoid : "";
+  let videoid = productDetails.galleryUrl ? productDetails.galleryUrl.split('?v=')[1] : '';
+  let embedlink = videoid ? 'http://www.youtube.com/embed/' + videoid : '';
+
+  let videoid2 = productDetails.fulfiledproductsDetails?.video
+    ? productDetails.fulfiledproductsDetails?.video.split('?v=')[1]
+    : '';
+  let embedlink2 = videoid2 ? 'http://www.youtube.com/embed/' + videoid2 : '';
+
   const getCalc = getCalculatedPrice();
   // let price = getCalc.getData(productDetails?.price)
   let price = productDetails?.displayPrice ? productDetails?.displayPrice : productDetails?.price;
@@ -256,7 +262,7 @@ function ProjectDetailMain(props) {
       </div>
 
       {embedlink && (
-        <div className="project-video-wrap">
+        <div className="project-video-wrap mb-1">
           <iframe
             title="product-details-video"
             key="product-details-video"
@@ -373,8 +379,7 @@ function ProjectDetailMain(props) {
               className="pt-12p pb-12p"
               icon={<FontAwesomeIcon icon={solid('image')} className="fs-3 text-info" />}
             >
-              The organization has indicated that they will upload Media from their
-              purchase.
+              The organization has indicated that they will upload Media from their purchase.
             </IconText>
           )}
           {productDetails?.advertisements?.length > 0 && (
@@ -431,13 +436,13 @@ function ProjectDetailMain(props) {
                   <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
                 </Card.Header>
 
-                <div className="project-video-wrap">
+                <div className="project-video-wrap mb-1">
                   <iframe
                     title="product-details-video"
                     key="product-details-video"
                     width="498"
                     height="280"
-                    src={productDetails.fulfiledproductsDetails.video}
+                    src={embedlink2}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
