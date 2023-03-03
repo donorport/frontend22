@@ -9,7 +9,9 @@ import helper, { priceFormat, getCalculatedPrice } from '../../../../../Common/H
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import moment from 'moment';
-
+import wallet from '../../../../../assets/images/wallet.svg';
+import speech from '../../../../../assets/images/speech-bubble.svg';
+import donation from '../../../../../assets/images/donate.svg';
 
 const ActivityTable = (props) => {
   let activityList = props.activityList;
@@ -87,12 +89,7 @@ const ActivityTable = (props) => {
                       {list.type === 'BOUGHT' ? (
                         <>
                           <span className="p-2 mr-12p">
-                            <img
-                              width={36}
-                              alt=""
-                              className="img-fluid"
-                              src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5e4c2ff23144db148fd45b43_wallet.svg"
-                            />
+                            <img width={36} alt="" className="img-fluid" src={wallet} />
                           </span>
                           <div className="">
                             <span className="text-dark fw-bold">Bought</span>
@@ -113,7 +110,7 @@ const ActivityTable = (props) => {
                               width={36}
                               alt=""
                               className="img-fluid"
-                              src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef6176ab4ea47d76444346c_speech-bubble.svg"
+                              src={speech}
                             />
                           </span>
                           <div className="">
@@ -127,7 +124,7 @@ const ActivityTable = (props) => {
                               width={36}
                               alt=""
                               className="img-fluid"
-                              src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef6176ab4ea47d76444346c_speech-bubble.svg"
+                              src={speech}
                             />
                           </span>
                           <div className="">
@@ -141,7 +138,7 @@ const ActivityTable = (props) => {
                               width={36}
                               alt=""
                               className="img-fluid"
-                              src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/60088347cb80b5186f9e1ead_donate.svg"
+                              src={donation}
                             />
                           </span>
                           <div className="">
@@ -178,7 +175,7 @@ const ActivityTable = (props) => {
                 <div className="position-relative d-flex">
                   <Avatar
                     size={62}
-                    avatarUrl='https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f4ab31be9fe7d7453a60b1f_user.svg'
+                    avatarUrl=''
                     border={0}
                     shadow={false}
                     className="mr-12p"
@@ -192,7 +189,7 @@ const ActivityTable = (props) => {
                     width={36}
                     alt=""
                     className="img-fluid"
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef61ef15babc48a50bd2bd5_share.svg"
+                    src=""
                   />
                 </span>
                 <div className="">
@@ -224,7 +221,7 @@ const ActivityTable = (props) => {
                     width={36}
                     alt=""
                     className="img-fluid"
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef6176ab4ea47d76444346c_speech-bubble.svg"
+                    src=""
                   />
                 </span>
                 <div className="">

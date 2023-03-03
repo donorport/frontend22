@@ -2,7 +2,7 @@ import { Button } from 'react-bootstrap';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import helper from '../../../../../Common/Helper';
-
+import profile from '../../../../../assets/images/avatar.png';
 import './style.scss';
 
 function OrganisationProjectItem(props) {
@@ -10,7 +10,7 @@ function OrganisationProjectItem(props) {
   let img =
     project.imageDetails.length > 0
       ? helper.ProjectFullImagePath + project.imageDetails[0].image
-      : 'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f4ab31be9fe7d7453a60b1f_user.svg';
+      : {profile};
 
   // console.log(project)
   return (

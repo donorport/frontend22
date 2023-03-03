@@ -907,7 +907,7 @@ const Payments = () => {
                 <ListItemImg
                   size={45}
                   className="bg-white border-0"
-                  imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/62277f679099844cc42cc1d1_5b5e656493af1e0441cd892a_mc_vrt_pos.svg"
+                  imgSrc=""
                 />
               </div>
               <div className=" flex__1 mx-2 text-break">
@@ -925,7 +925,7 @@ const Payments = () => {
                 <ListItemImg
                   size={45}
                   className="rounded-circle border-0"
-                  imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5b5e7b0e93af1ec003cd9a58_paypal-seeklogo.com.svg"
+                  imgSrc=""
                 />
               </div>
               <div className="accounts__email fw-bolder flex__1 mx-2 text-break">
@@ -1224,7 +1224,7 @@ const Payments = () => {
               <span className="crypto__icon">
                 <img
                   className="img-fluid"
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620e5ca7ee8035585abb93b9_usd-coin-usdc-logo.svg"
+                  src=""
                   alt=""
                 />
               </span>
@@ -1237,7 +1237,7 @@ const Payments = () => {
               <span className="crypto__icon">
                 <img
                   className="img-fluid"
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620e5d4c36e4c982f37e9894_Bitcoin.svg"
+                  src=""
                   alt=""
                 />
               </span>
@@ -1250,7 +1250,7 @@ const Payments = () => {
               <span className="crypto__icon">
                 <img
                   className="img-fluid"
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620e5d6c9582b74e722c3122_ethereum-eth.svg"
+                  src="
                   alt=""
                 />
               </span>

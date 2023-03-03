@@ -384,7 +384,7 @@ const PostsTable = (props) => {
                 </div>
                 <ListItemImg
                   size={75}
-                  imgSrc="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5c2c261c9a157530d68c2861_rustic-reclaimed-dining-chair-front-view.png"
+                  imgSrc="""
                 />
                 <div className="ms-2">
                   <div className="fw-bolder fs-5 mb-3p">Wood Chairs</div>
@@ -425,7 +425,7 @@ const PostsTable = (props) => {
                       size={26}
                       border={0}
                       shadow={false}
-                      avatarUrl="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5d3f994a03c3fe76a42633a6_1.jpg"
+                      avatarUrl=""
                     />
                     <span className="ms-1 fs-7">E03 Virus</span>
                   </div>

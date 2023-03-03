@@ -13,6 +13,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Accordion, AccordionItem as Item } from '@szhsin/react-accordion';
 import chevronDown from '../../../../../assets/images/chevron-down.svg';
+import donate from '../../../../../assets/images/donate.svg';
 
 let PageSize = 10;
 
@@ -210,7 +211,7 @@ const AdminTaxTable = (props) => {
                                 <img
                                   loading="lazy"
                                   width={36}
-                                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/60088347cb80b5186f9e1ead_donate.svg"
+                                  src=""
                                   alt=""
                                 />
                               </div>
@@ -260,7 +261,7 @@ const AdminTaxTable = (props) => {
                                         item[0].type === 'Purchased'
                                           ? helper.CampaignProductImagePath +
                                             item[0]?.orderItemDetails?.productImage
-                                          : 'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/60088347cb80b5186f9e1ead_donate.svg'
+                                          : { donate }
                                       }
                                       alt=""
                                     />
@@ -406,7 +407,7 @@ const AdminTaxTable = (props) => {
                               i1.type === 'Purchased'
                                 ? helper.CampaignProductImagePath +
                                   i1.orderItemDetails?.productImage
-                                : 'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/60088347cb80b5186f9e1ead_donate.svg';
+                                : {donate};
 
                             // console.log('li', i1)
 
@@ -539,7 +540,7 @@ const AdminTaxTable = (props) => {
                   <img
                     loading="lazy"
                     width={36}
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/6005ba4366767589aa5a9f09_5ecc698a8164c2821bc91f84_Classic_topview-500x392.png"
+                    src="""
                     alt=""
                   />
                 </div>
@@ -643,7 +644,7 @@ const AdminTaxTable = (props) => {
                   <img
                     loading="lazy"
                     width={36}
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/6005ba4366767589aa5a9f09_5ecc698a8164c2821bc91f84_Classic_topview-500x392.png"
+                    src=""
                     alt=""
                   />
                 </div>

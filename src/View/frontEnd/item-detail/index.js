@@ -27,7 +27,7 @@ import { GalleryImg } from '../Component/atoms';
 import WidgetTitle from '../Component/atoms/widget-title';
 import TagTitle from '../Component/atoms/tag-title';
 import { useSelector } from 'react-redux';
-
+import funeded from '../../../assets/images/funded-badge.svg';
 // style
 import './style.scss';
 import HeaderController from '../../../Controller/frontEnd/HeaderController';
@@ -51,7 +51,7 @@ import { Link } from 'react-router-dom';
 //                 <img
 //                   className="img-fluid"
 //                   alt=""
-//                   src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5c2c26551110ec14dd05ef15_image%20(1).png"
+//                   src=""
 //                 />
 //               </div>
 //               <History />
@@ -139,7 +139,7 @@ const ItemDetail = (props) => {
               />
               {isSold ? (
                 <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5d41c138db84bd176388cc01_sold-out.svg"
+                  src={funded}
                   loading="lazy"
                   alt=""
                   className="sold sold--item"

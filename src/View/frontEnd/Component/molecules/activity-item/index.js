@@ -7,6 +7,8 @@ import ListItemImg from '../../atoms/list-item-img';
 import helper from '../../../../../Common/Helper';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import download from '../../../../../assets/images/download.svg';
+import camera from '../../../../../assets/images/camera.svg';
 
 function ActivityItem(props) {
   // const countProjectProcess = (data) => {
@@ -122,11 +124,8 @@ function ActivityItem(props) {
 
   let info = notification.info;
   let infoType = notification.infoType;
-
-  let mediaImage =
-    'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5fca4a280e133c01b4a429eb_camera.svg';
-  let uploadimage =
-    'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f5837c1ae15bccb8c5c2158_download.svg';
+  let mediaImage = { camera };
+  let uploadimage = { download };
 
   let orgLogo = helper.CampaignAdminLogoPath + notification?.campaignadminDetails?.logo;
 
@@ -172,7 +171,9 @@ function ActivityItem(props) {
             {info ? (
               <div className="fs-7 ad__activity__sub-name mt-3p fw-semibold">{info}</div>
             ) : (
-              <div className="fs-7 ad__activity__sub-name mt-3p fw-semibold">{organizationName}</div>
+              <div className="fs-7 ad__activity__sub-name mt-3p fw-semibold">
+                {organizationName}
+              </div>
             )}
 
             {/*  {infoType === 'TAX_RECEIPT' ? (

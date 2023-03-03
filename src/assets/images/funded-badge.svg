@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="97.750359mm"
+   height="67.341331mm"
+   viewBox="0 0 97.750359 67.341331"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   sodipodi:docname="funded-badge.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.41663662"
+     inkscape:cx="188.41359"
+     inkscape:cy="121.20874"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g10015" />
+  <defs
+     id="defs2">
+    <rect
+       x="117.52555"
+       y="364.63055"
+       width="325.45538"
+       height="305.86777"
+       id="rect1112" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-36.988609,-90.498388)">
+    <g
+       id="g10015"
+       transform="rotate(-15.899392,85.863789,124.16905)">
+      <g
+         id="g10003"
+         transform="translate(-0.07871778)" />
+      <g
+         id="g10116"
+         transform="rotate(-9.2323583,85.863789,124.16905)">
+        <text
+           xml:space="preserve"
+           transform="matrix(0.26458333,0,0,0.26458333,15.070273,15.946308)"
+           id="text1110"
+           style="font-size:72px;line-height:1.25;font-family:'Plus Jakarta Display';-inkscape-font-specification:'Plus Jakarta Display, Normal';white-space:pre;shape-inside:url(#rect1112);fill:#36cc5e;fill-opacity:1;stroke:none;stroke-opacity:1"><tspan
+             x="117.52539"
+             y="433.22282"
+             id="tspan10611"><tspan
+               style="font-weight:bold;font-family:Fredoka;-inkscape-font-specification:'Fredoka Bold'"
+               id="tspan10609">FUNDED</tspan></tspan></text>
+        <g
+           id="g9993"
+           transform="translate(-1.8666157,0.38450872)">
+          <circle
+             style="fill:#36cc5e;fill-opacity:1;stroke:none;stroke-width:0.512483;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+             id="circle156"
+             cx="124.39262"
+             cy="128.2542"
+             r="2.3121419" />
+          <g
+             id="g6831"
+             transform="matrix(0.14889282,0,0,0.14889282,115.77881,146.65324)"
+             style="fill:#ffffff">
+            <rect
+               style="fill:#ffffff;fill-opacity:1;stroke-width:3.6081;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+               id="rect743"
+               width="2.6185026"
+               height="16.804039"
+               x="52.834274"
+               y="-131.97449"
+               rx="1.2052821"
+               ry="1.2472566" />
+            <g
+               id="g6311"
+               transform="matrix(0.86231347,0,0,0.85329596,9.8287899,-18.029547)"
+               style="fill:#ffffff">
+              <path
+                 id="path4490"
+                 style="fill:#ffffff;stroke-width:3.30991;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+                 d="m 64.296043,-122.19249 -3.05316,-3.44404 h -9.682982 v 2.83191 0.61213 1.03811 h 11.751476 c 0.545505,0 0.984666,-0.463 0.984666,-1.03811 z m 0,-6.88807 -3.05316,3.44403 h -9.682982 v -2.8319 -0.61213 -1.03811 h 11.751476 c 0.545505,0 0.984666,0.46299 0.984666,1.03811 z" />
+            </g>
+          </g>
+        </g>
+        <rect
+           style="opacity:1;fill:none;stroke:#36cc5e;stroke-width:2.42686;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;paint-order:fill markers stroke"
+           id="rect7227"
+           width="91.872719"
+           height="28.60393"
+           x="39.927429"
+           y="109.86709" />
+      </g>
+    </g>
+  </g>
+</svg>

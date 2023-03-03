@@ -11,6 +11,7 @@ import IconText from '../../Component/molecules/icon-text';
 import helper, { getCalculatedPrice } from '../../../../Common/Helper';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
+import corrupt from '../../../../assets/images/corrupt.png';
 
 export default function Index(props) {
   // const [selectedKey, setSelectedKey] = useState(3)
@@ -55,16 +56,11 @@ export default function Index(props) {
           <div id="noSlider" className="empty__block">
             <div className="empty__container">
               <div className="empty__circle empty--small">
-                <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/62f1681d63e2204ef2532f97_corrupted-file.png"
-                  alt=""
-                />
+                <img src={corrupt} alt="" />
               </div>
               <div className="empty__message">
                 <div className="title title--small w-embed">
-                  <p className="item__title project__title">
-                    There are no results in this range
-                  </p>
+                  <p className="item__title project__title">There are no results in this range</p>
                 </div>
                 <div className="empty__text">
                   <p>Try broadening your search.</p>
@@ -277,7 +273,7 @@ export default function Index(props) {
                         {/* <img
                         alt=""
                         className="img-fluid"
-                        src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5f7b68ae50b802debdff4ccd_family.svg"
+                        src=""
                       /> */}
                         {/* <i
                           className={c.iconDetails[0].class}
@@ -381,7 +377,7 @@ export default function Index(props) {
                 <img
                   alt=""
                   className="img-fluid"
-                  src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5f7b86975d011e33713edb0c_pp-science.svg"
+                  src=""
                 />
               </span>
               <span className="flex__1 ms-1 fs-5 fw-semibold text-subtext">

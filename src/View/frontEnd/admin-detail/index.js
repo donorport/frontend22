@@ -85,7 +85,7 @@ function AdminDetail() {
                         className="user__img charity_avatar_bg"
                         style={{
                           backgroundImage:
-                            // "url(https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5d379d1d11c09e5a51bdeb78_image-250nw-1124572691.jpg)",
+                            // "url()",
                             'url(' + logoImg + ')',
                           width: '120px'
                         }}

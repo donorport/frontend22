@@ -221,7 +221,7 @@ console.log({seletedProjectList})
           <img
             className="img-fluid"
             alt=""
-            src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f47d53860aae8b7569f45a7_rocket.svg"
+            src=""
           />
         </div>
         <div className="flex__1 text-light mb-2 text-center text-sm-start">

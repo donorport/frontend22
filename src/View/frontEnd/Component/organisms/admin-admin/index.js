@@ -180,7 +180,7 @@ const AdminAdmin = () => {
 
           </div> */}
 
-          <ul className="list-unstyled flex__1 ps-0">
+          <ul className="d-flex flex-column list-unstyled flex__1 ps-0 gap-2">
             {teamMemberList.length > 0 &&
               teamMemberList.map((member, i) => {
                 // console.log(member)

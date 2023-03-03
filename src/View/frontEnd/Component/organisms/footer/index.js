@@ -9,6 +9,7 @@ import IconButton from '../../molecules/icon-button';
 import FooterCategoryLinks from '../../molecules/footer-category-links';
 import { useSelector, useDispatch } from 'react-redux';
 import categoryApi from '../../../../../Api/admin/category';
+import logo from '../../../../../assets/images/logo.svg';
 
 import './style.scss';
 
@@ -98,7 +99,7 @@ function Footer() {
           <Col sm className="footer__block logo text-center text-sm-start mb-2 mb-sm-0">
             <a href="/" className="d-inline-flex align-items-center mb-2">
               <img
-                src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/62a2a55e87f6544c42fa0e73_2022%20Logo%20Icon%20(2).svg"
+                src={logo}
                 alt=""
                 className="svg__logo"
               />

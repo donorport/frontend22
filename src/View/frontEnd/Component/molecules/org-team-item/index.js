@@ -29,7 +29,7 @@ function OrganisationTeamItem(props) {
     //   </div>
     // </li>
 
-    <li className="d-flex org__team__item pt-12p pb-12p d-sm-flex align-items-start">
+    <li className="d-flex org__team__item d-sm-flex align-items-start">
       <Avatar
         size={46}
         avatarUrl={image ? image : AvatarImg}
@@ -41,7 +41,7 @@ function OrganisationTeamItem(props) {
         <div className="org__team__item__title pr-12p">
           <div className="org__team__item__name mb-3p text-dark fw-bold">{name}</div>
           {props.showEmail ? (
-            <div className="org__team__item__location fw-light mb-6p">{email}</div>
+            <div className="org__team__item__location text-light fw-light mb-6p">{email}</div>
           ) : (
             ''
           )}

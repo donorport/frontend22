@@ -14,6 +14,7 @@ import FrontLoader from "../../../../../Common/FrontLoader";
 import moment from "moment";
 import helper, { getCardIcon, priceFormat } from "../../../../../Common/Helper";
 import CSVExportBtn from '../../../CSVExportBtn';
+import profile from '../../../../../assets/images/avatar.png';
 
 
 const AdminBilling = () => {
@@ -161,7 +162,7 @@ const AdminBilling = () => {
                 let lastFourDigits = list.type === 'ORDER' ? JSON.parse(list.orderDetails.paymentResponse).data?.payment_method_details?.card?.last4 : JSON.parse(list.paymentResponse).payment_method_details?.card?.last4
                 let cardID = list.type === 'ORDER' ? JSON.parse(list.orderDetails.paymentResponse).data?.id : JSON.parse(list.paymentResponse).id
                 let image = list.type === 'ORDER' ? list.orderDetails.userDetails.image : list.userDetails.image
-                let avatar = image ? helper.DonorImagePath + image : 'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f4ab31be9fe7d7453a60b1f_user.svg'
+                let avatar = image ? helper.DonorImagePath + image : {profile}
 
                 return (
                   <div className="billing__item p-2 border-bottom border-bottom-sm-none">
@@ -216,7 +217,7 @@ const AdminBilling = () => {
                 <div className="flex__1 d-flex d-sm-flex-block align-items-center mb-2 mb-sm-0">
                   <Avatar
                     size={62}
-                    avatarUrl="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f4ab31be9fe7d7453a60b1f_user.svg"
+                    avatarUrl=""
                     border={0}
                     shadow={false}
                     className="admin__avatar mr-12p"
@@ -240,7 +241,7 @@ const AdminBilling = () => {
                       <img
                         width="26"
                         height="26"
-                        src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5b5e656493af1e0441cd892a_mc_vrt_pos.svg"
+                        src=""
                         alt=""
                       />
                     </div>

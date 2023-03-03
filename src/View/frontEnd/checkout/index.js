@@ -18,6 +18,11 @@ import Slider from '@material-ui/core/Slider';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { priceFormat } from '../../../Common/Helper';
+import mastercard from '../../../assets/images/mastercard.svg';
+import visa from '../../../assets/images/visa.svg';
+import amex from '../../../assets/images/amex.svg';
+import discover from '../../../assets/images/discover.svg';
+import stripe from '../../../assets/images/stripe-badge.svg';
 
 const Checkout = (props) => {
   const user = useSelector((state) => state.user);
@@ -169,21 +174,21 @@ const Checkout = (props) => {
                 <Button className="btn__checkout rounded-2 flex__1">
                   <img
                     className="img-fluid"
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620f26f3e730132dbfc7763e_stripe-seeklogo.com.svg"
+                    src=""
                     alt=""
                   />
                 </Button>
                 <Button className="btn__checkout rounded-2 google flex__1">
                   <img
                     className="img-fluid"
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620f2753b937a23e5603f877_Google_Pay_(GPay)_Logo_(2018-2020).svg"
+                    src=""
                     alt=""
                   />
                 </Button>
                 <Button className="btn__checkout rounded-2 paypal flex__1">
                   <img
                     className="img-fluid"
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620f25f58e8ffe7b1df84772_PayPal.svg"
+                    src=""
                     alt=""
                   />
                 </Button>
@@ -201,7 +206,7 @@ const Checkout = (props) => {
                   <Form.Check type="checkbox" className="fs-7" />
                   <img
                     className="crypto__icon ms-1"
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620e5ca7ee8035585abb93b9_usd-coin-usdc-logo.svg"
+                    src=""
                     alt=""
                   />
                   <span>USD Coin</span>
@@ -210,7 +215,7 @@ const Checkout = (props) => {
                   <Form.Check type="checkbox" className="fs-7" />
                   <img
                     className="crypto__icon ms-1"
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620e5d4c36e4c982f37e9894_Bitcoin.svg"
+                    src=""
                     alt=""
                   />
                   <span>Bitcoin</span>
@@ -219,7 +224,7 @@ const Checkout = (props) => {
                   <Form.Check type="checkbox" className="fs-7" />
                   <img
                     className="crypto__icon ms-1"
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/620e5d6c9582b74e722c3122_ethereum-eth.svg"
+                    src=""
                     alt=""
                   />
                   <span>Ethereum</span>
@@ -236,22 +241,22 @@ const Checkout = (props) => {
                 {/* <div className="flex__1 fw-boler fs-5 fw-bold mb-2 mb-sm-0">Credit card</div>*/}
                 <div className="checkout__cards d-flex align-items-center rounded-bottom-start-3 rounded-bottom-end-3">
                   <img
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/610adf19a8c7f2d46c613d2e_Payment%20Method-2.svg"
+                    src={mastercard}
                     alt=""
                     className="checkout__svg"
                   />
                   <img
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/610adf19cbf75e9888c657c2_Payment%20Method.svg"
+                    src={visa}
                     alt=""
                     className="checkout__svg"
                   />
                   <img
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/610adf1910aac41bd62ef626_Payment%20Method-3.svg"
+                    src={amex}
                     alt=""
                     className="checkout__svg"
                   />
                   <img
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/610adf19526b6e515ee2200d_Payment%20Method-1.svg"
+                    src={discover}
                     alt=""
                     className="checkout__svg"
                   />
@@ -464,7 +469,7 @@ const Checkout = (props) => {
           >
             <img
               className="me-3 img-stripe mb-sm-0 mb-1"
-              src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/63475460c46f3a43441688d4_Powered%20by%20Stripe%20-%20blurple.svg"
+              src={stripe}
               alt=""
               style={{ width: '146px' }}
             />

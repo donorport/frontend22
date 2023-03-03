@@ -22,6 +22,7 @@ import { Button, Card, Col, Row, Dropdown } from 'react-bootstrap';
 import moment from 'moment';
 import _ from 'lodash';
 import { GalleryImg } from '../../atoms';
+import pencil from '../../../../../assets/images/pencil.svg';
 
 const AdminPosts = () => {
   console.log('iFrame, AdminPosts');
@@ -1428,7 +1429,7 @@ const AdminPosts = () => {
             <div className="modal-body text-center">
               <div className="remove-img-wrap">
                 <img
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/6047be327f2bfa3c53385cd6_pencil.svg"
+                  src={pencil}
                   alt="remove link"
                   style={{ height: '120px', marginBottom: '10px', maxWidth: '100%' }}
                 />
@@ -1686,7 +1687,7 @@ const AdminPosts = () => {
                           <ListItemImg
                             size={45}
                             className="bg-white"
-                            // imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/62277f679099844cc42cc1d1_5b5e656493af1e0441cd892a_mc_vrt_pos.svg"
+                            // imgSrc="
                             icon={
                               <FontAwesomeIcon
                                 icon={regular('building-columns')}

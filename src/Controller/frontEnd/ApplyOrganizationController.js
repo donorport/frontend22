@@ -9,6 +9,7 @@ import helper, { getCookie, setCookie, deleteCookie } from '../../Common/Helper'
 import locationApi from '../../Api/frontEnd/location';
 import categoryApi from '../../Api/admin/category';
 import Page from '../../components/Page';
+import social from '../../assets/images/emoji.svg';
 
 export default function ApplyOrganizationController() {
   const [selected, setSelected] = useState('charity');
@@ -311,7 +312,7 @@ export default function ApplyOrganizationController() {
       <Page
         title="Donorport | Apply"
         url="https://donorport.com/apply"
-        img="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/62fd822512caf007efb3e4a1_emoji.png"
+        img={social}
         description="Apply for an account. Let us know if you want to post on Donorport. For more information about the application process click here. Charity Nonprofit"
       >
         <Apply

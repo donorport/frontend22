@@ -16,6 +16,7 @@ import { regular, solid, light } from '@fortawesome/fontawesome-svg-core/import.
 import { Icon } from '@iconify/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setIsUpdateCart } from '../../../../../user/user.action';
+import profile from '../../../../../assets/images/avatar.png';
 
 import './style.scss';
 
@@ -51,7 +52,7 @@ const Product = (props) => {
   let organisation =
     props.campaignDetails?.logo && props.campaignDetails?.logo
       ? helper.CampaignAdminLogoPath + props.campaignDetails?.logo
-      : 'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f4ab31be9fe7d7453a60b1f_user.svg';
+      : { profile };
 
   // console.log(props.campaignDetails?.logo)
   let img = props.image;
@@ -306,7 +307,7 @@ const Product = (props) => {
         >
           <i className={catIcon} style={{ fontFamily: "fontAwesome", color: "white", fontStyle: "normal", marginLeft: "1.5px" }}></i>
           {/* <img
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5f7b68d1a8d5f290171371bc_family(white).svg"
+              src=""
               className="img-fluid"
               alt=""
             /> 

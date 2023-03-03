@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 // import { Outlet } from 'react-router-dom';
 // material
@@ -46,67 +46,63 @@ const APP_BAR_MOBILE = 64;
 const APP_BAR_DESKTOP = 92;
 
 const RootStyle = styled('div')({
-    display: 'flex',
-    minHeight: '100%',
-    overflow: 'hidden'
+  display: 'flex',
+  minHeight: '100%',
+  overflow: 'hidden'
 });
 
 const MainStyle = styled('div')(({ theme }) => ({
-    flexGrow: 1,
-    overflow: 'auto',
-    minHeight: '100%',
-    paddingTop: APP_BAR_MOBILE + 24,
-    paddingBottom: theme.spacing(10),
-    [theme.breakpoints.up('lg')]: {
-        paddingTop: APP_BAR_DESKTOP + 24,
-        paddingLeft: theme.spacing(2),
-        paddingRight: theme.spacing(2)
-    }
+  flexGrow: 1,
+  overflow: 'auto',
+  minHeight: '100%',
+  paddingTop: APP_BAR_MOBILE + 24,
+  paddingBottom: theme.spacing(10),
+  [theme.breakpoints.up('lg')]: {
+    paddingTop: APP_BAR_DESKTOP + 24,
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2)
+  }
 }));
 
-
 export default function AdminPrivateRoutes() {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
-    return (
-        <RootStyle>
-            <DashboardNavbar onOpenSidebar={() => setOpen(true)} />
-            <DashboardSidebar isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} />
-            <MainStyle>
-                <Routes>
-                    <Route exact path="/" element={<DashboardApp />} />
-                    <Route exact path="/admin" element={<DashboardApp />} />
-                    <Route exact path="/admin/Dashboard" element={<DashboardApp />} />
-                    <Route exact path="/admin/user" element={<UserController />} />
-                    <Route exact path="/admin/campaign_admin" element={<CampaignAdminController />} />
-                    <Route exact path="/admin/category" element={<CategoryController />} />
-                    <Route exact path="/admin/category/subcategory/:id" element={<SubCategoryController />} />
-                    <Route exact path="/admin/products" element={<ProductController />} />
-                    <Route exact path="/admin/projects" element={<ProjectController />} />
-                    <Route exact path="/admin/profile" element={<ProfileController />} />
-                    <Route exact path="/admin/setting" element={<SettingController />} />
-                    <Route exact path="/admin/setting/currency" element={<Currency />} />
-                    <Route exact path="/admin/setting/rank" element={<Rank />} />
-                    <Route exact path="/admin/setting/xp" element={<Xp />} />
-                    <Route exact path="/admin/setting/plans" element={<Plans />} />
-                    <Route exact path="/admin/setting/payment" element={<Payment />} />
-                    <Route exact path="/admin/setting/pricing" element={<PricingFees />} />
-                    <Route exact path="/admin/setting/email" element={<Email />} />
-                    <Route exact path="/admin/setting/social" element={<FooterLinks />} />
-                    <Route exact path="/admin/setting/aws" element={<Aws />} />
-                    <Route exact path="/admin/setting/sales-tax" element={<SalesTax />} />
-                    <Route exact path="/admin/setting/sales-tax/:countryId" element={<StateSalesTax />} />
-                    <Route exact path="/admin/orders" element={<OrderController />} />
-                    <Route exact path="/admin/cms" element={<CmsController />} />
-                    <Route exact path="/admin/partnership" element={<PartnershipInquiryController />} />
-                    <Route exact path="/admin/verified" element={<VerificationInquiryController />} />
-                    <Route exact path="/admin/donation" element={<DonationController />} />
-                    <Route exact path="/admin/advertisement" element={<AdvertisementController />} />
-
-
-                </Routes>
-            </MainStyle>
-        </RootStyle>
-    );
-
+  return (
+    <RootStyle>
+      <DashboardNavbar onOpenSidebar={() => setOpen(true)} />
+      <DashboardSidebar isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} />
+      <MainStyle>
+        <Routes>
+          <Route exact path="/" element={<DashboardApp />} />
+          <Route exact path="/admin" element={<DashboardApp />} />
+          <Route exact path="/admin/Dashboard" element={<DashboardApp />} />
+          {/* <Route exact path="/admin/user" element={<UserController />} />*/}
+          <Route exact path="/admin/campaign_admin" element={<CampaignAdminController />} />
+          <Route exact path="/admin/category" element={<CategoryController />} />
+          <Route exact path="/admin/category/subcategory/:id" element={<SubCategoryController />} />
+          <Route exact path="/admin/products" element={<ProductController />} />
+          <Route exact path="/admin/projects" element={<ProjectController />} />
+          <Route exact path="/admin/profile" element={<ProfileController />} />
+          <Route exact path="/admin/setting" element={<SettingController />} />
+          <Route exact path="/admin/setting/currency" element={<Currency />} />
+          <Route exact path="/admin/setting/rank" element={<Rank />} />
+          <Route exact path="/admin/setting/xp" element={<Xp />} />
+          <Route exact path="/admin/setting/plans" element={<Plans />} />
+          <Route exact path="/admin/setting/payment" element={<Payment />} />
+          <Route exact path="/admin/setting/pricing" element={<PricingFees />} />
+          <Route exact path="/admin/setting/email" element={<Email />} />
+          <Route exact path="/admin/setting/social" element={<FooterLinks />} />
+          <Route exact path="/admin/setting/aws" element={<Aws />} />
+          <Route exact path="/admin/setting/sales-tax" element={<SalesTax />} />
+          <Route exact path="/admin/setting/sales-tax/:countryId" element={<StateSalesTax />} />
+          <Route exact path="/admin/orders" element={<OrderController />} />
+          <Route exact path="/admin/cms" element={<CmsController />} />
+          <Route exact path="/admin/partnership" element={<PartnershipInquiryController />} />
+          <Route exact path="/admin/verified" element={<VerificationInquiryController />} />
+          <Route exact path="/admin/donation" element={<DonationController />} />
+          <Route exact path="/admin/advertisement" element={<AdvertisementController />} />
+        </Routes>
+      </MainStyle>
+    </RootStyle>
+  );
 }

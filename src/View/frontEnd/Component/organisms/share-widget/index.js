@@ -104,7 +104,7 @@ function ShareWidget() {
               </a> */}
                 <TwitterShareButton
                   title='test'
-                  hashtags={['hashtag1', 'hashtag2']}
+                  hashtags={['Donation', 'Charity']}
                   url={currentPageLink}
                   // hashtags={["hashtag1", "hashtag2"]}
                 >
