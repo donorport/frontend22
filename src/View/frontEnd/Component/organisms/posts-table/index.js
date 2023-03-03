@@ -1,7 +1,6 @@
 import { Button, ProgressBar } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
-import Avatar from '../../atoms/avatar';
 import ListItemImg from '../../atoms/list-item-img';
 import './style.scss';
 import { makeStyles } from '@material-ui/core/styles';

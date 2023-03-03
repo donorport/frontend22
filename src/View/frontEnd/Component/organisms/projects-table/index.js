@@ -137,7 +137,7 @@ const ProjectsTable = (props) => {
                         avatarUrl={
                           project.imageDetails.length > 0
                             ? helper.ProjectImagePath + project.imageDetails[0].image
-                            : { profile }
+                            : profile
                         }
                       />
                       <div className="ms-2">

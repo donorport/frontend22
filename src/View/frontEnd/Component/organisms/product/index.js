@@ -52,7 +52,7 @@ const Product = (props) => {
   let organisation =
     props.campaignDetails?.logo && props.campaignDetails?.logo
       ? helper.CampaignAdminLogoPath + props.campaignDetails?.logo
-      : { profile };
+      : profile;
 
   // console.log(props.campaignDetails?.logo)
   let img = props.image;

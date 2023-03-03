@@ -261,7 +261,7 @@ const AdminTaxTable = (props) => {
                                         item[0].type === 'Purchased'
                                           ? helper.CampaignProductImagePath +
                                             item[0]?.orderItemDetails?.productImage
-                                          : { donate }
+                                          : donate
                                       }
                                       alt=""
                                     />
@@ -407,7 +407,7 @@ const AdminTaxTable = (props) => {
                               i1.type === 'Purchased'
                                 ? helper.CampaignProductImagePath +
                                   i1.orderItemDetails?.productImage
-                                : {donate};
+                                : { donate };
 
                             // console.log('li', i1)
 

@@ -62,7 +62,7 @@ const LadderMenuXp = (props) => {
             className="ladder__menu-item"
             onClick={() => {
               setActive(false);
-              props.onChangeDropdown('DONATED', { donation });
+              props.onChangeDropdown('DONATED', donation);
             }}
           >
             <div className="ladder__icon">
@@ -74,7 +74,7 @@ const LadderMenuXp = (props) => {
             className="ladder__menu-item "
             onClick={() => {
               setActive(false);
-              props.onChangeDropdown('FOLLOWED', { speech });
+              props.onChangeDropdown('FOLLOWED', speech);
             }}
           >
             <div className="ladder__icon">
@@ -86,7 +86,7 @@ const LadderMenuXp = (props) => {
             className="ladder__menu-item"
             onClick={() => {
               setActive(false);
-              props.onChangeDropdown('SHARED', { share });
+              props.onChangeDropdown('SHARED', share);
             }}
           >
             <div className="ladder__icon">
@@ -98,7 +98,7 @@ const LadderMenuXp = (props) => {
             className="ladder__menu-item"
             onClick={() => {
               setActive(false);
-              props.onChangeDropdown('BOUGHT', { wallet });
+              props.onChangeDropdown('BOUGHT', wallet);
             }}
           >
             <div className="ladder__icon">

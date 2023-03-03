@@ -124,8 +124,8 @@ function ActivityItem(props) {
 
   let info = notification.info;
   let infoType = notification.infoType;
-  let mediaImage = { camera };
-  let uploadimage = { download };
+  let mediaImage = camera;
+  let uploadimage = download;
 
   let orgLogo = helper.CampaignAdminLogoPath + notification?.campaignadminDetails?.logo;
 

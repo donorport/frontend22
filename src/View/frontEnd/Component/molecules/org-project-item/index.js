@@ -10,7 +10,7 @@ function OrganisationProjectItem(props) {
   let img =
     project.imageDetails.length > 0
       ? helper.ProjectFullImagePath + project.imageDetails[0].image
-      : {profile};
+      : profile;
 
   // console.log(project)
   return (
@@ -31,7 +31,9 @@ function OrganisationProjectItem(props) {
           ></div>
         </div>
         <div className="org__project_item__main pl-12p flex-grow-1">
-          <div className="org__project__item__name mb-3p text-dark fw-bold fs-5">{project.name}</div>
+          <div className="org__project__item__name mb-3p text-dark fw-bold fs-5">
+            {project.name}
+          </div>
           <div className="org__project__item__time fw-semibold mb-6p fs-7 text-light">
             {moment(project.created_at).fromNow()}
           </div>

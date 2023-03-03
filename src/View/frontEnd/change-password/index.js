@@ -10,7 +10,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import ToastAlert from '../../../Common/ToastAlert';
 import { validateAll } from 'indicative/validator';
 import './style.scss';
-import FrontLoader from '../../../Common/FrontLoader';
+
 import userApi from '../../../Api/frontEnd/user';
 import adminCampaignApi from '../../../Api/admin/adminCampaign';
 

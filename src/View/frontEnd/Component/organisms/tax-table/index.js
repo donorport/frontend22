@@ -216,7 +216,7 @@ const TaxTable = (props) => {
                                         item[0].type === 'Purchased'
                                           ? helper.CampaignProductImagePath +
                                             item[0]?.orderItemDetails?.productImage
-                                          : { donation }
+                                          : donation
                                       }
                                       alt=""
                                     />
@@ -322,7 +322,7 @@ const TaxTable = (props) => {
                               i1.type === 'Purchased'
                                 ? helper.CampaignProductImagePath +
                                   i1.orderItemDetails?.productImage
-                                : { donation };
+                                : donation;
 
                             // console.log('li', i1)
 

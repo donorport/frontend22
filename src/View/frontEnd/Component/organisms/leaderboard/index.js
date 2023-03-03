@@ -1,25 +1,11 @@
 import DefaultLayout from '../../templates/default-layout';
 import './style.scss';
-import {
-  Button,
-  Accordion,
-  AccordionContext,
-  useAccordionButton,
-  Card,
-  Col,
-  Row,
-  Dropdown,
-  Container
-} from 'react-bootstrap';
-import LadderMenu from '../ladder-menu';
+import { Col, Row, Container } from 'react-bootstrap';
 import Avatar from '../../atoms/avatar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import helper, { priceFormat, getCalculatedPrice } from '../../../../../Common/Helper';
-import { useSelector, useDispatch } from 'react-redux';
+import helper, { getCalculatedPrice } from '../../../../../Common/Helper';
+import { useSelector } from 'react-redux';
 import userApi from '../../../../../Api/frontEnd/user';
 import React, { useState, useEffect } from 'react';
-import FrontLoader from '../../../../../Common/FrontLoader';
 import AvatarImg from '../../../../../assets/images/avatar_default.png';
 import Page from '../../../../../components/Page';
 

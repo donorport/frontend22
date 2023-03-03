@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import IconButton from '../Component/molecules/icon-button';
 import settingApi from '../../../Api/admin/setting';
-import FrontLoader from '../../../Common/FrontLoader';
+
 import './style.scss';
 import { useSelector } from 'react-redux';
 import helper, { getCalculatedPrice } from '../../../Common/Helper';

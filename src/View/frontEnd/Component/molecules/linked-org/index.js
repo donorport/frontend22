@@ -1,11 +1,9 @@
-// import React from "react";
 import { Button } from 'react-bootstrap';
 import Avatar from '../../atoms/avatar';
 import './style.scss';
 import organizationApi from '../../../../../Api/frontEnd/organization';
 import React, { useState, useEffect } from 'react';
 import helper, { getCookie, setCookie, deleteCookie } from '../../../../../Common/Helper';
-import FrontLoader from '../../../../../Common/FrontLoader';
 import ToastAlert from '../../../../../Common/ToastAlert';
 import { useSelector, useDispatch } from 'react-redux';
 import removeImg from '../../../../../assets/images/remove-link.svg';

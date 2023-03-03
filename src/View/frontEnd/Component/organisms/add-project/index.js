@@ -8,7 +8,6 @@ import ToggleSwitch from '../../atoms/toggle-switch';
 import FeedTag from '../../atoms/feed-tag';
 import FileUpload from '../../atoms/file-upload';
 import helper from '../../../../../Common/Helper';
-// import noimg from "../../../assets/images/noimg.jpg"
 import noimg from '../../../../../assets/images/noimg.jpg';
 
 import './style.scss';
