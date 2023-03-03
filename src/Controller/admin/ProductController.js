@@ -468,7 +468,7 @@ function ProductController() {
   };
 
   const submitProductForm = (e) => {
-    // console.log(tags)
+    console.log("e")
     const formaerrror = {};
     if (tags.length === 0) {
       formaerrror['tags'] = 'Please Enter Tags';

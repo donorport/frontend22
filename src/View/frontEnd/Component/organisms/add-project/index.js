@@ -17,10 +17,10 @@ import { Link } from 'react-router-dom';
 const AddProject = (props) => {
   const { id, status, name, headline, video, description, error, images, infinite } =
     props.stateData;
-console.log('video: ', video)
-  // let url = video;
-  // let videoid = url.split('?v=')[1];
-  // let embedlink = url ? 'http://www.youtube.com/embed/' + videoid : '';
+
+  let url = video;
+  let videoid = url.split('?v=')[1];
+  let embedlink = url ? 'http://www.youtube.com/embed/' + videoid : '';
 
   let tempImages = props.tempImages;
   let projectImages = props.projectImages;
@@ -222,7 +222,7 @@ console.log('video: ', video)
                 key="project-video"
                 width="498"
                 height="280"
-                src={video}
+                src={embedlink}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
@@ -310,7 +310,7 @@ console.log('video: ', video)
                       return (
                         // <img src={img ? img !== "" ? helper.ProjectImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} />
 
-                        <div className="img-wrap">
+                        <div className="img-wrap" key={key}>
                           <span className="close" onClick={() => props.deleteProjectImage(img.id)}>
                             &times;
                           </span>

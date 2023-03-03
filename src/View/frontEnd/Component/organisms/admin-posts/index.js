@@ -595,8 +595,8 @@ const AdminPosts = () => {
     });
   };
 
-  const submitProductForm = (s) => {
-    // console.log(galleryImg)
+  const submitProductForm = (s, seletedProjectListofIds) => {
+    console.log("s")
 
     window.scrollTo(0, 0);
     // console.log(tags)
@@ -711,6 +711,7 @@ const AdminPosts = () => {
         // data.title = title
         // data.subtitle = subtitle
         formData.status = s;
+        // formData.products = seletedProjectList;
 
         formData.brand = brand;
         formData.needheadline = needheadline.trim();
@@ -796,6 +797,24 @@ const AdminPosts = () => {
               ToastAlert({ msg: addProduct.data.message, msgType: 'error' });
             } else {
               if (addProduct.data.success === true) {
+                const res = await projectApi.list(token);
+                console.log({res})
+                const dta = res.data.data;
+                console.log({dta})
+                dta.forEach(project => {
+                  let newData = {...project};
+                  const idx = seletedProjectListofIds.indexOf(project._id)
+                  console.log({idx})
+                  if(idx !== -1){
+                    const newProducts = [id];
+                    project.productDetails.forEach(product => {
+                      newProducts.push(product.productId)
+                    });
+                    console.log({oldProducts: newProducts})
+                    newData.products = newProducts
+                    projectApi.updateProject(token, newData, project._id, true)
+                  }
+                });
                 resetForm();
                 // setLoading(false);
                 setUpdate(!update);
