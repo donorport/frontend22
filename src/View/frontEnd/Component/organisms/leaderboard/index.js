@@ -41,8 +41,8 @@ const LeaderBoard = () => {
   };
 
   useEffect(() => {
-        (async () => {
-            setLoading(true);
+    (async () => {
+      setLoading(true);
       if (user.countryId) {
         await getList();
       }
@@ -56,14 +56,14 @@ const LeaderBoard = () => {
         title="Donorport | Leaderboard"
         description="See where you rank among the top Donors. All Time.. All Time; Locally; Recent. 1. Karl Martin.. 1005 XP.. Captain. 2. Dusty Selkirk.. 855 XP."
       >
-       {/*<FrontLoader loading={loading} />*/}
+        {/*<FrontLoader loading={loading} />*/}
         <DefaultLayout>
           <Container luid className="position-relative pb-5 pt-5">
             <h1 className="fs-2 text-dark fw-bolder" style={{ marginTop: '50px' }}>
               Leaderboard
             </h1>
             <div className="fs-5 text-light" style={{ marginBottom: '56px' }}>
-              See where you rank among the top Donors in{' '}
+              See where you rank among the top donors in{' '}
               {user.countryName ? user.countryName : userData ? userData.country : ''}
             </div>
 

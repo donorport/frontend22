@@ -172,13 +172,14 @@ const Activity = (props) => {
                     {state.allRead ? 'Mark all unread' : 'Mark all read'}
                     {loading && <CircularProgress className="ms-1" color="inherit" size={10} />}
                   </Button>
-                  <Button
+
+                  {/*   <Button
                     variant="link"
                     className="btn__link-light activity__settings ms-auto px-0"
                     onClick={() => showSettings()}
                   >
                     <FontAwesomeIcon icon={solid('gear')} />
-                  </Button>
+                  </Button>*/}
                 </div>
               ) : (
                 ''
