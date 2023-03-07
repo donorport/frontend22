@@ -11,7 +11,6 @@ import TagTitle from '../../atoms/tag-title';
 import ToggleSwitch from '../../atoms/toggle-switch';
 
 import OrganisationItem from '../../molecules/org-item';
-
 import './style.scss';
 import helper, { getCalculatedPrice, countInArray } from '../../../../../Common/Helper';
 import cartApi from '../../../../../Api/frontEnd/cart';
@@ -496,7 +495,7 @@ function OrganisationWidget(props) {
               type="text"
               placeholder="0"
               maxLength={6}
-              className="donate-value-input"
+              className="donate-value-input ps-1"
               value={price}
               onChange={(e) => onChangeDonatePrice(e)}
             />

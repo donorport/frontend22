@@ -95,12 +95,12 @@ const HistoryList = (props) => {
                 <li className="history__list-item">
                   <div className="py-2 border-bottom">
                     <div className="d-flex align-items-center">
-                      <span className="bg-lighter d-flex align-items-center pt-2 pb-2 px-2 rounded-3">
+                      <span className="d-flex align-items-center rounded-3">
                         {/* <FontAwesomeIcon
                           icon={solid('receipt')}
                           className="mr-12p text-dark fs-4"
                         />*/}
-                        <span className="text-light fw-bold fs-4">
+                        <span className="fw-bold fs-4">
                           {order.currencySymbol ? order.currencySymbol : '$'}
                           {priceFormat(Number(grandTotal))}
                         </span>

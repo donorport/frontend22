@@ -150,7 +150,7 @@ const Activity = (props) => {
               {!(state.following || state.settings) ? (
                 <Button
                   variant="link"
-                  className="ms-auto view__more-activity btn__link-light px-6p text-decoration-none"
+                  className="ms-auto view__more-activity btn__link-light px-6p fs-4 text-decoration-none"
                   onClick={() => moreClick()}
                 >
                   {/* <i className="fa-regular fa-ellipsis-stroke-vertical"></i> */}

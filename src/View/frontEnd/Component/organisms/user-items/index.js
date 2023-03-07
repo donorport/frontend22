@@ -96,7 +96,7 @@ const UserItems = () => {
 
   return (
     <>
-     {/*<FrontLoader loading={loading} />*/}
+      {/*<FrontLoader loading={loading} />*/}
       {!detail.show ? (
         <div>
           <header className="py-sm-2 pb-2 mb-3 w-100 d-none d-sm-flex align-items-center">
@@ -225,19 +225,30 @@ const UserItems = () => {
                       />
                       <span className="text-light ms-1 fw-bold">{Math.round(item.itemDetails?.soldout / item.itemDetails?.quantity * 100)}%</span> */}
                     </div>
-                    {item.itemDetails?.tax && (
-                      <span
-                        className="product__type product__type-tax icon icon__solid-900"
-                        style={{ fontSize: 'x-large' }}
-                      >
-                        <FontAwesomeIcon icon={solid('calculator')} />
-                      </span>
-                    )}
+                    <div className="d-flex gap-2">
+                      {' '}
+                      {item.itemDetails?.tax && (
+                        <span
+                          className="product__type product__type-tax icon icon__solid-900"
+                          style={{ fontSize: 'x-large' }}
+                        >
+                          <FontAwesomeIcon icon={solid('calculator')} />
+                        </span>
+                      )}
+                      {item.itemDetails?.postTag && (
+                        <span
+                          className="product__type product__type-tax icon icon__solid-900"
+                          style={{ fontSize: 'x-large' }}
+                        >
+                          <FontAwesomeIcon icon={solid('tag')} />
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
 
                 <ListItemImg
-                  size={68}
+                  size={46}
                   imgSrc={
                     helper.CampaignAdminLogoPath + item.itemDetails?.organizationDetails?.logo
                   }
@@ -333,7 +344,9 @@ const UserItems = () => {
                         </>
                       )}
 
-                      <h5 className="page__blurb mt-1 fw-bolder">{item.itemDetails?.needheadline}</h5>
+                      <h5 className="page__blurb mt-1 fw-bolder">
+                        {item.itemDetails?.needheadline}
+                      </h5>
                       <p className="page__paragraph mt-2">{item.itemDetails?.description}</p>
 
                       <div className="gallery__container my-2">
@@ -440,7 +453,7 @@ const UserItems = () => {
                         </div>
                       </div>
                       <div>
-                        qty <span className="fw-bolder ml-3p">{item.quantity}</span>
+                        qty <span className="fw-bold ml-3p">{item.quantity}</span>
                       </div>
                     </div>
 

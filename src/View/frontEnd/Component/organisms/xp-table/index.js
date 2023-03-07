@@ -36,7 +36,7 @@ const XpTable = (props) => {
               </span>
             </div>
             <div className="d-flex align-items-center">
-              <span className="text-light fw-semibold fs-5 d-none d-sm-flex">
+              <span className="text-light fw-bold fs-5 d-none d-sm-flex">
                 {data.currencySymbol}
                 {data.amount.toFixed(2)}
               </span>
@@ -46,6 +46,7 @@ const XpTable = (props) => {
         break;
 
       case 'BOUGHT':
+        let price = data.quantity * data.amount;
         Res = (
           <div className="order-1 order-sm-2 d-flex align-items-center text-dark me-sm-3 flex__1">
             <div className="position-relative">
@@ -63,9 +64,9 @@ const XpTable = (props) => {
               </span>
             </div>
             <div className="d-flex align-items-center">
-              <span className="text-light fw-bold fs-4 d-none d-sm-flex">
+              <span className="text-light fw-bold fs-5 d-none d-sm-flex">
                 {data.currencySymbol}
-                {data.amount.toFixed(2)}
+                {price.toFixed(2)}
               </span>
             </div>
           </div>

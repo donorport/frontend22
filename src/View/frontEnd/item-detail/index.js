@@ -136,6 +136,7 @@ const ItemDetail = (props) => {
                 className="img-fluid"
                 alt=""
                 src={helper.CampaignProductFullImagePath + productDetails?.image}
+                //style={{ opacity: isSold ? '0.2' : '1' }}
               />
               {isSold ? (
                 <img

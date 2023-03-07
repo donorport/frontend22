@@ -146,7 +146,7 @@ function History(props) {
             </Button>
           </div>
         )}
-        {historyList?.length === 0 && <div className="note fs-5">Be the first to donate!</div>}
+        {historyList?.length === 0 && <div className="mt-4 fs-6">No recent donations</div>}
       </div>
     </>
   );

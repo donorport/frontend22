@@ -22,10 +22,10 @@ const Media = () => {
                 follow these guidelines.
               </div>
 
-              <div className="note note-info text-dark">
+              {/* <div className="note note-info text-dark">
                 We're excited to share Donorport with the world. If you're a member of the media and
                 would like to know more about us, please get in touch with us at press@donorport.com
-              </div>
+              </div>*/}
             </div>
             <div className="mb-3 pt-5">
               <h4 className="fw-bolder text-dark">Brand Assets</h4>

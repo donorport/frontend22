@@ -410,7 +410,7 @@ const AdminProjects = () => {
     if (
       !projectData.name ||
       !projectData.description ||
-      !projectData.video ||
+      //!projectData.video ||
       !projectData.headline ||
       projectData.productDetails.length === 0
     ) {

@@ -209,6 +209,7 @@ const FilterDropdown = (props) => {
               ))}
             </div>
           </div>
+          <div className="filter__footer p-2"></div>
         </Dropdown.Menu>
       </Dropdown>
     </>
