@@ -1,6 +1,7 @@
 import { ProgressBar } from "react-bootstrap";
 
 import ListItemImg from "../../atoms/list-item-img";
+import profile from '../../../../../assets/images/avatar.png';
 
 import "./style.scss";
 
@@ -9,7 +10,7 @@ function GrabItem() {
     <li className="org__item__item pt-12p pb-12p d-sm-flex align-items-center mb-1">
       <div className="d-flex align-items-center flex-grow-1">
         <a href="/" className="d-block position-relative">
-          <ListItemImg imgSrc="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5c2c25521110ec4aec05eec4_Teddy-Bear-PNG-Picture.png" />
+          <ListItemImg imgSrc={profile} />
           <span className="badge grab__badge">1</span>
         </a>
 

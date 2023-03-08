@@ -9,6 +9,12 @@ import { useSelector } from 'react-redux';
 import helper, { getCalculatedPrice } from '../../../Common/Helper';
 import Page from '../../../components/Page';
 import { Link } from 'react-router-dom';
+import crown from '../../../assets/images/crown.svg';
+import list from '../../../assets/images/top.svg';
+import money from '../../../assets/images/bank.svg';
+import wallet from '../../../assets/images/wallet.svg';
+import share from '../../../assets/images/share.svg';
+import social from '../../../assets/images/speech-bubble.svg';
 
 import './style.scss';
 
@@ -36,8 +42,8 @@ const Xp = () => {
   } = state;
 
   useEffect(() => {
-        (async () => {
-            setLoading(true);
+    (async () => {
+      setLoading(true);
 
       const getSettingsValue = await settingApi.list(
         userAuthToken ? userAuthToken : CampaignAdminAuthToken,
@@ -64,7 +70,7 @@ const Xp = () => {
   return (
     <>
       <Page title="Donorport | XP"></Page>
-     {/*<FrontLoader loading={loading} />*/}
+      {/*<FrontLoader loading={loading} />*/}
       <DefaultLayout>
         <Container fluid className="pt-5">
           {userAuthToken && (
@@ -107,58 +113,40 @@ const Xp = () => {
 
           <div className="mw-800 pb-5 fs-5">
             <div className="d-flex align-items-center py-12p">
-              <ListItemImg
-                size={64}
-                imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef61a93718f37b258157a4d_crown.svg"
-              />
+              <ListItemImg size={64} imgSrc={crown} />
               <span className="mx-sm-4 mx-2 flex__1 text-light">
                 A top donator + purchased items from every category, and all locations
               </span>
               <span className="fw-bold text-info">{topDonator} XP</span>
             </div>
             <div className="d-flex align-items-center py-12p">
-              <ListItemImg
-                size={64}
-                imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef61d975395ccef43cbb71f_top.svg"
-              />
+              <ListItemImg size={64} imgSrc={list} />
               <span className="mx-sm-4 mx-2 flex__1 text-light">
                 Have the top donation to an organization over $500
               </span>
               <span className="fw-bold text-info">{topDonation} XP</span>
             </div>
             <div className="d-flex align-items-center py-12p">
-              <ListItemImg
-                size={64}
-                imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ea77ef8debb84eec8354d5b_bank.svg"
-              />
+              <ListItemImg size={64} imgSrc={money} />
               <span className="mx-sm-4 mx-2 flex__1 text-light">For each item you purchase</span>
               <span className="fw-bold text-info">{forEachItem} XP</span>
             </div>
             <div className="d-flex align-items-center py-12p">
-              <ListItemImg
-                size={64}
-                imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5e4c2ff23144db148fd45b43_wallet.svg"
-              />
+              <ListItemImg size={64} imgSrc={wallet} />
               <span className="mx-sm-4 mx-2 flex__1 text-light">
                 For each donation to an Organization / Project
               </span>
               <span className="fw-bold text-info">{forEachDonation} XP</span>
             </div>
             <div className="d-flex align-items-center py-12p">
-              <ListItemImg
-                size={64}
-                imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef61ef15babc48a50bd2bd5_share.svg"
-              />
+              <ListItemImg size={64} imgSrc={share} />
               <span className="mx-4 flex__1 text-light">
                 For each share of an item / Organization / Project via social media
               </span>
               <span className="fw-bold text-info">{forEachShare} XP</span>
             </div>
             <div className="d-flex align-items-center py-12p">
-              <ListItemImg
-                size={64}
-                imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef6176ab4ea47d76444346c_speech-bubble.svg"
-              />
+              <ListItemImg size={64} imgSrc={social} />
               <span className="mx-4 flex__1 text-light">
                 For each Organization / Project you follow
               </span>

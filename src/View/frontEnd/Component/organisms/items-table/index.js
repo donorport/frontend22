@@ -63,9 +63,11 @@ const ItemsTable = (props) => {
               // console.log(item)
               // let price = Math.round(Number(item.productPrice) + (Number(item.appliedTaxPer) / 100) * Number(item.productPrice))
               // let price = priceFormat(Math.round(calculatedPrice.priceWithTax(Number(item.itemDetails.price))))
-              let price = item.itemDetails.displayPrice
-                ? item.itemDetails.displayPrice
-                : item.itemDetails.price;
+              let sold = item.itemDetails.soldout;
+              let price =
+                item.itemDetails.displayPrice * sold
+                  ? item.itemDetails.displayPrice * sold
+                  : item.itemDetails.price * sold;
 
               return (
                 <li className="table__list-item p-2 border-bottom" key={key}>
@@ -81,7 +83,7 @@ const ItemsTable = (props) => {
                       >
                         <div className="text-light fw-bold fs-5">
                           {item.currencySymbol}
-                          {price}
+                          {priceFormat(price)}
                         </div>
                         <div className="text-light fs-8">{moment(item.created_at).fromNow()}</div>
                       </div>

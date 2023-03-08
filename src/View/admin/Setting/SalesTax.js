@@ -24,7 +24,7 @@ import Page from '../../../components/Page';
 import backfill from '@iconify/icons-eva/arrow-left-fill';
 import settingApi from '../../../Api/admin/setting';
 import React, { useEffect, useState } from 'react';
-import FrontLoader from '../../../Common/FrontLoader';
+
 import ToastAlert from '../../../Common/ToastAlert';
 import { hasPermission } from '../../../Common/Helper';
 import salesTaxApi from '../../../Api/admin/salesTax';

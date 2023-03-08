@@ -63,7 +63,7 @@ function ShareWidget() {
         onClick={() => setActive(!active)}
         className="d-none d-sm-flex btn__share text-light"
       >
-        <FontAwesomeIcon icon={regular('share-nodes')} />
+        <FontAwesomeIcon icon={regular('share')} />
       </Button>
       {/*FOR MOBILE: launches Navigator on mobile devices*/}
       <Button
@@ -71,7 +71,7 @@ function ShareWidget() {
         onClick={() => onClickShare()}
         className="d-flex d-sm-none  btn__share text-light"
       >
-        <FontAwesomeIcon icon={regular('share-nodes')} />
+        <FontAwesomeIcon icon={regular('share')} />
       </Button>
 
       {active ? (
@@ -104,7 +104,7 @@ function ShareWidget() {
               </a> */}
                 <TwitterShareButton
                   title='test'
-                  hashtags={['hashtag1', 'hashtag2']}
+                  hashtags={['Donation', 'Charity']}
                   url={currentPageLink}
                   // hashtags={["hashtag1", "hashtag2"]}
                 >

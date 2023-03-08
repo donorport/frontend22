@@ -4,6 +4,7 @@ import { regular } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 import ListItemImg from "../../atoms/list-item-img";
 import { Outlet, Link, useLocation, useOutletContext } from "react-router-dom";
+import share from '../../../../../assets/images/share.svg';
 
 import "./style.scss";
 
@@ -24,7 +25,7 @@ const UserAccounts = () => {
               <ListItemImg
                 size={75}
                 className="rounded-circle"
-                imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5e42d16e0a69c19be816de35_Google__G__Logo.svg"
+                imgSrc=""
               />
             </div>
             <div className="accounts__email fw-bolder flex__1 mx-2 text-break">
@@ -40,7 +41,7 @@ const UserAccounts = () => {
               <ListItemImg
                 size={75}
                 className="rounded-circle"
-                imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ebdac028e839bb4a475a131_social.svg"
+                imgSrc={share}
               />
             </div>
             <div className="accounts__email fw-bold flex__1 mx-2 text-break">
@@ -75,7 +76,7 @@ const UserAccounts = () => {
               <ListItemImg
                 size={75}
                 className="rounded-circle"
-                imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/62100557b8d71f1473f87dee_MetaMask_Fox.svg"
+                imgSrc=""
               />
             </div>
             <div className="accounts__email fw-bolder flex__1 mx-2 text-break">

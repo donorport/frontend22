@@ -21,7 +21,13 @@ import { GalleryImg } from '../../atoms';
 
 function OrganisationDetailMain(props) {
   console.log('iFrame, OrganisationDetailMain');
+
   let organizationDetails = props.organizationDetails;
+  /*let videoid = organizationDetails.promoVideo
+    ? organizationDetails.promoVideo.split('?v=')[1]
+    : '';
+  let embedlink = videoid ? 'http://www.youtube.com/embed/' + videoid : '';*/
+
   const navigate = useNavigate();
   // let iconClass = organizationDetails?.categoryDetails?.iconDetails?.class.replace('fa-', '');
   let videoid = organizationDetails.promoVideo ? organizationDetails.promoVideo.split("?v=")[1] : "";
@@ -131,7 +137,7 @@ function OrganisationDetailMain(props) {
               <img
                 alt=""
                 className="img-fluid"
-                src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5c2c38e4fd28a71363f4ac5d_Tree-Frog-Logo-Mock.png"
+                src="
               />
             </span>
           </Button> 
@@ -144,7 +150,7 @@ function OrganisationDetailMain(props) {
           </Button>*/}
         </div>
         {organizationDetails.promoVideo && (
-          <div className="project-video-wrap">
+          <div className="project-video-wrap mb-1">
             <iframe
               title="organization-promo-video"
               key="organization-promo-video"

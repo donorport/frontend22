@@ -14,7 +14,7 @@ import { debounce } from 'lodash';
 function CartItem(props) {
   let cartItem = props.cartItem;
   const [quantity, setQuantity] = useState();
-  
+
   // const CalculatePrice = getCalculatedPrice()
 
   // let transactionFee = props.pricingFees?.transactionFee
@@ -34,15 +34,15 @@ function CartItem(props) {
     }, 1000),
     []
   );
-    console.log({props})
+  console.log({ props });
   useEffect(() => {
     setQuantity(cartItem?.quantity);
-    props.updateChildCart()
+    props.updateChildCart();
   }, [cartItem]);
 
   useEffect(() => {
     updateQuantity(quantity);
-    props.updateChildCart()
+    props.updateChildCart();
   }, [quantity, updateQuantity]);
 
   return (
@@ -86,18 +86,28 @@ function CartItem(props) {
             onChange={(e) => {
               if (
                 cartItem?.productDetails.soldout + e.target.value <=
-                cartItem?.productDetails.quantity || cartItem.productDetails.unlimited
+                  cartItem?.productDetails.quantity ||
+                cartItem.productDetails.unlimited
               )
                 setQuantity(+e.target.value === 0 ? '' : +e.target.value);
-              else
-                setQuantity(cartItem?.productDetails.quantity)
+              else setQuantity(cartItem?.productDetails.quantity);
             }}
           />
-          <Button variant="link" className={`btn__link-light text-decoration-none p-0 ${cartItem?.productDetails.soldout + quantity >= cartItem?.productDetails.quantity && !cartItem.productDetails.unlimited && "max-quantity"}`} >
+          <Button
+            variant="link"
+            className={`position-relative btn__link-light text-decoration-none p-0 ${
+              cartItem?.productDetails.soldout + quantity >= cartItem?.productDetails.quantity &&
+              !cartItem.productDetails.unlimited &&
+              'max-quantity'
+            }`}
+          >
             <FontAwesomeIcon
               icon={regular('angle-up')}
               onClick={() => {
-                if (cartItem?.productDetails.soldout + quantity < cartItem?.productDetails.quantity || cartItem.productDetails.unlimited)
+                if (
+                  cartItem?.productDetails.soldout + quantity < cartItem?.productDetails.quantity ||
+                  cartItem.productDetails.unlimited
+                )
                   setQuantity(quantity + 1);
               }}
             />

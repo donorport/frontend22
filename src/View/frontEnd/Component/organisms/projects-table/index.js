@@ -15,6 +15,7 @@ import './style.scss';
 import { makeStyles } from '@material-ui/core/styles';
 import helper from '../../../../../Common/Helper';
 import { Link } from 'react-router-dom';
+import profile from '../../../../../assets/images/avatar.png';
 
 const ProjectsTable = (props) => {
   let projectList = props.projectList;
@@ -136,7 +137,7 @@ const ProjectsTable = (props) => {
                         avatarUrl={
                           project.imageDetails.length > 0
                             ? helper.ProjectImagePath + project.imageDetails[0].image
-                            : 'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f4ab31be9fe7d7453a60b1f_user.svg'
+                            : profile
                         }
                       />
                       <div className="ms-2">

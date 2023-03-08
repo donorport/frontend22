@@ -64,7 +64,7 @@ const Trust = () => {
             </div>
   */}
               <ul className="list-unstyled mb-0 mb-sm-5">
-                <li className="d-sm-flex text-center align-items-center py-3">
+                <li className="d-sm-flex align-items-center py-3">
                   <div className="trust__thumb-wrap text-center mr-0 mr-sm-20p">
                     <div className="trust__thumb d-flex align-items-center justify-content-center mb-20p">
                       <img src={shake} alt="" className="img-fluid" />
@@ -80,7 +80,7 @@ const Trust = () => {
                     </div>
                   </div>
                 </li>
-                <li className="d-sm-flex text-center align-items-center py-3">
+                <li className="d-sm-flex align-items-center py-3">
                   <div className="trust__thumb-wrap text-center mr-0 mr-sm-20p">
                     <div className="trust__thumb d-flex align-items-center justify-content-center mb-20p">
                       <img src={star} alt="" className="img-fluid" />
@@ -102,7 +102,7 @@ const Trust = () => {
                     your giving
                   </div>
                 </li>
-                <li className="d-sm-flex text-center align-items-center py-3">
+                <li className="d-sm-flex align-items-center py-3">
                   <div className="trust__thumb-wrap text-center mr-0 mr-sm-20p">
                     <div className="trust__thumb d-flex align-items-center justify-content-center mb-20p">
                       <img src={file} alt="" className="img-fluid" />

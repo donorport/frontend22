@@ -246,7 +246,7 @@ function ProjectDetailMain(props) {
             <img
               alt=""
               className="img-fluid"
-              src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5c2c38e4fd28a71363f4ac5d_Tree-Frog-Logo-Mock.png"
+              src=""
             />
           </span>
         </Button> */}
@@ -257,7 +257,7 @@ function ProjectDetailMain(props) {
       </div>
 
       {embedlink && (
-        <div className="project-video-wrap">
+        <div className="project-video-wrap mb-1">
           <iframe
             title="product-details-video"
             key="product-details-video"
@@ -374,8 +374,7 @@ function ProjectDetailMain(props) {
               className="pt-12p pb-12p"
               icon={<FontAwesomeIcon icon={solid('image')} className="fs-3 text-info" />}
             >
-              The organization has indicated that they will upload Media from their
-              purchase.
+              The organization has indicated that they will upload Media from their purchase.
             </IconText>
           )}
           {allStateAds?.length > 0 && (
@@ -433,13 +432,13 @@ function ProjectDetailMain(props) {
                   <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
                 </Card.Header>
 
-                <div className="project-video-wrap">
+                <div className="project-video-wrap mb-1">
                   <iframe
                     title="product-details-video"
                     key="product-details-video"
                     width="498"
                     height="280"
-                    src={productDetails.fulfiledproductsDetails.video}
+                    src={embedlink2}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>

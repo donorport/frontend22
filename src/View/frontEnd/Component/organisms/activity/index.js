@@ -150,7 +150,7 @@ const Activity = (props) => {
               {!(state.following || state.settings) ? (
                 <Button
                   variant="link"
-                  className="ms-auto view__more-activity btn__link-light px-6p text-decoration-none"
+                  className="ms-auto view__more-activity btn__link-light px-6p fs-4 text-decoration-none"
                   onClick={() => moreClick()}
                 >
                   {/* <i className="fa-regular fa-ellipsis-stroke-vertical"></i> */}
@@ -172,13 +172,14 @@ const Activity = (props) => {
                     {state.allRead ? 'Mark all unread' : 'Mark all read'}
                     {loading && <CircularProgress className="ms-1" color="inherit" size={10} />}
                   </Button>
-                  <Button
+
+                  {/*   <Button
                     variant="link"
                     className="btn__link-light activity__settings ms-auto px-0"
                     onClick={() => showSettings()}
                   >
                     <FontAwesomeIcon icon={solid('gear')} />
-                  </Button>
+                  </Button>*/}
                 </div>
               ) : (
                 ''

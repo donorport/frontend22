@@ -1,25 +1,11 @@
 import DefaultLayout from '../../templates/default-layout';
 import './style.scss';
-import {
-  Button,
-  Accordion,
-  AccordionContext,
-  useAccordionButton,
-  Card,
-  Col,
-  Row,
-  Dropdown,
-  Container
-} from 'react-bootstrap';
-import LadderMenu from '../ladder-menu';
+import { Col, Row, Container } from 'react-bootstrap';
 import Avatar from '../../atoms/avatar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import helper, { priceFormat, getCalculatedPrice } from '../../../../../Common/Helper';
-import { useSelector, useDispatch } from 'react-redux';
+import helper, { getCalculatedPrice } from '../../../../../Common/Helper';
+import { useSelector } from 'react-redux';
 import userApi from '../../../../../Api/frontEnd/user';
 import React, { useState, useEffect } from 'react';
-import FrontLoader from '../../../../../Common/FrontLoader';
 import AvatarImg from '../../../../../assets/images/avatar_default.png';
 import Page from '../../../../../components/Page';
 
@@ -41,8 +27,8 @@ const LeaderBoard = () => {
   };
 
   useEffect(() => {
-        (async () => {
-            setLoading(true);
+    (async () => {
+      setLoading(true);
       if (user.countryId) {
         await getList();
       }
@@ -56,14 +42,14 @@ const LeaderBoard = () => {
         title="Donorport | Leaderboard"
         description="See where you rank among the top Donors. All Time.. All Time; Locally; Recent. 1. Karl Martin.. 1005 XP.. Captain. 2. Dusty Selkirk.. 855 XP."
       >
-       {/*<FrontLoader loading={loading} />*/}
+        {/*<FrontLoader loading={loading} />*/}
         <DefaultLayout>
           <Container luid className="position-relative pb-5 pt-5">
             <h1 className="fs-2 text-dark fw-bolder" style={{ marginTop: '50px' }}>
               Leaderboard
             </h1>
             <div className="fs-5 text-light" style={{ marginBottom: '56px' }}>
-              See where you rank among the top Donors in{' '}
+              See where you rank among the top donors in{' '}
               {user.countryName ? user.countryName : userData ? userData.country : ''}
             </div>
 

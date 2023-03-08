@@ -1,11 +1,9 @@
-// import React from "react";
 import { Button } from 'react-bootstrap';
 import Avatar from '../../atoms/avatar';
 import './style.scss';
 import organizationApi from '../../../../../Api/frontEnd/organization';
 import React, { useState, useEffect } from 'react';
 import helper, { getCookie, setCookie, deleteCookie } from '../../../../../Common/Helper';
-import FrontLoader from '../../../../../Common/FrontLoader';
 import ToastAlert from '../../../../../Common/ToastAlert';
 import { useSelector, useDispatch } from 'react-redux';
 import removeImg from '../../../../../assets/images/remove-link.svg';
@@ -270,7 +268,7 @@ function LinkedOrg(props) {
             <div className="linked__item-img-wrap">
               <img
                 className="linked__item-img img-fluid" alt="a"
-                src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5c2c38e4fd28a71363f4ac5d_Tree-Frog-Logo-Mock.png"
+                src=""
               />
             </div>
             <div className="linked__item-label fs-7 fw-bold pl-12p">

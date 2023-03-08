@@ -7,7 +7,7 @@
     .logo__wrap {
       @include media-breakpoint-down(sm) {
         border-bottom: 1px solid var(--border-input);
-        min-height: 80px
+        min-height: 80px;
       }
     }
 
@@ -30,6 +30,9 @@
       border-radius: 3px;
       width: 49px;
     }
+    .qty__input:focus-visible {
+      outline: none;
+    }
 
     .checkout__section {
       @include media-breakpoint-up(lg) {
@@ -49,7 +52,7 @@
 
       position: relative;
       &:before {
-        content: "";
+        content: '';
         background-color: var(--bkg-shade);
         position: absolute;
         left: 0;

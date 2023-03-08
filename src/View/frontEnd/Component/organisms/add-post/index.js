@@ -9,34 +9,21 @@ import {
   useAccordionButton,
   Card,
   Col,
-  Row,
-  Dropdown
+  Row
 } from 'react-bootstrap';
 
-// import { ToggleSwitch, FeedTag } from "@components/atoms";
 import ToggleSwitch from '../../atoms/toggle-switch';
 import FeedTag from '../../atoms/feed-tag';
-import * as Icon from '../../atoms/category-icons';
-import categoryApi from '../../../../../Api/admin/category';
-import projectApi from '../../../../../Api/admin/project';
-import productApi from '../../../../../Api/admin/product';
 import { WithContext as ReactTags } from 'react-tag-input';
 import noimg from '../../../../../assets/images/noimg.jpg';
-import helper, { convertAddress, priceFormat } from '../../../../../Common/Helper';
-import { validateAll } from 'indicative/validator';
-import ToastAlert from '../../../../../Common/ToastAlert';
-import { confirmAlert } from 'react-confirm-alert';
-import styled from 'styled-components';
-// import styles from "../../../../../Common/MapBoxStyles"
-import { SearchBox } from '@mapbox/search-js-react';
+import helper, { priceFormat } from '../../../../../Common/Helper';
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
-import { useSelector, useDispatch } from 'react-redux';
-import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
+import { useSelector } from 'react-redux';
+import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
-// require('mapbox-gl/dist/mapbox-gl.css');
 
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default; // eslint-disable-line
 
@@ -142,7 +129,7 @@ const AddPost = (props) => {
   let gallaryImages = props.gallaryImages;
 
   const setModelShow = props.setModelShow;
-console.log({seletedProjectList})
+  console.log({ seletedProjectList });
   const [location, setLocation] = useState({
     organizationLocation: '',
     locationName: '',
@@ -152,8 +139,8 @@ console.log({seletedProjectList})
 
   // console.log(galleryUrl)
   let url = galleryUrl;
-  let videoid = url ?url?.split("?v=")[1] :"";
-  let embedlink = videoid ? "http://www.youtube.com/embed/" + videoid : "";
+  let videoid = url ? url?.split('?v=')[1] : '';
+  let embedlink = videoid ? 'http://www.youtube.com/embed/' + videoid : '';
 
   // console.log(gallaryImages)
 
@@ -221,7 +208,7 @@ console.log({seletedProjectList})
           <img
             className="img-fluid"
             alt=""
-            src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f47d53860aae8b7569f45a7_rocket.svg"
+            src=""
           />
         </div>
         <div className="flex__1 text-light mb-2 text-center text-sm-start">
@@ -1078,7 +1065,7 @@ console.log({seletedProjectList})
                       />
                     </div>
 
-                    <div className="project-video-wrap">
+                    <div className="project-video-wrap mb-1">
                       <iframe
                         title="product-video"
                         key="product-video"

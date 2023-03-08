@@ -26,7 +26,7 @@ function OrganisationProjectsWidget(props) {
             return <OrganisationProjectItem project={project} key={i} />;
           })
         ) : (
-          <p>Projects not found</p>
+          <p>No Projects created</p>
         )}
         {/* <OrganisationProjectItem /> */}
       </ul>

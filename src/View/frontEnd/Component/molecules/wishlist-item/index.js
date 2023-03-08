@@ -11,7 +11,8 @@ import { Link } from 'react-router-dom';
 function WishlistItem(props) {
   let item = props.item;
   const getCalc = getCalculatedPrice();
-  let price = getCalc.getData(item.productDetails.price);
+  //let price = getCalc.getData(item.productDetails.displayPrice);
+  let price = item?.productDetails?.displayPrice;
 
   return (
     <li className="wishlist__item p-1 py-2 d-flex align-items-center border-bottom">

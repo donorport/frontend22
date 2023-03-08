@@ -734,7 +734,7 @@ const UserProfile = () => {
       </Button>
 
       <div className="mb-5 mt-5">
-        <h4 className="fw-bolder">Account Deactivation-1</h4>
+        <h4 className="fw-bolder">Account Deactivation</h4>
         <div className="text-subtext mb-3">Permanently delete your Donorport account</div>
         <div className="w-400 mw-100">
           <div className="deactivate">

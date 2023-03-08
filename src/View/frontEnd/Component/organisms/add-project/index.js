@@ -8,7 +8,6 @@ import ToggleSwitch from '../../atoms/toggle-switch';
 import FeedTag from '../../atoms/feed-tag';
 import FileUpload from '../../atoms/file-upload';
 import helper from '../../../../../Common/Helper';
-// import noimg from "../../../assets/images/noimg.jpg"
 import noimg from '../../../../../assets/images/noimg.jpg';
 
 import './style.scss';
@@ -80,7 +79,7 @@ const AddProject = (props) => {
           <img
             className="img-fluid"
             alt=""
-            src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f47d53860aae8b7569f45a7_rocket.svg"
+            src=""
           />
         </div>
         <div className="flex__1 text-light mb-2 mb-sm-0 text-center text-sm-start">
@@ -215,8 +214,8 @@ const AddProject = (props) => {
                 <p className="error">{error ? (error.video ? error.video : '') : ''}</p>
               )}
             </div>
-            {/* <div className="project-video-wrap"> */}
-            <div className="project-video-wrap">
+            {/* <div className="project-video-wrap mb-1"> */}
+            <div className="project-video-wrap mb-1">
               <iframe
                 title="project-video"
                 key="project-video"

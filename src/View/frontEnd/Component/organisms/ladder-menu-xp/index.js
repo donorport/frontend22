@@ -3,6 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import './style.scss';
+import donation from '../../../../../assets/images/donate.svg';
+import speech from '../../../../../assets/images/speech-bubble.svg';
+import share from '../../../../../assets/images/share.svg';
+import wallet from '../../../../../assets/images/wallet.svg';
 
 const LadderMenuXp = (props) => {
   const [active, setActive] = useState(0);
@@ -58,17 +62,11 @@ const LadderMenuXp = (props) => {
             className="ladder__menu-item"
             onClick={() => {
               setActive(false);
-              props.onChangeDropdown(
-                'DONATED',
-                'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/60088347cb80b5186f9e1ead_donate.svg'
-              );
+              props.onChangeDropdown('DONATED', donation);
             }}
           >
             <div className="ladder__icon">
-              <img
-                alt=""
-                src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/60088347cb80b5186f9e1ead_donate.svg"
-              />
+              <img alt="" src={donation} />
             </div>
             Donated
           </li>
@@ -76,17 +74,11 @@ const LadderMenuXp = (props) => {
             className="ladder__menu-item "
             onClick={() => {
               setActive(false);
-              props.onChangeDropdown(
-                'FOLLOWED',
-                'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef6176ab4ea47d76444346c_speech-bubble.svg'
-              );
+              props.onChangeDropdown('FOLLOWED', speech);
             }}
           >
             <div className="ladder__icon">
-              <img
-                alt=""
-                src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef6176ab4ea47d76444346c_speech-bubble.svg"
-              />
+              <img alt="" src={speech} />
             </div>
             Followed
           </li>
@@ -94,17 +86,11 @@ const LadderMenuXp = (props) => {
             className="ladder__menu-item"
             onClick={() => {
               setActive(false);
-              props.onChangeDropdown(
-                'SHARED',
-                'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef61ef15babc48a50bd2bd5_share.svg'
-              );
+              props.onChangeDropdown('SHARED', share);
             }}
           >
             <div className="ladder__icon">
-              <img
-                alt=""
-                src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef61ef15babc48a50bd2bd5_share.svg"
-              />
+              <img alt="" src={share} />
             </div>
             Shared
           </li>
@@ -112,17 +98,11 @@ const LadderMenuXp = (props) => {
             className="ladder__menu-item"
             onClick={() => {
               setActive(false);
-              props.onChangeDropdown(
-                'BOUGHT',
-                'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5e4c2ff23144db148fd45b43_wallet.svg'
-              );
+              props.onChangeDropdown('BOUGHT', wallet);
             }}
           >
             <div className="ladder__icon">
-              <img
-                alt=""
-                src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5e4c2ff23144db148fd45b43_wallet.svg"
-              />
+              <img alt="" src={wallet} />
             </div>
             Bought
           </li>

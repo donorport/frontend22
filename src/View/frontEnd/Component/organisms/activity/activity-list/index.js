@@ -1,5 +1,6 @@
 import ActivityItem from "../../../molecules/activity-item";
 import React, { useState, useEffect } from "react";
+import snooze from '../../../../../../assets/images/mute.svg';
 
 function ActivityList(props) {
   const [allNotificationList, setAllNotificationList] = useState([])
@@ -49,7 +50,7 @@ function ActivityList(props) {
         <div className="empty__block pt-5">
           <div className="empty__cart mb-2">
             <img
-              src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ebb02894add114eeaa5681e_mute.svg"
+              src={snooze}
               alt=""
               width='90%'
             />

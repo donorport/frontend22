@@ -2,7 +2,7 @@ import { Button, Dropdown, Modal } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
-import helper from '../../../../../Common/Helper';
+import helper, { priceFormat } from '../../../../../Common/Helper';
 import { confirmAlert } from 'react-confirm-alert';
 import Avatar from '../../atoms/avatar';
 import AvatarImg from '../../../../../assets/images/avatar.png';
@@ -13,6 +13,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Accordion, AccordionItem as Item } from '@szhsin/react-accordion';
 import chevronDown from '../../../../../assets/images/chevron-down.svg';
+import donate from '../../../../../assets/images/donate.svg';
 
 let PageSize = 10;
 
@@ -27,10 +28,16 @@ const AdminTaxTable = (props) => {
     let sum;
     if (data.length > 0) {
       data.map((i, k) => {
-        tempSub.push(i.amount);
+        //tempSub.push(i.amount);
+        let productTotal = i.orderItemDetails?.totalPrice;
+        let donationTotal = (i.amount - 0.3) / 1.049;
+        let taxableProduct = priceFormat(Number(productTotal));
+        let taxableDonation = priceFormat(Number(donationTotal));
+        tempSub.push(i.type === 'Purchased' ? taxableProduct : taxableDonation);
       });
       sum = tempSub.reduce(function (a, b) {
-        return a + b;
+        return parseFloat(a) + parseFloat(b);
+        // return a + b;
       }, 0);
     } else {
       sum = 0;
@@ -205,7 +212,7 @@ const AdminTaxTable = (props) => {
                                 <img
                                   loading="lazy"
                                   width={36}
-                                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/60088347cb80b5186f9e1ead_donate.svg"
+                                  src=""
                                   alt=""
                                 />
                               </div>
@@ -390,11 +397,18 @@ const AdminTaxTable = (props) => {
                       <div className="container-fluid px-2">
                         {item.length > 1 &&
                           item.map((i1, k) => {
+                            //Subtract the 2.9% from the subtotal to get actual amount sent to Charity:
+                            let productTotal = i1.orderItemDetails?.totalPrice;
+                            //let donationTotal = (i1.amount - 0.3) / 1.049;
+                            let donationTotal = (i1.amount - 0.3) / 1.049;
+                            let taxableProduct = priceFormat(Number(productTotal));
+                            let taxableDonation = priceFormat(Number(donationTotal));
+
                             let Aimg =
                               i1.type === 'Purchased'
                                 ? helper.CampaignProductImagePath +
                                   i1.orderItemDetails?.productImage
-                                : 'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/60088347cb80b5186f9e1ead_donate.svg';
+                                : { donate };
 
                             // console.log('li', i1)
 
@@ -413,7 +427,9 @@ const AdminTaxTable = (props) => {
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                                         <div className="text-light fw-bold fs-5">
                                           {i1.currencySymbol}
-                                          {i1.amount.toFixed(2)}
+                                          {i1.type === 'Purchased'
+                                            ? taxableProduct
+                                            : taxableDonation}
                                         </div>
                                         <div className="text-light fs-8">
                                           {moment(i1.created_at).fromNow()}
@@ -525,7 +541,7 @@ const AdminTaxTable = (props) => {
                   <img
                     loading="lazy"
                     width={36}
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/6005ba4366767589aa5a9f09_5ecc698a8164c2821bc91f84_Classic_topview-500x392.png"
+                    src="""
                     alt=""
                   />
                 </div>
@@ -629,7 +645,7 @@ const AdminTaxTable = (props) => {
                   <img
                     loading="lazy"
                     width={36}
-                    src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/6005ba4366767589aa5a9f09_5ecc698a8164c2821bc91f84_Classic_topview-500x392.png"
+                    src=""
                     alt=""
                   />
                 </div>

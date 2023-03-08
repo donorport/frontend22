@@ -109,7 +109,7 @@ const FilterDropdown = (props) => {
           >
             <div className="d-flex align-items-center justify-content-center">
               {/* <div className="avatar__small avatar__small--main"style={{width:"29px",height:"29px"}}>
-                  <img src="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/59f2490b188b770001727b5b_pp-supplies.svg" alt="" />
+                  <img src="" alt="" />
                   </div> */}
               <span className="fw-bold">{categoryDetails?.name}</span>
               <span
@@ -209,6 +209,7 @@ const FilterDropdown = (props) => {
               ))}
             </div>
           </div>
+          <div className="filter__footer p-2"></div>
         </Dropdown.Menu>
       </Dropdown>
     </>

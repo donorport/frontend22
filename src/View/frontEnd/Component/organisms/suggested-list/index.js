@@ -51,11 +51,11 @@ function SuggestedList(props) {
             );
           })}
       {/* <SuggestedItem
-          imgUrl="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5c2c232c4fdbba5411c5cb63_21AK148G912_CC148_1024x1024.png"
+          imgUrl=""
           sold
         />
-        <SuggestedItem imgUrl="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5c2c257efd28a7c95af49fa8_xlarge.png" />
-        <SuggestedItem imgUrl="https://uploads-ssl.webflow.com/59df9e77ad9420000140eafe/5c2c232c4fdbba5411c5cb63_21AK148G912_CC148_1024x1024.png" /> */}
+        <SuggestedItem imgUrl="" />
+        <SuggestedItem imgUrl="" /> */}
     </ul>
     // </SuggestionWrapper>
   );

@@ -3,13 +3,14 @@ import './style.scss';
 import { Link } from 'react-router-dom';
 // import { setUserCountry} from "../../user/user.action"
 import { useSelector, useDispatch } from 'react-redux';
+import logo from '../../../../../assets/images/logo.svg';
 
 // class Logo extends React.Component {
 //   render() {
 //     return (
 //       <a href="/" className="logo-wrap d-flex align-items-center">
 //         <img
-//           src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/61fed883243c845a8478a637_2022%20(Icon).svg"
+//           src=""
 //           alt="Donorport Logo Icon"
 //           className="logo-icon"
 //         />
@@ -26,8 +27,8 @@ const Logo = () => {
     <>
       <Link to="/" className="logo-wrap d-flex align-items-center text-decoration-none position-relative">
         <img
-          // src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/61fed883243c845a8478a637_2022%20(Icon).svg"
-          src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/62a2a55e87f6544c42fa0e73_2022%20Logo%20Icon%20(2).svg"
+          // src=""
+          src={logo}
           alt="Donorport Logo Icon"
           className="logo-icon"
         />

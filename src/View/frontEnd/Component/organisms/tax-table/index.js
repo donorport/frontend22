@@ -11,6 +11,7 @@ import helper, { priceFormat } from '../../../../../Common/Helper';
 import CSVExportBtn from '../../../CSVExportBtn';
 import { Accordion, AccordionItem as Item } from '@szhsin/react-accordion';
 import chevronDown from '../../../../../assets/images/chevron-down.svg';
+import donation from '../../../../../assets/images/donate.svg';
 
 const TaxTable = (props) => {
   const totalVal = (data) => {
@@ -165,7 +166,7 @@ const TaxTable = (props) => {
                                 <img
                                   loading="lazy"
                                   width={36}
-                                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/60088347cb80b5186f9e1ead_donate.svg"
+                                  src="
                                   alt=""
                                 />
                               </div>
@@ -215,7 +216,7 @@ const TaxTable = (props) => {
                                         item[0].type === 'Purchased'
                                           ? helper.CampaignProductImagePath +
                                             item[0]?.orderItemDetails?.productImage
-                                          : 'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/60088347cb80b5186f9e1ead_donate.svg'
+                                          : donation
                                       }
                                       alt=""
                                     />
@@ -313,7 +314,7 @@ const TaxTable = (props) => {
                             //Subtract the 2.9% from the subtotal to get actual amount sent to Charity:
                             let productTotal = i1.orderItemDetails?.totalPrice;
                             //let donationTotal = (i1.amount - 0.3) / 1.049;
-                            let donationTotal = i1.amount;
+                            let donationTotal = (i1.amount - 0.3) / 1.049;
                             let taxableProduct = priceFormat(Number(productTotal));
                             let taxableDonation = priceFormat(Number(donationTotal));
 
@@ -321,7 +322,7 @@ const TaxTable = (props) => {
                               i1.type === 'Purchased'
                                 ? helper.CampaignProductImagePath +
                                   i1.orderItemDetails?.productImage
-                                : 'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/60088347cb80b5186f9e1ead_donate.svg';
+                                : donation;
 
                             // console.log('li', i1)
 
@@ -420,7 +421,7 @@ const TaxTable = (props) => {
                 </div>
                 <div className="order-1 order-sm-2 d-flex align-items-center text-dark flex__1">
                   <div className="position-relative">
-                    <ListItemImg imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef61d975395ccef43cbb71f_top.svg" />
+                    <ListItemImg imgSrc="" />
                   </div>
                   <div className="d-sm-flex align-items-center flex__1 ms-2">
                     <div>

@@ -92,7 +92,7 @@ const Pricing = () => {
                         {/* <span className="display-4">2%</span> */}
                       </div>
 
-                      <p style={{ color: 'rgba(151,150,177,.48)' }}>
+                      <p>
                         Donorport adds 2% at checkout to continue offering our services to donors
                         like you.
                       </p>
@@ -114,7 +114,7 @@ const Pricing = () => {
                         {/* <span className="display-4">3%</span> */}
                       </div>
 
-                      <p style={{ color: 'rgba(151,150,177,.48)' }}>
+                      <p>
                         + $0.30 per item donated *including debit and credit card charges (Stripe)
                       </p>
                     </div>
@@ -138,9 +138,7 @@ const Pricing = () => {
                         </span>
                       </div>
 
-                      <p style={{ color: 'rgba(151,150,177,.48)' }}>
-                        Paid by the Donor at checkout (non-deductible)
-                      </p>
+                      <p>Paid by the Donor at checkout (non-deductible)</p>
                     </div>
                   </div>
                 </div>

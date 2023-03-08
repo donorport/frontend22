@@ -233,7 +233,7 @@ const Cart = (props) => {
               <span className="fw-bolder flex__1">
                 <img
                   className="img-stripe "
-                  src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/62e82d7d4d59cb56b16a8b29_stripe.png"
+                  src=""
                   alt=""
                   style={{ width: '44px' }}
                 />

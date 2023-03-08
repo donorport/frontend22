@@ -36,7 +36,7 @@ const XpTable = (props) => {
               </span>
             </div>
             <div className="d-flex align-items-center">
-              <span className="text-light fw-semibold fs-5 d-none d-sm-flex">
+              <span className="text-light fw-bold fs-5 d-none d-sm-flex">
                 {data.currencySymbol}
                 {data.amount.toFixed(2)}
               </span>
@@ -46,6 +46,7 @@ const XpTable = (props) => {
         break;
 
       case 'BOUGHT':
+        let price = data.quantity * data.amount;
         Res = (
           <div className="order-1 order-sm-2 d-flex align-items-center text-dark me-sm-3 flex__1">
             <div className="position-relative">
@@ -63,9 +64,9 @@ const XpTable = (props) => {
               </span>
             </div>
             <div className="d-flex align-items-center">
-              <span className="text-light fw-bold fs-4 d-none d-sm-flex">
+              <span className="text-light fw-bold fs-5 d-none d-sm-flex">
                 {data.currencySymbol}
-                {data.amount.toFixed(2)}
+                {price.toFixed(2)}
               </span>
             </div>
           </div>
@@ -165,7 +166,7 @@ const XpTable = (props) => {
 
                     {/* <div className="order-1 order-sm-2 d-flex align-items-center text-dark me-sm-3 flex__1">
                         <div className="position-relative">
-                          <ListItemImg imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef61d975395ccef43cbb71f_top.svg" />
+                          <ListItemImg imgSrc=" />
                         </div>
 
                         <div className="d-sm-flex align-items-center flex__1 ms-2">
@@ -194,7 +195,7 @@ const XpTable = (props) => {
             //     </div>
             //     <div className="order-1 order-sm-2 d-flex align-items-center text-dark me-sm-3 flex__1">
             //       <div className="position-relative">
-            //         <ListItemImg imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef61ef15babc48a50bd2bd5_share.svg" />
+            //         <ListItemImg imgSrc="" />
             //       </div>
             //       <div className="d-sm-flex align-items-center flex__1 ms-2">
             //         <div className="fw-bold fs-5 billing__name">Social Chain</div>
@@ -219,7 +220,7 @@ const XpTable = (props) => {
             //     </div>
             //     <div className="order-1 order-sm-2 d-flex align-items-center text-dark me-sm-3 flex__1">
             //       <div className="position-relative">
-            //         <ListItemImg imgSrc="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5ef61d975395ccef43cbb71f_top.svg" />
+            //         <ListItemImg imgSrc="" />
             //       </div>
             //       <div className="d-sm-flex align-items-center flex__1 ms-2">
             //         <div className="fw-bold fs-5 billing__name">Top Donor</div>

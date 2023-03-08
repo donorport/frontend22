@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PlaceholderImg from "../../../../../assets/images/placeholder.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import funded from '../../../../../assets/images/funded-badge.svg';
 import "./style.scss";
 
 const propTypes = {
@@ -34,7 +35,7 @@ function SuggestedItem({ sold, media, ...otherProps }) {
 
             <img
               className="img-fluid"
-              src="https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5d41c138db84bd176388cc01_sold-out.svg"
+              src={funded}
               alt=""
             />
           </div>

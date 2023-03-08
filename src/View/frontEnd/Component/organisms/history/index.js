@@ -146,6 +146,7 @@ function History(props) {
             </Button>
           </div>
         )}
+        {historyList?.length === 0 && <div className="mt-4 fs-6">No recent donations</div>}
       </div>
     </>
   );
