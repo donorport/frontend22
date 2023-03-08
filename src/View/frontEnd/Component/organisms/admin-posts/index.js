@@ -18,7 +18,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { useSelector } from 'react-redux';
-import { Button, Card, Col, Row, Dropdown } from 'react-bootstrap';
+import { Button, Card, Col, Row, Dropdown, Modal } from 'react-bootstrap';
 import moment from 'moment';
 import _ from 'lodash';
 import { GalleryImg } from '../../atoms';
@@ -61,6 +61,7 @@ const AdminPosts = () => {
   const [productList, setProductList] = useState([]);
   const [projectList, setProjectList] = useState([]);
   const [update, setUpdate] = useState(false);
+  const [deletedFile, setDeletedFile] = useState(false);
   const navigate = useNavigate();
   const [modelShow, setModelShow] = useState(false);
   const [seletedProjectList, setSeletedProjectList] = useState([]);
@@ -918,6 +919,7 @@ const AdminPosts = () => {
                   if (deleteFulfilOrderApi.data.success === true) {
                     // setLoading(false);
                     setUpdate(!update);
+                    setDeletedFile(true)
                     ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'success' });
                   }
                 }
@@ -1720,7 +1722,7 @@ const AdminPosts = () => {
                       </div>
                     </>
                   )}*/}
-                {!fulfilProductDetails?.isFulfiled ? (
+                {!fulfilProductDetails?.isFulfiled || deletedFile ? (
                   <>
                     <label htmlFor="videoInput" className="form__label mt-3">
                       Sales Receipt &nbsp;
@@ -1863,27 +1865,7 @@ const AdminPosts = () => {
                           {moment(fulfilProductDetails?.fulfilDetails.created_at).fromNow()}
                         </div>
                       </div>
-                      {/* <Modal
-                        size="lg"
-                        show={showReceipt}
-                        onHide={() => setShowReceipt(false)}
-                        aria-labelledby="show-sales-receipt"
-                      >
-                        <Modal.Header>
-                          <Modal.Title id="show-sales-receipt"></Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                          <GalleryImg
-                            thumbImgSrc={
-                              helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
-                            }
-                            bigImgSrc={
-                              helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
-                            }
-                          />
-                        </Modal.Body>
-                      </Modal> */}
-
+                      
                       <div className="ms-auto">
                         <Dropdown className="d-flex ms-auto" autoClose="outside">
                           <Dropdown.Toggle variant="link" className="no-caret text-decoration-none">
@@ -1939,7 +1921,7 @@ const AdminPosts = () => {
                         </Dropdown>
                       </div>
                     </div>
-                    {showReceipt && (
+                    {/* {showReceipt && (
                       <div className="saleReceipt">
                         <span className="close" onClick={() => setShowReceipt(false)}>
                           &times;
@@ -1953,7 +1935,27 @@ const AdminPosts = () => {
                           }
                         />
                       </div>
-                    )}
+                    )} */}
+                    <Modal
+                        size="lg"
+                        show={true}
+                        onHide={() => setShowReceipt(false)}
+                        aria-labelledby="show-sales-receipt"
+                      >
+                        <Modal.Header>
+                          <Modal.Title id="show-sales-receipt"></Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                          <GalleryImg
+                            thumbImgSrc={
+                              helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
+                            }
+                            bigImgSrc={
+                              helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
+                            }
+                          />
+                        </Modal.Body>
+                      </Modal>
                   </>
                 )}
               </Col>

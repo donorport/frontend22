@@ -110,19 +110,31 @@ export default function HeaderController() {
     }
 
     const getNotificationList = async () => {
-        let data = {}
-        data.countryId = user.countryId
-        const getList = await notificationApi.list(userAuthToken, data)
-
+        let data = {};
+        data.countryId = user.countryId;
+        data.getAll = true
+        const getList = await notificationApi.list(userAuthToken, data);
+    
         if (getList) {
-
-            if (getList.data.success) {
-                setNotificationList(getList.data.data)
-            }
+          if (getList.data.success) {
+            let unfilteteredList = getList.data.data;
+                    let filteredList = []
+                    unfilteteredList.forEach(notification => {
+                        if(notification?.userNotificationDetails?.watched && notification?.userNotificationDetails?.updated_at > notification?.created_at){
+                            if(notification.type !== "PROJECT" ){
+                                filteredList.push(notification)
+                            } else {
+                                if(notification.info === "")
+                                filteredList.push(notification)
+                            }
+                        }
+                    })
+                    setNotificationList(filteredList)
+          }
         }
-
+        
     }
-
+    
     useEffect(() => {
         (async () => {
             if (userAuthToken && user.countryId) {

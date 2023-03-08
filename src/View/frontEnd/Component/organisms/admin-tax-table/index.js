@@ -136,7 +136,10 @@ const AdminTaxTable = (props) => {
         </div>
         <ul className="list-unstyled mb-0 list__table-list">
           {taxList.length > 0 ? (
-            taxList.map((item, i) => {
+            taxList[0].map((item, i) => {
+              const yearList = item.created_at.split("-")
+              console.log(yearList)
+              console.log(props.activeYear)
               const disableHeader = item.length === 1;
               return (
                 <>
@@ -151,19 +154,19 @@ const AdminTaxTable = (props) => {
                             <div className="d-flex align-items-center me-sm-2 mb-3 mb-sm-0">
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                                 <div className="text-light fw-bold fs-5">
-                                  {item[0].currencySymbol}
-                                  {totalVal(item)}
+                                  {item.currencySymbol}
+                                  {totalVal([item])}
                                 </div>
                                 <div className="text-light fs-8">
-                                  {moment(item[0].created_at).fromNow()}
+                                  {moment(item.created_at).fromNow()}
                                 </div>
                               </div>
                               <div className="position-relative d-flex">
                                 <Avatar
                                   size={52}
                                   avatarUrl={
-                                    item[0].userDetails.image
-                                      ? helper.DonorImageResizePath + item[0].userDetails.image
+                                    item.userDetails.image
+                                      ? helper.DonorImageResizePath + item.userDetails.image
                                       : AvatarImg
                                   }
                                   border={0}
@@ -176,15 +179,15 @@ const AdminTaxTable = (props) => {
                                 style={{ cursor: 'default' }}
                                 onClick={(e) => e.stopPropagation()}
                               >
-                                <div className="fw-bold fs-5">{item[0].userDetails?.name}</div>
-                                <div className="text-light mb-1">{item[0].userDetails?.email}</div>
+                                <div className="fw-bold fs-5">{item.userDetails?.name}</div>
+                                <div className="text-light mb-1">{item.userDetails?.email}</div>
                                 <div className="text-light">
-                                  {item[0].userDetails.street +
+                                  {item.userDetails.street +
                                     ', ' +
-                                    item[0].userDetails.cityDetails[0]?.city}&nbsp;
-                                  {item[0].userDetails.stateDetails[0]?.state +
+                                    item.userDetails.cityDetails?.city}&nbsp;
+                                  {item.userDetails.stateDetails?.state +
                                     ', ' +
-                                    item[0].userDetails.zip}
+                                    item.userDetails.zip}
                                   {/* 255 West Baker St. */}
                                   {/* <br /> Dallas TX, USA 118098 */}
                                 </div>
@@ -195,7 +198,7 @@ const AdminTaxTable = (props) => {
                               style={{ justifyContent: 'end' }}
                             >
                               {/* {
-                            item[0].type === 'Donated' &&
+                            item.type === 'Donated' &&
 
                             <>
                               <div className="pe-1 p-sm-2 mr-12p">
@@ -222,14 +225,14 @@ const AdminTaxTable = (props) => {
                                 //     <img
                                 //       loading="lazy"
                                 //       width={36}
-                                //       src={helper.CampaignProductImagePath + item[0].orderItemDetails?.productImage}
+                                //       src={helper.CampaignProductImagePath + item.orderItemDetails?.productImage}
                                 //       alt=""
                                 //     />
                                 //   </div>
                                 //   <div>
                                 //     <div>
                                 //       <Button variant="link" className="text-dark px-0 py-3p">
-                                //         {item[0].orderItemDetails?.productName}
+                                //         {item.orderItemDetails?.productName}
                                 //       </Button>
                                 //     </div>
                                 //     <div className="text-light fs-7">
@@ -237,7 +240,7 @@ const AdminTaxTable = (props) => {
                                 //         icon={regular("wallet")}
                                 //         className="mr-3p"
                                 //       />
-                                //       Bought {item[0].orderItemDetails?.quantity}
+                                //       Bought {item.orderItemDetails?.quantity}
                                 //     </div>
                                 //   </div>
                                 // </div>
@@ -247,11 +250,11 @@ const AdminTaxTable = (props) => {
                                     <img
                                       loading="lazy"
                                       width={36}
-                                      // src={helper.CampaignProductImagePath + item[0].orderItemDetails?.productImage}
+                                      // src={helper.CampaignProductImagePath + item.orderItemDetails?.productImage}
                                       src={
-                                        item[0].type === 'Purchased'
+                                        item.type === 'Purchased'
                                           ? helper.CampaignProductImagePath +
-                                            item[0]?.orderItemDetails?.productImage
+                                            item?.orderItemDetails?.productImage
                                           : 'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/60088347cb80b5186f9e1ead_donate.svg'
                                       }
                                       alt=""
@@ -264,9 +267,9 @@ const AdminTaxTable = (props) => {
                                         variant="link"
                                         className="text-dark px-0 py-3p"
                                       >
-                                        {/* {item[0].orderItemDetails?.productName} */}
-                                        {item[0].type === 'Purchased'
-                                          ? item[0].orderItemDetails?.productName
+                                        {/* {item.orderItemDetails?.productName} */}
+                                        {item.type === 'Purchased'
+                                          ? item.orderItemDetails?.productName
                                           : 'Donation'}
                                       </Button>
                                     </div>
@@ -275,14 +278,14 @@ const AdminTaxTable = (props) => {
                                     icon={regular("wallet")}
                                     className="mr-3p"
                                   />
-                                  Bought {item[0].orderItemDetails?.quantity} */}
-                                      {item[0].type === 'Purchased' ? (
+                                  Bought {item.orderItemDetails?.quantity} */}
+                                      {item.type === 'Purchased' ? (
                                         <>
                                           <FontAwesomeIcon
                                             icon={regular('wallet')}
                                             className="mr-3p"
                                           />
-                                          Bought {item[0].orderItemDetails?.quantity}
+                                          Bought {item.orderItemDetails?.quantity}
                                         </>
                                       ) : (
                                         <>
@@ -298,7 +301,7 @@ const AdminTaxTable = (props) => {
                                 </div>
                               )}
 
-                              {item.length > 0 && item[0].receipt ? (
+                              {item.receipt ? (
                                 <div
                                   className="d-flex align-items-center ms-sm-2 btn__wrap"
                                   onClick={(e) => e.stopPropagation()}
@@ -314,11 +317,11 @@ const AdminTaxTable = (props) => {
                                     />
                                     <div className="ps-2">
                                       <div className="file__name text-dark mb-3p fw-normal">
-                                        {item[0].receipt}
+                                        {item.receipt}
                                       </div>
                                       <div className="text-light fs-7 fw-normal">
                                         {/* 3 days ago - 1.3 Mb */}
-                                        {moment(item[0].updated_at).fromNow()}
+                                        {moment(item.updated_at).fromNow()}
                                       </div>
                                     </div>
                                   </Button>
@@ -336,7 +339,7 @@ const AdminTaxTable = (props) => {
                                     <Dropdown.Menu className="">
                                       <Dropdown.Item
                                         className="d-flex align-items-center p-2"
-                                        onClick={() => viewItem(item[0])}
+                                        onClick={() => viewItem(item)}
                                       >
                                         <span className="fw-bold fs-7 flex__1">View</span>
                                         <FontAwesomeIcon
@@ -347,7 +350,7 @@ const AdminTaxTable = (props) => {
                                       <Dropdown.Divider />
                                       <Dropdown.Item
                                         className="d-flex align-items-center p-2"
-                                        onClick={() => deleteItem(item[0])}
+                                        onClick={() => deleteItem(item)}
                                       >
                                         <span className="fw-bold fs-7 flex__1">Delete</span>
                                         <FontAwesomeIcon icon={regular('trash')} className="ms-1" />
@@ -369,10 +372,10 @@ const AdminTaxTable = (props) => {
                                     onChange={(e) =>
                                       props.uploadImage(
                                         e,
-                                        item[0].uniqueTransactionId,
-                                        item[0].userDetails?.email,
-                                        item[0].userDetails?.name,
-                                        item[0].userDetails?._id
+                                        item.uniqueTransactionId,
+                                        item.userDetails?.email,
+                                        item.userDetails?.name,
+                                        item.userDetails?._id
                                       )
                                     }
                                   />
@@ -399,8 +402,8 @@ const AdminTaxTable = (props) => {
                               i1.type === 'Purchased'
                                 ? i1.orderItemDetails?.productName
                                 : 'Donation';
-                            // console.log(item[0].type)
-                            // if (item[0].type === 'Purchased') {
+                            // console.log(item.type)
+                            // if (item.type === 'Purchased') {
 
                             return (
                               <>

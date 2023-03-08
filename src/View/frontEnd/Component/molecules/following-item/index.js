@@ -13,7 +13,6 @@ function FollowingItem(props) {
   const followToOrganization = props.followToOrganization
   const removeFollowedOrganization = props.removeFollowedOrganization
 
-
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -28,12 +27,24 @@ function FollowingItem(props) {
   const removeOrg = async () => {
     await removeFollowedOrganization(data?._id)
   }
+  let notificationType = data.type
+  let avatar =  ""
+  switch (notificationType) {
+    case "PROJECT":
+      avatar =  data?.projImageDetails[0]?.image ? helper.ProjectFullImagePath + data?.projImageDetails[0]?.image :  'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f4ab31be9fe7d7453a60b1f_user.svg'
+      break;
+    case "PRODUCT":
+      avatar =  data?.imageDetails[0]?.image ? helper.CampaignProductFullImagePath + data?.imageDetails[0]?.image :  'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f4ab31be9fe7d7453a60b1f_user.svg'
+      break;
+    case "ORGANIZATION":
+      avatar =  data?.CampaignAdminDetails?.logo ? helper.CampaignAdminLogoPath + data?.CampaignAdminDetails?.logo :  'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f4ab31be9fe7d7453a60b1f_user.svg'
+      break;
+  
+    default:
+      break;
+  }
 
-  let avatar = data?.CampaignAdminDetails?.logo ? helper.CampaignAdminLogoPath + data?.CampaignAdminDetails?.logo :  'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/5f4ab31be9fe7d7453a60b1f_user.svg'
-
-
-
-
+console.log("DATA______________: ", data)
   return (
     <li
       className="ad__activity__item p-1 d-flex align-items-center border-bottom bg-white"
@@ -42,7 +53,9 @@ function FollowingItem(props) {
         <ListItemImg size={56} imgSrc={avatar} className='charity_avatar_bg' />
         <div className="ad__activity__main px-12p" style={{ width: "110px" }}>
           <div className="ad__activity__title">
-            <Link to={"/organization/" + data.CampaignAdminDetails.slug} className="ad__activity__name mb-0 text-decoration-none text-dark fw-bold">{data?.CampaignAdminDetails?.name}</Link>
+            {data.type === "PROJECT" && <Link to={"/project/" + data?.projectDetails?.slug} className="ad__activity__name mb-0 text-decoration-none text-dark fw-bold">{data?.projectDetails[0]?.name}</Link>}
+            {data.type === "PRODUCT" && <Link to={"/item/" + data?.productDetails[0]?.slug} className="ad__activity__name mb-0 text-decoration-none text-dark fw-bold">{data?.productDetails[0]?.headline}</Link>}
+            {data.type === "ORGANIZATION" && <Link to={"/organization/" + data?.CampaignAdminDetails?.slug} className="ad__activity__name mb-0 text-decoration-none text-dark fw-bold">{data?.CampaignAdminDetails?.name}</Link>}
           </div>
         </div>
         <div className="ad__activity__right d-flex align-items-center me-2">

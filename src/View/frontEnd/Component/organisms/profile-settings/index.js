@@ -278,7 +278,13 @@ const ProfileSettings = () => {
       }
     }
   };
-
+  useEffect(() => {
+    setViewGalleryImages(data.images);
+    setState((s) => ({
+      ...s,
+      images: data.images
+    }));
+  }, [])
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -296,9 +302,7 @@ const ProfileSettings = () => {
         category: data.category_id,
         ein: data.ein,
         url: data.url,
-        images: data.images
       }));
-      setViewGalleryImages(data.images);
       let urlV = data.promoVideo;
       // let id = url && url.split("?v=")[1];
       // let embedUrl = url ? "http://www.youtube.com/embed/" + id : "";
@@ -329,11 +333,9 @@ const ProfileSettings = () => {
     data.promoVideo,
     data.state_id,
     data.url,
-    data.images,
     getCountryList,
     getCountryStateList,
     getStateCityList,
-    user.isUpdateOrg
   ]);
 
   useEffect(() => {

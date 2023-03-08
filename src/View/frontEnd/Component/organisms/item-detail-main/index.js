@@ -20,15 +20,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import './style.scss';
 import { GalleryImg } from '../../atoms';
 import { CircularProgress } from '@mui/material';
+import advertisementApi from "../../../../../Api/admin/advertisement"
 
-//import { TagTitle,WidgetTitle } from "../../atoms";
-// import WidgetTitle from "../../atoms";
 
 function ProjectDetailMain(props) {
   console.log('iFrame, item-detail-main');
   let productDetails = props.productDetails;
   
-  console.log('productDetails.galleryUrl: ', productDetails.galleryUrl);
   let videoid = productDetails.galleryUrl ? productDetails.galleryUrl.split("?v=")[1] : "";
   let embedlink = videoid ? "http://www.youtube.com/embed/" + videoid : "";
   const getCalc = getCalculatedPrice();
@@ -43,6 +41,7 @@ function ProjectDetailMain(props) {
 
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [allStateAds, setAllStateAds] = useState();
   const [addedToCard, setAddedToCard] = useState(false);
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const user = useSelector((state) => state.user);
@@ -50,16 +49,12 @@ function ProjectDetailMain(props) {
   let maxQuentity = productDetails.unlimited
     ? 1000
     : productDetails.quantity - productDetails.soldout;
-  // let substring = "<iframe";
-  // console.log(productDetails.galleryUrl.startsWith(substring))
-  // console.log(productDetails?.galleryUrl?.indexOf(substring)===0)
-  // console.log(productDetails?.galleryUrl)
+
 
   useEffect(() => {
     (async () => {
       if (!CampaignAdminAuthToken) {
         const checkItem = await props.checkItemInCart(productDetails._id);
-        // console.log(checkItem)
         if (checkItem === true) {
           setAddedToCard(true);
         } else {
@@ -68,6 +63,13 @@ function ProjectDetailMain(props) {
       }
     })();
   }, [!user.isUpdateCart, productDetails._id]);
+  
+  useEffect(() => {
+    (async () => {
+      const res = await advertisementApi.allStateAds()
+      setAllStateAds(res.data.data)
+    })();
+  },[]);
 
   const onClickFilter = async (e) => {
     await props.addProductToWishlist(productDetails._id);
@@ -113,7 +115,6 @@ function ProjectDetailMain(props) {
       cart_btn
     );
 
-  // console.log(props.wishListproductIds)
 
   return (
     <div className="project__detail-main">
@@ -377,26 +378,27 @@ function ProjectDetailMain(props) {
               purchase.
             </IconText>
           )}
-          {productDetails?.advertisements?.length > 0 && (
-            <IconText
-              className="pt-12p pb-12p"
-              icon={
-                // <FontAwesomeIcon icon="fa-solid fa-rectangle-ad" />
-                <FontAwesomeIcon icon={solid('rectangle-ad')} className="fs-3 text-info" />
-              }
-            >
-              {productDetails?.advertisements.map((ad, i) => {
-                return (
-                  <a href={ad.advertisementsData?.website} target="_blank" rel="noreferrer" key={i}>
+          {allStateAds?.length > 0 && (
+            allStateAds.filter(ad => ad.categoryId === productDetails?.categoryDetails?._id && ad.countryId === productDetails?.campaignDetails?.country_id && ad.stateId === productDetails?.campaignDetails?.state_id).map((ad, i) => {
+              return (
+                  <IconText
+                    className="pt-12p pb-12p"
+                    icon={
+                      // <FontAwesomeIcon icon="fa-solid fa-rectangle-ad" />
+                      <FontAwesomeIcon icon={solid('rectangle-ad')} className="fs-3 text-info" />
+                    }
+                    key={ad._id}
+                  >
+                  <a href={ad.advertisementsDetails[0]?.website} target="_blank" rel="noreferrer" key={i}>
                     <img
-                      src={helper.sponsorLogoResizePath + ad.advertisementsData?.logo}
+                      src={helper.sponsorLogoResizePath + ad.advertisementsDetails[0]?.logo}
                       alt="sponsor"
                       className="p-1"
                     ></img>
                   </a>
+                  </IconText>
                 );
-              })}
-            </IconText>
+              })
           )}
         </div>
       )}

@@ -135,7 +135,7 @@ function ActivityItem(props) {
   if (infoType && infoType === 'MEDIA') {
     displayImg = mediaImage;
   }
-  if (infoType && infoType === 'TAX_RECEIPT') {
+  if (infoType && infoType === 'TAX_RECEIPT' || infoType === 'SALES_RECEIPT') {
     displayImg = uploadimage;
   }
 

@@ -11,7 +11,7 @@ const propTypes = {
 };
 const currentYear = new Date().getFullYear();
 const defaultProps = {
-  items: ['Show All', currentYear, currentYear - 1, currentYear - 2]
+  items: [currentYear, currentYear - 1, currentYear - 2, 'Show All', ]
 };
 
 const LadderMenu = ({ items, activeKey, onChangeFilterOption }) => {

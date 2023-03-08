@@ -25,7 +25,7 @@ const AdminTax = () => {
     : CampaignAdminAuthToken;
   const [taxList, setTaxList] = useState([]);
   const [activeKey, setActiveKey] = useState(0);
-  const [activeYear, setActiveYear] = useState('Show All');
+  const [activeYear, setActiveYear] = useState('2023');
   const [loading, setLoading] = useState(false);
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -200,7 +200,6 @@ const AdminTax = () => {
     setActiveYear(v);
     setActiveKey(e);
   };
-  console.log('helllo');
   return (
     <>
       {/*<FrontLoader loading={loading} />*/}
@@ -241,6 +240,7 @@ const AdminTax = () => {
         order={order}
         sortField={sortField}
         headers={headers}
+        activeYear={activeYear}
       />
       {/* <Button variant="info" size="lg" className='me-2 flex__1'>Download CSV</Button> */}
       {taxList.length > 0 && (

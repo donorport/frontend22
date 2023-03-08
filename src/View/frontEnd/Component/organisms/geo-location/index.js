@@ -37,9 +37,12 @@ const GeoLocation = () => {
   };
 
   const [locked, setLocked] = useState(false);
-  const [zoomLevel, setZoom] = useState(0);
+  const [zoomLevel, setZoom] = useState(4.3);
   const [hidden, setHidden] = useState(false);
   const [objectVal, setObjectVal] = useState();
+  const [viewState, setViewState] = useState({
+    zoom: 3.5
+  });
 
   const onDropdownToggle = (state) => setHidden(state);
 
@@ -79,7 +82,7 @@ const GeoLocation = () => {
 
   useEffect(() => {
     if (user) {
-      setZoom(user.zoom ? Number(user.zoom) : 0);
+      setZoom(user.zoom ? Number(user.zoom) : 4.3);
       setLocked(user.isMapLocked);
     }
   }, [user]);
@@ -111,7 +114,6 @@ const GeoLocation = () => {
     dispatch(setLocationFilter('true'));
     setHidden(false);
   };
-
   return (
     <>
       <div
@@ -171,22 +173,26 @@ const GeoLocation = () => {
                 </Button>
               </div>
             </div>
-            <div className="mapboxgl-map">
-              {user.zoom && user.lat && user.lng ? (
+            <div className="mapboxgl-map-cust">
+              {user.lat && user.lng ? (
                 <Map
+                  {...viewState}
                   style={mapStyles.day}
-                  containerStyle={{
-                    height: '300px'
-                  }}
-                  zoom={[user.zoom]}
+                  // containerStyle={{
+                  //   height: '300px', width: '300px'
+                  // }}
+                  zoom={[zoomLevel]}
                   center={[user.lng, user.lat]}
                   onRender={(e) => setObjectVal(e.boxZoom._container.outerText)}
+                  onMove={event => {
+                    setViewState(event.viewState)
+                  }}
                 >
                   <div className="radius-container">
                     <div className="radius-circle"></div>
                   </div>
                   <ScaleControl style={{ zIndex: '-1' }} />
-                  <Marker coordinates={[user.lng, user.lat]} anchor="bottom">
+                  <Marker coordinates={[user.lng, user.lat]} className='mapbox-marker-custom'>
                     <div className="mapboxgl-user-location-dot"></div>
                   </Marker>
                 </Map>

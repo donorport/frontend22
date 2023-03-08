@@ -75,9 +75,6 @@ const ShoppingCart = (props) => {
         totalQuantity: Number(quantitySum)
       });
     }
-    console.log(props)
-    console.log("state: ", state)
-
   }, [props, calculate, state.totalQuantity]);
 
   const updateCart = (quantity, id, producId, type) => {

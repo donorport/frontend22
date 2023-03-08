@@ -16,12 +16,11 @@ import helper, {
   convertAddress
 } from '../../../../../Common/Helper';
 import { GalleryImg } from '../../atoms';
-import { Button, Card, Col, Row, Dropdown, ProgressBar } from 'react-bootstrap';
+import { Button, Card, Col, Row, Dropdown, ProgressBar, Modal } from 'react-bootstrap';
 
 import './style.scss';
 
 const UserItems = () => {
-  console.log('iFrame, UserItems');
   const [detail, setDetail] = useState({
     key: null,
     show: false
@@ -93,7 +92,8 @@ const UserItems = () => {
   const onItemClick = (key) => {
     setDetail({ ...detail, key: key, show: true });
   };
-
+  
+  
   return (
     <>
      {/*<FrontLoader loading={loading} />*/}
@@ -138,7 +138,8 @@ const UserItems = () => {
         orderItemList.length > 0 &&
         orderItemList.map((item, i) => {
           // item = detail
-
+          let videoid = item.itemDetails.galleryUrl ? item.itemDetails.galleryUrl.split("?v=")[1] : "";
+          let embedlink = videoid ? "http://www.youtube.com/embed/" + videoid : "";
           let address = item.itemDetails?.address ? convertAddress(item.itemDetails?.address) : '';
           // console.log(item.appliedTaxPer)
           // let price = Math.round(Number(item.productPrice) + (Number(item.appliedTaxPer) / 100) * Number(item.productPrice))
@@ -325,7 +326,7 @@ const UserItems = () => {
                               key="project-video"
                               width="498"
                               height="280"
-                              src={item.itemDetails.galleryUrl}
+                              src={embedlink}
                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                               allowFullScreen
                             ></iframe>
@@ -376,7 +377,7 @@ const UserItems = () => {
                               key="user-item-video"
                               width="498"
                               height="280"
-                              src={item.fulfilDetails[0].video}
+                              src={"http://www.youtube.com/embed/" + item.fulfilDetails[0].video.split("?v=")[1]}
                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                               allowFullScreen
                             ></iframe>
@@ -504,8 +505,8 @@ const UserItems = () => {
                             {item.fulfilDetails[0].receipt}
                           </text>
                           <div className="date__name fw-semibold fs-7">
-                            Added &nbsp;
-                            {moment(item.fulfilDetails[0].created_at).fromNow()}
+                            Updated &nbsp;
+                            {moment(item.fulfilDetails[0].updated_at).fromNow()}
                           </div>
                         </div>
                         <div style={{ marginLeft: 'auto' }}>
@@ -563,7 +564,7 @@ const UserItems = () => {
                           </Dropdown>
                         </div>
                       </div>
-                      {showReceipt && (
+                      {/* {showReceipt && (
                         <div className="saleReceipt">
                           <span className="close" onClick={() => setShowReceipt(false)}>
                             &times;
@@ -573,7 +574,24 @@ const UserItems = () => {
                             bigImgSrc={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
                           />
                         </div>
-                      )}
+                      )} */}
+                      <Modal
+                        size="lg"
+                        show={showReceipt}
+                        onHide={() => setShowReceipt(false)}
+                        aria-labelledby="show-sales-receipt"
+                      >
+                        <Modal.Header>
+                          <Modal.Title id="show-sales-receipt"></Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                        <GalleryImg
+                            thumbImgSrc={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
+                            bigImgSrc={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
+                          />
+                        </Modal.Body>
+                      </Modal>
+
                     </>
                   )}
                 </Col>
