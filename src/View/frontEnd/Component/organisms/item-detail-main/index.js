@@ -438,7 +438,7 @@ function ProjectDetailMain(props) {
                     key="product-details-video"
                     width="498"
                     height="280"
-                    src={embedlink2}
+                    src={embedlink}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
