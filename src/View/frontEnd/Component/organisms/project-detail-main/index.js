@@ -32,6 +32,7 @@ import helper, {
 import './style.scss';
 import { Link } from 'react-router-dom';
 import { countryToAlpha2, countryToAlpha3 } from "country-to-iso";
+import { useEffect, useState } from 'react';
 
 
 function ProjectDetailMain(props) {
@@ -41,7 +42,7 @@ function ProjectDetailMain(props) {
 
   let videoid = video ? video.split("?v=")[1] : "";
   let embedlink = video ? "http://www.youtube.com/embed/" + videoid : "";
-
+  const [address, setAddress] = useState("")
   
 
   // const countProjectProcess = (data) => {
@@ -121,26 +122,14 @@ function ProjectDetailMain(props) {
     return Math.round(per);
   };
 
-  // console.log(projectDetails)
   const setState = projectDetails.campaignDetails?.state_id;
 
-  let stateName = setState ? convertState(setState) : '';
-  let addy = projectDetails.productDetails?.length ? projectDetails?.productDetails[0].itemDetails.address : 0
-  let addyList = addy?.length ? addy.split(" ") : ""
-  let stateL = addyList[1].split(",")
-  let country = addyList[2]
-
-  
-  let setAddress = addyList.length? 
-  projectDetails?.campaignDetails?.city_id +
-    ',' +
-    //cityDetails was used when we had <select> to choose the City (replaced to text bc GB didn't work using <select>)
-    // organizationDetails?.cityDetails?.city_id +
-    //',' +
-    stateL[0] + ','+ 
-    country
-    : ""
-  let address = setAddress ? convertAddress(setAddress) : '';
+  useEffect(() => {
+    if(projectDetails?.name){
+      let newaddress = projectDetails?.productDetails[0].itemDetails.address ? convertAddress(projectDetails?.productDetails[0].itemDetails.address) : '';
+      setAddress(newaddress)
+    }
+  }, [props.projectDetails])
   return (
     <div className="project__detail-main">
       <div className="d-flex flex-column mb-4">

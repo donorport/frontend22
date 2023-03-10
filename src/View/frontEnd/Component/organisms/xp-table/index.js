@@ -16,6 +16,7 @@ const XpTable = (props) => {
   function getData(type, xp, data) {
     // console.log(data)
     let Res;
+    let price = 0;
     switch (type) {
       case 'DONATED':
         // let Image = data.organizationDetails.logo;
@@ -46,7 +47,7 @@ const XpTable = (props) => {
         break;
 
       case 'BOUGHT':
-        let price = data.quantity * data.amount;
+        price = data.quantity * data.amount;
         Res = (
           <div className="order-1 order-sm-2 d-flex align-items-center text-dark me-sm-3 flex__1">
             <div className="position-relative">
