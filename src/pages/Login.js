@@ -41,7 +41,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 export default function Login() {
   return (
-    <RootStyle title="Login | Minimal-UI">
+    <RootStyle title="Login | CMS">
       <AuthLayout>
         {/* Apply For Campaign Admin ? &nbsp;
         <Link underline="none" variant="subtitle2" component={RouterLink} to="/admin/register">

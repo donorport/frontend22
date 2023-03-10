@@ -42,7 +42,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 export default function VerifyOtp() {
   return (
-    <RootStyle title="VerifyOtp | Minimal-UI">
+    <RootStyle title="VerifyOtp | CMS">
       <AuthLayout>
         Apply For Campaign Admin ? &nbsp;
         <Link underline="none" variant="subtitle2" component={RouterLink} to="/admin/register">

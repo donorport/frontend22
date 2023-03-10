@@ -142,7 +142,7 @@ export default function Payment(props) {
     return (
         <>
            {/*<FrontLoader loading={loading} />*/}
-            <Page title="Payment | Minimal-UI">
+            <Page title="Payment | CMS">
 
                 <Container>
                     <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>

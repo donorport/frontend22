@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { Button, Dropdown, InputGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { light, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import ReactMapboxGl, { Marker, ScaleControl } from 'react-mapbox-gl';
@@ -10,7 +10,6 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { ReactComponent as SearchIcon } from '../../../../../assets/svg/search.svg';
 import helper from '../../../../../Common/Helper';
 import {
@@ -37,11 +36,11 @@ const GeoLocation = () => {
   };
 
   const [locked, setLocked] = useState(false);
-  const [zoomLevel, setZoom] = useState(4.3);
+  const [zoomLevel, setZoom] = useState(6.3);
   const [hidden, setHidden] = useState(false);
   const [objectVal, setObjectVal] = useState();
   const [viewState, setViewState] = useState({
-    zoom: 3.5
+    zoom: 6.5
   });
 
   const onDropdownToggle = (state) => setHidden(state);
@@ -82,7 +81,7 @@ const GeoLocation = () => {
 
   useEffect(() => {
     if (user) {
-      setZoom(user.zoom ? Number(user.zoom) : 4.3);
+      setZoom(user.zoom ? Number(user.zoom) : 6.3);
       setLocked(user.isMapLocked);
     }
   }, [user]);
@@ -143,7 +142,7 @@ const GeoLocation = () => {
                   publicKey={helper.MapBoxPrimaryKey}
                   inputClass="form-control search"
                   // query={location.locationName}
-                  // defaultValue={location.locationName}
+                  //defaultValue={location.locationName}
                   onSuggestionSelect={sugg}
                   country={location.organizationLocation}
                   resetSearch={false}
@@ -165,7 +164,7 @@ const GeoLocation = () => {
                 >
                   <span className="d-flex align-items-center icon fs-5">
                     {!locked ? (
-                      <FontAwesomeIcon icon={light('lock-open')} />
+                      <FontAwesomeIcon icon={regular('lock-open')} />
                     ) : (
                       <FontAwesomeIcon icon={solid('lock')} />
                     )}
@@ -184,15 +183,15 @@ const GeoLocation = () => {
                   zoom={[zoomLevel]}
                   center={[user.lng, user.lat]}
                   onRender={(e) => setObjectVal(e.boxZoom._container.outerText)}
-                  onMove={event => {
-                    setViewState(event.viewState)
+                  onMove={(event) => {
+                    setViewState(event.viewState);
                   }}
                 >
                   <div className="radius-container">
                     <div className="radius-circle"></div>
                   </div>
                   <ScaleControl style={{ zIndex: '-1' }} />
-                  <Marker coordinates={[user.lng, user.lat]} className='mapbox-marker-custom'>
+                  <Marker coordinates={[user.lng, user.lat]} className="mapbox-marker-custom">
                     <div className="mapboxgl-user-location-dot"></div>
                   </Marker>
                 </Map>

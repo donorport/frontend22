@@ -115,7 +115,7 @@ export default function Index(props) {
     };
                 return (
 
-                <Page title="Category | Minimal-UI">
+                <Page title="Category | CMS">
 
                     <Container>
                         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>

@@ -329,7 +329,7 @@ export default function PricingFees(props) {
     return (
         <>
            {/*<FrontLoader loading={loading} />*/}
-            <Page title="Pricing | Minimal-UI">
+            <Page title="Pricing | CMS">
 
                 <Container>
                     <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>

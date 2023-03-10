@@ -34,7 +34,7 @@ export default function Settings() {
     return (
         <>
 
-            <Page title="Settings | Minimal-UI">
+            <Page title="Settings | CMS">
 
                 <Container>
                     <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>

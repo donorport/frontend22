@@ -32,7 +32,7 @@ export default function Index(props) {
     // console.log(stateData)
     return (
         <>
-            <Page title="Profile | Minimal-UI">
+            <Page title="Profile | CMS">
 
                 <Container>
                     <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>

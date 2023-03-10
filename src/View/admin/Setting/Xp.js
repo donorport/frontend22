@@ -144,7 +144,7 @@ export default function Xp(props) {
     return (
         <>
            {/*<FrontLoader loading={loading} />*/}
-            <Page title="XP | Minimal-UI">
+            <Page title="XP | CMS">
 
                 <Container>
                     <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>

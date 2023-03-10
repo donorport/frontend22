@@ -76,8 +76,8 @@ export default function AdminPrivateRoutes() {
           <Route exact path="/" element={<DashboardApp />} />
           <Route exact path="/admin" element={<DashboardApp />} />
           <Route exact path="/admin/Dashboard" element={<DashboardApp />} />
-          {/* <Route exact path="/admin/user" element={<UserController />} />*/}
-          <Route exact path="/admin/campaign_admin" element={<CampaignAdminController />} />
+          <Route exact path="/admin/donors" element={<UserController />} />
+          <Route exact path="/admin/charities" element={<CampaignAdminController />} />
           <Route exact path="/admin/category" element={<CategoryController />} />
           <Route exact path="/admin/category/subcategory/:id" element={<SubCategoryController />} />
           <Route exact path="/admin/products" element={<ProductController />} />

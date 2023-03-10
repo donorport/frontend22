@@ -23,6 +23,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
+import moment from 'moment';
 
 
 import Page from '../../../components/Page';
@@ -48,7 +49,14 @@ export default function Index(props) {
             allowOverflow: true,
         },
 
-       
+        {
+            id: 'created_at',
+            name: 'Date',
+            selector: 'created_at',
+            cell: row => <div>{moment(row.created_at).format("DD MMMM YYYY ")}</div>,
+            sortable: true,
+            accessor: '',
+        },
 
         {
             name: "Actions",
@@ -77,7 +85,7 @@ export default function Index(props) {
     };
     return (
 
-        <Page title="Project | Minimal-UI">
+        <Page title="Project | CMS">
 
             <Container>
                 <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
@@ -98,7 +106,7 @@ export default function Index(props) {
                             columns={columns}
                             data={data}
                             noHeader
-                            defaultSortField="id"
+                            defaultSortFieldId="created_at"
                             defaultSortAsc={false}
                             pagination
                             highlightOnHover

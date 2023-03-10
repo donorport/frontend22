@@ -78,7 +78,7 @@ export default function Index(props) {
     };
     return (
 
-        <Page title="Cms Page | Minimal-UI">
+        <Page title="Cms Page | CMS">
             {/* {console.log(data)} */}
 
             <Container>
