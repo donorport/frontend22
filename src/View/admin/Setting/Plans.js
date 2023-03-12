@@ -257,7 +257,7 @@ export default function Plans(props) {
     return (
         <>
            {/*<FrontLoader loading={loading} />*/}
-            <Page title="Plans | Minimal-UI">
+            <Page title="Plans | CMS">
 
                 <Container>
                     <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>

@@ -1,15 +1,6 @@
 import { Icon } from '@iconify/react';
 import pieChart2Fill from '@iconify/icons-eva/pie-chart-2-fill';
 import peopleFill from '@iconify/icons-eva/people-fill';
-import powerFill from "@iconify/icons-eva/power-fill"
-import shoppingBagFill from '@iconify/icons-eva/shopping-bag-fill';
-import fileTextFill from '@iconify/icons-eva/file-text-fill';
-import lockFill from '@iconify/icons-eva/lock-fill';
-import personAddFill from '@iconify/icons-eva/person-add-fill';
-import alertTriangleFill from '@iconify/icons-eva/alert-triangle-fill';
-import { useLocation } from 'react-router-dom';
-import categoryFill from '@iconify/icons-eva/grid-fill';
-import React, { useEffect } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -26,22 +17,22 @@ const sidebarConfig = [
   },
   {
     title: 'donors',
-    path: '/admin/user/',
+    path: '/admin/donors/',
     icon: getIcon(peopleFill),
     name: 'DONORS'
   },
   {
-    title: 'campaign admin',
-    path: '/admin/campaign_admin/',
+    title: 'charities',
+    path: '/admin/charities/',
     icon: getIcon('codicon:organization'),
     name: 'CAMPAIGN_ADMIN'
 
   },
   {
-    title: 'category',
+    title: 'categories',
     path: '/admin/category/',
     icon: getIcon('carbon:category'),
-    name: 'CAMPAIGN_ADMIN'
+    name: 'CATEGORIES'
 
   },
   {
@@ -66,13 +57,13 @@ const sidebarConfig = [
 
   },
   {
-    title: 'donation',
+    title: 'donations',
     path: '/admin/donation/',
     icon: getIcon('iconoir:donate'),
     name: 'DONATION'
   },
   {
-    title: 'sponcership ad',
+    title: 'advertisements',
     path: '/admin/advertisement/',
     icon: getIcon('fa6-solid:rectangle-ad'),
     name: 'AD'

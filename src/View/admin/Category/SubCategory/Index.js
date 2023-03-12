@@ -104,7 +104,7 @@ export default function Index(props) {
     };
     return (
 
-        <Page title="SubCategory | Minimal-UI">
+        <Page title="SubCategory | CMS">
 
             <Container>
 

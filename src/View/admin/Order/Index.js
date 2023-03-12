@@ -126,7 +126,7 @@ export default function Index(props) {
 
     return (
 
-        <Page title="Order | Minimal-UI">
+        <Page title="Order | CMS">
             {/* {console.log(data)} */}
 
             <Container>
@@ -148,7 +148,7 @@ export default function Index(props) {
                             columns={columns}
                             data={data}
                             noHeader
-                            defaultSortField="created_at"
+                            defaultSortFieldId="created_at"
                             pagination
                             striped
                             highlightOnHover

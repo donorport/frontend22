@@ -66,7 +66,7 @@ export default function Index(props) {
     };
     return (
 
-        <Page title="Verification Inquiries | Minimal-UI">
+        <Page title="Verification Inquiries | CMS">
             {/* {console.log(data)} */}
 
             <Container>
