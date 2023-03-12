@@ -126,7 +126,10 @@ function ProjectDetailMain(props) {
 
   useEffect(() => {
     if(projectDetails?.name){
-      let newaddress = projectDetails?.productDetails[0].itemDetails.address ? convertAddress(projectDetails?.productDetails[0].itemDetails.address) : '';
+      let newaddress = projectDetails?.campaignDetails.address ? convertAddress(projectDetails?.campaignDetails.address) : ''
+      if(!newaddress){
+        newaddress = projectDetails?.productDetails[0]?.itemDetails?.address ? convertAddress(projectDetails?.productDetails[0].itemDetails.address) : 'Canada';
+      }
       setAddress(newaddress)
     }
   }, [props.projectDetails])
@@ -188,7 +191,7 @@ function ProjectDetailMain(props) {
               ischecked={props.isFollow}
             />
 
-            <ShareWidget />
+            <ShareWidget page="project" text={`Help ${projectDetails?.campaignDetails?.name} fund their ${projectDetails?.name}`} pageTitle={projectDetails?.name} currUrl={`https://www.donorport.com/project/${projectDetails?.slug}`}/>
           </div>
         </div>
 

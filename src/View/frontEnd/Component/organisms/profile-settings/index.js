@@ -107,6 +107,8 @@ const ProfileSettings = () => {
     error
   } = state;
 
+  const MAX_IMAGE_LENGTH = helper.MAX_IMAGE_LENGTH;
+
   const getCountryStateList = useCallback(
     async (countryId) => {
       let tempArray = [];
@@ -284,7 +286,7 @@ const ProfileSettings = () => {
       ...s,
       images: data.images
     }));
-  }, [])
+  }, [data.images])
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -734,34 +736,37 @@ const ProfileSettings = () => {
         )}
 
         <div>
-          <div className="project-tilte-optional">
-            <div className="form__label">Gallery</div>
+          <div className="project-title-optional">
+            <h4 className="form__label mt-4">Gallery</h4>
           </div>
           <div className="d-flex align-items-center flex-wrap gap-2 mb-3">
-            <div
-              className="image-upload-wrap mb-3 fs-2"
-              style={{
-                ...imageuploadwrap,
-                backgroundColor: '#e5f4ff',
-                borderRadius: '9px',
-                border: '2px dashed rgba(62, 170, 255, 0.58)',
-                fontSize: '60px'
-              }}
-            >
-              <input
-                className="file-upload-input"
-                type="file"
-                name="moreImg[]"
-                id="moreImg"
-                accept=".jpg,.gif,.png"
-                multiple
-                onChange={onGalleryImagesChange}
-                style={fileuploadinput}
-              />
-              <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
-                <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
+            {viewGalleryImages?.length >= MAX_IMAGE_LENGTH ? <p className="image-upload-wrap mb-3 fs-2">Maximum Images Allowed (5) Reached</p> 
+            :
+              <div
+                className="image-upload-wrap mb-3 fs-2"
+                style={{
+                  ...imageuploadwrap,
+                  backgroundColor: '#e5f4ff',
+                  borderRadius: '9px',
+                  border: '2px dashed rgba(62, 170, 255, 0.58)',
+                  fontSize: '60px'
+                }}
+              >
+                <input
+                  className="file-upload-input"
+                  type="file"
+                  name="moreImg[]"
+                  id="moreImg"
+                  accept=".jpg,.gif,.png"
+                  multiple
+                  onChange={onGalleryImagesChange}
+                  style={fileuploadinput}
+                />
+                <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
+                  <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
+                </div>
               </div>
-            </div>
+            }
             <div className="grid mt-3 mb-3" style={{ display: 'contents' }}>
               {viewGalleryImages?.length ? (
                 viewGalleryImages.map((img, key) => (

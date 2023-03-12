@@ -50,7 +50,8 @@ function ProjectDetailMain(props) {
     ? 1000
     : productDetails.quantity - productDetails.soldout;
 
-
+console.log({user})
+console.log({allStateAds})
   useEffect(() => {
     (async () => {
       if (!CampaignAdminAuthToken) {
@@ -114,7 +115,6 @@ function ProjectDetailMain(props) {
     ) : (
       cart_btn
     );
-
 
   return (
     <div className="project__detail-main">
@@ -187,7 +187,7 @@ function ProjectDetailMain(props) {
               ischecked={props.isFollow}
             />
 
-            <ShareWidget />
+            <ShareWidget page="item" text={`${productDetails?.campaignDetails?.name} is giving away these ${productDetails?.headline}`} pageTitle={productDetails?.headline} currUrl={`https://www.donorport.com/item/${productDetails?.slug}`}/>
           </div>
         </div>
         <div className="category__icons d-flex align-items-center mb-3 order--1 order-sm-0">
@@ -378,7 +378,7 @@ function ProjectDetailMain(props) {
             </IconText>
           )}
           {allStateAds?.length > 0 && (
-            allStateAds.filter(ad => ad.categoryId === productDetails?.categoryDetails?._id && ad.countryId === productDetails?.campaignDetails?.country_id && ad.stateId === productDetails?.campaignDetails?.state_id).map((ad, i) => {
+            allStateAds.filter(ad => ad.categoryId === productDetails?.categoryDetails?._id && ad.countryId === productDetails?.campaignDetails?.country_id && ad.stateId === productDetails?.campaignDetails?.state_id && user.stateId === ad.stateId).map((ad, i) => {
               return (
                   <IconText
                     className="pt-12p pb-12p"

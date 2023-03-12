@@ -239,7 +239,7 @@ const PostsTable = (props) => {
                             style={{ marginRight: '10px' }}
                             onClick={() => props.showFulfillOrder(product)}
                           >
-                            Fulfil Order
+                            Fulfill Order
                           </Button>
                         ) : (
                           product.isFulfiled &&
@@ -274,7 +274,7 @@ const PostsTable = (props) => {
                               props.setFulfilProductDetails(product);
                             }}
                           >
-                            Fulfil Order
+                            Fulfill Order
                           </Button>
                         ) : (
                           <></>

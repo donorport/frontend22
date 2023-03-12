@@ -43,6 +43,7 @@ function OrganisationDetailMain(props) {
     organizationDetails?.countryDetails?.country;
 
   let address = setAddress ? convertAddress(setAddress) : '';
+  console.log({organizationDetails})
 
   return (
     <div className="project__detail-main">
@@ -95,7 +96,7 @@ function OrganisationDetailMain(props) {
               name="organization"
               onClickFilter={(e) => props.followToOrganization(e)}
             />
-            <ShareWidget />
+            <ShareWidget page="org" text={`Come see ${organizationDetails?.name} on Donorport`} pageTitle={organizationDetails?.name} currUrl={`https://www.donorport.com/organization/${organizationDetails?.slug}`}/>
           </div>
         </div>
 

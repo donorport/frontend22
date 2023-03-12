@@ -16,19 +16,19 @@ const OrderConfirmPage = () => {
   const userAuthToken = localStorage.getItem('userAuthToken');
   const [orderDetails, setOrderDetails] = useState({});
   const [loading, setLoading] = useState(false);
-
+  
   const userData = JSON.parse(localStorage.getItem('userData'));
   let newSlug = userData?.name.split(/\s/).join('');
-
+  
   let transactionFee = orderDetails.transactionFees;
   let platformFee = orderDetails.platformFees;
   let platformCost = (
     (platformFee / 100 + transactionFee / 100) * Number(orderDetails.subtotal) +
     0.3
-  ).toFixed(2);
-  //let grandTotal = (Number(orderDetails.subtotal) + Number(platformCost)).toFixed(2);
-
-  const getOrderDetails = async () => {
+    ).toFixed(2);
+    //let grandTotal = (Number(orderDetails.subtotal) + Number(platformCost)).toFixed(2);
+    
+    const getOrderDetails = async () => {
     let data = {};
     data.orderId = params.id;
     const details = await orderApi.getOrderDetails(userAuthToken, data);
@@ -42,7 +42,7 @@ const OrderConfirmPage = () => {
       navigate('/');
     }
   };
-
+  
   useEffect(() => {
     (async () => {
       if (params.id) {
@@ -54,12 +54,40 @@ const OrderConfirmPage = () => {
       }
     })();
   }, [params.id]);
-
+  
   let cardType = JSON.parse(orderDetails?.paymentResponse || '{}')?.data?.payment_method_details
     ?.card?.brand;
-  let lastFourDigits = JSON.parse(orderDetails?.paymentResponse || '{}')?.data
+    let lastFourDigits = JSON.parse(orderDetails?.paymentResponse || '{}')?.data
     ?.payment_method_details?.card?.last4;
-
+    
+    const [title, setTitle] = useState(false);
+    const [description, setDescription] = useState(false);
+    const [img, setImg] = useState(false);
+    
+    useEffect(() => {
+      let items = {}
+      if(orderDetails?.orderItems?.length){
+        const amountOfItems = orderDetails?.orderItems?.length
+        orderDetails.orderItems.forEach((item) => {
+          items = {
+            ...items,
+            [item.productName] : item.quantity
+          }
+        })
+        const title = `I just donated ${amountOfItems} item${amountOfItems > 1 ? "s" : ""} to charity`;
+        const description = `I donated ${Object.keys(items).map((item, idx) => {
+          let singleItem = items[item] === 1 ? true : false
+          //1 Banana || 2 Bananas
+          return (`${items[item]} ${singleItem ? Object.getOwnPropertyNames(items)[idx].slice(0, -1) : Object.getOwnPropertyNames(items)[idx]}`)
+        })} `;
+        
+        const img = `${helper.CampaignProductImagePath}${orderDetails.orderItems[0].productImage}`;
+        setTitle(title)
+        setDescription(description)
+        setImg(img)
+      }
+    }, [orderDetails]);
+console.log({orderDetails})
   return (
     <>
       <Page showTags={false} title={'Order | ' + orderDetails.uniqueTransactionId}>
@@ -128,7 +156,7 @@ const OrderConfirmPage = () => {
                   <p className="total__title fs-2 fw-bolder">Order Details</p>
                 </div>
                 <div className="order__value text-light">
-                  <ShareWidget />
+                <ShareWidget page="project" text={description} pageTitle={title} currUrl={`https://www.donorport.com/order/${orderDetails?._id}`}/>
                 </div>
               </div>
               <div className="email__wrap">
