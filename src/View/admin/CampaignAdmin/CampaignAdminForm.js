@@ -9,7 +9,7 @@ export default function CampaignAdminForm(props) {
 
     let url = stateData.promoVideo;
     let id = url?.split("?v=")[1];
-    let embedlink = url ? "http://www.youtube.com/embed/" + id : "";
+    let embedlink = url ? "https://www.youtube.com/embed/" + id : "";
 
     // console.log(stateData)
     return (

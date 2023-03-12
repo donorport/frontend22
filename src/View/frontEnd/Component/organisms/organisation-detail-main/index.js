@@ -26,12 +26,12 @@ function OrganisationDetailMain(props) {
   /*let videoid = organizationDetails.promoVideo
     ? organizationDetails.promoVideo.split('?v=')[1]
     : '';
-  let embedlink = videoid ? 'http://www.youtube.com/embed/' + videoid : '';*/
+  let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';*/
 
   const navigate = useNavigate();
   // let iconClass = organizationDetails?.categoryDetails?.iconDetails?.class.replace('fa-', '');
   let videoid = organizationDetails.promoVideo ? organizationDetails.promoVideo.split("?v=")[1] : "";
-  let embedlink = videoid ? "http://www.youtube.com/embed/" + videoid : "";
+  let embedlink = videoid ? "https://www.youtube.com/embed/" + videoid : "";
   const setAddress =
     organizationDetails?.city_id +
     ',' +

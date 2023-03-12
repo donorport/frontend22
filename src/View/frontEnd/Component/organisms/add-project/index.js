@@ -1,4 +1,5 @@
 import { Button, Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 
@@ -9,7 +10,8 @@ import FeedTag from '../../atoms/feed-tag';
 import FileUpload from '../../atoms/file-upload';
 import helper from '../../../../../Common/Helper';
 import noimg from '../../../../../assets/images/noimg.jpg';
-
+import Textarea from '../text-area';
+import Input from '../input';
 import './style.scss';
 import { Link } from 'react-router-dom';
 
@@ -19,7 +21,7 @@ const AddProject = (props) => {
 
   let url = video;
   let videoid = url.split('?v=')[1];
-  let embedlink = url ? 'http://www.youtube.com/embed/' + videoid : '';
+  let embedlink = url ? 'https://www.youtube.com/embed/' + videoid : '';
 
   let tempImages = props.tempImages;
   let projectImages = props.projectImages;
@@ -29,6 +31,24 @@ const AddProject = (props) => {
   let onSelectProduct = props.onSelectProduct;
   let submitProjectForm = props.submitProjectForm;
   let discardProject = props.discardProject;
+
+  const [id1] = useState('name');
+  const [id2] = useState('headline');
+  const [id3] = useState('description');
+  const [title1] = useState('Name');
+  const [title2] = useState('Headline');
+  const [title3] = useState('Description');
+  const [placeholder1] = useState('Ex: Christmas Drive');
+  const [placeholder2] = useState('Ex: Feeding the homeless every Friday night');
+  const [placeholder3] = useState('Enter some details about your need');
+  const [rows3] = useState(5);
+  const [max25] = useState(25);
+  const [max45] = useState(45);
+  const [max250] = useState(250);
+
+  const change = async (e) => {
+    props.changevalue(e);
+  };
 
   const fileuploadinput = {
     position: 'absolute',
@@ -64,15 +84,31 @@ const AddProject = (props) => {
             <FontAwesomeIcon icon={solid('circle-question')} className="text-dark fs-4" />
           </Button>*/}
         </div>
-
-        <Button
-          variant="warning"
-          size="lg"
-          className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
-          onClick={() => submitProjectForm(-1)}
-        >
-          Save as Draft
-        </Button>
+        {status === -1 ? (
+          <>
+            <span>IS DRAFT</span>
+            <Button
+              variant="warning"
+              size="lg"
+              className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
+              onClick={() => submitProjectForm(-1)}
+            >
+              Save as Draft
+            </Button>
+          </>
+        ) : (
+          <>
+            <span>IS ACTIVE</span>
+            <Button
+              variant="danger"
+              size="lg"
+              className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
+              onClick={() => submitProjectForm(-1)}
+            >
+              Unpublish
+            </Button>
+          </>
+        )}
       </div>
       {/*  <div className="studio__note d-sm-flex align-items-center py-2 px-3 border rounded mb-5">
         <div className="studio__thumb p-1 mr-20p d-none d-sm-block">
@@ -119,7 +155,20 @@ const AddProject = (props) => {
       <Row className="mw-850 py-5">
         <Col lg="6">
           <form className="profile-detail-form">
-            <div className="form-group border-bottom mb-2">
+            <Input
+              id={id1}
+              name={id1}
+              value={name}
+              maxInput={max25}
+              maxLength={max25}
+              title={title1}
+              placeholder={placeholder1}
+              onChange={change}
+            />
+            {error && error.name && (
+              <p className="error">{error ? (error.name ? error.name : '') : ''}</p>
+            )}
+            {/* <div className="form-group border-bottom mb-2">
               <label htmlFor="headlineInput" className="form__label">
                 Name
               </label>
@@ -135,14 +184,25 @@ const AddProject = (props) => {
                   props.changevalue(e);
                 }}
               />
-              {error && error.name && (
-                <p className="error">{error ? (error.name ? error.name : '') : ''}</p>
-              )}
+
               <div className="text-light fs-8 pb-2 mb-1">
                 <span>120</span> chars remaining
               </div>
-            </div>
-            <div className="form-group border-bottom mb-4">
+            </div> */}
+            <Input
+              id={id2}
+              name={id2}
+              value={headline}
+              maxInput={max45}
+              maxLength={max45}
+              title={title2}
+              placeholder={placeholder2}
+              onChange={change}
+            />
+            {error && error.headline && (
+              <p className="error">{error ? (error.headline ? error.headline : '') : ''}</p>
+            )}
+            {/* <div className="form-group border-bottom mb-4">
               <label htmlFor="brandInput" className="form__label">
                 Headline
               </label>
@@ -158,21 +218,34 @@ const AddProject = (props) => {
                   props.changevalue(e);
                 }}
               />
-              {error && error.headline && (
-                <p className="error">{error ? (error.headline ? error.headline : '') : ''}</p>
-              )}
+
 
               <div className="text-light fs-8 pb-2 mb-1">
                 <span>120</span> chars remaining
               </div>
-            </div>
-            <div className="form-group mb-4">
+            </div> */}
+            <Textarea
+              id={id3}
+              name={id3}
+              value={description}
+              maxInput={max250}
+              maxLength={max250}
+              rows={rows3}
+              title={title3}
+              placeholder={placeholder3}
+              onChange={change}
+            />
+            {error && error.description && (
+              <p className="error">{error ? (error.description ? error.description : '') : ''}</p>
+            )}
+            {/* <div className="form-group mb-4">
               <label htmlFor="brandInput" className="form__label">
                 Description
               </label>
-              <input
+              <textarea
                 type="text"
                 className="form-control form-control-lg mb-2"
+                rows={5}
                 // id="brandInput"
                 placeholder="Enter some details about your need"
                 name="description"
@@ -182,14 +255,12 @@ const AddProject = (props) => {
                   props.changevalue(e);
                 }}
               />
-              {error && error.description && (
-                <p className="error">{error ? (error.description ? error.description : '') : ''}</p>
-              )}
+
 
               <div className="text-light fs-8 pb-2 mb-1">
                 <span>240</span> chars remaining
               </div>
-            </div>
+            </div> */}
           </form>
         </Col>
         <Col lg="6">
@@ -270,6 +341,7 @@ const AddProject = (props) => {
                 />
                 <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
                   <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
+                  <h3 style={{ fontSize: 'inherit' }}>Drag and drop or select File</h3>
                 </div>
               </div>
               {error && error.moreImg && (
@@ -393,14 +465,18 @@ const AddProject = (props) => {
           >
             Discard
           </Button>
-          <Button
-            variant="success"
-            size="lg"
-            className="fw-bold fs-6"
-            onClick={() => submitProjectForm(1)}
-          >
-            {/* {!id ? "Create Project" : "Update Project"} */} Publish
-          </Button>
+          {status === -1 ? (
+            <Button
+              variant="success"
+              size="lg"
+              className="fw-bold fs-6"
+              onClick={() => submitProjectForm(1)}
+            >
+              {/* {!id ? "Create Project" : "Update Project"} */} Publish
+            </Button>
+          ) : (
+            ''
+          )}
         </div>
       </div>
     </div>

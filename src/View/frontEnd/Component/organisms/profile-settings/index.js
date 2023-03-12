@@ -256,7 +256,7 @@ const ProfileSettings = () => {
     if (e.target.name === 'promoVideo') {
       let url = value;
       // let id = url && url.split("?v=")[1];
-      // let embedUrl = url ? "http://www.youtube.com/embed/" + id : "";
+      // let embedUrl = url ? "https://www.youtube.com/embed/" + id : "";
       setEmbedlink(url);
     }
   };
@@ -305,7 +305,7 @@ const ProfileSettings = () => {
       }));
       let urlV = data.promoVideo;
       // let id = url && url.split("?v=")[1];
-      // let embedUrl = url ? "http://www.youtube.com/embed/" + id : "";
+      // let embedUrl = url ? "https://www.youtube.com/embed/" + id : "";
       setEmbedlink(urlV);
 
       if (data.country_id && data.country_id !== null) {

@@ -59,19 +59,17 @@ function ShareWidget() {
     <div className="position-relative">
       {/*FOR DESKTOP: launches modal with react-share*/}
       <Button
-        variant="link"
         onClick={() => setActive(!active)}
-        className="d-none d-sm-flex btn__share text-light"
+        className="ms-1 d-none d-sm-flex btn__share px-2 py-1 text-white fw-semibold fs-5"
       >
-        <FontAwesomeIcon icon={regular('share')} />
+        <FontAwesomeIcon className="me-1" icon={regular('share')} /> Share
       </Button>
       {/*FOR MOBILE: launches Navigator on mobile devices*/}
       <Button
-        variant="link"
         onClick={() => onClickShare()}
-        className="d-flex d-sm-none  btn__share text-light"
+        className="ms-1 d-flex d-sm-none btn__share px-2 py-1 text-white fw-semibold fs-6"
       >
-        <FontAwesomeIcon icon={regular('share')} />
+        <FontAwesomeIcon className="ms-1" icon={regular('share')} />
       </Button>
 
       {active ? (
@@ -103,7 +101,7 @@ function ShareWidget() {
                 <FontAwesomeIcon icon={brands("twitter")} />
               </a> */}
                 <TwitterShareButton
-                  title='test'
+                  title="test"
                   hashtags={['Donation', 'Charity']}
                   url={currentPageLink}
                   // hashtags={["hashtag1", "hashtag2"]}
@@ -151,8 +149,8 @@ function ShareWidget() {
                 <LinkedinShareButton
                   url={currentPageLink}
                   quote={currentPageLink}
-                  hashtag='#hashtag #new'
-                  description='test'
+                  hashtag="#hashtag #new"
+                  description="test"
                   className="Demo__some-network__share-button"
                 >
                   <LinkedinIcon size={32} round />

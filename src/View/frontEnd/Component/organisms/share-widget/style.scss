@@ -1,11 +1,9 @@
 .btn.btn__share {
     align-items: center;
     display: flex;
-    font-size: 23px;
-    width: 36px;
-    height: 36px;
-    padding: 0;
     justify-content: center;
+    border-radius: 9px !important;
+    background-color: #6b68f8;
 }
 
 .share-dialog {

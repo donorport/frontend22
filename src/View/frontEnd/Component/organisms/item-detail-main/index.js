@@ -28,7 +28,7 @@ function ProjectDetailMain(props) {
   let productDetails = props.productDetails;
   
   let videoid = productDetails.galleryUrl ? productDetails.galleryUrl.split("?v=")[1] : "";
-  let embedlink = videoid ? "http://www.youtube.com/embed/" + videoid : "";
+  let embedlink = videoid ? "https://www.youtube.com/embed/" + videoid : "";
   const getCalc = getCalculatedPrice();
   // let price = getCalc.getData(productDetails?.price)
   let price = productDetails?.displayPrice ? productDetails?.displayPrice : productDetails?.price;

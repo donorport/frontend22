@@ -37,7 +37,7 @@ export default function AddProjectForm(props) {
   const adminData = JSON.parse(localStorage.getItem('adminData'));
   let url = stateData.video;
   let id = url.split('?v=')[1];
-  let embedlink = 'http://www.youtube.com/embed/' + id;
+  let embedlink = 'https://www.youtube.com/embed/' + id;
 
   // console.log('stateData',stateData)
 

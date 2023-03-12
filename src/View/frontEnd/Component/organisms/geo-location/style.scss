@@ -49,7 +49,12 @@
     padding-left: 10%;
 
     &:focus {
-      background-color: transparent;
+      //background-color: transparent;
+      color: #585a83;
+      background-color: #fff;
+      border-color: #b5b4fc;
+      outline: 0;
+      border: 2px solid #b5b4fc;
     }
   }
 }

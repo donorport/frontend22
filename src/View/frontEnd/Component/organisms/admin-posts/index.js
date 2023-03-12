@@ -43,7 +43,7 @@ const AdminPosts = () => {
     position: 'relative',
     width: '100%'
   };
-  const validExtensions = ['jpg', 'png', 'jpeg'];
+  const validExtensions = ['jpg', 'png', 'jpeg', 'svg'];
   const [viewPost, createPost] = useState(false);
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const type = localStorage.getItem('type');
@@ -167,12 +167,12 @@ const AdminPosts = () => {
 
   let videoid = fulfilState.videoUrl ? fulfilState.videoUrl.split("?v=")[1] : "";
 
-  let embedlink = videoid ? "http://www.youtube.com/embed/" + videoid : "";
+  let embedlink = videoid ? "https://www.youtube.com/embed/" + videoid : "";
 
   const [tags, setTags] = useState([]);
   // let url = galleryUrl;
   // let videoid = url?.split('?v=')[1];
-  // let embedlink = videoid ? 'http://www.youtube.com/embed/' + videoid : '';
+  // let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
 
   useEffect(() => {
     (async () => {

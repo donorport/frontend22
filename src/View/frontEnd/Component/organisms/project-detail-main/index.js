@@ -41,7 +41,7 @@ function ProjectDetailMain(props) {
   let video = projectDetails?.video;
 
   let videoid = video ? video.split("?v=")[1] : "";
-  let embedlink = video ? "http://www.youtube.com/embed/" + videoid : "";
+  let embedlink = video ? "https://www.youtube.com/embed/" + videoid : "";
   const [address, setAddress] = useState("")
   
 

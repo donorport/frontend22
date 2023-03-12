@@ -140,7 +140,7 @@ const AddPost = (props) => {
   // console.log(galleryUrl)
   let url = galleryUrl;
   let videoid = url ? url?.split('?v=')[1] : '';
-  let embedlink = videoid ? 'http://www.youtube.com/embed/' + videoid : '';
+  let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
 
   // console.log(gallaryImages)
 
@@ -795,6 +795,7 @@ const AddPost = (props) => {
                                 icon={solid('cloud-arrow-up')}
                                 className="icon-cloud"
                               />
+                              <h3 style={{ fontSize: 'inherit' }}>Drag and drop or select File</h3>
                             </div>
                           </div>
 
@@ -1022,7 +1023,7 @@ const AddPost = (props) => {
                       <textarea
                         className="form-control form-control-lg mb-2"
                         // id="needDescriptionTextarea"
-                        rows="6"
+                        rows={5}
                         data-length="240"
                         placeholder="Enter some details about your need"
                         name="description"
@@ -1122,6 +1123,7 @@ const AddPost = (props) => {
                               icon={solid('cloud-arrow-up')}
                               className="icon-cloud"
                             />
+                            <h3 style={{ fontSize: 'inherit' }}>Drag and drop or select File</h3>
                           </div>
                         </div>
 

@@ -92,8 +92,7 @@ const UserItems = () => {
   const onItemClick = (key) => {
     setDetail({ ...detail, key: key, show: true });
   };
-  
-  
+
   return (
     <>
       {/*<FrontLoader loading={loading} />*/}
@@ -138,8 +137,10 @@ const UserItems = () => {
         orderItemList.length > 0 &&
         orderItemList.map((item, i) => {
           // item = detail
-          let videoid = item.itemDetails.galleryUrl ? item.itemDetails.galleryUrl.split("?v=")[1] : "";
-          let embedlink = videoid ? "http://www.youtube.com/embed/" + videoid : "";
+          let videoid = item.itemDetails.galleryUrl
+            ? item.itemDetails.galleryUrl.split('?v=')[1]
+            : '';
+          let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
           let address = item.itemDetails?.address ? convertAddress(item.itemDetails?.address) : '';
           // console.log(item.appliedTaxPer)
           // let price = Math.round(Number(item.productPrice) + (Number(item.appliedTaxPer) / 100) * Number(item.productPrice))
@@ -376,42 +377,46 @@ const UserItems = () => {
                             </span>
                           </div> */}
                     </div>
-                    {item.itemDetails?.isFulfiled && (
-                      <div className="note note-info align-items-center mt-5">
-                        <Card.Header className="post__accordion-header pb-2 pt-2">
-                          <span className="fs-3 fw-bolder text-dark">Followup</span>
-                          <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
-                        </Card.Header>
+                    {item.itemDetails?.isFulfiled &&
+                      (item.fulfilDetails[0].video || item.itemDetails?.fulfil.length > 0) && (
+                        <div className="note note-info align-items-center mt-5">
+                          <Card.Header className="post__accordion-header pb-2 pt-2">
+                            <span className="fs-3 fw-bolder text-dark">Followup</span>
+                            <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
+                          </Card.Header>
 
-                        {item.itemDetails?.isFulfiled && item.fulfilDetails[0].video && (
-                          <div className="project-video-wrap mb-1 mt-4">
-                            <iframe
-                              title="user-item-video"
-                              key="user-item-video"
-                              width="498"
-                              height="280"
-                              src={"http://www.youtube.com/embed/" + item.fulfilDetails[0].video.split("?v=")[1]}
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen
-                            ></iframe>
+                          {item.itemDetails?.isFulfiled && item.fulfilDetails[0].video && (
+                            <div className="project-video-wrap mb-1 mt-4">
+                              <iframe
+                                title="user-item-video"
+                                key="user-item-video"
+                                width="498"
+                                height="280"
+                                src={
+                                  'https://www.youtube.com/embed/' +
+                                  item.fulfilDetails[0].video.split('?v=')[1]
+                                }
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                              ></iframe>
+                            </div>
+                          )}
+
+                          <div className="gallery__container my-2">
+                            {item.itemDetails?.fulfil.length > 0 &&
+                              Number(detail.key) === i &&
+                              item.itemDetails?.fulfil.map((im, index) => {
+                                return (
+                                  <GalleryImg
+                                    key={index}
+                                    thumbImgSrc={helper.CampaignProductFullImagePath + im.image}
+                                    bigImgSrc={helper.CampaignProductFullImagePath + im.image}
+                                  />
+                                );
+                              })}
                           </div>
-                        )}
-
-                        <div className="gallery__container my-2">
-                          {item.itemDetails?.fulfil.length > 0 &&
-                            Number(detail.key) === i &&
-                            item.itemDetails?.fulfil.map((im, index) => {
-                              return (
-                                <GalleryImg
-                                  key={index}
-                                  thumbImgSrc={helper.CampaignProductFullImagePath + im.image}
-                                  bigImgSrc={helper.CampaignProductFullImagePath + im.image}
-                                />
-                              );
-                            })}
                         </div>
-                      </div>
-                    )}
+                      )}
 
                     {!item.itemDetails?.isFulfiled && (
                       <div className="note note-info d-flex align-items-center">
@@ -598,13 +603,12 @@ const UserItems = () => {
                           <Modal.Title id="show-sales-receipt"></Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                        <GalleryImg
+                          <GalleryImg
                             thumbImgSrc={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
                             bigImgSrc={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
                           />
                         </Modal.Body>
                       </Modal>
-
                     </>
                   )}
                 </Col>
