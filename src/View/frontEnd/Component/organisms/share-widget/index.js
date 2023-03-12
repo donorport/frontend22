@@ -18,7 +18,7 @@ import {
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import './style.scss';
 
-function ShareWidget() {
+function ShareWidget({page, text, pageTitle, currUrl }) {
   const [active, setActive] = useState(0);
   const [copySuccess, setCopySuccess] = useState('Copy Link');
   const location = useLocation();
@@ -103,9 +103,9 @@ function ShareWidget() {
                 <FontAwesomeIcon icon={brands("twitter")} />
               </a> */}
                 <TwitterShareButton
-                  title='test'
+                  title={pageTitle + "- " + text}
                   hashtags={['Donation', 'Charity']}
-                  url={currentPageLink}
+                  url={currUrl}
                   // hashtags={["hashtag1", "hashtag2"]}
                 >
                   <TwitterIcon size={32} round />
@@ -117,22 +117,22 @@ function ShareWidget() {
               >
                 <FontAwesomeIcon icon={brands("facebook")} />
               </a> */}
-
-                <FacebookShareButton
-                  url={currentPageLink}
-                  quote={currentPageLink}
-                  className="Demo__some-network__share-button"
+                {/*//! <FacebookShareButton
+                  title={pageTitle + "- " + text}
+                  url={currUrl}
+                  quote={text}
+                  // className="Demo__some-network__share-button"
                 >
                   <FacebookIcon size={32} round />
-                </FacebookShareButton>
+                </FacebookShareButton> */}
 
-                <EmailShareButton
+                {/* <EmailShareButton
                   url={currentPageLink}
                   quote={currentPageLink}
                   className="Demo__some-network__share-button"
                 >
                   <EmailIcon size={32} round />
-                </EmailShareButton>
+                </EmailShareButton> */}
 
                 {/* <a
                 href="https://www.twitter.com"
@@ -148,15 +148,15 @@ function ShareWidget() {
                 <FontAwesomeIcon icon={brands("linkedin-in")} />
               </a> */}
 
-                <LinkedinShareButton
-                  url={currentPageLink}
-                  quote={currentPageLink}
-                  hashtag='#hashtag #new'
-                  description='test'
-                  className="Demo__some-network__share-button"
+                {/*//! <LinkedinShareButton
+                  url={currUrl}
+                  title={text}
+                  summary={text}
+                  source={pageTitle}
+                  target="_blank"
                 >
                   <LinkedinIcon size={32} round />
-                </LinkedinShareButton>
+                </LinkedinShareButton> */}
               </div>
               <div className="sh__header share__header--sub">
                 <div>Or copy link</div>
@@ -165,7 +165,7 @@ function ShareWidget() {
                 <a href="#" className="icon icon--secure">
                   <FontAwesomeIcon icon={solid('lock')} />
                 </a>
-                <div className="sh__url">{currentPageLink}</div>
+                <div className="sh__url">{currUrl}</div>
                 <Button
                   variant={copySuccess === 'Copied!' ? 'info' : 'outline-info'}
                   onClick={() => copyToClipboard()}

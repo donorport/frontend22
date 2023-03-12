@@ -55,6 +55,7 @@ const DonationConfirmPage = () => {
   let subtotal = Number((doantionDetails.amount - 0.3) / 1.049).toFixed(2);
   let platformCost = subtotal * 0.049 + 0.3;
 
+  console.log({doantionDetails})
   return (
     <>
       <Page showTags={false} title={'Donation | ' + doantionDetails.uniqueTransactionId}>
@@ -130,7 +131,7 @@ const DonationConfirmPage = () => {
                     <p className="total__title fs-2 fw-bolder">Donation Details</p>
                   </div>
                   <div className="order__value text-light">
-                    <ShareWidget />
+                  <ShareWidget page="donation" text={`I just Donated $${doantionDetails?.amount} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`} pageTitle="Donation" currUrl={`https://www.donorport.com/project/${doantionDetails?._id}`}/>
                   </div>
                 </div>
                 <div className="total__container">

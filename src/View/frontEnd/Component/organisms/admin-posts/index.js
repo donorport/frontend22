@@ -1409,7 +1409,7 @@ const AdminPosts = () => {
     link.download = filename;
     link.click();
   }
-
+console.log({fulfilProductDetails})
   return (
     <>
       {/* {console.log('state', displayPrice)} */}
@@ -1876,13 +1876,15 @@ const AdminPosts = () => {
                             />
                           </Dropdown.Toggle>
                           <Dropdown.Menu className="">
-                            <Dropdown.Item
-                              className="d-flex align-items-center p-2"
-                              onClick={() => setShowReceipt(true)}
-                            >
-                              <span className="fw-bold fs-7 flex__1">View</span>
-                              <FontAwesomeIcon icon={solid('magnifying-glass')} className="ms-1" />
-                            </Dropdown.Item>
+                            {(fulfilProductDetails?.fulfilDetails?.receipt.split(".")[1] === "jpeg" || fulfilProductDetails?.fulfilDetails?.receipt.split(".")[1] === "jpg") && 
+                              <Dropdown.Item
+                                className="d-flex align-items-center p-2"
+                                onClick={() => setShowReceipt(true)}
+                              >
+                                <span className="fw-bold fs-7 flex__1">View</span>
+                                <FontAwesomeIcon icon={solid('magnifying-glass')} className="ms-1" />
+                              </Dropdown.Item>
+                            }
                             <Dropdown.Divider />
                             <Dropdown.Item
                               className="d-flex align-items-center p-2"
@@ -1939,7 +1941,7 @@ const AdminPosts = () => {
                     )} */}
                     <Modal
                         size="lg"
-                        show={true}
+                        show={showReceipt}
                         onHide={() => setShowReceipt(false)}
                         aria-labelledby="show-sales-receipt"
                       >
@@ -2198,7 +2200,7 @@ const AdminPosts = () => {
                 className="fw-bold fs-6"
                 onClick={() => fulfilOrder()}
               >
-                {fulfilProductDetails?.isFulfiled ? 'Update' : 'Fulfil Order'}
+                {fulfilProductDetails?.isFulfiled ? 'Update' : 'Fulfill Order'}
               </Button>
             </div>
           </>

@@ -137,6 +137,7 @@ const UserItems = () => {
         // const item = detail
         orderItemList.length > 0 &&
         orderItemList.map((item, i) => {
+          console.log({item})
           // item = detail
           let videoid = item.itemDetails.galleryUrl ? item.itemDetails.galleryUrl.split("?v=")[1] : "";
           let embedlink = videoid ? "http://www.youtube.com/embed/" + videoid : "";
@@ -535,7 +536,8 @@ const UserItems = () => {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu className="">
-                              <Dropdown.Item
+                              {(item.fulfilDetails[0].receipt.split(".")[1] === "jpeg" || item.fulfilDetails[0].receipt.split(".")[1] === "jpg") && (
+                                <Dropdown.Item
                                 className="d-flex align-items-center p-2"
                                 onClick={() => setShowReceipt(true)}
                               >
@@ -545,6 +547,7 @@ const UserItems = () => {
                                   className="ms-1"
                                 />
                               </Dropdown.Item>
+                              )}
                               <Dropdown.Divider />
                               <Dropdown.Item
                                 className="d-flex align-items-center p-2"

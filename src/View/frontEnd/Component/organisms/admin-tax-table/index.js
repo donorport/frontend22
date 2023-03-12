@@ -1,5 +1,5 @@
 import { Button, Dropdown, Modal } from 'react-bootstrap';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import helper, { priceFormat } from '../../../../../Common/Helper';
@@ -114,6 +114,9 @@ const AdminTaxTable = (props) => {
     setCurrentItem(null);
   };
 
+  useEffect(() => {
+    console.log("props.taxList:", props.taxList)
+  }, [props.taxList]);
   return (
     <>
       <div className="admin__tax-table list__table mb-4">
@@ -143,10 +146,8 @@ const AdminTaxTable = (props) => {
         </div>
         <ul className="list-unstyled mb-0 list__table-list">
           {taxList.length > 0 ? (
-            taxList[0].map((item, i) => {
-              const yearList = item.created_at.split("-")
-              console.log(yearList)
-              console.log(props.activeYear)
+            taxList.map((item, i) => {
+              // const yearList = item.created_at.split("-")
               const disableHeader = item.length === 1;
               return (
                 <>
@@ -162,18 +163,18 @@ const AdminTaxTable = (props) => {
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                                 <div className="text-light fw-bold fs-5">
                                   {item.currencySymbol}
-                                  {totalVal([item])}
+                                  {totalVal([...item])}
                                 </div>
                                 <div className="text-light fs-8">
-                                  {moment(item.created_at).fromNow()}
+                                  {moment(item[0].created_at).fromNow()}
                                 </div>
                               </div>
                               <div className="position-relative d-flex">
                                 <Avatar
                                   size={52}
                                   avatarUrl={
-                                    item.userDetails.image
-                                      ? helper.DonorImageResizePath + item.userDetails.image
+                                    item[0].userDetails.image
+                                      ? helper.DonorImageResizePath + item[0].userDetails.image
                                       : AvatarImg
                                   }
                                   border={0}
@@ -186,15 +187,15 @@ const AdminTaxTable = (props) => {
                                 style={{ cursor: 'default' }}
                                 onClick={(e) => e.stopPropagation()}
                               >
-                                <div className="fw-bold fs-5">{item.userDetails?.name}</div>
-                                <div className="text-light mb-1">{item.userDetails?.email}</div>
+                                <div className="fw-bold fs-5">{item[0].userDetails?.name}</div>
+                                <div className="text-light mb-1">{item[0].userDetails?.email}</div>
                                 <div className="text-light">
-                                  {item.userDetails.street +
+                                  {item[0].userDetails.street +
                                     ', ' +
-                                    item.userDetails.cityDetails?.city}&nbsp;
-                                  {item.userDetails.stateDetails?.state +
+                                    item[0].userDetails.cityDetails?.city}&nbsp;
+                                  {item[0].userDetails.stateDetails?.state +
                                     ', ' +
-                                    item.userDetails.zip}
+                                    item[0].userDetails.zip}
                                   {/* 255 West Baker St. */}
                                   {/* <br /> Dallas TX, USA 118098 */}
                                 </div>
@@ -375,7 +376,7 @@ const AdminTaxTable = (props) => {
                                   <input
                                     type="file"
                                     size="60"
-                                    style={{ position: 'absolute', opacity: '0' }}
+                                    style={{ position: 'absolute', opacity: '0', width: '80px' }}
                                     onChange={(e) =>
                                       props.uploadImage(
                                         e,

@@ -748,7 +748,7 @@ const AddPost = (props) => {
                         </span>
                       </div>
                       <div>
-                        <div className="project-tilte-optional">
+                        <div className="project-title-optional">
                           <div className="form__label">
                             More of Product
                             <span className="fs-7 text-light ms-1 fw-normal">(optional)</span>
