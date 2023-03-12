@@ -8,6 +8,7 @@ import Page from '../../../components/Page';
 import ShareWidget from '../Component/organisms/share-widget';
 import './style.scss';
 import moment from 'moment';
+import Seo from '../../../components/SEO'
 
 const DonationConfirmPage = () => {
   const params = useParams();
@@ -58,6 +59,7 @@ const DonationConfirmPage = () => {
   console.log({doantionDetails})
   return (
     <>
+      <Seo title="Donation" description={`I just Donated $${doantionDetails?.amount} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`} url={`https://www.donorport.com/donate/${doantionDetails?._id}`} />
       <Page showTags={false} title={'Donation | ' + doantionDetails.uniqueTransactionId}>
         <DefaultLayout>
           <div className="container-fluid d-flex flex-wrap gap-2">
@@ -131,7 +133,7 @@ const DonationConfirmPage = () => {
                     <p className="total__title fs-2 fw-bolder">Donation Details</p>
                   </div>
                   <div className="order__value text-light">
-                  <ShareWidget page="donation" text={`I just Donated $${doantionDetails?.amount} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`} pageTitle="Donation" currUrl={`https://www.donorport.com/project/${doantionDetails?._id}`}/>
+                  <ShareWidget page="donation" text={`I just Donated $${doantionDetails?.amount} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`} pageTitle="Donation" currUrl={`https://www.donorport.com/donate/${doantionDetails?._id}`}/>
                   </div>
                 </div>
                 <div className="total__container">
