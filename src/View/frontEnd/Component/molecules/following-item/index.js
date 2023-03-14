@@ -55,7 +55,7 @@ function FollowingItem(props) {
       <div className="d-flex align-items-center flex-grow-1">
         {data.type === 'PROJECT' && (
           <div className="charity_avatar_cover">
-            <img src={avatar} />
+            <img src={avatar} alt="avatar"/>
           </div>
         )}
         {data.type !== 'PROJECT' && (
