@@ -71,7 +71,6 @@ const AddProject = (props) => {
   return (
     <div className="add__project">
       <div className="d-sm-flex align-items-center flex-grow-1 pb-20p mb-3 border-bottom">
-        <div className="border p-3">STATUS:{status}</div>
         <div className="d-flex align-items-center mb-2 mb-sm-0 flex__1">
           <Button
             variant="link"
@@ -80,14 +79,18 @@ const AddProject = (props) => {
           >
             <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
           </Button>
-          <span className="fs-3 fw-bolder me-sm-3">Create Project</span>
+
+          {status !== 1 ? (
+            <span className="fs-3 fw-bolder me-sm-3">Create Project</span>
+          ) : (
+            <span className="fs-3 fw-bolder me-sm-3">Edit Project</span>
+          )}
           {/* <Button variant="link" className="text-decoration-none ms-auto ms-sm-0">
             <FontAwesomeIcon icon={solid('circle-question')} className="text-dark fs-4" />
           </Button>*/}
         </div>
-        {status === -1 ? (
-          <>
-            <span>IS DRAFT</span>
+        <div className="d-flex gap-2">
+          {status !== 1 ? (
             <Button
               variant="warning"
               size="lg"
@@ -96,20 +99,36 @@ const AddProject = (props) => {
             >
               Save as Draft
             </Button>
-          </>
-        ) : (
-          <>
-            <span>IS ACTIVE</span>
+          ) : (
             <Button
-              variant="danger"
+              variant="info"
               size="lg"
               className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
               onClick={() => submitProjectForm(-1)}
             >
               Unpublish
             </Button>
-          </>
-        )}
+          )}
+          {status !== 1 ? (
+            <Button
+              variant="info"
+              size="lg"
+              className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
+              onClick={() => submitProjectForm(1)}
+            >
+              Publish
+            </Button>
+          ) : (
+            <Button
+              variant="success"
+              size="lg"
+              className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
+              onClick={() => submitProjectForm(1)}
+            >
+              Save
+            </Button>
+          )}
+        </div>
       </div>
       {/*  <div className="studio__note d-sm-flex align-items-center py-2 px-3 border rounded mb-5">
         <div className="studio__thumb p-1 mr-20p d-none d-sm-block">
@@ -399,14 +418,14 @@ const AddProject = (props) => {
       <div>
         <div className="products-detial-footer d-flex py-3 py-sm-5 gap-2">
           <Button
-            variant="danger"
+            variant="white"
             size="lg"
             className="fw-bold fs-6 mb-2 mb-sm-0"
             onClick={() => discardProject()}
           >
             Discard
           </Button>
-          {status === -1 ? (
+          {status !== 1 ? (
             <Button
               variant="success"
               size="lg"
@@ -416,7 +435,14 @@ const AddProject = (props) => {
               {/* {!id ? "Create Project" : "Update Project"} */} Publish
             </Button>
           ) : (
-            ''
+            <Button
+              variant="success"
+              size="lg"
+              className="fw-bold fs-6"
+              onClick={() => submitProjectForm(1)}
+            >
+              Save
+            </Button>
           )}
         </div>
       </div>

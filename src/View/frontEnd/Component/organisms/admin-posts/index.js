@@ -86,7 +86,7 @@ const AdminPosts = () => {
 
   const [state, setstate] = useState({
     id: '',
-    status: 1,
+    status: '',
     title: '',
     subtitle: '',
     headline: '',
@@ -165,9 +165,9 @@ const AdminPosts = () => {
 
   const user = useSelector((state) => state.user);
 
-  let videoid = fulfilState.videoUrl ? fulfilState.videoUrl.split("?v=")[1] : "";
+  let videoid = fulfilState.videoUrl ? fulfilState.videoUrl.split('?v=')[1] : '';
 
-  let embedlink = videoid ? "https://www.youtube.com/embed/" + videoid : "";
+  let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
 
   const [tags, setTags] = useState([]);
   // let url = galleryUrl;
@@ -567,7 +567,7 @@ const AdminPosts = () => {
     setSeletedProjectList([]);
     setstate({
       id: '',
-      status: 1,
+      status: '',
       title: '',
       subtitle: '',
       headline: '',
@@ -598,7 +598,7 @@ const AdminPosts = () => {
   };
 
   const submitProductForm = (s, seletedProjectListofIds) => {
-    console.log("s")
+    console.log('s');
 
     //window.scrollTo(0, 0);
     // console.log(tags)
@@ -800,21 +800,21 @@ const AdminPosts = () => {
             } else {
               if (addProduct.data.success === true) {
                 const res = await projectApi.list(token);
-                console.log({res})
+                console.log({ res });
                 const dta = res.data.data;
-                console.log({dta})
-                dta.forEach(project => {
-                  let newData = {...project};
-                  const idx = seletedProjectListofIds.indexOf(project._id)
-                  console.log({idx})
-                  if(idx !== -1){
+                console.log({ dta });
+                dta.forEach((project) => {
+                  let newData = { ...project };
+                  const idx = seletedProjectListofIds.indexOf(project._id);
+                  console.log({ idx });
+                  if (idx !== -1) {
                     const newProducts = [id];
-                    project.productDetails.forEach(product => {
-                      newProducts.push(product.productId)
+                    project.productDetails.forEach((product) => {
+                      newProducts.push(product.productId);
                     });
-                    console.log({oldProducts: newProducts})
-                    newData.products = newProducts
-                    projectApi.updateProject(token, newData, project._id, true)
+                    console.log({ oldProducts: newProducts });
+                    newData.products = newProducts;
+                    projectApi.updateProject(token, newData, project._id, true);
                   }
                 });
                 resetForm();
@@ -920,7 +920,7 @@ const AdminPosts = () => {
                   if (deleteFulfilOrderApi.data.success === true) {
                     // setLoading(false);
                     setUpdate(!update);
-                    setDeletedFile(true)
+                    setDeletedFile(true);
                     ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'success' });
                   }
                 }
@@ -1057,7 +1057,8 @@ const AdminPosts = () => {
   };
 
   const createNewPost = () => {
-    if (user.isAccountAdded) {
+    // if (user.isAccountAdded) {
+      if (user) {
       resetForm();
       createPost(true);
     } else {
@@ -1409,7 +1410,7 @@ const AdminPosts = () => {
     link.download = filename;
     link.click();
   }
-console.log({fulfilProductDetails})
+  console.log({ fulfilProductDetails });
   return (
     <>
       {/* {console.log('state', displayPrice)} */}
@@ -1774,6 +1775,7 @@ console.log({fulfilProductDetails})
                         title=" "
                       />
                       <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
+                        <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
                         <h3 style={{ fontSize: 'inherit' }}>
                           {tempImgName && tempImgName !== ''
                             ? tempImgName
@@ -1829,6 +1831,7 @@ console.log({fulfilProductDetails})
                         title=" "
                       />
                       <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
+                        <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
                         <h3 style={{ fontSize: 'inherit' }}>
                           {tempImgName && tempImgName !== ''
                             ? tempImgName
@@ -1866,7 +1869,7 @@ console.log({fulfilProductDetails})
                           {moment(fulfilProductDetails?.fulfilDetails.created_at).fromNow()}
                         </div>
                       </div>
-                      
+
                       <div className="ms-auto">
                         <Dropdown className="d-flex ms-auto" autoClose="outside">
                           <Dropdown.Toggle variant="link" className="no-caret text-decoration-none">
@@ -1876,15 +1879,21 @@ console.log({fulfilProductDetails})
                             />
                           </Dropdown.Toggle>
                           <Dropdown.Menu className="">
-                            {(fulfilProductDetails?.fulfilDetails?.receipt.split(".")[1] === "jpeg" || fulfilProductDetails?.fulfilDetails?.receipt.split(".")[1] === "jpg") && 
+                            {(fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] ===
+                              'jpeg' ||
+                              fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] ===
+                                'jpg') && (
                               <Dropdown.Item
                                 className="d-flex align-items-center p-2"
                                 onClick={() => setShowReceipt(true)}
                               >
                                 <span className="fw-bold fs-7 flex__1">View</span>
-                                <FontAwesomeIcon icon={solid('magnifying-glass')} className="ms-1" />
+                                <FontAwesomeIcon
+                                  icon={solid('magnifying-glass')}
+                                  className="ms-1"
+                                />
                               </Dropdown.Item>
-                            }
+                            )}
                             <Dropdown.Divider />
                             <Dropdown.Item
                               className="d-flex align-items-center p-2"
@@ -1940,25 +1949,25 @@ console.log({fulfilProductDetails})
                       </div>
                     )} */}
                     <Modal
-                        size="lg"
-                        show={showReceipt}
-                        onHide={() => setShowReceipt(false)}
-                        aria-labelledby="show-sales-receipt"
-                      >
-                        <Modal.Header>
-                          <Modal.Title id="show-sales-receipt"></Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                          <GalleryImg
-                            thumbImgSrc={
-                              helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
-                            }
-                            bigImgSrc={
-                              helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
-                            }
-                          />
-                        </Modal.Body>
-                      </Modal>
+                      size="lg"
+                      show={showReceipt}
+                      onHide={() => setShowReceipt(false)}
+                      aria-labelledby="show-sales-receipt"
+                    >
+                      <Modal.Header>
+                        <Modal.Title id="show-sales-receipt"></Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        <GalleryImg
+                          thumbImgSrc={
+                            helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
+                          }
+                          bigImgSrc={
+                            helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
+                          }
+                        />
+                      </Modal.Body>
+                    </Modal>
                   </>
                 )}
               </Col>

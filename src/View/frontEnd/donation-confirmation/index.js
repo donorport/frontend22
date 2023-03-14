@@ -59,7 +59,7 @@ const DonationConfirmPage = () => {
   console.log({doantionDetails})
   return (
     <>
-      <Seo title="Donation" description={`I just Donated $${doantionDetails?.amount} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`} url={`https://www.donorport.com/donate/${doantionDetails?._id}`} />
+      {/* <Seo title="Donation" description={`I just Donated $${doantionDetails?.amount} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`} url={`https://www.donorport.com/donate/${doantionDetails?._id}`} /> */}
       <Page showTags={false} title={'Donation | ' + doantionDetails.uniqueTransactionId}>
         <DefaultLayout>
           <div className="container-fluid d-flex flex-wrap gap-2">

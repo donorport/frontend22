@@ -189,7 +189,7 @@ const AddPost = (props) => {
   };
   const [id1] = useState('headline');
   const [id2] = useState('brand');
-  const [id3] = useState('need-headline');
+  const [id3] = useState('needheadline');
   const [id4] = useState('description');
   const [title1] = useState('Headline');
   const [title2] = useState('Brand');
@@ -211,18 +211,47 @@ const AddPost = (props) => {
         <Button variant="link" className="me-sm-2 me-1" onClick={() => props.createPost(false)}>
           <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
         </Button>
-        <div className="fs-3 fw-bolder me-sm-3 flex__1">Create Item</div>
+        {stateData.status !== 1 ? (
+          <div className="fs-3 fw-bolder me-sm-3 flex__1">Create Item</div>
+        ) : (
+          <div className="fs-3 fw-bolder me-sm-3 flex__1">Edit Item</div>
+        )}
 
-        <div className="ms-auto">
-          <Button
-            variant="warning"
-            size="lg"
-            className="text-white fw-bold fs-6"
-            // onClick={() => submitProductForm(-1)}
-            onClick={() => setModelShow(true)}
-          >
-            Save as Draft
-          </Button>
+        <div className="d-flex ms-auto gap-2">
+          {stateData.status !== 1 && (
+            <Button
+              variant="warning"
+              size="lg"
+              className="text-white fw-bold fs-6"
+              // onClick={() => submitProductForm(-1)}
+              onClick={() => setModelShow(true)}
+            >
+              Save as Draft
+            </Button>
+          )}
+          {stateData.status === 1 && (
+            <Button
+              style={{ opacity: props.isLoading ? '0.7' : '1' }}
+              variant="info"
+              size="lg"
+              className="fw-bold fs-6"
+              onClick={() => !props.isLoading && submitProductForm(-1)}
+            >
+              Unpublish
+            </Button>
+          )}
+          {stateData.status === 1 && (
+            <Button
+              style={{ opacity: props.isLoading ? '0.7' : '1' }}
+              variant="success"
+              size="lg"
+              className="d-flex align-items-center justify-content-center fs-6 fw-bold"
+              onClick={() => !props.isLoading && submitProductForm(1, seletedProjectList)}
+            >
+              Update Post
+              {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+            </Button>
+          )}
         </div>
       </div>
       {/* <div className="studio__note d-sm-flex align-items-center py-2 px-3 border rounded mb-5">
@@ -384,7 +413,8 @@ const AddPost = (props) => {
                           className="form-control form-control-lg"
                           // id="brandInput"
                           placeholder="Slug"
-                          disabled={id ? true : false}
+                          //disabled={id ? true : false}
+                          disabled={true}
                           name="slug"
                           id="slug"
                           value={slug}
@@ -1288,19 +1318,33 @@ const AddPost = (props) => {
               className="fw-bold fs-6"
               onClick={() => !props.isLoading && submitProductForm(-1)}
             >
-              Un-publish
+              Unpublish
             </Button>
           )}
-          <Button
-            style={{ opacity: props.isLoading ? '0.7' : '1' }}
-            variant="success"
-            size="lg"
-            className="d-flex align-items-center justify-content-center fs-6 fw-bold"
-            onClick={() => !props.isLoading && submitProductForm(1, seletedProjectList)}
-          >
-            Post Ad{' '}
-            {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={12} />}
-          </Button>
+          {stateData.status !== 1 && (
+            <Button
+              style={{ opacity: props.isLoading ? '0.7' : '1' }}
+              variant="success"
+              size="lg"
+              className="d-flex align-items-center justify-content-center fs-6 fw-bold"
+              onClick={() => !props.isLoading && submitProductForm(1, seletedProjectList)}
+            >
+              Create Post
+              {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+            </Button>
+          )}
+          {stateData.status === 1 && (
+            <Button
+              style={{ opacity: props.isLoading ? '0.7' : '1' }}
+              variant="success"
+              size="lg"
+              className="d-flex align-items-center justify-content-center fs-6 fw-bold"
+              onClick={() => !props.isLoading && submitProductForm(1, seletedProjectList)}
+            >
+              Update Post
+              {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+            </Button>
+          )}
         </div>
       </div>
     </div>

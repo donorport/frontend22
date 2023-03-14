@@ -36,7 +36,7 @@ const AdminProjects = () => {
   const [update, setUpdate] = useState(false);
   const [state, setstate] = useState({
     id: '',
-    status: -1,
+    status: '',
     name: '',
     headline: '',
     video: '',
@@ -114,7 +114,7 @@ const AdminProjects = () => {
     setTempImages([]);
     setstate({
       id: '',
-      status: -1,
+      status: '-1',
       name: '',
       headline: '',
       video: '',
@@ -252,8 +252,8 @@ const AdminProjects = () => {
         formData.infinity = infinite;
         formData.organizationId = data._id;
         formData.organizationCountryId = data.country_id;
-
         formData.status = s;
+
         if (images?.length) {
           formData.images = images;
         }
@@ -367,6 +367,7 @@ const AdminProjects = () => {
     if (projectData && projectData !== null && projectData !== '') {
       setstate({
         id: projectData._id,
+        status: projectData.status,
         headline: projectData.headline,
         name: projectData.name,
         description: projectData.description,
