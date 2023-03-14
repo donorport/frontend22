@@ -16,19 +16,19 @@ const OrderConfirmPage = () => {
   const userAuthToken = localStorage.getItem('userAuthToken');
   const [orderDetails, setOrderDetails] = useState({});
   const [loading, setLoading] = useState(false);
-  
+
   const userData = JSON.parse(localStorage.getItem('userData'));
   let newSlug = userData?.name.split(/\s/).join('');
-  
+
   let transactionFee = orderDetails.transactionFees;
   let platformFee = orderDetails.platformFees;
   let platformCost = (
     (platformFee / 100 + transactionFee / 100) * Number(orderDetails.subtotal) +
     0.3
-    ).toFixed(2);
-    //let grandTotal = (Number(orderDetails.subtotal) + Number(platformCost)).toFixed(2);
-    
-    const getOrderDetails = async () => {
+  ).toFixed(2);
+  //let grandTotal = (Number(orderDetails.subtotal) + Number(platformCost)).toFixed(2);
+
+  const getOrderDetails = async () => {
     let data = {};
     data.orderId = params.id;
     const details = await orderApi.getOrderDetails(userAuthToken, data);
@@ -42,7 +42,7 @@ const OrderConfirmPage = () => {
       navigate('/');
     }
   };
-  
+
   useEffect(() => {
     (async () => {
       if (params.id) {
@@ -54,157 +54,166 @@ const OrderConfirmPage = () => {
       }
     })();
   }, [params.id]);
-  
+
   let cardType = JSON.parse(orderDetails?.paymentResponse || '{}')?.data?.payment_method_details
     ?.card?.brand;
-    let lastFourDigits = JSON.parse(orderDetails?.paymentResponse || '{}')?.data
+  let lastFourDigits = JSON.parse(orderDetails?.paymentResponse || '{}')?.data
     ?.payment_method_details?.card?.last4;
-    
-    const [title, setTitle] = useState(false);
-    const [description, setDescription] = useState(false);
-    const [img, setImg] = useState(false);
-    
-    useEffect(() => {
-      let items = {}
-      if(orderDetails?.orderItems?.length){
-        const amountOfItems = orderDetails?.orderItems?.length
-        orderDetails.orderItems.forEach((item) => {
-          items = {
-            ...items,
-            [item.productName] : item.quantity
-          }
-        })
-        const title = `I just donated ${amountOfItems} item${amountOfItems > 1 ? "s" : ""} to charity`;
-        const description = `I donated ${Object.keys(items).map((item, idx) => {
-          let singleItem = items[item] === 1 ? true : false
-          //1 Banana || 2 Bananas
-          return (`${items[item]} ${singleItem ? Object.getOwnPropertyNames(items)[idx].slice(0, -1) : Object.getOwnPropertyNames(items)[idx]}`)
-        })} `;
-        
-        const img = `${helper.CampaignProductImagePath}${orderDetails.orderItems[0].productImage}`;
-        setTitle(title)
-        setDescription(description)
-        setImg(img)
-      }
-    }, [orderDetails]);
-console.log({orderDetails})
+
+  const [title, setTitle] = useState(false);
+  const [description, setDescription] = useState(false);
+  const [img, setImg] = useState(false);
+
+  useEffect(() => {
+    let items = {};
+    if (orderDetails?.orderItems?.length) {
+      const amountOfItems = orderDetails?.orderItems?.length;
+      orderDetails.orderItems.forEach((item) => {
+        items = {
+          ...items,
+          [item.productName]: item.quantity
+        };
+      });
+      const title = `I just donated ${amountOfItems} item${
+        amountOfItems > 1 ? 's' : ''
+      } to charity`;
+      const description = `I donated ${Object.keys(items).map((item, idx) => {
+        let singleItem = items[item] === 1 ? true : false;
+        //1 Banana || 2 Bananas
+        return `${items[item]} ${
+          singleItem
+            ? Object.getOwnPropertyNames(items)[idx].slice(0, -1)
+            : Object.getOwnPropertyNames(items)[idx]
+        }`;
+      })} `;
+
+      const img = `${helper.CampaignProductImagePath}${orderDetails.orderItems[0].productImage}`;
+      setTitle(title);
+      setDescription(description);
+      setImg(img);
+    }
+  }, [orderDetails]);
+  console.log({ orderDetails });
   return (
     <>
       <Page showTags={false} title={'Order | ' + orderDetails.uniqueTransactionId}>
         <DefaultLayout>
           {/*<FrontLoader loading={loading} />*/}
-          <div className="container-fluid d-flex flex-wrap gap-2">
-            <div className="flex__1 d-flex flex-column align-items-sm-center align-items-stretch py-5 text-center pb-0 pb-sm-5 border-end">
-              {/* <img
-                style={{ width: '320px' }}
-                src="https://i.pinimg.com/originals/7f/91/19/7f9119b483a3b4c966bdbad251f0b483.gif"
-                alt=""
-              />*/}
-              <div className="boat-container relative mb-3">
-                <div className="absolute boat">
-                  <ul className="no-bullet">
-                    <ul className="no-bullet fume">
-                      <li className="fume4"></li>
-                      <li className="fume3"></li>
-                      <li className="fume2"></li>
-                      <li className="fume1"></li>
-                    </ul>
-                    <li className="smokestack"></li>
-                    <li className="white-body">
-                      <ul className="windows inline-list">
-                        <li className="circle"></li>
-                        <li className="circle"></li>
-                        <li className="circle"></li>
+          <div className="container-fluid d-flex flex-wrap gap-2 col-md-9 col-0">
+            <div className="flex__1 d-flex flex-column align-items-sm-center align-items-stretch py-5 text-center pb-0 pb-sm-5">
+              <div className="d-flex flex-column align-items-center">
+                <div className="boat-container relative mb-3">
+                  <div className="absolute boat">
+                    <ul className="no-bullet">
+                      <ul className="no-bullet fume">
+                        <li className="fume4"></li>
+                        <li className="fume3"></li>
+                        <li className="fume2"></li>
+                        <li className="fume1"></li>
                       </ul>
-                    </li>
-                    <li className="boat-body"></li>
-                  </ul>
+                      <li className="smokestack"></li>
+                      <li className="white-body">
+                        <ul className="windows inline-list">
+                          <li className="circle"></li>
+                          <li className="circle"></li>
+                          <li className="circle"></li>
+                        </ul>
+                      </li>
+                      <li className="boat-body"></li>
+                    </ul>
+                  </div>
+                  <div className="w-1"></div>
+                  <div className="r w-1"></div>
                 </div>
-                <div className="w-1"></div>
-                <div className="r w-1"></div>
-              </div>
-              <h1 className="fs-1 fw-bolder">Order Completed</h1>
-              <span className="fs-3">Order #{orderDetails.uniqueTransactionId}</span>
+                <h1 className="fs-1 fw-bolder">Order Completed</h1>
+                <span className="fs-3">Order #{orderDetails.uniqueTransactionId}</span>
+                <p className="col-sm-6 email__note fs-5 mt-1 text-justify text-sm-center">
+                  Thank you for donating through Donorport ♥<br></br>
+                  <br></br>
+                  The organization(s) have received your donation and will purchase the items on
+                  your behalf. Navigate to your profile to track updates to your orders including
+                  tax-receipts & Media.
+                </p>
+                <div className="d-flex align-items-center justify-content-center gap-3">
+                  <Link
+                    to="/"
+                    className="btn btn-lg fw-bold btn-primary my-2 flex-grow-sm-0 flex-grow-1"
+                  >
+                    Back To Home
+                  </Link>
 
-              <p className="col-sm-6 email__note fs-5 mt-1 text-justify text-sm-center">
-                Thank you for donating through Donorport ♥<br></br>
-                <br></br>
-                The organization(s) have received your donation and will purchase the items on your
-                behalf. Navigate to your profile to track updates to your orders including
-                tax-receipts & Media.
-              </p>
-
-              <div className="d-flex align-items-center justify-content-center gap-3">
-                <Link
-                  to="/"
-                  className="btn btn-lg fw-bold btn-primary my-2 flex-grow-sm-0 flex-grow-1"
-                >
-                  Back To Home
-                </Link>
-
-                <Link
-                  to={'/user/' + newSlug + '/items'}
-                  className="btn btn-lg fw-bold btn-info my-2 flex-grow-sm-0 flex-grow-1"
-                >
-                  Go to Order
-                </Link>
+                  <Link
+                    to={'/user/' + newSlug + '/items'}
+                    className="btn btn-lg fw-bold btn-info my-2 flex-grow-sm-0 flex-grow-1"
+                  >
+                    Go to Order
+                  </Link>
+                </div>
               </div>
             </div>
-            <div className="flex__1 email__container my-5 p-3">
-              <div className="order__container d-flex align-items-center justify-content-between m-3 mx-0 border-bottom">
-                <div className="order__wrap">
-                  <p className="total__title fs-2 fw-bolder">Order Details</p>
+            <div className="flex__1 email__container my-lg-5 my-0 p-0 pb-5 p-lg-3">
+              <div className="d-flex flex-column w-100 w-sm-auto" style={{width: '400px'}}>
+                <div className="order__container d-flex align-items-center justify-content-between pb-3 m-3 mx-0 border-bottom">
+                  <div className="order__wrap">
+                    <p className="total__title fs-2 fw-bolder">Order Details</p>
+                  </div>
+                  <div className="order__value text-light">
+                    <ShareWidget
+                      page="project"
+                      text={description}
+                      pageTitle={title}
+                      currUrl={`https://www.donorport.com/order/${orderDetails?._id}`}
+                    />
+                  </div>
                 </div>
-                <div className="order__value text-light">
-                <ShareWidget page="project" text={description} pageTitle={title} currUrl={`https://www.donorport.com/order/${orderDetails?._id}`}/>
-                </div>
-              </div>
-              <div className="email__wrap">
-                <div role="list" className="d-flex flex-column gap-5 my-5">
-                  {orderDetails?.orderItems?.length > 0 &&
-                    orderDetails?.orderItems.map((itm, i) => {
-                      // console.log(itm)
-                      return (
-                        <div
-                          data-id="product"
-                          role="listitem"
-                          className="email__item border-bottom"
-                          key={i}
-                        >
-                          <div className="checkout__top d-flex flex-row align-items-start flex-nowrap">
-                            <div className="checkout__left d-flex flex-row align-items-start flex-nowrap">
-                              <div className="checkout__thumb position-relative d-flex align-items-center justify-content-center">
-                                <div className="checkout__img d-flex align-items-center justify-content-center">
-                                  <ListItemImg
-                                    size={76}
-                                    className="avatar__checkout border"
-                                    imgSrc={helper.CampaignProductImagePath + itm.itemDetails.image}
-                                  />
+                <div className="email__wrap">
+                  <div role="list" className="d-flex flex-column gap-5 my-5">
+                    {orderDetails?.orderItems?.length > 0 &&
+                      orderDetails?.orderItems.map((itm, i) => {
+                        // console.log(itm)
+                        return (
+                          <div
+                            data-id="product"
+                            role="listitem"
+                            className="email__item border-bottom"
+                            key={i}
+                          >
+                            <div className="checkout__top d-flex flex-row align-items-start flex-nowrap">
+                              <div className="checkout__left d-flex flex-row align-items-start flex-nowrap flex__1">
+                                <div className="checkout__thumb position-relative d-flex align-items-center justify-content-center">
+                                  <div className="checkout__img d-flex align-items-center justify-content-center">
+                                    <ListItemImg
+                                      size={76}
+                                      className="avatar__checkout border"
+                                      imgSrc={
+                                        helper.CampaignProductImagePath + itm.itemDetails.image
+                                      }
+                                    />
+                                  </div>
+                                  <div className="checkout__qtytag d-flex align-items-center justify-content-center fw-bold">
+                                    <div className="badge item__img-badge fw-bold fs-8">
+                                      {itm.quantity}
+                                    </div>
+                                  </div>
                                 </div>
-                                <div className="checkout__qtytag d-flex align-items-center justify-content-center fw-bold">
-                                  <div className="badge item__img-badge fw-bold fs-8">
-                                    {itm.quantity}
+                                <div className="checkout__info d-flex flex-column flex-wrap align-items-start px-3">
+                                  <Link
+                                    to={'/item/' + itm.itemDetails.slug}
+                                    className="text-dark text-start fw-bolder p-0 mb-3p fs-4 btn btn-link"
+                                  >
+                                    <div>{itm.itemDetails.headline}</div>
+                                  </Link>
+                                  <div className="text-light mb-1">
+                                    <div>{itm.itemDetails.brand}</div>
+                                  </div>
+                                  <div className="checkout__price flex-row fs-5 fw-bold text-light">
+                                    {orderDetails.currencySymbol}
+                                    {itm.itemDetails.displayPrice}
                                   </div>
                                 </div>
                               </div>
-                              <div className="checkout__info d-flex flex-column flex-wrap align-items-start px-3">
-                                <Link
-                                  to={'/item/' + itm.itemDetails.slug}
-                                  className="text-dark text-start fw-bolder p-0 mb-3p fs-4 btn btn-link"
-                                >
-                                  <div>{itm.itemDetails.headline}</div>
-                                </Link>
-                                <div className="text-light mb-1">
-                                  <div>{itm.itemDetails.brand}</div>
-                                </div>
-                                <div className="checkout__price flex-row fs-5 fw-bold text-light">
-                                  {orderDetails.currencySymbol}
-                                  {itm.itemDetails.displayPrice}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="flex-grow-1 checkout__right d-flex flex-row align-items-center justify-content-between flex-wrap">
-                              {/* <Link to={'/organization/' + itm?.campaignadminsDetails.slug}>
+                              <div className="flex-grow-1 checkout__right d-flex flex-row align-items-center justify-content-between flex-wrap">
+                                {/* <Link to={'/organization/' + itm?.campaignadminsDetails.slug}>
                                 <ListItemImg
                                   size={46}
                                   className="ms-2 d-none d-sm-flex"
@@ -213,22 +222,22 @@ console.log({orderDetails})
                                   }
                                 />
                               </Link>*/}
-                              <div className="checkout__subtotal d-flex flex-row align-items-center fw-bold">
-                                {/* <div className="checkout__itemvalue d-flex align-items-center">
+                                <div className="checkout__subtotal d-flex flex-row align-items-center fw-bold">
+                                  {/* <div className="checkout__itemvalue d-flex align-items-center">
                                   <div className="checkout__tag">
                                     <div className="tag tag--xp">
                                       <span className="checkout__xp">{itm.xp}</span>&nbsp;xp
                                     </div>
                                   </div>
                                 </div>*/}
+                                </div>
+                                <h4 className="order__itemtotal text-light fs-5 fw-bold">
+                                  {orderDetails.currencySymbol}
+                                  {priceFormat(Number(itm.totalPrice))}
+                                </h4>
                               </div>
-                              <h4 className="order__itemtotal text-light fs-5 fw-bold">
-                                {orderDetails.currencySymbol}
-                                {priceFormat(Number(itm.totalPrice))}
-                              </h4>
                             </div>
-                          </div>
-                          {/*   {itm.tax === true && (
+                            {/*   {itm.tax === true && (
                             <div className="pt-2">
                               <img
                                 alt=""
@@ -240,40 +249,40 @@ console.log({orderDetails})
                               </a>
                             </div>
                           )}*/}
-                        </div>
-                      );
-                    })}
+                          </div>
+                        );
+                      })}
+                  </div>
                 </div>
-              </div>
-              <div className="total__container">
-                <div>
-                  <div className="total__sub d-flex justify-content-between">
-                    <div className="total__title fw-bolder">Subtotal:</div>
-                    <div className="total__value text-light">
-                      <p className="fw-bold text-light fs-5">
-                        {' '}
-                        {orderDetails.currencySymbol}
-                        {/* {purchasedPriceWithTax(Number(orderDetails.subtotal), Number(orderDetails.appliedTaxPercentage))} */}
-                        {/* {orderDetails.subtotal} */}
-                        {priceFormat(Number(orderDetails.subtotal))}
-                      </p>
+                <div className="total__container">
+                  <div>
+                    <div className="total__sub d-flex justify-content-between">
+                      <div className="total__title fw-bolder">Subtotal:</div>
+                      <div className="total__value text-light">
+                        <p className="fw-bold text-light fs-5">
+                          {' '}
+                          {orderDetails.currencySymbol}
+                          {/* {purchasedPriceWithTax(Number(orderDetails.subtotal), Number(orderDetails.appliedTaxPercentage))} */}
+                          {/* {orderDetails.subtotal} */}
+                          {priceFormat(Number(orderDetails.subtotal))}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="total__sub d-flex justify-content-between">
-                    <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
-                      Service Charge:
-                    </Link>
-                    <div className="total__value">
-                      <p className="fw-semibold text-light fs-7">
-                        {' '}
-                        {orderDetails.currencySymbol}
-                        {/* {purchasedPriceWithTax(Number(orderDetails.subtotal), Number(orderDetails.appliedTaxPercentage))} */}
-                        {/* {orderDetails.subtotal} */}
-                        {priceFormat(Number(platformCost))}
-                      </p>
+                    <div className="total__sub d-flex justify-content-between">
+                      <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
+                        Service Charge:
+                      </Link>
+                      <div className="total__value">
+                        <p className="fw-semibold text-light fs-7">
+                          {' '}
+                          {orderDetails.currencySymbol}
+                          {/* {purchasedPriceWithTax(Number(orderDetails.subtotal), Number(orderDetails.appliedTaxPercentage))} */}
+                          {/* {orderDetails.subtotal} */}
+                          {priceFormat(Number(platformCost))}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  {/*    <div
+                    {/*    <div
                 style={{
                   textAlign: 'left',
                   display: 'inline-block',
@@ -285,7 +294,7 @@ console.log({orderDetails})
                   Stripe : ({orderDetails.salesTaxPer}%)
                 </p>
               </div>*/}
-                  {/* <div className="total__sub d-flex justify-content-between">
+                    {/* <div className="total__sub d-flex justify-content-between">
                     <p className="total__title fw-bold">Fee:</p>
                     <p className="fs-6 fw-bold">
                       {' '}
@@ -296,37 +305,38 @@ console.log({orderDetails})
                     </p>
                   </div> */}
 
-                  <div className="total__sub d-flex justify-content-between mt-3">
-                    <p className="total__title fw-bolder">XP:</p>
-                    <div className="order__xp text-info fw-bold">{orderDetails.xp} xp</div>
-                  </div>
-                </div>
-                <div className="bg-lighter d-flex align-items-center p-20p rounded-3">
-                  <div className="order__logo me-2">
-                    <img src={getCardIcon(cardType)} alt="" className="img-fluid" />
-                  </div>
-                  <div className="order__card fs-7">
-                    <div className="text-dark fw-semibold mb-6p">
-                      XXXX XXXX XXXX {lastFourDigits}
+                    <div className="total__sub d-flex justify-content-between mt-3">
+                      <p className="total__title fw-bolder">XP:</p>
+                      <div className="order__xp text-info fw-bold">{orderDetails.xp} xp</div>
                     </div>
-                    <div className="text-light fw-semibold">
-                      <div>
-                        Transaction: {moment(orderDetails.created_at).format('MMMM DD, YYYY')}
+                  </div>
+                  <div className="bg-lighter d-flex align-items-center p-20p rounded-3">
+                    <div className="order__logo me-2">
+                      <img src={getCardIcon(cardType)} alt="" className="img-fluid" />
+                    </div>
+                    <div className="order__card fs-7">
+                      <div className="text-dark fw-semibold mb-6p">
+                        XXXX XXXX XXXX {lastFourDigits}
+                      </div>
+                      <div className="text-light fw-semibold">
+                        <div>
+                          Transaction: {moment(orderDetails.created_at).format('MMMM DD, YYYY')}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="total__box">
-                  <div className="order__container d-flex align-items-center justify-content-between mt-3 border-top pt-3">
-                    <div className="order__wrap">
-                      <span className="total__title fs-5 fw-bolder">Total Paid:</span>
-                    </div>
-                    <div className=" d-flex align-items-centerorder__value text-light">
-                      {orderDetails.currency}
-                      <span className="fs-4 fw-bold text-light ms-1">
-                        {orderDetails.currencySymbol}
-                        {priceFormat(Number(orderDetails.total))}
-                      </span>
+                  <div className="total__box">
+                    <div className="order__container d-flex align-items-center justify-content-between mt-3 border-top pt-3">
+                      <div className="order__wrap">
+                        <span className="total__title fs-5 fw-bolder">Total Paid:</span>
+                      </div>
+                      <div className=" d-flex align-items-center order__value text-light">
+                        {orderDetails.currency}
+                        <span className="fs-4 fw-bold text-light ms-1">
+                          {orderDetails.currencySymbol}
+                          {priceFormat(Number(orderDetails.total))}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -71,6 +71,7 @@ const AddProject = (props) => {
   return (
     <div className="add__project">
       <div className="d-sm-flex align-items-center flex-grow-1 pb-20p mb-3 border-bottom">
+        <div className="border p-3">STATUS:{status}</div>
         <div className="d-flex align-items-center mb-2 mb-sm-0 flex__1">
           <Button
             variant="link"
@@ -154,113 +155,53 @@ const AddProject = (props) => {
       </div>
       <Row className="mw-850 py-5">
         <Col lg="6">
-          <form className="profile-detail-form">
-            <Input
-              id={id1}
-              name={id1}
-              value={name}
-              maxInput={max25}
-              maxLength={max25}
-              title={title1}
-              placeholder={placeholder1}
-              onChange={change}
-            />
-            {error && error.name && (
-              <p className="error">{error ? (error.name ? error.name : '') : ''}</p>
-            )}
-            {/* <div className="form-group border-bottom mb-2">
-              <label htmlFor="headlineInput" className="form__label">
-                Name
-              </label>
-              <input
-                type="text"
-                className="form-control form-control-lg mb-2"
-                // id="headlineInput"
-                placeholder="Christmas Drive"
-                name="name"
-                id="name"
+          <form className="d-flex flex-column profile-detail-form gap-2">
+            <div>
+              <Input
+                id={id1}
+                name={id1}
                 value={name}
-                onChange={(e) => {
-                  props.changevalue(e);
-                }}
+                maxInput={max25}
+                maxLength={max25}
+                title={title1}
+                placeholder={placeholder1}
+                onChange={change}
               />
-
-              <div className="text-light fs-8 pb-2 mb-1">
-                <span>120</span> chars remaining
-              </div>
-            </div> */}
-            <Input
-              id={id2}
-              name={id2}
-              value={headline}
-              maxInput={max45}
-              maxLength={max45}
-              title={title2}
-              placeholder={placeholder2}
-              onChange={change}
-            />
-            {error && error.headline && (
-              <p className="error">{error ? (error.headline ? error.headline : '') : ''}</p>
-            )}
-            {/* <div className="form-group border-bottom mb-4">
-              <label htmlFor="brandInput" className="form__label">
-                Headline
-              </label>
-              <input
-                type="text"
-                className="form-control form-control-lg mb-2"
-                // id="brandInput"
-                placeholder="Feeding the homeless every Friday night"
-                name="headline"
-                id="headline"
+              {error && error.name && (
+                <p className="error">{error ? (error.name ? error.name : '') : ''}</p>
+              )}
+            </div>
+            <div>
+              <Input
+                id={id2}
+                name={id2}
                 value={headline}
-                onChange={(e) => {
-                  props.changevalue(e);
-                }}
+                maxInput={max45}
+                maxLength={max45}
+                title={title2}
+                placeholder={placeholder2}
+                onChange={change}
               />
-
-
-              <div className="text-light fs-8 pb-2 mb-1">
-                <span>120</span> chars remaining
-              </div>
-            </div> */}
-            <Textarea
-              id={id3}
-              name={id3}
-              value={description}
-              maxInput={max250}
-              maxLength={max250}
-              rows={rows3}
-              title={title3}
-              placeholder={placeholder3}
-              onChange={change}
-            />
-            {error && error.description && (
-              <p className="error">{error ? (error.description ? error.description : '') : ''}</p>
-            )}
-            {/* <div className="form-group mb-4">
-              <label htmlFor="brandInput" className="form__label">
-                Description
-              </label>
-              <textarea
-                type="text"
-                className="form-control form-control-lg mb-2"
-                rows={5}
-                // id="brandInput"
-                placeholder="Enter some details about your need"
-                name="description"
-                id="description"
+              {error && error.headline && (
+                <p className="error">{error ? (error.headline ? error.headline : '') : ''}</p>
+              )}
+            </div>
+            <div>
+              <Textarea
+                id={id3}
+                name={id3}
                 value={description}
-                onChange={(e) => {
-                  props.changevalue(e);
-                }}
+                maxInput={max250}
+                maxLength={max250}
+                rows={rows3}
+                title={title3}
+                placeholder={placeholder3}
+                onChange={change}
               />
-
-
-              <div className="text-light fs-8 pb-2 mb-1">
-                <span>240</span> chars remaining
-              </div>
-            </div> */}
+              {error && error.description && (
+                <p className="error">{error ? (error.description ? error.description : '') : ''}</p>
+              )}
+            </div>
           </form>
         </Col>
         <Col lg="6">

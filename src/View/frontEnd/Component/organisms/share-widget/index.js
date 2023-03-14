@@ -62,14 +62,14 @@ function ShareWidget({page, text, pageTitle, currUrl }) {
         onClick={() => setActive(!active)}
         className="ms-1 d-none d-sm-flex btn__share px-2 py-1 text-white fw-semibold fs-5"
       >
-        <FontAwesomeIcon className="me-1" icon={regular('share')} /> Share
+        <FontAwesomeIcon className="me-0 me-sm-1" icon={regular('share')} /> Share
       </Button>
       {/*FOR MOBILE: launches Navigator on mobile devices*/}
       <Button
         onClick={() => onClickShare()}
         className="ms-1 d-flex d-sm-none btn__share px-2 py-1 text-white fw-semibold fs-6"
       >
-        <FontAwesomeIcon className="ms-1" icon={regular('share')} />
+        <FontAwesomeIcon className="ms-0 ms-sm-1" icon={regular('share')} />
       </Button>
 
       {active ? (

@@ -111,7 +111,7 @@ export default function MainRoutes() {
   const location = useLocation();
 
   useLayoutEffect(() => {
-    window.scrollTo(0, 0);
+    //window.scrollTo(0, 0);
   }, [location.pathname]);
 
   return (

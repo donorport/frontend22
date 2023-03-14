@@ -600,7 +600,7 @@ const AdminPosts = () => {
   const submitProductForm = (s, seletedProjectListofIds) => {
     console.log("s")
 
-    window.scrollTo(0, 0);
+    //window.scrollTo(0, 0);
     // console.log(tags)
     const formaerrror = {};
 

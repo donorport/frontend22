@@ -5,7 +5,7 @@ const Input = ({ value = '', onChange, title, name, maxLength, maxInput, placeho
 
   return (
     <>
-      <div className="form-group mb-4">
+      <div>
         <label htmlFor="headlineInput" className="form__label">
           {title}
         </label>

@@ -24,6 +24,8 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
+import Textarea from '../text-area';
+import Input from '../input';
 
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default; // eslint-disable-line
 
@@ -128,6 +130,10 @@ const AddPost = (props) => {
   let gallaryTempImages = props.gallaryTempImages;
   let gallaryImages = props.gallaryImages;
 
+  const change = async (e) => {
+    props.changevalue(e);
+  };
+
   const setModelShow = props.setModelShow;
   console.log({ seletedProjectList });
   const [location, setLocation] = useState({
@@ -181,6 +187,22 @@ const AddPost = (props) => {
       lng: lng
     });
   };
+  const [id1] = useState('headline');
+  const [id2] = useState('brand');
+  const [id3] = useState('need-headline');
+  const [id4] = useState('description');
+  const [title1] = useState('Headline');
+  const [title2] = useState('Brand');
+  const [title3] = useState('Need Headline');
+  const [title4] = useState('Need Description');
+  const [placeholder1] = useState("Ex: Children's Bicycle");
+  const [placeholder2] = useState('Ex: Hasbro ©');
+  const [placeholder3] = useState('Ex: For inner-city kids in Colorado');
+  const [placeholder4] = useState('Enter some details about your need');
+  const [rows] = useState(6);
+  const [max25] = useState(25);
+  const [max45] = useState(45);
+  const [max250] = useState(250);
 
   return (
     <div className="add-post">
@@ -318,48 +340,34 @@ const AddPost = (props) => {
               <>
                 <Row className="mw-850 ml-5 mb-5">
                   <div className="col-lg-6 mb-5 mb-sm-0">
-                    <form className="profile-detail-form">
-                      <div className="form-group border-bottom mb-2">
-                        <label htmlFor="headlineInput" className="form__label">
-                          Headline
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control form-control-lg mb-2"
-                          // id="headlineInput"
-                          placeholder="Ex: Children's Bicycle"
-                          name="headline"
-                          id="headline"
+                    <form className="d-flex flex-column profile-detail-form gap-2">
+                      <div>
+                        <Input
+                          id={id1}
+                          name={id1}
                           value={headline}
-                          onChange={(e) => {
-                            changevalue(e);
-                          }}
+                          maxInput={max25}
+                          maxLength={max25}
+                          title={title1}
+                          placeholder={placeholder1}
+                          onChange={change}
                         />
-
-                        <div className="text-light fs-8 pb-2 mb-1">
-                          <span>120</span> chars remaining
-                        </div>
                         {error && error.headline && (
                           <p className="error">
                             {error ? (error.headline ? error.headline : '') : ''}
                           </p>
                         )}
                       </div>
-                      <div className="form-group mb-4">
-                        <label htmlFor="brandInput" className="form__label">
-                          Brand
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control form-control-lg"
-                          // id="brandInput"
-                          placeholder="Hasbro ®"
-                          name="brand"
-                          id="brand"
+                      <div>
+                        <Input
+                          id={id2}
+                          name={id2}
                           value={brand}
-                          onChange={(e) => {
-                            changevalue(e);
-                          }}
+                          maxInput={max25}
+                          maxLength={max25}
+                          title={title2}
+                          placeholder={placeholder2}
+                          onChange={change}
                         />
                         {/* <p className="error">Required</p> */}
                         {error && error.brand && (
@@ -367,7 +375,7 @@ const AddPost = (props) => {
                         )}
                       </div>
 
-                      <div className="form-group mb-4">
+                      <div>
                         <label htmlFor="brandInput" className="form__label">
                           Slug
                         </label>
@@ -376,15 +384,14 @@ const AddPost = (props) => {
                           className="form-control form-control-lg"
                           // id="brandInput"
                           placeholder="Slug"
-                          // disabled={id ? true : false}
+                          disabled={id ? true : false}
                           name="slug"
                           id="slug"
                           value={slug}
-                          onChange={(e) => {
-                            changevalue(e);
-                          }}
+                          // onChange={(e) => {
+                          //   changevalue(e);
+                          // }}
                         />
-                        {/* <p className="error">Required</p> */}
                         {error && error.slug && (
                           <p className="error">{error ? (error.slug ? error.slug : '') : ''}</p>
                         )}
@@ -992,56 +999,41 @@ const AddPost = (props) => {
             <Accordion.Collapse className="py-5">
               <Row className="mw-850 ml-5">
                 <Col lg="6">
-                  <form className="profile-detail-form">
-                    <div className="form-group mb-5 border-bottom pb-5">
-                      <label className="form__label">Need Headline</label>
-                      <input
-                        type="text"
-                        className="form-control form-control-lg mb-2"
-                        placeholder="Ex: For inner city kids in Colorado"
-                        name="needheadline"
-                        id="needheadline"
+                  <form className="d-flex flex-column profile-detail-form gap-2">
+                    <div>
+                      <Input
+                        id={id3}
+                        name={id3}
                         value={needheadline}
-                        onChange={(e) => {
-                          changevalue(e);
-                        }}
+                        maxInput={max45}
+                        maxLength={max45}
+                        title={title3}
+                        placeholder={placeholder3}
+                        onChange={change}
                       />
                       {error && error.needheadline && (
                         <p className="error">
                           {error ? (error.needheadline ? error.needheadline : '') : ''}
                         </p>
                       )}
-                      <div className="text-light fs-8">
-                        <span>120</span> chars remaining
-                      </div>
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="needDescriptionTextarea" className="form__label">
-                        Need Description
-                      </label>
-
-                      <textarea
-                        className="form-control form-control-lg mb-2"
-                        // id="needDescriptionTextarea"
-                        rows={5}
-                        data-length="240"
-                        placeholder="Enter some details about your need"
-                        name="description"
-                        id="description"
+                    <div>
+                      <Textarea
+                        id={id4}
+                        name={id4}
                         value={description}
-                        onChange={(e) => {
-                          changevalue(e);
-                        }}
-                      ></textarea>
+                        maxInput={max250}
+                        maxLength={max250}
+                        rows={rows}
+                        title={title4}
+                        placeholder={placeholder4}
+                        onChange={change}
+                      />
                       {error && error.description && (
                         <p className="error">
                           {error ? (error.description ? error.description : '') : ''}
                         </p>
                       )}
-
-                      <div className="text-light fs-8 pb-2 mb-1">
-                        <span>120</span> chars remaining
-                      </div>
                     </div>
                   </form>
                 </Col>

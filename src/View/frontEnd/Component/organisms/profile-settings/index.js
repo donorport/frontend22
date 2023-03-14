@@ -286,7 +286,7 @@ const ProfileSettings = () => {
       ...s,
       images: data.images
     }));
-  }, [data.images])
+  }, [data.images]);
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -303,7 +303,7 @@ const ProfileSettings = () => {
         stateId: data.state_id,
         category: data.category_id,
         ein: data.ein,
-        url: data.url,
+        url: data.url
       }));
       let urlV = data.promoVideo;
       // let id = url && url.split("?v=")[1];
@@ -337,7 +337,7 @@ const ProfileSettings = () => {
     data.url,
     getCountryList,
     getCountryStateList,
-    getStateCityList,
+    getStateCityList
   ]);
 
   useEffect(() => {
@@ -740,8 +740,9 @@ const ProfileSettings = () => {
             <h4 className="form__label mt-4">Gallery</h4>
           </div>
           <div className="d-flex align-items-center flex-wrap gap-2 mb-3">
-            {viewGalleryImages?.length >= MAX_IMAGE_LENGTH ? <p className="image-upload-wrap mb-3 fs-2">Maximum Images Allowed (5) Reached</p> 
-            :
+            {viewGalleryImages?.length >= MAX_IMAGE_LENGTH ? (
+              <p className="image-upload-wrap mb-3 fs-5">Maximum Images Allowed (5) Reached</p>
+            ) : (
               <div
                 className="image-upload-wrap mb-3 fs-2"
                 style={{
@@ -766,7 +767,7 @@ const ProfileSettings = () => {
                   <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
                 </div>
               </div>
-            }
+            )}
             <div className="grid mt-3 mb-3" style={{ display: 'contents' }}>
               {viewGalleryImages?.length ? (
                 viewGalleryImages.map((img, key) => (

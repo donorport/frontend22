@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
-import FrontLoader from '../../../../../Common/FrontLoader';
 import LadderMenuItems from '../ladder-menu-items';
 import ProjectsTable from '../projects-table';
 import AddProject from '../add-project';
@@ -37,7 +36,7 @@ const AdminProjects = () => {
   const [update, setUpdate] = useState(false);
   const [state, setstate] = useState({
     id: '',
-    status: 1,
+    status: -1,
     name: '',
     headline: '',
     video: '',
@@ -115,7 +114,7 @@ const AdminProjects = () => {
     setTempImages([]);
     setstate({
       id: '',
-      status: 1,
+      status: -1,
       name: '',
       headline: '',
       video: '',
@@ -202,7 +201,7 @@ const AdminProjects = () => {
   };
 
   const submitProjectForm = (s) => {
-    window.scrollTo(0, 0);
+    //window.scrollTo(0, 0);
     const formaerrror = {};
     let rules = {};
     if (s === 1) {
@@ -285,7 +284,7 @@ const AdminProjects = () => {
                 setLoading(false);
                 setUpdate(!update);
                 ToastAlert({ msg: addProject.data.message, msgType: 'success' });
-                window.scrollTo(0, 0);
+                //
               }
             }
           } else {

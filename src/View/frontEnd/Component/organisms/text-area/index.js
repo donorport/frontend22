@@ -14,9 +14,9 @@ function Textarea({
 
   return (
     <>
-      <div className="form-group mb-4">
+      <div>
         <label htmlFor="headlineInput" className="form__label">
-          {name}
+          {title}
         </label>
         <textarea
           className="form-control form-control-lg mb-2"

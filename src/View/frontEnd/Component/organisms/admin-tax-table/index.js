@@ -13,7 +13,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Accordion, AccordionItem as Item } from '@szhsin/react-accordion';
 import chevronDown from '../../../../../assets/images/chevron-down.svg';
-import donate from '../../../../../assets/images/donate.svg';
+import donation from '../../../../../assets/images/donate.svg';
 
 let PageSize = 10;
 
@@ -115,7 +115,7 @@ const AdminTaxTable = (props) => {
   };
 
   useEffect(() => {
-    console.log("props.taxList:", props.taxList)
+    console.log('props.taxList:', props.taxList);
   }, [props.taxList]);
   return (
     <>
@@ -162,7 +162,7 @@ const AdminTaxTable = (props) => {
                             <div className="d-flex align-items-center me-sm-2 mb-3 mb-sm-0">
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                                 <div className="text-light fw-bold fs-5">
-                                  {item.currencySymbol}
+                                  {item[0].currencySymbol}
                                   {totalVal([...item])}
                                 </div>
                                 <div className="text-light fs-8">
@@ -190,10 +190,9 @@ const AdminTaxTable = (props) => {
                                 <div className="fw-bold fs-5">{item[0].userDetails?.name}</div>
                                 <div className="text-light mb-1">{item[0].userDetails?.email}</div>
                                 <div className="text-light">
-                                  {item[0].userDetails.street +
-                                    ', ' +
-                                    item[0].userDetails.cityDetails?.city}&nbsp;
-                                  {item[0].userDetails.stateDetails?.state +
+                                  {item[0].userDetails.street + ', ' + item[0].userDetails?.city_id}
+                                  &nbsp;
+                                  {item[0].userDetails?.stateDetails?.state +
                                     ', ' +
                                     item[0].userDetails.zip}
                                   {/* 255 West Baker St. */}
@@ -260,10 +259,10 @@ const AdminTaxTable = (props) => {
                                       width={36}
                                       // src={helper.CampaignProductImagePath + item.orderItemDetails?.productImage}
                                       src={
-                                        item.type === 'Purchased'
+                                        item[0].type === 'Purchased'
                                           ? helper.CampaignProductImagePath +
                                             item?.orderItemDetails?.productImage
-                                          : 'https://uploads-ssl.webflow.com/59de7f3f07bb6700016482bc/60088347cb80b5186f9e1ead_donate.svg'
+                                          : donation
                                       }
                                       alt=""
                                     />
@@ -409,7 +408,7 @@ const AdminTaxTable = (props) => {
                               i1.type === 'Purchased'
                                 ? helper.CampaignProductImagePath +
                                   i1.orderItemDetails?.productImage
-                                : { donate };
+                                : donation;
 
                             // console.log('li', i1)
 
