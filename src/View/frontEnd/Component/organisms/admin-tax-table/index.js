@@ -117,6 +117,7 @@ const AdminTaxTable = (props) => {
   useEffect(() => {
     console.log('props.taxList:', props.taxList);
   }, [props.taxList]);
+
   return (
     <>
       <div className="admin__tax-table list__table mb-4">
@@ -147,6 +148,7 @@ const AdminTaxTable = (props) => {
         <ul className="list-unstyled mb-0 list__table-list">
           {taxList.length > 0 ? (
             taxList.map((item, i) => {
+              console.log({item})
               // const yearList = item.created_at.split("-")
               const disableHeader = item.length === 1;
               return (
@@ -379,10 +381,10 @@ const AdminTaxTable = (props) => {
                                     onChange={(e) =>
                                       props.uploadImage(
                                         e,
-                                        item.uniqueTransactionId,
-                                        item.userDetails?.email,
-                                        item.userDetails?.name,
-                                        item.userDetails?._id
+                                        item[0].uniqueTransactionId,
+                                        item[0].userDetails?.email,
+                                        item[0].userDetails?.name,
+                                        item[0].userDetails?._id
                                       )
                                     }
                                   />
