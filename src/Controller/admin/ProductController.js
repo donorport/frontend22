@@ -555,6 +555,7 @@ function ProductController() {
 
     validateAll(state, rules, message)
       .then(async () => {
+        setLoading(true);
         // const formaerrror = {};
         setstate({
           ...state,
@@ -683,7 +684,7 @@ function ProductController() {
         {
           label: 'Delete',
           onClick: async () => {
-            setLoading(false);
+            setLoading(true);
             if (id !== '') {
               const deleteProductApi = await productApi.deleteProduct(adminAuthToken, id);
               if (deleteProductApi) {
@@ -712,7 +713,7 @@ function ProductController() {
   };
 
   const editProduct = async (productData) => {
-    setLoading(false);
+    setLoading(true);
     if (productData && productData !== null && productData !== '') {
       setModal(true);
       setstate({

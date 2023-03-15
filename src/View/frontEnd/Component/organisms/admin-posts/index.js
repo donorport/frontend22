@@ -86,7 +86,7 @@ const AdminPosts = () => {
 
   const [state, setstate] = useState({
     id: '',
-    status: '',
+    status: 1,
     title: '',
     subtitle: '',
     headline: '',
@@ -186,7 +186,7 @@ const AdminPosts = () => {
 
       if (data._id) await orgProjectList();
       // await getPrimaryBankAccount();
-      // setLoading(false);
+      setLoading(false);
     })();
   }, [data._id]);
 
@@ -213,7 +213,7 @@ const AdminPosts = () => {
 
   useEffect(() => {
     (async () => {
-      // setLoading(false);
+      setLoading(false);
       const getcategoryList = await categoryApi.listCategory(token);
       if (getcategoryList.data.success === true) {
         setCategoryList(getcategoryList.data.data);
@@ -221,7 +221,7 @@ const AdminPosts = () => {
 
       if (data._id) await orgProjectList();
       // await getPrimaryBankAccount();
-      // setLoading(false);
+      setLoading(false);
     })();
   }, [data._id, orgProjectList, token]);
 
@@ -567,7 +567,7 @@ const AdminPosts = () => {
     setSeletedProjectList([]);
     setstate({
       id: '',
-      status: '',
+      status: -1,
       title: '',
       subtitle: '',
       headline: '',
@@ -795,7 +795,7 @@ const AdminPosts = () => {
 
           if (addProduct) {
             if (addProduct.data.success === false) {
-              // setLoading(false);
+              setLoading(false);
               ToastAlert({ msg: addProduct.data.message, msgType: 'error' });
             } else {
               if (addProduct.data.success === true) {
@@ -818,7 +818,7 @@ const AdminPosts = () => {
                   }
                 });
                 resetForm();
-                // setLoading(false);
+                setLoading(false);
                 setUpdate(!update);
                 createPost(false);
                 setModelShow(false);
@@ -826,7 +826,7 @@ const AdminPosts = () => {
               }
             }
           } else {
-            // setLoading(false);
+            setLoading(false);
             ToastAlert({ msg: 'Product not save', msgType: 'error' });
           }
         } else {
@@ -834,7 +834,7 @@ const AdminPosts = () => {
         }
       })
       .catch((errors) => {
-        // setLoading(false);
+        setLoading(false);
         // console.log(errors)
         // const formaerrror = {};
         if (errors.length) {
@@ -868,22 +868,22 @@ const AdminPosts = () => {
               const deleteProductApi = await productApi.deleteProduct(token, id);
               if (deleteProductApi) {
                 if (deleteProductApi.data.success === false) {
-                  // setLoading(false);
+                  setLoading(false);
                   ToastAlert({ msg: deleteProductApi.data.message, msgType: 'error' });
                 } else {
                   if (deleteProductApi.data.success === true) {
-                    // setLoading(false);
+                    setLoading(false);
                     setUpdate(!update);
                     createPost(false);
                     ToastAlert({ msg: deleteProductApi.data.message, msgType: 'success' });
                   }
                 }
               } else {
-                // setLoading(false);
+                setLoading(false);
                 ToastAlert({ msg: 'Product not delete', msgType: 'error' });
               }
             } else {
-              // setLoading(false);
+              setLoading(false);
               ToastAlert({ msg: 'Product not delete id Not found', msgType: 'error' });
             }
           }
@@ -914,22 +914,22 @@ const AdminPosts = () => {
               );
               if (deleteFulfilOrderApi) {
                 if (deleteFulfilOrderApi.data.success === false) {
-                  // setLoading(false);
+                  setLoading(false);
                   ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'error' });
                 } else {
                   if (deleteFulfilOrderApi.data.success === true) {
-                    // setLoading(false);
+                    setLoading(false);
                     setUpdate(!update);
                     setDeletedFile(true);
                     ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'success' });
                   }
                 }
               } else {
-                // setLoading(false);
+                setLoading(false);
                 ToastAlert({ msg: 'Product not delete', msgType: 'error' });
               }
             } else {
-              // setLoading(false);
+              setLoading(false);
               ToastAlert({ msg: 'Product not delete id Not found', msgType: 'error' });
             }
           }
@@ -948,7 +948,7 @@ const AdminPosts = () => {
 
     const getProductDetails = await productApi.productDetailsById(token, formData);
     if (getProductDetails.data.success === true) {
-      // setLoading(false);
+      setLoading(false);
 
       productData = getProductDetails.data.data[0];
 
@@ -1045,9 +1045,9 @@ const AdminPosts = () => {
           setSubCategoryList(getsubCategoryList.data.data);
         }
         createPost(true);
-        // setLoading(false);
+        setLoading(false);
       } else {
-        // setLoading(false);
+        setLoading(false);
         ToastAlert({
           msg: 'Something went wrong category data not found please try again',
           msgType: 'error'
@@ -1088,22 +1088,22 @@ const AdminPosts = () => {
         msgType: 'error'
       });
     } else {
-      // setLoading(false);
+      setLoading(false);
 
       const publish = await productApi.publishProduct(token, id, 'PUBLISH');
       if (publish) {
         if (publish.data.success === false) {
-          // setLoading(false);
+          setLoading(false);
           ToastAlert({ msg: publish.data.message, msgType: 'error' });
         } else {
           if (publish.data.success === true) {
-            // setLoading(false);
+            setLoading(false);
             setUpdate(!update);
             ToastAlert({ msg: publish.data.message, msgType: 'success' });
           }
         }
       } else {
-        // setLoading(false);
+        setLoading(false);
         ToastAlert({ msg: 'Product not published', msgType: 'error' });
       }
     }
@@ -1113,19 +1113,19 @@ const AdminPosts = () => {
     const publish = await productApi.publishProduct(token, id, 'UNPUBLISH');
     if (publish) {
       if (publish.data.success === false) {
-        // setLoading(false);
-        // ToastAlert({ msg: publish.data.message, msgType: 'error' });
+        setLoading(false);
+        ToastAlert({ msg: publish.data.message, msgType: 'error' });
       } else {
         if (publish.data.success === true) {
-          // setLoading(false);
+          setLoading(false);
           setUpdate(!update);
           setFulfil(false);
           createPost(false);
-          // ToastAlert({ msg: publish.data.message, msgType: 'success' });
+          ToastAlert({ msg: publish.data.message, msgType: 'success' });
         }
       }
     } else {
-      // setLoading(false);
+      setLoading(false);
       ToastAlert({ msg: 'Product not Published', msgType: 'error' });
     }
   };
@@ -1219,7 +1219,7 @@ const AdminPosts = () => {
   };
 
   const deleteProductImage = async (id, type) => {
-    // setLoading(true);
+    setLoading(true);
     const deleteImg = await productApi.deleteProductImages(token, id);
 
     if (deleteImg.data.success) {
@@ -1239,7 +1239,7 @@ const AdminPosts = () => {
         }
       }
     }
-    // setLoading(false);
+    setLoading(false);
   };
 
   const fulfilOrder = async () => {
@@ -1316,7 +1316,7 @@ const AdminPosts = () => {
         }
       })
       .catch((errors) => {
-        // setLoading(false);
+        setLoading(false);
         if (errors.length) {
           errors.forEach((element) => {
             formaerrror[element.field] = element.message;
@@ -1542,6 +1542,7 @@ const AdminPosts = () => {
           categoryList={categoryList}
           subcategoryList={subcategoryList}
           Img={Img}
+          loading={loading}
           tempImg={tempImg}
           moreTempImages={moreTempImages}
           moreImages={moreImages}

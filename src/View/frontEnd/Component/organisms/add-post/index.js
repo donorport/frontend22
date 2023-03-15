@@ -231,25 +231,25 @@ const AddPost = (props) => {
           )}
           {stateData.status === 1 && (
             <Button
-              style={{ opacity: props.isLoading ? '0.7' : '1' }}
+              style={{ opacity: props.loading ? '0.7' : '1' }}
               variant="info"
               size="lg"
               className="fw-bold fs-6"
-              onClick={() => !props.isLoading && submitProductForm(-1)}
+              onClick={() => !props.loading && submitProductForm(-1)}
             >
               Unpublish
             </Button>
           )}
           {stateData.status === 1 && (
             <Button
-              style={{ opacity: props.isLoading ? '0.7' : '1' }}
+              style={{ opacity: props.loading ? '0.7' : '1' }}
               variant="success"
               size="lg"
               className="d-flex align-items-center justify-content-center fs-6 fw-bold"
-              onClick={() => !props.isLoading && submitProductForm(1, seletedProjectList)}
+              onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
             >
               Update Post
-              {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+              {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
             </Button>
           )}
         </div>
@@ -1312,37 +1312,37 @@ const AddPost = (props) => {
         <div className="products-detial-footer d-flex py-3 py-sm-5 gap-2">
           {stateData.status === 1 && (
             <Button
-              style={{ opacity: props.isLoading ? '0.7' : '1' }}
+              style={{ opacity: props.loading ? '0.7' : '1' }}
               variant="info"
               size="lg"
               className="fw-bold fs-6"
-              onClick={() => !props.isLoading && submitProductForm(-1)}
+              onClick={() => !props.loading && submitProductForm(-1)}
             >
               Unpublish
             </Button>
           )}
           {stateData.status !== 1 && (
             <Button
-              style={{ opacity: props.isLoading ? '0.7' : '1' }}
+              style={{ opacity: props.loading ? '0.7' : '1' }}
               variant="success"
               size="lg"
               className="d-flex align-items-center justify-content-center fs-6 fw-bold"
-              onClick={() => !props.isLoading && submitProductForm(1, seletedProjectList)}
+              onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
             >
               Create Post
-              {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+              {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
             </Button>
           )}
           {stateData.status === 1 && (
             <Button
-              style={{ opacity: props.isLoading ? '0.7' : '1' }}
+              style={{ opacity: props.loading ? '0.7' : '1' }}
               variant="success"
               size="lg"
               className="d-flex align-items-center justify-content-center fs-6 fw-bold"
-              onClick={() => !props.isLoading && submitProductForm(1, seletedProjectList)}
+              onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
             >
               Update Post
-              {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+              {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
             </Button>
           )}
         </div>
