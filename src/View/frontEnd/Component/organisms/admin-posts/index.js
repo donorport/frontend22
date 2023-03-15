@@ -779,11 +779,10 @@ const AdminPosts = () => {
 
         formData.tags = tagsArray;
 
-        // console.log(formData)
-
+        
         if (Object.keys(formaerrror).length === 0) {
           // }
-
+          
           let addProduct;
           // Api Call for update Profile
           setLoading(true);
@@ -800,13 +799,12 @@ const AdminPosts = () => {
             } else {
               if (addProduct.data.success === true) {
                 const res = await projectApi.list(token);
-                console.log({ res });
                 const dta = res.data.data;
-                console.log({ dta });
                 dta.forEach((project) => {
                   let newData = { ...project };
-                  const idx = seletedProjectListofIds.indexOf(project._id);
-                  console.log({ idx });
+                  
+                  
+                  let idx = !seletedProjectListofIds?.length ? -1 : seletedProjectListofIds.indexOf(project._id);
                   if (idx !== -1) {
                     const newProducts = [id];
                     project.productDetails.forEach((product) => {
@@ -838,10 +836,12 @@ const AdminPosts = () => {
         // console.log(errors)
         // const formaerrror = {};
         if (errors.length) {
+          console.log({errors})
           errors.forEach((element) => {
             formaerrror[element.field] = element.message;
           });
         } else {
+          console.log({errors})
           ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
         }
 
@@ -851,7 +851,7 @@ const AdminPosts = () => {
         });
       });
   };
-
+  console.log({state})
   const deleteProduct = (id) => {
     confirmAlert({
       title: 'Delete Post?',
