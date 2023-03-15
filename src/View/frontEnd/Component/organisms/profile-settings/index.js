@@ -281,7 +281,12 @@ const ProfileSettings = () => {
     }
   };
   useEffect(() => {
-    setViewGalleryImages(data.images);
+    if(data.images?.length < viewGalleryImages?.length){
+      console.log("viewGalleryImages: ", viewGalleryImages?.length)
+    } else{
+      console.log("data.images: ", data.images?.length)
+      setViewGalleryImages(data.images);
+    }
     setState((s) => ({
       ...s,
       images: data.images
@@ -379,6 +384,7 @@ const ProfileSettings = () => {
       'category.required': 'Category is Required.'
     };
 
+    let tempGallery = [...viewGalleryImages]
     validateAll(state, rules, message)
       .then(async () => {
         const formaerrror = {};
@@ -425,6 +431,7 @@ const ProfileSettings = () => {
             }
             setData(state);
             setLoading(false);
+            setViewGalleryImages(tempGallery)
             ToastAlert({ msg: addUser.data.message, msgType: 'success' });
           }
         } else {
@@ -527,7 +534,8 @@ const ProfileSettings = () => {
     viewImgs.splice(id, 1);
     setViewGalleryImages(viewImgs);
   };
-
+  console.log({viewGalleryImages})
+  console.log({galleryImages})
   return (
     <>
       {/*<FrontLoader loading={loading} />*/}
@@ -770,23 +778,26 @@ const ProfileSettings = () => {
             )}
             <div className="grid mt-3 mb-3" style={{ display: 'contents' }}>
               {viewGalleryImages?.length ? (
-                viewGalleryImages.map((img, key) => (
+                viewGalleryImages.map((img, key) => {
+                  console.log({img})
+                  return (
                   <div key={key} className="img-wrap">
                     <span className="close" onClick={() => removeGallaryempImages(key)}>
                       &times;
                     </span>
                     {img._id && img.image ? (
-                      <div
-                        className="gallery__img"
-                        style={{
-                          backgroundImage: `url(${
-                            img.image ? helper.CampaignAdminGalleryFullPath + img.image : noImg
-                          })`,
-                          width: '100px',
-                          height: '100px'
-                        }}
-                        alt="lk"
-                      ></div>
+                      // <div
+                      //   className="gallery__img"
+                      //   style={{
+                      //     backgroundImage: `url(${
+                      //       img.image ? helper.CampaignAdminGalleryFullPath + img.image : noImg
+                      //     })`,
+                      //     width: '100px',
+                      //     height: '100px'
+                      //   }}
+                      //   alt="lks"
+                      // ></div>
+                      <img src={helper.CampaignAdminGalleryFullPath + img.image} alt="gallery" />
                     ) : (
                       <div
                         className="gallery__img"
@@ -799,7 +810,7 @@ const ProfileSettings = () => {
                       ></div>
                     )}
                   </div>
-                ))
+                )})
               ) : (
                 <></>
               )}
@@ -814,6 +825,7 @@ const ProfileSettings = () => {
           style={{
             opacity: loading ? '0.7' : '1'
           }}
+          disabled={MAX_IMAGE_LENGTH < viewGalleryImages?.length}
         >
           Save Details {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
         </Button>
