@@ -202,7 +202,6 @@ const AdminTax = () => {
   };
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
       <header className="py-sm-2 pb-2 w-100 d-flex align-items-center">
         <div className="me-sm-2 flex-grow-1 mb-3 mb-sm-0">
           <div className="d-flex align-items-center mb-1">
@@ -234,6 +233,7 @@ const AdminTax = () => {
         totalPages={totalPages}
         totalRecord={totalRecord}
         pageNo={pageNo}
+        loading={loading}
         deleteReceipt={deleteReceipt}
         handleClick={handleClick}
         handleSortingChange={handleSortingChange}

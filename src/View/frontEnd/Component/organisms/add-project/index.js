@@ -125,7 +125,7 @@ const AddProject = (props) => {
               className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
               onClick={() => submitProjectForm(1)}
             >
-              Save
+              Save Changes
             </Button>
           )}
         </div>

@@ -380,8 +380,7 @@ export function getCardIcon(card) {
       break;
 
     case 'mastercard':
-      img =
-        'images/campaign/logo/mastercard.png';
+      img = AWS_S3_BUCKET_BASE_URL + 'images/campaign/logo/mastercard.png';
       break;
 
     case 'amex':

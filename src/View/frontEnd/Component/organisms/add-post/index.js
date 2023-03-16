@@ -248,7 +248,7 @@ const AddPost = (props) => {
               className="d-flex align-items-center justify-content-center fs-6 fw-bold"
               onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
             >
-              Update Post
+              Save Changes
               {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
             </Button>
           )}
@@ -1322,16 +1322,27 @@ const AddPost = (props) => {
             </Button>
           )}
           {stateData.status !== 1 && (
-            <Button
-              style={{ opacity: props.loading ? '0.7' : '1' }}
-              variant="success"
-              size="lg"
-              className="d-flex align-items-center justify-content-center fs-6 fw-bold"
-              onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
-            >
-              Create Post
-              {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
-            </Button>
+            <div className="d-flex gap-2">
+              <Button
+                variant="warning"
+                size="lg"
+                className="text-white fw-bold fs-6"
+                // onClick={() => submitProductForm(-1)}
+                onClick={() => setModelShow(true)}
+              >
+                Save as Draft
+              </Button>
+              <Button
+                style={{ opacity: props.loading ? '0.7' : '1' }}
+                variant="success"
+                size="lg"
+                className="d-flex align-items-center justify-content-center fs-6 fw-bold"
+                onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
+              >
+                Create Post
+                {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+              </Button>
+            </div>
           )}
           {stateData.status === 1 && (
             <Button
@@ -1341,7 +1352,7 @@ const AddPost = (props) => {
               className="d-flex align-items-center justify-content-center fs-6 fw-bold"
               onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
             >
-              Update Post
+              Save Changes
               {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
             </Button>
           )}
