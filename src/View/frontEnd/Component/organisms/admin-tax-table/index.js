@@ -311,7 +311,7 @@ const AdminTaxTable = (props) => {
                                 </div>
                               )}
 
-                              {item.receipt ? (
+                              {item[0].receipt ? (
                                 <div
                                   className="d-flex align-items-center ms-sm-2 btn__wrap"
                                   onClick={(e) => e.stopPropagation()}
@@ -327,11 +327,11 @@ const AdminTaxTable = (props) => {
                                     />
                                     <div className="ps-2">
                                       <div className="file__name text-dark mb-3p fw-normal">
-                                        {item.receipt}
+                                        {item[0].receipt}
                                       </div>
                                       <div className="text-light fs-7 fw-normal">
                                         {/* 3 days ago - 1.3 Mb */}
-                                        {moment(item.updated_at).fromNow()}
+                                        {moment(item[0].updated_at).fromNow()}
                                       </div>
                                     </div>
                                   </Button>
@@ -349,7 +349,7 @@ const AdminTaxTable = (props) => {
                                     <Dropdown.Menu className="">
                                       <Dropdown.Item
                                         className="d-flex align-items-center p-2"
-                                        onClick={() => viewItem(item)}
+                                        onClick={() => viewItem(item[0])}
                                       >
                                         <span className="fw-bold fs-7 flex__1">View</span>
                                         <FontAwesomeIcon
@@ -360,7 +360,7 @@ const AdminTaxTable = (props) => {
                                       <Dropdown.Divider />
                                       <Dropdown.Item
                                         className="d-flex align-items-center p-2"
-                                        onClick={() => deleteItem(item)}
+                                        onClick={() => deleteItem(item[0])}
                                       >
                                         <span className="fw-bold fs-7 flex__1">Delete</span>
                                         <FontAwesomeIcon icon={regular('trash')} className="ms-1" />
