@@ -753,13 +753,17 @@ const UserProfile = () => {
                 <div>This cannot be undone.</div>
               </li>
             </ul>
-            <button
+            To delete your account please email
+            <a className="link" href="#">
+              info@donorport.com
+            </a>
+            {/* <button
               type="button"
               className="btn btn--deactivate"
               onClick={() => deleteUser(data._id)}
             >
               Deactivate
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

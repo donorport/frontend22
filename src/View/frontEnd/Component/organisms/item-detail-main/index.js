@@ -28,7 +28,9 @@ function ProjectDetailMain(props) {
   let productDetails = props.productDetails;
   
   let videoid = productDetails.galleryUrl ? productDetails.galleryUrl.split("?v=")[1] : "";
+  let videoid2 = productDetails?.fulfiledproductsDetails?.video ? productDetails?.fulfiledproductsDetails?.video.split("?v=")[1] : "";
   let embedlink = videoid ? "https://www.youtube.com/embed/" + videoid : "";
+  let embedlink2 = videoid2 ? "https://www.youtube.com/embed/" + videoid2 : "";
   const getCalc = getCalculatedPrice();
   // let price = getCalc.getData(productDetails?.price)
   let price = productDetails?.displayPrice ? productDetails?.displayPrice : productDetails?.price;
@@ -438,7 +440,7 @@ console.log({allStateAds})
                     key="product-details-video"
                     width="498"
                     height="280"
-                    src={embedlink}
+                    src={embedlink2}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
