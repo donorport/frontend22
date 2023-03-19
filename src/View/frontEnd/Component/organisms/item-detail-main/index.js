@@ -52,8 +52,6 @@ function ProjectDetailMain(props) {
     ? 1000
     : productDetails.quantity - productDetails.soldout;
 
-console.log({user})
-console.log({allStateAds})
   useEffect(() => {
     (async () => {
       if (!CampaignAdminAuthToken) {
@@ -117,7 +115,6 @@ console.log({allStateAds})
     ) : (
       cart_btn
     );
-
   return (
     <div className="project__detail-main">
       <div className="d-flex flex-column">
@@ -379,8 +376,8 @@ console.log({allStateAds})
               The organization has indicated that they will upload Media from their purchase.
             </IconText>
           )}
-          {allStateAds?.length > 0 && (
-            allStateAds.filter(ad => ad.categoryId === productDetails?.categoryDetails?._id && ad.countryId === productDetails?.campaignDetails?.country_id && ad.stateId === productDetails?.campaignDetails?.state_id && user.stateId === ad.stateId).map((ad, i) => {
+          {allStateAds?.length > 0 && user.stateName && (
+            allStateAds.filter(ad => ad.categoryId === productDetails?.categoryId && user?.stateName === ad?.stateDetails?.state).map((ad, i) => {
               return (
                   <IconText
                     className="pt-12p pb-12p"
@@ -390,9 +387,9 @@ console.log({allStateAds})
                     }
                     key={ad._id}
                   >
-                  <a href={ad.advertisementsDetails[0]?.website} target="_blank" rel="noreferrer" key={i}>
+                  <a href={ad?.advertisementsDetails?.website} target="_blank" rel="noreferrer" key={i}>
                     <img
-                      src={helper.sponsorLogoResizePath + ad.advertisementsDetails[0]?.logo}
+                      src={helper.sponsorLogoResizePath + ad?.advertisementsDetails?.logo}
                       alt="sponsor"
                       className="p-1"
                     ></img>
