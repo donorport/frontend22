@@ -129,6 +129,7 @@ const AddPost = (props) => {
   let seletedProjectList = props.seletedProjectList;
   let gallaryTempImages = props.gallaryTempImages;
   let gallaryImages = props.gallaryImages;
+  let removedProjects = props.removedProjects;
 
   const change = async (e) => {
     props.changevalue(e);
@@ -136,6 +137,8 @@ const AddPost = (props) => {
 
   const setModelShow = props.setModelShow;
   console.log({ seletedProjectList });
+  console.log({ removedProjects });
+  console.log({ projectList });
   const [location, setLocation] = useState({
     organizationLocation: '',
     locationName: '',
@@ -999,7 +1002,8 @@ const AddPost = (props) => {
                             data={project}
                             name={project.name}
                             onSelect={onSelectProject}
-                            checked={seletedProjectList.includes(project._id)}
+                            checked={(seletedProjectList.includes(project._id) || (project.productDetails?.length < 2 && project.productDetails[0]?.productId === id))}
+                            cantChange={project.productDetails.length < 2 && project.productDetails[0]?.productId === id}
                           />
                         );
                       })}
@@ -1009,7 +1013,7 @@ const AddPost = (props) => {
                   </div>
 
                   <div className="manage-post-type">
-                    You can add this product to any of your existing projects. To manage your
+                    You can add this product to any of your existing projects. Yellow tags have only 1 product which is Required. To manage your
                     projects &nbsp;{' '}
                     <a href="./project" className="link">
                       click here

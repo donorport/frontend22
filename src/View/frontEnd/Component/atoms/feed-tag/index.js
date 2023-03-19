@@ -14,10 +14,11 @@ const FeedTag = (props) => {
   const [id] = useState(_uniqueId("tag-"));
 
   let checked = props.checked;
+  let cantChange = props.cantChange;
   // let checked = props.seletedProjectList.includes(project._id);
 
   return (
-    <div className={`feed__tag rounded-pill ${checked ? "bg-info text-white" : "text-subtext"}`}>
+    <div className={`feed__tag rounded-pill ${checked ? "bg-info text-white" : "text-subtext"}  ${cantChange ? "bg-warning" : ""}`}>
       <input
         id={data._id}
         type="checkbox"

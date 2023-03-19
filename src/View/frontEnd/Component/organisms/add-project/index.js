@@ -32,6 +32,7 @@ const AddProject = (props) => {
   let submitProjectForm = props.submitProjectForm;
   let discardProject = props.discardProject;
 
+  console.log({productList})
   const [id1] = useState('name');
   const [id2] = useState('headline');
   const [id3] = useState('description');
@@ -402,6 +403,7 @@ const AddProject = (props) => {
             return (
               available && (
                 <FeedTag
+                  key={product.headline}
                   data={product}
                   name={product.headline}
                   onSelect={(e) => onSelectProduct(e)}
