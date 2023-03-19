@@ -61,6 +61,8 @@ const AdminPosts = () => {
   const [Img, setImg] = useState('');
   const [productList, setProductList] = useState([]);
   const [projectList, setProjectList] = useState([]);
+  const [ogProjectList, setOGProjectList] = useState([]);
+  const [removedProjects, setRemovedProjects] = useState([]);
   const [update, setUpdate] = useState(false);
   const [deletedFile, setDeletedFile] = useState(false);
   const navigate = useNavigate();
@@ -201,6 +203,7 @@ const AdminPosts = () => {
     const getProjectList = await projectApi.projectListByOrganization(token, formData);
     if (getProjectList.data.success) {
       setProjectList(getProjectList.data.data);
+      setOGProjectList(getProjectList.data.data)
     }
   }, [data._id, token]);
 
@@ -258,14 +261,22 @@ const AdminPosts = () => {
 
   const onSelectProject = (e) => {
     if (e.target.checked) {
+      let tempArry = [...removedProjects];
       setSeletedProjectList([...seletedProjectList, e.target.id]);
-    } else {
-      let tempArry = [...seletedProjectList];
       const index = tempArry.indexOf(e.target.id);
       if (index > -1) {
         tempArry.splice(index, 1);
+        setRemovedProjects([...tempArry])
       }
-      setSeletedProjectList(tempArry);
+    } else {
+      let tempArry = [...seletedProjectList];
+      let tempRemoveArry = [...removedProjects];
+      const index = tempArry.indexOf(e.target.id);
+      if (index > -1) {
+        setRemovedProjects([...tempRemoveArry, e.target.id])
+        tempArry.splice(index, 1);
+      }
+      setSeletedProjectList([...tempArry]);
     }
   };
 
@@ -797,29 +808,43 @@ const AdminPosts = () => {
               ToastAlert({ msg: addProduct.data.message, msgType: 'error' });
             } else {
               if (addProduct.data.success === true) {
-                const res = await projectApi.list(token);
-                const dta = res.data.data;
-                dta.forEach((project) => {
-                  let newData = { ...project };
-
-                  let idx = !seletedProjectListofIds?.length
-                    ? -1
-                    : seletedProjectListofIds.indexOf(project._id);
-                  if (idx !== -1) {
-                    const newProducts = [id];
-                    project.productDetails.forEach((product) => {
-                      newProducts.push(product.productId);
-                    });
-                    console.log({ oldProducts: newProducts });
-                    newData.products = newProducts;
-                    projectApi.updateProject(token, newData, project._id, true);
-                  }
-                });
                 resetForm();
                 setLoading(false);
                 setUpdate(!update);
                 createPost(false);
                 setModelShow(false);
+                const res = await projectApi.list(token);
+                const dta = res.data.data;
+                dta.forEach((project) => {
+                  let newData = { ...project };
+                  
+                  console.log({project})
+                  console.log({seletedProjectListofIds})
+                  let idx = !seletedProjectListofIds?.length ? -1 : seletedProjectListofIds.indexOf(project._id);
+                  let removedIdx = !removedProjects.length ? -1 : removedProjects.indexOf(project._id)
+                  
+                  if (idx !== -1 || removedIdx !== -1) {
+                    let deleteIds = [];
+                    let newProducts = removedIdx > -1 ? [] : [id];
+                    
+                    project.productDetails.forEach((product) => {
+                      console.log({product})
+                      if(removedIdx > -1){
+                       
+                        if(id !== product.productId){
+                          newProducts.push(product.productId);
+                        } else{
+                          deleteIds.push(product.productId)
+                        }
+                      } else{
+                        newProducts.push(product.productId);
+                      }
+                    });
+                    
+                    newData.products = newProducts;
+                    projectApi.updateProject(token, newData, project._id, true);
+                  }
+                });
                 ToastAlert({ msg: addProduct.data.message, msgType: 'success' });
               }
             }
@@ -1546,6 +1571,7 @@ const AdminPosts = () => {
           moreTempImages={moreTempImages}
           moreImages={moreImages}
           projectList={projectList}
+          removedProjects={removedProjects}
           seletedProjectList={seletedProjectList}
           gallaryTempImages={gallaryTempImages}
           gallaryImages={gallaryImages}
@@ -1955,17 +1981,20 @@ const AdminPosts = () => {
                       aria-labelledby="show-sales-receipt"
                     >
                       <Modal.Header>
-                        <Modal.Title id="show-sales-receipt"></Modal.Title>
+                        <Modal.Title id="show-sales-receipt">Sales Receipt: {fulfilProductDetails?.fulfilDetails?.receipt}</Modal.Title>
                       </Modal.Header>
-                      <Modal.Body>
-                        <GalleryImg
+                      <Modal.Body className='text-center'>
+                        {/* <GalleryImg
                           thumbImgSrc={
                             helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
                           }
                           bigImgSrc={
                             helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
                           }
-                        />
+                        /> */}
+                        <img src={
+                            helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
+                          } alt="receipt" />
                       </Modal.Body>
                     </Modal>
                   </>

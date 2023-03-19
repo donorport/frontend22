@@ -44,7 +44,7 @@ function CartItem(props) {
     updateQuantity(quantity);
     props.updateChildCart();
   }, [quantity, updateQuantity]);
-
+console.log({quantity})
   return (
     <li className="cd__cart__item px-1 py-2 d-flex align-items-center border-bottom">
       <div className="d-flex align-items-center">
@@ -84,13 +84,12 @@ function CartItem(props) {
             id={1}
             value={quantity}
             onChange={(e) => {
-              if (
-                cartItem?.productDetails.soldout + e.target.value <=
-                  cartItem?.productDetails.quantity ||
-                cartItem.productDetails.unlimited
-              )
-                setQuantity(+e.target.value === 0 ? '' : +e.target.value);
-              else setQuantity(cartItem?.productDetails.quantity);
+              if(Number(e.target.value) > -1){
+                setQuantity(e.target.value === "" ? 0 : Number(e.target.value));
+              }
+              if(cartItem?.productDetails.soldout + Number(e.target.value) >= cartItem?.productDetails.quantity && !cartItem.productDetails.unlimited) {
+                setQuantity(cartItem?.productDetails.quantity - cartItem?.productDetails.soldout);
+              }
             }}
           />
           <Button

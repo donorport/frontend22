@@ -364,6 +364,7 @@ const AdminProjects = () => {
 
   const editProject = async (projectData) => {
     // setLoading(false)
+    console.log("projectData: ", projectData)
     if (projectData && projectData !== null && projectData !== '') {
       setstate({
         id: projectData._id,

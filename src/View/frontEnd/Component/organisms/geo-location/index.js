@@ -44,7 +44,7 @@ const GeoLocation = () => {
   });
 
   const onDropdownToggle = (state) => setHidden(state);
-
+  console.log({user})
   // eslint-disable-next-line react/prop-types
   const ToggleButton = React.forwardRef(({ children, onClick }, ref) => {
     return (

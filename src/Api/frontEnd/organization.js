@@ -122,6 +122,7 @@ function organization() {
     data.append('organizationName', cdata.organizationName);
     data.append('organizationCountryId', cdata.organizationCountryId);
     data.append('userId', cdata.userId);
+    data.append('uploadYear', cdata.uploadYear);
 
     let res = {};
     await axios({
@@ -143,11 +144,11 @@ function organization() {
     return res;
   };
 
-  const organizatationDeleteTaxReceipt = async (authToken, userId) => {
+  const organizatationDeleteTaxReceipt = async (authToken, userId, uploadYear) => {
     let res = {};
     await axios({
       method: 'delete',
-      url: `${helper.ApiUrl}organization/receipt/delete/${userId}`,
+      url: `${helper.ApiUrl}organization/receipt/delete/${userId}/${uploadYear}`,
       responseType: 'json',
       headers: {
         'x-access-token': authToken,
@@ -155,7 +156,7 @@ function organization() {
         'Access-Control-Allow-Credentials': 'true',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         withCredentials: true,
-        mode: 'no-cors'
+        mode: 'no-cors',
       }
     }).then((response) => {
       res = response;
