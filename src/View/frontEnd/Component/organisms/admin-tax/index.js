@@ -67,6 +67,7 @@ const AdminTax = () => {
     formData.organizationId = data._id;
     formData.isAll = false;
     formData.year = year;
+    formData.uploadYear = year;
 
     const taxList = await organizationApi.organizatationTaxlist(token, formData);
     if (taxList.data.success === true) {
@@ -131,6 +132,7 @@ const AdminTax = () => {
     fdata.organizationName = data.name;
     fdata.organizationCountryId = data.country_id;
     fdata.userId = userId;
+    fdata.uploadYear = Number(activeYear);
 
     setLoading(true);
     const uploadTax = await organizationApi.organizatationTaxUpload(token, fdata);
@@ -151,7 +153,7 @@ const AdminTax = () => {
 
   const deleteReceipt = async (userId) => {
     setLoading(false);
-    const uploadTax = await organizationApi.organizatationDeleteTaxReceipt(token, userId);
+    const uploadTax = await organizationApi.organizatationDeleteTaxReceipt(token, userId, Number(activeYear));
     if (uploadTax) {
       if (uploadTax.data.success === false) {
         setLoading(false);

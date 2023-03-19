@@ -973,8 +973,6 @@ const AdminPosts = () => {
 
     const getProductDetails = await productApi.productDetailsById(token, formData);
     if (getProductDetails.data.success === true) {
-      console.log("getProductDetails________________________: ", getProductDetails)
-      console.log({getProductDetails})
       setLoading(false);
 
       productData = getProductDetails.data.data[0];
@@ -1983,17 +1981,20 @@ const AdminPosts = () => {
                       aria-labelledby="show-sales-receipt"
                     >
                       <Modal.Header>
-                        <Modal.Title id="show-sales-receipt"></Modal.Title>
+                        <Modal.Title id="show-sales-receipt">Sales Receipt: {fulfilProductDetails?.fulfilDetails?.receipt}</Modal.Title>
                       </Modal.Header>
-                      <Modal.Body>
-                        <GalleryImg
+                      <Modal.Body className='text-center'>
+                        {/* <GalleryImg
                           thumbImgSrc={
                             helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
                           }
                           bigImgSrc={
                             helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
                           }
-                        />
+                        /> */}
+                        <img src={
+                            helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
+                          } alt="receipt" />
                       </Modal.Body>
                     </Modal>
                   </>

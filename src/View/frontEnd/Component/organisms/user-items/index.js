@@ -605,11 +605,14 @@ const UserItems = () => {
                         <Modal.Header>
                           <Modal.Title id="show-sales-receipt"></Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>
-                          <GalleryImg
+                        <Modal.Body className='text-center'>
+                          {/* <GalleryImg
                             thumbImgSrc={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
                             bigImgSrc={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
-                          />
+                          /> */}
+                           <img src={
+                            helper.FulfilRecieptPath + item.fulfilDetails[0].receipt
+                          } alt="receipt" />
                         </Modal.Body>
                       </Modal>
                     </>
