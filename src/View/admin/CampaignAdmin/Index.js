@@ -102,7 +102,7 @@ export default function Index(props) {
   const tableData = {
     columns,
     data,
-    export: false,
+    export: true,
     print: false
   };
   return (
@@ -126,10 +126,10 @@ export default function Index(props) {
               columns={columns}
               data={data}
               noHeader
-              defaultSortField="id"
               defaultSortAsc={false}
               pagination
               highlightOnHover
+              defaultSortFieldId="created_at"
             />
           </DataTableExtensions>
         </Card>

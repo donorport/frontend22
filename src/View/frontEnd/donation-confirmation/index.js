@@ -8,7 +8,7 @@ import Page from '../../../components/Page';
 import ShareWidget from '../Component/organisms/share-widget';
 import './style.scss';
 import moment from 'moment';
-import Seo from '../../../components/SEO'
+import Seo from '../../../components/SEO';
 
 const DonationConfirmPage = () => {
   const params = useParams();
@@ -56,7 +56,7 @@ const DonationConfirmPage = () => {
   let subtotal = Number((doantionDetails.amount - 0.3) / 1.049).toFixed(2);
   let platformCost = subtotal * 0.049 + 0.3;
 
-  console.log({doantionDetails})
+  console.log({ doantionDetails });
   return (
     <>
       {/* <Seo title="Donation" description={`I just Donated $${doantionDetails?.amount} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`} url={`https://www.donorport.com/donate/${doantionDetails?._id}`} /> */}
@@ -133,7 +133,22 @@ const DonationConfirmPage = () => {
                     <p className="total__title fs-2 fw-bolder">Donation Details</p>
                   </div>
                   <div className="order__value text-light">
-                  <ShareWidget page="donation" text={`I just Donated $${doantionDetails?.amount} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`} pageTitle="Donation" currUrl={`https://www.donorport.com/donate/${doantionDetails?._id}`}/>
+                    {/* <ShareWidget page="donation" text={`I just Donated $${subtotal} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`} pageTitle="Donation" currUrl={`https://www.donorport.com/donate/${doantionDetails?._id}`}/> */}
+                    {doantionDetails.type === 'PROJECT' ? (
+                      <ShareWidget
+                        page="donation"
+                        text={`I just Donated $${subtotal} to ${doantionDetails?.CampaignAdminDetails?.name} for their project ${doantionDetails?.projectDetails?.name}`}
+                        pageTitle="Donation"
+                        currUrl={`https://www.donorport.com/project/${doantionDetails?.projectDetails?.slug}`}
+                      />
+                    ) : (
+                      <ShareWidget
+                        page="donation"
+                        text={`I just Donated $${subtotal} to ${doantionDetails?.CampaignAdminDetails?.name}`}
+                        pageTitle="Donation"
+                        currUrl={`https://www.donorport.com/organization/${doantionDetails?.CampaignAdminDetails?.slug}`}
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="total__container">

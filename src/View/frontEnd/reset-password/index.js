@@ -3,11 +3,8 @@ import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Link } from 'react-router-dom';
-// import { Logo } from "@components/atoms";
-// import { Footer } from "@components/organisms";
-
 import Logo from '../Component/atoms/logo';
-import NoFooterHeader from '../Component/templates/no-footer-header';
+
 
 import './style.scss';
 
@@ -18,7 +15,6 @@ const ResetPassword = (props) => {
   const [showCPassword, toggleCPassword] = useState(false);
 
   return (
-    <NoFooterHeader>
       <div className="bg-lighter authPage">
         <div className="login">
           <div className="login__left d-none d-sm-flex align-items-center justify-content-center flex__1">
@@ -53,7 +49,7 @@ const ResetPassword = (props) => {
                   <FontAwesomeIcon icon={regular('circle-info')} className="text-info" />
                 </a>
                 <span className="lh-1">
-                  For information on how Donorport works <a href="/"> click here.</a>
+                  For information on how Donorport works <a href="/about"> click here.</a>
                 </span>
               </div>
             </div>
@@ -172,7 +168,6 @@ const ResetPassword = (props) => {
           </div>
         </div>
       </div>
-    </NoFooterHeader>
   );
 };
 

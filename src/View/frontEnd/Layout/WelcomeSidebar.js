@@ -33,7 +33,7 @@ const WelcomeSidebar = () => {
                     </div>
                 </div>
                 <div className="chat-info-wrap">
-                    <i className="bi bi-info-circle"></i> <span>For information on how Donorport works <a href="#"> click
+                    <i className="bi bi-info-circle"></i> <span>For information on how Donorport works <a href="/about"> click
                         here.</a></span>
                 </div>
             </div>

@@ -101,7 +101,8 @@ function ShareWidget({page, text, pageTitle, currUrl }) {
                 <FontAwesomeIcon icon={brands("twitter")} />
               </a> */}
                 <TwitterShareButton
-                  title={pageTitle + "- " + text}
+                  //title={pageTitle + "- " + text}
+                  title={text}
                   hashtags={['Donation', 'Charity']}
                   url={currUrl}
                   // hashtags={["hashtag1", "hashtag2"]}

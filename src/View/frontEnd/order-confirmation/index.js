@@ -75,9 +75,10 @@ const OrderConfirmPage = () => {
         };
       });
       const title = `I just donated ${amountOfItems} item${
-        amountOfItems > 1 ? 's' : ''
+        amountOfItems > 1 ? "'s" : ""
       } to charity`;
-      const description = `I donated ${Object.keys(items).map((item, idx) => {
+
+      const description = `I just donated ${Object.keys(items).map((item, idx) => {
         let singleItem = items[item] === 1 ? true : false;
         //1 Banana || 2 Bananas
         return `${items[item]} ${
@@ -85,7 +86,7 @@ const OrderConfirmPage = () => {
             ? Object.getOwnPropertyNames(items)[idx].slice(0, -1)
             : Object.getOwnPropertyNames(items)[idx]
         }`;
-      })} `;
+      })} on Donorport!`;
 
       const img = `${helper.CampaignProductImagePath}${orderDetails.orderItems[0].productImage}`;
       setTitle(title);
@@ -152,7 +153,7 @@ const OrderConfirmPage = () => {
               </div>
             </div>
             <div className="flex__1 email__container my-lg-5 my-0 p-0 pb-5 p-lg-3">
-              <div className="d-flex flex-column w-100 w-sm-auto" style={{width: '400px'}}>
+              <div className="d-flex flex-column w-100 w-sm-auto" style={{ width: '400px' }}>
                 <div className="order__container d-flex align-items-center justify-content-between pb-3 m-3 mx-0 border-bottom">
                   <div className="order__wrap">
                     <p className="total__title fs-2 fw-bolder">Order Details</p>
@@ -162,7 +163,8 @@ const OrderConfirmPage = () => {
                       page="project"
                       text={description}
                       pageTitle={title}
-                      currUrl={`https://www.donorport.com/order/${orderDetails?._id}`}
+                      currUrl={`https://www.donorport.com/`}
+                      // currUrl={`https://www.donorport.com/order/${orderDetails?._id}`}
                     />
                   </div>
                 </div>

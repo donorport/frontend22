@@ -191,7 +191,7 @@ function ProjectDetailMain(props) {
               ischecked={props.isFollow}
             />
 
-            <ShareWidget page="project" text={`Help ${projectDetails?.campaignDetails?.name} fund their ${projectDetails?.name}`} pageTitle={projectDetails?.name} currUrl={`https://www.donorport.com/project/${projectDetails?.slug}`}/>
+            <ShareWidget page="project" text={`Help ${projectDetails?.campaignDetails?.name} fund their project ${projectDetails?.name}`} pageTitle={projectDetails?.name} currUrl={`https://www.donorport.com/project/${projectDetails?.slug}`}/>
           </div>
         </div>
 

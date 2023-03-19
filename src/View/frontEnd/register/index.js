@@ -4,12 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
-// import { Logo } from "@components/atoms";
-// import { Footer } from "@components/organisms";
-
 import Logo from '../Component/atoms/logo';
-import NoFooterHeader from '../Component/templates/no-footer-header';
-import Select from 'react-select';
+
 
 import './style.scss';
 
@@ -19,7 +15,6 @@ const Register = (props) => {
 
   const [showPassword, togglePassword] = useState(false);
   return (
-    <NoFooterHeader>
       <div className="d-flex flex-column bg-lighter authPage">
         <div className="login">
           <div className="login__left d-none d-sm-flex align-items-center justify-content-center flex__1">
@@ -54,7 +49,7 @@ const Register = (props) => {
                   <FontAwesomeIcon icon={regular('circle-info')} className="text-info" />
                 </a>
                 <span className="lh-1">
-                  For information on how Donorport works <a href="/"> click here.</a>
+                  For information on how Donorport works <a href="/about"> click here.</a>
                 </span>
               </div>
             </div>
@@ -236,7 +231,6 @@ const Register = (props) => {
           </div>
         </div>
       </div>
-    </NoFooterHeader>
   );
 };
 

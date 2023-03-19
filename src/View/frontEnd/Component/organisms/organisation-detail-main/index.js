@@ -96,7 +96,7 @@ function OrganisationDetailMain(props) {
               name="organization"
               onClickFilter={(e) => props.followToOrganization(e)}
             />
-            <ShareWidget page="org" text={`Come see ${organizationDetails?.name} on Donorport`} pageTitle={organizationDetails?.name} currUrl={`https://www.donorport.com/organization/${organizationDetails?.slug}`}/>
+            <ShareWidget page="org" text={`Check out ${organizationDetails?.name}'s profile on Donorport`} pageTitle={organizationDetails?.name} currUrl={`https://www.donorport.com/organization/${organizationDetails?.slug}`}/>
           </div>
         </div>
 

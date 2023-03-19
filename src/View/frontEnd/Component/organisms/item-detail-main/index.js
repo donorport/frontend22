@@ -189,7 +189,7 @@ console.log({allStateAds})
               ischecked={props.isFollow}
             />
 
-            <ShareWidget page="item" text={`${productDetails?.campaignDetails?.name} is giving away these ${productDetails?.headline}`} pageTitle={productDetails?.headline} currUrl={`https://www.donorport.com/item/${productDetails?.slug}`}/>
+            <ShareWidget page="item" text={`Help ${productDetails?.campaignDetails?.name} give away these ${productDetails?.headline}`} pageTitle={productDetails?.headline} currUrl={`https://www.donorport.com/item/${productDetails?.slug}`}/>
           </div>
         </div>
         <div className="category__icons d-flex align-items-center mb-3 order--1 order-sm-0">
