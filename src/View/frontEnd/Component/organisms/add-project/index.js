@@ -126,7 +126,7 @@ const AddProject = (props) => {
               className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
               onClick={() => submitProjectForm(1)}
             >
-              Save
+              Save Changes
             </Button>
           )}
         </div>
@@ -308,7 +308,7 @@ const AddProject = (props) => {
               {error && error.moreImg && (
                 <p className="error">{error ? (error.moreImg ? error.moreImg : '') : ''}</p>
               )}
-              <div className="grid mt-3 mb-3" style={{ display: 'contents' }}>
+              <div className="grid mt-3 mb-3">
                 {tempImages?.length ? (
                   tempImages.map((img, key) => {
                     return (

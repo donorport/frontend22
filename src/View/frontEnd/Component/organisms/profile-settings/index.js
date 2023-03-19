@@ -281,10 +281,10 @@ const ProfileSettings = () => {
     }
   };
   useEffect(() => {
-    if(data.images?.length < viewGalleryImages?.length){
-      console.log("viewGalleryImages: ", viewGalleryImages?.length)
-    } else{
-      console.log("data.images: ", data.images?.length)
+    if (data.images?.length < viewGalleryImages?.length) {
+      console.log('viewGalleryImages: ', viewGalleryImages?.length);
+    } else {
+      console.log('data.images: ', data.images?.length);
       setViewGalleryImages(data.images);
     }
     setState((s) => ({
@@ -384,7 +384,7 @@ const ProfileSettings = () => {
       'category.required': 'Category is Required.'
     };
 
-    let tempGallery = [...viewGalleryImages]
+    let tempGallery = [...viewGalleryImages];
     validateAll(state, rules, message)
       .then(async () => {
         const formaerrror = {};
@@ -431,7 +431,7 @@ const ProfileSettings = () => {
             }
             setData(state);
             setLoading(false);
-            setViewGalleryImages(tempGallery)
+            setViewGalleryImages(tempGallery);
             ToastAlert({ msg: addUser.data.message, msgType: 'success' });
           }
         } else {
@@ -534,8 +534,8 @@ const ProfileSettings = () => {
     viewImgs.splice(id, 1);
     setViewGalleryImages(viewImgs);
   };
-  console.log({viewGalleryImages})
-  console.log({galleryImages})
+  console.log({ viewGalleryImages });
+  console.log({ galleryImages });
   return (
     <>
       {/*<FrontLoader loading={loading} />*/}
@@ -776,41 +776,54 @@ const ProfileSettings = () => {
                 </div>
               </div>
             )}
-            <div className="grid mt-3 mb-3" style={{ display: 'contents' }}>
+            <div className="grid mt-3 mb-3 w-100">
               {viewGalleryImages?.length ? (
                 viewGalleryImages.map((img, key) => {
-                  console.log({img})
+                  console.log({ img });
                   return (
-                  <div key={key} className="img-wrap">
-                    <span className="close" onClick={() => removeGallaryempImages(key)}>
-                      &times;
-                    </span>
-                    {img._id && img.image ? (
-                      // <div
-                      //   className="gallery__img"
-                      //   style={{
-                      //     backgroundImage: `url(${
-                      //       img.image ? helper.CampaignAdminGalleryFullPath + img.image : noImg
-                      //     })`,
-                      //     width: '100px',
-                      //     height: '100px'
-                      //   }}
-                      //   alt="lks"
-                      // ></div>
-                      <img src={helper.CampaignAdminGalleryFullPath + img.image} alt="gallery" />
-                    ) : (
-                      <div
-                        className="gallery__img"
-                        style={{
-                          backgroundImage: `url(${img ? img : noImg})`,
-                          width: '100px',
-                          height: '100px'
-                        }}
-                        alt="lk"
-                      ></div>
-                    )}
-                  </div>
-                )})
+                    <div key={key} className="img-wrap">
+                      <span className="close" onClick={() => removeGallaryempImages(key)}>
+                        &times;
+                      </span>
+                      {img._id && img.image ? (
+                        // <div
+                        //   className="gallery__img"
+                        //   style={{
+                        //     backgroundImage: `url(${
+                        //       img.image ? helper.CampaignAdminGalleryFullPath + img.image : noImg
+                        //     })`,
+                        //     width: '100px',
+                        //     height: '100px'
+                        //   }}
+                        //   alt="lks"
+                        // ></div>
+                        // <img src={helper.CampaignAdminGalleryFullPath + img.image} alt="gallery" />
+
+                        <div
+                          className="gallery__img"
+                          style={{
+                            backgroundImage: `url(${
+                              helper.CampaignAdminGalleryFullPath + img.image
+                            })`,
+                            width: '100px',
+                            height: '100px'
+                          }}
+                          alt="gallery"
+                        ></div>
+                      ) : (
+                        <div
+                          className="gallery__img"
+                          style={{
+                            backgroundImage: `url(${img ? img : noImg})`,
+                            width: '100px',
+                            height: '100px'
+                          }}
+                          alt="lk"
+                        ></div>
+                      )}
+                    </div>
+                  );
+                })
               ) : (
                 <></>
               )}
@@ -846,7 +859,9 @@ const ProfileSettings = () => {
               <div>This cannot be undone.</div>
             </li>
           </ul>
-          <button
+          To delete your account please email
+          <a className="link" href="#">info@donorport.com</a>
+          {/* <button
             type="button"
             className="btn btn--deactivate"
             onClick={() => !loading && deleteAccount(data._id)}
@@ -855,7 +870,7 @@ const ProfileSettings = () => {
             }}
           >
             Deactivate {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
-          </button>
+          </button> */}
         </div>
       </div>
     </>

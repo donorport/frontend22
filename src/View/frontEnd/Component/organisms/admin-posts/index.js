@@ -790,10 +790,9 @@ const AdminPosts = () => {
 
         formData.tags = tagsArray;
 
-        
         if (Object.keys(formaerrror).length === 0) {
           // }
-          
+
           let addProduct;
           // Api Call for update Profile
           setLoading(true);
@@ -862,12 +861,12 @@ const AdminPosts = () => {
         // console.log(errors)
         // const formaerrror = {};
         if (errors.length) {
-          console.log({errors})
+          console.log({ errors });
           errors.forEach((element) => {
             formaerrror[element.field] = element.message;
           });
         } else {
-          console.log({errors})
+          console.log({ errors });
           ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
         }
 
@@ -877,7 +876,7 @@ const AdminPosts = () => {
         });
       });
   };
-  console.log({state})
+  console.log({ state });
   const deleteProduct = (id) => {
     confirmAlert({
       title: 'Delete Post?',
@@ -1085,8 +1084,7 @@ const AdminPosts = () => {
   };
 
   const createNewPost = () => {
-    // if (user.isAccountAdded) {
-      if (user) {
+    if (user.isAccountAdded) {
       resetForm();
       createPost(true);
     } else {
@@ -2074,7 +2072,7 @@ const AdminPosts = () => {
                         </div>
                       </div>
 
-                      <div className="grid mt-3 mb-3" style={{ display: 'grid' }}>
+                      <div className="grid mt-3 mb-3">
                         {fulfilMoreTempImages?.length ? (
                           fulfilMoreTempImages.map((img, key) => {
                             return (

@@ -2325,9 +2325,9 @@ select.form-control-lg:not([size]):not([multiple]),
   height: 3.166667rem;
 }
 
-.form-group {
+/* .form-group {
   margin-bottom: 1rem;
-}
+} */
 
 .form-text {
   display: block;

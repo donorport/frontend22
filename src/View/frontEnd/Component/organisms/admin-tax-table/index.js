@@ -11,6 +11,7 @@ import './style.scss';
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import { CircularProgress } from '@mui/material';
 import { Accordion, AccordionItem as Item } from '@szhsin/react-accordion';
 import chevronDown from '../../../../../assets/images/chevron-down.svg';
 import donation from '../../../../../assets/images/donate.svg';
@@ -148,7 +149,7 @@ const AdminTaxTable = (props) => {
         <ul className="list-unstyled mb-0 list__table-list">
           {taxList.length > 0 ? (
             taxList.map((item, i) => {
-              console.log({item})
+              console.log({ item });
               // const yearList = item.created_at.split("-")
               const disableHeader = item.length === 1;
               return (
@@ -369,7 +370,8 @@ const AdminTaxTable = (props) => {
                                 </div>
                               ) : (
                                 <Button
-                                  onClick={(e) => e.stopPropagation()}
+                                  onClick={(e) => !props.loading && e.stopPropagation()}
+                                  style={{ opacity: props.loading ? '0.7' : '1' }}
                                   variant="warning"
                                   className="d-flex align-items-center ms-auto text-white"
                                 >
@@ -389,6 +391,9 @@ const AdminTaxTable = (props) => {
                                     }
                                   />
                                   Upload
+                                  {props.loading === item._id && (
+                                    <CircularProgress className="ms-2" color="inherit" size={12} />
+                                  )}
                                 </Button>
                               )}
                             </div>

@@ -222,15 +222,27 @@ const AddPost = (props) => {
 
         <div className="d-flex ms-auto gap-2">
           {stateData.status !== 1 && (
-            <Button
-              variant="warning"
-              size="lg"
-              className="text-white fw-bold fs-6"
-              // onClick={() => submitProductForm(-1)}
-              onClick={() => setModelShow(true)}
-            >
-              Save as Draft
-            </Button>
+            <>
+              <Button
+                variant="warning"
+                size="lg"
+                className="text-white fw-bold fs-6"
+                // onClick={() => submitProductForm(-1)}
+                onClick={() => setModelShow(true)}
+              >
+                Save as Draft
+              </Button>
+              <Button
+                style={{ opacity: props.loading ? '0.7' : '1' }}
+                variant="info"
+                size="lg"
+                className="d-flex align-items-center justify-content-center fs-6 fw-bold"
+                onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
+              >
+                Create Post
+                {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+              </Button>
+            </>
           )}
           {stateData.status === 1 && (
             <Button
@@ -251,7 +263,7 @@ const AddPost = (props) => {
               className="d-flex align-items-center justify-content-center fs-6 fw-bold"
               onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
             >
-              Update Post
+              Save Changes
               {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
             </Button>
           )}
@@ -518,7 +530,7 @@ const AddPost = (props) => {
                           ensure you receive enough funds to purchase the item(s).
                         </span>
                       </div>
-                      <div className="keyword-tags-wrap">
+                      <div className="keyword-tags-wrap my-2">
                         <div className="form-group">
                           <label htmlFor="keywordsInput" className="form__label pb-3">
                             <FontAwesomeIcon
@@ -839,7 +851,7 @@ const AddPost = (props) => {
                             </div>
                           </div>
 
-                          <div className="grid mt-3 mb-3" style={{ display: 'contents' }}>
+                          <div className="grid mt-3 mb-3">
                             {moreTempImages?.length ? (
                               moreTempImages.map((img, key) => {
                                 return (
@@ -986,7 +998,7 @@ const AddPost = (props) => {
                     </form>
                   </div>
                 </Row>
-                <div className="select-projects-option mb-5">
+                {/* <div className="select-projects-option mb-5">
                   <div className="fw-bold mb-3">
                     Project
                     <FontAwesomeIcon icon={solid('bolt')} className="text-primary ms-1 me-2" />
@@ -1007,9 +1019,6 @@ const AddPost = (props) => {
                           />
                         );
                       })}
-                    {/* <FeedTag />
-                    <FeedTag />
-                    <FeedTag /> */}
                   </div>
 
                   <div className="manage-post-type">
@@ -1019,7 +1028,7 @@ const AddPost = (props) => {
                       click here
                     </a>
                   </div>
-                </div>
+                </div> */}
               </>
             </Accordion.Collapse>
           </Card>
@@ -1153,7 +1162,7 @@ const AddPost = (props) => {
                           </div>
                         </div>
 
-                        <div className="grid mt-3 mb-3" style={{ display: 'grid' }}>
+                        <div className="grid mt-3 mb-3">
                           {gallaryTempImages?.length ? (
                             gallaryTempImages.map((img, key) => {
                               return (
@@ -1326,16 +1335,27 @@ const AddPost = (props) => {
             </Button>
           )}
           {stateData.status !== 1 && (
-            <Button
-              style={{ opacity: props.loading ? '0.7' : '1' }}
-              variant="success"
-              size="lg"
-              className="d-flex align-items-center justify-content-center fs-6 fw-bold"
-              onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
-            >
-              Create Post
-              {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
-            </Button>
+            <div className="d-flex gap-2">
+              <Button
+                variant="warning"
+                size="lg"
+                className="text-white fw-bold fs-6"
+                // onClick={() => submitProductForm(-1)}
+                onClick={() => setModelShow(true)}
+              >
+                Save as Draft
+              </Button>
+              <Button
+                style={{ opacity: props.loading ? '0.7' : '1' }}
+                variant="info"
+                size="lg"
+                className="d-flex align-items-center justify-content-center fs-6 fw-bold"
+                onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
+              >
+                Create Post
+                {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+              </Button>
+            </div>
           )}
           {stateData.status === 1 && (
             <Button
@@ -1345,7 +1365,7 @@ const AddPost = (props) => {
               className="d-flex align-items-center justify-content-center fs-6 fw-bold"
               onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
             >
-              Update Post
+              Save Changes
               {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
             </Button>
           )}
