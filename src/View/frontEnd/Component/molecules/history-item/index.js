@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import IconButton from '../icon-button';
 import Avatar from '../../atoms/avatar';
-import AvatarImg from '../../../../../assets/images/avatar_default.png';
+import AvatarImg from '../../../../../assets/images/avatar.png';
 import helper, { priceFormat, getCalculatedPrice } from '../../../../../Common/Helper';
 import moment from 'moment';
 import { useLocation } from 'react-router-dom';

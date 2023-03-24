@@ -97,7 +97,12 @@ const UserXp = () => {
           <a href="/" className="text-info fw-bold fs-5 ms-auto me-1">
             {Number(user.xp).toLocaleString('en-US', { maximumFractionDigits: 2 })} xp
           </a>
-          <ShareWidget />
+          <ShareWidget
+            page="userxp"
+            text={`I'm up to ${user.xp} XP on Donorport! 🚀🚀🚀`}
+            pageTitle={user.xp}
+            currUrl={`https://www.donorport.com/leaderboard`}
+          />
         </div>
         <div className="ms-sm-auto">
           <LadderMenuXp onChangeDropdown={onChangeDropdown} listBy={listBy} urlIcon={urlIcon} />

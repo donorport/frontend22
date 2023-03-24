@@ -136,7 +136,7 @@ const UserItems = () => {
         // const item = detail
         orderItemList.length > 0 &&
         orderItemList.map((item, i) => {
-          console.log({item})
+          console.log({ item });
           // item = detail
           let videoid = item.itemDetails.galleryUrl
             ? item.itemDetails.galleryUrl.split('?v=')[1]
@@ -152,7 +152,10 @@ const UserItems = () => {
             : item?.itemDetails?.price;
 
           // let purchasedPrice = (Math.round(purchasedPriceWithTax(Number(item.productPrice), item.appliedTaxPer)))
-          let purchasedPrice = item.productPrice;
+          let listPrice = item.productPrice;
+          let purchasedPrice = item.productPrice * 1.049;
+          let transactionFee = item.productPrice * 0.049;
+
           let cardType = JSON.parse(item?.paymentResponse)?.data?.payment_method_details?.card
             ?.brand;
           let lastFourDigits = JSON.parse(item.paymentResponse).data?.payment_method_details?.card
@@ -440,7 +443,12 @@ const UserItems = () => {
                         #{item.uniqueTransactionId ? item.uniqueTransactionId : item.orderId}
                       </div>
                     </div>
-                    <ShareWidget />
+                    <ShareWidget
+                      page="useritem"
+                      text={`I just donated ${item.itemDetails?.headline} on Donorport! 🎉🚀👏`}
+                      pageTitle={item.itemDetails?.headline}
+                      currUrl={`https://www.donorport.com/item/${item.itemDetails?.slug}`}
+                    />
                   </div>
                   <div className="order__widget mb-3">
                     <div className="d-flex align-items-start bg-lighter p-12p text-dark flex__1 mb-3 rounded-3">
@@ -456,7 +464,7 @@ const UserItems = () => {
                         <div className="mb-3p">{item.itemDetails?.headline}</div>
                         <div className="text-light ">
                           {item.currencySymbol ? item.currencySymbol : '$'}
-                          {priceFormat(purchasedPrice)}
+                          {priceFormat(listPrice)}
                         </div>
                       </div>
                       <div>
@@ -469,7 +477,14 @@ const UserItems = () => {
                         <span className="flex__1">Subtotal:</span>
                         <span className="text-light">
                           {item.currencySymbol ? item.currencySymbol : '$'}
-                          {priceFormat(Number(purchasedPrice) * Number(item.quantity))}
+                          {priceFormat(Number(listPrice) * Number(item.quantity))}
+                        </span>
+                      </div>
+                      <div className="d-flex align-items-center fw-semibold fs-7 text-light flex__1 fw-bold mb-20p">
+                        <span className="flex__1">Service Charge:</span>
+                        <span className="text-light">
+                          {item.currencySymbol ? item.currencySymbol : '$'}
+                          {priceFormat(Number(transactionFee) * Number(item.quantity))}
                         </span>
                       </div>
                       <div className="d-flex align-items-center ">
@@ -541,17 +556,20 @@ const UserItems = () => {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu className="">
-                              {(item.fulfilDetails[0].receipt.split(".")[1] === "jpeg" || item.fulfilDetails[0].receipt.split(".")[1] === "jpg") && (
+                              {(item.fulfilDetails[0].receipt.split('.')[1] === 'jpeg' ||
+                                item.fulfilDetails[0].receipt.split('.')[1] === 'jpg' ||
+                                item.fulfilDetails[0].receipt.split('.')[1] === 'png' ||
+                                item.fulfilDetails[0].receipt.split('.')[1] === 'svg') && (
                                 <Dropdown.Item
-                                className="d-flex align-items-center p-2"
-                                onClick={() => setShowReceipt(true)}
-                              >
-                                <span className="fw-bold fs-7 flex__1">View</span>
-                                <FontAwesomeIcon
-                                  icon={solid('magnifying-glass')}
-                                  className="ms-1"
-                                />
-                              </Dropdown.Item>
+                                  className="d-flex align-items-center p-2"
+                                  onClick={() => setShowReceipt(true)}
+                                >
+                                  <span className="fw-bold fs-7 flex__1">View</span>
+                                  <FontAwesomeIcon
+                                    icon={solid('magnifying-glass')}
+                                    className="ms-1"
+                                  />
+                                </Dropdown.Item>
                               )}
                               <Dropdown.Divider />
                               <Dropdown.Item
@@ -605,14 +623,15 @@ const UserItems = () => {
                         <Modal.Header>
                           <Modal.Title id="show-sales-receipt"></Modal.Title>
                         </Modal.Header>
-                        <Modal.Body className='text-center'>
+                        <Modal.Body className="text-center">
                           {/* <GalleryImg
                             thumbImgSrc={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
                             bigImgSrc={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
                           /> */}
-                           <img src={
-                            helper.FulfilRecieptPath + item.fulfilDetails[0].receipt
-                          } alt="receipt" />
+                          <img
+                            src={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
+                            alt="receipt"
+                          />
                         </Modal.Body>
                       </Modal>
                     </>

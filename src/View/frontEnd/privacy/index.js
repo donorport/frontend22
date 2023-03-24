@@ -120,7 +120,7 @@ const Privacy = () => {
                     by accessing our website, using the unsubscribe mechanism at the bottom of our
                     e-mails, or e-mailing to{' '}
                     <a className="link" href="#">
-                      info@donorport.com
+                      legal@donorport.com
                     </a>
                     .
                   </li>
@@ -435,7 +435,7 @@ const Privacy = () => {
                   verification of parental consent, we will delete that information. If you believe
                   we might have any information from or about a child under 13, please contact us at{' '}
                   <a className="link" href="#">
-                    info@donorport.com
+                    legal@donorport.com
                   </a>
                   .
                 </p>
@@ -454,7 +454,7 @@ const Privacy = () => {
                   If you want to review, verify, correct, or withdraw consent to the use of your
                   personal informationyou may also send us an email at{' '}
                   <a className="link" href="#">
-                    info@donorport.com
+                    legal@donorport.com
                   </a>
                   to request access to, correct, or delete any personal information that you have
                   provided to us. We cannot delete your personal information except by also deleting
@@ -493,7 +493,7 @@ const Privacy = () => {
                   If you are concerned about our response or would like to correct the information
                   provided, you may contact our Privacy Officer, Kyle Underhill, at{' '}
                   <a className="link" href="#">
-                    info@donorport.com
+                    legal@donorport.com
                   </a>
                   . If you delete your User Contributions from the Website, copies of your User
                   Contributions may remain viewable in cached and archived pages or might have been
@@ -509,7 +509,7 @@ const Privacy = () => {
                   personal information, you may have the legal right to withdraw your consent under
                   certain circumstances. To withdraw your consent, if applicable, contact us at{' '}
                   <a className="link" href="#">
-                    info@donorport.com
+                    legal@donorport.com
                   </a>
                   .Please note that if you withdraw your consent, we may not be able to provide you
                   with a particular product or service. We will explain the impact to you at the
@@ -542,7 +542,7 @@ const Privacy = () => {
                   <br></br>
                   <span className="fw-bold text-light">Canada</span>
                   <br></br>
-                  <p>Email: info@donorport.com</p>
+                  <p>Email: legal@donorport.com</p>
                 </div>
               </div>
             </div>

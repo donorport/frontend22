@@ -202,15 +202,16 @@ const UserAdmin = () => {
             </Button>
           </div>
         </div>
+        {teamMemberList.length > 0 && (
+          <div className="mb-5">
+            <h4 className="fw-bolder">Team Members</h4>
 
-        <div className="mb-5">
-          <h4 className="fw-bolder">Team Members</h4>
-          <div className="text-subtext mb-3">
-            Yourself and others have access to an Organization account
-          </div>
+            <div className="text-subtext mb-3">
+              Yourself and others have access to these organization accounts:
+            </div>
 
-          <div className="d-sm-flex align-items-start">
-            {/* <div className="mr-20p">
+            <div className="d-sm-flex align-items-start">
+              {/* <div className="mr-20p">
             <a href="/" className="org__logo">
               <img
                 className="img-fluid"
@@ -219,26 +220,26 @@ const UserAdmin = () => {
               />
             </a>
           </div> */}
-            <ul className="d-flex flex-column list-unstyled flex__1 ps-0 gap-2">
-              {teamMemberList.length > 0 &&
-                teamMemberList.map((member, i) => {
-                  // console.log(member)
-                  return (
-                    <OrganisationTeamItem
-                      showEmail={true}
-                      member={member}
-                      isCurrent={member.typeId === currentId}
-                      removeTeamMember={removeTeamMember}
-                      rightElement={
-                        <FontAwesomeIcon
-                          icon={solid('shield-halved')}
-                          className="text-info fs-4 ms-auto"
-                        />
-                      }
-                    />
-                  );
-                })}
-              {/* <OrganisationTeamItem
+              <ul className="d-flex flex-column list-unstyled flex__1 ps-0 gap-2">
+                {teamMemberList.length > 0 &&
+                  teamMemberList.map((member, i) => {
+                    // console.log(member)
+                    return (
+                      <OrganisationTeamItem
+                        showEmail={true}
+                        member={member}
+                        isCurrent={member.typeId === currentId}
+                        removeTeamMember={removeTeamMember}
+                        rightElement={
+                          <FontAwesomeIcon
+                            icon={solid('shield-halved')}
+                            className="text-info fs-4 ms-auto"
+                          />
+                        }
+                      />
+                    );
+                  })}
+                {/* <OrganisationTeamItem
               showEmail={true}
               rightElement={
                 <FontAwesomeIcon
@@ -261,14 +262,15 @@ const UserAdmin = () => {
                 </div>
               }
             /> */}
-            </ul>
-          </div>
+              </ul>
+            </div>
 
-          <div className="note note--info">
-            If this User Profile is the admin for the associated Admin Profile, the user may remove
-            users or transfer administrator privileges here.
+            {/* <div className="note note--info">
+              If this User Profile is the admin for the associated Admin Profile, the user may
+              remove users or transfer administrator privileges here.
+            </div> */}
           </div>
-        </div>
+        )}
       </div>
     </>
   );

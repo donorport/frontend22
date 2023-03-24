@@ -107,7 +107,7 @@ function ShareWidget({page, text, pageTitle, currUrl }) {
                   url={currUrl}
                   // hashtags={["hashtag1", "hashtag2"]}
                 >
-                  <TwitterIcon size={32} round />
+                  <TwitterIcon size={32} borderRadius={9}/>
                 </TwitterShareButton>
 
                 {/* <a

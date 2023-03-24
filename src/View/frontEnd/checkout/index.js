@@ -358,7 +358,7 @@ const Checkout = (props) => {
               </div>
             </div>
 
-            <div className="pb-4 pt-2">
+            {/* <div className="pb-4 pt-2">
               <div className="d-flex">
                 <h5 className="project__detail-sublabel mb-2 fw-bolder">Help Donorport</h5>
                 <FontAwesomeIcon icon={regular('heart')} className="fs-6 ms-1" />
@@ -369,9 +369,9 @@ const Checkout = (props) => {
                 donors like you to stay up and running. Tips are not tax deductible but are used to
                 cover site maitenance costs.
               </div>
-            </div>
+            </div> */}
 
-            <div className="d-flex flex-column" style={{ height: '125px' }}>
+            {/* <div className="d-flex flex-column" style={{ height: '125px' }}>
               {!show && (
                 <div className="d-flex flex-column mt-5 flex-grow-1">
                   <StyledSlider className="px-4">
@@ -437,7 +437,7 @@ const Checkout = (props) => {
                   </a>
                 </div>
               )}
-            </div>
+            </div> */}
             <div className="note note--info mb-3 mt-5">
               Your payment will be processed when you click Pay. By doing so you agree to the
               Donorport{' '}

@@ -6,7 +6,6 @@ import AdminTaxTable from '../admin-tax-table';
 import './style.scss';
 import organizationApi from '../../../../../Api/frontEnd/organization';
 import { useState, useEffect } from 'react';
-import FrontLoader from '../../../../../Common/FrontLoader';
 import { Outlet, Link, useLocation, useOutletContext } from 'react-router-dom';
 import ToastAlert from '../../../../../Common/ToastAlert';
 import { CSVLink, CSVDownload } from 'react-csv';
@@ -25,8 +24,8 @@ const AdminTax = () => {
     : CampaignAdminAuthToken;
   const [taxList, setTaxList] = useState([]);
   const [activeKey, setActiveKey] = useState(0);
-  const [activeYear, setActiveYear] = useState('2023');
-  const [loading, setLoading] = useState(false);
+  const [activeYear, setActiveYear] = useState(2023);
+  const [loading, setLoading] = useState(true);
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalRecord, setTotalRecord] = useState(1);
@@ -152,20 +151,24 @@ const AdminTax = () => {
   };
 
   const deleteReceipt = async (userId) => {
-    setLoading(false);
-    const uploadTax = await organizationApi.organizatationDeleteTaxReceipt(token, userId, Number(activeYear));
+    setLoading(true);
+    const uploadTax = await organizationApi.organizatationDeleteTaxReceipt(
+      token,
+      userId,
+      Number(activeYear)
+    );
     if (uploadTax) {
       if (uploadTax.data.success === false) {
-        setLoading(false);
         ToastAlert({ msg: uploadTax.data.message, msgType: 'error' });
+        setLoading(false);
       } else {
         setUpdate(!update);
-        setLoading(false);
         ToastAlert({ msg: uploadTax.data.message, msgType: 'success' });
+        setLoading(false);
       }
     } else {
-      setLoading(false);
       ToastAlert({ msg: 'something Went wrong', msgType: 'error' });
+      setLoading(false);
     }
   };
 

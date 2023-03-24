@@ -21,7 +21,7 @@ import {
 import locationApi from '../../Api/frontEnd/location';
 import helper from '../../Common/Helper';
 import userApi from '../../Api/frontEnd/user';
-import defaultAvatar from '../../assets/images/avatar_default.png';
+import defaultAvatar from '../../assets/images/avatar.png';
 import adminCampaignApi from '../../Api/admin/adminCampaign';
 import Page from '../../components/Page';
 

@@ -203,7 +203,7 @@ const AdminPosts = () => {
     const getProjectList = await projectApi.projectListByOrganization(token, formData);
     if (getProjectList.data.success) {
       setProjectList(getProjectList.data.data);
-      setOGProjectList(getProjectList.data.data)
+      setOGProjectList(getProjectList.data.data);
     }
   }, [data._id, token]);
 
@@ -266,14 +266,14 @@ const AdminPosts = () => {
       const index = tempArry.indexOf(e.target.id);
       if (index > -1) {
         tempArry.splice(index, 1);
-        setRemovedProjects([...tempArry])
+        setRemovedProjects([...tempArry]);
       }
     } else {
       let tempArry = [...seletedProjectList];
       let tempRemoveArry = [...removedProjects];
       const index = tempArry.indexOf(e.target.id);
       if (index > -1) {
-        setRemovedProjects([...tempRemoveArry, e.target.id])
+        setRemovedProjects([...tempRemoveArry, e.target.id]);
         tempArry.splice(index, 1);
       }
       setSeletedProjectList([...tempArry]);
@@ -817,30 +817,33 @@ const AdminPosts = () => {
                 const dta = res.data.data;
                 dta.forEach((project) => {
                   let newData = { ...project };
-                  
-                  console.log({project})
-                  console.log({seletedProjectListofIds})
-                  let idx = !seletedProjectListofIds?.length ? -1 : seletedProjectListofIds.indexOf(project._id);
-                  let removedIdx = !removedProjects.length ? -1 : removedProjects.indexOf(project._id)
-                  
+
+                  console.log({ project });
+                  console.log({ seletedProjectListofIds });
+                  let idx = !seletedProjectListofIds?.length
+                    ? -1
+                    : seletedProjectListofIds.indexOf(project._id);
+                  let removedIdx = !removedProjects.length
+                    ? -1
+                    : removedProjects.indexOf(project._id);
+
                   if (idx !== -1 || removedIdx !== -1) {
                     let deleteIds = [];
                     let newProducts = removedIdx > -1 ? [] : [id];
-                    
+
                     project.productDetails.forEach((product) => {
-                      console.log({product})
-                      if(removedIdx > -1){
-                       
-                        if(id !== product.productId){
+                      console.log({ product });
+                      if (removedIdx > -1) {
+                        if (id !== product.productId) {
                           newProducts.push(product.productId);
-                        } else{
-                          deleteIds.push(product.productId)
+                        } else {
+                          deleteIds.push(product.productId);
                         }
-                      } else{
+                      } else {
                         newProducts.push(product.productId);
                       }
                     });
-                    
+
                     newData.products = newProducts;
                     projectApi.updateProject(token, newData, project._id, true);
                   }
@@ -1906,7 +1909,11 @@ const AdminPosts = () => {
                           </Dropdown.Toggle>
                           <Dropdown.Menu className="">
                             {(fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] ===
-                              'jpeg' ||
+                              'png' ||
+                              fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] ===
+                                'svg' ||
+                              fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] ===
+                                'jpeg' ||
                               fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] ===
                                 'jpg') && (
                               <Dropdown.Item
@@ -1981,9 +1988,11 @@ const AdminPosts = () => {
                       aria-labelledby="show-sales-receipt"
                     >
                       <Modal.Header>
-                        <Modal.Title id="show-sales-receipt">Sales Receipt: {fulfilProductDetails?.fulfilDetails?.receipt}</Modal.Title>
+                        <Modal.Title id="show-sales-receipt">
+                          Sales Receipt: {fulfilProductDetails?.fulfilDetails?.receipt}
+                        </Modal.Title>
                       </Modal.Header>
-                      <Modal.Body className='text-center'>
+                      <Modal.Body className="text-center">
                         {/* <GalleryImg
                           thumbImgSrc={
                             helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
@@ -1992,9 +2001,10 @@ const AdminPosts = () => {
                             helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
                           }
                         /> */}
-                        <img src={
-                            helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
-                          } alt="receipt" />
+                        <img
+                          src={helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt}
+                          alt="receipt"
+                        />
                       </Modal.Body>
                     </Modal>
                   </>

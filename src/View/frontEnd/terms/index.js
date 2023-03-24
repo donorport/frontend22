@@ -18,7 +18,7 @@ const Terms = () => {
               <p>
                 Questions about our terms? Email us at:{' '}
                 <a href="#" className="link">
-                  info@donorport.com
+                  legal@donorport.com
                 </a>
               </p>
               <p className="text-light">Effective Date: January 26, 2023 </p>
@@ -403,7 +403,7 @@ const Terms = () => {
                   representative of a Charity, and you do not wish for your Charity to appear in
                   Donorport 's searchable database, you may contact us at:
                   <a href="#" className="link">
-                    info@donorport.com
+                    legal@donorport.com
                   </a>
                   to request that your Charity be removed from our database. Your email should
                   include your full name, title, and an email address and phone number associated
@@ -466,7 +466,7 @@ const Terms = () => {
                 that a User or Fundraiser is not raising or using the funds for their stated
                 purpose, please email us with the particulars at:{' '}
                 <a href="#" className="link">
-                  info@donorport.com
+                  legal@donorport.com
                 </a>
                 .{' '}
               </p>
@@ -746,7 +746,7 @@ const Terms = () => {
                 regulations. If you have questions about a Hold we may have placed on your
                 Fundraiser account, or need information about how to resolve the Hold, please email:{' '}
                 <a href="#" className="link">
-                  info@donorport.com
+                  legal@donorport.com
                 </a>
               </p>
               <p>
@@ -1205,7 +1205,7 @@ const Terms = () => {
                 To report any issues/violations or if you have any questions, please contact us by
                 email:{' '}
                 <a href="#" className="link">
-                  info@donorport.com
+                  legal@donorport.com
                 </a>
                 .
               </p>

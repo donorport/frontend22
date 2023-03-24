@@ -65,9 +65,9 @@ const ItemsTable = (props) => {
               // let price = priceFormat(Math.round(calculatedPrice.priceWithTax(Number(item.itemDetails.price))))
               let sold = item.itemDetails.soldout;
               let price =
-                item.itemDetails.displayPrice * sold
-                  ? item.itemDetails.displayPrice * sold
-                  : item.itemDetails.price * sold;
+                item.itemDetails.displayPrice * item.quantity
+                  ? item.itemDetails.displayPrice * item.quantity
+                  : item.itemDetails.price * item.quantity;
 
               return (
                 <li className="table__list-item p-2 border-bottom" key={key}>

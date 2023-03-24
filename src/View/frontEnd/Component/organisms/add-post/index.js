@@ -526,8 +526,8 @@ const AddPost = (props) => {
                           <Link to="/campaign/settings/payments" style={{ color: '#3a94d4' }}>
                             regional sales tax
                           </Link>{' '}
-                          & merchant fees will be automatically applied to the price of the item to
-                          ensure you receive enough funds to purchase the item(s).
+                          will be automatically applied to the price of the item to ensure you
+                          receive enough funds to purchase the item(s).
                         </span>
                       </div>
                       <div className="keyword-tags-wrap my-2">
@@ -617,9 +617,25 @@ const AddPost = (props) => {
                             </div>
                           </div>
                         </div>
-                        <div className="note note--info mb-5">
-                          Will you be uploading media after you have purchased the items? Posts that
-                          upload pictures / videos of the proceeds tend to get funded quicker.
+                        <div className="note note--info mb-1">
+                          <span>
+                            Will you be uploading media after you have purchased the items? Posts
+                            that upload pictures / videos of the proceeds tend to get funded
+                            quicker.
+                          </span>
+                        </div>
+                        <div className="d-flex note note--info mb-1">
+                          <FontAwesomeIcon
+                            className="me-2 fs-3 text-info"
+                            icon={solid('calculator')}
+                          />
+                          Toggle this if you intend on providing a tax receipt for donations made
+                          toward this post.
+                        </div>
+                        <div className="d-flex note note--info mb-5">
+                          <FontAwesomeIcon className="me-2 fs-3 text-primary" icon={solid('tag')} />
+                          Toggle this if you have already purchased these items and are posting to
+                          recouperate the cost.
                         </div>
                       </div>
 
@@ -1042,6 +1058,10 @@ const AddPost = (props) => {
             <Accordion.Collapse className="py-5">
               <Row className="mw-850 ml-5">
                 <Col lg="6">
+                  <div className="note mb-5">
+                    Here is where you tell your donors more about your need for these items. Let
+                    them know how you plan to use the proceeds of their donation.
+                  </div>
                   <form className="d-flex flex-column profile-detail-form gap-2">
                     <div>
                       <Input
@@ -1297,7 +1317,6 @@ const AddPost = (props) => {
             </Accordion.Collapse>
           </Card>
         </Accordion>
-
         <div className="fulfilling-check-wrap pb-4">
           <div className="form-check">
             <input
@@ -1321,7 +1340,11 @@ const AddPost = (props) => {
         {error && error.policy && (
           <p className="error">{error ? (error.policy ? error.policy : '') : ''}</p>
         )}
-
+        <div className="note fs-6 mb-5" style={{ maxWidth: '100%' }}>
+          When your post has been fully funded, you are required to upload an image of the sales
+          receipt to complete the order. A fuflfill button will appear on funded posts. Click this
+          button to upload your sales receipt and complete the order.
+        </div>
         <div className="products-detial-footer d-flex py-3 py-sm-5 gap-2">
           {stateData.status === 1 && (
             <Button

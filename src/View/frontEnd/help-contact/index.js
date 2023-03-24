@@ -80,7 +80,7 @@ const HelpContact = () => {
                       </div>
                       <Button
                         variant="info"
-                        href="mailto:info@donorport.com"
+                        href="mailto:support@donorport.com"
                         size="lg"
                         className="btn-block fw-bold"
                       >

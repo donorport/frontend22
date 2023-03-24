@@ -199,28 +199,12 @@ const AdminAdmin = () => {
                   />
                 );
               })}
-
-            {/* <OrganisationTeamItem
-              showEmail={true}
-              // showContact={true}
-              rightElement={
-                <div className="d-flex aling-items-center">
-                  <Button variant="link" className="">
-                    <FontAwesomeIcon
-                      icon={regular("shield-halved")}
-                      className="text-subtext fs-4 ms-auto"
-                    />
-                  </Button>
-                  <Button variant="danger">Remove</Button>
-                </div>
-              }
-            /> */}
           </ul>
 
-          <div className="px-1 py-20p mt-1 mb-20p fs-7 text-subtext">
+          {/* <div className="px-1 py-20p mt-1 mb-20p fs-7 text-subtext">
             <FontAwesomeIcon icon={solid('shield-halved')} className="fs-5 text-info me-2" />
             The Organization Administrator controls access for Team Members
-          </div>
+          </div> */}
 
           <div className="note note--info text-dark">
             <FontAwesomeIcon icon={regular('circle-info')} className="text-info me-1" />

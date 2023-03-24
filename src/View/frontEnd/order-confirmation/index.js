@@ -86,7 +86,7 @@ const OrderConfirmPage = () => {
             ? Object.getOwnPropertyNames(items)[idx].slice(0, -1)
             : Object.getOwnPropertyNames(items)[idx]
         }`;
-      })} on Donorport!`;
+      })} on Donorport! 🎉👏`;
 
       const img = `${helper.CampaignProductImagePath}${orderDetails.orderItems[0].productImage}`;
       setTitle(title);

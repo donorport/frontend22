@@ -30,8 +30,10 @@ function OrganisationDetailMain(props) {
 
   const navigate = useNavigate();
   // let iconClass = organizationDetails?.categoryDetails?.iconDetails?.class.replace('fa-', '');
-  let videoid = organizationDetails.promoVideo ? organizationDetails.promoVideo.split("?v=")[1] : "";
-  let embedlink = videoid ? "https://www.youtube.com/embed/" + videoid : "";
+  let videoid = organizationDetails.promoVideo
+    ? organizationDetails.promoVideo.split('?v=')[1]
+    : '';
+  let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
   const setAddress =
     organizationDetails?.city_id +
     ',' +
@@ -43,7 +45,7 @@ function OrganisationDetailMain(props) {
     organizationDetails?.countryDetails?.country;
 
   let address = setAddress ? convertAddress(setAddress) : '';
-  console.log({organizationDetails})
+  console.log({ organizationDetails });
 
   return (
     <div className="project__detail-main">
@@ -96,7 +98,12 @@ function OrganisationDetailMain(props) {
               name="organization"
               onClickFilter={(e) => props.followToOrganization(e)}
             />
-            <ShareWidget page="org" text={`Check out ${organizationDetails?.name}'s profile on Donorport`} pageTitle={organizationDetails?.name} currUrl={`https://www.donorport.com/organization/${organizationDetails?.slug}`}/>
+            <ShareWidget
+              page="org"
+              text={`Let's help ${organizationDetails?.name} fund their needs on Donorport 🏆 🚀`}
+              pageTitle={organizationDetails?.name}
+              currUrl={`https://www.donorport.com/organization/${organizationDetails?.slug}`}
+            />
           </div>
         </div>
 

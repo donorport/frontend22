@@ -293,7 +293,7 @@ const TaxTable = (props) => {
                                 // </Button>
                                 <Button
                                   variant="link"
-                                  className="d-flex align-items-center justify-content-end px-0 fw-semibold text-reset text-decoration-none"
+                                  className="d-flex align-items-center justify-content-end fs-7 px-0 fw-semibold text-reset text-decoration-none"
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   Waiting

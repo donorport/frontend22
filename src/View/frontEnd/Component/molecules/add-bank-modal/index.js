@@ -16,6 +16,8 @@ const AddBankModal = (props) => {
     { value: 'company', label: 'Company' }
   ];
 
+  const { bankloading } = props;
+
   return (
     <>
       <div className="px-2">
@@ -158,15 +160,17 @@ const AddBankModal = (props) => {
           <div className="d-flex align-items-center">
             <Button
               style={{
-                opacity: props.isLoading ? '0.7' : '1'
+                opacity: bankloading ? '0.7' : '1'
               }}
               variant="info"
               // onClick={props.onHide}
-              onClick={() => !props.isLoading && props.addExpressAccount()}
+              onClick={() => {
+                !bankloading && props.addExpressAccount();
+              }}
               className="d-flex m-0"
             >
               Add Bank
-              {props.isLoading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+              {bankloading && <CircularProgress className="ms-2" color="inherit" size={12} />}
             </Button>
           </div>
         </div>

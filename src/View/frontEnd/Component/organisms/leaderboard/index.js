@@ -6,7 +6,7 @@ import helper, { getCalculatedPrice } from '../../../../../Common/Helper';
 import { useSelector } from 'react-redux';
 import userApi from '../../../../../Api/frontEnd/user';
 import React, { useState, useEffect } from 'react';
-import AvatarImg from '../../../../../assets/images/avatar_default.png';
+import AvatarImg from '../../../../../assets/images/avatar.png';
 import Page from '../../../../../components/Page';
 
 const LeaderBoard = () => {
@@ -180,7 +180,7 @@ const LeaderBoard = () => {
                           <span className="btn-sm ">{getC.getUserRank(user.xp)}</span>
                         }
                         <div className="ladder__xp ladder__xp--user w-inline-block">
-                          <div className="tag tag--xp tag--xp_nobg w-embed ms-3 fs-5 text-info">
+                          <div className="tag tag--xp tag--xp_nobg  ms-3 fs-5 text-info">
                             {Number(user.xp).toLocaleString('en-US', { maximumFractionDigits: 2 })}
                             &nbsp;XP
                           </div>

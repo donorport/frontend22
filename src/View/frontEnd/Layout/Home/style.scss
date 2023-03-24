@@ -37,8 +37,14 @@
     }
   }
 }
+.empty__container {
+  max-width: 400px;
+}
 .empty__circle * {
   max-width: 300px;
+}
+.empty--small * {
+  max-width: 175px !important;
 }
 @include media-breakpoint-down(sm) {
   .btn__cart {

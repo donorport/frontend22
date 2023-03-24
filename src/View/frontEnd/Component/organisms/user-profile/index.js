@@ -755,7 +755,7 @@ const UserProfile = () => {
             </ul>
             To delete your account please email
             <a className="link" href="#">
-              info@donorport.com
+              support@donorport.com
             </a>
             {/* <button
               type="button"

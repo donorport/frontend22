@@ -31,19 +31,17 @@ import helper, {
 
 import './style.scss';
 import { Link } from 'react-router-dom';
-import { countryToAlpha2, countryToAlpha3 } from "country-to-iso";
+import { countryToAlpha2, countryToAlpha3 } from 'country-to-iso';
 import { useEffect, useState } from 'react';
-
 
 function ProjectDetailMain(props) {
   let projectDetails = props.projectDetails;
   let productDetails = props.productDetails;
   let video = projectDetails?.video;
 
-  let videoid = video ? video.split("?v=")[1] : "";
-  let embedlink = video ? "https://www.youtube.com/embed/" + videoid : "";
-  const [address, setAddress] = useState("")
-  
+  let videoid = video ? video.split('?v=')[1] : '';
+  let embedlink = video ? 'https://www.youtube.com/embed/' + videoid : '';
+  const [address, setAddress] = useState('');
 
   // const countProjectProcess = (data) => {
   //   // console.log(data)
@@ -125,14 +123,18 @@ function ProjectDetailMain(props) {
   const setState = projectDetails.campaignDetails?.state_id;
 
   useEffect(() => {
-    if(projectDetails?.name){
-      let newaddress = projectDetails?.campaignDetails.address ? convertAddress(projectDetails?.campaignDetails.address) : ''
-      if(!newaddress){
-        newaddress = projectDetails?.productDetails[0]?.itemDetails?.address ? convertAddress(projectDetails?.productDetails[0].itemDetails.address) : 'Canada';
+    if (projectDetails?.name) {
+      let newaddress = projectDetails?.campaignDetails.address
+        ? convertAddress(projectDetails?.campaignDetails.address)
+        : '';
+      if (!newaddress) {
+        newaddress = projectDetails?.productDetails[0]?.itemDetails?.address
+          ? convertAddress(projectDetails?.productDetails[0].itemDetails.address)
+          : 'Canada';
       }
-      setAddress(newaddress)
+      setAddress(newaddress);
     }
-  }, [props.projectDetails])
+  }, [props.projectDetails]);
   return (
     <div className="project__detail-main">
       <div className="d-flex flex-column mb-4">
@@ -191,7 +193,12 @@ function ProjectDetailMain(props) {
               ischecked={props.isFollow}
             />
 
-            <ShareWidget page="project" text={`Help ${projectDetails?.campaignDetails?.name} fund their project ${projectDetails?.name}`} pageTitle={projectDetails?.name} currUrl={`https://www.donorport.com/project/${projectDetails?.slug}`}/>
+            <ShareWidget
+              page="project"
+              text={`Help ${projectDetails?.campaignDetails?.name} fund their project: ${projectDetails?.name} on Donorport! 📈👀`}
+              pageTitle={projectDetails?.name}
+              currUrl={`https://www.donorport.com/project/${projectDetails?.slug}`}
+            />
           </div>
         </div>
 

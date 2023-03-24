@@ -747,7 +747,7 @@ const ProfileSettings = () => {
           <div className="project-title-optional">
             <h4 className="form__label mt-4">Gallery</h4>
           </div>
-          <div className="d-flex align-items-center flex-wrap gap-2 mb-3">
+          <div className="d-flex align-items-center flex-wrap gap-2">
             {viewGalleryImages?.length >= MAX_IMAGE_LENGTH ? (
               <p className="image-upload-wrap mb-3 fs-5">Maximum Images Allowed (5) Reached</p>
             ) : (
@@ -860,7 +860,7 @@ const ProfileSettings = () => {
             </li>
           </ul>
           To delete your account please email
-          <a className="link" href="#">info@donorport.com</a>
+          <a className="link" href="#">support@donorport.com</a>
           {/* <button
             type="button"
             className="btn btn--deactivate"

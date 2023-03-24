@@ -59,7 +59,7 @@ const DonationConfirmPage = () => {
   console.log({ doantionDetails });
   return (
     <>
-      {/* <Seo title="Donation" description={`I just Donated $${doantionDetails?.amount} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`} url={`https://www.donorport.com/donate/${doantionDetails?._id}`} /> */}
+      <Seo title="Donation" description={`I just Donated $${doantionDetails?.amount} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`} url={`https://www.donorport.com/donate/${doantionDetails?._id}`} />
       <Page showTags={false} title={'Donation | ' + doantionDetails.uniqueTransactionId}>
         <DefaultLayout>
           <div className="container-fluid d-flex flex-wrap gap-2">
@@ -137,14 +137,14 @@ const DonationConfirmPage = () => {
                     {doantionDetails.type === 'PROJECT' ? (
                       <ShareWidget
                         page="donation"
-                        text={`I just Donated $${subtotal} to ${doantionDetails?.CampaignAdminDetails?.name} for their project ${doantionDetails?.projectDetails?.name}`}
+                        text={`I just Donated $${subtotal} to ${doantionDetails?.CampaignAdminDetails?.name} for their project ${doantionDetails?.projectDetails?.name} 🎉🚀👏`}
                         pageTitle="Donation"
                         currUrl={`https://www.donorport.com/project/${doantionDetails?.projectDetails?.slug}`}
                       />
                     ) : (
                       <ShareWidget
                         page="donation"
-                        text={`I just Donated $${subtotal} to ${doantionDetails?.CampaignAdminDetails?.name}`}
+                        text={`I just Donated $${subtotal} to ${doantionDetails?.CampaignAdminDetails?.name} 🎉👏`}
                         pageTitle="Donation"
                         currUrl={`https://www.donorport.com/organization/${doantionDetails?.CampaignAdminDetails?.slug}`}
                       />

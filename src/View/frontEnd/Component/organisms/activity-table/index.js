@@ -4,7 +4,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import './style.scss';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '../../atoms/avatar';
-import AvatarImg from '../../../../../assets/images/avatar_default.png';
+import AvatarImg from '../../../../../assets/images/avatar.png';
 import helper, { priceFormat, getCalculatedPrice } from '../../../../../Common/Helper';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';

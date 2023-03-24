@@ -20,17 +20,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import './style.scss';
 import { GalleryImg } from '../../atoms';
 import { CircularProgress } from '@mui/material';
-import advertisementApi from "../../../../../Api/admin/advertisement"
-
+import advertisementApi from '../../../../../Api/admin/advertisement';
 
 function ProjectDetailMain(props) {
   console.log('iFrame, item-detail-main');
   let productDetails = props.productDetails;
-  
-  let videoid = productDetails.galleryUrl ? productDetails.galleryUrl.split("?v=")[1] : "";
-  let videoid2 = productDetails?.fulfiledproductsDetails?.video ? productDetails?.fulfiledproductsDetails?.video.split("?v=")[1] : "";
-  let embedlink = videoid ? "https://www.youtube.com/embed/" + videoid : "";
-  let embedlink2 = videoid2 ? "https://www.youtube.com/embed/" + videoid2 : "";
+
+  let videoid = productDetails.galleryUrl ? productDetails.galleryUrl.split('?v=')[1] : '';
+  let videoid2 = productDetails?.fulfiledproductsDetails?.video
+    ? productDetails?.fulfiledproductsDetails?.video.split('?v=')[1]
+    : '';
+  let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
+  let embedlink2 = videoid2 ? 'https://www.youtube.com/embed/' + videoid2 : '';
   const getCalc = getCalculatedPrice();
   // let price = getCalc.getData(productDetails?.price)
   let price = productDetails?.displayPrice ? productDetails?.displayPrice : productDetails?.price;
@@ -64,13 +65,13 @@ function ProjectDetailMain(props) {
       }
     })();
   }, [!user.isUpdateCart, productDetails._id]);
-  
+
   useEffect(() => {
     (async () => {
-      const res = await advertisementApi.allStateAds()
-      setAllStateAds(res.data.data)
+      const res = await advertisementApi.allStateAds();
+      setAllStateAds(res.data.data);
     })();
-  },[]);
+  }, []);
 
   const onClickFilter = async (e) => {
     await props.addProductToWishlist(productDetails._id);
@@ -186,7 +187,12 @@ function ProjectDetailMain(props) {
               ischecked={props.isFollow}
             />
 
-            <ShareWidget page="item" text={`Help ${productDetails?.campaignDetails?.name} give away these ${productDetails?.headline}`} pageTitle={productDetails?.headline} currUrl={`https://www.donorport.com/item/${productDetails?.slug}`}/>
+            <ShareWidget
+              page="item"
+              text={`Help ${productDetails?.campaignDetails?.name} give away these ${productDetails?.headline} on Donorport 🎉🎁`}
+              pageTitle={productDetails?.headline}
+              currUrl={`https://www.donorport.com/item/${productDetails?.slug}`}
+            />
           </div>
         </div>
         <div className="category__icons d-flex align-items-center mb-3 order--1 order-sm-0">
@@ -376,9 +382,16 @@ function ProjectDetailMain(props) {
               The organization has indicated that they will upload Media from their purchase.
             </IconText>
           )}
-          {allStateAds?.length > 0 && user.stateName && (
-            allStateAds.filter(ad => ad.categoryId === productDetails?.categoryId && user?.stateName === ad?.stateDetails?.state).map((ad, i) => {
-              return (
+          {allStateAds?.length > 0 &&
+            user.stateName &&
+            allStateAds
+              .filter(
+                (ad) =>
+                  ad.categoryId === productDetails?.categoryId &&
+                  user?.stateName === ad?.stateDetails?.state
+              )
+              .map((ad, i) => {
+                return (
                   <IconText
                     className="pt-12p pb-12p"
                     icon={
@@ -387,17 +400,21 @@ function ProjectDetailMain(props) {
                     }
                     key={ad._id}
                   >
-                  <a href={ad?.advertisementsDetails?.website} target="_blank" rel="noreferrer" key={i}>
-                    <img
-                      src={helper.sponsorLogoResizePath + ad?.advertisementsDetails?.logo}
-                      alt="sponsor"
-                      className="p-1"
-                    ></img>
-                  </a>
+                    <a
+                      href={ad?.advertisementsDetails?.website}
+                      target="_blank"
+                      rel="noreferrer"
+                      key={i}
+                    >
+                      <img
+                        src={helper.sponsorLogoResizePath + ad?.advertisementsDetails?.logo}
+                        alt="sponsor"
+                        className="p-1"
+                      ></img>
+                    </a>
                   </IconText>
                 );
-              })
-          )}
+              })}
         </div>
       )}
 

@@ -41,6 +41,7 @@ const Payments = () => {
     : CampaignAdminAuthToken;
   const CampaignAdmin = JSON.parse(localStorage.getItem('CampaignAdmin'));
   const [loading, setLoading] = useState(false);
+  const [saveloading, setSaveloading] = useState(false);
   const [update, setUpdate] = useState(false);
   const [defaultCountry, setDefaultCountry] = useState([]);
   const [defaultHomeCountry, setDefaultHomeCountry] = useState([]);
@@ -55,12 +56,13 @@ const Payments = () => {
   const [tempImgName, setTempImgName] = useState('');
   const [selectedDoc, setSelectedDoc] = useState('');
   const [value, setValue] = useState(0);
+  const [bankloading, setBankloading] = useState(false);
   const [defaultTypeOfBusiness, setDefaultTypeOfBusiness] = useState([
     { value: 'individual ', label: 'Individual ' }
   ]);
 
   const [state, setstate] = useState({
-    registerdBusinessAddress: 'US',
+    registerdBusinessAddress: 'CA',
     typeOfBusiness: 'individual',
     firstName: '',
     lastName: '',
@@ -68,7 +70,7 @@ const Payments = () => {
     dob: '',
     phoneNo: '',
     ssn: '',
-    homeCountry: 'US',
+    homeCountry: 'CA',
     addLine1: '',
     addLine2: '',
     city: '',
@@ -91,7 +93,7 @@ const Payments = () => {
     taxRate: '',
     paymentLoginId: '',
     TransactionKey: '',
-    currency: 'USD'
+    currency: 'CAD'
   });
   const {
     status,
@@ -750,6 +752,7 @@ const Payments = () => {
   };
 
   function myFunction(field) {
+    setSaveloading(true);
     let rule = {};
     rule[field] = 'required';
 
@@ -786,14 +789,16 @@ const Payments = () => {
         // console.log('first')
         const updateSalesTax = await adminCampaignApi.updateSalesTax(token, fdata);
         if (updateSalesTax && updateSalesTax.data.success) {
+          setSaveloading(false);
           ToastAlert({ msg: updateSalesTax.data.message, msgType: 'success' });
         } else {
+          setSaveloading(false);
           ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
         }
       })
       .catch((errors) => {
         // console.log(errors)
-        setLoading(false);
+        setSaveloading(false);
         const formaerrror = {};
         if (errors && errors.length) {
           errors.forEach((element) => {
@@ -820,6 +825,7 @@ const Payments = () => {
   };
 
   const addExpressAccount = async () => {
+    setBankloading(true);
     let rules = {};
     rules.accEmail = 'required|email';
 
@@ -857,16 +863,15 @@ const Payments = () => {
         } else {
           formData.companyName = companyName;
         }
-        setLoading(true);
         const create = await adminCampaignApi.createExpressAccount(token, formData);
         if (create && create.data.success) {
           window.location.replace(create.data.data.url);
         }
-        setLoading(false);
+        setBankloading(false);
       })
       .catch((errors) => {
         // console.log(errors)
-        setLoading(false);
+        setBankloading(false);
         const formaerrror = {};
         if (errors && errors.length) {
           errors.forEach((element) => {
@@ -973,12 +978,14 @@ const Payments = () => {
         </div>
         <Button
           variant="info"
-          onClick={() => !loading && myFunction('taxRate')}
+          onClick={() => {
+            !saveloading && myFunction('taxRate');
+          }}
           style={{
-            opacity: loading ? '0.7' : '1'
+            opacity: saveloading ? '0.7' : '1'
           }}
         >
-          Save {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+          Save {saveloading && <CircularProgress className="ms-2" color="inherit" size={12} />}
         </Button>
 
         <div className="mb-5 mt-5">
@@ -1001,6 +1008,7 @@ const Payments = () => {
               changevaluebankAc={changevaluebankAc}
               addExpressAccount={addExpressAccount}
               isLoading={loading}
+              bankloading={bankloading}
             />
 
             {/* <AddBankModal
