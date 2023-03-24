@@ -1778,7 +1778,7 @@ const AdminPosts = () => {
                         </div> */}
 
                     <div
-                      className="image-upload-wrap mb-3 fs-2"
+                      className="image-upload-wrap fs-2"
                       style={{
                         ...imageuploadwrap,
                         backgroundColor: '#e5f4ff',
@@ -1810,7 +1810,7 @@ const AdminPosts = () => {
                             ? tempImgName
                             : fulfilError.receiptFile
                             ? 'Please Select File'
-                            : 'Drag and drop or select File'}
+                            : 'Drag and drop or Select File'}
                         </h3>
                       </div>
                     </div>
@@ -1834,7 +1834,7 @@ const AdminPosts = () => {
                     </label>
 
                     <div
-                      className="image-upload-wrap mb-3 fs-2"
+                      className="image-upload-wrap fs-2"
                       style={{
                         ...imageuploadwrap,
                         backgroundColor: '#e5f4ff',
@@ -1866,7 +1866,7 @@ const AdminPosts = () => {
                             ? tempImgName
                             : fulfilError.receiptFile
                             ? 'Please Select File'
-                            : 'Drag and drop or select File'}
+                            : 'Drag and drop or Select File'}
                         </h3>
                       </div>
                     </div>
@@ -2056,7 +2056,7 @@ const AdminPosts = () => {
                       style={{ display: 'contents' }}
                     >
                       <div
-                        className="image-upload-wrap mb-3 fs-2"
+                        className="image-upload-wrap fs-2"
                         style={{
                           ...imageuploadwrap,
                           backgroundColor: '#e5f4ff',
@@ -2083,7 +2083,7 @@ const AdminPosts = () => {
                         </div>
                       </div>
 
-                      <div className="grid mt-3 mb-3">
+                      <div className="grid mt-3 mb-3 w-100">
                         {fulfilMoreTempImages?.length ? (
                           fulfilMoreTempImages.map((img, key) => {
                             return (
@@ -2102,8 +2102,8 @@ const AdminPosts = () => {
                                   className="gallery__img"
                                   style={{
                                     backgroundImage: `url(${img ? img : noimg})`,
-                                    width: '100px',
-                                    height: '100px'
+                                    // width: '100px',
+                                    // height: '100px'
                                   }}
                                   alt="lk"
                                   data-id="103"
@@ -2146,8 +2146,8 @@ const AdminPosts = () => {
                                             : noimg
                                           : noimg
                                       })`,
-                                      width: '100px',
-                                      height: '100px'
+                                      // width: '100px',
+                                      // height: '100px'
                                     }}
                                     alt="lk"
                                     data-id="103"

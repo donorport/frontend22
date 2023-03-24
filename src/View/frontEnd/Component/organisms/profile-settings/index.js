@@ -752,7 +752,7 @@ const ProfileSettings = () => {
               <p className="image-upload-wrap mb-3 fs-5">Maximum Images Allowed (5) Reached</p>
             ) : (
               <div
-                className="image-upload-wrap mb-3 fs-2"
+                className="image-upload-wrap fs-2"
                 style={{
                   ...imageuploadwrap,
                   backgroundColor: '#e5f4ff',
@@ -781,7 +781,7 @@ const ProfileSettings = () => {
                 viewGalleryImages.map((img, key) => {
                   console.log({ img });
                   return (
-                    <div key={key} className="img-wrap">
+                    <div key={key} className="d-flex img-wrap">
                       <span className="close" onClick={() => removeGallaryempImages(key)}>
                         &times;
                       </span>
@@ -805,8 +805,8 @@ const ProfileSettings = () => {
                             backgroundImage: `url(${
                               helper.CampaignAdminGalleryFullPath + img.image
                             })`,
-                            width: '100px',
-                            height: '100px'
+                            // width: '100px',
+                            // height: '100px'
                           }}
                           alt="gallery"
                         ></div>
@@ -815,8 +815,8 @@ const ProfileSettings = () => {
                           className="gallery__img"
                           style={{
                             backgroundImage: `url(${img ? img : noImg})`,
-                            width: '100px',
-                            height: '100px'
+                            // width: '100px',
+                            // height: '100px'
                           }}
                           alt="lk"
                         ></div>

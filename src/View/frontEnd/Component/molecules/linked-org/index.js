@@ -306,11 +306,11 @@ function LinkedOrg(props) {
                       <Avatar size={42} border={0} shadow={false} avatarUrl={image} />
                       <div className="linked__item-label fs-7 fw-bold pl-12p">
                         <div className="mb-3p">{name}</div>
-                        <div className="team__role fs-7 fw-normal">
-                          {member.status ? 'Active' : 'Inactive'}
-                        </div>
-                        <div className="org__team__item__price fs-7 text-light">
+                        <div className="org__team__item__price fs-7 fw-semibold text-light">
                           {member?.campaignadminDetails?.name}
+                        </div>
+                        <div className="team__role fs-8 fw-normal">
+                          {member.status ? 'Active' : 'Inactive'}
                         </div>
                       </div>
                     </div>

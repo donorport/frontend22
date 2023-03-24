@@ -376,7 +376,7 @@ export default function AddProductForm(props) {
               />
               {/* <label className="custom-file-label" htmlFor="customFile" style={{ margin: "0px 10px 0px 10px" }}> Choose files </label> */}
 
-              <div className="grid mt-3 mb-3">
+              <div className="grid mt-3 mb-3 w-100">
                 {props.moreTempImages?.length
                   ? props.moreTempImages.map((img, key) => {
                       return (
@@ -384,8 +384,8 @@ export default function AddProductForm(props) {
                           className="gallery__img"
                           style={{
                             backgroundImage: `url(${img ? img : noimg})`,
-                            width: '100px',
-                            height: '100px'
+                            // width: '100px',
+                            // height: '100px'
                           }}
                           alt="lk"
                         ></div>
@@ -792,7 +792,7 @@ export default function AddProductForm(props) {
               />
               {/* <label className="custom-file-label" htmlFor="customFile" style={{ margin: "0px 10px 0px 10px" }}> Choose files </label> */}
 
-              <div className="grid mt-3 mb-3">
+              <div className="grid mt-3 mb-3 w-100">
                 {props.gallaryTempImages?.length
                   ? props.gallaryTempImages.map((img, key) => {
                       return (
@@ -800,8 +800,8 @@ export default function AddProductForm(props) {
                           className="gallery__img"
                           style={{
                             backgroundImage: `url(${img ? img : noimg})`,
-                            width: '100px',
-                            height: '100px'
+                            // width: '100px',
+                            // height: '100px'
                           }}
                           alt="lk"
                         ></div>

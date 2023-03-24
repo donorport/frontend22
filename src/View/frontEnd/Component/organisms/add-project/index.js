@@ -278,7 +278,7 @@ const AddProject = (props) => {
                 </label>
               </div> */}
               <div
-                className="image-upload-wrap mb-3 fs-2"
+                className="image-upload-wrap fs-2"
                 style={{
                   ...imageuploadwrap,
                   backgroundColor: '#e5f4ff',
@@ -302,13 +302,13 @@ const AddProject = (props) => {
                 />
                 <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
                   <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
-                  <h3 style={{ fontSize: 'inherit' }}>Drag and drop or select File</h3>
+                  <h3 style={{ fontSize: 'inherit' }}>Drag and drop or Select File</h3>
                 </div>
               </div>
               {error && error.moreImg && (
                 <p className="error">{error ? (error.moreImg ? error.moreImg : '') : ''}</p>
               )}
-              <div className="grid mt-3 mb-3">
+              <div className="grid mt-3 mb-3 w-100">
                 {tempImages?.length ? (
                   tempImages.map((img, key) => {
                     return (
@@ -325,8 +325,8 @@ const AddProject = (props) => {
                           className="gallery__img"
                           style={{
                             backgroundImage: `url(${img ? img : noimg})`,
-                            width: '100px',
-                            height: '100px'
+                            // width: '100px',
+                            // height: '100px'
                           }}
                           alt="lk"
                           data-id="103"
@@ -368,8 +368,8 @@ const AddProject = (props) => {
                                     : noimg
                                   : noimg
                               })`,
-                              width: '100px',
-                              height: '100px'
+                              // width: '100px',
+                              // height: '100px'
                             }}
                             alt="lk"
                             data-id="103"
@@ -429,7 +429,7 @@ const AddProject = (props) => {
           </Button>
           {status !== 1 ? (
             <Button
-              variant="success"
+              variant="info"
               size="lg"
               className="fw-bold fs-6"
               onClick={() => submitProjectForm(1)}
@@ -443,7 +443,7 @@ const AddProject = (props) => {
               className="fw-bold fs-6"
               onClick={() => submitProjectForm(1)}
             >
-              Save
+              Save Changes
             </Button>
           )}
         </div>

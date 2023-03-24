@@ -520,10 +520,13 @@ const AddPost = (props) => {
                           />
                         </div>
                       </div>
-                      <div className="note note--info mb-3">
+                      <div className="note note--info mb-3 fs-6">
                         <span className="text-dark">
                           Enter the unit price before taxes. Your{' '}
-                          <Link to="/campaign/settings/payments" style={{ color: '#3a94d4' }}>
+                          <Link
+                            to={'/campaign/' + organizationDetails?.slug + '/settings/payments'}
+                            style={{ color: '#3a94d4' }}
+                          >
                             regional sales tax
                           </Link>{' '}
                           will be automatically applied to the price of the item to ensure you
@@ -617,14 +620,14 @@ const AddPost = (props) => {
                             </div>
                           </div>
                         </div>
-                        <div className="note note--info mb-1">
+                        <div className="note note--info mb-1 fs-6">
                           <span>
                             Will you be uploading media after you have purchased the items? Posts
                             that upload pictures / videos of the proceeds tend to get funded
                             quicker.
                           </span>
                         </div>
-                        <div className="d-flex note note--info mb-1">
+                        <div className="d-flex note note--info mb-1 fs-6">
                           <FontAwesomeIcon
                             className="me-2 fs-3 text-info"
                             icon={solid('calculator')}
@@ -632,7 +635,7 @@ const AddPost = (props) => {
                           Toggle this if you intend on providing a tax receipt for donations made
                           toward this post.
                         </div>
-                        <div className="d-flex note note--info mb-5">
+                        <div className="d-flex note note--info mb-5 fs-6">
                           <FontAwesomeIcon className="me-2 fs-3 text-primary" icon={solid('tag')} />
                           Toggle this if you have already purchased these items and are posting to
                           recouperate the cost.
@@ -798,7 +801,7 @@ const AddPost = (props) => {
                         <p className="error">{error ? (error.image ? error.image : '') : ''}</p>
                         <canvas id="canvas1" width={300} height={300}></canvas>
                       </div>
-                      <div className="note note--info mb-3">
+                      <div className="note note--info mb-3 fs-6">
                         <FontAwesomeIcon
                           icon={regular('circle-info')}
                           className="text-info icon-method mr-3p"
@@ -834,7 +837,7 @@ const AddPost = (props) => {
                           </div> */}
 
                           <div
-                            className="image-upload-wrap mb-3 fs-2"
+                            className="image-upload-wrap fs-2"
                             style={{
                               ...imageuploadwrap,
                               backgroundColor: '#e5f4ff',
@@ -850,7 +853,7 @@ const AddPost = (props) => {
                               // onChange={props.changevalue}
                               name="moreImg[]"
                               id="moreImg"
-                              accept=".jpg,.gif,.png"
+                              accept=".jpg,.gif,.png, .svg"
                               multiple
                               onChange={(e) => changefile(e)}
                               style={fileuploadinput}
@@ -863,11 +866,11 @@ const AddPost = (props) => {
                                 icon={solid('cloud-arrow-up')}
                                 className="icon-cloud"
                               />
-                              <h3 style={{ fontSize: 'inherit' }}>Drag and drop or select File</h3>
+                              <h3 style={{ fontSize: 'inherit' }}>Drag and drop or Select File</h3>
                             </div>
                           </div>
 
-                          <div className="grid mt-3 mb-3">
+                          <div className="grid mt-3 mb-3 w-100">
                             {moreTempImages?.length ? (
                               moreTempImages.map((img, key) => {
                                 return (
@@ -887,8 +890,8 @@ const AddPost = (props) => {
                                       className="gallery__img"
                                       style={{
                                         backgroundImage: `url(${img ? img : noimg})`,
-                                        width: '100px',
-                                        height: '100px'
+                                        // width: '100px',
+                                        // height: '100px'
                                       }}
                                       alt="lk"
                                       data-id="103"
@@ -922,8 +925,8 @@ const AddPost = (props) => {
                                                   : noimg
                                                 : noimg
                                             })`,
-                                            width: '100px',
-                                            height: '100px'
+                                            // width: '100px',
+                                            // height: '100px'
                                           }}
                                           alt="lk"
                                           data-id="103"
@@ -1058,7 +1061,7 @@ const AddPost = (props) => {
             <Accordion.Collapse className="py-5">
               <Row className="mw-850 ml-5">
                 <Col lg="6">
-                  <div className="note mb-5">
+                  <div className="note mb-5 fs-6">
                     Here is where you tell your donors more about your need for these items. Let
                     them know how you plan to use the proceeds of their donation.
                   </div>
@@ -1148,7 +1151,7 @@ const AddPost = (props) => {
                         </div> */}
 
                         <div
-                          className="image-upload-wrap mb-3 fs-2"
+                          className="image-upload-wrap fs-2"
                           style={{
                             ...imageuploadwrap,
                             backgroundColor: '#e5f4ff',
@@ -1178,11 +1181,11 @@ const AddPost = (props) => {
                               icon={solid('cloud-arrow-up')}
                               className="icon-cloud"
                             />
-                            <h3 style={{ fontSize: 'inherit' }}>Drag and drop or select File</h3>
+                            <h3 style={{ fontSize: 'inherit' }}>Drag and drop or Select File</h3>
                           </div>
                         </div>
 
-                        <div className="grid mt-3 mb-3">
+                        <div className="grid mt-3 mb-3 w-100">
                           {gallaryTempImages?.length ? (
                             gallaryTempImages.map((img, key) => {
                               return (
@@ -1198,8 +1201,8 @@ const AddPost = (props) => {
                                     className="gallery__img"
                                     style={{
                                       backgroundImage: `url(${img ? img : noimg})`,
-                                      width: '100px',
-                                      height: '100px'
+                                      // width: '100px',
+                                      // height: '100px'
                                     }}
                                     alt="lk"
                                   ></div>
@@ -1245,8 +1248,8 @@ const AddPost = (props) => {
                                                 : noimg
                                               : noimg
                                           })`,
-                                          width: '100px',
-                                          height: '100px'
+                                          // width: '100px',
+                                          // height: '100px'
                                         }}
                                         alt="lk"
                                         data-id="103"
