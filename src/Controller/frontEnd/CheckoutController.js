@@ -299,6 +299,7 @@ export default function CheckoutController() {
                 tempObj.organizationCountryId =
                   item.productDetails?.organizationDetails?.country_id;
                 tempObj.productXp = item.quantity * Number(xpForeEachItem);
+                tempObj.organizationName = item.productDetails.organizationDetails.name
 
                 productDetails.push(tempObj);
               });
