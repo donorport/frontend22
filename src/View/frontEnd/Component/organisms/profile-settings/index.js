@@ -13,7 +13,7 @@ import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import helper, { hasAlpha } from '../../../../../Common/Helper';
 import ToastAlert from '../../../../../Common/ToastAlert';
 import adminCampaignApi from '../../../../../Api/admin/adminCampaign';
-import noImg from '../../../../../assets/images/noimg.jpg';
+import noImg from '../../../../../assets/images/noimg1.png';
 import {
   setIsUpdateOrganization,
   setProfileImage,

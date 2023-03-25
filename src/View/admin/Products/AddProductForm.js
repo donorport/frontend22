@@ -4,7 +4,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Button } from '@mui/material';
 import helper from '../../../Common/Helper';
-import noimg from '../../../assets/images/noimg.jpg';
+import noimg from '../../../assets/images/noimg1.png';
 import Dialog from '@mui/material/Dialog';
 import Divider from '@mui/material/Divider';
 import AppBar from '@mui/material/AppBar';

@@ -25,7 +25,7 @@ import ReactQuill from "react-quill"
 import 'react-quill/dist/quill.snow.css'
 import helper,{ ImageExist }  from '../../../Common/Helper';
 // import from '../../../Common/Helper';
-import noimg from "../../../assets/images/noimg.jpg"
+import noimg from "../../../assets/images/noimg1.png"
 
 export default function Index(props) {
     let stateData = props.stateData

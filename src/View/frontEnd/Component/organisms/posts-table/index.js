@@ -10,7 +10,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-import noimg from '../../../../../assets/images/noimg.jpg';
+import noimg from '../../../../../assets/images/noimg1.png';
 import PropTypes from 'prop-types';
 
 const PostsTable = (props) => {
