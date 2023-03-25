@@ -33,6 +33,7 @@ let helper = {
   GoogleKey: 'AIzaSyD4CXzRpf7L9sFFJDIFzgSeoFOESqXaAuE',
   sponsorLogoPath: AWS_S3_BUCKET_BASE_URL + 'images/sponsor/logo/',
   sponsorLogoResizePath: AWS_S3_BUCKET_BASE_URL + 'images/sponsor/logo/resize/',
+  fullRecieptPath:	AWS_S3_BUCKET_BASE_URL + "images/campaign/product/fulfil/receipt/",
 
   recieptPath: AWS_S3_BUCKET_BASE_URL + 'images/donor/receipt/',
   websitePath:

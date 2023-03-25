@@ -50,7 +50,7 @@ export default function Index(props) {
                 <div className="fs-5 text-light">
                   <p>
                     Check back later or{' '}
-                    <a className="link" target="_blank" href="https://www.twitter.com/donorporthq">
+                    <a className="link" target="_blank" href="https://www.twitter.com/donorporthq" rel="noreferrer">
                       tweet us
                     </a>{' '}
                     and let use know where we should set sails for next or learn more{' '}

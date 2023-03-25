@@ -979,7 +979,7 @@ const Payments = () => {
         <Button
           variant="info"
           onClick={() => {
-            !saveloading && myFunction('taxRate');
+            if(!saveloading) myFunction('taxRate')
           }}
           style={{
             opacity: saveloading ? '0.7' : '1'

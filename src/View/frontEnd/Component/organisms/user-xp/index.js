@@ -101,7 +101,7 @@ const UserXp = () => {
             page="userxp"
             text={`I'm up to ${user.xp} XP on Donorport! 🚀🚀🚀`}
             pageTitle={user.xp}
-            currUrl={`https://www.donorport.com/leaderboard`}
+            currUrl="https://www.donorport.com/leaderboard"
           />
         </div>
         <div className="ms-sm-auto">

@@ -282,9 +282,8 @@ const ProfileSettings = () => {
   };
   useEffect(() => {
     if (data.images?.length < viewGalleryImages?.length) {
-      console.log('viewGalleryImages: ', viewGalleryImages?.length);
+      console.log('no set: ');
     } else {
-      console.log('data.images: ', data.images?.length);
       setViewGalleryImages(data.images);
     }
     setState((s) => ({
@@ -522,10 +521,12 @@ const ProfileSettings = () => {
     }
   };
 
-  const removeGallaryempImages = (id) => {
-    let imgs = [...galleryImages];
-    imgs.splice(id, 1);
-    setGalleryImages(imgs);
+  const removeGallaryempImages = (id, isGalleryImg) => {
+    if(isGalleryImg){
+      let imgs = [...galleryImages];
+      imgs.splice(id - viewGalleryImages.length, 1);
+      setGalleryImages(imgs);
+    }
     let viewImgs = [...viewGalleryImages];
     const image = viewImgs[id];
     if (image.image && image._id) {
@@ -534,8 +535,6 @@ const ProfileSettings = () => {
     viewImgs.splice(id, 1);
     setViewGalleryImages(viewImgs);
   };
-  console.log({ viewGalleryImages });
-  console.log({ galleryImages });
   return (
     <>
       {/*<FrontLoader loading={loading} />*/}
@@ -779,10 +778,15 @@ const ProfileSettings = () => {
             <div className="grid mt-3 mb-3 w-100">
               {viewGalleryImages?.length ? (
                 viewGalleryImages.map((img, key) => {
-                  console.log({ img });
                   return (
                     <div key={key} className="d-flex img-wrap">
-                      <span className="close" onClick={() => removeGallaryempImages(key)}>
+                      <span className="close" onClick={() => {
+                        if(img._id) {
+                          removeGallaryempImages(key)
+                        } else {
+                          removeGallaryempImages(key, true)
+                        }
+                        }}>
                         &times;
                       </span>
                       {img._id && img.image ? (

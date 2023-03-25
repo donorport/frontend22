@@ -163,7 +163,7 @@ const OrderConfirmPage = () => {
                       page="project"
                       text={description}
                       pageTitle={title}
-                      currUrl={`https://www.donorport.com/`}
+                      currUrl="https://www.donorport.com/"
                       // currUrl={`https://www.donorport.com/order/${orderDetails?._id}`}
                     />
                   </div>

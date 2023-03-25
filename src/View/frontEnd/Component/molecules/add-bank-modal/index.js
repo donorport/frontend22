@@ -165,7 +165,7 @@ const AddBankModal = (props) => {
               variant="info"
               // onClick={props.onHide}
               onClick={() => {
-                !bankloading && props.addExpressAccount();
+                if(!bankloading) props.addExpressAccount();
               }}
               className="d-flex m-0"
             >

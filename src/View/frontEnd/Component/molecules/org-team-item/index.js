@@ -4,7 +4,7 @@ import './style.scss';
 import helper from '../../../../../Common/Helper';
 import moment from 'moment';
 import AvatarImg from '../../../../../assets/images/avatar.png';
-import ListItemImg from '../../../Component/atoms/list-item-img';
+// import ListItemImg from '../../atoms/list-item-img';
 
 function OrganisationTeamItem(props) {
   const member = props.member;
@@ -74,6 +74,7 @@ function OrganisationTeamItem(props) {
       )}
       {member.campaignadminDetails ? (
         <img
+          alt='campaignLogo'
           style={{
             objectFit: 'contain',
             background: '#f8fafd',
@@ -81,7 +82,6 @@ function OrganisationTeamItem(props) {
             border: 'unset',
             height: '36px',
             width: '36px',
-            borderRadius: '50%',
             marginLeft: '40px'
           }}
           src={avatar}

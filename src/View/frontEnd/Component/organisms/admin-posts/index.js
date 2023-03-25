@@ -550,7 +550,7 @@ const AdminPosts = () => {
       let file = e.target.files[0] ? e.target.files[0] : '';
       if (file) {
         setTempImgName(file.name);
-        // console.log(file)
+        console.log(file)
         setFulfilState({
           ...fulfilState,
           receiptFile: file
@@ -925,7 +925,7 @@ const AdminPosts = () => {
     console.log('Posts, deleteFulfilorder, values: ', { id, prodcutId, organizationId });
     confirmAlert({
       title: 'Delete Receipt?',
-      message: 'Are you sure you want to delete the Sales Receipt?',
+      message: 'Are you sure you want to delete the Sales Receipt? This will remove the Fulfilled Status',
       buttons: [
         {
           label: 'Cancel'
@@ -949,6 +949,7 @@ const AdminPosts = () => {
                     setLoading(false);
                     setUpdate(!update);
                     setDeletedFile(true);
+                    closeFulfilForm()
                     ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'success' });
                   }
                 }
@@ -2002,7 +2003,8 @@ const AdminPosts = () => {
                           }
                         /> */}
                         <img
-                          src={helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt}
+                          src={helper.fullRecieptPath + fulfilProductDetails?.fulfilDetails?.receipt}
+                          width="66%"
                           alt="receipt"
                         />
                       </Modal.Body>
