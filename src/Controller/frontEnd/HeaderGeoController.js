@@ -113,15 +113,20 @@ export default function HeaderGeoController() {
         let unfilteteredList = getList.data.data;
                 let filteredList = []
                 unfilteteredList.forEach(notification => {
-                    if(notification){
-                    // if(notification?.userNotificationDetails?.watched && notification?.userNotificationDetails?.updated_at > notification?.created_at){
-                        if(notification.type !== "PROJECT" ){
-                            filteredList.push(notification)
-                        } else {
-                            if(notification.info === "")
-                            filteredList.push(notification)
-                        }
-                    }
+                    if(notification?.userNotificationDetails?.watched && notification?.userNotificationDetails?.updated_at > notification?.created_at || !notification?.userNotificationDetails?.updated_at){
+                      switch (notification.type) {
+                        case "PROJECT":
+                          break;
+                        case "PRODUCT":
+                            if(notification.info === "Fulfilled" || notification.info === "Fulfilled " || notification.infoType === "FUNDED" || notification.infoType === "MEDIA" || notification.infoType === "NEW PRODUCT"){
+                              filteredList.push(notification)
+                            }
+                          break;
+                        default:
+                          filteredList.push(notification)
+                          break;
+                      } 
+                    } 
                 })
                 setNotificationList(filteredList)
       }

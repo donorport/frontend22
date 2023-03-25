@@ -35,7 +35,7 @@ function OrganisationWidget(props) {
   const user = useSelector((state) => state.user);
   let productDetails = props.productDetails;
   let currencySymbol = getCalc.currencySymbol();
-
+  
   function getOccurrence(array, value) {
     let count = 0;
     // array.forEach((v) => (v === value && count++));

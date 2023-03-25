@@ -808,8 +808,8 @@ const AdminPosts = () => {
               ToastAlert({ msg: addProduct.data.message, msgType: 'error' });
             } else {
               if (addProduct.data.success === true) {
-                resetForm();
                 setLoading(false);
+                resetForm();
                 setUpdate(!update);
                 createPost(false);
                 setModelShow(false);
