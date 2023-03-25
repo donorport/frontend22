@@ -9,7 +9,7 @@ import ToggleSwitch from '../../atoms/toggle-switch';
 import FeedTag from '../../atoms/feed-tag';
 import FileUpload from '../../atoms/file-upload';
 import helper from '../../../../../Common/Helper';
-import noimg from '../../../../../assets/images/noimg.jpg';
+import noimg from '../../../../../assets/images/noimg1.png';
 import Textarea from '../text-area';
 import Input from '../input';
 import './style.scss';

@@ -5,7 +5,7 @@ import 'react-quill/dist/quill.snow.css';
 import { Modal } from 'react-bootstrap';
 import { Button } from '@mui/material';
 import helper from '../../../Common/Helper';
-import noimg from '../../../assets/images/noimg.jpg';
+import noimg from '../../../assets/images/noimg1.png';
 
 const productv = {
   cursor: 'pointer',

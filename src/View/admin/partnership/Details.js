@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal } from "react-bootstrap"
 import { Button } from '@mui/material';
 import helper from '../../../Common/Helper';
-import noimg from "../../../assets/images/noimg.jpg"
+import noimg from "../../../assets/images/noimg1.png"
 import { unescape } from 'lodash';
 import ReactDOM from "react-dom";
 import ReactQuill from "react-quill"

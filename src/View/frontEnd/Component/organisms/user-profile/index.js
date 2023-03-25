@@ -16,7 +16,7 @@ import {
   setUserState,
   setLogout
 } from '../../../../../user/user.action';
-import noImg from '../../../../../assets/images/noimg.jpg';
+import noImg from '../../../../../assets/images/noimg1.png';
 import cartApi from '../../../../../Api/frontEnd/cart';
 import { confirmAlert } from 'react-confirm-alert';
 import './style.scss';

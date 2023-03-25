@@ -15,7 +15,7 @@ import {
 import ToggleSwitch from '../../atoms/toggle-switch';
 import FeedTag from '../../atoms/feed-tag';
 import { WithContext as ReactTags } from 'react-tag-input';
-import noimg from '../../../../../assets/images/noimg.jpg';
+import noimg from '../../../../../assets/images/noimg1.png';
 import helper, { priceFormat } from '../../../../../Common/Helper';
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
 import { useSelector } from 'react-redux';

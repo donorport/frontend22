@@ -19,7 +19,7 @@ import ProjectGallery from '../project-gallery';
 import TagTitle from '../../atoms/tag-title';
 import IconToggle from '../../atoms/icon-toggle';
 // import helper from "../../../../../Common/Helper";
-// import noImg from '../../../../../assets/images/noimg.jpg';
+// import noImg from '../../../../../assets/images/noimg1.png';
 import moment from 'moment';
 import helper, {
   convertAddress,

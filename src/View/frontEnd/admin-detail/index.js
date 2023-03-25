@@ -17,7 +17,7 @@ import './style.scss';
 import helper from '../../../Common/Helper';
 import adminCampaignApi from '../../../Api/admin/adminCampaign';
 import { Outlet, useLocation } from 'react-router-dom';
-import noimg from '../../../assets/images/noimg.jpg';
+import noimg from '../../../assets/images/noimg1.png';
 import { useSelector } from 'react-redux';
 import NoFooter from '../Component/templates/no-footer';
 

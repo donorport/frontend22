@@ -6,7 +6,7 @@ import './style.scss';
 import categoryApi from '../../../../../Api/admin/category';
 import projectApi from '../../../../../Api/admin/project';
 import productApi from '../../../../../Api/admin/product';
-import noimg from '../../../../../assets/images/noimg.jpg';
+import noimg from '../../../../../assets/images/noimg1.png';
 import helper, {
   priceWithOrganizationTax,
   priceFormat,
