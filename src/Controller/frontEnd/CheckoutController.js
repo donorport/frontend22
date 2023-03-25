@@ -26,6 +26,7 @@ export default function CheckoutController() {
   const CalculatedPrice = getCalculatedPrice();
   const currencySymbol = CalculatedPrice.currencySymbol();
   const [xpForeEachItem, setXpForeEachItem] = useState(0);
+  const [serviceCharge, setServiceCharge] = useState(0);
   const dispatch = useDispatch();
 
   const getUserRank = async () => {
@@ -158,6 +159,7 @@ export default function CheckoutController() {
           setSubTotal(sum);
           // seTotal sent to Stripe. Confirmed in logs.
           let fees = sum * 0.049 + 0.3;
+          setServiceCharge(fees)
           let grandTotal = sum + fees;
           setTotal(grandTotal);
         } else {
@@ -247,6 +249,7 @@ export default function CheckoutController() {
         data.currency = user.currency;
         data.chargesArray = chargesArray;
         data.subtotal = subtotal;
+        data.serviceCharge = serviceCharge;
         let productIds = [];
         let p_ids = [];
 
@@ -317,6 +320,7 @@ export default function CheckoutController() {
             orderDetails.transactionStatus = payment.data.data.status;
             orderDetails.products = productDetails;
             orderDetails.xpToadd = xp;
+            orderDetails.serviceCharge = serviceCharge;
 
             if (cartItem.find((e) => e.productDetails.tax === true)) {
               orderDetails.taxRecipt = true;
