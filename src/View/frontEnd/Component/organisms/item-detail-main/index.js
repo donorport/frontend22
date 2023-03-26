@@ -3,7 +3,7 @@ import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Button, ProgressBar, Card } from 'react-bootstrap';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-
+import Geocode from "react-geocode";
 import IconToggle from '../../atoms/icon-toggle';
 import ShareWidget from '../share-widget';
 import IconText from '../../molecules/icon-text';
@@ -25,34 +25,37 @@ import advertisementApi from '../../../../../Api/admin/advertisement';
 function ProjectDetailMain(props) {
   console.log('iFrame, item-detail-main');
   let productDetails = props.productDetails;
-
+  
   let videoid = productDetails.galleryUrl ? productDetails.galleryUrl.split('?v=')[1] : '';
   let videoid2 = productDetails?.fulfiledproductsDetails?.video
-    ? productDetails?.fulfiledproductsDetails?.video.split('?v=')[1]
-    : '';
+  ? productDetails?.fulfiledproductsDetails?.video.split('?v=')[1]
+  : '';
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
   let embedlink2 = videoid2 ? 'https://www.youtube.com/embed/' + videoid2 : '';
   const getCalc = getCalculatedPrice();
   // let price = getCalc.getData(productDetails?.price)
   let price = productDetails?.displayPrice ? productDetails?.displayPrice : productDetails?.price;
-
+  
   let currencySymbol = getCalc.currencySymbol();
-
+  
   let per = (productDetails.soldout / productDetails.quantity) * 100;
-
+  
   let address = productDetails?.address ? convertAddress(productDetails?.address) : '';
-
+  
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const [allStateAds, setAllStateAds] = useState();
   const [addedToCard, setAddedToCard] = useState(false);
+  const [userAddress, setUserAddress] = useState(false);
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   let maxQuentity = productDetails.unlimited
-    ? 1000
-    : productDetails.quantity - productDetails.soldout;
-
+  ? 1000
+  : productDetails.quantity - productDetails.soldout;
+  
+  Geocode.setApiKey("AIzaSyBmV0vuUrTUaBQR5-bOeN0MlekdUPBUi-o");
+  
   useEffect(() => {
     (async () => {
       if (!CampaignAdminAuthToken) {
@@ -65,12 +68,23 @@ function ProjectDetailMain(props) {
       }
     })();
   }, [!user.isUpdateCart, productDetails._id]);
-
+  
   useEffect(() => {
     (async () => {
       const res = await advertisementApi.allStateAds();
       setAllStateAds(res.data.data);
     })();
+    
+    // Get address from latitude & longitude.
+    Geocode.fromLatLng(user.lat, user.lng).then(
+      (response) => {
+        const address = response.results[0].address_components[5].long_name;
+        setUserAddress(address)
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }, []);
 
   const onClickFilter = async (e) => {
@@ -388,7 +402,7 @@ function ProjectDetailMain(props) {
               .filter(
                 (ad) =>
                   ad.categoryId === productDetails?.categoryId &&
-                  user?.stateName === ad?.stateDetails?.state
+                  userAddress === ad?.stateDetails?.state
               )
               .map((ad, i) => {
                 return (

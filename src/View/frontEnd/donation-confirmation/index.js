@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link, useLocation} from 'react-router-dom';
 import helper, { priceFormat, getCardIcon } from '../../../Common/Helper';
 import DefaultLayout from '../Component/templates/default-layout';
 import ListItemImg from '../Component/atoms/list-item-img';
@@ -13,7 +13,7 @@ import Seo from '../../../components/SEO';
 const DonationConfirmPage = () => {
   const params = useParams();
   const navigate = useNavigate();
-
+  const location = useLocation();
   const userAuthToken = localStorage.getItem('userAuthToken');
   const [doantionDetails, setDonationDetails] = useState({});
   const [loading, setLoading] = useState(false);
@@ -249,7 +249,7 @@ const DonationConfirmPage = () => {
                     </div>
                     <div className="total__sub d-flex justify-content-between mt-3">
                       <p className="total__title fw-bolder">XP:</p>
-                      <div className="order__xp text-info fw-bold">{doantionDetails.xp} xp</div>
+                      <div className="order__xp text-info fw-bold">{location?.state?.xpToAdd} xp</div>
                     </div>
 
                     {/* <div className="total__sub d-flex justify-content-between">

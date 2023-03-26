@@ -235,7 +235,7 @@ export default function OrganizationDetailsController() {
             } else {
               let addXp = Number(donateToOrganization.data.xpToAdd);
               dispatch(setUserXp(user.xp + addXp));
-              navigate('/donate/' + donateToOrganization.data.donationId);
+              navigate('/donate/' + donateToOrganization.data.donationId, {state:{xpToAdd: addXp}});
             }
           } else {
             ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
