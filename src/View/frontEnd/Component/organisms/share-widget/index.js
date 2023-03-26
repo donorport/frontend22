@@ -41,9 +41,9 @@ function ShareWidget({page, text, pageTitle, currUrl }) {
     // if (navigator.share) {
     navigator
       .share({
-        title: 'Donorport',
-        url: currentPageLink,
-        text: 'Check out Social Chain on Donorport'
+        title: pageTitle,
+        url: currUrl,
+        text: text
       })
       .then(() => {
         //  console.log('Thanks for sharing!');

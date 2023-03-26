@@ -36,7 +36,7 @@ const GeoLocation = () => {
   };
 
   const [locked, setLocked] = useState(false);
-  const [zoomLevel, setZoom] = useState(6.3);
+  const [zoomLevel, setZoom] = useState(7);
   const [hidden, setHidden] = useState(false);
   const [objectVal, setObjectVal] = useState();
   const [viewState, setViewState] = useState({
@@ -152,7 +152,7 @@ const GeoLocation = () => {
               <div className="geo__distance" id="">
                 <div className="me-1 fs-5">
                   {/* {objectVal} */}
-                  {user.distance}
+                  {user.distance === "0 m" ? "50 km" : user.distance}
                 </div>
               </div>
 

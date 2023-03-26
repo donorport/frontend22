@@ -128,7 +128,7 @@ export default function Index(props) {
     } else {
       setProductsList(products);
     }
-  }, [props.productList]);
+  }, [props.productList, props.wishListproductIds.length]);
 
   const items = [
     <div className="fw-semibold text-dark">
