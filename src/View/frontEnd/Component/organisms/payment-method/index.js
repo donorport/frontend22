@@ -466,8 +466,8 @@ const Payments = () => {
 
   const removeBank = (id) => {
     confirmAlert({
-      title: 'Logout',
-      message: 'Are you sure you want to logout?',
+      title: 'Remove Bank',
+      message: 'Are you sure you want to Remove Bank Details',
       buttons: [
         {
           label: 'Cancel'
@@ -856,6 +856,7 @@ const Payments = () => {
         formData.email = accEmail;
         formData.business_type = BusinessType;
         formData.slug = data.slug;
+        formData.redirectUrl = window.location.href
 
         if (BusinessType === 'individual') {
           formData.first_name = fname;
@@ -991,7 +992,7 @@ const Payments = () => {
         <div className="mb-5 mt-5">
           <h4 className="fw-bolder">Add Payout Account</h4>
           <div className="text-subtext mb-3">
-            Link the bank account that {CampaignAdmin?.name} will use to receive direct deposits
+            Link the bank account that {CampaignAdmin?.name || "your Charity"} will use to receive direct deposits
             from our donors.
           </div>
           <div className="d-flex align-items-center mb-5">
