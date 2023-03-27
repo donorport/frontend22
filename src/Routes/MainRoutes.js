@@ -113,14 +113,15 @@ export default function MainRoutes() {
   useLayoutEffect(() => {
     //window.scrollTo(0, 0);
   }, [location.pathname]);
-
   return (
     <div id="full-content">
       {token && location.pathname.startsWith('/campaign') && (
         <Routes>
           <Route path="/" element={<AdminDetail />}>
-            <Route path="/campaign/:name/dashboard" element={<AdminDashboard />} />
-            <Route path="/campaign/:name" element={<AdminDashboard />} />
+            <Route path="/campaign/:name/dashboard" element={<Payments />} />
+            <Route path="/campaign/:name" element={<Payments />} />
+            {/* <Route path="/campaign/:name/dashboard" element={<AdminDashboard />} />
+            <Route path="/campaign/:name" element={<AdminDashboard />} /> */}
             <Route path="/campaign/:name/posts" element={<AdminPosts />} />
             <Route path="/campaign/:name/activity" element={<AdminActivity />} />
             <Route path="/campaign/:name/tax" element={<AdminTax />} />
@@ -133,7 +134,7 @@ export default function MainRoutes() {
               <Route path="/campaign/:name/settings/billing" element={<AdminBilling />} />
               {/* <Route path="/campaign/:name/settings/controls" element={<AdminControl />} />*/}
             </Route>
-            <Route path="*" element={<AdminDashboard />} />
+            <Route path="*" element={<Payments />} />
           </Route>
         </Routes>
       )}

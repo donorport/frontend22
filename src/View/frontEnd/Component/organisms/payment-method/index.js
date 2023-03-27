@@ -208,6 +208,17 @@ const Payments = () => {
     })();
   }, [data]);
 
+
+  // useEffect(() => {
+  //   console.log("document.cookie: ", document.cookie)
+  //   document.cookie.split(";").forEach((c) => {
+  //     console.log("split cookie: ", c)
+  //     document.cookie = c
+  //       .replace(/^ +/, "")
+  //       .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+  //   });
+  // }, []);
+
   const changevaluebankAc = (e) => {
     let value = e.target.value;
     setBankAccount({
@@ -856,7 +867,10 @@ const Payments = () => {
         formData.email = accEmail;
         formData.business_type = BusinessType;
         formData.slug = data.slug;
-        formData.redirectUrl = window.location.href
+        let fullUrl = window.location.href
+
+        let redirectUrlMinusPayments = fullUrl.split("payments")[0]
+        formData.redirectUrl = redirectUrlMinusPayments + "payments"
 
         if (BusinessType === 'individual') {
           formData.first_name = fname;
