@@ -18,6 +18,7 @@ import userAuthApi from "../../Api/frontEnd/auth";
 import notificationApi from "../../Api/frontEnd/notification";
 import followApi from "../../Api/frontEnd/follow";
 import adminCampaignApi from "../../Api/admin/adminCampaign";
+import moment from "moment"
 
 
 export default function HeaderController() {
@@ -116,28 +117,35 @@ export default function HeaderController() {
         const getList = await notificationApi.list(userAuthToken, data);
     
         if (getList) {
-          if (getList.data.success) {
-            let unfilteteredList = getList.data.data;
-                    let filteredList = []
-                    unfilteteredList.forEach(notification => {
-                        if(notification?.userNotificationDetails?.watched && notification?.userNotificationDetails?.updated_at > notification?.created_at || !notification?.userNotificationDetails?.updated_at){
+            if (getList.data.success) {
+              let unfilteteredList = getList.data.data;
+                      let filteredList = []
+                      unfilteteredList.forEach(notification => {
+                        let notificationTime = moment(notification.created_at)
+                          if(notification?.userNotificationDetails?.watched && notification?.userNotificationDetails?.updated_at && moment(notification?.userNotificationDetails?.updated_at).isAfter(notificationTime)  || !notification?.userNotificationDetails?.updated_at){
                             switch (notification.type) {
-                                case "PROJECT":
-                                  break;
-                                case "PRODUCT":
-                                    if(notification.info === "Fulfilled" || notification.info === "Fulfilled " || notification.infoType === "FUNDED" || notification.infoType === "MEDIA" || notification.infoType === "NEW PRODUCT"){
-                                        filteredList.push(notification)
+                              case "PROJECT":
+                                break;
+                              case "PRODUCT":
+                                followedOrganizationList.forEach(org => {
+                                  let orgtime = moment(org.created_at)
+                                  if(org.CampaignAdminDetails?._id === notification?.campaignadminDetails?._id && notificationTime.isAfter(orgtime) ){
+                                    if(notification.infoType === "MEDIA"){
+                                    // if(notification.info === "Fulfilled" || notification.info === "Fulfilled " || notification.infoType === "FUNDED" || notification.infoType === "MEDIA" || notification.infoType === "NEW PRODUCT"){
+                                      filteredList.push(notification)
                                     }
-                                  break;
-                                default:
-                                  filteredList.push(notification)
-                                  break;
-                              }
-                        } 
-                    })
-                    setNotificationList(filteredList)
+                                  }
+                                })
+                                break;
+                              default:
+                                filteredList.push(notification)
+                                break;
+                            } 
+                          } 
+                      })
+                      setNotificationList(filteredList)
+            }
           }
-        }
         
     }
     

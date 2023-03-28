@@ -20,6 +20,7 @@ import followApi from '../../Api/frontEnd/follow';
 import adminCampaignApi from '../../Api/admin/adminCampaign';
 // eslint-disable-next-line import/no-unresolved
 import HeaderGeo from 'src/View/frontEnd/Component/organisms/header-geo/index';
+import moment from "moment"
 
 export default function HeaderGeoController() {
   const userAuthToken = localStorage.getItem('userAuthToken');
@@ -61,7 +62,7 @@ export default function HeaderGeoController() {
     forEachOrganization: ''
   });
   const { platformFee, transactionFee } = pricingFees;
-
+  
   const getUserFollowedOrgList = async () => {
     if (userAuthToken) {
       const list = await followApi.userFollowedOrganizationList(userAuthToken);
@@ -70,7 +71,12 @@ export default function HeaderGeoController() {
       }
     }
   };
-
+  useEffect(() => {
+    (async () => {
+      await getUserFollowedOrgList();
+    })();
+  }, []);
+  
   const getWishListProductList = async () => {
     const list = await wishlistApi.list(token);
     if (list) {
@@ -118,9 +124,16 @@ export default function HeaderGeoController() {
                         case "PROJECT":
                           break;
                         case "PRODUCT":
-                            if(notification.info === "Fulfilled" || notification.info === "Fulfilled " || notification.infoType === "FUNDED" || notification.infoType === "MEDIA" || notification.infoType === "NEW PRODUCT"){
-                              filteredList.push(notification)
+                          followedOrganizationList.forEach(org => {
+                            let notificationTime = moment(notification.created_at)
+                            let orgtime = moment(org.created_at)
+                            if(org.CampaignAdminDetails?._id === notification?.campaignadminDetails?._id && notificationTime.isAfter(orgtime) ){
+                              if(notification.infoType === "MEDIA"){
+                              // if(notification.info === "Fulfilled" || notification.info === "Fulfilled " || notification.infoType === "FUNDED" || notification.infoType === "MEDIA" || notification.infoType === "NEW PRODUCT"){
+                                filteredList.push(notification)
+                              }
                             }
+                          })
                           break;
                         default:
                           filteredList.push(notification)
@@ -213,11 +226,6 @@ export default function HeaderGeoController() {
     })();
   }, [token]);
 
-  useEffect(() => {
-    (async () => {
-      await getUserFollowedOrgList();
-    })();
-  }, []);
 
   const followToOrganization = async (organizationId, checked) => {
     if (userAuthToken) {
@@ -266,7 +274,6 @@ export default function HeaderGeoController() {
   };
 
   const updateCartItem = async (quantity, id, productId, type) => {
-    console.log('HeaderGeoController ', "here") 
 
     setLoading(true);
     const updateCartItem = await cartApi.updateCart(userAuthToken, quantity, id, productId, type);
