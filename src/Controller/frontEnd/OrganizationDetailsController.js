@@ -27,7 +27,7 @@ export default function OrganizationDetailsController() {
   const [projectList, setProjectList] = useState([]);
   const [purchasedItemList, setPurchasedItemList] = useState([]);
   const user = useSelector((state) => state.user);
-
+  const [serviceCharge, setServiceCharge] = useState(0);
   const userData = JSON.parse(localStorage.getItem('userData'));
   const [selectedValue, setSelectedValue] = useState(25);
   const [donationList, setDonationList] = useState([]);
@@ -227,6 +227,7 @@ export default function OrganizationDetailsController() {
           data.organizationLogo = helper.CampaignAdminLogoPath + organizationDetails.logo;
           data.organizationName = organizationDetails.name;
           data.organizationCountryId = organizationDetails.country_id;
+          data.serviceCharge = platformCost;
 
           const donateToOrganization = await organizationApi.donate(userAuthToken, data);
           if (donateToOrganization) {
