@@ -61,8 +61,8 @@ export default function CampaignAdminForm(props) {
                     <div className="form-group row">
                         <label htmlFor="name" className="col-sm-2 col-form-label">Slug</label>
                         <div className="col-sm-10">
-                            <input type="text" className="form-control " disabled={stateData?.id ? true : false} name='slug' id="slug" value={stateData.slug} onChange={(e) => { props.changevalue(e) }} />
-
+                            {/* <input type="text" className="form-control " disabled={stateData?.id ? true : false} name='slug' id="slug" value={stateData.slug} onChange={(e) => { props.changevalue(e) }} /> */}
+                            <input type="text" className="form-control " name='slug' id="slug" value={stateData.slug} onChange={(e) => { props.changevalue(e) }} />
                             {stateData.error && stateData.error.slug && <p className="error">{stateData.error ? stateData.error.slug ? stateData.error.slug : "" : ""}</p>}
                         </div>
                     </div>

@@ -17,7 +17,7 @@ import './style.scss';
 import helper from '../../../Common/Helper';
 import adminCampaignApi from '../../../Api/admin/adminCampaign';
 import { Outlet, useLocation } from 'react-router-dom';
-import noimg from '../../../assets/images/noimg1.png';
+import noimg from '../../../assets/images/avatar.png';
 import { useSelector } from 'react-redux';
 import NoFooter from '../Component/templates/no-footer';
 
@@ -54,7 +54,7 @@ function AdminDetail() {
       if (getCampaignDetails.data.success) {
         // console.log(getCampaignDetails.data.data.description)
         setlogoImg(
-          helper.CampaignAdminLogoPath + getCampaignDetails.data.data?.logo
+          getCampaignDetails.data.data?.logo
             ? helper.CampaignAdminLogoPath + getCampaignDetails.data.data?.logo
             : noimg
         );

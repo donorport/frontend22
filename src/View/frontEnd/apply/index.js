@@ -111,7 +111,8 @@ const Apply = (props) => {
                       <Select
                         className="basic-single"
                         classNamePrefix="select"
-                        autoComplete="new-password"
+                        autoComplete="nope"
+                        aria-autocomplete="none"
                         value={props.defaultCountry}
                         name="country"
                         options={countryList}

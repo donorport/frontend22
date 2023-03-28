@@ -536,7 +536,7 @@ function OrganisationWidget(props) {
             );
           })
         ) : (
-          <p className="fs-5 mt-2">There are no tax eligible products for this Project</p>
+          <p className="fs-6 mt-2">There are no tax eligible products for this Project</p>
         )}
         {/* <OrganisationItem />
         <OrganisationItem /> */}
