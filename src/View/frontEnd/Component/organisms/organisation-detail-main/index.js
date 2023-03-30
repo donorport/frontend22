@@ -196,7 +196,8 @@ function OrganisationDetailMain(props) {
             className="text-light text-decoration-none fw-normal px-0 fs-6"
             icon={<FontAwesomeIcon icon={solid('building')} />}
           >
-            {organizationDetails?.type} EIN {organizationDetails?.ein}
+            {/* {organizationDetails?.type} RN {organizationDetails?.ein} */}
+            RN {organizationDetails?.ein}
           </IconButton>
         </div>
       </div>

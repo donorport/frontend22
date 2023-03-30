@@ -97,7 +97,7 @@ const Apply = (props) => {
                         value={name}
                         onChange={(e) => changevalue(e)}
                       />
-                      <span className="input__span">Name</span>
+                      <span className="input__span">Contact Name</span>
                     </label>
                   </div>
                   {error && error.name && (
@@ -147,7 +147,7 @@ const Apply = (props) => {
                   </div>
                   {error && error.category && <p className="error">{error.category}</p>}
 
-                  <div className="input__wrap d-flex">
+                  <div className="input__wrap d-flex"> 
                     <label className="input__label flex__1">
                       <input
                         type="text"
@@ -156,7 +156,7 @@ const Apply = (props) => {
                         value={organization}
                         onChange={(e) => changevalue(e)}
                       />
-                      <span className="input__span">Organization</span>
+                      <span className="input__span">Organization Name</span>
                     </label>
                   </div>
                   {error && error.organization && (

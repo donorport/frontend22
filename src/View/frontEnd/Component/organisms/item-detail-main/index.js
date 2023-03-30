@@ -203,7 +203,7 @@ function ProjectDetailMain(props) {
 
             <ShareWidget
               page="item"
-              text={`Help ${productDetails?.campaignDetails?.name} give away these ${productDetails?.headline} on Donorport 🎉🎁`}
+              text={`Help ${productDetails?.campaignDetails?.name} give away ${productDetails?.headline} on Donorport 🎉🎁`}
               pageTitle={productDetails?.headline}
               currUrl={`https://www.donorport.com/item/${productDetails?.slug}`}
             />
@@ -355,7 +355,7 @@ function ProjectDetailMain(props) {
       </div>
 
       {!isFinish && (
-        <div className="product__badge mt-5 text-light">
+        <div className="product__badge mt-5 text-light fs-5">
           {productDetails.postTag && (
             <IconText
               className="pt-12p pb-12p"

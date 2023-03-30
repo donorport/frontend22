@@ -490,14 +490,14 @@ function ProductController() {
       rules = {
         brand: 'required',
         needheadline: 'required',
-        galleryUrl: 'required',
+        // galleryUrl: 'required',
         status: 'required',
         headline: 'required',
         category: 'required',
         subcategory: 'required',
         description: 'required',
         price: 'required',
-        quantity: 'required',
+        // quantity: 'required',
         organization: 'required'
         // slug: 'required'
       };
@@ -506,7 +506,7 @@ function ProductController() {
         rules = {
           brand: 'required',
           needheadline: 'required',
-          galleryUrl: 'required',
+          // galleryUrl: 'required',
           status: 'required',
           headline: 'required',
           category: 'required',
@@ -514,14 +514,14 @@ function ProductController() {
           description: 'required',
           price: 'required',
           image: 'required',
-          quantity: 'required',
+          // quantity: 'required',
           slug: 'required'
         };
       } else {
         rules = {
           brand: 'required',
           needheadline: 'required',
-          galleryUrl: 'required',
+          // galleryUrl: 'required',
           status: 'required',
           headline: 'required',
           category: 'required',
@@ -529,7 +529,7 @@ function ProductController() {
           description: 'required',
           price: 'required',
           image: 'required',
-          quantity: 'required',
+          // quantity: 'required',
           organization: 'required',
           slug: 'required'
         };
@@ -539,7 +539,7 @@ function ProductController() {
     const message = {
       'status.required': 'Status is Required',
       'needheadline.required': 'Need Headline is Required',
-      'galleryUrl.required': 'gallery Url is Required',
+      // 'galleryUrl.required': 'gallery Url is Required',
 
       'brand.required': 'Brand is Required',
       'headline.required': 'Headline is Required',
@@ -548,7 +548,7 @@ function ProductController() {
       'description.required': 'Description is Required',
       'price.required': 'Price is Required',
       'image.required': 'image is Required',
-      'quantity.required': 'Quantity is Required',
+      // 'quantity.required': 'Quantity is Required',
       'organization.required': 'Organization is Required',
       'slug.required': 'Slug is Required'
     };

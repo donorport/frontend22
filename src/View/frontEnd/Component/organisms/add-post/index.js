@@ -203,7 +203,7 @@ const AddPost = (props) => {
   const [placeholder3] = useState('Ex: For inner-city kids in Colorado');
   const [placeholder4] = useState('Enter some details about your need');
   const [rows] = useState(6);
-  const [max25] = useState(25);
+  const [max20] = useState(20);
   const [max45] = useState(45);
   const [max250] = useState(250);
 
@@ -390,8 +390,8 @@ const AddPost = (props) => {
                           id={id1}
                           name={id1}
                           value={headline}
-                          maxInput={max25}
-                          maxLength={max25}
+                          maxInput={max20}
+                          maxLength={max20}
                           title={title1}
                           placeholder={placeholder1}
                           onChange={change}
@@ -407,8 +407,8 @@ const AddPost = (props) => {
                           id={id2}
                           name={id2}
                           value={brand}
-                          maxInput={max25}
-                          maxLength={max25}
+                          maxInput={max20}
+                          maxLength={max20}
                           title={title2}
                           placeholder={placeholder2}
                           onChange={change}

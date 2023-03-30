@@ -93,12 +93,17 @@
     border-radius: 50%;
   }
 
+  &__img {
+    max-height: 100px;
+  }
+
   // .product__title
   &__title {
     color: $gray-600;
     font-size: 21px;
     font-weight: 900;
     line-height: 1.1;
+    margin-bottom: 0
   }
 
   // .product__price
