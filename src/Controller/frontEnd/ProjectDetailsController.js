@@ -220,6 +220,7 @@ export default function ProjectDetailsController() {
           data.organizationLogo =
             helper.CampaignAdminLogoPath + projectDetails?.campaignDetails?.logo;
           data.projectName = projectDetails?.name;
+          data.serviceCharge = platformCost;
           data.organizationCountryId = projectDetails?.campaignDetails?.country_id;
 
           const donateToProject = await projectApi.donate(userAuthToken, data);
