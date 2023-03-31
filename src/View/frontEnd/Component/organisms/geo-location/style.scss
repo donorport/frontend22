@@ -15,7 +15,7 @@
     height: 90%;
     width: 90%;
     top: 50%;
-    left: 65%;
+    left: 50%;
     transform: translate(-50%, -50%);
     border: 2px solid rgba(29, 161, 242, 0.4);
     @include media-breakpoint-down(sm) {
@@ -29,7 +29,7 @@
   .mapboxgl-map {
     background: #fff;
     height: 300px;
-    right: 15%;
+    // right: 15%;
     overflow: visible;
     // max-width: 100% !important;
   }
