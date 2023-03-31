@@ -93,7 +93,7 @@ const Pricing = () => {
                       </div>
 
                       <p>
-                        Donorport adds 2% at checkout to continue offering our services to donors
+                        Donorport adds 2.09% at checkout to continue offering our services to donors
                         like you.
                       </p>
                     </div>

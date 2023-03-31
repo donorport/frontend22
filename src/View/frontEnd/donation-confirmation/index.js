@@ -53,8 +53,10 @@ const DonationConfirmPage = () => {
   let lastFourDigits = JSON.parse(doantionDetails?.paymentResponse || '{}')?.payment_method_details
     ?.card?.last4;
 
-  let subtotal = Number((doantionDetails.amount - 0.3) / 1.049).toFixed(2);
-  let platformCost = subtotal * 0.049 + 0.3;
+  let subtotal = Number((doantionDetails.amount - 0.3) / 1.0499).toFixed(2);
+  let total = (amount).toFixed(2);
+
+  let platformCost = subtotal * 0.0499 + 0.3;
 
   console.log({ doantionDetails });
   return (
@@ -286,7 +288,7 @@ const DonationConfirmPage = () => {
                         <span className="fs-4 fw-bold text-light ms-1">
                           {' '}
                           {doantionDetails?.currencySymbol}
-                          {doantionDetails.amount}
+                          {total}
                         </span>
                       </div>
                     </div>

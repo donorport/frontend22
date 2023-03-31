@@ -41,16 +41,28 @@ export default function Index(props) {
                 <img src={buoy} alt="" />
               </div>
               <div className="empty__message">
-                <p className="fs-3 fw-bold text-dark">
-                  Donorport is currently unavailable in{' '}
-                  <a href="#" className="link">
-                    {user.countryName}
-                  </a>
-                </p>
+                {user.countrySortName !== '' ? (
+                  <p className="fs-3 fw-bold text-dark">
+                    Donorport is currently unavailable in{' '}
+                    <a href="#" className="link">
+                      {user.countryName}
+                    </a>
+                  </p>
+                ) : (
+                  <p className="fs-3 fw-bold text-dark">
+                    Donorport is currently unavailable in your location
+                  </p>
+                )}
+
                 <div className="fs-5 text-light">
                   <p>
                     Check back later or{' '}
-                    <a className="link" target="_blank" href="https://www.twitter.com/donorporthq" rel="noreferrer">
+                    <a
+                      className="link"
+                      target="_blank"
+                      href="https://www.twitter.com/donorporthq"
+                      rel="noreferrer"
+                    >
                       tweet us
                     </a>{' '}
                     and let use know where we should set sails for next or learn more{' '}
@@ -292,9 +304,14 @@ export default function Index(props) {
             <div className="fs-6 p-sm-2 p-0 py-2 d-sm-flex align-items-center flex-grow-1 mt-sm-0 mt-2">
               <FontAwesomeIcon icon={regular('circle-question')} style={{ color: '#5f5df8' }} />
               &nbsp; How does it work?&nbsp;
-              <Link to="/about" className="text-light d-inline-block">
-                click here
+              <Link to="/about" className="link d-inline-block">
+                learn more.
               </Link>
+              &nbsp; Charities click
+              <Link to="/apply" className="link d-inline-block">
+              &nbsp;here&nbsp; 
+              </Link>
+              to apply
             </div>
           </div>
         </Container>

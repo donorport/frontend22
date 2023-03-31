@@ -291,7 +291,7 @@ export default function ApplyOrganizationController() {
         } else {
           setLoading(false);
           ToastAlert({ msg: verifyOtp.data.message, msgType: 'success' });
-          navigate('/', { replace: true });
+          navigate('/login', { replace: true });
         }
       } else {
         setLoading(false);
