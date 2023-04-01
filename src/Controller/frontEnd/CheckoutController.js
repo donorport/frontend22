@@ -158,7 +158,7 @@ export default function CheckoutController() {
           setXp(xpSum * xpForeEachItem);
           setSubTotal(sum);
           // seTotal sent to Stripe. Confirmed in logs.
-          let fees = sum * 0.049 + 0.3;
+          let fees = sum * 0.0499 + 0.3;
           setServiceCharge(fees)
           let grandTotal = sum + fees;
           setTotal(grandTotal);

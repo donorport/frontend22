@@ -153,8 +153,8 @@ const UserItems = () => {
 
           // let purchasedPrice = (Math.round(purchasedPriceWithTax(Number(item.productPrice), item.appliedTaxPer)))
           let listPrice = item.productPrice;
-          let purchasedPrice = item.productPrice * 1.049;
-          let transactionFee = item.productPrice * 0.049;
+          let purchasedPrice = item.productPrice * 1.0499;
+          let transactionFee = item.productPrice * 0.0499;
 
           let cardType = JSON.parse(item?.paymentResponse)?.data?.payment_method_details?.card
             ?.brand;

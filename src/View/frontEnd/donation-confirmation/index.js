@@ -90,7 +90,7 @@ const DonationConfirmPage = () => {
               <span className="fs-3">Order #{doantionDetails?.uniqueTransactionId}</span>
 
               <p className="col-sm-6 email__note fs-5 mt-1 text-justify text-sm-center">
-                Thank you for donating through Donorport ♥<br></br>
+                Thank you for choosing Donorport ♥<br></br>
                 <br></br>
                 The organization has received your donation for{' '}
                 {doantionDetails.type === 'PROJECT'
