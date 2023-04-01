@@ -42,7 +42,7 @@ function HistoryItem({ active, ...otherProps }) {
   };
   let item = sharedProps.item;
   let type = sharedProps.type;
-  let donationAmount = Number((item?.amount - 0.3) / 1.049).toFixed(2);
+  let donationAmount = Number((item?.amount - 0.3) / 1.0499).toFixed(2);
   let avatar =
     type === 'donation' ? item?.userDetails?.image : item?.orderDetails?.userDetails?.image;
 

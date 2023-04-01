@@ -151,7 +151,7 @@ const UserTax = () => {
       data?.map((p, i) => {
         p?.map((p1, i1) => {
           let productTotal = p1.orderItemDetails?.totalPrice;
-          let donationTotal = (p1.amount - 0.3) / 1.049;
+          let donationTotal = (p1.amount - 0.3) / 1.0499;
           let taxableProduct = priceFormat(Number(productTotal));
           let taxableDonation = priceFormat(Number(donationTotal));
 
