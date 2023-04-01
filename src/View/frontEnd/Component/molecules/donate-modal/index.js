@@ -31,7 +31,7 @@ const DonateModal = (props) => {
   const getCalc = getCalculatedPrice();
   let currencySymbol = getCalc.currencySymbol();
 
-  let platformCost = (0.049 * selectedValue + 0.3).toFixed(2);
+  let platformCost = (0.0499 * selectedValue + 0.3).toFixed(2);
   console.log(platformCost);
   let grandTotal = (Number(selectedValue) + Number(platformCost)).toFixed(2);
   console.log(grandTotal);

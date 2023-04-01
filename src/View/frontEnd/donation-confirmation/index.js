@@ -54,11 +54,8 @@ const DonationConfirmPage = () => {
     ?.card?.last4;
 
   let subtotal = Number((doantionDetails.amount - 0.3) / 1.0499).toFixed(2);
-  let total = (amount).toFixed(2);
-
   let platformCost = subtotal * 0.0499 + 0.3;
 
-  console.log({ doantionDetails });
   return (
     <>
       <Seo title="Donation" description={`I just Donated $${doantionDetails?.amount} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`} url={`https://www.donorport.com/donate/${doantionDetails?._id}`} />
@@ -288,7 +285,7 @@ const DonationConfirmPage = () => {
                         <span className="fs-4 fw-bold text-light ms-1">
                           {' '}
                           {doantionDetails?.currencySymbol}
-                          {total}
+                          {(Number(doantionDetails.amount))}
                         </span>
                       </div>
                     </div>
