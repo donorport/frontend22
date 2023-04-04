@@ -24,9 +24,51 @@ import _ from 'lodash';
 import { GalleryImg } from '../../atoms';
 import pencil from '../../../../../assets/images/pencil.svg';
 
+const VALID_IMAGE_FILE_EXTENSIONS = ['jpg', 'png', 'jpeg', 'svg'];
+const DEFAULT_STATE = {
+  id: '',
+  status: 1,
+  title: '',
+  subtitle: '',
+  headline: '',
+  brand: '',
+  category: '',
+  subcategory: '',
+  description: '',
+  price: '',
+  displayPrice: '',
+  image: '',
+  quantity: '',
+  organization: '',
+  slug: '',
+  error: [],
+  moreImg: [],
+  galleryUrl: '',
+  needheadline: '',
+  address: '',
+  lat: '',
+  lng: '',
+  unlimited: false,
+  tax: false,
+  postTag: false,
+  media: false,
+  policy: false,
+  galleryImg: []
+}
+
+const DEFAULT_FULFIL_STATE = {
+  fulfilId: '',
+  fulfilMoreImg: [],
+  videoUrl: '',
+  receiptFile: '',
+  fulfilPolicy: false,
+  fulfilError: []
+}
+
 const AdminPosts = () => {
+  const navigate = useNavigate();
   console.log('iFrame, AdminPosts');
-  const fileuploadinput = {
+  const Style_FileUploadInput = {
     position: 'absolute',
     margin: 0,
     padding: 0,
@@ -36,14 +78,13 @@ const AdminPosts = () => {
     opacity: 0,
     cursor: 'pointer'
   };
-
-  const imageuploadwrap = {
+  const Style_ImageUploadWrap = {
     marginTop: '20px',
     // border: " 4px dashed #3773c6",
     position: 'relative',
     width: '100%'
   };
-  const validExtensions = ['jpg', 'png', 'jpeg', 'svg'];
+
   const [viewPost, createPost] = useState(false);
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const type = localStorage.getItem('type');
@@ -65,7 +106,6 @@ const AdminPosts = () => {
   const [removedProjects, setRemovedProjects] = useState([]);
   const [update, setUpdate] = useState(false);
   const [deletedFile, setDeletedFile] = useState(false);
-  const navigate = useNavigate();
   const [modelShow, setModelShow] = useState(false);
   const [seletedProjectList, setSeletedProjectList] = useState([]);
 
@@ -86,36 +126,8 @@ const AdminPosts = () => {
   const [loading, setLoading] = useState(false);
   // const [primaryBankDetails, setPrimaryBankDetails] = useState({});
 
-  const [state, setstate] = useState({
-    id: '',
-    status: 1,
-    title: '',
-    subtitle: '',
-    headline: '',
-    brand: '',
-    category: '',
-    subcategory: '',
-    description: '',
-    price: '',
-    displayPrice: '',
-    image: '',
-    quantity: '',
-    organization: '',
-    slug: '',
-    error: [],
-    moreImg: [],
-    galleryUrl: '',
-    needheadline: '',
-    address: '',
-    lat: '',
-    lng: '',
-    unlimited: false,
-    tax: false,
-    postTag: false,
-    media: false,
-    policy: false,
-    galleryImg: []
-  });
+  // item data state
+  const [state, setstate] = useState(DEFAULT_STATE);
 
   const {
     id,
@@ -148,15 +160,8 @@ const AdminPosts = () => {
     displayPrice
   } = state;
 
-  const [fulfilState, setFulfilState] = useState({
-    fulfilId: '',
-    fulfilMoreImg: [],
-    videoUrl: '',
-    receiptFile: '',
-    fulfilPolicy: false,
-    fulfilError: []
-  });
-  const [tempImgName, setTempImgName] = useState('');
+  const [fulfilState, setFulfilState] = useState(DEFAULT_FULFIL_STATE);
+  const [receiptImgName, setReceiptImgName] = useState('');
 
   const { fulfilId, fulfilMoreImg, videoUrl, receiptFile, fulfilPolicy, fulfilError } = fulfilState;
 
@@ -175,6 +180,21 @@ const AdminPosts = () => {
   // let url = galleryUrl;
   // let videoid = url?.split('?v=')[1];
   // let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
+  //
+  const orgProjectList = useCallback(async () => {
+    let formData = {};
+    formData.filter = false;
+    formData.sortField = 'created_at';
+    formData.sortType = 'asc';
+    formData.organizationId = data._id;
+    formData.type = 'product';
+
+    const getProjectList = await projectApi.projectListByOrganization(token, formData);
+    if (getProjectList.data.success) {
+      setProjectList(getProjectList.data.data);
+      setOGProjectList(getProjectList.data.data);
+    }
+  }, [data._id, token]);
 
   useEffect(() => {
     (async () => {
@@ -192,20 +212,6 @@ const AdminPosts = () => {
     })();
   }, [data._id]);
 
-  const orgProjectList = useCallback(async () => {
-    let formData = {};
-    formData.filter = false;
-    formData.sortField = 'created_at';
-    formData.sortType = 'asc';
-    formData.organizationId = data._id;
-    formData.type = 'product';
-
-    const getProjectList = await projectApi.projectListByOrganization(token, formData);
-    if (getProjectList.data.success) {
-      setProjectList(getProjectList.data.data);
-      setOGProjectList(getProjectList.data.data);
-    }
-  }, [data._id, token]);
 
   // const getPrimaryBankAccount = useCallback(async () => {
   //   const acc = await adminCampaignApi.getPrimaryBankAccount(token);
@@ -299,6 +305,7 @@ const AdminPosts = () => {
         });
       }
     }
+
     if (e.target.name === 'price' || e.target.name === 'quantity') {
       value = e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, '');
     }
@@ -392,177 +399,185 @@ const AdminPosts = () => {
     }
   };
 
+  // used when uploading a file, saves the file to state
+  const changeMainImg = async (e) => {
+    const file = e.target.files[0] ? e.target.files[0] : '';
+
+    if (!(await hasAlpha(file))) {
+      ToastAlert({
+        msg: 'Please upload an image with transparent background',
+        msgType: 'error'
+      });
+      setTempImg('');
+
+    } else {
+      let extension = file.name.substr(file.name.lastIndexOf('.') + 1);
+
+      if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
+        setTempImg(URL.createObjectURL(file));
+      }
+    }
+
+    setstate({
+      ...state,
+      image: ''
+    });
+  }
+
+  const clearReceiptFileState = () => {
+    setReceiptImgName('');
+
+    setFulfilState(prev => ({
+      ...prev,
+      receiptFile: ''
+    }));
+  }
+  const changeReceiptFile = async (e) => {
+    const file = e.target.files[0] ? e.target.files[0] : '';
+    if (file) {
+      setReceiptImgName(file.name);
+      console.log(file)
+      setFulfilState({
+        ...fulfilState,
+        receiptFile: file
+      });
+
+    } else {
+      clearReceiptFileState();
+    }
+  }
+
+
+  const changeGalleryImg = async (e) => {
+    if (!(e.target.files && e.target.files.length > 0)) {
+      return;
+    }
+
+    let gImgtempArry = [];
+    let gImgtempObj = [];
+    let tempGallaryFileArry = [];
+
+    gImgtempObj.push(e.target.files);
+    for (let i = 0; i < gImgtempObj[0].length; i++) {
+      let extension = gImgtempObj[0][i].name.substr(
+        gImgtempObj[0][i].name.lastIndexOf('.') + 1
+      );
+      if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
+        tempGallaryFileArry.push(gImgtempObj[0][i]);
+        gImgtempArry.push(URL.createObjectURL(gImgtempObj[0][i]));
+      }
+    }
+    let oldG = [...gallaryTempImages];
+    let combine = oldG.concat(gImgtempArry);
+    setGallaryTempImages(combine);
+
+    if (galleryImg && galleryImg.length) {
+      let oldMG = [...galleryImg];
+      // console.log(galleryImg)
+      let combineMainG = oldMG?.concat(tempGallaryFileArry);
+
+      setstate({
+        ...state,
+        galleryImg: combineMainG
+      });
+    } else {
+      setstate({
+        ...state,
+        galleryImg: tempGallaryFileArry
+      });
+    }
+  }
+
+  const changeMoreImg = async (e) => {
+    if (!(e.target.files && e.target.files.length > 0)) {
+      return;
+    }
+
+    let mImgtempArry = [];
+    let mImgtempObj = [];
+    let tempMainFileArry = [];
+
+    mImgtempObj.push(e.target.files);
+    for (let i = 0; i < mImgtempObj[0].length; i++) {
+      let extension = mImgtempObj[0][i].name.substr(
+        mImgtempObj[0][i].name.lastIndexOf('.') + 1
+      );
+      if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
+        tempMainFileArry.push(mImgtempObj[0][i]);
+        mImgtempArry.push(URL.createObjectURL(mImgtempObj[0][i]));
+      }
+    }
+    let oldG = [...moreTempImages];
+    let combined = oldG.concat(mImgtempArry);
+    setMoreTempImages(combined);
+
+    if (moreImg && moreImg.length) {
+      let oldMG = [...moreImg];
+
+      let combineMainG = oldMG?.concat(tempMainFileArry);
+
+      setstate({
+        ...state,
+        moreImg: combineMainG
+      });
+    } else {
+      setstate({
+        ...state,
+        moreImg: tempMainFileArry
+      });
+    }
+  }
+
+  const changeFulfilMoreImages = async (e) => {
+    if (!(e.target.files && e.target.files.length > 0)) {
+      return;
+    }
+
+    let fmImgtempArry = [];
+    let fmImgtempObj = [];
+    let ftempMainFileArry = [];
+
+    fmImgtempObj.push(e.target.files);
+    for (let i = 0; i < fmImgtempObj[0].length; i++) {
+      let extension = fmImgtempObj[0][i].name.substr(
+        fmImgtempObj[0][i].name.lastIndexOf('.') + 1
+      );
+      if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
+        ftempMainFileArry.push(fmImgtempObj[0][i]);
+        fmImgtempArry.push(URL.createObjectURL(fmImgtempObj[0][i]));
+      }
+    }
+    let old = [...fulfilMoreTempImages];
+    let combine = old.concat(fmImgtempArry);
+    setFulfilMoreTempImages(combine);
+
+    let oldf = [...fulfilMoreImg];
+    let combineMain = oldf.concat(ftempMainFileArry);
+
+    setFulfilState({
+      ...fulfilState,
+      fulfilMoreImg: combineMain
+    });
+  }
+
   const changefile = async (e) => {
     // console.log('gg')
     // console.log(e.target.id)
     if (e.target.id === 'mainImg') {
-      let file = e.target.files[0] ? e.target.files[0] : '';
-
-      if (await hasAlpha(file)) {
-        let extension = file.name.substr(file.name.lastIndexOf('.') + 1);
-
-        if (validExtensions.includes(extension)) {
-          setTempImg(URL.createObjectURL(file));
-          setstate({
-            ...state,
-            image: file
-          });
-        } else {
-          setstate({
-            ...state,
-            image: ''
-          });
-        }
-      } else {
-        ToastAlert({
-          msg: 'Please upload an image with transparent background',
-          msgType: 'error'
-        });
-        setstate({
-          ...state,
-          image: ''
-        });
-        setTempImg('');
-      }
-
+      await changeMainImg(e);
       // console.log(URL.createObjectURL(file))
-    } else if (e.target.id === 'galleryImg') {
-      let gImgtempArry = [];
-      let gImgtempObj = [];
-      let tempGallaryFileArry = [];
 
-      if (e.target.files && e.target.files.length > 0) {
-        gImgtempObj.push(e.target.files);
-        for (let i = 0; i < gImgtempObj[0].length; i++) {
-          let extension = gImgtempObj[0][i].name.substr(
-            gImgtempObj[0][i].name.lastIndexOf('.') + 1
-          );
-          if (validExtensions.includes(extension)) {
-            tempGallaryFileArry.push(gImgtempObj[0][i]);
-            gImgtempArry.push(URL.createObjectURL(gImgtempObj[0][i]));
-          }
-        }
-        let oldG = [...gallaryTempImages];
-        let combine = oldG.concat(gImgtempArry);
-        setGallaryTempImages(combine);
-
-        // let oldMG = [...galleryImg]
-        // console.log(galleryImg)
-        // let combineMainG = oldMG?.concat(tempGallaryFileArry)
-
-        // setstate({
-        //   ...state,
-        //   galleryImg: combineMainG
-        // })
-
-        // setGallaryTempImages(gImgtempArry)
-        if (galleryImg && galleryImg.length) {
-          let oldMG = [...galleryImg];
-          // console.log(galleryImg)
-          let combineMainG = oldMG?.concat(tempGallaryFileArry);
-
-          setstate({
-            ...state,
-            galleryImg: combineMainG
-          });
-        } else {
-          setstate({
-            ...state,
-            galleryImg: tempGallaryFileArry
-          });
-        }
-      }
-    } else if (e.target.id === 'moreImg') {
-      let mImgtempArry = [];
-      let mImgtempObj = [];
-      let tempMainFileArry = [];
-
-      if (e.target.files && e.target.files.length > 0) {
-        mImgtempObj.push(e.target.files);
-        for (let i = 0; i < mImgtempObj[0].length; i++) {
-          let extension = mImgtempObj[0][i].name.substr(
-            mImgtempObj[0][i].name.lastIndexOf('.') + 1
-          );
-          if (validExtensions.includes(extension)) {
-            tempMainFileArry.push(mImgtempObj[0][i]);
-            mImgtempArry.push(URL.createObjectURL(mImgtempObj[0][i]));
-          }
-        }
-        let oldG = [...moreTempImages];
-        let combined = oldG.concat(mImgtempArry);
-        setMoreTempImages(combined);
-
-        if (moreImg && moreImg.length) {
-          let oldMG = [...moreImg];
-
-          let combineMainG = oldMG?.concat(tempMainFileArry);
-
-          setstate({
-            ...state,
-            moreImg: combineMainG
-          });
-        } else {
-          setstate({
-            ...state,
-            moreImg: tempMainFileArry
-          });
-        }
-
-        // setstate({
-        //   ...state,
-        //   moreImg: tempMainFileArry
-        // })
-      }
-    } else if (e.target.id === 'fulfilmoreImages') {
-      let fmImgtempArry = [];
-      let fmImgtempObj = [];
-      let ftempMainFileArry = [];
-
-      if (e.target.files && e.target.files.length > 0) {
-        fmImgtempObj.push(e.target.files);
-        for (let i = 0; i < fmImgtempObj[0].length; i++) {
-          let extension = fmImgtempObj[0][i].name.substr(
-            fmImgtempObj[0][i].name.lastIndexOf('.') + 1
-          );
-          if (validExtensions.includes(extension)) {
-            ftempMainFileArry.push(fmImgtempObj[0][i]);
-            fmImgtempArry.push(URL.createObjectURL(fmImgtempObj[0][i]));
-          }
-        }
-        let old = [...fulfilMoreTempImages];
-        let combine = old.concat(fmImgtempArry);
-        setFulfilMoreTempImages(combine);
-
-        let oldf = [...fulfilMoreImg];
-        let combineMain = oldf.concat(ftempMainFileArry);
-
-        // setFulfilMoreTempImages(fmImgtempArry)
-        // setFulfilState({
-        //   ...fulfilState,
-        //   fulfilMoreImg: ftempMainFileArry
-        // })
-        setFulfilState({
-          ...fulfilState,
-          fulfilMoreImg: combineMain
-        });
-      }
     } else if (e.target.id === 'receiptFile') {
-      let file = e.target.files[0] ? e.target.files[0] : '';
-      if (file) {
-        setTempImgName(file.name);
-        console.log(file);
-        setFulfilState({
-          ...fulfilState,
-          receiptFile: file
-        });
-      } else {
-        setTempImgName('');
+      await changeReceiptFile(e);
 
-        setFulfilState({
-          ...fulfilState,
-          receiptFile: ''
-        });
-      }
+    } else if (e.target.id === 'galleryImg') {
+      await changeGalleryImg(e);
+
+    } else if (e.target.id === 'moreImg') {
+      await changeMoreImg(e);
+
+    } else if (e.target.id === 'fulfilmoreImages') {
+      await changeFulfilMoreImages(e);
     }
   };
 
@@ -608,6 +623,7 @@ const AdminPosts = () => {
     });
   };
 
+  // when creating a product??
   const submitProductForm = (s, seletedProjectListofIds) => {
     console.log('s');
 
@@ -791,7 +807,6 @@ const AdminPosts = () => {
         formData.tags = tagsArray;
 
         if (Object.keys(formaerrror).length === 0) {
-          // }
 
           let addProduct;
           // Api Call for update Profile
@@ -879,6 +894,7 @@ const AdminPosts = () => {
         });
       });
   };
+
   console.log({ state });
   const deleteProduct = (id) => {
     confirmAlert({
@@ -921,6 +937,7 @@ const AdminPosts = () => {
   };
 
   // Delete Product FulFil from a product
+  //  called when deleting an uploaded sales receipt
   const deleteFulfilorder = (id, prodcutId, organizationId) => {
     console.log('Posts, deleteFulfilorder, values: ', { id, prodcutId, organizationId });
     confirmAlert({
@@ -934,33 +951,38 @@ const AdminPosts = () => {
         {
           label: 'Delete',
           onClick: async () => {
-            if (id !== '') {
-              const deleteFulfilOrderApi = await productApi.deleteFulfilOrder(
-                token,
-                id,
-                prodcutId,
-                organizationId
-              );
-              if (deleteFulfilOrderApi) {
-                if (deleteFulfilOrderApi.data.success === false) {
-                  setLoading(false);
-                  ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'error' });
-                } else {
-                  if (deleteFulfilOrderApi.data.success === true) {
-                    setLoading(false);
-                    setUpdate(!update);
-                    setDeletedFile(true);
-                    closeFulfilForm();
-                    ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'success' });
-                  }
-                }
-              } else {
-                setLoading(false);
-                ToastAlert({ msg: 'Product not delete', msgType: 'error' });
-              }
-            } else {
+            if (id === '') {
               setLoading(false);
-              ToastAlert({ msg: 'Product not delete id Not found', msgType: 'error' });
+              ToastAlert({ msg: 'Product not deleted: id Not found', msgType: 'error' });
+              return;
+            }
+
+            const deleteFulfilOrderApi = await productApi.deleteFulfilOrder(
+              token,
+              id,
+              prodcutId,
+              organizationId
+            );
+
+            if (!deleteFulfilOrderApi) {
+              setLoading(false);
+              ToastAlert({ msg: 'Product not deleted', msgType: 'error' });
+              return;
+            }
+
+            if (deleteFulfilOrderApi.data.success === false) {
+              setLoading(false);
+              ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'error' });
+              return;
+            }
+
+            if (deleteFulfilOrderApi.data.success === true) {
+              setLoading(false);
+              setUpdate(!update);
+              setDeletedFile(true);
+  
+              closeFulfilForm();
+              ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'success' });
             }
           }
         }
@@ -1229,6 +1251,8 @@ const AdminPosts = () => {
     setFulfilMoreTempImages([]);
     setFulfilMoreImages([]);
 
+    //setDeletedFile(false); // hope this fixes one UI bug: after deleting then re-uploading, the list of receipts should show
+
     setFulfilState({
       ...fulfilState,
       fulfilId: '',
@@ -1271,6 +1295,7 @@ const AdminPosts = () => {
     setLoading(false);
   };
 
+  // ran when updating or fulfilling the order (basically the "submit" button)
   const fulfilOrder = async () => {
     let formaerrror = {};
     let rules = {};
@@ -1284,10 +1309,6 @@ const AdminPosts = () => {
       formaerrror['fulfilMoreImg'] = 'Maximum images allowed: ' + MAX_IMAGE_LENGTH;
     }
 
-    // if (fulfilMoreImg.length > helper.MAX_IMAGE_LENGTH) {
-    //   formaerrror['fulfilMoreImg'] = "Maximum images allowed: " + helper.MAX_IMAGE_LENGTH
-
-    // }
     // console.log(fulfilMoreImg)
     if (!fulfilPolicy) {
       formaerrror['fulfilPolicy'] =
@@ -1296,9 +1317,6 @@ const AdminPosts = () => {
     if (!fulfilId) {
       rules.receiptFile = 'required';
     }
-    //  rules = {
-    //   receiptFile: 'required',
-    // }
 
     const message = {
       'receiptFile.required': 'Receipt is Required'
@@ -1311,38 +1329,45 @@ const AdminPosts = () => {
           fulfilError: formaerrror
         });
 
-        if (Object.keys(formaerrror).length === 0) {
-          let formData = {};
-
-          if (fulfilMoreImg?.length > 0) {
-            formData.moreImg = fulfilMoreImg;
-          }
-          if (receiptFile) {
-            formData.image = receiptFile;
-          }
-          formData.organizationId = data._id;
-          formData.productId = fulfilProductDetails._id;
-          formData.organizationCountryId = data.country_id;
-
-          if (videoUrl) {
-            formData.video = videoUrl;
-          }
-
-          let fulfil;
-          if (fulfilId) {
-            fulfil = await productApi.updateFulfilOrder(token, formData, fulfilId);
-          } else {
-            fulfil = await productApi.fulfilOrder(token, formData);
-          }
-
-          if (fulfil && fulfil.data.success) {
-            closeFulfilForm();
-            setUpdate(!update);
-            ToastAlert({ msg: fulfil.data.message, msgType: 'success' });
-          } else {
-            ToastAlert({ msg: fulfil.data.message, msgType: 'error' });
-          }
+        if (Object.keys(formaerrror).length > 0) {
+          return;
         }
+
+        let formData = {};
+
+        if (fulfilMoreImg?.length > 0) {
+          formData.moreImg = fulfilMoreImg;
+        }
+        if (receiptFile) {
+          formData.image = receiptFile;
+        }
+        formData.organizationId = data._id;
+        formData.productId = fulfilProductDetails._id;
+        formData.organizationCountryId = data.country_id;
+
+        if (videoUrl) {
+          formData.video = videoUrl;
+        }
+
+        let fulfil;
+        const isThisAnUpdate = !!fulfilId;
+        if (isThisAnUpdate) {
+          fulfil = await productApi.updateFulfilOrder(token, formData, fulfilId);
+        } else {
+          fulfil = await productApi.fulfilOrder(token, formData);
+        }
+
+        if (!fulfil || !fulfil?.data?.success) {
+          ToastAlert({ msg: fulfil.data.message, msgType: 'error' });
+          return;
+        }
+
+        setDeletedFile(false); // when updating, make sure this isn't blocking the receipt list from showing
+        clearReceiptFileState(); // clears fulfilState receipt and receiptImgName
+
+        closeFulfilForm();
+        setUpdate(!update);
+        ToastAlert({ msg: fulfil.data.message, msgType: 'success' });
       })
       .catch((errors) => {
         setLoading(false);
@@ -1439,6 +1464,7 @@ const AdminPosts = () => {
     link.download = filename;
     link.click();
   }
+
   console.log({ fulfilProductDetails });
   return (
     <>
@@ -1649,16 +1675,15 @@ const AdminPosts = () => {
                 <span className="post__badge post__badge--sold me-2 text-primary fs-3">
                   <FontAwesomeIcon icon={solid('face-party')} />
                 </span>*/}
-              {!fulfilProductDetails?.unlimited && (
-                <span className="fs-6 text-subtext">
-                  Congratulations! Your post has been fully funded. Upload the sales receipt to
-                  complete your order. A copy of the sales receipt will be shared with your donors.
-                </span>
-              )}
-              {fulfilProductDetails?.unlimited && (
+              {fulfilProductDetails?.unlimited ? (
                 <span className="fs-6 text-subtext">
                   Your item was marked as ongoing. You may upload a sales receipt & followup media
                   at any time. A copy of the sales receipt will be shared with your donors.
+                </span>
+              ) : (
+                <span className="fs-6 text-subtext">
+                  Congratulations! Your post has been fully funded. Upload the sales receipt to
+                  complete your order. A copy of the sales receipt will be shared with your donors.
                 </span>
               )}
             </div>
@@ -1761,133 +1786,72 @@ const AdminPosts = () => {
                       </div>
                     </>
                   )}*/}
-                {!fulfilProductDetails?.isFulfiled || deletedFile ? (
-                  <>
-                    <label htmlFor="videoInput" className="form__label mt-3">
-                      Sales Receipt &nbsp;
-                      <span className="post-type-text" style={{ color: '#dd4646' }}>
-                        (required)
-                      </span>
-                    </label>
 
-                    {/* <div className="upload-picture-video-block mb-2" style={{ display: "contents" }}>
-                          <div className="upload-wrap" style={{ width: "100%", height: "200px" }}>
-                            <FontAwesomeIcon
-                              icon={solid("cloud-arrow-up")}
-                              className="icon-cloud"
-                            />
-                            <label>
-                              <input name='receiptFile' id='receiptFile' type="file"
-                                onChange={(e) => { changefile(e) }}
-                              />
-                            </label>
-                          </div>
+Here is where I inserted variable display texts
+{fulfilProductDetails.isFulfilled ? <div style={{fontSize: '2rem', color: 'red'}}>fulfilProductDetails.isFulfilled === true</div> : <>( product not fulfilled! )</>}
+{deletedFile ? <div style={{fontSize: '2rem', color: 'red'}}>deletedFIle === true</div> : <>( File Not Deleted )</>}
 
-                        </div> */}
+              <>
+                <label htmlFor="videoInput" className="form__label mt-3">
+                  Sales Receipt &nbsp;
+                  <span className="post-type-text" style={{ color: '#dd4646' }}>
+                    (required)
+                  </span>
+                </label>
 
-                    <div
-                      className="image-upload-wrap fs-2"
-                      style={{
-                        ...imageuploadwrap,
-                        backgroundColor: '#e5f4ff',
-                        borderRadius: '9px',
-                        fontSize: '60px',
-                        border:
-                          tempImgName === '' && fulfilError.receiptFile
-                            ? '2px dashed red'
-                            : '2px dashed rgba(62, 170, 255, 0.58)'
-                      }}
-                    >
-                      <input
-                        className="file-upload-input"
-                        type="file"
-                        // name="identityDocumentImage"
-                        // onChange={props.changevalue}
-                        name="receiptFile"
-                        id="receiptFile"
-                        onChange={(e) => {
-                          changefile(e);
-                        }}
-                        style={fileuploadinput}
-                        title=" "
-                      />
-                      <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
-                        <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
-                        <h3 style={{ fontSize: 'inherit' }}>
-                          {tempImgName && tempImgName !== ''
-                            ? tempImgName
-                            : fulfilError.receiptFile
-                            ? 'Please Select File'
-                            : 'Drag and drop or Select File'}
-                        </h3>
-                      </div>
-                    </div>
-                    {fulfilError && fulfilError.receiptFile && (
-                      <p className="error">
-                        {fulfilError
+                <div
+                  className="image-upload-wrap fs-2"
+                  style={{
+                    ...Style_ImageUploadWrap,
+                    backgroundColor: '#e5f4ff',
+                    borderRadius: '9px',
+                    fontSize: '60px',
+                    border:
+                      receiptImgName === '' && fulfilError.receiptFile
+                        ? '2px dashed red'
+                        : '2px dashed rgba(62, 170, 255, 0.58)'
+                  }}
+                >
+                  <input
+                    className="file-upload-input"
+                    type="file"
+                    // name="identityDocumentImage"
+                    // onChange={props.changevalue}
+                    name="receiptFile"
+                    id="receiptFile"
+                    onChange={(e) => {
+                      changefile(e);
+                    }}
+                    style={Style_FileUploadInput}
+                    title=" "
+                  />
+                  <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
+                    <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
+                    <h3 style={{ fontSize: 'inherit' }}>
+                      {receiptImgName && receiptImgName !== ''
+                        ? receiptImgName
+                        : fulfilError.receiptFile
+                        ? 'Please Select File'
+                        : 'Drag and drop or Select File'}
+                    </h3>
+                  </div>
+                </div>
+                {fulfilError && fulfilError.receiptFile && (
+                  <p className="error">
+                    {fulfilError?.receiptFile ?? ''}
+                  
+                    {/*
+                      {fulfilError.receiptFile
                           ? fulfilError.receiptFile
-                            ? fulfilError.receiptFile
-                            : ''
                           : ''}
-                      </p>
-                    )}
-                  </>
-                ) : (
+                    */}
+                  </p>
+                )}
+
+                {/* sales receipt list, to show when receipt is uploaded */}
+                {/* if file is deleted, or if product is not fulfilled, hide this. */}
+                {!( !fulfilProductDetails?.isFulfiled || deletedFile  ) && (
                   <>
-                    <label htmlFor="videoInput" className="form__label mt-3">
-                      Sales Receipt &nbsp;
-                      <span className="post-type-text" style={{ color: '#dd4646' }}>
-                        (required)
-                      </span>
-                    </label>
-
-                    <div
-                      className="image-upload-wrap fs-2"
-                      style={{
-                        ...imageuploadwrap,
-                        backgroundColor: '#e5f4ff',
-                        borderRadius: '9px',
-                        fontSize: '60px',
-                        border:
-                          tempImgName === '' && fulfilError.receiptFile
-                            ? '2px dashed red'
-                            : '2px dashed rgba(62, 170, 255, 0.58)'
-                      }}
-                    >
-                      <input
-                        className="file-upload-input"
-                        type="file"
-                        // name="identityDocumentImage"
-                        // onChange={props.changevalue}
-                        name="receiptFile"
-                        id="receiptFile"
-                        onChange={(e) => {
-                          changefile(e);
-                        }}
-                        style={fileuploadinput}
-                        title=" "
-                      />
-                      <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
-                        <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
-                        <h3 style={{ fontSize: 'inherit' }}>
-                          {tempImgName && tempImgName !== ''
-                            ? tempImgName
-                            : fulfilError.receiptFile
-                            ? 'Please Select File'
-                            : 'Drag and drop or Select File'}
-                        </h3>
-                      </div>
-                    </div>
-                    {fulfilError && fulfilError.receiptFile && (
-                      <p className="error">
-                        {fulfilError
-                          ? fulfilError.receiptFile
-                            ? fulfilError.receiptFile
-                            : ''
-                          : ''}
-                      </p>
-                    )}
-
                     <Card.Header className="post__accordion-header pb-3 mt-5">
                       <span className="fs-3 fw-bolder text-dark">Sales Receipt</span>
                     </Card.Header>
@@ -1947,13 +1911,6 @@ const AdminPosts = () => {
                               }
                             >
                               <span className="fw-bold fs-7 flex__1">Download</span>
-                              {/* <a href={helper.FulfilRecieptPath + fulfilProductDetails?.fulfilDetails?.receipt} download
-                                    // variant="info"
-                                    // target="_blank"
-                                    className="fw-bold fs-7 flex__1"
-                                  >
-                                    Download
-                                  </a> */}
                               <FontAwesomeIcon icon={regular('download')} className="ms-1" />
                             </Dropdown.Item>
                             <Dropdown.Divider />
@@ -1974,21 +1931,7 @@ const AdminPosts = () => {
                         </Dropdown>
                       </div>
                     </div>
-                    {/* {showReceipt && (
-                      <div className="saleReceipt">
-                        <span className="close" onClick={() => setShowReceipt(false)}>
-                          &times;
-                        </span>
-                        <GalleryImg
-                          thumbImgSrc={
-                            helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
-                          }
-                          bigImgSrc={
-                            helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
-                          }
-                        />
-                      </div>
-                    )} */}
+
                     <Modal
                       size="lg"
                       show={showReceipt}
@@ -2001,14 +1944,6 @@ const AdminPosts = () => {
                         </Modal.Title>
                       </Modal.Header>
                       <Modal.Body className="text-center">
-                        {/* <GalleryImg
-                          thumbImgSrc={
-                            helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
-                          }
-                          bigImgSrc={
-                            helper.recieptPath + fulfilProductDetails?.fulfilDetails?.receipt
-                          }
-                        /> */}
                         <img
                           src={
                             helper.fullRecieptPath + fulfilProductDetails?.fulfilDetails?.receipt
@@ -2020,6 +1955,8 @@ const AdminPosts = () => {
                     </Modal>
                   </>
                 )}
+              </>
+
               </Col>
               <Col lg="6">
                 <Card.Header className="post__accordion-header pb-3">
@@ -2069,7 +2006,7 @@ const AdminPosts = () => {
                       <div
                         className="image-upload-wrap fs-2"
                         style={{
-                          ...imageuploadwrap,
+                          ...Style_ImageUploadWrap,
                           backgroundColor: '#e5f4ff',
                           borderRadius: '9px',
                           fontSize: '60px',
@@ -2086,7 +2023,7 @@ const AdminPosts = () => {
                           onChange={(e) => {
                             changefile(e);
                           }}
-                          style={fileuploadinput}
+                          style={Style_FileUploadInput}
                           title=" "
                         />
                         <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
@@ -2197,7 +2134,7 @@ const AdminPosts = () => {
                     changevalue(e);
                   }}
                 />
-                <label className="form-check-label" htmlFor="policy">
+                <label className="form-check-label" htmlFor="fulfilPolicy">
                   {/* By posting your ad, you are agreeing to our{" "}
                   <a href="#" target="_blank">
                     <strong>terms of use</strong>
@@ -2221,9 +2158,10 @@ const AdminPosts = () => {
                 </label>
               </div>
             </div>
+
             {fulfilError && fulfilError.fulfilPolicy && (
               <p className="error">
-                {fulfilError ? (fulfilError.fulfilPolicy ? fulfilError.fulfilPolicy : '') : ''}
+                {fulfilError?.fulfilPolicy ?? ''}
               </p>
             )}
 
@@ -2240,6 +2178,7 @@ const AdminPosts = () => {
                   Discard
                 </Button>
               )}
+
               {fulfilProductDetails?.isFulfiled && fulfilProductDetails.status === 1 && (
                 <Button
                   variant="info"

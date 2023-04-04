@@ -3,7 +3,6 @@ import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Button, ProgressBar, Card } from 'react-bootstrap';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import Geocode from "react-geocode";
 import IconToggle from '../../atoms/icon-toggle';
 import ShareWidget from '../share-widget';
 import IconText from '../../molecules/icon-text';
@@ -12,15 +11,16 @@ import moment from 'moment';
 import helper, {
   getCalculatedPrice,
   priceFormat,
-  convertAddress
+  convertAddress,
 } from '../../../../../Common/Helper';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './style.scss';
 import { GalleryImg } from '../../atoms';
-import { CircularProgress } from '@mui/material';
 import advertisementApi from '../../../../../Api/admin/advertisement';
+import locationApi from '../../../../../Api/frontEnd/location';
+
 
 function ProjectDetailMain(props) {
   console.log('iFrame, item-detail-main');
@@ -54,7 +54,6 @@ function ProjectDetailMain(props) {
   ? 1000
   : productDetails.quantity - productDetails.soldout;
   
-  Geocode.setApiKey("AIzaSyBmV0vuUrTUaBQR5-bOeN0MlekdUPBUi-o");
   
   useEffect(() => {
     (async () => {
@@ -72,25 +71,24 @@ function ProjectDetailMain(props) {
   useEffect(() => {
     (async () => {
       const res = await advertisementApi.allStateAds();
+      const getLocationByLatLong = await locationApi.getLocationByLatLong(user.lat, user.lng);
+      console.log(getLocationByLatLong)
+      let resArrLen = getLocationByLatLong.data.results.length
+      const address = getLocationByLatLong.data.results[resArrLen-2].formatted_address
+      console.log({address})
+      const splitState = address.split(",")[0].trim()
+      
+      setUserAddress(splitState)
       setAllStateAds(res.data.data);
     })();
-    
-    // Get address from latitude & longitude.
-    Geocode.fromLatLng(user.lat, user.lng).then(
-      (response) => {
-        const address = response.results[0].address_components[5].long_name;
-        setUserAddress(address)
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+   
   }, []);
 
   const onClickFilter = async (e) => {
     await props.addProductToWishlist(productDetails._id);
   };
-
+  console.log({userAddress})
+  console.log({allStateAds})
   const cart_btn = addedToCard ? (
     <Button
       variant="success"
