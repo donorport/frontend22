@@ -324,6 +324,7 @@ function product() {
     });
     return res;
   };
+
   const updateFulfilOrder = async (authToken, cdata, id) => {
     const data = new FormData();
     if (cdata.moreImg && cdata.moreImg.length > 0) {
