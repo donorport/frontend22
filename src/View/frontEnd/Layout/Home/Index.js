@@ -301,17 +301,17 @@ export default function Index(props) {
             >
               Add to Cart ({props.cartProductList.length})
             </Button>
-            <div className="fs-6 p-sm-2 p-0 py-2 d-sm-flex align-items-center flex-grow-1 mt-sm-0 mt-2">
+            <div className="fs-6 p-sm-2 p-0 py-2 d-sm-flex align-items-center flex-grow-1 mt-sm-0 mt-2 lh-md-md">
               <FontAwesomeIcon icon={regular('circle-question')} style={{ color: '#5f5df8' }} />
               &nbsp; How does it work?&nbsp;
               <Link to="/about" className="link d-inline-block">
                 learn more.
               </Link>
-              &nbsp; Charities click
+              &nbsp; Charities click&nbsp;
               <Link to="/apply" className="link d-inline-block">
-              &nbsp;here&nbsp; 
+              here
               </Link>
-              to apply
+              &nbsp;to apply
             </div>
           </div>
         </Container>

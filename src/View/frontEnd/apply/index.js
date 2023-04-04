@@ -49,10 +49,11 @@ const Apply = (props) => {
               </div>
 
               <div className="mw-400">
-                <h4 className="fw-bolder text-dark">Apply for an account</h4>
-                <div className="text-light mb-2">
-                  Let us know if you want to post on Donorport. For more information about the
-                  application process <a className="link" href="/about">click here</a>
+                <h4 className="fw-bolder text-dark">Step 1 - Apply</h4>
+                <div className="text-light mb-2 fs-5">
+                  Before you can post on Donorport, you must first submit an application and be
+                  approved by the Donorport team. Once approved, you will receive a 4 digit
+                  authentication code which you will enter above to activate your account.
                 </div>
                 <Form className="mb-5" autocomplete="off">
                   {/*    <div className="py-1 d-flex justify-content-between fs-4 mb-3">
@@ -147,7 +148,7 @@ const Apply = (props) => {
                   </div>
                   {error && error.category && <p className="error">{error.category}</p>}
 
-                  <div className="input__wrap d-flex"> 
+                  <div className="input__wrap d-flex">
                     <label className="input__label flex__1">
                       <input
                         type="text"
@@ -198,7 +199,7 @@ const Apply = (props) => {
                     <p className="error">{error ? (error.email ? error.email : '') : ''}</p>
                   )}
 
-                  <div className="input__wrap d-flex mb-3">
+                  <div className="input__wrap d-flex">
                     <label className="input__label flex__1">
                       <input
                         type="email"
@@ -218,7 +219,7 @@ const Apply = (props) => {
                     </p>
                   )}
 
-                  <div className="input__wrap d-flex mb-3">
+                  <div className="input__wrap d-flex">
                     <label className="input__label flex__1">
                       <input
                         type="password"
@@ -236,7 +237,7 @@ const Apply = (props) => {
                     <p className="error">{error ? (error.password ? error.password : '') : ''}</p>
                   )}
 
-                  <div className="input__wrap d-flex mb-3">
+                  <div className="input__wrap d-flex">
                     <label className="input__label flex__1">
                       <input
                         type="password"
@@ -257,7 +258,7 @@ const Apply = (props) => {
                   <Button
                     variant="info"
                     size="lg"
-                    className="fw-bold px-4"
+                    className="fw-bold px-4 mt-2"
                     style={{ width: '100%', opacity: props.loading ? '0.7' : '1' }}
                     onClick={() => !props.loading && applyOrganization()}
                   >

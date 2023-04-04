@@ -109,7 +109,11 @@ const UserItems = () => {
                       icon={solid('money-bills-simple')}
                       className="text-dark mr-12p fs-4"
                     />
-                    {val[0]} {val[1]}
+                    <span>$</span>
+                    {val[1].toLocaleString('en-US', {
+                      maximumFractionDigits: 2,
+                      minimumFractionDigits: 2
+                    })}
                   </span>
                 );
               })}

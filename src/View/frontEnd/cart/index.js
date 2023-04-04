@@ -19,7 +19,7 @@ const Cart = (props) => {
   let platformCost = ((platformFee / 100 + transactionFee / 100) * Number(subTotal) + 0.3).toFixed(
     2
   );
-  let grandTotal = (Number(subTotal) + Number(platformCost)).toFixed(2);
+  let grandTotal = (parseFloat(subTotal) + parseFloat(platformCost)).toFixed(2);
   //let totalCharge = Number(transactionFee) + Number(platformFee);
   const getCalc = getCalculatedPrice();
   let currencySymbol = getCalc.currencySymbol();

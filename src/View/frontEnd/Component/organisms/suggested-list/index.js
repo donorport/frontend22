@@ -1,7 +1,7 @@
 import SuggestedItem from '../../molecules/suggested-item';
 // import SuggestionWrapper from "../suggestion-wrapper";
 import helper from '../../../../../Common/Helper';
-
+import funded from '../../../../../assets/images/avatar.png';
 import './style.scss';
 
 function SuggestedList(props) {
@@ -19,7 +19,7 @@ function SuggestedList(props) {
               org._id !== props.organizationId && (
                 <SuggestedItem
                   key={org._id}
-                  imgUrl={helper.CampaignAdminLogoPath + org.logo}
+                  imgUrl={org.logo ? helper.CampaignAdminLogoPath + org.logo : funded}
                   organization={org}
                   itemTag={props.itemTag}
                 />

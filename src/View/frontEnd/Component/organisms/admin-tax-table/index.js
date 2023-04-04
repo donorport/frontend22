@@ -171,7 +171,9 @@ const AdminTaxTable = (props) => {
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                                 <div className="text-light fw-bold fs-5">
                                   {item[0].currencySymbol}
-                                  {totalVal([...item])}
+                                  {totalVal([...item]).toLocaleString('en-US', {
+                                    maximumFractionDigits: 2
+                                  })}
                                 </div>
                                 <div className="text-light fs-8">
                                   {moment(item[0].created_at).fromNow()}

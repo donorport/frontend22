@@ -550,7 +550,7 @@ const AdminPosts = () => {
       let file = e.target.files[0] ? e.target.files[0] : '';
       if (file) {
         setTempImgName(file.name);
-        console.log(file)
+        console.log(file);
         setFulfilState({
           ...fulfilState,
           receiptFile: file
@@ -925,7 +925,8 @@ const AdminPosts = () => {
     console.log('Posts, deleteFulfilorder, values: ', { id, prodcutId, organizationId });
     confirmAlert({
       title: 'Delete Receipt?',
-      message: 'Are you sure you want to delete the Sales Receipt? This will remove the Fulfilled Status',
+      message:
+        'Are you sure you want to delete the Sales Receipt? This will remove the Fulfilled Status',
       buttons: [
         {
           label: 'Cancel'
@@ -949,7 +950,7 @@ const AdminPosts = () => {
                     setLoading(false);
                     setUpdate(!update);
                     setDeletedFile(true);
-                    closeFulfilForm()
+                    closeFulfilForm();
                     ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'success' });
                   }
                 }
@@ -1499,7 +1500,7 @@ const AdminPosts = () => {
 
       {!viewPost ? (
         <div>
-          <header className="py-sm-2 mb-3 w-100 d-sm-flex align-items-center">
+          <header className="py-sm-2 w-100 d-sm-flex align-items-center">
             <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Posts</h1>
             <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
 
@@ -1508,14 +1509,17 @@ const AdminPosts = () => {
                 icon={solid('money-bills-simple')}
                 className="text-dark mr-12p fs-4"
               />
+              <span>{user.currencySymbol}</span>
               {productList && productList.length > 0
                 ? productList
                     .reduce(
                       (previousTotal, current) =>
                         previousTotal + Number(current.displayPrice * current.soldout),
                       0
-                    )
-                    .toFixed(2)
+                    ).toLocaleString('en-US', {
+                      maximumFractionDigits: 2,
+                      minimumFractionDigits: 2
+                    })
                 : 0}
             </span>
 
@@ -1531,7 +1535,10 @@ const AdminPosts = () => {
               {/* <LadderMenuItems /> */}
             </div>
           </header>
-
+          {/* <div className="note mw-100 mb-3 fs-6">
+            Once your post is fully funded, click the Fulfill Order button and upload a copy of the
+            sales receipt to complete the order.
+          </div> */}
           <PostsTable
             productList={productList}
             editProduct={editProduct}
@@ -2003,7 +2010,9 @@ const AdminPosts = () => {
                           }
                         /> */}
                         <img
-                          src={helper.fullRecieptPath + fulfilProductDetails?.fulfilDetails?.receipt}
+                          src={
+                            helper.fullRecieptPath + fulfilProductDetails?.fulfilDetails?.receipt
+                          }
                           width="66%"
                           alt="receipt"
                         />
@@ -2017,8 +2026,8 @@ const AdminPosts = () => {
                   <span className="fs-3 fw-bolder text-dark">Media</span>
                 </Card.Header>
                 <form className="video-detail-form mt-3">
-                  <div className="form-group mb-1">
-                    <label htmlFor="videoUrl" className="form__label mb-4">
+                  <div className="form-group mb-3">
+                    <label htmlFor="videoUrl" className="form__label mb-3">
                       Video&nbsp;
                       <span className="post-type-text">(optional)</span>
                     </label>
@@ -2035,19 +2044,19 @@ const AdminPosts = () => {
                     />
                   </div>
 
-                  {videoUrl && (
-                    <div className="project-video-wrap mb-1 mb-5">
-                      <iframe
-                        title="admin-post-video"
-                        key="admin-post-video"
-                        width="498"
-                        height="280"
-                        src={embedlink}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
-                  )}
+                  {/* {videoUrl && ( */}
+                  <div className="project-video-wrap mb-5">
+                    <iframe
+                      title="admin-post-video"
+                      key="admin-post-video"
+                      width="498"
+                      height="280"
+                      src={embedlink}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                  {/* )} */}
                   <label htmlFor="videoUrl" className="form__label">
                     Images &nbsp;
                     <span className="post-type-text">(optional)</span>
@@ -2103,7 +2112,7 @@ const AdminPosts = () => {
                                 <div
                                   className="gallery__img"
                                   style={{
-                                    backgroundImage: `url(${img ? img : noimg})`,
+                                    backgroundImage: `url(${img ? img : noimg})`
                                     // width: '100px',
                                     // height: '100px'
                                   }}
@@ -2147,7 +2156,7 @@ const AdminPosts = () => {
                                             ? helper.CampaignProductFullImagePath + img.img
                                             : noimg
                                           : noimg
-                                      })`,
+                                      })`
                                       // width: '100px',
                                       // height: '100px'
                                     }}

@@ -134,7 +134,7 @@ const Pricing = () => {
                         {/* <span className="display-4">{isNaN(totalFees) ? 0 : totalFees.toFixed(1)}%</span> */}
                         {/* <span className="display-4">5%</span> */}
                         <span className="display-4">
-                          {(Number(user?.platformFee) + Number(user?.transactionFee)).toFixed(1)}%
+                          {(Number(user?.platformFee) + Number(user?.transactionFee)).toFixed(2)}%
                         </span>
                       </div>
 

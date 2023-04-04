@@ -240,34 +240,21 @@ const Checkout = (props) => {
               <div className="checkout__block-hd d-sm-flex align-items-center border-bottom">
                 {/* <div className="flex__1 fw-boler fs-5 fw-bold mb-2 mb-sm-0">Credit card</div>*/}
                 <div className="checkout__cards d-flex align-items-center rounded-bottom-start-3 rounded-bottom-end-3">
-                  <img
-                    src={mastercard}
-                    alt=""
-                    className="checkout__svg"
-                  />
-                  <img
-                    src={visa}
-                    alt=""
-                    className="checkout__svg"
-                  />
-                  <img
-                    src={amex}
-                    alt=""
-                    className="checkout__svg"
-                  />
-                  <img
-                    src={discover}
-                    alt=""
-                    className="checkout__svg"
-                  />
+                  <img src={mastercard} alt="" className="checkout__svg" />
+                  <img src={visa} alt="" className="checkout__svg" />
+                  <img src={amex} alt="" className="checkout__svg" />
+                  <img src={discover} alt="" className="checkout__svg" />
                   <span className="fs-7 text-light">and more...</span>
                 </div>
               </div>
               <div className="checkout__block-bd">
                 <Form.Group className="mb-3">
-                  <Form.Label className="fw-bold text-dark fs-7">Card Number</Form.Label>
+                  <Form.Label for="ccnumber" className="fw-bold text-dark fs-7">
+                    Card Number
+                  </Form.Label>
                   <Form.Control
                     type="text"
+                    id="ccnumber"
                     size="lg"
                     placeholder="XXXX XXXX XXXX 1234"
                     value={stateData.cardNumber}
@@ -288,11 +275,15 @@ const Checkout = (props) => {
 
                 <div className="d-sm-flex gap-3 align-items-center">
                   <Form.Group className="mb-3 flex__1">
-                    <Form.Label className="fw-bold text-dark fs-7">Exp Month</Form.Label>
+                    <Form.Label for="ccmonth" className="fw-bold text-dark fs-7">
+                      Exp Month
+                    </Form.Label>
                     <Form.Control
                       type="text"
+                      id="ccmonth"
                       size="lg"
                       placeholder="••"
+                      autocomplete="cc-exp-month"
                       value={stateData.cardExpMonth}
                       name="cardExpMonth"
                       onChange={(e) => props.changevalue(e)}
@@ -313,6 +304,7 @@ const Checkout = (props) => {
                       type="text"
                       size="lg"
                       placeholder="••"
+                      autocomplete="cc-exp-year"
                       value={stateData.cardExpYear}
                       name="cardExpYear"
                       onChange={(e) => props.changevalue(e)}
@@ -328,11 +320,15 @@ const Checkout = (props) => {
                     )}
                   </Form.Group>
                   <Form.Group className="mb-3 flex__1">
-                    <Form.Label className="fw-bold text-dark fs-7">CVC/CCV</Form.Label>
+                    <Form.Label for="cccvv" className="fw-bold text-dark fs-7">
+                      CVC/CCV
+                    </Form.Label>
                     <Form.Control
                       type="text"
+                      id="cccvv"
                       size="lg"
                       placeholder="•••"
+                      autocomplete="cc-csc"
                       value={stateData.cardCVC}
                       name="cardCVC"
                       onChange={(e) => props.changevalue(e)}

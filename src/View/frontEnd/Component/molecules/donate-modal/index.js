@@ -258,7 +258,6 @@ const DonateModal = (props) => {
                         alt=""
                         style={{
                           position: 'absolute',
-                          width: '62px',
                           height: '45px',
                           top: '14px',
                           left: ' 80%'
@@ -284,9 +283,9 @@ const DonateModal = (props) => {
                     {stateData.month ? stateData.month : 'MM'}/
                     {stateData.year ? stateData.year : 'YY'}
                   </div>
-                  <div className="card-holder">
+                  {/* <div className="card-holder">
                     {stateData.name ? stateData.name : 'e.g. John Doe'}
-                  </div>
+                  </div> */}
                   {/* <div className="card-type">Debit card</div> */}
                 </div>
               </div>
@@ -309,12 +308,14 @@ const DonateModal = (props) => {
                   </p>
                 </div>*/}
                 <div className="checkout__input">
-                  <p>
+                  <label for="ccnumber" className="pb-2">
                     Card number<span>*</span>
-                  </p>
+                  </label>
                   <input
                     type="text"
                     name="cardNumber"
+                    autocomplete="cc-number"
+                    id="ccnumber"
                     value={stateData.cardNumber ? stateData.cardNumber : ''}
                     className={
                       stateData.error.cardNumber ? 'inputerror form-control ' : 'form-control '
@@ -333,21 +334,24 @@ const DonateModal = (props) => {
                       : ''}
                   </p>
                 </div>
-                <div className="row">
+                <div className="d-flex flex-direction-column gap-2">
                   <div className="col-lg-3">
                     <div className="checkout__input">
-                      <p>
+                      <label for="ccmonth" className="pb-2">
                         Month<span>*</span>
-                      </p>
+                      </label>
                       <input
                         type="text"
                         name="month"
+                        id="ccmonth"
+                        autocomplete="cc-exp-month"
                         value={stateData.month ? stateData.month : ''}
                         className={
                           stateData.error.month ? 'inputerror form-control ' : 'form-control '
                         }
                         placeholder="MM"
                         onChange={(e) => props.changevalue(e)}
+                        maxLength={2}
                       />
                       <p className="error">
                         {stateData.error
@@ -358,34 +362,38 @@ const DonateModal = (props) => {
                       </p>
                     </div>
                   </div>
-                  <div className="col-lg-3">
+                  <div className="col-lg-4">
                     <div className="checkout__input">
-                      <p>
+                      <label for="ccyear" className="pb-2">
                         Year<span>*</span>
-                      </p>
+                      </label>
                       <input
                         type="text"
                         name="year"
+                        id="ccyear"
+                        autocomplete="cc-exp-year"
                         value={stateData.year ? stateData.year : ''}
                         className={
                           stateData.error.year ? 'inputerror form-control ' : 'form-control '
                         }
-                        placeholder="YY"
+                        placeholder="YYYY"
                         onChange={(e) => props.changevalue(e)}
+                        maxLength={4}
                       />
                       <p className="error">
                         {stateData.error ? (stateData.error.year ? stateData.error.year : '') : ''}
                       </p>
                     </div>
                   </div>
-                  <div className="col-lg-6">
+                  <div className="col-lg-3">
                     <div className="checkout__input">
                       <p>
                         CVV<span>*</span>
                       </p>
                       <input
-                        type="password"
+                        type="text"
                         name="cvv"
+                        autocomplete="cc-csc"
                         value={stateData.cvv ? stateData.cvv : ''}
                         className={
                           stateData.error.cvv ? 'inputerror form-control ' : 'form-control '
