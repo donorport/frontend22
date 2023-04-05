@@ -59,7 +59,7 @@ export default function HeaderController() {
         forEachOrganization: "",
 
     })
-    const { platformFee, transactionFee } = pricingFees
+    //const { platformFee, transactionFee } = pricingFees
 
 
     const getUserFollowedOrgList = async () => {
@@ -68,13 +68,14 @@ export default function HeaderController() {
             if (list && list.data.success) {
                 setFollowedOrganizationList(list.data.data)
             }
-
         }
-
     }
 
-
-
+    useEffect(() => {
+        (async () => {
+            await getUserFollowedOrgList()
+        })()
+    }, [])
 
     const getWishListProductList = async () => {
         const list = await wishlistApi.list(token)
@@ -84,7 +85,6 @@ export default function HeaderController() {
                 setWishListProductList(list.data.data)
             }
         }
-
     }
 
     const addProductToWishlist = async (productId) => {
@@ -92,21 +92,20 @@ export default function HeaderController() {
         data.productId = productId
         setLoading(true)
         const add = await wishlistApi.add(token, data)
-        if (add) {
-            if (add.data.success) {
-                setLoading(true)
-                await getWishListProductList()
-                dispatch(setIsUpdateCart(!user.isUpdateCart))
-            } else {
-                setLoading(false)
 
-                ToastAlert({ msg: add.data.message, msgType: 'error' });
-
-            }
-
-        } else {
+        if (!add) {
             setLoading(false)
             ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+            return;
+        }
+
+        if (add.data.success) {
+            setLoading(true) // bug??? Doesn't match HeaderGeoController
+            await getWishListProductList()
+            dispatch(setIsUpdateCart(!user.isUpdateCart))
+        } else {
+            setLoading(false)
+            ToastAlert({ msg: add.data.message, msgType: 'error' });
         }
     }
 
@@ -236,14 +235,6 @@ export default function HeaderController() {
         })()
     }, [token])
 
-    useEffect(() => {
-        (async () => {
-            await getUserFollowedOrgList()
-        })()
-    }, [])
-
-
-
     const followToOrganization = async (organizationId, checked) => {
         if (userAuthToken) {
             let data = {}
@@ -256,11 +247,10 @@ export default function HeaderController() {
             if (follow && follow.data.success) {
                 await getUserFollowedOrgList()
 
+                  let addXp = Number(follow.data.xpToAdd)
                 if (checked) {
-                    let addXp = Number(follow.data.xpToAdd)
                     dispatch(setUserXp(user.xp + addXp))
                 } else {
-                    let addXp = Number(follow.data.xpToAdd)
                     dispatch(setUserXp(user.xp - addXp))
                 }
                 // await checkUserFollow(organizationDetails._id)
