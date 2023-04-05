@@ -7,55 +7,47 @@ import Activity from '../activity';
 import UserSettings from '../user-settings';
 
 import './style.scss';
+import { useLocation } from 'react-router-dom';
 
 const HeaderGeo = (props) => {
-  const adminAuthToken = localStorage.getItem('adminAuthToken');
-  const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const userAuthToken = localStorage.getItem('userAuthToken');
+
+  const location = useLocation();
+  console.log('HeaderGeo component render:', { location, pathname: location.pathname });
 
   return (
     <header className="d-flex frontend_pages main-header">
       <Container className="d-flex align-items-center" fluid>
         <Logo />
-        {
-          <div className="position-relative ms-auto header__right d-flex gap-1">
-            <GeoLocation />
-            {/* {
-              userAuthToken || CampaignAdminAuthToken ?
-                <GeoLocation />
-                :
-                <></>
+        <div className="position-relative ms-auto header__right d-flex gap-1">
+          {location.pathname !== '/categories' && <GeoLocation />}
+          {userAuthToken ? (
+            <>
+              <ShoppingCart
+                cartItem={props.cartItem}
+                removeCartItem={props.removeCartItem}
+                updateCartItem={props.updateCartItem}
+              />
 
-            } */}
-            {userAuthToken ? (
-              <>
-                {/* <GeoLocation /> */}
-                <ShoppingCart
-                  cartItem={props.cartItem}
-                  removeCartItem={props.removeCartItem}
-                  updateCartItem={props.updateCartItem}
-                />
-
-                <Activity
-                  notificationList={props.notificationList}
-                  setWatchNotification={props.setWatchNotification}
-                  removeNotification={props.removeNotification}
-                  followedOrganizationList={props.followedOrganizationList}
-                  notificationMarkAsRead={props.notificationMarkAsRead}
-                  followToOrganization={props.followToOrganization}
-                  removeFollowedOrganization={props.removeFollowedOrganization}
-                />
-              </>
-            ) : (
-              <></>
-            )}
-            <UserSettings
-              wishListproductList={props.wishListproductList}
-              addProductToWishlist={props.addProductToWishlist}
-              getAuthToken={props.getAuthToken}
-            />
-          </div>
-        }
+              <Activity
+                notificationList={props.notificationList}
+                setWatchNotification={props.setWatchNotification}
+                removeNotification={props.removeNotification}
+                followedOrganizationList={props.followedOrganizationList}
+                notificationMarkAsRead={props.notificationMarkAsRead}
+                followToOrganization={props.followToOrganization}
+                removeFollowedOrganization={props.removeFollowedOrganization}
+              />
+            </>
+          ) : (
+            <></>
+          )}
+          <UserSettings
+            wishListproductList={props.wishListproductList}
+            addProductToWishlist={props.addProductToWishlist}
+            getAuthToken={props.getAuthToken}
+          />
+        </div>
       </Container>
     </header>
   );
