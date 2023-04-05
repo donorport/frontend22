@@ -13,14 +13,17 @@ const HeaderGeo = (props) => {
   const userAuthToken = localStorage.getItem('userAuthToken');
 
   const location = useLocation();
-  console.log('HeaderGeo component render:', { location, pathname: location.pathname });
+  const pathWords = location.pathname.split('/');
+  const isPathnameNotCategories = pathWords[1].toLowerCase() !== 'categories';
+  //console.log('HeaderGeo component render:', { location, pathname: location.pathname, pathWords, isPathnameNotCategories });
 
   return (
     <header className="d-flex frontend_pages main-header">
       <Container className="d-flex align-items-center" fluid>
         <Logo />
         <div className="position-relative ms-auto header__right d-flex gap-1">
-          {location.pathname !== '/categories' && <GeoLocation />}
+          {isPathnameNotCategories && <GeoLocation />}
+
           {userAuthToken ? (
             <>
               <ShoppingCart
