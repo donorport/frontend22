@@ -23,7 +23,7 @@ import locationApi from '../../../../../Api/frontEnd/location';
 
 
 function ProjectDetailMain(props) {
-  console.log('iFrame, item-detail-main');
+  console.log('render fn: iFrame, item-detail-main');
   let productDetails = props.productDetails;
   
   let videoid = productDetails.galleryUrl ? productDetails.galleryUrl.split('?v=')[1] : '';
@@ -70,16 +70,28 @@ function ProjectDetailMain(props) {
   
   useEffect(() => {
     (async () => {
-      const res = await advertisementApi.allStateAds();
+      console.log('item-detail-main didMount effect: {');
+      // fetch all the ads and fetch the user's location
+      const allStateAdsResponse = await advertisementApi.allStateAds();
       const getLocationByLatLong = await locationApi.getLocationByLatLong(user.lat, user.lng);
-      console.log(getLocationByLatLong)
-      let resArrLen = getLocationByLatLong.data.results.length
-      const address = getLocationByLatLong.data.results[resArrLen-2].formatted_address
-      console.log({address})
-      const splitState = address.split(",")[0].trim()
+      console.log({getLocationByLatLong})
+
+      // get user's address, pull out state code
+      const longformAddress = getLocationByLatLong.data.results[0].formatted_address; // "Orphans Green Dog Park, 51 Power St, Toronto, ON M5A 3A6, Canada"
+      const stateCode = longformAddress.split(', ')
+          .reverse() // ["Canada", "ON M5A 3A6", "Toronto", ...]
+          [1] // second item
+          .split(' ')[0]; // first word e.g. "ON"
+      console.log('~~ ', {longformAddress, stateCode});
+
+      // pull out state name so we can use it to filter ads by state
+      const addrComponents = getLocationByLatLong.data.results[0].address_components;
+      const stateName = addrComponents.find(c => c.short_name === stateCode).long_name; // find the object for the state, and get the long_name by looking up the short_name, e.g. "Ontario"
+      console.log('~~ ', {addrComponents, stateName});
       
-      setUserAddress(splitState)
-      setAllStateAds(res.data.data);
+      console.log('} item-detail-main didMount effect');
+      setUserAddress(stateName)
+      setAllStateAds(allStateAdsResponse.data.data);
     })();
    
   }, []);
@@ -403,6 +415,7 @@ function ProjectDetailMain(props) {
                   userAddress === ad?.stateDetails?.state
               )
               .map((ad, i) => {
+                //console.log('~~ filtered ads:', {ad, i});
                 return (
                   <IconText
                     className="pt-12p pb-12p"
