@@ -308,13 +308,13 @@ const DonateModal = (props) => {
                   </p>
                 </div>*/}
                 <div className="checkout__input">
-                  <label for="ccnumber" className="pb-2">
+                  <label htmlFor="ccnumber" className="pb-2">
                     Card number<span>*</span>
                   </label>
                   <input
                     type="text"
                     name="cardNumber"
-                    autocomplete="cc-number"
+                    autoComplete="cc-number"
                     id="ccnumber"
                     value={stateData.cardNumber ? stateData.cardNumber : ''}
                     className={
@@ -337,14 +337,14 @@ const DonateModal = (props) => {
                 <div className="d-flex flex-direction-column gap-2">
                   <div className="col-lg-3">
                     <div className="checkout__input">
-                      <label for="ccmonth" className="pb-2">
+                      <label htmlFor="ccmonth" className="pb-2">
                         Month<span>*</span>
                       </label>
                       <input
                         type="text"
                         name="month"
                         id="ccmonth"
-                        autocomplete="cc-exp-month"
+                        autoComplete="cc-exp-month"
                         value={stateData.month ? stateData.month : ''}
                         className={
                           stateData.error.month ? 'inputerror form-control ' : 'form-control '
@@ -364,14 +364,14 @@ const DonateModal = (props) => {
                   </div>
                   <div className="col-lg-4">
                     <div className="checkout__input">
-                      <label for="ccyear" className="pb-2">
+                      <label htmlFor="ccyear" className="pb-2">
                         Year<span>*</span>
                       </label>
                       <input
                         type="text"
                         name="year"
                         id="ccyear"
-                        autocomplete="cc-exp-year"
+                        autoComplete="cc-exp-year"
                         value={stateData.year ? stateData.year : ''}
                         className={
                           stateData.error.year ? 'inputerror form-control ' : 'form-control '
@@ -393,7 +393,7 @@ const DonateModal = (props) => {
                       <input
                         type="text"
                         name="cvv"
-                        autocomplete="cc-csc"
+                        autoComplete="cc-csc"
                         value={stateData.cvv ? stateData.cvv : ''}
                         className={
                           stateData.error.cvv ? 'inputerror form-control ' : 'form-control '
