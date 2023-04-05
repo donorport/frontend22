@@ -27,7 +27,7 @@ const Apply = (props) => {
         <div className="password-reset position-relative ">
           <Container fluid className="position-relative pb-5 pt-5 container-fluid">
             <div className="mw-600">
-              <h1 className="text-dark fw-bolder mb-6p pt-2">New Charities</h1>
+              <h1 className="text-dark fw-bolder mb-6p pt-2">Getting Started</h1>
               <div className="fs-5 text-light mb-4">
                 Activate your account to create your organization's administration page or apply to
                 receive your activation code.
@@ -52,8 +52,12 @@ const Apply = (props) => {
                 <h4 className="fw-bolder text-dark">Step 1 - Apply</h4>
                 <div className="text-light mb-2 fs-5">
                   Before you can post on Donorport, you must first submit an application and be
-                  approved by the Donorport team. Once approved, you will receive a 4 digit
-                  authentication code which you will enter above to activate your account.
+                  approved by the Donorport team.
+                </div>
+                <h4 className="fw-bolder text-dark">Step 2 - Activate</h4>
+                <div className="text-light mb-2 fs-5">
+                  Once approved, we will send a 4 digit authentication code to the email you provided
+                  on this form. Enter it above to activate your account.
                 </div>
                 <Form className="mb-5" autocomplete="off">
                   {/*    <div className="py-1 d-flex justify-content-between fs-4 mb-3">

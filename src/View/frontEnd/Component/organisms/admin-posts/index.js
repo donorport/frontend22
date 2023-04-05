@@ -1787,9 +1787,9 @@ const AdminPosts = () => {
                     </>
                   )}*/}
 
-Here is where I inserted variable display texts
+{/* Here is where I inserted variable display texts
 {fulfilProductDetails.isFulfilled ? <div style={{fontSize: '2rem', color: 'red'}}>fulfilProductDetails.isFulfilled === true</div> : <>( product not fulfilled! )</>}
-{deletedFile ? <div style={{fontSize: '2rem', color: 'red'}}>deletedFIle === true</div> : <>( File Not Deleted )</>}
+{deletedFile ? <div style={{fontSize: '2rem', color: 'red'}}>deletedFIle === true</div> : <>( File Not Deleted )</>} */}
 
               <>
                 <label htmlFor="videoInput" className="form__label mt-3">
@@ -2123,7 +2123,7 @@ Here is where I inserted variable display texts
 
           <>
             <div className="fulfilling-check-wrap pb-4">
-              <div className="form-check">
+              <div className="form-check mt-4">
                 <input
                   type="checkbox"
                   className="form-check-input"

@@ -14,7 +14,8 @@ function SuggestedList(props) {
     <ul className="suggested__list d-flex align-items-center container-fluid p-0 mb-0">
       {props.itemTag === 'organization'
         ? organizationList?.length > 0 &&
-          organizationList.slice(0, 12).map((org, i) => {
+          // organizationList.slice(0, 12).map((org, i) => {
+            organizationList.slice(0).map((org, i) => {
             return (
               org._id !== props.organizationId && (
                 <SuggestedItem
