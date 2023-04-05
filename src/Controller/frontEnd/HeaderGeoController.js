@@ -41,7 +41,7 @@ export default function HeaderGeoController() {
   const navigate = useNavigate();
   // const user = useContext(UserContext)
   const user = useSelector((state) => state.user);
-  const {isUpdateCart} = useSelector((state) => state.user);
+  const {isUpdateCart} = useSelector((state) => state.user); // DIFFERENT FROM HeaderController
 
   const dispatch = useDispatch();
 
@@ -61,8 +61,9 @@ export default function HeaderGeoController() {
     forEachShare: '',
     forEachOrganization: ''
   });
-  const { platformFee, transactionFee } = pricingFees;
+  //const { platformFee, transactionFee } = pricingFees;
   
+  // same as HeaderController
   const getUserFollowedOrgList = async () => {
     if (userAuthToken) {
       const list = await followApi.userFollowedOrganizationList(userAuthToken);
@@ -71,6 +72,8 @@ export default function HeaderGeoController() {
       }
     }
   };
+  //
+  // same as HeaderController
   useEffect(() => {
     (async () => {
       await getUserFollowedOrgList();
@@ -87,27 +90,29 @@ export default function HeaderGeoController() {
     }
   };
 
+  // DIFFERENT FROM HeaderController
   const addProductToWishlist = async (productId) => {
     let data = {};
     data.productId = productId;
     setLoading(true);
     const add = await wishlistApi.add(token, data);
-    if (add) {
-      if (add.data.success) {
-        setLoading(false);
-        await getWishListProductList();
-        dispatch(setIsUpdateCart(!user.isUpdateCart));
-      } else {
-        setLoading(false);
 
-        ToastAlert({ msg: add.data.message, msgType: 'error' });
-      }
-    } else {
+    if (!add) {
       setLoading(false);
       ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+      return;
+    }
+
+    setLoading(false);
+    if (add.data.success) {
+      await getWishListProductList();
+      dispatch(setIsUpdateCart(!user.isUpdateCart));
+    } else {
+      ToastAlert({ msg: add.data.message, msgType: 'error' });
     }
   };
 
+  // DIFFERENT FROM HeaderController
   const getNotificationList = async () => {
     let data = {};
     data.countryId = user.countryId;
@@ -145,6 +150,8 @@ export default function HeaderGeoController() {
       }
     }
   };
+  
+  // DIFFERENT FROM HeaderController
   useEffect(() => {
     (async () => {
       
@@ -175,6 +182,7 @@ export default function HeaderGeoController() {
     })();
   }, [token, userAuthToken, update, isUpdateCart, user.countryId, loading]);
 
+  // same as HeaderController
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -226,7 +234,7 @@ export default function HeaderGeoController() {
     })();
   }, [token]);
 
-
+  // same as HeaderController
   const followToOrganization = async (organizationId, checked) => {
     if (userAuthToken) {
       let data = {};
@@ -239,11 +247,10 @@ export default function HeaderGeoController() {
       if (follow && follow.data.success) {
         await getUserFollowedOrgList();
 
+        let addXp = Number(follow.data.xpToAdd);
         if (checked) {
-          let addXp = Number(follow.data.xpToAdd);
           dispatch(setUserXp(user.xp + addXp));
         } else {
-          let addXp = Number(follow.data.xpToAdd);
           dispatch(setUserXp(user.xp - addXp));
         }
         // await checkUserFollow(organizationDetails._id)
@@ -253,6 +260,7 @@ export default function HeaderGeoController() {
     }
   };
 
+  // same as HeaderController
   const removeCartItem = async (id) => {
     setLoading(true);
     const removeCartItem = await cartApi.deleteCartItem(userAuthToken, id);
@@ -273,6 +281,7 @@ export default function HeaderGeoController() {
     }
   };
 
+  // DIFFERENT FROM HeaderController
   const updateCartItem = async (quantity, id, productId, type) => {
 
     setLoading(true);
@@ -294,6 +303,7 @@ export default function HeaderGeoController() {
     }
   };
 
+  // same as HeaderController
   const checkOrgBankAc = async (token) => {
     const check = await adminCampaignApi.chekOrganizationAccount(token);
     if (check) {
@@ -301,6 +311,7 @@ export default function HeaderGeoController() {
     }
   };
 
+  // same as HeaderController
   const getAuthToken = async (id, slug) => {
     const getToken = await userAuthApi.getAuthTokenById(id);
     await checkOrgBankAc(getToken.data.token);
@@ -309,6 +320,7 @@ export default function HeaderGeoController() {
     navigate('/campaign/' + slug + '/posts', { state: { type: 'temp' } }, { replace: true });
   };
 
+  // same as HeaderController
   const setWatchNotification = async (watched, id) => {
     let data = {};
     data.watched = watched;
@@ -322,6 +334,7 @@ export default function HeaderGeoController() {
     }
   };
 
+// same as HeaderController
   const removeNotification = async (id) => {
     let data = {};
     data.removed = true;
@@ -341,6 +354,7 @@ export default function HeaderGeoController() {
     // }
   };
 
+  // same as HeaderController
   const notificationMarkAsRead = async (isRead, allNotificationList) => {
     let data = {};
     data.isRead = isRead;
@@ -352,6 +366,7 @@ export default function HeaderGeoController() {
     }
   };
 
+  // same as HeaderController
   const removeFollowedOrganization = async (id) => {
     const removeFollow = await followApi.removeFollowedOrganization(userAuthToken, id);
     if (removeFollow && removeFollow.data.success) {
