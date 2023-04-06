@@ -957,32 +957,49 @@ const AdminPosts = () => {
               return;
             }
 
-            const deleteFulfilOrderApi = await productApi.deleteFulfilOrder(
-              token,
-              id,
-              prodcutId,
-              organizationId
-            );
+            try {
+              // attempt delete
+              const deleteFulfilOrderApi = await productApi.deleteFulfilOrder(
+                token,
+                id,
+                prodcutId,
+                organizationId
+              );
 
-            if (!deleteFulfilOrderApi) {
-              setLoading(false);
-              ToastAlert({ msg: 'Product not deleted', msgType: 'error' });
-              return;
-            }
+              if (!deleteFulfilOrderApi) {
+                throw new Error({msg: 'Product not deleted', msgType: 'error'});
+                //setLoading(false);
+                //ToastAlert({ msg: 'Product not deleted', msgType: 'error' });
+                //return;
+              }
 
-            if (deleteFulfilOrderApi.data.success === false) {
-              setLoading(false);
-              ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'error' });
-              return;
-            }
+              if (deleteFulfilOrderApi.data.success === false) {
+                throw new Error({ msg: deleteFulfilOrderApi.data.message, msgType: 'error' });
+                //setLoading(false);
+                //ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'error' });
+                //return;
+              }
 
-            if (deleteFulfilOrderApi.data.success === true) {
+              if (deleteFulfilOrderApi.data.success === true) {
+                //setLoading(false);
+                setUpdate(!update);
+                setDeletedFile(true);
+    
+                closeFulfilForm();
+                ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'success' });
+              }
+
+              // this should never run, but in case we missed something, throw an unknown error
+              throw new Error({msg: 'Unknown error', msgType: 'error'})
+
+            } catch(e) {
+              console.log({e});
+              ToastAlert(e);
+
+            } finally {
+              // remove loading state
               setLoading(false);
-              setUpdate(!update);
-              setDeletedFile(true);
-  
-              closeFulfilForm();
-              ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'success' });
+
             }
           }
         }
@@ -1251,8 +1268,6 @@ const AdminPosts = () => {
     setFulfilMoreTempImages([]);
     setFulfilMoreImages([]);
 
-    //setDeletedFile(false); // hope this fixes one UI bug: after deleting then re-uploading, the list of receipts should show
-
     setFulfilState({
       ...fulfilState,
       fulfilId: '',
@@ -1305,6 +1320,7 @@ const AdminPosts = () => {
     let checkMore = fulfilId
       ? fulfilmoreImages?.length + fulfilMoreImg?.length
       : fulfilMoreImg?.length;
+
     if (checkMore > MAX_IMAGE_LENGTH) {
       formaerrror['fulfilMoreImg'] = 'Maximum images allowed: ' + MAX_IMAGE_LENGTH;
     }
@@ -1349,6 +1365,7 @@ const AdminPosts = () => {
           formData.video = videoUrl;
         }
 
+        // do the update/creation
         let fulfil;
         const isThisAnUpdate = !!fulfilId;
         if (isThisAnUpdate) {
@@ -1362,7 +1379,7 @@ const AdminPosts = () => {
           return;
         }
 
-        setDeletedFile(false); // when updating, make sure this isn't blocking the receipt list from showing
+        setDeletedFile(false); // used to reset the ui?
         clearReceiptFileState(); // clears fulfilState receipt and receiptImgName
 
         closeFulfilForm();
@@ -1370,7 +1387,6 @@ const AdminPosts = () => {
         ToastAlert({ msg: fulfil.data.message, msgType: 'success' });
       })
       .catch((errors) => {
-        setLoading(false);
         if (errors.length) {
           errors.forEach((element) => {
             formaerrror[element.field] = element.message;
@@ -1383,6 +1399,8 @@ const AdminPosts = () => {
           ...fulfilState,
           fulfilError: formaerrror
         });
+      }).finally(() => {
+        setLoading(false);
       });
   };
 
@@ -1787,10 +1805,6 @@ const AdminPosts = () => {
                     </>
                   )}*/}
 
-Here is where I inserted variable display texts
-{fulfilProductDetails.isFulfilled ? <div style={{fontSize: '2rem', color: 'red'}}>fulfilProductDetails.isFulfilled === true</div> : <>( product not fulfilled! )</>}
-{deletedFile ? <div style={{fontSize: '2rem', color: 'red'}}>deletedFIle === true</div> : <>( File Not Deleted )</>}
-
               <>
                 <label htmlFor="videoInput" className="form__label mt-3">
                   Sales Receipt &nbsp;
@@ -1862,9 +1876,9 @@ Here is where I inserted variable display texts
                         </span>
                       </div>
                       <div className="ps-2">
-                        <text className="post__title fw-semibold">
+                        <span className="post__title fw-semibold">
                           {fulfilProductDetails?.fulfilDetails?.receipt}
-                        </text>
+                        </span>
                         <div className="date__name fw-semibold">
                           Added &nbsp;
                           {moment(fulfilProductDetails?.fulfilDetails.created_at).fromNow()}
@@ -2122,7 +2136,7 @@ Here is where I inserted variable display texts
           </Card>
 
           <>
-            <div className="fulfilling-check-wrap pb-4">
+            <div className="fulfilling-check-wrap py-4">
               <div className="form-check">
                 <input
                   type="checkbox"
