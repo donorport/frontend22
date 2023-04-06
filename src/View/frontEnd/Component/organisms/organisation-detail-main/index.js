@@ -191,14 +191,14 @@ function OrganisationDetailMain(props) {
         <h4 className="page__blurb mt-1 fw-bolder">{organizationDetails?.headline}</h4>
         <div className="page__paragraph">{organizationDetails?.description}</div>
         <div className="mt-2">
-          <IconButton
+          <span
             variant="link"
             className="text-light text-decoration-none fw-normal px-0 fs-6"
-            icon={<FontAwesomeIcon icon={solid('building')} />}
           >
             {/* {organizationDetails?.type} RN {organizationDetails?.ein} */}
+            <FontAwesomeIcon className="me-1" icon={solid('building')} />
             RN {organizationDetails?.ein}
-          </IconButton>
+          </span>
         </div>
       </div>
 

@@ -435,6 +435,7 @@ function ProjectDetailMain(props) {
                         src={helper.sponsorLogoResizePath + ad?.advertisementsDetails?.logo}
                         alt="sponsor"
                         className="p-1"
+                        style={{maxHeight: '75px'}}
                       ></img>
                     </a>
                   </IconText>
