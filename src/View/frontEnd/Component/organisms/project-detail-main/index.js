@@ -156,11 +156,11 @@ function ProjectDetailMain(props) {
         </div>
 
         <div className="project__detail-meta d-flex align-items-center mb-2">
-          <div className="d-flex align-items-center me-2">
+          <div className="d-flex align-items-center me-2 text-nowrap">
             <FontAwesomeIcon icon={regular('clock')} className="me-1" />
             {/* December 27, 2018 */} {moment(projectDetails.created_at).format('MMMM DD , YYYY')}
           </div>
-          <div className="d-flex align-items-center me-2">
+          <div className="d-flex align-items-center me-2 text-nowrap">
             <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
             {/* {`${addyList[0]} ${addyList[1]} ${countryToAlpha2(addyList[2])}`} */}
             {address}

@@ -57,6 +57,7 @@
 	font-weight: 900;
 	font-style: normal;
 }
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@400;500;600;700;800;900&&display=swap');
 
 .navbar-brand,
 .display-1,
@@ -66,12 +67,11 @@
 .h1,.h2,.h3,.h4,.h5,.h6,
 h1,h2,h3,h4,h5,h6{
 	font-family: "Jcfonts linotte",Arial,sans-serif;
-	/*font-family: "Poppins", "Trebuchet MS", "PT Sans", "Helvetica Neue", "HelveticaNeue-Light", Helvetica, Arial, sans-serif;*/
-	letter-spacing: -0.04em;
-	font-weight: bold;
+	/* font-family: 'Mitr', sans-serif; */
+	letter-spacing: -0.03em;
 }
 
 body{
 	font-family: "Jcfonts linotte",Arial,sans-serif;
-	/*font-family: "Segoe UI", "Trebuchet MS", "PT Sans", "Helvetica Neue", "HelveticaNeue-Light", Helvetica, Arial, sans-serif;*/
+	/* font-family: "Segoe UI", "Trebuchet MS", "PT Sans", "Helvetica Neue", "HelveticaNeue-Light", Helvetica, Arial, sans-serif; */
 }

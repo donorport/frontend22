@@ -23,12 +23,12 @@ const AdminDashboard = () => {
     <>
       <header className="d-none d-sm-flex py-2 mb-3 w-100 d-flex align-items-center border-bottom">
         <h1 className="page__title mb-0 fs-3 fw-bolder me-2">Dashboard</h1>
-        <div className="d-flex align-items-center me-2">
+        <div className="d-flex align-items-center me-2 text-nowrap">
           <span className="tag__circle rounded-circle bg-warning me-1"></span>
           <span className="fw-bold fs-5">1</span>
         </div>
 
-        <div className="d-flex align-items-center me-2">
+        <div className="d-flex align-items-center me-2 text-nowrap">
           <FontAwesomeIcon icon={solid('folders')} className="fs-4 me-2" />
           <span className="fw-bold fs-5">2</span>
         </div>

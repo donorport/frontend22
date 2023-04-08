@@ -79,13 +79,13 @@ function Footer() {
               />
               <IconButton
                 size="lg"
-                href="https://www.discord.com"
+                href="https://discord.gg/CCzKush4"
                 icon={<FontAwesomeIcon icon={brands('discord')} />}
                 target="_blank"
               />
               <IconButton
                 size="lg"
-                href="https://www.gmail.com"
+                href="mailto:info@donorport.com&subject=General Information"
                 icon={<FontAwesomeIcon icon={solid('envelope')} />}
                 target="_blank"
               />

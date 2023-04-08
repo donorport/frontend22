@@ -15,18 +15,23 @@ function SuggestedList(props) {
       {props.itemTag === 'organization'
         ? organizationList?.length > 0 &&
           // organizationList.slice(0, 12).map((org, i) => {
-            organizationList.slice(0).map((org, i) => {
-            return (
-              org._id !== props.organizationId && (
-                <SuggestedItem
-                  key={org._id}
-                  imgUrl={org.logo ? helper.CampaignAdminLogoPath + org.logo : funded}
-                  organization={org}
-                  itemTag={props.itemTag}
-                />
-              )
-            );
-          })
+          organizationList
+            .sort((a, b) =>
+              a.organizationList?.updated_at.localeCompare(b.organizationList?.updated_at)
+            )
+            .map((org, i) => {
+              return (
+                org._id !== props.organizationId &&
+                org.logo !== '' && (
+                  <SuggestedItem
+                    key={org._id}
+                    imgUrl={org.logo ? helper.CampaignAdminLogoPath + org.logo : funded}
+                    organization={org}
+                    itemTag={props.itemTag}
+                  />
+                )
+              );
+            })
         : props.productList?.length > 0 &&
           props.productList.slice(0).map((pro, i) => {
             let sold = pro.unlimited ? pro.isFulfiled : pro.quantity <= pro.soldout;

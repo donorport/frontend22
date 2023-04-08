@@ -5,7 +5,7 @@ export const ButtonContent = styled.div`
     props.size === "lg" &&
     `
     height: 24px;
-    width: 24px;
+    // width: 24px;
     `}
   ${(props) =>
     props.size === "md" &&

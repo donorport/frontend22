@@ -26,9 +26,9 @@ function SettingsTabsAdmin({ activeKey, data, _onClick, ...otherProps }) {
         <Link to={'/campaign/' + data?.slug + '/settings/profile'}>
           <Nav.Item>
             <Nav.Link
-              eventKey="company"
+              eventKey="profile"
               className={
-                currentOption === 'company'
+                currentOption === 'profile'
                   ? 'stab__btn d-flex align-items-center nav-link active'
                   : 'stab__btn d-flex align-items-center nav-link '
               }

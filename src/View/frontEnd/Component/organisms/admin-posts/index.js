@@ -1700,7 +1700,7 @@ const AdminPosts = () => {
 
                 <div className="order__widget">
                   <Card.Header className="post__accordion-header pb-3 mb-3">
-                    <span className="fs-3 fw-bolder text-dark">Order Summary</span>
+                    <h2 className="fs-3 fw-bolder text-dark">Order Summary</h2>
                   </Card.Header>
                   <div className="border-bottom">
                     <div className="d-flex align-items-center fw-bolder mb-20p">
@@ -1853,7 +1853,7 @@ const AdminPosts = () => {
                 {!( !fulfilProductDetails?.isFulfiled || deletedFile  ) && (
                   <>
                     <Card.Header className="post__accordion-header pb-3 mt-5">
-                      <span className="fs-3 fw-bolder text-dark">Sales Receipt</span>
+                      <h2 className="fs-3 fw-bolder text-dark">Sales Receipt</h2>
                     </Card.Header>
                     <div className="my-3 pb-5  d-flex align-item-center">
                       <div className="nn d-flex position-relative justify-content-center align-items-center me-2">
@@ -1960,7 +1960,7 @@ const AdminPosts = () => {
               </Col>
               <Col lg="6">
                 <Card.Header className="post__accordion-header pb-3">
-                  <span className="fs-3 fw-bolder text-dark">Media</span>
+                  <h2 className="fs-3 fw-bolder text-dark">Media</h2>
                 </Card.Header>
                 <form className="video-detail-form mt-3">
                   <div className="form-group mb-3">

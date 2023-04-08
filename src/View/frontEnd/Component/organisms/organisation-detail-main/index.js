@@ -73,24 +73,25 @@ function OrganisationDetailMain(props) {
             {moment(organizationDetails?.created_at).format('MMMM DD , Y')}
           </div> */}
 
-          <div className="d-flex align-items-center me-2">
+          <div className="d-flex align-items-center me-2 text-nowrap">
             <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
             {address}
           </div>
 
-          <div className="d-flex align-items-center me-2">
+          <div className="d-flex align-items-center me-2 text-nowrap">
             <FontAwesomeIcon icon={regular('link')} className="me-1" />
 
             <a
               href={organizationDetails?.url}
               className="org__url text-light overflow-hidden text-truncate"
+              style={{width: '205px'}}
               rel="noreferrer"
               target="_blank"
             >
               {organizationDetails?.url}
             </a>
           </div>
-          <div className="text-light d-flex align-items-center me-2">
+          <div className="text-light d-flex align-items-center me-2 text-nowrap">
             <IconToggle
               icon={<FontAwesomeIcon icon={regular('bell')} />}
               checkedIcon={<FontAwesomeIcon icon={solid('bell')} />}

@@ -42,7 +42,7 @@ const OrganisationDetail = (props) => {
             organizationId={organizationDetails?._id}
             itemTag="organization"
           />
-          <div className="d-flex align-items-center me-2">
+          <div className="d-flex align-items-center me-2 text-nowrap">
             {!CampaignAdminAuthToken && (
               <Button
                 size="lg"

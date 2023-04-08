@@ -311,11 +311,11 @@ const UserItems = () => {
                       {price}
                     </div>
                     <div className="project__detail-meta d-flex align-items-center">
-                      <div className="d-flex align-items-center me-2">
+                      <div className="d-flex align-items-center me-2 text-nowrap">
                         <FontAwesomeIcon icon={regular('clock')} className="me-1" />
                         {moment(item.itemDetails?.created_at).format('MMMM DD, YYYY')}
                       </div>
-                      <div className="d-flex align-items-center me-2">
+                      <div className="d-flex align-items-center me-2 text-nowrap">
                         <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
                         {/* Toronto, ON */}
 
@@ -389,7 +389,7 @@ const UserItems = () => {
                       (item.fulfilDetails[0].video || item.itemDetails?.fulfil.length > 0) && (
                         <div className="note note-info align-items-center mt-5">
                           <Card.Header className="post__accordion-header pb-2 pt-2">
-                            <span className="fs-3 fw-bolder text-dark">Followup</span>
+                            <h2 className="fs-3 fw-bolder text-dark">Followup</h2>
                             <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
                           </Card.Header>
 
@@ -438,7 +438,7 @@ const UserItems = () => {
                     )}
                   </div>
                 </Col>
-                <Col md="6" className="mt-5 mt-sm-0">
+                <Col md="6" className="my-5 mt-sm-0">
                   <div className="d-flex align-items-center mb-3">
                     <div className="flex__1 fs-5">
                       <div className="fw-bolder mb-6p">Order Number</div>
@@ -633,6 +633,7 @@ const UserItems = () => {
                             bigImgSrc={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
                           /> */}
                           <img
+                          className="mw-100"
                             src={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
                             alt="receipt"
                           />

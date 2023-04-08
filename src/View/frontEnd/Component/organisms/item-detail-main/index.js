@@ -149,17 +149,17 @@ function ProjectDetailMain(props) {
         </h1>
         <h5 className="project__detail-sublabel mb-0 fw-bolder">Product</h5>
         <div className="project__detail-subtitle mb-12p fw-bold">{productDetails?.brand} ™</div>
-        <div className="project__detail-price fs-1 text-price">
+        <h2 className="project__detail-price fs-1 text-price">
           {currencySymbol}
           {priceFormat(price)}
-        </div>
+        </h2>
         <div className="project__detail-meta d-flex align-items-center">
-          <div className="d-flex align-items-center me-2">
+          <div className="d-flex align-items-center me-2 text-nowrap">
             <FontAwesomeIcon icon={regular('clock')} className="me-1" />
             {moment(productDetails?.created_at).format('MMMM DD, YYYY')}
           </div>
           {productDetails?.address && (
-            <div className="d-flex align-items-center me-2">
+            <div className="d-flex align-items-center me-2 text-nowrap">
               <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
               {address}
             </div>
@@ -470,7 +470,7 @@ function ProjectDetailMain(props) {
             <>
               <div className="note note-info align-items-center mt-5">
                 <Card.Header className="post__accordion-header pb-2 pt-2">
-                  <span className="fs-3 fw-bolder text-dark">Followup</span>
+                  <h2 className="fs-3 fw-bolder text-dark">Followup</h2>
                   <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
                 </Card.Header>
 
