@@ -248,7 +248,7 @@ const DonationConfirmPage = () => {
                     </div>
                     <div className="total__sub d-flex justify-content-between mt-3">
                       <p className="total__title fw-bolder">XP:</p>
-                      <div className="order__xp text-info fw-bold">{location?.state?.xpToAdd} xp</div>
+                      <div className="order__xp text-info fw-bold">{Number(subtotal * 10).toFixed(0)} xp</div>
                     </div>
 
                     {/* <div className="total__sub d-flex justify-content-between">
