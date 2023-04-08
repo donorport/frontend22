@@ -539,9 +539,9 @@ const UserItems = () => {
                           </span>
                         </div>
                         <div className="ms-1">
-                          <text className="post__title fw-bold lh-1">
+                          <span className="post__title fw-bold lh-1">
                             {item.fulfilDetails[0].receipt}
-                          </text>
+                          </span>
                           <div className="date__name fw-semibold fs-7">
                             Updated &nbsp;
                             {moment(item.fulfilDetails[0].updated_at).fromNow()}
