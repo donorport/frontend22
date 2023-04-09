@@ -299,7 +299,7 @@ const AddPost = (props) => {
           <Card>
             <Card.Header className="post__accordion-header">
               <AccordionToggle>
-                <span className="fs-3 fw-bolder text-dark">Post Location</span>
+                <h2 className="fs-3 fw-bolder text-dark">Post Location</h2>
               </AccordionToggle>
             </Card.Header>
             <Accordion.Collapse className="py-5">
@@ -377,7 +377,7 @@ const AddPost = (props) => {
           <Card>
             <Card.Header className="post__accordion-header">
               <AccordionToggle>
-                <span className="fs-3 fw-bolder text-dark">Product Details</span>
+                <h2 className="fs-3 fw-bolder text-dark">Product Details</h2>
               </AccordionToggle>
             </Card.Header>
             <Accordion.Collapse className="py-5">
@@ -1055,7 +1055,7 @@ const AddPost = (props) => {
           <Card>
             <Card.Header className="post__accordion-header">
               <AccordionToggle>
-                <span className="fs-3 fw-bolder text-dark">Need Headline</span>
+                <h2 className="fs-3 fw-bolder text-dark">Need Headline</h2>
               </AccordionToggle>
             </Card.Header>
             <Accordion.Collapse className="py-5">

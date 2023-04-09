@@ -104,11 +104,11 @@ function AdminDetail() {
                         className="toggle__btn d-flex align-items-center text-dark"
                       >
                         <span className="tab__icon">
-                          {selectedTabKey === 'dashboard' ? <DashboardIcon active={true} /> : ''}
+                          {/* {selectedTabKey === 'dashboard' ? <DashboardIcon active={true} /> : ''} */}
                           {selectedTabKey === 'posts' ? <PostsIcon active={true} /> : ''}
-                          {selectedTabKey === 'xp' ? <ActivityIcon active={true} /> : ''}
+                          {selectedTabKey === 'activity' ? <ActivityIcon active={true} /> : ''}
                           {selectedTabKey === 'tax' ? <TaxIcon active={true} /> : ''}
-                          {selectedTabKey === 'history' ? <ProjectIcon active={true} /> : ''}
+                          {selectedTabKey === 'project' ? <ProjectIcon active={true} /> : ''}
                           {selectedTabKey === 'settings' ? <SettingsIcon active={true} /> : ''}
                         </span>
                         <span className="tab__text text-capitalize">{selectedTabKey}</span>

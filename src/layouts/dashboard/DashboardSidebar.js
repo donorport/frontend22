@@ -60,7 +60,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
       <Box sx={{ px: 2.5, py: 3 }}>
         <Box component={RouterLink} to="/" sx={{ display: 'inline-flex' }}>
           <Logo />
-          <div className="logo-name ms-1 text-dark fs-2 fs-sm-0">Donorport</div>
+          <h2 className="logo-name ms-1 text-dark fs-2 fs-sm-0">Donorport</h2>
         </Box>
       </Box>
 

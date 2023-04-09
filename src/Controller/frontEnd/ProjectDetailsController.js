@@ -222,6 +222,7 @@ export default function ProjectDetailsController() {
           data.projectName = projectDetails?.name;
           data.serviceCharge = platformCost;
           data.organizationCountryId = projectDetails?.campaignDetails?.country_id;
+          data.xpToAdd = selectedValue * 10
 
           const donateToProject = await projectApi.donate(userAuthToken, data);
           if (donateToProject) {
