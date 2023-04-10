@@ -404,25 +404,28 @@ const AdminPosts = () => {
   const changeMainImg = async (e) => {
     const file = e.target.files[0] ? e.target.files[0] : '';
 
-    if (!(await hasAlpha(file))) {
+    const isFileHaveAlpha = await hasAlpha(file);
+    if (!isFileHaveAlpha) {
       ToastAlert({
         msg: 'Please upload an image with transparent background',
         msgType: 'error'
       });
+      setstate({
+        ...state,
+        image: ''
+      });
       setTempImg('');
-
-    } else {
-      let extension = file.name.substr(file.name.lastIndexOf('.') + 1);
-
-      if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
-        setTempImg(URL.createObjectURL(file));
-      }
+      return;
     }
 
-    setstate({
-      ...state,
-      image: ''
-    });
+    let extension = file.name.substr(file.name.lastIndexOf('.') + 1);
+
+    if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
+      setTempImg(URL.createObjectURL(file));
+      setstate({...state, image: file});
+    } else {
+      setstate({...state, image: ''});
+    }
   }
 
   const clearReceiptFileState = () => {
