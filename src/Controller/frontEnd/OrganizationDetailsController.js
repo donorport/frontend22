@@ -228,6 +228,7 @@ export default function OrganizationDetailsController() {
           data.organizationName = organizationDetails.name;
           data.organizationCountryId = organizationDetails.country_id;
           data.serviceCharge = platformCost;
+          data.xpToAdd = selectedValue * 10
 
           const donateToOrganization = await organizationApi.donate(userAuthToken, data);
           if (donateToOrganization) {
