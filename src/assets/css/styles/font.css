@@ -1,77 +1,89 @@
 /*custom*/
-@font-face{
-	font-family:'Poppins';
-	src:url('../fonts/poppins/400.eot');
-	src:url('../fonts/poppins/400.eot?#iefix') format('embedded-opentype'),
-	url('../fonts/poppins/400.woff2') format('woff2'),
-	url('../fonts/poppins/400.woff') format('woff'),
-	url('../fonts/poppins/400.ttf') format('truetype'),
-	url('../fonts/poppins/400.svg#embed-poppins') format('svg');
+@font-face {
+	font-family: 'Poppins';
+	src: url('../fonts/poppins/400.eot');
+	src: url('../fonts/poppins/400.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/poppins/400.woff2') format('woff2'),
+		url('../fonts/poppins/400.woff') format('woff'),
+		url('../fonts/poppins/400.ttf') format('truetype'),
+		url('../fonts/poppins/400.svg#embed-poppins') format('svg');
 	font-weight: 400;
 	font-style: normal;
 }
 
-@font-face{
-	font-family:'Poppins';
-	src:url('../fonts/poppins/700.eot');
-	src:url('../fonts/poppins/700.eot?#iefix') format('embedded-opentype'),
-	url('../fonts/poppins/700.woff2') format('woff2'),
-	url('../fonts/poppins/700.woff') format('woff'),
-	url('../fonts/poppins/700.ttf') format('truetype'),
-	url('../fonts/poppins/700.svg#embed-poppins') format('svg');
+@font-face {
+	font-family: 'Poppins';
+	src: url('../fonts/poppins/700.eot');
+	src: url('../fonts/poppins/700.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/poppins/700.woff2') format('woff2'),
+		url('../fonts/poppins/700.woff') format('woff'),
+		url('../fonts/poppins/700.ttf') format('truetype'),
+		url('../fonts/poppins/700.svg#embed-poppins') format('svg');
 	font-weight: 700;
 	font-style: normal;
 }
 
-@font-face{
-	font-family:'Linotte';
-	src:url('../fonts/linotte/300.otf') format('otf');
+@font-face {
+	font-family: 'Linotte';
+	src: url('../fonts/linotte/300.otf') format('otf');
 	font-weight: 300;
 	font-style: normal;
 }
 
-@font-face{
-	font-family:'Linotte';
-	src:url('../fonts/linotte/400.otf') format('otf');
+@font-face {
+	font-family: 'Linotte';
+	src: url('../fonts/linotte/400.otf') format('otf');
 	font-weight: 400;
 	font-style: normal;
 }
 
-@font-face{
-	font-family:'Linotte';
-	src:url('../fonts/linotte/600.otf') format('otf');
+@font-face {
+	font-family: 'Linotte';
+	src: url('../fonts/linotte/600.otf') format('otf');
 	font-weight: 600;
 	font-style: normal;
 }
 
-@font-face{
-	font-family:'Linotte';
-	src:url('../fonts/linotte/700.otf') format('otf');
+@font-face {
+	font-family: 'Linotte';
+	src: url('../fonts/linotte/700.otf') format('otf');
 	font-weight: 700;
 	font-style: normal;
 }
 
-@font-face{
-	font-family:'Linotte';
-	src:url('../fonts/linotte/900.otf') format('otf');
+@font-face {
+	font-family: 'Linotte';
+	src: url('../fonts/linotte/900.otf') format('otf');
 	font-weight: 900;
 	font-style: normal;
 }
-@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@400;500;600;700;800;900&&display=swap');
+
+/* @import url("https://use.typekit.net/qwg2kll.css"); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&&display=swap');
 
 .navbar-brand,
 .display-1,
 .display-2,
 .display-3,
 .display-4,
-.h1,.h2,.h3,.h4,.h5,.h6,
-h1,h2,h3,h4,h5,h6{
-	font-family: "Jcfonts linotte",Arial,sans-serif;
-	/* font-family: 'Mitr', sans-serif; */
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Linotte", Arial, sans-serif;
+	/* font-family: 'Gotham', sans-serif; */
 	letter-spacing: -0.03em;
 }
 
-body{
-	font-family: "Jcfonts linotte",Arial,sans-serif;
+body {
+	font-family: "Linotte", Arial, sans-serif;
 	/* font-family: "Segoe UI", "Trebuchet MS", "PT Sans", "Helvetica Neue", "HelveticaNeue-Light", Helvetica, Arial, sans-serif; */
 }

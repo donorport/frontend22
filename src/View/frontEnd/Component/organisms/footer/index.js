@@ -79,7 +79,7 @@ function Footer() {
               />
               <IconButton
                 size="lg"
-                href="https://discord.gg/CCzKush4"
+                href="https://discord.gg/rcGR4w6Wpu"
                 icon={<FontAwesomeIcon icon={brands('discord')} />}
                 target="_blank"
               />

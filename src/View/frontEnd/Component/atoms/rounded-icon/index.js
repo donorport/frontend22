@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  bgColor: "#585a83",
+  bgColor: "#56577b",
   color: "#fff",
 };
 

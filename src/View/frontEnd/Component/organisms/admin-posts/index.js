@@ -1567,11 +1567,11 @@ const AdminPosts = () => {
                 : 0}
             </span>
 
-            <div className="d-flex align-items-center ms-sm-auto justify-content-end">
+            <div className="d-flex gap-2 align-items-center ms-sm-auto justify-content-end">
               <Button
                 variant="info"
                 size="lg"
-                className="me-2 fw-bold fs-6"
+                className="fw-bold fs-6"
                 onClick={() => createNewPost()}
               >
                 Create New

@@ -16,9 +16,7 @@ function SuggestedList(props) {
         ? organizationList?.length > 0 &&
           // organizationList.slice(0, 12).map((org, i) => {
           organizationList
-            .sort((a, b) =>
-              a.organizationList?.updated_at.localeCompare(b.organizationList?.updated_at)
-            )
+            .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
             .map((org, i) => {
               return (
                 org._id !== props.organizationId &&
