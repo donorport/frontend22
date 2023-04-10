@@ -1243,7 +1243,7 @@ export default function HomeController() {
       {/*<FrontLoader loading={loading} /> */}
       <Page
         title="Donorport | Home"
-        description="Donorport is a platform that connects our users with non-profits and charities and does not have non-profit or charity status. Donations made on Donorport ..."
+        description="The world's first and largest crowd-funding platform for non-profits & charities. Donate directly to the needs of the organization and help them fund all of their material needs"
       >
         <Index
           productList={productList}
