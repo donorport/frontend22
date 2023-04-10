@@ -989,10 +989,6 @@ const AdminPosts = () => {
                 closeFulfilForm();
                 ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'success' });
               }
-
-              // this should never run, but in case we missed something, throw an unknown error
-              throw new Error({msg: 'Unknown error', msgType: 'error'})
-
             } catch(e) {
               console.log({e});
               ToastAlert(e);
@@ -1007,6 +1003,7 @@ const AdminPosts = () => {
       ]
     });
   };
+
 
   const editProduct = async (productData) => {
     setGallaryTempImages([]);
@@ -1490,96 +1487,20 @@ const AdminPosts = () => {
       {/* {console.log('state', displayPrice)} */}
       {/*<FrontLoader loading={loading} />*/}
 
-      <div
-        className="modal common-modal"
-        id="removeModalTwo"
-        tabIndex="-1"
-        aria-labelledby="removeModalTwoLabel"
-        aria-hidden="true"
-        style={{
-          display: modelShow ? 'block' : 'none',
-          background: modelShow ? 'hsl(0deg 0% 100% / 75%)' : ''
-        }}
-      >
-        <div className="modal-dialog  modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-body text-center">
-              <div className="remove-img-wrap">
-                <img
-                  src={pencil}
-                  alt="remove link"
-                  style={{ height: '120px', marginBottom: '10px', maxWidth: '100%' }}
-                />
-              </div>
-              <h5
-                className="modal-title mb-3"
-                id="removeModalTwoLabel"
-                style={{ fontWeight: '700', fontSize: '24px' }}
-              >
-                Save Draft?
-              </h5>
-              <p>You can view your drafts on the Admin page under Studio</p>
-            </div>
-            <div className="modal-footer" style={{ background: '#f8fafd' }}>
-              <button
-                type="button"
-                className="btn btn-flat btn-link"
-                style={{ color: '#3085d6' }}
-                data-bs-dismiss="modal"
-                onClick={() => setModelShow(false)}
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                className="btn btn-flat btn-info"
-                data-bs-dismiss="modal"
-                onClick={() => submitProductForm(-1)}
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ModalSaveAsDraft 
+        modelShow={modelShow}
+        setModelShow={setModelShow}
+        submitProductForm={submitProductForm}
+      />
 
       {!viewPost ? (
         <div>
-          <header className="py-sm-2 w-100 d-sm-flex align-items-center">
-            <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Posts</h1>
-            <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
-
-            <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
-              <FontAwesomeIcon
-                icon={solid('money-bills-simple')}
-                className="text-dark mr-12p fs-4"
-              />
-              <span>{user.currencySymbol}</span>
-              {productList && productList.length > 0
-                ? productList
-                    .reduce(
-                      (previousTotal, current) =>
-                        previousTotal + Number(current.displayPrice * current.soldout),
-                      0
-                    ).toLocaleString('en-US', {
-                      maximumFractionDigits: 2,
-                      minimumFractionDigits: 2
-                    })
-                : 0}
-            </span>
-
-            <div className="d-flex align-items-center ms-sm-auto justify-content-end">
-              <Button
-                variant="info"
-                size="lg"
-                className="me-2 fw-bold fs-6"
-                onClick={() => createNewPost()}
-              >
-                Create New
-              </Button>
-              {/* <LadderMenuItems /> */}
-            </div>
-          </header>
+          <PostsTableHeader 
+            totalRecord={totalRecord}
+            user={user}
+            productList={productList}
+            createNewPost={createNewPost}
+          />
           {/* <div className="note mw-100 mb-3 fs-6">
             Once your post is fully funded, click the Fulfill Order button and upload a copy of the
             sales receipt to complete the order.
@@ -1706,6 +1627,112 @@ const AdminPosts = () => {
     </>
   );
 };
+
+const ModalSaveAsDraft = ({
+  modelShow,
+  setModelShow,
+  submitProductForm,
+}) => {
+  return (
+    <div
+      className="modal common-modal"
+      id="removeModalTwo"
+      tabIndex="-1"
+      aria-labelledby="removeModalTwoLabel"
+      aria-hidden="true"
+      style={{
+        display: modelShow ? 'block' : 'none',
+        background: modelShow ? 'hsl(0deg 0% 100% / 75%)' : ''
+      }}
+    >
+      <div className="modal-dialog  modal-dialog-centered">
+        <div className="modal-content">
+          <div className="modal-body text-center">
+            <div className="remove-img-wrap">
+              <img
+                src={pencil}
+                alt="remove link"
+                style={{ height: '120px', marginBottom: '10px', maxWidth: '100%' }}
+              />
+            </div>
+            <h5
+              className="modal-title mb-3"
+              id="removeModalTwoLabel"
+              style={{ fontWeight: '700', fontSize: '24px' }}
+            >
+              Save Draft?
+            </h5>
+            <p>You can view your drafts on the Admin page under Studio</p>
+          </div>
+          <div className="modal-footer" style={{ background: '#f8fafd' }}>
+            <button
+              type="button"
+              className="btn btn-flat btn-link"
+              style={{ color: '#3085d6' }}
+              data-bs-dismiss="modal"
+              onClick={() => setModelShow(false)}
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              className="btn btn-flat btn-info"
+              data-bs-dismiss="modal"
+              onClick={() => submitProductForm(-1)}
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const PostsTableHeader = ({
+  totalRecord,
+  user,
+  productList,
+  createNewPost,
+}) => {
+  return (
+    <header className="py-sm-2 w-100 d-sm-flex align-items-center">
+      <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Posts</h1>
+      <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
+
+      <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
+        <FontAwesomeIcon
+          icon={solid('money-bills-simple')}
+          className="text-dark mr-12p fs-4"
+        />
+        <span>{user.currencySymbol}</span>
+        {productList && productList.length > 0
+          ? productList
+              .reduce(
+                (previousTotal, current) =>
+                  previousTotal + Number(current.displayPrice * current.soldout),
+                0
+              ).toLocaleString('en-US', {
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2
+              })
+          : 0}
+      </span>
+
+      <div className="d-flex align-items-center ms-sm-auto justify-content-end">
+        <Button
+          variant="info"
+          size="lg"
+          className="me-2 fw-bold fs-6"
+          onClick={() => createNewPost()}
+        >
+          Create New
+        </Button>
+        {/* <LadderMenuItems /> */}
+      </div>
+    </header>
+  )
+}
 
 const PostDetailsNavigation = ({
   closeFulfilForm,
@@ -2142,6 +2169,9 @@ const PostDetailsReceiptArea = ({
                     <FontAwesomeIcon icon={regular('download')} className="ms-1" />
                   </Dropdown.Item>
                   <Dropdown.Divider />
+                  {/*
+                    Why does this call `deleteFulfilorder` and not something like `deleteFile`?
+                  */}
                   <Dropdown.Item
                     className="d-flex align-items-center p-2"
                     onClick={() =>
@@ -2280,5 +2310,6 @@ const PostDetailsTosAndButtons = ({
     </>
   );
 }
+
 
 export default AdminPosts;
