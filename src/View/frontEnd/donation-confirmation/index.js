@@ -138,14 +138,14 @@ const DonationConfirmPage = () => {
                         page="donation"
                         text={`I just Donated $${subtotal} to ${doantionDetails?.CampaignAdminDetails?.name} for their project ${doantionDetails?.projectDetails?.name} 🎉🚀👏`}
                         pageTitle="Donation"
-                        currUrl={`https://www.donorport.com/project/${doantionDetails?.projectDetails?.slug}`}
+                        currUrl={`https://api.donorport.com/project/${doantionDetails?.projectDetails?.slug}`}
                       />
                     ) : (
                       <ShareWidget
                         page="donation"
                         text={`I just Donated $${subtotal} to ${doantionDetails?.CampaignAdminDetails?.name} 🎉👏`}
                         pageTitle="Donation"
-                        currUrl={`https://www.donorport.com/organization/${doantionDetails?.CampaignAdminDetails?.slug}`}
+                        currUrl={`https://api.donorport.com/organization/${doantionDetails?.CampaignAdminDetails?.slug}`}
                       />
                     )}
                   </div>

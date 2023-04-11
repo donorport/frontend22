@@ -451,7 +451,7 @@ const UserItems = () => {
                       page="useritem"
                       text={`I just donated ${item.itemDetails?.headline} on Donorport! 🎉🚀👏`}
                       pageTitle={item.itemDetails?.headline}
-                      currUrl={`https://www.donorport.com/item/${item.itemDetails?.slug}`}
+                      currUrl={`https://api.donorport.com/item/${item.itemDetails?.slug}`}
                     />
                   </div>
                   <div className="order__widget mb-3">

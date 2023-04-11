@@ -103,7 +103,7 @@ function OrganisationDetailMain(props) {
               page="org"
               text={`Let's help ${organizationDetails?.name} fund their needs on Donorport 🏆 🚀`}
               pageTitle={organizationDetails?.name}
-              currUrl={`https://www.donorport.com/organization/${organizationDetails?.slug}`}
+              currUrl={`https://api.donorport.com/organization/${organizationDetails?.slug}`}
             />
           </div>
         </div>
