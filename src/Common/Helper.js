@@ -40,6 +40,7 @@ let helper = {
     window.location.hostname === 'localhost'
       ? 'http://localhost:3000'
       : 'https://www.donorport.com',
+  apiPath: "https://api.donorport.com",
   FulfilRecieptPath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/product/fulfil/receipt/',
 
   MapBoxPrimaryKey:
