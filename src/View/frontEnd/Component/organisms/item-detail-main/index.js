@@ -215,7 +215,7 @@ function ProjectDetailMain(props) {
               page="item"
               text={`Help ${productDetails?.campaignDetails?.name} give away ${productDetails?.headline} on Donorport 🎉🎁`}
               pageTitle={productDetails?.headline}
-              currUrl={`https://www.donorport.com/item/${productDetails?.slug}`}
+              currUrl={`https://api.donorport.com/item/${productDetails?.slug}`}
             />
           </div>
         </div>
