@@ -17,6 +17,7 @@ import OrganisationWidget from '../organisation-widget';
 import helper, { convertAddress } from '../../../../../Common/Helper';
 import './style.scss';
 import { GalleryImg } from '../../atoms';
+import verified from '../../../../../assets/images/verified.png';
 // import { State, Country } from 'country-state-city';
 
 function OrganisationDetailMain(props) {
@@ -54,7 +55,7 @@ function OrganisationDetailMain(props) {
           <div>
             <h4 className="project__detail-label mb-3p">Organization</h4>
             <h1 className="project__detail-title text-dark" style={{ textTransform: 'capitalize' }}>
-              {organizationDetails?.name}
+              {organizationDetails?.name} <img style={{ width: '24px' }} src={verified}></img>
             </h1>
           </div>
           <div className="page__logo page__logo--org ms-auto">
@@ -84,7 +85,7 @@ function OrganisationDetailMain(props) {
             <a
               href={organizationDetails?.url}
               className="org__url text-light overflow-hidden text-truncate"
-              style={{width: '205px'}}
+              style={{ width: '205px' }}
               rel="noreferrer"
               target="_blank"
             >
@@ -192,10 +193,7 @@ function OrganisationDetailMain(props) {
         <h4 className="page__blurb mt-1 fw-bolder">{organizationDetails?.headline}</h4>
         <div className="page__paragraph">{organizationDetails?.description}</div>
         <div className="mt-2">
-          <span
-            variant="link"
-            className="text-light text-decoration-none fw-normal px-0 fs-6"
-          >
+          <span variant="link" className="text-light text-decoration-none fw-normal px-0 fs-6">
             {/* {organizationDetails?.type} RN {organizationDetails?.ein} */}
             <FontAwesomeIcon className="me-1" icon={solid('building')} />
             RN {organizationDetails?.ein}

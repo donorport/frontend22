@@ -518,13 +518,13 @@ const StyledInput = styled.div`
   & .MuiInputAdornment-root > p {
     font-weight: 700;
     font-size: 21px;
-    font-family: 'Jcfonts linotte', Arial, sans-serif;
+    font-family: 'Jcfonts linotte', sans-serif;
     color: #9896b1;
   }
 `;
 const StyledSlider = styled.div`
   & .tip__label {
-    font-family: 'Jcfonts linotte', Arial, sans-serif;
+    font-family: 'Jcfonts linotte', sans-serif;
   }
   & .tip__slider {
     & .MuiSlider-rail {

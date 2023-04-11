@@ -401,10 +401,9 @@ const Terms = () => {
                 <li>
                   B. Removal of a Charity from our Database. If you are the authorized
                   representative of a Charity, and you do not wish for your Charity to appear in
-                  Donorport 's searchable database, you may contact us at:
-                  <a href="#" className="link">
-                    legal@donorport.com
-                  </a>
+                  Donorport 's searchable database, you may contact us at:{' '}
+                  <a className="p-0" href="#">legal@donorport.com
+                  </a>{' '}
                   to request that your Charity be removed from our database. Your email should
                   include your full name, title, and an email address and phone number associated
                   with your Charity. Please note that if your Charity is removed from the Donorport
@@ -941,13 +940,13 @@ const Terms = () => {
               <p className="fw-bolder">Copyright Agent Contact Information </p>
               <p>Our designated Copyright Agent to receive Notices is: </p>
               <div className="fs-5 mb-2">
-                <span className="fw-bold text-light">Kyle Underhill</span>
+                <span className="fw-semibold text-light">Donorport Limited</span>
                 <br></br>
-                <span className="fw-bold text-light">439 University Avenue, Toronto, ON</span>
+                <span className="fw-semibold text-light">439 University Avenue, Toronto, ON</span>
                 <br></br>
-                <span className="fw-bold text-light">M5G 1Y8</span>
+                <span className="fw-semibold text-light">M5G 1Y8</span>
                 <br></br>
-                <span className="fw-bold text-light">Canada</span>
+                <span className="fw-semibold text-light">Canada</span>
                 <br></br>
               </div>
               <p>

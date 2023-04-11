@@ -211,8 +211,7 @@ const AdminTaxTable = (props) => {
                               </div>
                             </div>
                             <div
-                              className="d-flex align-items-center flex__1 mb-1 mb-sm-0"
-                              style={{ justifyContent: 'end' }}
+                              className="d-flex align-items-center flex__1 mb-1 mb-sm-0 justify-content-end"
                             >
                               {/* {
                             item.type === 'Donated' &&

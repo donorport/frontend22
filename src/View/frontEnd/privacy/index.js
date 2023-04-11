@@ -378,7 +378,7 @@ const Privacy = () => {
                   provide to us. We have created mechanisms to provide you with the following
                   control over your information:
                 </p>
-                <li>
+                <p>
                   Tracking Technologies and Advertising. You can set your browser to refuse all or
                   some browser cookies, or to alert you when cookies are being sent. To learn how
                   you can manage your Flash cookie settings, visit the Flash player settings page on
@@ -386,7 +386,7 @@ const Privacy = () => {
                   this Website may not be accessible or may not function properly. For more
                   information about tracking technologies, see Information We Collect Through
                   Cookies and Other Automatic Data Collection Technologies.
-                </li>
+                </p>
                 <p className="fw-bolder">DATA SECURITY</p>
                 <p>
                   The security of your personal information is very important to us. We use
@@ -455,7 +455,7 @@ const Privacy = () => {
                   personal informationyou may also send us an email at{' '}
                   <a className="link" href="#">
                     legal@donorport.com
-                  </a>
+                  </a>{' '}
                   to request access to, correct, or delete any personal information that you have
                   provided to us. We cannot delete your personal information except by also deleting
                   your user account. We may not accommodate a requestto change information if we
@@ -502,6 +502,7 @@ const Privacy = () => {
                   <a className="link" href="/terms">
                     terms of use
                   </a>
+                  .
                 </p>
                 <p className="fw-bolder">WITHDRAWING YOUR CONSENT</p>
                 <p>
@@ -534,13 +535,13 @@ const Privacy = () => {
                 </p>
                 <p>Please contact us at:</p>
                 <div className="fs-5 mb-2">
-                  <span className="fw-bold text-light">Kyle Underhill</span>
+                  <span className="fw-semibold text-light">Donorport Limited</span>
                   <br></br>
-                  <span className="fw-bold text-light">439 University Avenue, Toronto, ON</span>
+                  <span className="fw-semibold text-light">439 University Avenue, Toronto, ON</span>
                   <br></br>
-                  <span className="fw-bold text-light">M5G 1Y8</span>
+                  <span className="fw-semibold text-light">M5G 1Y8</span>
                   <br></br>
-                  <span className="fw-bold text-light">Canada</span>
+                  <span className="fw-semibold text-light">Canada</span>
                   <br></br>
                   <p>Email: legal@donorport.com</p>
                 </div>

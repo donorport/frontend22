@@ -25,41 +25,41 @@
 
 @font-face {
 	font-family: 'Linotte';
-	src: url('../fonts/linotte/300.otf') format('otf');
+	src: url('../../fonts/Linotte/Linotte-Light.otf') format('opentype');
 	font-weight: 300;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Linotte';
-	src: url('../fonts/linotte/400.otf') format('otf');
+	src: url('../../fonts/Linotte/Linotte-Regular.otf') format('opentype');
 	font-weight: 400;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Linotte';
-	src: url('../fonts/linotte/600.otf') format('otf');
+	src: url('../../fonts/Linotte/Linotte-Semibold.otf') format('opentype');
 	font-weight: 600;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Linotte';
-	src: url('../fonts/linotte/700.otf') format('otf');
+	src: url('../../fonts/Linotte/Linotte-Bold.otf') format('opentype');
 	font-weight: 700;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Linotte';
-	src: url('../fonts/linotte/900.otf') format('otf');
+	src: url('../../fonts/Linotte/Linotte-Heavy.otf') format('opentype');
 	font-weight: 900;
 	font-style: normal;
 }
 
 /* @import url("https://use.typekit.net/qwg2kll.css"); */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&&display=swap'); */
 
 .navbar-brand,
 .display-1,
@@ -78,12 +78,11 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: "Linotte", Arial, sans-serif;
-	/* font-family: 'Gotham', sans-serif; */
+	font-family: "Linotte", sans-serif;
 	letter-spacing: -0.03em;
 }
 
 body {
-	font-family: "Linotte", Arial, sans-serif;
+	font-family: "Linotte", sans-serif;
 	/* font-family: "Segoe UI", "Trebuchet MS", "PT Sans", "Helvetica Neue", "HelveticaNeue-Light", Helvetica, Arial, sans-serif; */
 }
