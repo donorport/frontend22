@@ -66,7 +66,7 @@ const ProjectDetail = (props) => {
 
   return (
     <>
-      <HeaderController />
+      <HeaderController/>
       <SuggestionWrapper>
         <div className="d-flex container-fluid">
           <ProjectSuggestionList

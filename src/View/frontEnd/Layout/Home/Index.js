@@ -1,128 +1,168 @@
-import Header from '../../Component/organisms/header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { Button, Container, Row, Col, FormControl, InputGroup, ProgressBar } from 'react-bootstrap';
-import { Product, GrabDropdown, FilterDropdown, LadderMenu } from '../../Component/organisms';
+import { Button, Container, Row, Col, FormControl, InputGroup } from 'react-bootstrap';
+import { Product, FilterDropdown, LadderMenu } from '../../Component/organisms';
 // import { ProgressBar } from "react-bootstrap";
 import { useEffect, useState } from 'react';
 import './style.scss';
-import HeaderGeoController from '../../../../Controller/frontEnd/HeaderGeoController';
+import HeaderController from '../../../../Controller/frontEnd/HeaderController';
 import IconText from '../../Component/molecules/icon-text';
 import helper, { getCalculatedPrice } from '../../../../Common/Helper';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import corrupt from '../../../../assets/images/corrupt.png';
 import buoy from '../../../../assets/images/buoy.png';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-export default function Index(props) {
-  // const [selectedKey, setSelectedKey] = useState(3)
-  const selectedKey = props.selectedKey;
-  const setSelectedKey = props.setSelectedKey;
-  const module = props.module;
-  const getCalc = getCalculatedPrice();
-  let currencySymbol = getCalc.currencySymbol();
-  const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
-  let products;
-  const title = {
-    color: '#6b68f8'
-  };
-  const [loading, setLoading] = useState(true);
-  const [productsList, setProductsList] = useState('');
-  const user = useSelector((state) => state.user);
+//const title = {
+//color: '#6b68f8'
+//};
+const ProductsUnavailableLocation = ({user}) => (
+  <div className="container">
+    <div className="empty__modal">
+      <div className="empty__block">
+        <div className="empty__container">
+          <div className="empty__circle empty--small mb-5 mt-5">
+            <img src={buoy} alt="" />
+          </div>
+          <div className="empty__message">
+            {user.countrySortName !== '' ? (
+              <p className="fs-3 fw-bold text-dark">
+                Donorport is currently unavailable in{' '}
+                <a href="#" className="link">
+                  {user.countryName}
+                </a>
+              </p>
+            ) : (
+              <p className="fs-3 fw-bold text-dark">
+                Donorport is currently unavailable in your location
+              </p>
+            )}
 
-  if (user.countrySortName !== 'CA') {
-    products = (
-      <div className="container">
-        <div className="empty__modal">
-          <div className="empty__block">
-            <div className="empty__container">
-              <div className="empty__circle empty--small mb-5 mt-5">
-                <img src={buoy} alt="" />
-              </div>
-              <div className="empty__message">
-                {user.countrySortName !== '' ? (
-                  <p className="fs-3 fw-bold text-dark">
-                    Donorport is currently unavailable in{' '}
-                    <a href="#" className="link">
-                      {user.countryName}
-                    </a>
-                  </p>
-                ) : (
-                  <p className="fs-3 fw-bold text-dark">
-                    Donorport is currently unavailable in your location
-                  </p>
-                )}
-
-                <div className="fs-5 text-light">
-                  <p>
-                    Check back later or{' '}
-                    <a
-                      className="link"
-                      target="_blank"
-                      href="https://www.twitter.com/donorporthq"
-                      rel="noreferrer"
-                    >
-                      tweet us
-                    </a>{' '}
-                    and let use know where we should set sails for next or learn more{' '}
-                    <a className="link" href="/about">
-                      about us
-                    </a>
-                  </p>
-                </div>
-              </div>
+            <div className="fs-5 text-light">
+              <p>
+                Check back later or{' '}
+                <a
+                  className="link"
+                  target="_blank"
+                  href="https://www.twitter.com/donorporthq"
+                  rel="noreferrer"
+                >
+                  tweet us
+                </a>{' '}
+                and let use know where we should set sails for next or learn more{' '}
+                <a className="link" href="/about">
+                  about us
+                </a>
+              </p>
             </div>
           </div>
         </div>
       </div>
-    );
-  } else {
-    if (props.productList && props.productList.length > 0) {
-      products = props.productList.map((item, index) => {
-        return (
-          item.status === 1 && (
-            <Col sm="6" md="4" lg="3" className="mb-2" key={index}>
-              <Product
-                {...item}
-                addToCart={props.addToCart}
-                removeCartItem={props.removeCartItem}
-                checkItemInCart={props.checkItemInCart}
-                pricingFees={props.pricingFees}
-                addProductToWishlist={props.addProductToWishlist}
-                wishListproductIds={props.wishListproductIds}
-                cartProductIds={props.cartProductIds}
-                filters={props.filters}
-                t={props.productList.length}
-              />
-            </Col>
-          )
-        );
-      });
-    } else {
-      products = (
-        <div className="container">
-          <div className="empty__modal">
-            <div id="noSlider" className="empty__block">
-              <div className="empty__container">
-                <div className="empty__circle empty--small">
-                  <img src={corrupt} alt="" />
-                </div>
-                <div className="empty__message">
-                  <div className="title title--small ">
-                    <p className="item__title project__title">There are no results in this range</p>
-                  </div>
-                  <div className="empty__text">
-                    <p>Try broadening your search.</p>
-                  </div>
-                </div>
-              </div>
+    </div>
+  </div>
+);
+
+const ProductList = ({allProps}) =>
+  allProps.productList.map(
+    (item, index) =>
+      item.status === 1 && (
+        <Col sm="6" md="4" lg="3" className="mb-2" key={index}>
+          <Product
+            {...item}
+            addToCart={allProps.addToCart}
+            removeCartItem={allProps.removeCartItem}
+            checkItemInCart={allProps.checkItemInCart}
+            pricingFees={allProps.pricingFees}
+            addProductToWishlist={allProps.addProductToWishlist}
+            wishListproductIds={allProps.wishListproductIds}
+            cartProductIds={allProps.cartProductIds}
+            filters={allProps.filters}
+            t={allProps.productList.length}
+          />
+        </Col>
+      )
+  );
+
+const ProductListEmpty = () => (
+  <div className="container">
+    <div className="empty__modal">
+      <div id="noSlider" className="empty__block">
+        <div className="empty__container">
+          <div className="empty__circle empty--small">
+            <img src={corrupt} alt="" />
+          </div>
+          <div className="empty__message">
+            <div className="title title--small ">
+              <p className="item__title project__title">There are no results in this range</p>
+            </div>
+            <div className="empty__text">
+              <p>Try broadening your search.</p>
             </div>
           </div>
         </div>
-      );
-    }
-  }
+      </div>
+    </div>
+  </div>
+);
+
+const items = [
+  <div className="fw-semibold text-dark">
+    Price: Low to High
+    <span className="ms-2">
+      <FontAwesomeIcon icon={solid('dollar-sign')} />
+      <FontAwesomeIcon icon={solid('down')} className="ml-3p" />
+    </span>
+  </div>,
+
+  <div className="fw-semibold text-dark">
+    Price: High to Low
+    <span className="ms-2">
+      <FontAwesomeIcon icon={solid('dollar-sign')} />
+      <FontAwesomeIcon icon={solid('up')} className="ml-3p" />
+    </span>
+  </div>,
+
+  <div className="fw-semibold text-dark">Oldest</div>,
+
+  <div className="fw-semibold text-dark">Recently Listed</div>,
+
+  <div className="fw-semibold text-dark">
+    Least Funded
+    <span className="ms-2">
+      <FontAwesomeIcon icon={solid('percent')} />
+      <FontAwesomeIcon icon={solid('down')} className="ml-3p" />
+    </span>
+  </div>,
+
+  <div className="fw-semibold text-dark">
+    Most Funded
+    <span className="ms-2">
+      <FontAwesomeIcon icon={solid('percent')} />
+      <FontAwesomeIcon icon={solid('up')} className="ml-3p" />
+    </span>
+  </div>
+];
+
+export default function Index(props) {
+  // const [selectedKey, setSelectedKey] = useState(3)
+  const selectedKey = props.selectedKey;
+  const module = props.module;
+  const getCalc = getCalculatedPrice();
+  let currencySymbol = getCalc.currencySymbol();
+  const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
+  const [loading, setLoading] = useState(true);
+  const [productsList, setProductsList] = useState('');
+  const user = useSelector((state) => state.user);
+
+  const products =
+    user.countrySortName !== 'CA' ? (
+      <ProductsUnavailableLocation user={user} />
+    ) : props.productList && props.productList.length > 0 ? (
+      <ProductList allProps={props} />
+    ) : (
+      <ProductListEmpty />
+    );
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -135,55 +175,17 @@ export default function Index(props) {
 
   useEffect(() => {
     if (products && props.productList.length > 0) {
-      setProductsList(products);
       setLoading(false);
-    } else {
-      setProductsList(products);
     }
+    setProductsList(products);
   }, [props.productList, props.wishListproductIds.length]);
-
-  const items = [
-    <div className="fw-semibold text-dark">
-      Price: Low to High
-      <span className="ms-2">
-        <FontAwesomeIcon icon={solid('dollar-sign')} />
-        <FontAwesomeIcon icon={solid('down')} className="ml-3p" />
-      </span>
-    </div>,
-
-    <div className="fw-semibold text-dark">
-      Price: High to Low
-      <span className="ms-2">
-        <FontAwesomeIcon icon={solid('dollar-sign')} />
-        <FontAwesomeIcon icon={solid('up')} className="ml-3p" />
-      </span>
-    </div>,
-
-    <div className="fw-semibold text-dark">Oldest</div>,
-
-    <div className="fw-semibold text-dark">Recently Listed</div>,
-
-    <div className="fw-semibold text-dark">
-      Least Funded
-      <span className="ms-2">
-        <FontAwesomeIcon icon={solid('percent')} />
-        <FontAwesomeIcon icon={solid('down')} className="ml-3p" />
-      </span>
-    </div>,
-
-    <div className="fw-semibold text-dark">
-      Most Funded
-      <span className="ms-2">
-        <FontAwesomeIcon icon={solid('percent')} />
-        <FontAwesomeIcon icon={solid('up')} className="ml-3p" />
-      </span>
-    </div>
-  ];
 
   return (
     <>
       {/* {loading && <CircularProgress />} */}
-      <HeaderGeoController />
+
+      <HeaderController isHeaderGeo={true} />
+
       <div className="bg-lighter border-bottom">
         <Container
           className="d-flex flex-column flex-sm-row align-items-center py-2 "
@@ -309,7 +311,7 @@ export default function Index(props) {
               </Link>
               &nbsp; Charities click&nbsp;
               <Link to="/apply" className="link d-inline-block">
-              here
+                here
               </Link>
               &nbsp;to apply
             </div>
