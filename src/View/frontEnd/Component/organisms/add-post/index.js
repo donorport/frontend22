@@ -1124,7 +1124,7 @@ const AddPost = (props) => {
                       />
                     </div>
 
-                    <div className="project-video-wrap mb-1">
+                    <div className="project-video-wrap">
                       <iframe
                         title="product-video"
                         key="product-video"

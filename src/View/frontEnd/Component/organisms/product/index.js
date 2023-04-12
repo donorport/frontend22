@@ -184,7 +184,7 @@ const Product = (props) => {
         &nbsp;
       </button> */}
 
-      <div className="product__top border-bottom d-flex align-items-center">
+      <div className="border-bottom d-flex align-items-center p-1 me-1">
         <div className="wish me-1">
           <IconToggle
             activeColor="rgb(246, 100, 97)"

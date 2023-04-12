@@ -27,12 +27,22 @@ const Apply = (props) => {
         <div className="password-reset position-relative ">
           <Container fluid className="position-relative pb-5 pt-5 container-fluid">
             <div className="mw-600">
-              <h1 className="text-dark fw-bolder mb-6p pt-2">Getting Started</h1>
-              <div className="fs-5 text-light mb-4">
+              <h1 className="text-dark fw-bolder pt-2 mb-4">Getting Started</h1>
+              {/* <div className="fs-5 text-light mb-4">
                 Activate your account to create your organization's administration page or apply to
                 receive your activation code.
+              </div> */}
+              <h4 className="fw-bolder text-dark">Step 1 - Apply</h4>
+              <div className="text-light mb-4 fs-5">
+                Before you can post on Donorport, you must first be approved by the Donorport team.
+                Fill out the form below and click Submit to apply.
               </div>
-
+              <h4 className="fw-bolder text-dark">Step 2 - Activate</h4>
+              <div className="text-light mb-2 fs-5">
+                Once Donorport has approved your application, a 4 digit authentication code will be
+                sent to the email you provided. Enter the code in the box below to activate your
+                account.
+              </div>
               <div className="activate mw-400 mb-5">
                 <div className="activate__icon">
                   <FontAwesomeIcon icon={regular('fingerprint')} />
@@ -49,16 +59,6 @@ const Apply = (props) => {
               </div>
 
               <div className="mw-400">
-                <h4 className="fw-bolder text-dark">Step 1 - Apply</h4>
-                <div className="text-light mb-2 fs-5">
-                  Before you can post on Donorport, you must first submit an application and be
-                  approved by the Donorport team.
-                </div>
-                <h4 className="fw-bolder text-dark">Step 2 - Activate</h4>
-                <div className="text-light mb-2 fs-5">
-                  Once approved, we will send a 4 digit authentication code to the email you provided
-                  on this form. Enter it above to activate your account.
-                </div>
                 <Form className="mb-5" autocomplete="off">
                   {/*    <div className="py-1 d-flex justify-content-between fs-4 mb-3">
                     <RadioToggle

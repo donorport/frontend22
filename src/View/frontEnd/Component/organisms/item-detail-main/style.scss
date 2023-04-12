@@ -54,9 +54,6 @@
 
 .project__detail-meta {
   font-weight: $font-weight-semibold;
-  color: #6f6f90ad;
-  padding-top: 9px;
-  padding-bottom: 9px;
 }
 .project-video-wrap iframe {
   position: absolute;
@@ -93,13 +90,14 @@
 .category__icons {
   gap: 12px;
 }
-.page__blurb mt-1 fw-bolder {
+.page__blurb fw-bolder {
   font-weight: 900;
 }
 .page__paragraph {
   color: #6f6f90ad;
   line-height: 1.6;
   font-size: 16px;
+  margin: 0;
 }
 
 .sub__total {
@@ -127,7 +125,7 @@
 @include media-breakpoint-down(sm) {
   .category__icons {
     order: -1;
-    margin-bottom: 24px !important;
+    margin-bottom: 12px !important;
   }
 }
 .btn__sold {

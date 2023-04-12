@@ -322,25 +322,22 @@ const UserItems = () => {
                         {address}
                       </div>
                     </div>
-
-                    {/* <h5 className="page__blurb mt-1 fw-bolder">{item.itemDetails?.needheadline}</h5> */}
-                    <div className="page__paragraph mb-3">{item.itemDetails?.descriptions}</div>
-                    <a
-                      href={helper.websitePath + '/item/' + item.itemDetails?.slug}
-                      className="text-subtext"
-                    >
-                      <span className="url__icon me-1">
-                        <FontAwesomeIcon icon={regular('square-up-right')} />
-                      </span>
-                      <span className="fs-5 date__name date__name--url">
-                        {helper.websitePath + '/item/' + item.itemDetails?.slug}
-                      </span>
-                    </a>
-                    {/* // item.fulfilDetails.length === 0 ? */}
-                    <div>
+                    <div className="d-flex flex-column gap-2">
+                      <div className="page__paragraph">{item.itemDetails?.descriptions}</div>
+                      <a
+                        href={helper.websitePath + '/item/' + item.itemDetails?.slug}
+                        className="text-subtext"
+                      >
+                        <span className="url__icon me-1">
+                          <FontAwesomeIcon icon={regular('square-up-right')} />
+                        </span>
+                        <span className="fs-5 date__name date__name--url">
+                          {helper.websitePath + '/item/' + item.itemDetails?.slug}
+                        </span>
+                      </a>
                       {item.itemDetails.galleryUrl && (
                         <>
-                          <div className="project-video-wrap mb-1 mt-4">
+                          <div className="project-video-wrap">
                             <iframe
                               title="project-video"
                               key="project-video"
@@ -353,13 +350,12 @@ const UserItems = () => {
                           </div>
                         </>
                       )}
+                      <div>
+                        <h5 className="page__blurb fw-bolder">{item.itemDetails?.needheadline}</h5>
+                        <p className="page__paragraph">{item.itemDetails?.description}</p>
+                      </div>
 
-                      <h5 className="page__blurb mt-1 fw-bolder">
-                        {item.itemDetails?.needheadline}
-                      </h5>
-                      <p className="page__paragraph mt-2">{item.itemDetails?.description}</p>
-
-                      <div className="gallery__container my-2">
+                      <div className="gallery__container">
                         {item.itemDetails?.galleryImage.length > 0 &&
                           Number(detail.key) === i &&
                           item.itemDetails?.galleryImage.map((im, ky) => {
@@ -374,68 +370,58 @@ const UserItems = () => {
                             }
                           })}
                       </div>
+                      {item.itemDetails?.isFulfiled &&
+                        (item.fulfilDetails[0].video || item.itemDetails?.fulfil.length > 0) && (
+                          <div className="note note-info align-items-center mt-5">
+                            <Card.Header className="post__accordion-header pb-2 pt-2">
+                              <h2 className="fs-3 fw-bolder text-dark">Followup</h2>
+                              <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
+                            </Card.Header>
 
-                      {/* <div className="note note-info d-flex align-items-center">
-                            <span className="post__badge post__badge--sold me-2 text-primary fs-3">
-                              <FontAwesomeIcon icon={solid("photo-film")} />
-                            </span>
-                            <span className="fs-6 text-subtext">
-                              Giveaway media appears here when the post has been fully
-                              funded.
-                            </span>
-                          </div> */}
-                    </div>
-                    {item.itemDetails?.isFulfiled &&
-                      (item.fulfilDetails[0].video || item.itemDetails?.fulfil.length > 0) && (
-                        <div className="note note-info align-items-center mt-5">
-                          <Card.Header className="post__accordion-header pb-2 pt-2">
-                            <h2 className="fs-3 fw-bolder text-dark">Followup</h2>
-                            <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
-                          </Card.Header>
+                            {item.itemDetails?.isFulfiled && item.fulfilDetails[0].video && (
+                              <div className="project-video-wrap mt-4">
+                                <iframe
+                                  title="user-item-video"
+                                  key="user-item-video"
+                                  width="498"
+                                  height="280"
+                                  src={
+                                    'https://www.youtube.com/embed/' +
+                                    item.fulfilDetails[0].video.split('?v=')[1]
+                                  }
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowFullScreen
+                                ></iframe>
+                              </div>
+                            )}
 
-                          {item.itemDetails?.isFulfiled && item.fulfilDetails[0].video && (
-                            <div className="project-video-wrap mb-1 mt-4">
-                              <iframe
-                                title="user-item-video"
-                                key="user-item-video"
-                                width="498"
-                                height="280"
-                                src={
-                                  'https://www.youtube.com/embed/' +
-                                  item.fulfilDetails[0].video.split('?v=')[1]
-                                }
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                              ></iframe>
+                            <div className="gallery__container">
+                              {item.itemDetails?.fulfil.length > 0 &&
+                                Number(detail.key) === i &&
+                                item.itemDetails?.fulfil.map((im, index) => {
+                                  return (
+                                    <GalleryImg
+                                      key={index}
+                                      thumbImgSrc={helper.CampaignProductFullImagePath + im.image}
+                                      bigImgSrc={helper.CampaignProductFullImagePath + im.image}
+                                    />
+                                  );
+                                })}
                             </div>
-                          )}
-
-                          <div className="gallery__container my-2">
-                            {item.itemDetails?.fulfil.length > 0 &&
-                              Number(detail.key) === i &&
-                              item.itemDetails?.fulfil.map((im, index) => {
-                                return (
-                                  <GalleryImg
-                                    key={index}
-                                    thumbImgSrc={helper.CampaignProductFullImagePath + im.image}
-                                    bigImgSrc={helper.CampaignProductFullImagePath + im.image}
-                                  />
-                                );
-                              })}
                           </div>
+                        )}
+
+                      {!item.itemDetails?.isFulfiled && (
+                        <div className="note note-info d-flex align-items-center">
+                          <span className="post__badge post__badge--sold me-2 text-primary fs-3">
+                            <FontAwesomeIcon icon={solid('photo-film')} />
+                          </span>
+                          <span className="fs-6 text-subtext">
+                            Giveaway media appears here when the post has been fully funded.
+                          </span>
                         </div>
                       )}
-
-                    {!item.itemDetails?.isFulfiled && (
-                      <div className="note note-info d-flex align-items-center">
-                        <span className="post__badge post__badge--sold me-2 text-primary fs-3">
-                          <FontAwesomeIcon icon={solid('photo-film')} />
-                        </span>
-                        <span className="fs-6 text-subtext">
-                          Giveaway media appears here when the post has been fully funded.
-                        </span>
-                      </div>
-                    )}
+                    </div>
                   </div>
                 </Col>
                 <Col md="6" className="my-5 mt-sm-0">
@@ -633,7 +619,7 @@ const UserItems = () => {
                             bigImgSrc={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
                           /> */}
                           <img
-                          className="mw-100"
+                            className="mw-100"
                             src={helper.FulfilRecieptPath + item.fulfilDetails[0].receipt}
                             alt="receipt"
                           />

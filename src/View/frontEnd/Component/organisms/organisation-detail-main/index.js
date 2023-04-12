@@ -50,7 +50,7 @@ function OrganisationDetailMain(props) {
 
   return (
     <div className="project__detail-main">
-      <div className="d-flex flex-column mb-4">
+      <div className="d-flex flex-column mb-4 gap-2">
         <div className="d-flex align-items-center mb-1">
           <div>
             <h4 className="project__detail-label mb-3p">Organization</h4>
@@ -67,25 +67,25 @@ function OrganisationDetailMain(props) {
           </div>
         </div>
 
-        <div className="project__detail-meta d-flex align-items-center mb-2">
+        <div className="project__detail-meta d-flex align-items-center flex-wrap gap-2 text-light">
           {/* <div className="d-flex align-items-center">
             <FontAwesomeIcon icon={regular("clock")} className="me-1" />
        
             {moment(organizationDetails?.created_at).format('MMMM DD , Y')}
           </div> */}
 
-          <div className="d-flex align-items-center me-2 text-nowrap">
+          <div className="d-flex align-items-center text-nowrap">
             <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
             {address}
           </div>
 
-          <div className="d-flex align-items-center me-2 text-nowrap">
+          <div className="d-flex align-items-center text-nowrap" style={{ maxWidth: '210px' }}>
             <FontAwesomeIcon icon={regular('link')} className="me-1" />
 
             <a
               href={organizationDetails?.url}
               className="org__url text-light overflow-hidden text-truncate"
-              style={{ width: '205px' }}
+              // style={{ width: '205px' }}
               rel="noreferrer"
               target="_blank"
             >
@@ -109,7 +109,7 @@ function OrganisationDetailMain(props) {
           </div>
         </div>
 
-        <div className="category__icons d-flex align-items-center mb-3 order--1 order-sm-0">
+        <div className="category__icons d-flex align-items-center order--1 order-sm-0">
           <Button
             size="lg"
             variant="link"
@@ -159,39 +159,42 @@ function OrganisationDetailMain(props) {
             <span className="fs-6" style={{ textTransform: "capitalize" }}>{organizationDetails?.countryDetails?.country}</span>
           </Button>*/}
         </div>
-        {organizationDetails.promoVideo && (
-          <div className="project-video-wrap mb-1">
-            <iframe
-              title="organization-promo-video"
-              key="organization-promo-video"
-              width="498"
-              height="280"
-              src={embedlink}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
-        )}
-
-        <div className="gallery__container my-2">
-          {organizationDetails.images &&
-          Array.isArray(organizationDetails.images) &&
-          organizationDetails.images.length > 0 ? (
-            organizationDetails.images.map((image) => (
-              <div key={image._id}>
-                <GalleryImg
-                  thumbImgSrc={helper.CampaignAdminGalleryPath + image.image}
-                  bigImgSrc={helper.CampaignAdminGalleryPath + image.image}
-                />
-              </div>
-            ))
-          ) : (
-            <></>
+        <div className="d-flex flex-column gap-1">
+          {organizationDetails.promoVideo && (
+            <div className="project-video-wrap">
+              <iframe
+                title="organization-promo-video"
+                key="organization-promo-video"
+                width="498"
+                height="280"
+                src={embedlink}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
           )}
-        </div>
 
-        <h4 className="page__blurb mt-1 fw-bolder">{organizationDetails?.headline}</h4>
-        <div className="page__paragraph">{organizationDetails?.description}</div>
+          <div className="gallery__container">
+            {organizationDetails.images &&
+            Array.isArray(organizationDetails.images) &&
+            organizationDetails.images.length > 0 ? (
+              organizationDetails.images.map((image) => (
+                <div key={image._id}>
+                  <GalleryImg
+                    thumbImgSrc={helper.CampaignAdminGalleryPath + image.image}
+                    bigImgSrc={helper.CampaignAdminGalleryPath + image.image}
+                  />
+                </div>
+              ))
+            ) : (
+              <></>
+            )}
+          </div>
+        </div>
+        <div>
+          <h4 className="page__blurb fw-bolder">{organizationDetails?.headline}</h4>
+          <div className="page__paragraph">{organizationDetails?.description}</div>
+        </div>
         <div className="mt-2">
           <span variant="link" className="text-light text-decoration-none fw-normal px-0 fs-6">
             {/* {organizationDetails?.type} RN {organizationDetails?.ein} */}

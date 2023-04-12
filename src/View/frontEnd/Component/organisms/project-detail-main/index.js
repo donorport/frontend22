@@ -137,7 +137,7 @@ function ProjectDetailMain(props) {
   }, [props.projectDetails]);
   return (
     <div className="project__detail-main">
-      <div className="d-flex flex-column mb-4">
+      <div className="d-flex flex-column mb-4 gap-2">
         <div className="d-flex align-items-center mb-1">
           <div>
             <TagTitle>Project</TagTitle>
@@ -155,7 +155,7 @@ function ProjectDetailMain(props) {
           </div> */}
         </div>
 
-        <div className="project__detail-meta d-flex align-items-center mb-2">
+        <div className="project__detail-meta d-flex align-items-center flex-wrap text-light">
           <div className="d-flex align-items-center me-2 text-nowrap">
             <FontAwesomeIcon icon={regular('clock')} className="me-1" />
             {/* December 27, 2018 */} {moment(projectDetails.created_at).format('MMMM DD , YYYY')}
@@ -202,7 +202,7 @@ function ProjectDetailMain(props) {
           </div>
         </div>
 
-        <div className="category__icons d-flex align-items-center mb-3 order--1 order-sm-0">
+        <div className="category__icons d-flex align-items-center order--1 order-sm-0">
           {/*} <Button
             size="lg"
             variant="link"
@@ -295,32 +295,29 @@ function ProjectDetailMain(props) {
         {/*
 
         </div>*/}
+        <div className="d-flex flex-column gap-2">
+          {video && (
+            <div className="project-video-wrap">
+              <iframe
+                title="project-details-video"
+                key="project-details-video"
+                width="498"
+                height="280"
+                src={embedlink}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          )}
 
-        {video && (
-          <div className="project-video-wrap mb-1">
-            <iframe
-              title="project-details-video"
-              key="project-details-video"
-              width="498"
-              height="280"
-              src={embedlink}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
-        )}
-
-        {projectDetails?.images && projectDetails?.images.length > 0 && (
-          <ProjectGallery
-            className="mb-3"
-            title={false}
-            images={projectDetails?.images}
-            tagTitle="Project"
-          />
-        )}
-
-        <h4 className="page__blurb mt-1 fw-bolder">{projectDetails.headline}</h4>
-        <div className="page__paragraph">{projectDetails.description}</div>
+          {projectDetails?.images && projectDetails?.images.length > 0 && (
+            <ProjectGallery title={false} images={projectDetails?.images} tagTitle="Project" />
+          )}
+        </div>
+        <div>
+          <h4 className="page__blurb fw-bolder">{projectDetails.headline}</h4>
+          <div className="page__paragraph">{projectDetails.description}</div>
+        </div>
       </div>
       {/* <div className="mb-4">
         <OrganisationTeamWidget tagTitle="Project" showEmail={false} showContact />

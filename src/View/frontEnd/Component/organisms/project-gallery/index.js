@@ -26,7 +26,7 @@ function ProjectGallery(props) {
         ''
       )}
       <Fancybox>
-        <div className="gallery__container my-2">
+        <div className="gallery__container">
           {images?.length > 0 &&
             images.map((img, i) => {
               // console.log(img)

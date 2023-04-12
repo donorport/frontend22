@@ -11,7 +11,7 @@ import moment from 'moment';
 import helper, {
   getCalculatedPrice,
   priceFormat,
-  convertAddress,
+  convertAddress
 } from '../../../../../Common/Helper';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
@@ -21,27 +21,26 @@ import { GalleryImg } from '../../atoms';
 import advertisementApi from '../../../../../Api/admin/advertisement';
 import locationApi from '../../../../../Api/frontEnd/location';
 
-
 function ProjectDetailMain(props) {
   console.log('render fn: iFrame, item-detail-main');
   let productDetails = props.productDetails;
-  
+
   let videoid = productDetails.galleryUrl ? productDetails.galleryUrl.split('?v=')[1] : '';
   let videoid2 = productDetails?.fulfiledproductsDetails?.video
-  ? productDetails?.fulfiledproductsDetails?.video.split('?v=')[1]
-  : '';
+    ? productDetails?.fulfiledproductsDetails?.video.split('?v=')[1]
+    : '';
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
   let embedlink2 = videoid2 ? 'https://www.youtube.com/embed/' + videoid2 : '';
   const getCalc = getCalculatedPrice();
   // let price = getCalc.getData(productDetails?.price)
   let price = productDetails?.displayPrice ? productDetails?.displayPrice : productDetails?.price;
-  
+
   let currencySymbol = getCalc.currencySymbol();
-  
+
   let per = (productDetails.soldout / productDetails.quantity) * 100;
-  
+
   let address = productDetails?.address ? convertAddress(productDetails?.address) : '';
-  
+
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const [allStateAds, setAllStateAds] = useState();
@@ -51,10 +50,9 @@ function ProjectDetailMain(props) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   let maxQuentity = productDetails.unlimited
-  ? 1000
-  : productDetails.quantity - productDetails.soldout;
-  
-  
+    ? 1000
+    : productDetails.quantity - productDetails.soldout;
+
   useEffect(() => {
     (async () => {
       if (!CampaignAdminAuthToken) {
@@ -67,40 +65,40 @@ function ProjectDetailMain(props) {
       }
     })();
   }, [!user.isUpdateCart, productDetails._id]);
-  
+
   useEffect(() => {
     (async () => {
       console.log('item-detail-main didMount effect: {');
       // fetch all the ads and fetch the user's location
       const allStateAdsResponse = await advertisementApi.allStateAds();
       const getLocationByLatLong = await locationApi.getLocationByLatLong(user.lat, user.lng);
-      console.log({getLocationByLatLong})
+      console.log({ getLocationByLatLong });
 
       // get user's address, pull out state code
       const longformAddress = getLocationByLatLong.data.results[0].formatted_address; // "Orphans Green Dog Park, 51 Power St, Toronto, ON M5A 3A6, Canada"
-      const stateCode = longformAddress.split(', ')
-          .reverse() // ["Canada", "ON M5A 3A6", "Toronto", ...]
-          [1] // second item
-          .split(' ')[0]; // first word e.g. "ON"
-      console.log('~~ ', {longformAddress, stateCode});
+      const stateCode = longformAddress
+        .split(', ')
+        .reverse() // ["Canada", "ON M5A 3A6", "Toronto", ...]
+        [1] // second item
+        .split(' ')[0]; // first word e.g. "ON"
+      console.log('~~ ', { longformAddress, stateCode });
 
       // pull out state name so we can use it to filter ads by state
       const addrComponents = getLocationByLatLong.data.results[0].address_components;
-      const stateName = addrComponents.find(c => c.short_name === stateCode).long_name; // find the object for the state, and get the long_name by looking up the short_name, e.g. "Ontario"
-      console.log('~~ ', {addrComponents, stateName});
-      
+      const stateName = addrComponents.find((c) => c.short_name === stateCode).long_name; // find the object for the state, and get the long_name by looking up the short_name, e.g. "Ontario"
+      console.log('~~ ', { addrComponents, stateName });
+
       console.log('} item-detail-main didMount effect');
-      setUserAddress(stateName)
+      setUserAddress(stateName);
       setAllStateAds(allStateAdsResponse.data.data);
     })();
-   
   }, []);
 
   const onClickFilter = async (e) => {
     await props.addProductToWishlist(productDetails._id);
   };
-  console.log({userAddress})
-  console.log({allStateAds})
+  console.log({ userAddress });
+  console.log({ allStateAds });
   const cart_btn = addedToCard ? (
     <Button
       variant="success"
@@ -142,18 +140,20 @@ function ProjectDetailMain(props) {
     );
   return (
     <div className="project__detail-main">
-      <div className="d-flex flex-column">
-        <h4 className="project__detail-label mb-3p">Item</h4>
-        <h1 className="project__detail-title text-dark" style={{ textTransform: 'capitalize' }}>
-          {productDetails?.headline}
-        </h1>
-        <h5 className="project__detail-sublabel mb-0 fw-bolder">Product</h5>
-        <div className="project__detail-subtitle mb-12p fw-bold">{productDetails?.brand} ™</div>
-        <h2 className="project__detail-price fs-1 text-price">
-          {currencySymbol}
-          {priceFormat(price)}
-        </h2>
-        <div className="project__detail-meta d-flex align-items-center">
+      <div className="d-flex flex-column gap-2">
+        <div>
+          <h4 className="project__detail-label mb-3p">Item</h4>
+          <h1 className="project__detail-title text-dark" style={{ textTransform: 'capitalize' }}>
+            {productDetails?.headline}
+          </h1>
+          <h5 className="project__detail-sublabel mb-0 fw-bolder">Product</h5>
+          <div className="project__detail-subtitle fw-bold">{productDetails?.brand} ™</div>
+          <h2 className="project__detail-price fs-1 text-price m-0">
+            {currencySymbol}
+            {priceFormat(price)}
+          </h2>
+        </div>
+        <div className="project__detail-meta d-flex align-items-center flex-wrap gap-2 text-light">
           <div className="d-flex align-items-center me-2 text-nowrap">
             <FontAwesomeIcon icon={regular('clock')} className="me-1" />
             {moment(productDetails?.created_at).format('MMMM DD, YYYY')}
@@ -166,17 +166,7 @@ function ProjectDetailMain(props) {
           )}
         </div>
 
-        {/* show for mobile view */}
-
-        <div className="note d-sm-none project__detail-img mb-3">
-          <img
-            className="img-fluid"
-            alt=""
-            src={helper.CampaignProductFullImagePath + productDetails?.image}
-          />
-        </div>
-
-        <div className="product__top px-0 mb-1 d-flex align-items-center">
+        <div className="product__top px-0 d-flex align-items-center">
           <div className="page__bar d-flex align-items-center flex-grow-1">
             <ProgressBar
               variant={productDetails.unlimited ? 'infinity' : 'success'}
@@ -219,7 +209,8 @@ function ProjectDetailMain(props) {
             />
           </div>
         </div>
-        <div className="category__icons d-flex align-items-center mb-3 order--1 order-sm-0">
+
+        <div className="category__icons d-flex align-items-center order--1 order-sm-0">
           <Link
             size="lg"
             variant="link"
@@ -234,7 +225,6 @@ function ProjectDetailMain(props) {
                 fontStyle: 'normal'
               }}
             >
-              {/* <span style={{ fontSize: "x-large" }} className={productDetails?.subCategoryDetails?.iconDetails.class} ></span> */}
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 640 512">
                 <path
                   d={productDetails?.subCategoryDetails?.icon}
@@ -253,69 +243,56 @@ function ProjectDetailMain(props) {
             to={'/organization/' + productDetails?.campaignDetails?.slug}
           >
             <span className="d-flex align-items-center icon__category">
-              {/* <CategoryIcon /> */}
-              {/* <div className="page__logo page__logo--org ms-auto" > */}
               <img
                 alt=""
                 style={{ width: 'auto', maxHeight: '90%', maxWidth: '90%' }}
                 src={helper.CampaignAdminLogoPath + productDetails?.campaignDetails?.logo}
               />
-              {/* </div> */}
             </span>
             <span className="fs-6 text-dark fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
               {productDetails?.campaignDetails?.name}
             </span>
           </Link>
-          {/* <Button
-          size="lg"
-          variant="link"
-          className="btn__category text-decoration-none btn btn-link btn-lg"
-        >
-          <span className="d-flex align-items-center icon__category">
-            <img
-              alt=""
-              className="img-fluid"
-              src=""
-            />
-          </span>
-        </Button> */}
-          {/* <Button size="lg" variant="success" className=" text-decoration-none">
-          <span className="fs-6">Shelter</span>
-        </Button>*/}
         </div>
-      </div>
-
-      {embedlink && (
-        <div className="project-video-wrap mb-1">
-          <iframe
-            title="product-details-video"
-            key="product-details-video"
-            width="498"
-            height="280"
-            src={embedlink}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+        <div>
+        <div className="note d-sm-none project__detail-img mb-3">
+          <img
+            className="img-fluid"
+            alt=""
+            src={helper.CampaignProductFullImagePath + productDetails?.image}
+          />
         </div>
-      )}
-
-      <h4 className="page__blurb mt-1 fw-bolder">{productDetails.needheadline}</h4>
-      <div className="page__paragraph">
-        {productDetails?.description?.replace(/<\/?[^>]+(>|$)/g, '')}
-      </div>
-
-      {productDetails?.productImages &&
-        productDetails?.productImages.length > 0 &&
-        productDetails?.productImages.filter((e) => e.type === 'galleryImage').length > 0 && (
-          <div className="mt-5">
-            <ProjectGallery
-              className="mb-3"
-              title={true}
-              tagTitle="Products"
-              images={productDetails?.productImages}
-            />
+          {embedlink && (
+            <div className="project-video-wrap mb-2">
+              <iframe
+                title="product-details-video"
+                key="product-details-video"
+                width="498"
+                height="280"
+                src={embedlink}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          )}
+          <h4 className="page__blurb fw-bolder">{productDetails.needheadline}</h4>
+          <div className="page__paragraph">
+            {productDetails?.description?.replace(/<\/?[^>]+(>|$)/g, '')}
           </div>
-        )}
+          {productDetails?.productImages &&
+            productDetails?.productImages.length > 0 &&
+            productDetails?.productImages.filter((e) => e.type === 'galleryImage').length > 0 && (
+              <div className="mt-5">
+                <ProjectGallery
+                  className="mb-3"
+                  title={true}
+                  tagTitle="Products"
+                  images={productDetails?.productImages}
+                />
+              </div>
+            )}
+        </div>
+      </div>
 
       <div className="d-flex flex-column project__calculate">
         {isFinish || (productDetails.isFulfiled && !productDetails.unlimited) ? (
@@ -435,7 +412,7 @@ function ProjectDetailMain(props) {
                         src={helper.sponsorLogoResizePath + ad?.advertisementsDetails?.logo}
                         alt="sponsor"
                         className="p-1"
-                        style={{maxHeight: '75px'}}
+                        style={{ maxHeight: '75px' }}
                       ></img>
                     </a>
                   </IconText>
@@ -474,7 +451,7 @@ function ProjectDetailMain(props) {
                   <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
                 </Card.Header>
 
-                <div className="project-video-wrap mb-1">
+                <div className="project-video-wrap">
                   <iframe
                     title="product-details-video"
                     key="product-details-video"
@@ -486,7 +463,7 @@ function ProjectDetailMain(props) {
                   ></iframe>
                 </div>
 
-                <div className="gallery__container my-2">
+                <div className="gallery__container">
                   {productDetails?.productImages &&
                     productDetails?.productImages.length > 0 &&
                     productDetails?.productImages.map((img, i) => {
@@ -509,7 +486,7 @@ function ProjectDetailMain(props) {
         <></>
       )}
 
-      {/* <div className="gallery__container my-2">
+      {/* <div className="gallery__container">
         {productDetails?.productImages &&
           productDetails?.productImages.length > 0 &&
           productDetails?.productImages.map((img, i) => {

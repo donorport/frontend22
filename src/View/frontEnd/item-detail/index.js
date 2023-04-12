@@ -150,7 +150,7 @@ const ItemDetail = (props) => {
                 ''
               )}
             </div>
-            <div className="gallery__container my-2 pb-5" style={{ maxWidth: '400px' }}>
+            <div className="gallery__container pb-5" style={{ maxWidth: '400px' }}>
               {productDetails?.productImages &&
                 productDetails?.productImages.length > 0 &&
                 productDetails?.productImages.map((img, i) => {
@@ -185,7 +185,7 @@ const ItemDetail = (props) => {
                     <div>
                       <WidgetTitle>{project.projectDetails.name}</WidgetTitle>
 
-                      <div className="gallery__container my-2">
+                      <div className="gallery__container">
                         {project.projectDetails?.projectImages &&
                           project.projectDetails?.projectImages.length > 0 &&
                           project.projectDetails?.projectImages.map((img, i) => {
@@ -229,7 +229,7 @@ const ItemDetail = (props) => {
                     <div>
                       <WidgetTitle>{project.projectDetails.name}</WidgetTitle>
 
-                      <div className="gallery__container my-2">
+                      <div className="gallery__container">
                         {project.projectDetails?.projectImages &&
                           project.projectDetails?.projectImages.length > 0 &&
                           project.projectDetails?.projectImages.map((img2, i) => {
@@ -249,7 +249,7 @@ const ItemDetail = (props) => {
                       <Link
                         to={'/project/' + project.projectDetails?.slug}
                         variant="link"
-                        className=" btn btn-info text-white"
+                        className=" btn btn-info text-white mt-2"
                       >
                         <span className="fs-6">Go to Project</span>
                       </Link>
