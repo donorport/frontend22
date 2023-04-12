@@ -24,7 +24,8 @@ import {
   SET_SET_MAP_LOCK,
   SET_CHANGE_SLIDER,
   SET_ACCOUNT_ADD,
-  SET_ZOOM_LEVEL
+  SET_ZOOM_LEVEL,
+  SET_All_ADS,
 } from './user.types';
 
 import userInitialState from './user.initialstate';
@@ -93,6 +94,11 @@ const userReducer = (state = userInitialState, action) => {
         stateId: action.payload
       };
 
+    case SET_All_ADS:
+      return {
+        ...state,
+        allAds: action.payload
+      };
     case SET_USER_ADDRESS:
       return {
         ...state,

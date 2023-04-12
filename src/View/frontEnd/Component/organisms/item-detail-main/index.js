@@ -20,10 +20,10 @@ import './style.scss';
 import { GalleryImg } from '../../atoms';
 import advertisementApi from '../../../../../Api/admin/advertisement';
 import locationApi from '../../../../../Api/frontEnd/location';
+import { setAllAds } from '../../../../../user/user.action';
 
 
 function ProjectDetailMain(props) {
-  console.log('render fn: iFrame, item-detail-main');
   let productDetails = props.productDetails;
   
   let videoid = productDetails.galleryUrl ? productDetails.galleryUrl.split('?v=')[1] : '';
@@ -45,6 +45,7 @@ function ProjectDetailMain(props) {
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const [allStateAds, setAllStateAds] = useState();
+  const [adData, setAdData] = useState();
   const [addedToCard, setAddedToCard] = useState(false);
   const [userAddress, setUserAddress] = useState(false);
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
@@ -54,6 +55,7 @@ function ProjectDetailMain(props) {
   ? 1000
   : productDetails.quantity - productDetails.soldout;
   
+
   
   useEffect(() => {
     (async () => {
@@ -70,11 +72,21 @@ function ProjectDetailMain(props) {
   
   useEffect(() => {
     (async () => {
-      console.log('item-detail-main didMount effect: {');
       // fetch all the ads and fetch the user's location
       const allStateAdsResponse = await advertisementApi.allStateAds();
+      
+      dispatch(setAllAds(allStateAdsResponse.data.data))
+    })();
+  }, []);
+  
+  useEffect(() => {
+    setAllStateAds(user.allAds)
+  }, [user.allAds]);
+  
+
+  useEffect(() => {
+    (async () => {
       const getLocationByLatLong = await locationApi.getLocationByLatLong(user.lat, user.lng);
-      console.log({getLocationByLatLong})
 
       // get user's address, pull out state code
       const longformAddress = getLocationByLatLong.data.results[0].formatted_address; // "Orphans Green Dog Park, 51 Power St, Toronto, ON M5A 3A6, Canada"
@@ -82,66 +94,61 @@ function ProjectDetailMain(props) {
           .reverse() // ["Canada", "ON M5A 3A6", "Toronto", ...]
           [1] // second item
           .split(' ')[0]; // first word e.g. "ON"
-      console.log('~~ ', {longformAddress, stateCode});
 
       // pull out state name so we can use it to filter ads by state
       const addrComponents = getLocationByLatLong.data.results[0].address_components;
       const stateName = addrComponents.find(c => c.short_name === stateCode).long_name; // find the object for the state, and get the long_name by looking up the short_name, e.g. "Ontario"
-      console.log('~~ ', {addrComponents, stateName});
       
-      console.log('} item-detail-main didMount effect');
       setUserAddress(stateName)
-      setAllStateAds(allStateAdsResponse.data.data);
+      
     })();
    
-  }, []);
+  }, [productDetails]);
 
   const onClickFilter = async (e) => {
     await props.addProductToWishlist(productDetails._id);
   };
-  console.log({userAddress})
-  console.log({allStateAds})
   const cart_btn = addedToCard ? (
     <Button
-      variant="success"
-      size="lg"
-      className="icon icon__pro fw-semibold"
-      style={{ minWidth: '250px' }}
+    variant="success"
+    size="lg"
+    className="icon icon__pro fw-semibold"
+    style={{ minWidth: '250px' }}
     >
       Added In cart &nbsp;
       <FontAwesomeIcon icon={solid('circle-check')} />
     </Button>
   ) : (
     <Button
-      variant="primary"
-      size="lg"
-      className="btn--addtocart fw-semibold"
-      style={{ minWidth: '250px' }}
-      onClick={() => {
-        props.addToCart(productDetails._id, quantity);
+    variant="primary"
+    size="lg"
+    className="btn--addtocart fw-semibold"
+    style={{ minWidth: '250px' }}
+    onClick={() => {
+      props.addToCart(productDetails._id, quantity);
         // dispatch(setIsUpdateCart(!user.isUpdateCart))
       }}
-    >
+      >
       Add to cart ({quantity})
     </Button>
   );
   // let isFinish = !productDetails.unlimited && productDetails.soldout >= productDetails.quantity ? true : false
   let isFinish =
-    !productDetails.unlimited && productDetails.quantity <= productDetails.soldout ? true : false;
-
+  !productDetails.unlimited && productDetails.quantity <= productDetails.soldout ? true : false;
+  
   // isFinish || productDetails.isFulfiled && !productDetails.unlimited
   // sold >= total
   const btn =
-    isFinish || (productDetails.isFulfiled && !productDetails.unlimited) ? (
-      /*<span className="btn btn-outline-danger btn-lg btn__sold"> 
-        <FontAwesomeIcon icon={solid('circle-check')} className="sold__icon" />
-        Funded</span>*/
-      <></>
+  isFinish || (productDetails.isFulfiled && !productDetails.unlimited) ? (
+    /*<span className="btn btn-outline-danger btn-lg btn__sold"> 
+    <FontAwesomeIcon icon={solid('circle-check')} className="sold__icon" />
+    Funded</span>*/
+    <></>
     ) : (
       cart_btn
-    );
-  return (
-    <div className="project__detail-main">
+      );
+      return (
+        <div className="project__detail-main">
       <div className="d-flex flex-column">
         <h4 className="project__detail-label mb-3p">Item</h4>
         <h1 className="project__detail-title text-dark" style={{ textTransform: 'capitalize' }}>
@@ -173,7 +180,7 @@ function ProjectDetailMain(props) {
             className="img-fluid"
             alt=""
             src={helper.CampaignProductFullImagePath + productDetails?.image}
-          />
+            />
         </div>
 
         <div className="product__top px-0 mb-1 d-flex align-items-center">
@@ -182,7 +189,7 @@ function ProjectDetailMain(props) {
               variant={productDetails.unlimited ? 'infinity' : 'success'}
               now={productDetails.unlimited ? 100 : per}
               className="page__progress flex-grow-1 me-1"
-            />
+              />
             {productDetails.unlimited ? (
               <span className="tag tag__ongoing tag__rounded fs-9">
                 <FontAwesomeIcon icon={regular('infinity')} />
