@@ -116,14 +116,14 @@ function ShareWidget({page, text, pageTitle, currUrl }) {
               >
                 <FontAwesomeIcon icon={brands("facebook")} />
               </a> */}
-                {/*//! <FacebookShareButton
+                 <FacebookShareButton
                   title={pageTitle + "- " + text}
                   url={currUrl}
                   quote={text}
                   // className="Demo__some-network__share-button"
                 >
                   <FacebookIcon size={32} round />
-                </FacebookShareButton> */}
+                </FacebookShareButton>
 
                 {/* <EmailShareButton
                   url={currentPageLink}
@@ -147,7 +147,7 @@ function ShareWidget({page, text, pageTitle, currUrl }) {
                 <FontAwesomeIcon icon={brands("linkedin-in")} />
               </a> */}
 
-                {/*//! <LinkedinShareButton
+                <LinkedinShareButton
                   url={currUrl}
                   title={text}
                   summary={text}
@@ -155,7 +155,7 @@ function ShareWidget({page, text, pageTitle, currUrl }) {
                   target="_blank"
                 >
                   <LinkedinIcon size={32} round />
-                </LinkedinShareButton> */}
+                </LinkedinShareButton>
               </div>
               <div className="sh__header share__header--sub">
                 <div>Or copy link</div>
