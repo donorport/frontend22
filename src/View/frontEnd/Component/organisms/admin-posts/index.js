@@ -1213,36 +1213,23 @@ const AdminPosts = () => {
       formData.type = 'product';
 
       // console.log(data._id)
-
       const getOrganizationProducts = await productApi.listByOrganization(token, formData);
-      if (getOrganizationProducts.data.success === true) {
-        if (getOrganizationProducts.data.data.length > 0) {
-          console.log('Posts, getOrganizationProducts: ', getOrganizationProducts.data.data);
-          // const productDetails = [
-          //   ...new Set(getOrganizationProducts.data.data.map((item) => item._id))
-          // ];
-          // const productDetails = getOrganizationProducts.data.data;
-          const productDetails = _.uniqBy(getOrganizationProducts.data.data, '_id');
-          // let productDetails = getOrganizationProducts.data.data.filter((value, index, self) => {
-          //   // console.log('Posts, Details: ', { value, index, self });
-          //   return (
-          //     index ===
-          //     self.findIndex((t) => {
-          //       // console.log('t', { t });
-          //       return t._id === value._id;
-          //     })
-          //   );
-          // });
-          console.log('Posts, productDetails: ', productDetails);
-          setProductList(productDetails);
-        } else {
-          setProductList([]);
-        }
-        // console.log('Posts, getOrganizationProducts: ', getOrganizationProducts.data.data);
-        // setProductList(getOrganizationProducts.data.data);
-        setTotalPages(getOrganizationProducts.data.totalPages);
-        setTotalRecord(getOrganizationProducts.data.totalRecord);
+      if (getOrganizationProducts.data.success === false) {
+        return;
       }
+
+      if (getOrganizationProducts.data.data.length <= 0) {
+        setProductList([]);
+        return;
+      }
+
+      console.log('Posts, getOrganizationProducts: ', getOrganizationProducts.data.data);
+      const productDetails = _.uniqBy(getOrganizationProducts.data.data, '_id');
+      console.log('Posts, productDetails: ', productDetails);
+      setProductList(productDetails);
+
+      setTotalPages(getOrganizationProducts.data.totalPages);
+      setTotalRecord(getOrganizationProducts.data.totalRecord);
     },
     [data._id, token]
   );
