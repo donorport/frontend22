@@ -24,8 +24,14 @@ import {
   SET_SET_MAP_LOCK,
   SET_CHANGE_SLIDER,
   SET_ACCOUNT_ADD,
-  SET_ZOOM_LEVEL
+  SET_ZOOM_LEVEL,
+  SET_All_ADS,
 } from './user.types';
+
+export const setAllAds = (data) => ({
+  type: SET_All_ADS,
+  payload: data
+}); 
 
 export const setCurrency = (data) => ({
   type: UPDATE_CURRENCY,

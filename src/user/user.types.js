@@ -24,3 +24,4 @@ export const SET_SET_MAP_LOCK = 'SET_SET_MAP_LOCK';
 export const SET_CHANGE_SLIDER = 'SET_CHANGE_SLIDER';
 export const SET_ACCOUNT_ADD = 'SET_ACCOUNT_ADD';
 export const SET_ZOOM_LEVEL = 'SET_ZOOM_LEVEL';
+export const SET_All_ADS = 'SET_All_ADS';

@@ -55,7 +55,8 @@ function OrganisationDetailMain(props) {
           <div>
             <h4 className="project__detail-label mb-3p">Organization</h4>
             <h1 className="project__detail-title text-dark" style={{ textTransform: 'capitalize' }}>
-              {organizationDetails?.name} <img style={{ width: '24px' }} src={verified}></img>
+              {organizationDetails?.name} 
+              <img style={{ width: '24px' }} src={verified} alt="" />
             </h1>
           </div>
           <div className="page__logo page__logo--org ms-auto">

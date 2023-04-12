@@ -31,7 +31,8 @@ const userInitialState = {
   locationProductCount: 0,
   isMapLocked: false,
   ischangeSlider: false,
-  isAccountAdded: false
+  isAccountAdded: false,
+  allAds: []
 };
 
 export default userInitialState;

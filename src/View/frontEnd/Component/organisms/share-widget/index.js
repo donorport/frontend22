@@ -34,7 +34,7 @@ function ShareWidget({page, text, pageTitle, currUrl }) {
   };
 
   useEffect(() => {
-    setCurrentPageLink(helper.websitePath + location.pathname);
+    setCurrentPageLink(helper.apiPath + location.pathname);
   }, [location]);
 
   const onClickShare = () => {

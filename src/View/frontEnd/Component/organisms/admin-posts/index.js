@@ -942,6 +942,8 @@ const AdminPosts = () => {
 
   // Delete Product FulFil from a product
   //  called when deleting an uploaded sales receipt
+  //  This is doing something that wipes the URL
+  //  it also is hiding the images..
   const deleteFulfilorder = (id, prodcutId, organizationId) => {
     console.log('Posts, deleteFulfilorder, values: ', { id, prodcutId, organizationId });
     confirmAlert({
@@ -1006,7 +1008,6 @@ const AdminPosts = () => {
       ]
     });
   };
-
 
   const editProduct = async (productData) => {
     setGallaryTempImages([]);
@@ -1212,36 +1213,23 @@ const AdminPosts = () => {
       formData.type = 'product';
 
       // console.log(data._id)
-
       const getOrganizationProducts = await productApi.listByOrganization(token, formData);
-      if (getOrganizationProducts.data.success === true) {
-        if (getOrganizationProducts.data.data.length > 0) {
-          console.log('Posts, getOrganizationProducts: ', getOrganizationProducts.data.data);
-          // const productDetails = [
-          //   ...new Set(getOrganizationProducts.data.data.map((item) => item._id))
-          // ];
-          // const productDetails = getOrganizationProducts.data.data;
-          const productDetails = _.uniqBy(getOrganizationProducts.data.data, '_id');
-          // let productDetails = getOrganizationProducts.data.data.filter((value, index, self) => {
-          //   // console.log('Posts, Details: ', { value, index, self });
-          //   return (
-          //     index ===
-          //     self.findIndex((t) => {
-          //       // console.log('t', { t });
-          //       return t._id === value._id;
-          //     })
-          //   );
-          // });
-          console.log('Posts, productDetails: ', productDetails);
-          setProductList(productDetails);
-        } else {
-          setProductList([]);
-        }
-        // console.log('Posts, getOrganizationProducts: ', getOrganizationProducts.data.data);
-        // setProductList(getOrganizationProducts.data.data);
-        setTotalPages(getOrganizationProducts.data.totalPages);
-        setTotalRecord(getOrganizationProducts.data.totalRecord);
+      if (getOrganizationProducts.data.success === false) {
+        return;
       }
+
+      if (getOrganizationProducts.data.data.length <= 0) {
+        setProductList([]);
+        return;
+      }
+
+      console.log('Posts, getOrganizationProducts: ', getOrganizationProducts.data.data);
+      const productDetails = _.uniqBy(getOrganizationProducts.data.data, '_id');
+      console.log('Posts, productDetails: ', productDetails);
+      setProductList(productDetails);
+
+      setTotalPages(getOrganizationProducts.data.totalPages);
+      setTotalRecord(getOrganizationProducts.data.totalRecord);
     },
     [data._id, token]
   );
@@ -1267,13 +1255,15 @@ const AdminPosts = () => {
     createPost(false);
     setFulfil(false);
     setFulfilMoreTempImages([]);
-    setFulfilMoreImages([]);
+
+    // Commenting out this below: fixes the "delete receipt => images hiding" bug!
+    //setFulfilMoreImages([]);
 
     setFulfilState({
       ...fulfilState,
       fulfilId: '',
       fulfilMoreImg: [],
-      videoUrl: '',
+      //videoUrl: '', // commenting this out fixes the "delete receipt => video URL gets wiped" bug!
       receiptFile: '',
       fulfilPolicy: false,
       fulfilError: []
@@ -1904,64 +1894,35 @@ const PostDetailsMediaColumn = ({
 
             <div className="grid mt-3 mb-3 w-100">
               {fulfilMoreTempImages?.length ? (
-                fulfilMoreTempImages.map((img, key) => {
-                  return (
-                    <div className="img-wrap" key={key}>
-                      <span className="close" onClick={() => removeFulfilTempImages(key)}>
-                        &times;
-                      </span>
-                      {/*
-                      <img
-                        src={img ? img : noimg}
-                        alt="lk"
-                        style={{ width: '100px', height: '100px' }}
-                      />
-                      */}
-                      <div
-                        className="gallery__img"
-                        style={{
-                          backgroundImage: `url(${img ? img : noimg})`
-                          // width: '100px',
-                          // height: '100px'
-                        }}
-                        alt="lk"
-                        data-id="103"
-                      ></div>
-                    </div>
-                  );
-                })
+                fulfilMoreTempImages.map((img, key) => 
+                  (<PostDetailsProductImage 
+                    key={key}
+                    handleDelete={() => removeFulfilTempImages(key)}
+                    imgClass="gallery__img"
+                    imgStyle={{
+                      backgroundImage: `url(${img ? img : noimg})`
+                    }}
+                  />)
+                )
               ) : (
                 <></>
               )}
               {fulfilmoreImages?.length
                 ? fulfilmoreImages.map((img, key) => (
-                    <React.Fragment key={key}>
-                      <div className="img-wrap">
-                        <span
-                          className="close"
-                          onClick={() => deleteProductImage(img.id, 'Fulfil')}
-                          style={{ right: '7px' }}
-                        >
-                          &times;
-                        </span>
-                        <div
-                          className="gallery__img"
-                          style={{
-                            backgroundImage: `url(${
-                              img.img
-                                ? img.img !== ''
-                                  ? helper.CampaignProductFullImagePath + img.img
-                                  : noimg
-                                : noimg
-                            })`
-                            // width: '100px',
-                            // height: '100px'
-                          }}
-                          alt="lk"
-                          data-id="103"
-                        ></div>
-                      </div>
-                    </React.Fragment>
+                  <PostDetailsProductImage 
+                    key={key}
+                    handleDelete={() => deleteProductImage(img.id, 'Fulfil')}
+                    imgClass="gallery__img"
+                    imgStyle={{
+                      backgroundImage: `url(${
+                        img.img
+                          ? img.img !== ''
+                            ? helper.CampaignProductFullImagePath + img.img
+                            : noimg
+                          : noimg
+                      })`
+                    }}
+                  />
                   ))
                 : ''}
             </div>
@@ -1979,6 +1940,30 @@ const PostDetailsMediaColumn = ({
       </form>
     </>
   );
+}
+
+const PostDetailsProductImage = ({
+  handleDelete,
+  imgClass,
+  imgStyle
+}) => {
+  return (
+    <div className="img-wrap">
+      <span
+        className="close"
+        onClick={() => handleDelete()}
+        style={{ right: '7px' }}
+      >
+        &times;
+      </span>
+      <div
+        className={imgClass}
+        style={imgStyle}
+        alt="lk"
+        data-id="103"
+      ></div>
+    </div>
+  )
 }
 
 const PostDetailsTransactionSummary = ({
