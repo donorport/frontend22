@@ -1398,7 +1398,7 @@ li.search__tag {
   right: 2px; */
   top: -9px;
   right: -6px;
-  z-index: 100;
+  z-index: 1;
   padding: 5px 2px 2px;
   color: #cd5c5c;
   font-weight: bold;

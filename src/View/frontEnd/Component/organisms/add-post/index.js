@@ -1349,7 +1349,8 @@ const AddPost = (props) => {
           button to upload your sales receipt and complete the order.
         </div>
         <div className="products-detial-footer d-flex py-3 py-sm-5 gap-2">
-          {stateData.status === 1 && (
+          {stateData.status === 1 ? (
+          <>
             <Button
               style={{ opacity: props.loading ? '0.7' : '1' }}
               variant="info"
@@ -1359,8 +1360,18 @@ const AddPost = (props) => {
             >
               Unpublish
             </Button>
-          )}
-          {stateData.status !== 1 && (
+            <Button
+              style={{ opacity: props.loading ? '0.7' : '1' }}
+              variant="success"
+              size="lg"
+              className="d-flex align-items-center justify-content-center fs-6 fw-bold"
+              onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
+            >
+              Save Changes
+              {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+            </Button>
+            </>
+          ) : (
             <div className="d-flex gap-2">
               <Button
                 variant="warning"
@@ -1382,18 +1393,6 @@ const AddPost = (props) => {
                 {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
               </Button>
             </div>
-          )}
-          {stateData.status === 1 && (
-            <Button
-              style={{ opacity: props.loading ? '0.7' : '1' }}
-              variant="success"
-              size="lg"
-              className="d-flex align-items-center justify-content-center fs-6 fw-bold"
-              onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
-            >
-              Save Changes
-              {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
-            </Button>
           )}
         </div>
       </div>
