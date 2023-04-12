@@ -1689,7 +1689,7 @@ const PostsTableHeader = ({
   createNewPost,
 }) => {
   return (
-    <header className="py-sm-2 w-100 d-sm-flex align-items-center">
+    <header className="py-sm-2 mb-3 w-100 d-sm-flex align-items-center">
       <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Posts</h1>
       <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
 

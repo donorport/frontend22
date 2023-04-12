@@ -171,9 +171,10 @@ const AdminTaxTable = (props) => {
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                                 <div className="text-light fw-bold fs-5">
                                   {item[0].currencySymbol}
-                                  {totalVal([...item]).toLocaleString('en-US', {
+                                  {/* {totalVal([...item]).toLocaleString('en-US', {
                                     maximumFractionDigits: 2
-                                  })}
+                                  })} */}
+                                  {priceFormat(totalVal([...item]))}
                                 </div>
                                 <div className="text-light fs-8">
                                   {moment(item[0].created_at).fromNow()}
@@ -210,9 +211,7 @@ const AdminTaxTable = (props) => {
                                 </div>
                               </div>
                             </div>
-                            <div
-                              className="d-flex align-items-center flex__1 mb-1 mb-sm-0 justify-content-end"
-                            >
+                            <div className="d-flex align-items-center flex__1 mb-1 mb-sm-0 justify-content-end">
                               {/* {
                             item.type === 'Donated' &&
 
@@ -264,13 +263,12 @@ const AdminTaxTable = (props) => {
                                 <div className="d-flex align-items-center flex__1 mb-1 mb-sm-0">
                                   <div className="pe-1 p-sm-2 mr-12p">
                                     <img
-                                      loading="lazy"
                                       width={36}
                                       // src={helper.CampaignProductImagePath + item.orderItemDetails?.productImage}
                                       src={
                                         item[0].type === 'Purchased'
                                           ? helper.CampaignProductImagePath +
-                                            item?.orderItemDetails?.productImage
+                                            item[0]?.orderItemDetails?.productImage
                                           : donation
                                       }
                                       alt=""
@@ -284,8 +282,8 @@ const AdminTaxTable = (props) => {
                                         className="text-dark px-0 py-3p"
                                       >
                                         {/* {item.orderItemDetails?.productName} */}
-                                        {item.type === 'Purchased'
-                                          ? item.orderItemDetails?.productName
+                                        {item[0].type === 'Purchased'
+                                          ? item[0].orderItemDetails?.productName
                                           : 'Donation'}
                                       </Button>
                                     </div>
@@ -295,13 +293,13 @@ const AdminTaxTable = (props) => {
                                     className="mr-3p"
                                   />
                                   Bought {item.orderItemDetails?.quantity} */}
-                                      {item.type === 'Purchased' ? (
+                                      {item[0].type === 'Purchased' ? (
                                         <>
                                           <FontAwesomeIcon
                                             icon={regular('wallet')}
                                             className="mr-3p"
                                           />
-                                          Bought {item.orderItemDetails?.quantity}
+                                          Bought {item[0].orderItemDetails?.quantity}
                                         </>
                                       ) : (
                                         <>
@@ -473,7 +471,7 @@ const AdminTaxTable = (props) => {
                                     </div>
                                     <div className="d-flex align-items-center flex__1 mb-1 mb-sm-0">
                                       <div className="pe-1 p-sm-2 mr-12p">
-                                        <img loading="lazy" width={36} src={Aimg} alt="" />
+                                        <img width={36} src={Aimg} alt="" />
                                       </div>
                                       <div>
                                         <div>

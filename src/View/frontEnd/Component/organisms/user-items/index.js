@@ -299,26 +299,27 @@ const UserItems = () => {
 
               <Row className="pt-sm-5 pt-0 row">
                 <Col md="6">
-                  <div className="project__detail-main me-sm-3">
-                    <h4 className="project__detail-label mb-3p">Item</h4>
-                    <h1 className="project__detail-title">{item.itemDetails?.headline}</h1>
-                    <h5 className="project__detail-sublabel mb-0">Product</h5>
-                    <div className="project__detail-subtitle mb-12p fw-bold">
-                      {item.itemDetails?.brand} ™
+                  <div className="d-flex flex-column project__detail-main me-sm-3 gap-1">
+                    <div className="mb-3">
+                      <h4 className="project__detail-label mb-3p">Item</h4>
+                      <h1 className="project__detail-title">{item.itemDetails?.headline}</h1>
+                      <h5 className="project__detail-sublabel mb-0">Product</h5>
+                      <div className="project__detail-subtitle fw-bold">
+                        {item.itemDetails?.brand} ™
+                      </div>
+                      <div className="project__detail-price fs-2 text-price">
+                        {item.currencySymbol}
+                        {price}
+                      </div>
                     </div>
-                    <div className="project__detail-price fs-2 text-price">
-                      {item.currencySymbol}
-                      {price}
-                    </div>
-                    <div className="project__detail-meta d-flex align-items-center">
+
+                    <div className="project__detail-meta d-flex align-items-center text-light">
                       <div className="d-flex align-items-center me-2 text-nowrap">
                         <FontAwesomeIcon icon={regular('clock')} className="me-1" />
                         {moment(item.itemDetails?.created_at).format('MMMM DD, YYYY')}
                       </div>
                       <div className="d-flex align-items-center me-2 text-nowrap">
                         <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
-                        {/* Toronto, ON */}
-
                         {address}
                       </div>
                     </div>
