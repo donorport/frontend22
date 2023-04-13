@@ -63,6 +63,7 @@ const PostsTable = (props) => {
         >
           {productList.length > 0 ? (
             productList.map((product) => {
+              console.log('~~ postTable - productList map:', {product});
               let revenue = Number(product.displayPrice * product.soldout).toLocaleString('en-US', {
                 maximumFractionDigits: 2
               });
@@ -192,36 +193,6 @@ const PostsTable = (props) => {
                     </div>
                     <div className="billing__buttons d-flex align-items-center">
                       <div className="ms-auto">
-                        {/* <Button variant="link" className="p-0" onClick={() => props.editProduct(product)}>
-                            <FontAwesomeIcon
-                              icon={solid("edit")}
-                              className="text-warning fs-2 me-2"
-                            />
-                          </Button>
-                          {
-                            product.quantity <= product.soldout && !product.unlimited &&
-
-                            <Button variant="link" className="p-0">
-                              <FontAwesomeIcon
-                                icon={solid("square-up-right")}
-                                className="text-success fs-2 me-2"
-                              />
-                            </Button>
-                          }
-
-                          <Button variant="link" className="p-0" onClick={() => props.deleteProduct(product._id)}>
-                            <FontAwesomeIcon
-                              icon={solid("trash")}
-                              className="text-danger fs-2 me-2"
-                            />
-                          </Button>
-                          {
-                            product.status === -1 &&
-                            <Button variant="info" className="" onClick={() => props.publishProduct(product._id)}>
-                              Publish
-                            </Button>
-                          } */}
-
                         {product.isFulfiled && product.unlimited ? (
                           // <Button
                           //   variant="link"
@@ -459,7 +430,7 @@ const PostsTable = (props) => {
               <Pagination
                 count={props.totalPages}
                 page={props.pageNo}
-                onChange={props.handleClick}
+                onChange={props.paginationOnChange}
                 shape="rounded"
                 classes={{ ul: classes.ul }}
                 showFirstButton
@@ -485,7 +456,7 @@ PostsTable.propTypes = {
   editProduct: PropTypes.func,
   deleteProduct: PropTypes.func,
   publishProduct: PropTypes.func,
-  handleClick: PropTypes.func,
+  paginationOnChange: PropTypes.func,
   handleSortingChange: PropTypes.func,
   setFulfil: PropTypes.func,
   createPost: PropTypes.func,
@@ -504,7 +475,7 @@ PostsTable.defaultProps = {
   deleteProduct: () => console.log('deleteProduct function is required in the PostTable component'),
   publishProduct: () =>
     console.log('publishProduct function is required in the PostTable component'),
-  handleClick: () => console.log('handleClick function is required in the PostTable component'),
+  paginationOnChange: () => console.log('paginationOnChange function is required in the PostTable component'),
   handleSortingChange: () =>
     console.log('handleSortingChange function is required in the PostTable component'),
   setFulfil: () => console.log('setFulfil function is required in the PostTable component'),

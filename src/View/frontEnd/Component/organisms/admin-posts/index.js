@@ -21,11 +21,10 @@ import { useSelector } from 'react-redux';
 import { Button, Card, Col, Row, Dropdown, Modal } from 'react-bootstrap';
 import moment from 'moment';
 import _ from 'lodash';
-import { GalleryImg } from '../../atoms';
 import pencil from '../../../../../assets/images/pencil.svg';
 
 const VALID_IMAGE_FILE_EXTENSIONS = ['jpg', 'png', 'jpeg', 'svg'];
-const DEFAULT_STATE = {
+const DEFAULT_EMPTY_STATE = {
   id: '',
   status: 1,
   title: '',
@@ -54,7 +53,7 @@ const DEFAULT_STATE = {
   media: false,
   policy: false,
   galleryImg: []
-}
+};
 
 const DEFAULT_FULFIL_STATE = {
   fulfilId: '',
@@ -63,8 +62,25 @@ const DEFAULT_FULFIL_STATE = {
   receiptFile: '',
   fulfilPolicy: false,
   fulfilError: []
-}
+};
 
+const SUBMIT_PRODUCT_FORM_VALIDATE_MESSAGE = {
+  'status.required': 'Status is Required',
+  'needheadline.required': 'Need Headline is Required',
+  'galleryUrl.required': 'gallery Url is Required',
+  'brand.required': 'Brand is Required',
+  'headline.required': 'Headline is Required',
+  'category.required': 'Category is Required',
+  'subcategory.required': 'Subcategory is Required',
+  'description.required': 'Description is Required',
+  'price.required': 'Price is Required',
+  'image.required': 'image is Required',
+  'quantity.required': 'Quantity is Required',
+  'organization.required': 'Organization is Required',
+  'slug.required': 'Slug is Required'
+};
+
+// Styles
 const Style_FileUploadInput = {
   position: 'absolute',
   margin: 0,
@@ -75,6 +91,7 @@ const Style_FileUploadInput = {
   opacity: 0,
   cursor: 'pointer'
 };
+
 const Style_ImageUploadWrap = {
   marginTop: '20px',
   // border: " 4px dashed #3773c6",
@@ -82,19 +99,26 @@ const Style_ImageUploadWrap = {
   width: '100%'
 };
 
+const helper_filterImagesByTypeAndMap = (source, type) =>
+  source.filter((img) => img.type === type).map(({ image, _id }) => ({ img: image, id: _id }));
+
+const helper_spliceImages = (id, source) => {
+  let imgs = [...source];
+  imgs.splice(id, 1);
+  return imgs;
+}
+
 const AdminPosts = () => {
-  const navigate = useNavigate();
   console.log('iFrame, AdminPosts');
+  const navigate = useNavigate();
 
   const [viewPost, createPost] = useState(false);
-  const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const type = localStorage.getItem('type');
+  const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const tempCampaignAdminAuthToken = localStorage.getItem('tempCampaignAdminAuthToken');
-  const token = type
-    ? type === 'temp'
-      ? tempCampaignAdminAuthToken
-      : CampaignAdminAuthToken
-    : CampaignAdminAuthToken;
+
+  const token = type && type === 'temp' ? tempCampaignAdminAuthToken : CampaignAdminAuthToken;
+
   const [data] = useOutletContext();
 
   const [categoryList, setCategoryList] = useState([]);
@@ -128,7 +152,7 @@ const AdminPosts = () => {
   // const [primaryBankDetails, setPrimaryBankDetails] = useState({});
 
   // item data state
-  const [state, setstate] = useState(DEFAULT_STATE);
+  const [state, setstate] = useState(DEFAULT_EMPTY_STATE);
 
   const {
     id,
@@ -171,17 +195,15 @@ const AdminPosts = () => {
   const [fulfilMoreTempImages, setFulfilMoreTempImages] = useState([]);
   const [fulfilmoreImages, setFulfilMoreImages] = useState([]);
 
+  // redux get the user
   const user = useSelector((state) => state.user);
 
   let videoid = fulfilState.videoUrl ? fulfilState.videoUrl.split('?v=')[1] : '';
-
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
 
   const [tags, setTags] = useState([]);
-  // let url = galleryUrl;
-  // let videoid = url?.split('?v=')[1];
-  // let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
-  //
+
+  // callback fetches projectList for the org, sets projectList and OGProjectList
   const orgProjectList = useCallback(async () => {
     let formData = {};
     formData.filter = false;
@@ -197,14 +219,18 @@ const AdminPosts = () => {
     }
   }, [data._id, token]);
 
+  /*
+   * runs whenever the id of the product changes
+   * fetches list of categories, and fetches projectList (?)
+   */
   useEffect(() => {
     (async () => {
       // console.log(data)
       // console.log(data.country_id)
       setLoading(true);
-      const getcategoryList = await categoryApi.listCategory(token);
-      if (getcategoryList.data.success === true) {
-        setCategoryList(getcategoryList.data.data);
+      const getCategoryListResponse = await categoryApi.listCategory(token);
+      if (getCategoryListResponse.data.success === true) {
+        setCategoryList(getCategoryListResponse.data.data);
       }
 
       if (data._id) await orgProjectList();
@@ -213,7 +239,6 @@ const AdminPosts = () => {
     })();
   }, [data._id]);
 
-
   // const getPrimaryBankAccount = useCallback(async () => {
   //   const acc = await adminCampaignApi.getPrimaryBankAccount(token);
   //   if (acc.data.success) {
@@ -221,12 +246,13 @@ const AdminPosts = () => {
   //   }
   // }, [token]);
 
+  // almost exact same as above.... why?
   useEffect(() => {
     (async () => {
-      setLoading(false);
-      const getcategoryList = await categoryApi.listCategory(token);
-      if (getcategoryList.data.success === true) {
-        setCategoryList(getcategoryList.data.data);
+      setLoading(true);
+      const getCategoryListResponse = await categoryApi.listCategory(token);
+      if (getCategoryListResponse.data.success === true) {
+        setCategoryList(getCategoryListResponse.data.data);
       }
 
       if (data._id) await orgProjectList();
@@ -235,6 +261,7 @@ const AdminPosts = () => {
     })();
   }, [data._id, orgProjectList, token]);
 
+  // *** Tag functions
   const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
   };
@@ -422,35 +449,33 @@ const AdminPosts = () => {
 
     if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
       setTempImg(URL.createObjectURL(file));
-      setstate({...state, image: file});
+      setstate({ ...state, image: file });
     } else {
-      setstate({...state, image: ''});
+      setstate({ ...state, image: '' });
     }
-  }
+  };
 
   const clearReceiptFileState = () => {
     setReceiptImgName('');
 
-    setFulfilState(prev => ({
+    setFulfilState((prev) => ({
       ...prev,
       receiptFile: ''
     }));
-  }
+  };
   const changeReceiptFile = async (e) => {
     const file = e.target.files[0] ? e.target.files[0] : '';
     if (file) {
       setReceiptImgName(file.name);
-      console.log(file)
+      console.log(file);
       setFulfilState({
         ...fulfilState,
         receiptFile: file
       });
-
     } else {
       clearReceiptFileState();
     }
-  }
-
+  };
 
   const changeGalleryImg = async (e) => {
     if (!(e.target.files && e.target.files.length > 0)) {
@@ -463,9 +488,7 @@ const AdminPosts = () => {
 
     gImgtempObj.push(e.target.files);
     for (let i = 0; i < gImgtempObj[0].length; i++) {
-      let extension = gImgtempObj[0][i].name.substr(
-        gImgtempObj[0][i].name.lastIndexOf('.') + 1
-      );
+      let extension = gImgtempObj[0][i].name.substr(gImgtempObj[0][i].name.lastIndexOf('.') + 1);
       if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
         tempGallaryFileArry.push(gImgtempObj[0][i]);
         gImgtempArry.push(URL.createObjectURL(gImgtempObj[0][i]));
@@ -490,7 +513,7 @@ const AdminPosts = () => {
         galleryImg: tempGallaryFileArry
       });
     }
-  }
+  };
 
   const changeMoreImg = async (e) => {
     if (!(e.target.files && e.target.files.length > 0)) {
@@ -503,9 +526,7 @@ const AdminPosts = () => {
 
     mImgtempObj.push(e.target.files);
     for (let i = 0; i < mImgtempObj[0].length; i++) {
-      let extension = mImgtempObj[0][i].name.substr(
-        mImgtempObj[0][i].name.lastIndexOf('.') + 1
-      );
+      let extension = mImgtempObj[0][i].name.substr(mImgtempObj[0][i].name.lastIndexOf('.') + 1);
       if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
         tempMainFileArry.push(mImgtempObj[0][i]);
         mImgtempArry.push(URL.createObjectURL(mImgtempObj[0][i]));
@@ -530,7 +551,7 @@ const AdminPosts = () => {
         moreImg: tempMainFileArry
       });
     }
-  }
+  };
 
   const changeFulfilMoreImages = async (e) => {
     if (!(e.target.files && e.target.files.length > 0)) {
@@ -543,9 +564,7 @@ const AdminPosts = () => {
 
     fmImgtempObj.push(e.target.files);
     for (let i = 0; i < fmImgtempObj[0].length; i++) {
-      let extension = fmImgtempObj[0][i].name.substr(
-        fmImgtempObj[0][i].name.lastIndexOf('.') + 1
-      );
+      let extension = fmImgtempObj[0][i].name.substr(fmImgtempObj[0][i].name.lastIndexOf('.') + 1);
       if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
         ftempMainFileArry.push(fmImgtempObj[0][i]);
         fmImgtempArry.push(URL.createObjectURL(fmImgtempObj[0][i]));
@@ -562,7 +581,7 @@ const AdminPosts = () => {
       ...fulfilState,
       fulfilMoreImg: combineMain
     });
-  }
+  };
 
   const changefile = async (e) => {
     // console.log('gg')
@@ -570,16 +589,12 @@ const AdminPosts = () => {
     if (e.target.id === 'mainImg') {
       await changeMainImg(e);
       // console.log(URL.createObjectURL(file))
-
     } else if (e.target.id === 'receiptFile') {
       await changeReceiptFile(e);
-
     } else if (e.target.id === 'galleryImg') {
       await changeGalleryImg(e);
-
     } else if (e.target.id === 'moreImg') {
       await changeMoreImg(e);
-
     } else if (e.target.id === 'fulfilmoreImages') {
       await changeFulfilMoreImages(e);
     }
@@ -595,36 +610,41 @@ const AdminPosts = () => {
     setGallaryTempImages([]);
     setGallaryImages([]);
     setSeletedProjectList([]);
-    setstate({
-      id: '',
-      status: -1,
-      title: '',
-      subtitle: '',
-      headline: '',
-      brand: '',
-      category: '',
-      subcategory: '',
-      description: '',
-      price: '',
-      displayPrice: '',
-      image: '',
-      quantity: '',
-      organization: '',
-      slug: '',
-      error: [],
-      moreImg: [],
-      galleryUrl: '',
-      needheadline: '',
-      address: '',
-      lat: '',
-      lng: '',
-      unlimited: false,
-      tax: false,
-      postTag: false,
-      media: false,
-      policy: false,
-      galleryImg: []
-    });
+    const newEmptyState = {
+      ...DEFAULT_EMPTY_STATE,
+      status: -1 // the only difference between the reset state and default
+    };
+    setstate(newEmptyState);
+    //setstate({
+    //id: '',
+    //status: -1,
+    //title: '',
+    //subtitle: '',
+    //headline: '',
+    //brand: '',
+    //category: '',
+    //subcategory: '',
+    //description: '',
+    //price: '',
+    //displayPrice: '',
+    //image: '',
+    //quantity: '',
+    //organization: '',
+    //slug: '',
+    //error: [],
+    //moreImg: [],
+    //galleryUrl: '',
+    //needheadline: '',
+    //address: '',
+    //lat: '',
+    //lng: '',
+    //unlimited: false,
+    //tax: false,
+    //postTag: false,
+    //media: false,
+    //policy: false,
+    //galleryImg: []
+    //});
   };
 
   // when creating a product??
@@ -675,63 +695,32 @@ const AdminPosts = () => {
       // }
     }
 
-    let rules;
+    const rules = {};
     if (s === 1) {
-      if (id) {
-        rules = {
-          brand: 'required',
-          needheadline: 'required',
-          // galleryUrl: 'required',
-          status: 'required',
-          headline: 'required',
-          category: 'required',
-          subcategory: 'required',
-          description: 'required',
-          price: 'required',
-          // quantity: 'required',
-          organization: 'required',
-          // policy: 'boolean',
+      // since it's const, we assign properties
+      Object.assign(rules, {
+        brand: 'required',
+        needheadline: 'required',
+        // galleryUrl: 'required',
+        status: 'required',
+        headline: 'required',
+        category: 'required',
+        subcategory: 'required',
+        description: 'required',
+        price: 'required',
+        // quantity: 'required',
+        organization: 'required',
+        // policy: 'boolean',
 
-          slug: 'required'
-        };
-      } else {
-        rules = {
-          brand: 'required',
-          needheadline: 'required',
-          // galleryUrl: 'required',
-          status: 'required',
-          headline: 'required',
-          category: 'required',
-          subcategory: 'required',
-          description: 'required',
-          price: 'required',
-          image: 'required',
-          // quantity: 'required',
-          slug: 'required'
-          // policy: 'boolean',
-        };
+        slug: 'required'
+      });
+
+      if (!id) {
+        rules.image = 'required';
       }
-    } else {
-      rules = {};
     }
 
-    const message = {
-      'status.required': 'Status is Required',
-      'needheadline.required': 'Need Headline is Required',
-      'galleryUrl.required': 'gallery Url is Required',
-      'brand.required': 'Brand is Required',
-      'headline.required': 'Headline is Required',
-      'category.required': 'Category is Required',
-      'subcategory.required': 'Subcategory is Required',
-      'description.required': 'Description is Required',
-      'price.required': 'Price is Required',
-      'image.required': 'image is Required',
-      'quantity.required': 'Quantity is Required',
-      'organization.required': 'Organization is Required',
-      'slug.required': 'Slug is Required'
-    };
-
-    validateAll(state, rules, message)
+    validateAll(state, rules, SUBMIT_PRODUCT_FORM_VALIDATE_MESSAGE)
       .then(async () => {
         // const formaerrror = {};
         setstate({
@@ -817,9 +806,10 @@ const AdminPosts = () => {
 
         // Api Call for update Profile
         setLoading(true);
-        let addProduct = (id !== '') 
-          ? await productApi.updateProduct(token, formData, id) 
-          : await productApi.add(token, formData);
+        let addProduct =
+          id !== ''
+            ? await productApi.updateProduct(token, formData, id)
+            : await productApi.add(token, formData);
 
         if (!addProduct) {
           setLoading(false);
@@ -831,7 +821,7 @@ const AdminPosts = () => {
           setLoading(false);
           ToastAlert({ msg: addProduct.data.message, msgType: 'error' });
           return;
-        } 
+        }
 
         if (addProduct.data.success === true) {
           setLoading(false);
@@ -850,9 +840,7 @@ const AdminPosts = () => {
             let idx = !seletedProjectListofIds?.length
               ? -1
               : seletedProjectListofIds.indexOf(project._id);
-            let removedIdx = !removedProjects.length
-              ? -1
-              : removedProjects.indexOf(project._id);
+            let removedIdx = !removedProjects.length ? -1 : removedProjects.indexOf(project._id);
 
             if (idx !== -1 || removedIdx !== -1) {
               let deleteIds = [];
@@ -912,27 +900,28 @@ const AdminPosts = () => {
           label: 'Delete',
           onClick: async () => {
             setLoading(true);
-            if (id !== '') {
-              const deleteProductApi = await productApi.deleteProduct(token, id);
-              if (deleteProductApi) {
-                if (deleteProductApi.data.success === false) {
-                  setLoading(false);
-                  ToastAlert({ msg: deleteProductApi.data.message, msgType: 'error' });
-                } else {
-                  if (deleteProductApi.data.success === true) {
-                    setLoading(false);
-                    setUpdate(!update);
-                    createPost(false);
-                    ToastAlert({ msg: deleteProductApi.data.message, msgType: 'success' });
-                  }
-                }
-              } else {
-                setLoading(false);
-                ToastAlert({ msg: 'Product not delete', msgType: 'error' });
-              }
-            } else {
+            if (id === '') {
               setLoading(false);
               ToastAlert({ msg: 'Product not delete id Not found', msgType: 'error' });
+              return;
+            }
+
+            const deleteProductApi = await productApi.deleteProduct(token, id);
+            if (!deleteProductApi) {
+              setLoading(false);
+              ToastAlert({ msg: 'Product not delete', msgType: 'error' });
+              return;
+            }
+
+            if (deleteProductApi.data.success === false) {
+              setLoading(false);
+              ToastAlert({ msg: deleteProductApi.data.message, msgType: 'error' });
+            }
+            if (deleteProductApi.data.success === true) {
+              setLoading(false);
+              setUpdate(!update);
+              createPost(false);
+              ToastAlert({ msg: deleteProductApi.data.message, msgType: 'success' });
             }
           }
         }
@@ -973,35 +962,27 @@ const AdminPosts = () => {
               );
 
               if (!deleteFulfilOrderApi) {
-                throw new Error({msg: 'Product not deleted', msgType: 'error'});
-                //setLoading(false);
-                //ToastAlert({ msg: 'Product not deleted', msgType: 'error' });
-                //return;
+                throw new Error({ msg: 'Product not deleted', msgType: 'error' });
               }
 
               if (deleteFulfilOrderApi.data.success === false) {
                 throw new Error({ msg: deleteFulfilOrderApi.data.message, msgType: 'error' });
-                //setLoading(false);
-                //ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'error' });
-                //return;
               }
 
               if (deleteFulfilOrderApi.data.success === true) {
                 //setLoading(false);
                 setUpdate(!update);
                 setDeletedFile(true);
-    
+
                 closeFulfilForm();
                 ToastAlert({ msg: deleteFulfilOrderApi.data.message, msgType: 'success' });
               }
-            } catch(e) {
-              console.log({e});
+            } catch (e) {
+              console.log({ e });
               ToastAlert(e);
-
             } finally {
               // remove loading state
               setLoading(false);
-
             }
           }
         }
@@ -1025,105 +1006,100 @@ const AdminPosts = () => {
 
       // console.log(productData)
 
-      if (productData && productData !== null && productData !== '') {
-        // console.log(productData)
-        //
-        setstate({
-          id: productData._id,
-          status: productData.status,
-          headline: productData.headline,
-          brand: productData.brand,
-          category: productData.categoryId,
-          subcategory: productData.subcategoryId,
-          description: productData.description,
-          price: productData.price,
-          quantity: productData.quantity,
-          organization: productData.organizationId,
-          slug: productData.slug,
-          needheadline: productData.needheadline,
-          galleryUrl: productData.galleryUrl,
-          unlimited: productData.unlimited,
-          tax: productData.tax,
-          postTag: productData.postTag,
-          address: productData.address ? productData.address : '',
-          lat: productData.lat ? productData.lat : '',
-          lng: productData.lng ? productData.lng : '',
-          media: productData.media ? productData.media : false,
-          displayPrice: productData.displayPrice ? productData.displayPrice : productData.price,
-          policy: true
-        });
-
-        let tempProjectArray = [];
-        if (productData.projectDetails.length > 0) {
-          productData.projectDetails.map((project) => {
-            tempProjectArray.push(project.projectId);
-          });
-          setSeletedProjectList(tempProjectArray);
-        } else {
-          setSeletedProjectList([]);
-        }
-        // console.log(productData.projectDetails)
-
-        let tempMImgArray = [];
-
-        if (productData.imageDetails.length > 0) {
-          productData.imageDetails.map((img) => {
-            if (img.type === 'moreImage') {
-              let tempObj = {};
-              tempObj.img = img.image;
-              tempObj.id = img._id;
-              tempMImgArray.push(tempObj);
-            }
-          });
-          setMoreImages(tempMImgArray);
-        } else {
-          setMoreImages([]);
-        }
-
-        let tempGImgArray = [];
-
-        if (productData.imageDetails.length > 0) {
-          productData.imageDetails.map((img) => {
-            if (img.type === 'galleryImage') {
-              let tempObj = {};
-              tempObj.img = img.image;
-              tempObj.id = img._id;
-              tempGImgArray.push(tempObj);
-            }
-          });
-          setGallaryImages(tempGImgArray);
-        } else {
-          setGallaryImages([]);
-        }
-
-        let mytags = [];
-        let addedTags = [];
-        if (productData.tags.length > 0) {
-          addedTags = productData.tags;
-
-          addedTags.map((aadedTag) => {
-            let tagsObj = {};
-            tagsObj.id = aadedTag;
-            tagsObj.text = aadedTag;
-            mytags.push(tagsObj);
-          });
-          setTags(mytags);
-        }
-        setImg(productData.image);
-
-        const getsubCategoryList = await categoryApi.listSubCategory(token, productData.categoryId);
-        if (getsubCategoryList.data.success === true) {
-          setSubCategoryList(getsubCategoryList.data.data);
-        }
-        createPost(true);
-        setLoading(false);
-      } else {
+      if (!(productData && productData !== null && productData !== '')) {
         setLoading(false);
         ToastAlert({
           msg: 'Something went wrong category data not found please try again',
           msgType: 'error'
         });
+        return;
       }
+
+      setstate({
+        id: productData._id,
+        status: productData.status,
+        headline: productData.headline,
+        brand: productData.brand,
+        category: productData.categoryId,
+        subcategory: productData.subcategoryId,
+        description: productData.description,
+        price: productData.price,
+        quantity: productData.quantity,
+        organization: productData.organizationId,
+        slug: productData.slug,
+        needheadline: productData.needheadline,
+        galleryUrl: productData.galleryUrl,
+        unlimited: productData.unlimited,
+        tax: productData.tax,
+        postTag: productData.postTag,
+        address: productData.address ? productData.address : '',
+        lat: productData.lat ? productData.lat : '',
+        lng: productData.lng ? productData.lng : '',
+        media: productData.media ? productData.media : false,
+        displayPrice: productData.displayPrice ? productData.displayPrice : productData.price,
+        policy: true
+      });
+
+      let tempProjectArray = [];
+      if (productData.projectDetails.length > 0) {
+        productData.projectDetails.forEach((project) => {
+          tempProjectArray.push(project.projectId);
+        });
+      }
+      setSeletedProjectList(tempProjectArray);
+      // console.log(productData.projectDetails)
+
+      let tempMImgArray = [];
+
+      if (productData.imageDetails.length > 0) {
+        //productData.imageDetails.forEach((img) => {
+        //if (img.type !== 'moreImage') return;
+
+        //let tempObj = {img};
+        //tempObj.img = img.image;
+        //tempObj.id = img._id;
+        //tempMImgArray.push(tempObj);
+        //});
+        tempMImgArray = helper_filterImagesByTypeAndMap(productData.imageDetails, 'moreImage');
+      }
+      setMoreImages(tempMImgArray);
+
+      let tempGImgArray = [];
+
+      if (productData.imageDetails.length > 0) {
+        //productData.imageDetails.map((img) => {
+          //if (img.type === 'galleryImage') {
+            //let tempObj = {};
+            //tempObj.img = img.image;
+            //tempObj.id = img._id;
+            //tempGImgArray.push(tempObj);
+          //}
+        //});
+        tempGImgArray = helper_filterImagesByTypeAndMap(productData.imageDetails, 'galleryImage');
+      }
+      setGallaryImages(tempGImgArray);
+
+      let mytags = [];
+      let addedTags = [];
+      if (productData.tags.length > 0) {
+        addedTags = productData.tags;
+
+        addedTags.map((aadedTag) => {
+          let tagsObj = {};
+          tagsObj.id = aadedTag;
+          tagsObj.text = aadedTag;
+          mytags.push(tagsObj);
+        });
+        setTags(mytags);
+      }
+      setImg(productData.image);
+
+      const getsubCategoryList = await categoryApi.listSubCategory(token, productData.categoryId);
+      if (getsubCategoryList.data.success === true) {
+        setSubCategoryList(getsubCategoryList.data.data);
+      }
+      createPost(true);
+      setLoading(false);
     }
   };
 
@@ -1157,46 +1133,52 @@ const AdminPosts = () => {
         msg: 'Product not Published please fill Required information',
         msgType: 'error'
       });
-    } else {
-      setLoading(false);
+      return;
+    }
 
-      const publish = await productApi.publishProduct(token, id, 'PUBLISH');
-      if (publish) {
-        if (publish.data.success === false) {
-          setLoading(false);
-          ToastAlert({ msg: publish.data.message, msgType: 'error' });
-        } else {
-          if (publish.data.success === true) {
-            setLoading(false);
-            setUpdate(!update);
-            ToastAlert({ msg: publish.data.message, msgType: 'success' });
-          }
-        }
-      } else {
-        setLoading(false);
-        ToastAlert({ msg: 'Product not published', msgType: 'error' });
-      }
+    setLoading(true);
+
+    const publish = await productApi.publishProduct(token, id, 'PUBLISH');
+
+    if (!publish) {
+      setLoading(false);
+      ToastAlert({ msg: 'Product not published', msgType: 'error' });
+      return;
+    }
+
+    if (publish.data.success === false) {
+      setLoading(false);
+      ToastAlert({ msg: publish.data.message, msgType: 'error' });
+      return;
+    }
+
+    if (publish.data.success === true) {
+      setLoading(false);
+      setUpdate(!update);
+      ToastAlert({ msg: publish.data.message, msgType: 'success' });
     }
   };
 
   const unPublishProduct = async (id) => {
     const publish = await productApi.publishProduct(token, id, 'UNPUBLISH');
-    if (publish) {
-      if (publish.data.success === false) {
-        setLoading(false);
-        ToastAlert({ msg: publish.data.message, msgType: 'error' });
-      } else {
-        if (publish.data.success === true) {
-          setLoading(false);
-          setUpdate(!update);
-          setFulfil(false);
-          createPost(false);
-          ToastAlert({ msg: publish.data.message, msgType: 'success' });
-        }
-      }
-    } else {
+    if (!publish) {
       setLoading(false);
       ToastAlert({ msg: 'Product not Published', msgType: 'error' });
+      return;
+    }
+
+    if (publish.data.success === false) {
+      setLoading(false);
+      ToastAlert({ msg: publish.data.message, msgType: 'error' });
+      return;
+    }
+
+    if (publish.data.success === true) {
+      setLoading(false);
+      setUpdate(!update);
+      setFulfil(false);
+      createPost(false);
+      ToastAlert({ msg: publish.data.message, msgType: 'success' });
     }
   };
 
@@ -1230,6 +1212,7 @@ const AdminPosts = () => {
 
       setTotalPages(getOrganizationProducts.data.totalPages);
       setTotalRecord(getOrganizationProducts.data.totalRecord);
+      setLoading(false);
     },
     [data._id, token]
   );
@@ -1246,7 +1229,8 @@ const AdminPosts = () => {
     })();
   }, [data._id, getProductList, order, pageNo, sortField, update]);
 
-  const handleClick = async (e, v) => {
+  const PostsTable_PaginationOnChange = async (e, v) => {
+    console.log('~"PostsTable_PaginationOnChange" fn');
     setPageNo(Number(v));
     await getProductList(Number(v), sortField, order);
   };
@@ -1277,26 +1261,31 @@ const AdminPosts = () => {
     await getProductList(pageNo, accessor, sortOrder);
   };
 
+  // used to delete product images - how is this different from fulfilMoreImgs???
   const deleteProductImage = async (id, type) => {
     setLoading(true);
     const deleteImg = await productApi.deleteProductImages(token, id);
 
-    if (deleteImg.data.success) {
-      if (type === 'Fulfil') {
-        let imgs = [...fulfilmoreImages];
-        imgs = imgs.filter((item) => item.id !== id);
-        setFulfilMoreImages(imgs);
-      } else {
-        if (type === 'More') {
-          let imgs = [...moreImages];
-          imgs = imgs.filter((item) => item.id !== id);
-          setMoreImages(imgs);
-        } else {
-          let gImg = [...gallaryImages];
-          gImg = gImg.filter((item) => item.id !== id);
-          setGallaryImages(gImg);
-        }
-      }
+    if (!deleteImg.data.success) {
+      setLoading(false);
+      return;
+    }
+
+    let imgs = [];
+    if (type === 'Fulfil') {
+      imgs = [...fulfilmoreImages];
+      imgs = imgs.filter((item) => item.id !== id);
+      setFulfilMoreImages(imgs);
+
+    } else if (type === 'More') {
+      imgs = [...moreImages];
+      imgs = imgs.filter((item) => item.id !== id);
+      setMoreImages(imgs);
+
+    } else {
+      imgs = [...gallaryImages];
+      imgs = imgs.filter((item) => item.id !== id);
+      setGallaryImages(imgs);
     }
     setLoading(false);
   };
@@ -1390,13 +1379,14 @@ const AdminPosts = () => {
           ...fulfilState,
           fulfilError: formaerrror
         });
-      }).finally(() => {
+      })
+      .finally(() => {
         setLoading(false);
       });
   };
 
   const showFulfillOrder = async (data) => {
-    // console.log(data)
+    console.log(`~showFulfillOrder fn`);
     setFulfilProductDetails(data);
     createPost(true);
     setFulfil(true);
@@ -1410,59 +1400,54 @@ const AdminPosts = () => {
       fulfilPolicy: data?.isFulfiled,
       fulfilError: []
     });
-    let tempMImgArray = [];
-    if (data.imageDetails.length > 0) {
-      data.imageDetails.map((img) => {
-        if (img.type === 'fulfillImage') {
-          let tempObj = {};
-          tempObj.img = img.image;
-          tempObj.id = img._id;
-          tempMImgArray.push(tempObj);
-        }
-      });
-      setFulfilMoreImages(tempMImgArray);
-    } else {
+
+    if (data.imageDetails.length <= 0) {
       setFulfilMoreImages([]);
+      return;
     }
+
+    let tempMImgArray = helper_filterImagesByTypeAndMap(data.imageDetails, 'fulfillImage');
+    //data.imageDetails.map((img) => {
+      //if (img.type === 'fulfillImage') {
+        //let tempObj = {};
+        //tempObj.img = img.image;
+        //tempObj.id = img._id;
+        //tempMImgArray.push(tempObj);
+      //}
+    //});
+    setFulfilMoreImages(tempMImgArray);
   };
 
-  const removeFulfilTempImages = async (id) => {
-    let imgs = [...fulfilMoreTempImages];
-    imgs.splice(id, 1);
-    setFulfilMoreTempImages(imgs);
 
-    let fImg = [...fulfilMoreImg];
-    fImg.splice(id, 1);
+  // used to delete an image from the post
+  const removeFulfilTempImages = async (id) => {
+
+    //let imgs = [...fulfilMoreTempImages];
+    //imgs.splice(id, 1);
+    setFulfilMoreTempImages(helper_spliceImages(id, fulfilMoreTempImages));
+
+    //let fImg = [...fulfilMoreImg];
+    //fImg.splice(id, 1);
     setFulfilState({
       ...fulfilState,
-      fulfilMoreImg: fImg
+      fulfilMoreImg: helper_spliceImages(id, fulfilMoreImg)
     });
   };
 
+
   const removeGallaryempImages = async (id, type) => {
     if (type === 'galleryImg') {
-      let imgs = [...gallaryTempImages];
-      imgs.splice(id, 1);
-      setGallaryTempImages(imgs);
-
-      let fImg = [...galleryImg];
-      fImg.splice(id, 1);
+      setGallaryTempImages(helper_spliceImages(id, gallaryTempImages));
 
       setstate({
         ...state,
-        galleryImg: fImg
+        galleryImg: helper_spliceImages(id, galleryImg)
       });
     } else {
-      let imgs = [...moreTempImages];
-      imgs.splice(id, 1);
-      setMoreTempImages(imgs);
-
-      let fImg = [...moreImg];
-      fImg.splice(id, 1);
-
+      setMoreTempImages(helper_spliceImages(id, moreTempImages));
       setstate({
         ...state,
-        moreImg: fImg
+        moreImg: helper_spliceImages(id, moreImg)
       });
     }
   };
@@ -1472,7 +1457,7 @@ const AdminPosts = () => {
     link.href = dataurl;
     link.download = filename;
     link.click();
-  }
+  };
 
   console.log({ fulfilProductDetails });
   return (
@@ -1480,7 +1465,7 @@ const AdminPosts = () => {
       {/* {console.log('state', displayPrice)} */}
       {/*<FrontLoader loading={loading} />*/}
 
-      <ModalSaveAsDraft 
+      <ModalSaveAsDraft
         modelShow={modelShow}
         setModelShow={setModelShow}
         submitProductForm={submitProductForm}
@@ -1488,7 +1473,7 @@ const AdminPosts = () => {
 
       {!viewPost ? (
         <div>
-          <PostsTableHeader 
+          <PostsTableHeader
             totalRecord={totalRecord}
             user={user}
             productList={productList}
@@ -1503,7 +1488,7 @@ const AdminPosts = () => {
             editProduct={editProduct}
             deleteProduct={deleteProduct}
             publishProduct={publishProduct}
-            handleClick={handleClick}
+            paginationOnChange={PostsTable_PaginationOnChange}
             totalPages={totalPages}
             pageNo={pageNo}
             handleSortingChange={handleSortingChange}
@@ -1553,32 +1538,28 @@ const AdminPosts = () => {
         />
       ) : (
         <>
-          {
-            /*
-             * details view
-             * 
-             */
-          }
-          <PostDetailsNavigation 
+          {/*
+           * details view
+           *
+           */}
+          <PostDetailsNavigation
             closeFulfilForm={closeFulfilForm}
             fulfilProductDetails={fulfilProductDetails}
           />
 
-          <PostDetailsNotificationBanner 
-            fulfilProductDetails={fulfilProductDetails}
-          />
+          <PostDetailsNotificationBanner fulfilProductDetails={fulfilProductDetails} />
 
           <Card className="mt-0 mt-sm-5">
             <Row className="mw-850 ml-5">
               <Col lg="6">
-                <PostDetailsTransactionSummary 
+                <PostDetailsTransactionSummary
                   fulfilProductDetails={fulfilProductDetails}
                   data={data}
                 />
 
                 <PostDetailsReceiptArea
                   receiptImgName={receiptImgName}
-                  fulfilError={fulfilError} 
+                  fulfilError={fulfilError}
                   changefile={changefile}
                   fulfilProductDetails={fulfilProductDetails}
                   deletedFile={deletedFile}
@@ -1587,11 +1568,10 @@ const AdminPosts = () => {
                   deleteFulfilorder={deleteFulfilorder}
                   showReceipt={showReceipt}
                 />
-
               </Col>
 
               <Col lg="6">
-                <PostDetailsMediaColumn 
+                <PostDetailsMediaColumn
                   videoUrl={videoUrl}
                   changevalue={changevalue}
                   embedlink={embedlink}
@@ -1606,9 +1586,9 @@ const AdminPosts = () => {
             </Row>
           </Card>
 
-          <PostDetailsTosAndButtons 
+          <PostDetailsTosAndButtons
             fulfilPolicy={fulfilPolicy}
-            changevalue={changevalue} 
+            changevalue={changevalue}
             fulfilError={fulfilError}
             fulfilProductDetails={fulfilProductDetails}
             closeFulfilForm={closeFulfilForm}
@@ -1621,11 +1601,7 @@ const AdminPosts = () => {
   );
 };
 
-const ModalSaveAsDraft = ({
-  modelShow,
-  setModelShow,
-  submitProductForm,
-}) => {
+const ModalSaveAsDraft = ({ modelShow, setModelShow, submitProductForm }) => {
   return (
     <div
       className="modal common-modal"
@@ -1679,25 +1655,17 @@ const ModalSaveAsDraft = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-const PostsTableHeader = ({
-  totalRecord,
-  user,
-  productList,
-  createNewPost,
-}) => {
+const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => {
   return (
     <header className="py-sm-2 mb-3 w-100 d-sm-flex align-items-center">
       <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Posts</h1>
       <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
 
       <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
-        <FontAwesomeIcon
-          icon={solid('money-bills-simple')}
-          className="text-dark mr-12p fs-4"
-        />
+        <FontAwesomeIcon icon={solid('money-bills-simple')} className="text-dark mr-12p fs-4" />
         <span>{user.currencySymbol}</span>
         {productList && productList.length > 0
           ? productList
@@ -1705,7 +1673,8 @@ const PostsTableHeader = ({
                 (previousTotal, current) =>
                   previousTotal + Number(current.displayPrice * current.soldout),
                 0
-              ).toLocaleString('en-US', {
+              )
+              .toLocaleString('en-US', {
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2
               })
@@ -1724,15 +1693,11 @@ const PostsTableHeader = ({
         {/* <LadderMenuItems /> */}
       </div>
     </header>
-  )
-}
+  );
+};
 
-const PostDetailsNavigation = ({
-  closeFulfilForm,
-  fulfilProductDetails,
-}) => {
+const PostDetailsNavigation = ({ closeFulfilForm, fulfilProductDetails }) => {
   return (
-
     <div className="d-flex align-items-center flex-grow-1 pb-20p border-bottom">
       <Button
         variant="link"
@@ -1779,11 +1744,9 @@ const PostDetailsNavigation = ({
       </Link>
     </div>
   );
-}
+};
 
-const PostDetailsNotificationBanner = ({
-  fulfilProductDetails,
-}) => {
+const PostDetailsNotificationBanner = ({ fulfilProductDetails }) => {
   return (
     <div className="empty_state mt-3">
       <div className="note note-info d-flex align-items-center" style={{ maxWidth: '100%' }}>
@@ -1795,19 +1758,19 @@ const PostDetailsNotificationBanner = ({
           </span>*/}
         {fulfilProductDetails?.unlimited ? (
           <span className="fs-6 text-subtext">
-            Your item was marked as ongoing. You may upload a sales receipt & followup media
-            at any time. A copy of the sales receipt will be shared with your donors.
+            Your item was marked as ongoing. You may upload a sales receipt & followup media at any
+            time. A copy of the sales receipt will be shared with your donors.
           </span>
         ) : (
           <span className="fs-6 text-subtext">
-            Congratulations! Your post has been fully funded. Upload the sales receipt to
-            complete your order. A copy of the sales receipt will be shared with your donors.
+            Congratulations! Your post has been fully funded. Upload the sales receipt to complete
+            your order. A copy of the sales receipt will be shared with your donors.
           </span>
         )}
       </div>
     </div>
   );
-}
+};
 
 const PostDetailsMediaColumn = ({
   videoUrl,
@@ -1818,7 +1781,7 @@ const PostDetailsMediaColumn = ({
   removeFulfilTempImages,
   fulfilmoreImages,
   deleteProductImage,
-  fulfilError,
+  fulfilError
 }) => {
   return (
     <>
@@ -1860,10 +1823,7 @@ const PostDetailsMediaColumn = ({
           <span className="post-type-text">(optional)</span>
         </label>
         <div className="">
-          <div
-            className="upload-picture-video-block mb-2"
-            style={{ display: 'contents' }}
-          >
+          <div className="upload-picture-video-block mb-2" style={{ display: 'contents' }}>
             <div
               className="image-upload-wrap fs-2"
               style={{
@@ -1894,45 +1854,41 @@ const PostDetailsMediaColumn = ({
 
             <div className="grid mt-3 mb-3 w-100">
               {fulfilMoreTempImages?.length ? (
-                fulfilMoreTempImages.map((img, key) => 
-                  (<PostDetailsProductImage 
+                fulfilMoreTempImages.map((img, key) => (
+                  <PostDetailsProductImage
                     key={key}
                     handleDelete={() => removeFulfilTempImages(key)}
                     imgClass="gallery__img"
                     imgStyle={{
                       backgroundImage: `url(${img ? img : noimg})`
                     }}
-                  />)
-                )
+                  />
+                ))
               ) : (
                 <></>
               )}
               {fulfilmoreImages?.length
                 ? fulfilmoreImages.map((img, key) => (
-                  <PostDetailsProductImage 
-                    key={key}
-                    handleDelete={() => deleteProductImage(img.id, 'Fulfil')}
-                    imgClass="gallery__img"
-                    imgStyle={{
-                      backgroundImage: `url(${
-                        img.img
-                          ? img.img !== ''
-                            ? helper.CampaignProductFullImagePath + img.img
+                    <PostDetailsProductImage
+                      key={key}
+                      handleDelete={() => deleteProductImage(img.id, 'Fulfil')}
+                      imgClass="gallery__img"
+                      imgStyle={{
+                        backgroundImage: `url(${
+                          img.img
+                            ? img.img !== ''
+                              ? helper.CampaignProductFullImagePath + img.img
+                              : noimg
                             : noimg
-                          : noimg
-                      })`
-                    }}
-                  />
+                        })`
+                      }}
+                    />
                   ))
                 : ''}
             </div>
             {fulfilError && fulfilError.fulfilMoreImg && (
               <p className="error">
-                {fulfilError
-                  ? fulfilError.fulfilMoreImg
-                    ? fulfilError.fulfilMoreImg
-                    : ''
-                  : ''}
+                {fulfilError ? (fulfilError.fulfilMoreImg ? fulfilError.fulfilMoreImg : '') : ''}
               </p>
             )}
           </div>
@@ -1940,36 +1896,20 @@ const PostDetailsMediaColumn = ({
       </form>
     </>
   );
-}
+};
 
-const PostDetailsProductImage = ({
-  handleDelete,
-  imgClass,
-  imgStyle
-}) => {
+const PostDetailsProductImage = ({ handleDelete, imgClass, imgStyle }) => {
   return (
     <div className="img-wrap">
-      <span
-        className="close"
-        onClick={() => handleDelete()}
-        style={{ right: '7px' }}
-      >
+      <span className="close" onClick={() => handleDelete()} style={{ right: '7px' }}>
         &times;
       </span>
-      <div
-        className={imgClass}
-        style={imgStyle}
-        alt="lk"
-        data-id="103"
-      ></div>
+      <div className={imgClass} style={imgStyle} alt="lk" data-id="103"></div>
     </div>
-  )
-}
+  );
+};
 
-const PostDetailsTransactionSummary = ({
-  fulfilProductDetails,
-  data,
-}) => {
+const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
   return (
     <>
       {!fulfilProductDetails?.isFulfiled && (
@@ -1984,9 +1924,7 @@ const PostDetailsTransactionSummary = ({
         </Card.Header>
         <div className="border-bottom">
           <div className="d-flex align-items-center fw-bolder mb-20p">
-            <span className="flex__1">
-              {fulfilProductDetails?.unlimited ? 'Sold' : 'Qty'} :
-            </span>
+            <span className="flex__1">{fulfilProductDetails?.unlimited ? 'Sold' : 'Qty'} :</span>
             <span className="fs-4 fw-bold text-light">
               {Number(fulfilProductDetails?.unlimited).toLocaleString('en-US', {
                 maximumFractionDigits: 2
@@ -2026,18 +1964,18 @@ const PostDetailsTransactionSummary = ({
       </div>
     </>
   );
-}
+};
 
 const PostDetailsReceiptArea = ({
-  receiptImgName, 
-  fulfilError, 
+  receiptImgName,
+  fulfilError,
   changefile,
   fulfilProductDetails,
   deletedFile,
   setShowReceipt,
   download,
   deleteFulfilorder,
-  showReceipt,
+  showReceipt
 }) => {
   return (
     <>
@@ -2086,14 +2024,12 @@ const PostDetailsReceiptArea = ({
         </div>
       </div>
       {fulfilError && fulfilError.receiptFile && (
-        <p className="error">
-          {fulfilError?.receiptFile ?? ''}
-        </p>
+        <p className="error">{fulfilError?.receiptFile ?? ''}</p>
       )}
 
       {/* sales receipt list, to show when receipt is uploaded */}
       {/* if file is deleted, or if product is not fulfilled, hide this. */}
-      {!( !fulfilProductDetails?.isFulfiled || deletedFile  ) && (
+      {!(!fulfilProductDetails?.isFulfiled || deletedFile) && (
         <>
           <Card.Header className="post__accordion-header pb-3 mt-5">
             <span className="fs-3 fw-bolder text-dark">Sales Receipt</span>
@@ -2123,23 +2059,16 @@ const PostDetailsReceiptArea = ({
                   />
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="">
-                  {(fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] ===
-                    'png' ||
-                    fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] ===
-                      'svg' ||
-                    fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] ===
-                      'jpeg' ||
-                    fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] ===
-                      'jpg') && (
+                  {(fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] === 'png' ||
+                    fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] === 'svg' ||
+                    fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] === 'jpeg' ||
+                    fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] === 'jpg') && (
                     <Dropdown.Item
                       className="d-flex align-items-center p-2"
                       onClick={() => setShowReceipt(true)}
                     >
                       <span className="fw-bold fs-7 flex__1">View</span>
-                      <FontAwesomeIcon
-                        icon={solid('magnifying-glass')}
-                        className="ms-1"
-                      />
+                      <FontAwesomeIcon icon={solid('magnifying-glass')} className="ms-1" />
                     </Dropdown.Item>
                   )}
                   <Dropdown.Divider />
@@ -2147,8 +2076,7 @@ const PostDetailsReceiptArea = ({
                     className="d-flex align-items-center p-2"
                     onClick={() =>
                       download(
-                        helper.FulfilRecieptPath +
-                          fulfilProductDetails?.fulfilDetails?.receipt,
+                        helper.FulfilRecieptPath + fulfilProductDetails?.fulfilDetails?.receipt,
                         fulfilProductDetails?.fulfilDetails?.receipt
                       )
                     }
@@ -2191,9 +2119,7 @@ const PostDetailsReceiptArea = ({
             </Modal.Header>
             <Modal.Body className="text-center">
               <img
-                src={
-                  helper.fullRecieptPath + fulfilProductDetails?.fulfilDetails?.receipt
-                }
+                src={helper.fullRecieptPath + fulfilProductDetails?.fulfilDetails?.receipt}
                 width="66%"
                 alt="receipt"
               />
@@ -2203,15 +2129,15 @@ const PostDetailsReceiptArea = ({
       )}
     </>
   );
-}
+};
 
 const PostDetailsTosAndButtons = ({
-  fulfilPolicy, 
-  changevalue, 
-  fulfilError, 
-  fulfilProductDetails, 
-  closeFulfilForm, 
-  unPublishProduct, 
+  fulfilPolicy,
+  changevalue,
+  fulfilError,
+  fulfilProductDetails,
+  closeFulfilForm,
+  unPublishProduct,
   fulfilOrder
 }) => {
   return (
@@ -2245,18 +2171,15 @@ const PostDetailsTosAndButtons = ({
             after it has received funding. If you delete your post after it
             has received donations, the donors will receive a full refund and
             the post will be closed. */}
-            By fulfilling your order, you are agreeing that you have purchased the product as
-            it was presented at the time the post was created for the amount of items you
-            requested. The sales receipt for your order will be shared with your donors on
-            their order page.
+            By fulfilling your order, you are agreeing that you have purchased the product as it was
+            presented at the time the post was created for the amount of items you requested. The
+            sales receipt for your order will be shared with your donors on their order page.
           </label>
         </div>
       </div>
 
       {fulfilError && fulfilError.fulfilPolicy && (
-        <p className="error">
-          {fulfilError?.fulfilPolicy ?? ''}
-        </p>
+        <p className="error">{fulfilError?.fulfilPolicy ?? ''}</p>
       )}
 
       <div className="products-detial-footer py-5">
@@ -2286,18 +2209,12 @@ const PostDetailsTosAndButtons = ({
           </Button>
         )}
 
-        <Button
-          variant="success"
-          size="lg"
-          className="fw-bold fs-6"
-          onClick={() => fulfilOrder()}
-        >
+        <Button variant="success" size="lg" className="fw-bold fs-6" onClick={() => fulfilOrder()}>
           {fulfilProductDetails?.isFulfiled ? 'Update' : 'Fulfill Order'}
         </Button>
       </div>
     </>
   );
-}
-
+};
 
 export default AdminPosts;
