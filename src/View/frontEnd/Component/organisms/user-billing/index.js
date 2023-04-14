@@ -48,7 +48,7 @@ const UserBilling = () => {
 
           if (list.type !== 'ORDER') {
             let tempObj = {};
-            tempObj.date = moment(list.created_at).format('DD/MM/YYYY');
+            tempObj.date = moment(list.created_at).format('MM/DD/YYYY');
             tempObj.amount = list.type === 'ORDER' ? list.total : list.amount;
             tempObj.TransactionId = list.uniqueTransactionId
               ? list.uniqueTransactionId
@@ -72,7 +72,7 @@ const UserBilling = () => {
           } else {
             list.orderItems.map((o_itm, okey) => {
               let tempObj = {};
-              tempObj.date = moment(list.created_at).format('DD/MM/YYYY');
+              tempObj.date = moment(list.created_at).format('MM/DD/YYYY');
               tempObj.amount = Number(o_itm.productPrice) * o_itm.quantity;
               tempObj.TransactionId = list.uniqueTransactionId
                 ? list.uniqueTransactionId
@@ -132,7 +132,7 @@ const UserBilling = () => {
               historyList.slice(0, loadMore ? historyList.length : 6).map((list, i) => {
                 let amount = list.type === 'ORDER' ? list.total : list.amount;
                 let currencySymbole = list.currencySymbol;
-                let date = moment(list.created_at).format('DD/MM/YYYY');
+                let date = moment(list.created_at).format('MM/DD/YYYY');
                 let PurchaseType = list.type === 'ORDER' ? 'Bought' : 'Donated';
                 let PurchaseIcon =
                   list.type === 'ORDER' ? (
@@ -181,7 +181,7 @@ const UserBilling = () => {
                 // console.log(JSON.parse(list.paymentResponse).data?.payment_method_details?.card?.brand)
 
                 return list.type !== 'ORDER' ? (
-                  <div className="billing__item p-2 mb-3">
+                  <div className="billing__item p-2 mb-3 border-bottom">
                     <div className="billing__content d-flex align-items-center">
                       <div className="billing__bottom">
                         <div className="billing__value">
@@ -189,7 +189,7 @@ const UserBilling = () => {
                             - {currencySymbole}
                             {amount}
                           </div>
-                          <div className="fw-bold text-subtext fs-8">{date}</div>
+                          <div className="fw-semibold text-light fs-7">{moment(date).format('MMMM DD, YYYY')}</div>
                         </div>
                         <div className="d-sm-none order__link text-subtext mt-6p me-sm-3">
                           #{TransactionId}
@@ -233,7 +233,7 @@ const UserBilling = () => {
                     list.orderItems.map((o_itm, okey) => {
                       // console.log(o_itm)
                       return (
-                        <div className="billing__item p-2 mb-3">
+                        <div className="billing__item p-2 mb-3 border-bottom">
                           <div className="billing__content d-flex align-items-center">
                             <div className="billing__bottom">
                               <div className="billing__value">
@@ -241,7 +241,7 @@ const UserBilling = () => {
                                   - {currencySymbole}
                                   {Number(o_itm.productPrice) * o_itm.quantity}
                                 </div>
-                                <div className="fw-bold text-subtext fs-8">{date}</div>
+                                <div className="fw-semibold text-light fs-7">{moment(date).format('MMMM DD, YYYY')}</div>
                               </div>
                               <div className="d-sm-none order__link text-subtext mt-6p me-sm-3">
                                 #{TransactionId}

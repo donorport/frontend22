@@ -35,9 +35,9 @@
     }
   }
 }
-.price__slider {
-  width: 225px;
-}
+// .price__slider {
+//   width: 225px;
+// }
 @include media-breakpoint-down(sm) {
   .price__slider {
     width: 100%;

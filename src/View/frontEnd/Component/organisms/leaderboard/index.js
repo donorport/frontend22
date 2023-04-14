@@ -168,17 +168,9 @@ const LeaderBoard = () => {
                     <div className="rank__header">
                       <h3 className="fw-bolder ms-2 mb-0">{userData.name}</h3>
                       <div className="ladder__xp d-flex align-items-center mt-1">
-                        {/* <a style={{backgroundColor:"#a278fc"}} href="/ranks" className="btn btn--xpbadge w-inline-block">
-                                                <div className="icon icon--badge">
-                                                    <div></div>
-                                                </div>
-                                                <div className="text text--badge">Narwhal</div>
-                                            </a> */}
-                        {
-                          // getC.getUserRank(user.xp) !== "" &&
-
+                        {getC.getUserRank(user.xp) !== '' && (
                           <span className="btn-sm ">{getC.getUserRank(user.xp)}</span>
-                        }
+                        )}
                         <div className="ladder__xp ladder__xp--user w-inline-block">
                           <div className="tag tag--xp tag--xp_nobg  ms-3 fs-5 text-info">
                             {Number(user.xp).toLocaleString('en-US', { maximumFractionDigits: 2 })}

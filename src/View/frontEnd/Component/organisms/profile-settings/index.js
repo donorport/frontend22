@@ -603,7 +603,7 @@ const ProfileSettings = () => {
             <input type="text" name="headline" value={headline} onChange={(e) => changevalue(e)} />
             <span className="input__span">Headline</span>
           </label>
-          <div className="helper__text fs-7 text-end text-subtext">120 chars remaining</div>
+          <div className="helper__text fs-7 text-end text-subtext">120 characters</div>
         </div>
         <div className="note note--inputs mb-3">
           A headline is the subtitle that appears on your organization's page that describes your
@@ -642,7 +642,7 @@ const ProfileSettings = () => {
             <span className="input__span">Mission</span>
           </label>
           <div className="helper__text fs-7 text-end text-subtext">
-            {textAreaCount}/250 characters
+            250 characters
           </div>
           {error && error.mission && <p className="error">{error.mission}</p>}
         </div>
@@ -732,7 +732,7 @@ const ProfileSettings = () => {
           {error && error.promoVideo && <p className="error">{error.promoVideo}</p>}
         </div>
         {embedlink && (
-          <div className="project-video-wrap">
+          <div className="project-video-wrap mb-1">
             <iframe
               title="post-video"
               width="498"

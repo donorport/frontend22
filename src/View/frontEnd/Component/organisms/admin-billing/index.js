@@ -52,7 +52,7 @@ const AdminBilling = () => {
         let tempAr = [];
         peymentHistory.data.data.map((list, i) => {
           let tempObj = {};
-          tempObj.date = moment(list.created_at).format('DD/MM/YYYY');
+          tempObj.date = moment(list.created_at).format('MM/DD/YYYY');
           tempObj.amount =
             list.type === 'ORDER' ? Number(list.totalPrice) * Number(list.quantity) : list.amount;
           tempObj.name =
@@ -153,7 +153,7 @@ const AdminBilling = () => {
                     : list.amount;
                 let currencySymbole =
                   list.type === 'ORDER' ? list.orderDetails.currencySymbol : list.currencySymbol;
-                let date = moment(list.created_at).format('DD/MM/YYYY');
+                let date = moment(list.created_at).format('MM/DD/YYYY');
                 let donate =
                   list.type === 'ORDER' ? list.quantity + ' ' + list.productName : 'Donated';
                 let PurchaseIcon =
@@ -188,8 +188,8 @@ const AdminBilling = () => {
 
                 return (
                   <div className="billing__item p-2 border-bottom border-bottom-sm-none">
-                    <div className="billing__content d-sm-flex align-items-center">
-                      <div className="flex__1 d-flex d-sm-flex-block align-items-center mb-2 mb-sm-0">
+                    <div className="billing__content d-flex flex-column flex-sm-row justify-content-start align-items-start">
+                      <div className="flex__1 w-100 d-flex d-sm-flex-block align-items-center mb-2 mb-sm-0">
                         <Avatar
                           size={52}
                           avatarUrl={avatar}
@@ -197,14 +197,14 @@ const AdminBilling = () => {
                           shadow={false}
                           className="admin__avatar mr-12p donor_avatar_bg"
                         />
-                        <div className="admin__billing__value flex__1">
+                        <div className="admin__billing__value order-1 me-0 me-sm-4 text-end">
                           <div className="text-success fw-bold fs-5 mb-3p">
                             + {currencySymbole}
                             {priceFormat(Number(amount))}
                           </div>
-                          <div className="fw-bold text-light fs-7">{date}</div>
+                          <div className="fw-semibold text-light fs-7">{moment(date).format('MMMM DD, YYYY')}</div>
                         </div>
-                        <div className="admin__billing__details pr-3 ms-2 flex__1 d-flex flex-column align-items-start ps-3">
+                        <div className="admin__billing__details flex__1 d-flex flex-column align-items-start">
                           <div className="fw-bold mb-6p">{userName}</div>
                           <div className="text-subtext fs-7">
                             {PurchaseIcon}&nbsp;

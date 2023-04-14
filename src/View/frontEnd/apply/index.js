@@ -32,7 +32,7 @@ const Apply = (props) => {
                 Activate your account to create your organization's administration page or apply to
                 receive your activation code.
               </div> */}
-              <h4 className="fw-bolder text-dark">Step 1 - Apply</h4>
+              <h4 className="fw-bolder text-dark">Step 1 - Create your account</h4>
               <div className="text-light mb-4 fs-5">
                 Before you can post on Donorport, you must first be approved by the Donorport team.
                 Fill out the form below and click Submit to apply.

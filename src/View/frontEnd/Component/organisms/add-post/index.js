@@ -215,9 +215,9 @@ const AddPost = (props) => {
           <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
         </Button>
         {stateData.status !== 1 ? (
-          <div className="fs-3 fw-bolder me-sm-3 flex__1">Create Item</div>
+          <div className="lh-1 fs-3 fw-bolder me-sm-3 flex__1">Create Post</div>
         ) : (
-          <div className="fs-3 fw-bolder me-sm-3 flex__1">Edit Item</div>
+          <div className="lh-1 fs-3 fw-bolder me-sm-3 flex__1">Edit Post</div>
         )}
 
         <div className="d-flex ms-auto gap-2">
@@ -380,9 +380,9 @@ const AddPost = (props) => {
                 <h2 className="fs-3 fw-bolder text-dark">Product Details</h2>
               </AccordionToggle>
             </Card.Header>
-            <Accordion.Collapse className="py-5">
+            <Accordion.Collapse className="py-0 pt-5 py-sm-5">
               <>
-                <Row className="mw-850 ml-5 mb-5">
+                <Row className="mw-850 ml-5 mb-0 mb-sm-5">
                   <div className="col-lg-6 mb-5 mb-sm-0">
                     <form className="d-flex flex-column profile-detail-form gap-2">
                       <div>
@@ -1108,7 +1108,7 @@ const AddPost = (props) => {
                     <div className="form-group mb-2">
                       <label htmlFor="videoInput" className="form__label">
                         Need Media&nbsp;
-                        <span className="post-type-text">(optional)</span>
+                        <span className="fs-7 text-light ms-1 fw-normal">(optional)</span>
                       </label>
                       <input
                         type="text"

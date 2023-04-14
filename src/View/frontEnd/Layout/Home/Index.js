@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 //const title = {
 //color: '#6b68f8'
 //};
-const ProductsUnavailableLocation = ({user}) => (
+const ProductsUnavailableLocation = ({ user }) => (
   <div className="container">
     <div className="empty__modal">
       <div className="empty__block">
@@ -63,7 +63,7 @@ const ProductsUnavailableLocation = ({user}) => (
   </div>
 );
 
-const ProductList = ({allProps}) =>
+const ProductList = ({ allProps }) =>
   allProps.productList.map(
     (item, index) =>
       item.status === 1 && (
@@ -309,11 +309,11 @@ export default function Index(props) {
               <Link to="/about" className="link d-inline-block">
                 learn more.
               </Link>
-              &nbsp; Charities click&nbsp;
+              &nbsp; Charities&nbsp;
               <Link to="/apply" className="link d-inline-block">
-                here
+                click here
               </Link>
-              &nbsp;to apply
+              &nbsp;to create your account.
             </div>
           </div>
         </Container>

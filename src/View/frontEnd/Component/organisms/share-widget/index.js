@@ -93,7 +93,7 @@ function ShareWidget({page, text, pageTitle, currUrl }) {
                   </Button>
                 </div>
               </div>
-              <div className="sh__list">
+              <div className="sh__list gap-2">
                 {/* <a
                 href="https://www.twitter.com"
                 className="sh__type sh__type--twitter"
@@ -107,7 +107,7 @@ function ShareWidget({page, text, pageTitle, currUrl }) {
                   url={currUrl}
                   // hashtags={["hashtag1", "hashtag2"]}
                 >
-                  <TwitterIcon size={32} borderRadius={9}/>
+                  <TwitterIcon size={38} borderRadius={9}/>
                 </TwitterShareButton>
 
                 {/* <a
@@ -122,7 +122,7 @@ function ShareWidget({page, text, pageTitle, currUrl }) {
                   quote={text}
                   // className="Demo__some-network__share-button"
                 >
-                  <FacebookIcon size={32} round />
+                  <FacebookIcon size={38} borderRadius={9} />
                 </FacebookShareButton>
 
                 {/* <EmailShareButton
@@ -154,7 +154,7 @@ function ShareWidget({page, text, pageTitle, currUrl }) {
                   source={pageTitle}
                   target="_blank"
                 >
-                  <LinkedinIcon size={32} round />
+                  <LinkedinIcon size={38} borderRadius={9} />
                 </LinkedinShareButton>
               </div>
               <div className="sh__header share__header--sub">

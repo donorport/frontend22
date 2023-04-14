@@ -11,11 +11,18 @@ const MarqueeList = (props) => {
         {campaignAdminList.length > 0 &&
           campaignAdminList.map((list, i) => {
             return (
-              <div className="icon__item" key={i}>
-                <div className="icon__img-wrap">
-                  <img src={list.logo? helper.CampaignAdminLogoPath + list.logo : avatar} alt="" />
-                </div>
-              </div>
+              <>
+                {list.logo && (
+                  <div className="icon__item" key={i}>
+                    <div className="icon__img-wrap">
+                      <img
+                        src={list.logo ? helper.CampaignAdminLogoPath + list.logo : avatar}
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                )}
+              </>
             );
           })}
       </div>
