@@ -463,6 +463,7 @@ const AdminPosts = () => {
       receiptFile: ''
     }));
   };
+
   const changeReceiptFile = async (e) => {
     const file = e.target.files[0] ? e.target.files[0] : '';
     if (file) {
@@ -1385,36 +1386,33 @@ const AdminPosts = () => {
       });
   };
 
-  const showFulfillOrder = async (data) => {
-    console.log(`~showFulfillOrder fn`);
-    setFulfilProductDetails(data);
+  // from the table page, this selects the product to view the details (fulfill order button)
+  const showFulfillOrder = async (product) => {
+    console.log(`~~~ showFulfillOrder fn`);
+    setFulfilProductDetails(product);
     createPost(true);
     setFulfil(true);
 
-    setFulfilState({
-      ...fulfilState,
-      fulfilId: data.fulfilDetails?._id,
-      // fulfilMoreImg: [],
-      videoUrl: data.fulfilDetails.video,
-      receiptFile: '',
-      fulfilPolicy: data?.isFulfiled,
-      fulfilError: []
-    });
+    if (product.isFulfilled) { // not sure if the if statement is necessary, do we want this block to run on both occasions?
+      setFulfilState({
+        ...fulfilState,
+        fulfilId: product.fulfilDetails?._id,
+        // fulfilMoreImg: [],
+        videoUrl: product.fulfilDetails.video,
+        receiptFile: '',
+        fulfilPolicy: product?.isFulfiled,
+        fulfilError: []
+      });
 
-    if (data.imageDetails.length <= 0) {
-      setFulfilMoreImages([]);
-      return;
+      if (product.imageDetails.length <= 0) {
+        setFulfilMoreImages([]);
+        console.log(`~~ showFulfillOrder fn: product.imageDetails.length <= 0; clearing fulfilMoreImages`) 
+        return;
+      }
     }
 
-    let tempMImgArray = helper_filterImagesByTypeAndMap(data.imageDetails, 'fulfillImage');
-    //data.imageDetails.map((img) => {
-      //if (img.type === 'fulfillImage') {
-        //let tempObj = {};
-        //tempObj.img = img.image;
-        //tempObj.id = img._id;
-        //tempMImgArray.push(tempObj);
-      //}
-    //});
+    let tempMImgArray = helper_filterImagesByTypeAndMap(product.imageDetails, 'fulfillImage');
+    console.log(`~~ picking out images to show: product.imageDetails:`, {imageDetails: product.imageDetails}, `\n ~~ tempMImgArray:`, {tempMImgArray}) 
     setFulfilMoreImages(tempMImgArray);
   };
 
@@ -1496,9 +1494,6 @@ const AdminPosts = () => {
             order={order}
             sortField={sortField}
             organizationDetails={data}
-            setFulfil={setFulfil}
-            createPost={createPost}
-            setFulfilProductDetails={setFulfilProductDetails}
             showFulfillOrder={showFulfillOrder}
           />
         </div>
@@ -1789,6 +1784,7 @@ const PostDetailsMediaColumn = ({
   deleteProductImage,
   fulfilError
 }) => {
+  console.log(`PostDetailsMediaColumn:`, {fulfilMoreTempImages, fulfilmoreImages});
   return (
     <>
       <Card.Header className="post__accordion-header pb-3">

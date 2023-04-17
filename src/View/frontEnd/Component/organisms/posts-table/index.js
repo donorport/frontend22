@@ -63,7 +63,7 @@ const PostsTable = (props) => {
         >
           {productList.length > 0 ? (
             productList.map((product) => {
-              console.log('~~ postTable - productList map:', {product});
+              console.log('~~ postTable - productList map:', { product });
               let revenue = Number(product.displayPrice * product.soldout).toLocaleString('en-US', {
                 maximumFractionDigits: 2
               });
@@ -231,18 +231,15 @@ const PostsTable = (props) => {
                           )
                         )}
 
-                        {(product.status === 1 &&
-                          product.quantity <= product.soldout &&
-                          !product.isFulfiled) ||
-                        (product.status === 1 && product.unlimited && !product.isFulfiled) ? (
+                        {!product.isFulfiled &&
+                        product.status === 1 &&
+                        (product.quantity <= product.soldout || product.unlimited) ? (
                           <Button
                             variant="success"
                             className="btn-md fw-bold"
                             style={{ marginRight: '10px' }}
                             onClick={() => {
-                              props.createPost(true);
-                              props.setFulfil(true);
-                              props.setFulfilProductDetails(product);
+                              props.showFulfillOrder(product);
                             }}
                           >
                             Fulfill Order
@@ -458,9 +455,6 @@ PostsTable.propTypes = {
   publishProduct: PropTypes.func,
   paginationOnChange: PropTypes.func,
   handleSortingChange: PropTypes.func,
-  setFulfil: PropTypes.func,
-  createPost: PropTypes.func,
-  setFulfilProductDetails: PropTypes.func,
   showFulfillOrder: PropTypes.func
 };
 
@@ -475,13 +469,10 @@ PostsTable.defaultProps = {
   deleteProduct: () => console.log('deleteProduct function is required in the PostTable component'),
   publishProduct: () =>
     console.log('publishProduct function is required in the PostTable component'),
-  paginationOnChange: () => console.log('paginationOnChange function is required in the PostTable component'),
+  paginationOnChange: () =>
+    console.log('paginationOnChange function is required in the PostTable component'),
   handleSortingChange: () =>
     console.log('handleSortingChange function is required in the PostTable component'),
-  setFulfil: () => console.log('setFulfil function is required in the PostTable component'),
-  createPost: () => console.log('createPost function is required in the PostTable component'),
-  setFulfilProductDetails: () =>
-    console.log('setFulfilProductDetails function is required in the PostTable component'),
   showFulfillOrder: () =>
     console.log('showFulfillOrder function is required in the PostTable component')
 };
