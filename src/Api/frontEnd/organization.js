@@ -95,7 +95,7 @@ function organization() {
   const organizatationTaxlist = async (authToken, data) => {
     let res = {};
     await axios({
-      method: 'post',
+      method: 'post', // why is this a POST?
       url: `${helper.ApiUrl}organization/tax`,
       responseType: 'json',
       headers: {

@@ -66,53 +66,63 @@ const AdminTax = () => {
     formData.year = year;
     formData.uploadYear = year;
 
-    const taxList = await organizationApi.organizatationTaxlist(token, formData);
-    if (taxList.data.success === true) {
-      setTaxList(taxList.data.data);
-      setTotalPages(taxList.data.totalPages);
-      setTotalRecord(taxList.data.totalRecord);
+    const LOGGING_time = Date.now();
+    console.log('~~ getTaxList start fetch:', LOGGING_time)
+    const taxListResponse = await organizationApi.organizatationTaxlist(token, formData); // this takes 12 seconds!!!!!! 12223ms
+    console.log('~~ getTaxList end fetch:', {now: Date.now(), difference: Date.now() - LOGGING_time})
+    console.log('should have taxListResponse.data.success && taxListResponse.data = {data, totalPages, totalRecord, ...}:', {taxListResponse});
 
-      if (taxList.data.allData.length > 0) {
-        let tempAr = [];
-        taxList.data.allData.map((v) => {
-          console.log(v);
-          let tempObj = {};
-          tempObj.date = moment(v.created_at).format('DD MMMM YY');
-          tempObj.amount = v[0].currencySymbol + totalVal(v);
-          tempObj.name = v[0].userDetails?.name;
-          tempObj.email = v[0].userDetails?.email;
-          tempObj.type = v[0].type;
-          tempObj.address =
-            v[0].userDetails.street +
-            ' , ' +
-            v[0].userDetails.cityDetails[0]?.city +
-            ' , ' +
-            v[0].userDetails.stateDetails[0]?.state +
-            ' ' +
-            v[0].userDetails.zip +
-            ' , ' +
-            v[0].userDetails.countryDetails[0]?.country;
-          // if (v.type === 'Purchased') {
-          tempObj.products = getProductsName(v);
+    if (taxListResponse.data.success === true) {
+      setTaxList(taxListResponse.data.data); // an array of arrays
+      setTotalPages(taxListResponse.data.totalPages);
+      setTotalRecord(taxListResponse.data.totalRecord);
 
-          // } else {
-          //   tempObj.products = ' - '
-          // }
-
-          // console.log(v)
-          tempAr.push(tempObj);
-        });
-        setCsvData(tempAr);
-        // done(true);
-      } else {
+      if (taxListResponse.data.allData.length <= 0) {
         setCsvData([]);
+        return;
       }
+
+      console.log('preparing taxListResponse...');
+      let tempAr = taxListResponse.data.allData.map((v) => {
+        console.log(v);
+        let tempObj = {};
+        tempObj.date = moment(v.created_at).format('DD MMMM YY');
+        tempObj.amount = v[0].currencySymbol + totalVal(v);
+        tempObj.name = v[0].userDetails?.name;
+        tempObj.email = v[0].userDetails?.email;
+        tempObj.type = v[0].type;
+        tempObj.address =
+          v[0].userDetails.street +
+          ' , ' +
+          v[0].userDetails.cityDetails[0]?.city +
+          ' , ' +
+          v[0].userDetails.stateDetails[0]?.state +
+          ' ' +
+          v[0].userDetails.zip +
+          ' , ' +
+          v[0].userDetails.countryDetails[0]?.country;
+        // if (v.type === 'Purchased') {
+        tempObj.products = getProductsName(v);
+
+        // } else {
+        //   tempObj.products = ' - '
+        // }
+
+        // console.log(v)
+        return tempObj;
+      });
+
+      setCsvData(tempAr);
+      // done(true);
     }
   };
 
   useEffect(() => {
     (async () => {
       setLoading(true);
+      if (!data._id) return; // prevent the initial empty wasted fetch
+      // WARNING: if no data._id, this will forever show the loading state!
+      // BUT if you're on this page, you should have a data._id so it should be fine
       await getTaxList(pageNo, sortField, order, activeYear);
       setLoading(false);
     })();

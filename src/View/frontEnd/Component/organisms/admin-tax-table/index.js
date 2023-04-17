@@ -18,6 +18,29 @@ import donation from '../../../../../assets/images/donate.svg';
 
 let PageSize = 10;
 
+const AccordionItem = ({ header, hideChevron, disableButton, ...rest }) => (
+  <Item
+    {...rest}
+    disabled={disableButton}
+    header={({ state: { isEnter: expanded } }) => (
+      <>
+        {header}
+        <div className="chev-wrapper">
+          {!hideChevron && (
+            <img
+              className={`ml-auto transition-transform duration-200 ease-in-out ${
+                expanded && 'rotate-180'
+              }`}
+              src={chevronDown}
+              alt="Chevron Down"
+            />
+          )}
+        </div>
+      </>
+    )}
+  />
+);
+
 const AdminTaxTable = (props) => {
   const taxList = props.taxList;
 
@@ -47,28 +70,6 @@ const AdminTaxTable = (props) => {
     return sum.toFixed(2);
   };
 
-  const AccordionItem = ({ header, buttonProps, hideChevron, disableButton, ...rest }) => (
-    <Item
-      {...rest}
-      disabled={disableButton}
-      header={({ state: { isEnter: expanded } }) => (
-        <>
-          {header}
-          <div className="chev-wrapper">
-            {!hideChevron && (
-              <img
-                className={`ml-auto transition-transform duration-200 ease-in-out ${
-                  expanded && 'rotate-180'
-                }`}
-                src={chevronDown}
-                alt="Chevron Down"
-              />
-            )}
-          </div>
-        </>
-      )}
-    />
-  );
 
   const useStyles = makeStyles(() => ({
     ul: {
@@ -201,11 +202,11 @@ const AdminTaxTable = (props) => {
                                 <div className="fw-bold fs-5">{item[0].userDetails?.name}</div>
                                 <div className="text-light mb-1">{item[0].userDetails?.email}</div>
                                 <div className="text-light">
-                                  {item[0].userDetails.street + ', ' + item[0].userDetails?.city_id}
+                                  {item[0].userDetails?.street + ', ' + item[0].userDetails?.city_id}
                                   &nbsp;
-                                  {item[0].userDetails?.stateDetails[0]?.state +
+                                  {item[0].userDetails?.stateDetails?.[0]?.state +
                                     ', ' +
-                                    item[0].userDetails.zip}
+                                    item[0].userDetails?.zip}
                                   {/* 255 West Baker St. */}
                                   {/* <br /> Dallas TX, USA 118098 */}
                                 </div>
