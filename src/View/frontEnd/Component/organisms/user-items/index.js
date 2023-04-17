@@ -31,7 +31,7 @@ const UserItems = () => {
   const [data] = useOutletContext();
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [totalRecord, setTotalRecord] = useState(1);
+  const [totalRecord, setTotalRecord] = useState(0);
   const [sortField, setSortField] = useState('created_at');
   const [order, setOrder] = useState('asc');
   const [orderItemList, setOrderItemList] = useState([]);

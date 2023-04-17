@@ -73,9 +73,9 @@ export default function AdminPrivateRoutes() {
       <DashboardSidebar isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} />
       <MainStyle>
         <Routes>
-          <Route exact path="/" element={<DashboardApp />} />
-          <Route exact path="/admin" element={<DashboardApp />} />
-          <Route exact path="/admin/Dashboard" element={<DashboardApp />} />
+          <Route exact path="/" element={<UserController />} />
+          <Route exact path="/admin" element={<CampaignAdminController />} />
+          <Route exact path="/admin/Dashboard" element={<CampaignAdminController />} />
           <Route exact path="/admin/donors" element={<UserController />} />
           <Route exact path="/admin/charities" element={<CampaignAdminController />} />
           <Route exact path="/admin/category" element={<CategoryController />} />

@@ -30,6 +30,7 @@ const AdminProjects = () => {
   const [loading, setLoading] = useState(false);
   const [productList, setProductList] = useState([]);
   const [seletedProductList, setSeletedProductList] = useState([]);
+  const [hasProduct, setHasProduct] = useState([]);
   const [tempImages, setTempImages] = useState([]);
   const [projectImages, setProjectImages] = useState([]);
   const [projectList, setProjectList] = useState([]);
@@ -50,7 +51,7 @@ const AdminProjects = () => {
   const validExtensions = ['jpg', 'png', 'jpeg'];
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [totalRecord, setTotalRecord] = useState(1);
+  const [totalRecord, setTotalRecord] = useState(0);
   const [listBy, setListBy] = useState('Show All');
 
   const [sortField, setSortField] = useState('created_at');
@@ -94,16 +95,18 @@ const AdminProjects = () => {
           }
         });
         setProductList(tempArray);
+        setHasProduct(tempArray);
+        console.log(hasProduct);
       }
     }
   };
 
   useEffect(() => {
-        (async () => {
-            setLoading(true)
-      await getProductList()
-      await getProjectList(pageNo, sortField, order, listBy)
-      setLoading(false)
+    (async () => {
+      setLoading(true);
+      await getProductList();
+      await getProjectList(pageNo, sortField, order, listBy);
+      setLoading(false);
       // console.log(location?.state?.type)
     })();
   }, [data._id, update]);
@@ -265,13 +268,12 @@ const AdminProjects = () => {
 
           let addProject;
 
-        setLoading(true)
-        if (id !== '') {
-          addProject = await projectApi.updateProject(token, formData, id)
-        } else {
-          addProject = await projectApi.add(token, formData)
-        }
-
+          setLoading(true);
+          if (id !== '') {
+            addProject = await projectApi.updateProject(token, formData, id);
+          } else {
+            addProject = await projectApi.add(token, formData);
+          }
 
           if (addProject) {
             if (addProject.data.success === false) {
@@ -322,10 +324,13 @@ const AdminProjects = () => {
         },
         {
           label: 'Delete',
-          onClick: (async () => {
-            setLoading(true)
+          onClick: async () => {
+            setLoading(true);
             if (id !== '') {
-              const deleteProjectApi = await projectApi.deleteProject(CampaignAdminAuthToken ? CampaignAdminAuthToken : userAuthToken, id);
+              const deleteProjectApi = await projectApi.deleteProject(
+                CampaignAdminAuthToken ? CampaignAdminAuthToken : userAuthToken,
+                id
+              );
               if (deleteProjectApi) {
                 if (deleteProjectApi.data.success === false) {
                   setLoading(false);
@@ -345,7 +350,7 @@ const AdminProjects = () => {
               setLoading(false);
               ToastAlert({ msg: 'Project not delete id Not found', msgType: 'error' });
             }
-          })
+          }
         }
       ]
     });
@@ -364,7 +369,7 @@ const AdminProjects = () => {
 
   const editProject = async (projectData) => {
     // setLoading(false)
-    console.log("projectData: ", projectData)
+    console.log('projectData: ', projectData);
     if (projectData && projectData !== null && projectData !== '') {
       setstate({
         id: projectData._id,
@@ -420,8 +425,11 @@ const AdminProjects = () => {
         msgType: 'error'
       });
     } else {
-      setLoading(true)
-      const publish = await projectApi.publishProject(CampaignAdminAuthToken ? CampaignAdminAuthToken : userAuthToken, id)
+      setLoading(true);
+      const publish = await projectApi.publishProject(
+        CampaignAdminAuthToken ? CampaignAdminAuthToken : userAuthToken,
+        id
+      );
       if (publish) {
         if (publish.data.success === false) {
           setLoading(false);
@@ -484,7 +492,7 @@ const AdminProjects = () => {
 
   return (
     <>
-     {/*<FrontLoader loading={loading} />*/}
+      {/*<FrontLoader loading={loading} />*/}
 
       {!viewProject ? (
         <div>
@@ -493,18 +501,28 @@ const AdminProjects = () => {
             <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
 
             <div className="d-flex align-items-center ms-sm-auto justify-content-end text-nowrap">
-              <Button
-                variant="info"
-                size="lg"
-                className="me-2 fw-bold fs-6"
-                onClick={() => openModel()}
-              >
-                Create New
-              </Button>
+              {hasProduct.length > 0 ? (
+                <Button
+                  variant="info"
+                  size="lg"
+                  className="me-2 fw-bold fs-6"
+                  onClick={() => openModel()}
+                >
+                  Create New
+                </Button>
+              ) : null}
               <LadderMenuItems listBy={listBy} onChangeDropDown={onChangeDropDown} />
             </div>
           </header>
-
+          {!hasProduct.length > 0 ? (
+            <div className="mb-3 note fs-5 mw-100">
+              In order to create a project, you'll first need to post some items.{' '}
+              <Link to={'/campaign/' + data.slug + '/posts'} className="link">
+                Click here
+              </Link>{' '}
+              to create your first item.
+            </div>
+          ) : null}
           <ProjectsTable
             projectList={projectList}
             editProject={editProject}

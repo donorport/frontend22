@@ -392,9 +392,9 @@ const AddProject = (props) => {
         <h3 className="d-flex align-items-center mb-0 fw-bolder me-1">Select Products</h3>
         <span className="d-flex align-items-center text-light me-2">(0)</span>
         {/* <Button variant="info">Create New</Button> */}
-        <Link to={'/campaign/' + props.slug + '/posts'} className="btn btn-info">
+        {/* <Link to={'/campaign/' + props.slug + '/posts'} className="btn btn-info">
           Create New
-        </Link>
+        </Link> */}
       </div>
       <div className="d-flex flex-wrap mb-3 p-20p border rounded-3">
         {productList.length > 0 &&

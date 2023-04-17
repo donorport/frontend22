@@ -22,7 +22,7 @@ const UserXp = () => {
   const [data, setData] = useOutletContext();
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [totalRecord, setTotalRecord] = useState(1);
+  const [totalRecord, setTotalRecord] = useState(0);
   const [ItemList, setItemList] = useState([]);
   const [listBy, setListBy] = useState('ALL');
   const [urlIcon, seturlIcon] = useState('');
