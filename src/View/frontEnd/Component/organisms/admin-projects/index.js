@@ -9,7 +9,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import projectApi from '../../../../../Api/admin/project';
 import productApi from '../../../../../Api/admin/product';
 // import { Outlet, useOutletContext } from 'react-router-dom';
-import { Outlet, useOutletContext, Link, useLocation } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import helper from '../../../../../Common/Helper';
 import './style.scss';
 
@@ -24,7 +24,6 @@ const AdminProjects = () => {
       ? tempCampaignAdminAuthToken
       : CampaignAdminAuthToken
     : CampaignAdminAuthToken;
-  const location = useLocation();
 
   const [viewProject, createProject] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -47,7 +46,7 @@ const AdminProjects = () => {
     images: []
   });
 
-  const { id, status, name, headline, video, description, error, images, infinite } = state;
+  const { id, name, headline, video, description, images, infinite } = state;
   const validExtensions = ['jpg', 'png', 'jpeg'];
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -89,7 +88,7 @@ const AdminProjects = () => {
     if (getOrganizationProducts.data.success === true) {
       let tempArray = [];
       if (getOrganizationProducts.data.data.length > 0) {
-        getOrganizationProducts.data.data.map((product, i) => {
+        getOrganizationProducts.data.data.map((product) => {
           if (product.status === 1) {
             tempArray.push(product);
           }
@@ -182,12 +181,6 @@ const AdminProjects = () => {
     }
   };
 
-  const handleOnDiscriptionChangeValue = (e) => {
-    setstate({
-      ...state,
-      description: e
-    });
-  };
 
   const onSelectProduct = (e) => {
     if (e.target.checked) {
@@ -384,7 +377,7 @@ const AdminProjects = () => {
       let tempProductArray = [];
       // console.log(projectData.productDetails)
       if (projectData.productDetails.length > 0) {
-        projectData.productDetails.map((product, i) => {
+        projectData.productDetails.map((product) => {
           tempProductArray.push(product.productId);
         });
         setSeletedProductList(tempProductArray);
@@ -392,7 +385,7 @@ const AdminProjects = () => {
 
       let tempImgArray = [];
       if (projectData.imageDetails.length > 0) {
-        projectData.imageDetails.map((img, i) => {
+        projectData.imageDetails.map((img) => {
           let tempObj = {};
           tempObj.img = img.image;
           tempObj.id = img._id;

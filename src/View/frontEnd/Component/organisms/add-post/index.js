@@ -6,19 +6,18 @@ import {
   Button,
   Accordion,
   AccordionContext,
-  useAccordionButton,
+  //useAccordionButton,
   Card,
   Col,
   Row
 } from 'react-bootstrap';
 
 import ToggleSwitch from '../../atoms/toggle-switch';
-import FeedTag from '../../atoms/feed-tag';
 import { WithContext as ReactTags } from 'react-tag-input';
 import noimg from '../../../../../assets/images/noimg1.png';
 import helper, { priceFormat } from '../../../../../Common/Helper';
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -36,8 +35,6 @@ const Map = ReactMapboxGl({
 function AccordionToggle({ children, eventKey, callback }) {
   const { activeEventKey } = useContext(AccordionContext);
   // window.scrollTo(0, 0);
-
-  const decoratedOnClick = useAccordionButton(eventKey, () => callback && callback(eventKey));
 
   const isCurrentEventKey = activeEventKey === eventKey;
 
@@ -75,27 +72,27 @@ const AddPost = (props) => {
 
   let organizationDetails = props.organizationDetails;
   let stateData = props.stateData;
-  const user = useSelector((state) => state.user);
+  //const user = useSelector((state) => state.user);
   const {
-    id,
-    status,
-    title,
-    subtitle,
+    //id,
+    //status,
+    //title,
+    //subtitle,
     category,
     subcategory,
     description,
     price,
-    image,
+    //image,
     quantity,
-    organization,
+    //organization,
     slug,
     error,
-    moreImg,
+    //moreImg,
     galleryUrl,
     headline,
     brand,
     needheadline,
-    galleryImg,
+    //galleryImg,
     unlimited,
     tax,
     postTag,
@@ -125,7 +122,7 @@ const AddPost = (props) => {
   let moreTempImages = props.moreTempImages;
   let moreImages = props.moreImages;
   let projectList = props.projectList;
-  let onSelectProject = props.onSelectProject;
+  //let onSelectProject = props.onSelectProject;
   let seletedProjectList = props.seletedProjectList;
   let gallaryTempImages = props.gallaryTempImages;
   let gallaryImages = props.gallaryImages;
@@ -175,7 +172,7 @@ const AddPost = (props) => {
     });
   }, [props.data, stateData]);
 
-  const sugg = (result, lat, lng, text) => {
+  const sugg = (result, lat, lng) => {
     props.setstate({
       ...stateData,
       address: result,
@@ -1189,7 +1186,7 @@ const AddPost = (props) => {
                           {gallaryTempImages?.length ? (
                             gallaryTempImages.map((img, key) => {
                               return (
-                                <div className="img-wrap">
+                                <div key={key} className="img-wrap">
                                   <span
                                     className="close"
                                     onClick={() => props.removeGallaryempImages(key, 'galleryImg')}
@@ -1215,7 +1212,7 @@ const AddPost = (props) => {
                           {gallaryImages?.length
                             ? gallaryImages.map((img, key) => {
                                 return (
-                                  <>
+                                  <React.Fragment key={key}>
                                     {/* <img src={img ? img !== "" ? helper.CampaignProductImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} /> */}
 
                                     <div className="img-wrap">
@@ -1255,7 +1252,7 @@ const AddPost = (props) => {
                                         data-id="103"
                                       ></div>
                                     </div>
-                                  </>
+                                  </React.Fragment >
                                 );
                               })
                             : ''}

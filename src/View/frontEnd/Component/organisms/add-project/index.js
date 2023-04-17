@@ -1,13 +1,12 @@
 import { Button, Row, Col } from 'react-bootstrap';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid, } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 // import { ToggleSwitch, FeedTag, FileUpload } from "@components/atoms";
 
 import ToggleSwitch from '../../atoms/toggle-switch';
 import FeedTag from '../../atoms/feed-tag';
-import FileUpload from '../../atoms/file-upload';
 import helper from '../../../../../Common/Helper';
 import noimg from '../../../../../assets/images/noimg1.png';
 import Textarea from '../text-area';
@@ -16,7 +15,7 @@ import './style.scss';
 import { Link } from 'react-router-dom';
 
 const AddProject = (props) => {
-  const { id, status, name, headline, video, description, error, images, infinite } =
+  const { status, name, headline, video, description, error, infinite } =
     props.stateData;
 
   let url = video;
@@ -25,7 +24,6 @@ const AddProject = (props) => {
 
   let tempImages = props.tempImages;
   let projectImages = props.projectImages;
-  let changefile = props.changefile;
   let productList = props.productList;
   let seletedProductList = props.seletedProductList;
   let onSelectProduct = props.onSelectProduct;
@@ -312,7 +310,7 @@ const AddProject = (props) => {
                 {tempImages?.length ? (
                   tempImages.map((img, key) => {
                     return (
-                      <div className="img-wrap">
+                      <div key={key} className="img-wrap">
                         <span className="close" onClick={() => props.removeTempImages(key)}>
                           &times;
                         </span>
@@ -398,7 +396,7 @@ const AddProject = (props) => {
       </div>
       <div className="d-flex flex-wrap mb-3 p-20p border rounded-3">
         {productList.length > 0 &&
-          productList.map((product, i) => {
+          productList.map((product) => {
             const available = product.quantity !== product.soldout;
             return (
               available && (

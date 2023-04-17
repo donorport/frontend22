@@ -463,6 +463,7 @@ const AdminPosts = () => {
       receiptFile: ''
     }));
   };
+
   const changeReceiptFile = async (e) => {
     const file = e.target.files[0] ? e.target.files[0] : '';
     if (file) {
@@ -1385,36 +1386,33 @@ const AdminPosts = () => {
       });
   };
 
-  const showFulfillOrder = async (data) => {
-    console.log(`~showFulfillOrder fn`);
-    setFulfilProductDetails(data);
+  // from the table page, this selects the product to view the details (fulfill order button)
+  const showFulfillOrder = async (product) => {
+    console.log(`~~~ showFulfillOrder fn`);
+    setFulfilProductDetails(product);
     createPost(true);
     setFulfil(true);
 
-    setFulfilState({
-      ...fulfilState,
-      fulfilId: data.fulfilDetails?._id,
-      // fulfilMoreImg: [],
-      videoUrl: data.fulfilDetails.video,
-      receiptFile: '',
-      fulfilPolicy: data?.isFulfiled,
-      fulfilError: []
-    });
+    if (product.isFulfilled) { // not sure if the if statement is necessary, do we want this block to run on both occasions?
+      setFulfilState({
+        ...fulfilState,
+        fulfilId: product.fulfilDetails?._id,
+        // fulfilMoreImg: [],
+        videoUrl: product.fulfilDetails.video,
+        receiptFile: '',
+        fulfilPolicy: product?.isFulfiled,
+        fulfilError: []
+      });
 
-    if (data.imageDetails.length <= 0) {
-      setFulfilMoreImages([]);
-      return;
+      if (product.imageDetails.length <= 0) {
+        setFulfilMoreImages([]);
+        console.log(`~~ showFulfillOrder fn: product.imageDetails.length <= 0; clearing fulfilMoreImages`) 
+        return;
+      }
     }
 
-    let tempMImgArray = helper_filterImagesByTypeAndMap(data.imageDetails, 'fulfillImage');
-    //data.imageDetails.map((img) => {
-      //if (img.type === 'fulfillImage') {
-        //let tempObj = {};
-        //tempObj.img = img.image;
-        //tempObj.id = img._id;
-        //tempMImgArray.push(tempObj);
-      //}
-    //});
+    let tempMImgArray = helper_filterImagesByTypeAndMap(product.imageDetails, 'fulfillImage');
+    console.log(`~~ picking out images to show: product.imageDetails:`, {imageDetails: product.imageDetails}, `\n ~~ tempMImgArray:`, {tempMImgArray}) 
     setFulfilMoreImages(tempMImgArray);
   };
 
@@ -1471,6 +1469,7 @@ const AdminPosts = () => {
         submitProductForm={submitProductForm}
       />
 
+      {/* this shows the posts table e.g. when no item is selected (no viewPost) */}
       {!viewPost ? (
         <div>
           <PostsTableHeader
@@ -1495,13 +1494,12 @@ const AdminPosts = () => {
             order={order}
             sortField={sortField}
             organizationDetails={data}
-            setFulfil={setFulfil}
-            createPost={createPost}
-            setFulfilProductDetails={setFulfilProductDetails}
             showFulfillOrder={showFulfillOrder}
           />
         </div>
       ) : !fulfil ? (
+        <>
+        {/* adding a new product */}
         <AddPost
           createPost={createPost}
           organizationDetails={data}
@@ -1536,8 +1534,10 @@ const AdminPosts = () => {
           setModelShow={setModelShow}
           removeGallaryempImages={removeGallaryempImages}
         />
+        </>
       ) : (
         <>
+          {/* Add photos or fulfil product */}
           {/*
            * details view
            *
@@ -1660,7 +1660,7 @@ const ModalSaveAsDraft = ({ modelShow, setModelShow, submitProductForm }) => {
 
 const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => {
   return (
-    <header className="py-sm-2 mb-2 w-100 d-sm-flex align-items-center">
+    <header className="py-sm-2 mb-3 w-100 d-sm-flex align-items-center">
       <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Posts</h1>
       <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
 
@@ -1772,6 +1772,7 @@ const PostDetailsNotificationBanner = ({ fulfilProductDetails }) => {
   );
 };
 
+// inside here, it's failing to display photos
 const PostDetailsMediaColumn = ({
   videoUrl,
   changevalue,
@@ -1783,6 +1784,7 @@ const PostDetailsMediaColumn = ({
   deleteProductImage,
   fulfilError
 }) => {
+  console.log(`PostDetailsMediaColumn:`, {fulfilMoreTempImages, fulfilmoreImages});
   return (
     <>
       <Card.Header className="post__accordion-header pb-3">
@@ -2182,7 +2184,7 @@ const PostDetailsTosAndButtons = ({
         <p className="error">{fulfilError?.fulfilPolicy ?? ''}</p>
       )}
 
-      <div className="d-flex products-detial-footer py-5 gap-2">
+      <div className="products-detial-footer py-5">
         {!fulfilProductDetails?.isFulfiled && (
           <Button
             variant="danger"
