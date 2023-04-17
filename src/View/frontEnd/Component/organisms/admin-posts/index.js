@@ -1471,6 +1471,7 @@ const AdminPosts = () => {
         submitProductForm={submitProductForm}
       />
 
+      {/* this shows the posts table e.g. when no item is selected (no viewPost) */}
       {!viewPost ? (
         <div>
           <PostsTableHeader
@@ -1502,6 +1503,8 @@ const AdminPosts = () => {
           />
         </div>
       ) : !fulfil ? (
+        <>
+        {/* adding a new product */}
         <AddPost
           createPost={createPost}
           organizationDetails={data}
@@ -1536,8 +1539,10 @@ const AdminPosts = () => {
           setModelShow={setModelShow}
           removeGallaryempImages={removeGallaryempImages}
         />
+        </>
       ) : (
         <>
+          {/* Add photos or fulfil product */}
           {/*
            * details view
            *
@@ -1660,7 +1665,7 @@ const ModalSaveAsDraft = ({ modelShow, setModelShow, submitProductForm }) => {
 
 const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => {
   return (
-    <header className="py-sm-2 mb-2 w-100 d-sm-flex align-items-center">
+    <header className="py-sm-2 mb-3 w-100 d-sm-flex align-items-center">
       <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Posts</h1>
       <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
 
@@ -1772,6 +1777,7 @@ const PostDetailsNotificationBanner = ({ fulfilProductDetails }) => {
   );
 };
 
+// inside here, it's failing to display photos
 const PostDetailsMediaColumn = ({
   videoUrl,
   changevalue,
@@ -2182,7 +2188,7 @@ const PostDetailsTosAndButtons = ({
         <p className="error">{fulfilError?.fulfilPolicy ?? ''}</p>
       )}
 
-      <div className="d-flex products-detial-footer py-5 gap-2">
+      <div className="products-detial-footer py-5">
         {!fulfilProductDetails?.isFulfiled && (
           <Button
             variant="danger"
