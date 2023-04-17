@@ -29,7 +29,7 @@ const AdminTaxTable = (props) => {
     let tempSub = [];
     let sum;
     if (data.length > 0) {
-      data.map((i, k) => {
+      data.map((i ) => {
         //tempSub.push(i.amount);
         let productTotal = i.orderItemDetails?.totalPrice;
         let donationTotal = (i.amount - 0.3) / 1.0499;
@@ -453,7 +453,7 @@ const AdminTaxTable = (props) => {
                             // if (item.type === 'Purchased') {
 
                             return (
-                              <>
+                              <React.Fragment key={k}>
                                 <li className="table__list-item table__list-item--tax py-1">
                                   <div className="d-flex d-sm-flex align-items-center flex-grow-1">
                                     <div className="d-flex align-items-center mb-1 mb-sm-0 order-1 order-sm-0">
@@ -504,7 +504,7 @@ const AdminTaxTable = (props) => {
                                   </div>
                                 </li>
                                 {/* <hr /> */}
-                              </>
+                              </React.Fragment>
                             );
                             // }
                           })}

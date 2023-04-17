@@ -3,11 +3,7 @@ import { useState, useEffect } from 'react';
 import adminCampaignApi from '../../../../../Api/admin/adminCampaign';
 import LadderMenuXp from '../ladder-menu-xp';
 import ActivityTable from '../activity-table';
-import FrontLoader from '../../../../../Common/FrontLoader';
-import helper from '../../../../../Common/Helper';
-import { validateAll } from 'indicative/validator';
-import ToastAlert from '../../../../../Common/ToastAlert';
-import { Outlet, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 
 import './style.scss';
 

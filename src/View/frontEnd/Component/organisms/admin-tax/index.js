@@ -1,4 +1,3 @@
-import { Button } from 'react-bootstrap';
 // import { LadderMenuXp, AdminTaxTable } from "@components/organisms";
 // import LadderMenuXp from '../ladder-menu-xp';
 import LadderMenu from '../ladder-menu';
@@ -6,9 +5,8 @@ import AdminTaxTable from '../admin-tax-table';
 import './style.scss';
 import organizationApi from '../../../../../Api/frontEnd/organization';
 import { useState, useEffect } from 'react';
-import { Outlet, Link, useLocation, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import ToastAlert from '../../../../../Common/ToastAlert';
-import { CSVLink, CSVDownload } from 'react-csv';
 import moment from 'moment';
 import CSVExportBtn from '../../../CSVExportBtn';
 
@@ -76,7 +74,7 @@ const AdminTax = () => {
 
       if (taxList.data.allData.length > 0) {
         let tempAr = [];
-        taxList.data.allData.map((v, k) => {
+        taxList.data.allData.map((v) => {
           console.log(v);
           let tempObj = {};
           tempObj.date = moment(v.created_at).format('DD MMMM YY');
@@ -181,7 +179,7 @@ const AdminTax = () => {
     let tempSub = [];
     let sum;
     if (data.length > 0) {
-      data.map((i, k) => {
+      data.map((i) => {
         tempSub.push(i.amount);
       });
       sum = tempSub.reduce(function (a, b) {
