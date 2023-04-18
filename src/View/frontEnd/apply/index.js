@@ -25,7 +25,6 @@ const Apply = (props) => {
   return (
     <Page
       title="Donorport | Apply"
-      img={social}
       description="Create you charity account. For more information about the application process please naviagte to the About Us page"
     >
       <div className="frontend_pages">

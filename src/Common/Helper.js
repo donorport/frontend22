@@ -195,9 +195,9 @@ export function getCalculatedPrice() {
   //get Currency Symbol
 
   const currencySymbol = () => {
-    let currencySymbol = 'na';
+    let currencySymbol = '$';
     // if (!CampaignAdminAuthToken) {
-    currencySymbol = user.currencySymbol;
+    currencySymbol = user.currencySymbol? user.currencySymbol : "$";
     // }
     return currencySymbol;
   };
