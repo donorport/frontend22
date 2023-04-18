@@ -6,7 +6,7 @@ import './style.scss';
 
 const Terms = () => {
   return (
-    <Page title="Donorport | Terms & Conditions">
+    <Page title="Donorport | Terms & Conditions" description="Donorport Terms & Conditions">
       <DefaultLayout>
         <Container fluid className="position-relative pb-5 pt-5">
           <h1 className="text-dark fw-bolder mb-6p pt-2">Terms of Service</h1>

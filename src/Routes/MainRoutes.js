@@ -209,7 +209,7 @@ export default function MainRoutes() {
                 <Route path="/sponsors" element={<Sponsors />} />
                 <Route path="/partnership" element={<Partnership />} />
                 <Route path="/about" element={<AboutController />} />
-                <Route path="/verified" element={<VerifiedDonors />} />
+                {/* <Route path="/verified" element={<VerifiedDonors />} /> */}
                 <Route path="/terms" element={<Terms />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/media" element={<Media />} />
@@ -220,7 +220,7 @@ export default function MainRoutes() {
                 <Route path="/help-category" element={<HelpCategory />} />
                 <Route path="/help-article" element={<HelpArticle />} />
                 <Route path="/help-contact" element={<HelpContact />} />
-                <Route path="/verified" element={<VerifiedDonors />} />
+                {/* <Route path="/verified" element={<VerifiedDonors />} /> */}
                 <Route path="/item-tags" element={<ItemTags />} />
                 <Route path="/pricing" element={<Pricing />} />
                 <Route exact path="*" element={<SigninController />} />
@@ -299,7 +299,7 @@ export default function MainRoutes() {
               <Route path="/thankyou" element={<ThankYou />} />
               <Route path="/order/:id" element={<OrderConfirmPage />} />
               <Route path="/donate/:id" element={<DonationConfirmPage />} />
-              <Route path="/verified" element={<VerifiedDonors />} />
+              {/* <Route path="/verified" element={<VerifiedDonors />} /> */}
               <Route path="/terms" element={<Terms />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/pricing" element={<Pricing />} />

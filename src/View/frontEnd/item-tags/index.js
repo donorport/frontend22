@@ -9,7 +9,7 @@ import './style.scss';
 
 const ItemTags = () => {
   return (
-    <Page title="Donorport | Badges ">
+    <Page title="Donorport | Badges" description="Learn about each post type and quickly determine if your donation is tax eligible, has already been purchased, or will receive followup media">
       <DefaultLayout>
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-5">

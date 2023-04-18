@@ -11,7 +11,7 @@ import full from '../../../assets/images/full-logo-noborder.svg';
 
 const Sponsors = () => {
   return (
-    <Page title="Donorport | Sponsors">
+    <Page title="Donorport | Sponsors" description="Partner with Donorport and show your customers you're a part of their community">
       <DefaultLayout>
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-5">

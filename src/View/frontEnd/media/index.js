@@ -11,7 +11,7 @@ import white from '../../../assets/images/full-logo(white).svg';
 
 const Media = () => {
   return (
-    <Page title="Donorport | Sponsors">
+    <Page title="Donorport | Media" description="Share the Donorport brand with your customers, clients and community">
       <DefaultLayout>
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-5">

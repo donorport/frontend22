@@ -69,92 +69,93 @@ const Xp = () => {
 
   return (
     <>
-      <Page title="Donorport | XP"></Page>
-      {/*<FrontLoader loading={loading} />*/}
-      <DefaultLayout>
-        <Container fluid className="pt-5">
-          {userAuthToken && (
-            <div className="d-flex align-items-center py-3 border-bottom">
-              <Avatar
-                size={35}
-                avatarUrl={user.profileImage}
-                border={0}
-                shadow={false}
-                className="mr-12p"
-              />
+      <Page title="Donorport | XP" description="Learn how to build your XP to advance on the Donorport leaderboard">
+        {/*<FrontLoader loading={loading} />*/}
+        <DefaultLayout>
+          <Container fluid className="pt-5">
+            {userAuthToken && (
+              <div className="d-flex align-items-center py-3 border-bottom">
+                <Avatar
+                  size={35}
+                  avatarUrl={user.profileImage}
+                  border={0}
+                  shadow={false}
+                  className="mr-12p"
+                />
 
-              <span className="fs-7 text-light me-2">Your Rank</span>
+                <span className="fs-7 text-light me-2">Your Rank</span>
 
-              {/* <IconButton
+                {/* <IconButton
               bgColor="#a278fc"
               className="btn__xs rounded-pill ms-2"
               icon={<FontAwesomeIcon icon={solid("narwhal")} />}
             >
               Norwhal
             </IconButton> */}
-              <span>{getC.getUserRank(user.xp)}</span>
-              <a href="/" className="text-info fw-bold fs-5 ms-auto me-1">
-                {Number(user.xp).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
-              </a>
-            </div>
-          )}
-          <div className="py-20p">
-            <div className="note text-dark fs-7 mw-600">
-              <div className="mb-12p">
-                Earn XP by interacting on Donorport even if you aren't donating money. Be rewarded
-                for sharing and following Organizations and Projects. To track the XP you've earned,
-                click here:
+                <span>{getC.getUserRank(user.xp)}</span>
+                <a href="/" className="text-info fw-bold fs-5 ms-auto me-1">
+                  {Number(user.xp).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
+                </a>
               </div>
-              <Link to={'/user/' + newSlug + '/xp'} className="text-dark fw-bolder">
-                My XP
-              </Link>
+            )}
+            <div className="py-20p">
+              <div className="note text-dark fs-7 mw-600">
+                <div className="mb-12p">
+                  Earn XP by interacting on Donorport even if you aren't donating money. Be rewarded
+                  for sharing and following Organizations and Projects. To track the XP you've
+                  earned, click here:
+                </div>
+                <Link to={'/user/' + newSlug + '/xp'} className="text-dark fw-bolder">
+                  My XP
+                </Link>
+              </div>
             </div>
-          </div>
 
-          <div className="mw-800 pb-5 fs-5">
-            <div className="d-flex align-items-center py-12p">
-              <ListItemImg size={64} imgSrc={crown} />
-              <span className="mx-sm-4 mx-2 flex__1 text-light">
-                A top donator + purchased items from every category, and all locations
-              </span>
-              <span className="fw-bold text-info">{topDonator} XP</span>
+            <div className="mw-800 pb-5 fs-5">
+              <div className="d-flex align-items-center py-12p">
+                <ListItemImg size={64} imgSrc={crown} />
+                <span className="mx-sm-4 mx-2 flex__1 text-light">
+                  A top donator + purchased items from every category, and all locations
+                </span>
+                <span className="fw-bold text-info">{topDonator} XP</span>
+              </div>
+              <div className="d-flex align-items-center py-12p">
+                <ListItemImg size={64} imgSrc={list} />
+                <span className="mx-sm-4 mx-2 flex__1 text-light">
+                  Have the top donation to an organization over $500
+                </span>
+                <span className="fw-bold text-info">{topDonation} XP</span>
+              </div>
+              <div className="d-flex align-items-center py-12p">
+                <ListItemImg size={64} imgSrc={money} />
+                <span className="mx-sm-4 mx-2 flex__1 text-light">For each item you purchase</span>
+                <span className="fw-bold text-info">{forEachItem} XP</span>
+              </div>
+              <div className="d-flex align-items-center py-12p">
+                <ListItemImg size={64} imgSrc={wallet} />
+                <span className="mx-sm-4 mx-2 flex__1 text-light">
+                  For each donation to an Organization / Project
+                </span>
+                <span className="fw-bold text-info">{forEachDonation} XP</span>
+              </div>
+              <div className="d-flex align-items-center py-12p">
+                <ListItemImg size={64} imgSrc={share} />
+                <span className="mx-4 flex__1 text-light">
+                  For each share of an item / Organization / Project via social media
+                </span>
+                <span className="fw-bold text-info">{forEachShare} XP</span>
+              </div>
+              <div className="d-flex align-items-center py-12p">
+                <ListItemImg size={64} imgSrc={social} />
+                <span className="mx-4 flex__1 text-light">
+                  For each Organization / Project you follow
+                </span>
+                <span className="fw-bold text-info">{forEachOrganization} XP</span>
+              </div>
             </div>
-            <div className="d-flex align-items-center py-12p">
-              <ListItemImg size={64} imgSrc={list} />
-              <span className="mx-sm-4 mx-2 flex__1 text-light">
-                Have the top donation to an organization over $500
-              </span>
-              <span className="fw-bold text-info">{topDonation} XP</span>
-            </div>
-            <div className="d-flex align-items-center py-12p">
-              <ListItemImg size={64} imgSrc={money} />
-              <span className="mx-sm-4 mx-2 flex__1 text-light">For each item you purchase</span>
-              <span className="fw-bold text-info">{forEachItem} XP</span>
-            </div>
-            <div className="d-flex align-items-center py-12p">
-              <ListItemImg size={64} imgSrc={wallet} />
-              <span className="mx-sm-4 mx-2 flex__1 text-light">
-                For each donation to an Organization / Project
-              </span>
-              <span className="fw-bold text-info">{forEachDonation} XP</span>
-            </div>
-            <div className="d-flex align-items-center py-12p">
-              <ListItemImg size={64} imgSrc={share} />
-              <span className="mx-4 flex__1 text-light">
-                For each share of an item / Organization / Project via social media
-              </span>
-              <span className="fw-bold text-info">{forEachShare} XP</span>
-            </div>
-            <div className="d-flex align-items-center py-12p">
-              <ListItemImg size={64} imgSrc={social} />
-              <span className="mx-4 flex__1 text-light">
-                For each Organization / Project you follow
-              </span>
-              <span className="fw-bold text-info">{forEachOrganization} XP</span>
-            </div>
-          </div>
-        </Container>
-      </DefaultLayout>
+          </Container>
+        </DefaultLayout>
+      </Page>
     </>
   );
 };

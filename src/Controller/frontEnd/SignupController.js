@@ -146,7 +146,7 @@ function SignupController() {
   };
   return (
     <>
-      <Page title="Donorport | Sign Up">
+      <Page title="Donorport | Sign Up" description="Create your Donorport account and start helping your community today!">
         <Register
           stateData={state}
           changevalue={changevalue}

@@ -10,7 +10,8 @@ import './style.scss';
 
 const Trust = () => {
   return (
-    <Page title="Donorport | Trust">
+    <Page title="Donorport | Trust" description="Donorport is built on trust within each community. We hand-pick our charities and non-profits from the most respoected in the community"
+    >
       <DefaultLayout>
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-5">

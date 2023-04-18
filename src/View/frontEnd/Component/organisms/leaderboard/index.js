@@ -40,7 +40,7 @@ const LeaderBoard = () => {
     <>
       <Page
         title="Donorport | Leaderboard"
-        description="See where you rank among the top Donors. All Time.. All Time; Locally; Recent. 1. Karl Martin.. 1005 XP.. Captain. 2. Dusty Selkirk.. 855 XP."
+        description="See where you rank among the top Donors. All Time; Locally; Recent"
       >
         {/*<FrontLoader loading={loading} />*/}
         <DefaultLayout>

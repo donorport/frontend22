@@ -6,7 +6,7 @@ import './style.scss';
 
 const Privacy = () => {
   return (
-    <Page title="Donorport | Privacy">
+    <Page title="Donorport | Privacy" description="Donorport Privacy Policy">
       <DefaultLayout>
         <Container fluid className="position-relative pb-5 pt-5">
           <h1 className="text-dark fw-bolder mb-6p pt-2">Privacy Policy</h1>

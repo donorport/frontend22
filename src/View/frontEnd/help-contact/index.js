@@ -12,7 +12,7 @@ import './style.scss';
 const HelpContact = () => {
   return (
     <>
-      <Page title="Donorport | Help">
+      <Page title="Donorport | Help" description="Connect with a member of the Donorport team to get the support you need">
         <HeaderHelp />
         <div className="position-relative">
           <HelpBanner shortBanner={true} />

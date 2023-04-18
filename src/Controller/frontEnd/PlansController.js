@@ -86,7 +86,7 @@ export default function PlansController() {
     return (
         <>
            {/*<FrontLoader loading={loading} />*/}
-            <Page title="Donorport | Plan" description="The world's first and largest crowd-funding platform for non-profits & charities. Donate directly to the needs of the organization and help them fund all of ...">
+            <Page title="Donorport | Plan" description="Choose your site plan on Donorport and take advantage of our great features">
                 <Plans
                     basicData={basicData}
                     proData={proData}

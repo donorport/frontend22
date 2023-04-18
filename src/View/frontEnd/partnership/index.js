@@ -117,7 +117,7 @@ const Partnership = () => {
 
   return (
     <>
-      <Page title="Donorport | Partnership ">
+      <Page title="Donorport | Partnership" description="Partner with Donorport and explore ways to get involved in your local community">
         <DefaultLayout>
           <div className="password-reset position-relative">
             <Container fluid className="position-relative pb-5 pt-5">

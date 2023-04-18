@@ -30,6 +30,7 @@ import city from '../../../assets/images/city.svg';
 import crypto1 from '../../../assets/images/crypto1.svg';
 import crypto2 from '../../../assets/images/crypto2.svg';
 import crypto3 from '../../../assets/images/crypto3.svg';
+import Page from '../../../components/Page';
 
 import './style.scss';
 
@@ -37,6 +38,7 @@ const About = (props) => {
   // console.log(props.campaignAdminList)
   const navigate = useNavigate();
   return (
+    <Page title="Donorport | About Us" description="The world's first and largest crowd-funding platform for non-profits & charities. Donate directly to the needs of the organization and help them fund all of their material needs">
     <DefaultLayout className="about">
       <div className="section--hero section--design">
         <Container fluid>
@@ -460,6 +462,7 @@ const About = (props) => {
         </Row>
       </Container>
     </DefaultLayout>
+    </Page>
   );
 };
 

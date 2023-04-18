@@ -55,7 +55,7 @@ const Ranks = () => {
   }, []);
   return (
     <>
-      <Page title="Donorport | XP">
+      <Page title="Donorport | Ranks" description="Check out where you rank on Donorport. Every good Captain starts as a Fish">
      {/*<FrontLoader loading={loading} />*/}
       <DefaultLayout>
         <Container fluid className="pt-5">

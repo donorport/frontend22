@@ -59,10 +59,7 @@ const Pricing = () => {
     color: '#e6e6e6'
   };
   return (
-    <Page
-      title="Donorport | Pricing"
-      description="Pricing and Fees: Platform Fee: 2%; Merchant Fees: 2.9%. + $0.30 per item donated"
-    >
+    <Page title="Donorport | Pricing" description="Platform Fee: 2.99%; Merchant Fees: 2.9%. + $0.30 per item donated">
       <DefaultLayout>
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-5">

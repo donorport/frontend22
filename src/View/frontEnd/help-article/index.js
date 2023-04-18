@@ -11,7 +11,7 @@ import './style.scss';
 const HelpArticle = () => {
   return (
     <>
-      <Page title="Donorport | Contact">
+      <Page title="Donorport | Contact" description="Connect with a member of the Donorport team to get the support you need">
         <HeaderHelp />
         <div className="position-relative">
           <HelpBanner shortBanner={true} />

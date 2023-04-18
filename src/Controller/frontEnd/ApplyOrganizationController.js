@@ -309,12 +309,6 @@ export default function ApplyOrganizationController() {
 
   return (
     <>
-      <Page
-        title="Donorport | Apply"
-        url="https://donorport.com/apply"
-        img={social}
-        description="Apply for an account. Let us know if you want to post on Donorport. For more information about the application process click here. Charity Nonprofit"
-      >
         <Apply
           stateData={state}
           blocks={blocks}
@@ -331,7 +325,6 @@ export default function ApplyOrganizationController() {
           onChangeCategory={onChangeCategory}
           loading={loading}
         />
-      </Page>
     </>
   );
 }
