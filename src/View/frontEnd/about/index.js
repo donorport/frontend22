@@ -37,20 +37,25 @@ import './style.scss';
 const About = (props) => {
   // console.log(props.campaignAdminList)
   const navigate = useNavigate();
+  let video = "https://www.youtube.com/watch?v=YCgPe_iwHl8"
+
+  let videoid = video ? video.split('?v=')[1] : '';
+  let embedlink = video ? 'https://www.youtube.com/embed/' + videoid : '';
+
   return (
     <Page title="Donorport | About Us" description="The world's first and largest crowd-funding platform for non-profits & charities. Donate directly to the needs of the organization and help them fund all of their material needs">
     <DefaultLayout className="about">
       <div className="section--hero section--design">
         <Container fluid>
           <Row>
-            <Col md="5" className="mb-4 mb-sm-0">
+            <Col md="4" className="mb-4 mb-sm-0">
               <div className="about__content-1">
                 <h1 className="about__title display-6 fw-bolder text-dark">
                   A Crowdfunding Platform for Charities
                 </h1>
                 <p className="fs-5 text-light fw-regular mb-4 lh-1.5">
                   Charities post products they need, donors provide the funding, the charity
-                  purchases the products. The only platoform that brings you complete transaprency;
+                  purchases the products. The only platform that brings you complete transparency;
                   you choose how charities spend your money.
                 </p>
                 <div className="d-flex align-items-center gap-2 mb-2 pb-5">
@@ -68,16 +73,27 @@ const About = (props) => {
                 </div>
               </div>
             </Col>
-            <Col md="7">
-              <div className="mw-600 d-flex align-items-center  justify-content-sm-center">
-                <img src={hero} className="img-fluid" alt="" />
+            <Col md="7" className="d-flex justify-content-center">
+              <div className="w-100 mw-600 d-flex align-items-center  justify-content-sm-center">
+                {/* <img src={hero} className="img-fluid" alt="" /> */}
+                <div className="w-100 project-video-wrap">
+              <iframe
+                title="project-details-video"
+                key="project-details-video"
+                width="498"
+                height="280"
+                src={embedlink}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
               </div>
             </Col>
           </Row>
         </Container>
       </div>
       <Container fluid>
-        <h4 className="fs-1 fw-bolder text-center text-dark">Our services</h4>
+        {/* <h4 className="fs-1 fw-bolder text-center text-dark">Our services</h4> */}
         <Row className="section--hero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5">
           <Col md="6">
             <div className="d-flex align-items-center  justify-content-sm-center">

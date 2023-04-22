@@ -32,7 +32,7 @@ const ItemTags = () => {
                     }
                   />
                   <div className="ms-3">
-                    <div className="fs-4 fw-bolder text-dark">Tax Receipt Eligible</div>
+                    <h3 className="fs-4 mb-0 fw-bolder text-dark">Tax Receipt Eligible</h3>
                     <div className="text-light fs-5 lh-1.5">
                       Items marked with the calculator symbol are eligible to receive a tax receipt.
                       If you are interested in tax deductible giving, look for the items marked with
@@ -54,7 +54,7 @@ const ItemTags = () => {
                     }
                   />
                   <div className="ms-3">
-                    <div className="fs-4 fw-bolder text-dark">Tab Item</div>
+                    <h3 className="fs-4 mb-0 fw-bolder text-dark">Tab Item</h3>
                     <div className="text-light fs-5 lh-1.5">
                       These are items that the organization has already purchased. By donating to
                       Tab items, you are helping the organization recouperate the costs of the
@@ -67,11 +67,11 @@ const ItemTags = () => {
                     size={84}
                     className="flex-shrink-0"
                     icon={
-                      <FontAwesomeIcon icon={solid('bolt')} className="fs-2 text-success p-3" />
+                      <FontAwesomeIcon icon={solid('bolt')} className="fs-2 text-primary p-3" />
                     }
                   />
                   <div className="ms-3">
-                    <div className="fs-4 fw-bolder text-dark">Project Item</div>
+                    <h3 className="fs-4 mb-0 fw-bolder text-dark">Project Item</h3>
                     <div className="text-light fs-5 lh-1.5">
                       Items marked with a lightening bolt belong to a group of items the
                       organization has created for a specific event or cause, like a toy drive or
@@ -92,7 +92,7 @@ const ItemTags = () => {
                     }
                   />
                   <div className="ms-3">
-                    <div className="fs-4 fw-bolder text-dark">Unlimited Quantity</div>
+                    <h3 className="fs-4 fw-bolder mb-0 text-dark">Unlimited Quantity</h3>
                     <div className="text-light fs-5 lh-1.5">
                       Items without a set quantity are marked with the infinity symbol and represent
                       an ongoing need of the organization. The are items that are always needed for
