@@ -222,6 +222,7 @@ const UserTax = () => {
         handleClick={handleClick}
         totalPages={totalPages}
         totalRecord={totalRecord}
+        loading={loading}
         pageNo={pageNo}
         handleSortingChange={handleSortingChange}
         order={order}

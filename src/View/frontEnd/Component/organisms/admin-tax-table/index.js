@@ -74,7 +74,8 @@ const AdminTaxTable = (props) => {
   const useStyles = makeStyles(() => ({
     ul: {
       '& .MuiPaginationItem-root': {
-        color: '#6f6f91 !important'
+        color: '#6f6f91 !important',
+        fontFamily: 'initial'
       },
       '& .MuiPaginationItem-root:hover': {
         background: '#f2f6fc !important'

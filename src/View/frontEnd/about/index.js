@@ -54,7 +54,7 @@ const About = (props) => {
                   A Crowdfunding Platform for Charities
                 </h1>
                 <p className="fs-5 text-light fw-regular mb-4 lh-1.5">
-                  Charities post products they need, donors provide the funding, the charity
+                  Charities post products they need, donors provide the funding, and the charity
                   purchases the products. The only platform that brings you complete transparency;
                   you choose how charities spend your money.
                 </p>

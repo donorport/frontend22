@@ -144,7 +144,7 @@ function ProjectDetailMain(props) {
     );
   return (
     <div className="project__detail-main">
-      <div className="d-flex flex-column gap-1">
+      <div className="d-flex flex-column gap-2">
         <div className="mb-1">
           {' '}
           <h4 className="project__detail-label mb-3p">Item</h4>

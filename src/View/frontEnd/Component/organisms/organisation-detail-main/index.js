@@ -160,7 +160,7 @@ function OrganisationDetailMain(props) {
             <span className="fs-6" style={{ textTransform: "capitalize" }}>{organizationDetails?.countryDetails?.country}</span>
           </Button>*/}
         </div>
-        <div className="d-flex flex-column gap-1">
+        <div className="d-flex flex-column gap-2">
           {organizationDetails.promoVideo && (
             <div className="project-video-wrap">
               <iframe

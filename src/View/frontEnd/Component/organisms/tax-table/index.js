@@ -12,6 +12,7 @@ import CSVExportBtn from '../../../CSVExportBtn';
 import { Accordion, AccordionItem as Item } from '@szhsin/react-accordion';
 import chevronDown from '../../../../../assets/images/chevron-down.svg';
 import donation from '../../../../../assets/images/donate.svg';
+import { CircularProgress } from '@mui/material';
 
 const TaxTable = (props) => {
   const totalVal = (data) => {
@@ -407,9 +408,16 @@ const TaxTable = (props) => {
               );
             })
           ) : (
-            <div className="d-sm-flex align-items-center justify-content-center flex-grow-1">
-              <li className="table__list-item p-2">No Records to Display</li>
-            </div>
+            // <div className="d-sm-flex align-items-center justify-content-center flex-grow-1">
+            //   <li className="table__list-item p-2">No Records to Display</li>
+            // </div>
+            <li className="table__list-item p-2 fw-bold d-flex justify-content-center">
+            {props.loading ? (
+              <CircularProgress className="ms-2" color="inherit" size={32} />
+            ) : (
+              <> No entries to show</>
+            )}
+          </li>
           )}
 
           {/* <li className="table__list-item p-2">

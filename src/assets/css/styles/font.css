@@ -66,20 +66,20 @@
 /* @import url("https://use.typekit.net/qwg2kll.css"); */
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&&display=swap'); */
 
-.navbar-brand,
+/* .navbar-brand,
 .display-1,
 .display-2,
 .display-3,
-.display-4,
-.h1,
+.display-4, */
+/* .h1,
 .h2,
 .h3,
 .h4,
 .h5,
-.h6,
+.h6, */
 h1,
 h2,
-h3,
+h3:not(.szh-accordion__item-heading),
 h4,
 h5,
 h6 {
