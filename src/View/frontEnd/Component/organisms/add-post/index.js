@@ -32,6 +32,52 @@ const Map = ReactMapboxGl({
   accessToken: helper.MapBoxPrimaryKey
 });
 
+function CategorySelect({
+  nameTitle,
+  nameKey,
+  thisCat,
+  thisCatList,
+  onChange,
+  error
+}) {
+  return (
+  
+    <div className="form-group ">
+      <div className="">
+        <select
+          className="form-control"
+          onChange={(e) => {
+            onChange(e);
+          }}
+          id={nameKey}
+          name={nameKey}
+        >
+          <option disabled selected value="nameTitle">
+            Select {nameTitle}
+          </option>
+          {thisCatList.length > 0 &&
+            thisCatList
+              .sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }))
+              .map((cat) => {
+                return (
+                  cat.status === 1 && (
+                    <option
+                      key={cat._id}
+                      value={cat._id}
+                      selected={thisCat === cat._id}
+                    >
+                      {cat.name}
+                    </option>
+                  )
+                );
+              })}
+        </select>
+        <p className="error">{error ? (error[nameKey] ? error[nameKey] : '') : ''}</p>
+      </div>
+    </div>
+  );
+}
+
 function AccordionToggle({ children, eventKey, callback }) {
   const { activeEventKey } = useContext(AccordionContext);
   // window.scrollTo(0, 0);
@@ -51,26 +97,35 @@ function AccordionToggle({ children, eventKey, callback }) {
   );
 }
 
+const STYLES_imageUploadWrap = {
+  marginTop: '20px',
+  // border: " 4px dashed #3773c6",
+  position: 'relative',
+  width: '100%'
+};
+
+const STYLES_fileUploadInput = {
+  position: 'absolute',
+  margin: 0,
+  padding: 0,
+  width: '100%',
+  height: '100%',
+  outline: 'none',
+  opacity: 0,
+  cursor: 'pointer'
+};
+
+const STYLES_mapStyles = {
+  londonCycle: 'mapbox://styles/mapbox/light-v9',
+  light: 'mapbox://styles/mapbox/light-v9',
+  dark: 'mapbox://styles/mapbox/dark-v9',
+  basic: 'mapbox://styles/mapbox/basic-v9',
+  outdoor: 'mapbox://styles/mapbox/outdoors-v10'
+};
+
 const AddPost = (props) => {
-  const fileuploadinput = {
-    position: 'absolute',
-    margin: 0,
-    padding: 0,
-    width: '100%',
-    height: '100%',
-    outline: 'none',
-    opacity: 0,
-    cursor: 'pointer'
-  };
-
-  const imageuploadwrap = {
-    marginTop: '20px',
-    // border: " 4px dashed #3773c6",
-    position: 'relative',
-    width: '100%'
-  };
-
   let organizationDetails = props.organizationDetails;
+  console.log(`AddPost component:\n~~`, {organizationDetails}); // {_id, _name: 'Alter Ego', ein, organizationUserName, .....}
   let stateData = props.stateData;
   //const user = useSelector((state) => state.user);
   const {
@@ -133,9 +188,8 @@ const AddPost = (props) => {
   };
 
   const setModelShow = props.setModelShow;
-  console.log({ seletedProjectList });
-  console.log({ removedProjects });
-  console.log({ projectList });
+  console.log({ seletedProjectList, removedProjects, projectList });
+
   const [location, setLocation] = useState({
     organizationLocation: '',
     locationName: '',
@@ -150,13 +204,6 @@ const AddPost = (props) => {
 
   // console.log(gallaryImages)
 
-  const mapStyles = {
-    londonCycle: 'mapbox://styles/mapbox/light-v9',
-    light: 'mapbox://styles/mapbox/light-v9',
-    dark: 'mapbox://styles/mapbox/dark-v9',
-    basic: 'mapbox://styles/mapbox/basic-v9',
-    outdoor: 'mapbox://styles/mapbox/outdoors-v10'
-  };
 
   useEffect(() => {
     // console.log(user)
@@ -187,6 +234,8 @@ const AddPost = (props) => {
       lng: lng
     });
   };
+
+  // WHY?????? Why not use regular constants?!?!?!?!?!
   const [id1] = useState('headline');
   const [id2] = useState('brand');
   const [id3] = useState('needheadline');
@@ -349,7 +398,7 @@ const AddPost = (props) => {
                 </Col>
                 <Col lg="6">
                   <Map
-                    style={mapStyles.outdoor}
+                    style={STYLES_mapStyles.outdoor}
                     // onMove={false}
                     zoom={[12]}
                     containerStyle={{
@@ -642,25 +691,15 @@ const AddPost = (props) => {
                       <div className="item-category-select">
                         <span className="title">Item Category</span>
                         <div className="d-flex gap-2">
-                          {/* <Dropdown className="d-flex" autoClose="outside">
-                            <Dropdown.Toggle variant="outline-light" size="lg">
-                              Category
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu className="w-100">
-                              {
-                                categoryList.length > 0 &&
-                                categoryList.map((item, idx) => (
-                                  <Dropdown.Item
-                                    key={`cat_${idx}`}
-                                    className="py-18p px-12p border-bottom fw-semibold text-dark"
-                                    value={category}
-                                  >
-                                    {item.name}
-                                  </Dropdown.Item>
-                                ))}
-                            </Dropdown.Menu>
-                          </Dropdown> */}
+                          <CategorySelect 
+                            nameTitle="Category"
+                            nameKey="category"
+                            thisCat={category}
+                            thisCatList={categoryList}
+                            onChange={changevalue}
+                            error={error}
+                          />
+                          {/*
                           <div className="form-group">
                             <div className="">
                               <select
@@ -670,8 +709,10 @@ const AddPost = (props) => {
                                 }}
                                 id="category"
                                 name="category"
+                                defaultValue=" "
+                                value={category ?? null}
                               >
-                                <option selected disabled value=" ">
+                                <option disabled value=" ">
                                   Select Category
                                 </option>
                                 {categoryList.length > 0 &&
@@ -682,7 +723,11 @@ const AddPost = (props) => {
                                     .map((cat, i) => {
                                       return (
                                         cat.status === 1 && (
-                                          <option value={cat._id} selected={category === cat._id}>
+                                          <option
+                                            key={cat._id}
+                                            value={cat._id}
+                                            // selected={category === cat._id}
+                                          >
                                             {cat.name}
                                           </option>
                                         )
@@ -694,7 +739,17 @@ const AddPost = (props) => {
                               </p>
                             </div>
                           </div>
+                          */}
 
+                          <CategorySelect 
+                            nameTitle="SubCategory"
+                            nameKey="subcategory"
+                            thisCat={subcategory}
+                            thisCatList={subcategoryList}
+                            onChange={changevalue}
+                            error={error}
+                          />
+                          {/*
                           <div className="form-group ">
                             <div className="">
                               <select
@@ -704,8 +759,10 @@ const AddPost = (props) => {
                                 }}
                                 id="subcategory"
                                 name="subcategory"
+                                defaultValue=" "
+                                value={subcategory ?? null}
                               >
-                                <option selected disabled value=" ">
+                                <option disabled value=" ">
                                   Select SubCategory
                                 </option>
                                 {subcategoryList.length > 0 &&
@@ -717,8 +774,9 @@ const AddPost = (props) => {
                                       return (
                                         cat.status === 1 && (
                                           <option
+                                            key={cat._id}
                                             value={cat._id}
-                                            selected={subcategory === cat._id}
+                                            //selected={subcategory === cat._id}
                                           >
                                             {cat.name}
                                           </option>
@@ -731,25 +789,7 @@ const AddPost = (props) => {
                               </p>
                             </div>
                           </div>
-                          {/* <Dropdown className="d-flex" autoClose="outside">
-                            <Dropdown.Toggle variant="outline-light" size="lg">
-                              Subcategory
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu className="w-100">
-                              {
-                                subcategoryList.length > 0 &&
-                                subcategoryList.map((item, idx) => (
-                                  <Dropdown.Item
-                                    key={`sub_cat_${idx}`}
-                                    className="d-flex align-items-center py-18p px-12p border-bottom fw-semibold text-dark"
-                                  >
-                                    {item.name}
-                                    <div className="ms-auto">{item.icon}</div>
-                                  </Dropdown.Item>
-                                ))}
-                            </Dropdown.Menu>
-                          </Dropdown> */}
+                          */}
                         </div>
                       </div>
                     </form>
@@ -836,7 +876,7 @@ const AddPost = (props) => {
                           <div
                             className="image-upload-wrap fs-2"
                             style={{
-                              ...imageuploadwrap,
+                              ...STYLES_imageUploadWrap,
                               backgroundColor: '#e5f4ff',
                               borderRadius: '9px',
                               border: '2px dashed rgba(62, 170, 255, 0.58)',
@@ -853,7 +893,7 @@ const AddPost = (props) => {
                               accept=".jpg,.gif,.png, .svg"
                               multiple
                               onChange={(e) => changefile(e)}
-                              style={fileuploadinput}
+                              style={STYLES_fileUploadInput}
                             />
                             <div
                               className="drag-text"
@@ -886,7 +926,7 @@ const AddPost = (props) => {
                                     <div
                                       className="gallery__img"
                                       style={{
-                                        backgroundImage: `url(${img ? img : noimg})`,
+                                        backgroundImage: `url(${img ? img : noimg})`
                                         // width: '100px',
                                         // height: '100px'
                                       }}
@@ -921,7 +961,7 @@ const AddPost = (props) => {
                                                   ? helper.CampaignProductImagePath + img.img
                                                   : noimg
                                                 : noimg
-                                            })`,
+                                            })`
                                             // width: '100px',
                                             // height: '100px'
                                           }}
@@ -1150,7 +1190,7 @@ const AddPost = (props) => {
                         <div
                           className="image-upload-wrap fs-2"
                           style={{
-                            ...imageuploadwrap,
+                            ...STYLES_imageUploadWrap,
                             backgroundColor: '#e5f4ff',
                             borderRadius: '9px',
                             border: '2px dashed rgba(62, 170, 255, 0.58)',
@@ -1167,7 +1207,7 @@ const AddPost = (props) => {
                             onChange={(e) => {
                               changefile(e);
                             }}
-                            style={fileuploadinput}
+                            style={STYLES_fileUploadInput}
                             title=" "
                           />
                           <div
@@ -1197,7 +1237,7 @@ const AddPost = (props) => {
                                   <div
                                     className="gallery__img"
                                     style={{
-                                      backgroundImage: `url(${img ? img : noimg})`,
+                                      backgroundImage: `url(${img ? img : noimg})`
                                       // width: '100px',
                                       // height: '100px'
                                     }}
@@ -1244,7 +1284,7 @@ const AddPost = (props) => {
                                                 ? helper.CampaignProductImagePath + img.img
                                                 : noimg
                                               : noimg
-                                          })`,
+                                          })`
                                           // width: '100px',
                                           // height: '100px'
                                         }}
@@ -1252,7 +1292,7 @@ const AddPost = (props) => {
                                         data-id="103"
                                       ></div>
                                     </div>
-                                  </React.Fragment >
+                                  </React.Fragment>
                                 );
                               })
                             : ''}
@@ -1347,26 +1387,26 @@ const AddPost = (props) => {
         </div>
         <div className="products-detial-footer d-flex py-3 py-sm-5 gap-2">
           {stateData.status === 1 ? (
-          <>
-            <Button
-              style={{ opacity: props.loading ? '0.7' : '1' }}
-              variant="info"
-              size="lg"
-              className="fw-bold fs-6"
-              onClick={() => !props.loading && submitProductForm(-1)}
-            >
-              Unpublish
-            </Button>
-            <Button
-              style={{ opacity: props.loading ? '0.7' : '1' }}
-              variant="success"
-              size="lg"
-              className="d-flex align-items-center justify-content-center fs-6 fw-bold"
-              onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
-            >
-              Save Changes
-              {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
-            </Button>
+            <>
+              <Button
+                style={{ opacity: props.loading ? '0.7' : '1' }}
+                variant="info"
+                size="lg"
+                className="fw-bold fs-6"
+                onClick={() => !props.loading && submitProductForm(-1)}
+              >
+                Unpublish
+              </Button>
+              <Button
+                style={{ opacity: props.loading ? '0.7' : '1' }}
+                variant="success"
+                size="lg"
+                className="d-flex align-items-center justify-content-center fs-6 fw-bold"
+                onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
+              >
+                Save Changes
+                {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+              </Button>
             </>
           ) : (
             <div className="d-flex gap-2">

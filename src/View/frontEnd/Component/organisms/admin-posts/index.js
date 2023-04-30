@@ -120,6 +120,7 @@ const AdminPosts = () => {
   const token = type && type === 'temp' ? tempCampaignAdminAuthToken : CampaignAdminAuthToken;
 
   const [data] = useOutletContext();
+  console.log('admin-posts outletContext:', {data});
 
   const [categoryList, setCategoryList] = useState([]);
   const [subcategoryList, setSubCategoryList] = useState([]);
@@ -153,6 +154,7 @@ const AdminPosts = () => {
 
   // item data state
   const [state, setstate] = useState(DEFAULT_EMPTY_STATE);
+
 
   const {
     id,
@@ -650,7 +652,7 @@ const AdminPosts = () => {
 
   // when creating a product??
   const submitProductForm = (s, seletedProjectListofIds) => {
-    console.log('s');
+    console.log('submitProductForm', { s });
 
     //window.scrollTo(0, 0);
     // console.log(tags)
@@ -721,8 +723,13 @@ const AdminPosts = () => {
       }
     }
 
-    validateAll(state, rules, SUBMIT_PRODUCT_FORM_VALIDATE_MESSAGE)
+    // inject the organization here, received from OutletContext: the current user/org name
+    const stateWithOrg = {...state, organization: data.name};
+    console.log('~~ validating...', {state, stateWithOrg});
+
+    validateAll(stateWithOrg, rules, SUBMIT_PRODUCT_FORM_VALIDATE_MESSAGE)
       .then(async () => {
+        console.log('~~ validation THEN');
         // const formaerrror = {};
         setstate({
           ...state,
@@ -868,16 +875,16 @@ const AdminPosts = () => {
         }
       })
       .catch((errors) => {
+        console.log('~~ validation CATCH');
         setLoading(false);
         // console.log(errors)
         // const formaerrror = {};
+        console.log({ errors });
         if (errors.length) {
-          console.log({ errors });
           errors.forEach((element) => {
             formaerrror[element.field] = element.message;
           });
         } else {
-          console.log({ errors });
           ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
         }
 

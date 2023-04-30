@@ -120,54 +120,37 @@ export default function HomeController() {
   };
 
   function showError(error) {
-    if (error) {
-      console.log(error);
-      dispatch(setUserCountrySort('CA'));
-      if (userAuthToken) {
-        if (userData.country_id && userData.country_id !== null && userData.country_id > 0) {
-          dispatch(setUserCountry(userData.country_id));
-          let currencyData = {};
-          currencyData.currency = userData.currency;
-          currencyData.currencySymbol = userData.symbol;
-          dispatch(setCurrency(currencyData));
-        } else {
-          dispatch(setUserCountry(39));
-          let currencyData = {};
-          currencyData.currency = 'CAD';
-          currencyData.currencySymbol = '$';
-          dispatch(setCurrency(currencyData));
-        }
-        if (userData.state_id && userData.state_id !== null && userData.state_id > 0) {
-          dispatch(setUserState(userData.state_id));
-        } else {
-          dispatch(setUserState(3830));
-        }
-      } else if (CampaignAdminAuthToken) {
-        if (
-          CampaignAdmin.country_id &&
-          CampaignAdmin.country_id !== null &&
-          CampaignAdmin.country_id > 0
-        ) {
-          dispatch(setUserCountry(CampaignAdmin.country_id));
-        } else {
-          dispatch(setUserCountry(39));
-        }
+    // skip if no error passed in
+    console.log('geo error callback');
+    if (!error) return;
 
-        if (
-          CampaignAdmin.state_id &&
-          CampaignAdmin.state_id !== null &&
-          CampaignAdmin.state_id > 0
-        ) {
-          dispatch(setUserState(CampaignAdmin.state_id));
-        } else {
-          dispatch(setUserState(3830));
-        }
+    console.log('~~ WITH ERROR:', error);
+    dispatch(setUserCountrySort('CA'));
 
-        // dispatch(setUserCountry(CampaignAdmin.country_id))
-      } else {
-        dispatch(setUserCountry(39));
-        dispatch(setUserState(3830));
-      }
+    // if no tokens, set a default UserCountry and UserState
+    if (!userAuthToken && !CampaignAdminAuthToken) {
+      dispatch(setUserCountry(39));
+      dispatch(setUserState(3830));
+      return;
+    }
+
+    if (userAuthToken) {
+      // set Country if it exists in userData, else default to Canadian
+      const isUserWithCountryId = userData?.country_id > 0 ?? false;
+      const country = isUserWithCountryId ? userData.country_id : 39;
+      const currencyData = {
+        currency: isUserWithCountryId ? userData.currency : 'CAD',
+        currencySymbol: isUserWithCountryId ? userData.symbol : '$',
+      };
+      dispatch(setUserCountry(country));
+      dispatch(setCurrency(currencyData));
+
+      // set State if it exists in userData, else default to Toronto?
+      dispatch(setUserState((userData?.state_id > 0) ? userData.state_id : 3830))
+
+    } else if (CampaignAdminAuthToken) {
+      dispatch(setUserCountry(CampaignAdmin?.country_id > 0 ? CampaignAdmin.country_id : 39));
+      dispatch(setUserState(CampaignAdmin?.state_id > 0 ? CampaignAdmin.state_id : 3830));
     }
   }
 
@@ -772,9 +755,12 @@ export default function HomeController() {
 
   useEffect(() => {
     (async () => {
+      // if no country...
       if (user.countryId === null || user.countryId === undefined || user.countryId === '') {
         if (navigator.geolocation) {
+          // if location is available, attempt getCurrentPosition
           navigator.geolocation.getCurrentPosition(showPosition, showError);
+
         } else {
           if (userAuthToken) {
             dispatch(setUserCountry(userData.country_id));
@@ -783,9 +769,7 @@ export default function HomeController() {
           }
         }
       } else {
-        // console.log(user.countryId)
-        // await getCountryAdvertisement(user.countryId,user.stateId)
-
+        // we have the country, so filter the products
         setLoading(true);
         await filterProduct(lowPrice, HighPrice, resultTags, user.countryId);
         setLoading(false);
