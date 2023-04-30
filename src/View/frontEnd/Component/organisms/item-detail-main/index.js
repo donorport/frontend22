@@ -173,7 +173,7 @@ function ProjectDetailMain(props) {
         </div>
 
         {/* show for mobile view */}
-{/* 
+        {/* 
         <div className="note d-none project__detail-img mb-3">
           <img
             className="img-fluid"
@@ -466,33 +466,33 @@ function ProjectDetailMain(props) {
                   <h2 className="fs-3 fw-bolder text-dark">Followup</h2>
                   <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
                 </Card.Header>
-
-                <div className="project-video-wrap">
-                  <iframe
-                    title="product-details-video"
-                    key="product-details-video"
-                    width="498"
-                    height="280"
-                    src={embedlink2}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-
-                <div className="gallery__container">
-                  {productDetails?.productImages &&
-                    productDetails?.productImages.length > 0 &&
-                    productDetails?.productImages.map((img, i) => {
-                      if (img.type === 'fulfillImage') {
-                        return (
-                          <GalleryImg
-                            key={i}
-                            thumbImgSrc={helper.CampaignProductFullImagePath + img.image}
-                            bigImgSrc={helper.CampaignProductFullImagePath + img.image}
-                          />
-                        );
-                      }
-                    })}
+                <div className="d-flex flex-column gap-2">
+                  <div className="project-video-wrap">
+                    <iframe
+                      title="product-details-video"
+                      key="product-details-video"
+                      width="498"
+                      height="280"
+                      src={embedlink2}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                  <div className="gallery__container">
+                    {productDetails?.productImages &&
+                      productDetails?.productImages.length > 0 &&
+                      productDetails?.productImages.map((img, i) => {
+                        if (img.type === 'fulfillImage') {
+                          return (
+                            <GalleryImg
+                              key={i}
+                              thumbImgSrc={helper.CampaignProductFullImagePath + img.image}
+                              bigImgSrc={helper.CampaignProductFullImagePath + img.image}
+                            />
+                          );
+                        }
+                      })}
+                  </div>
                 </div>
               </div>
             </>

@@ -378,36 +378,37 @@ const UserItems = () => {
                               <h2 className="fs-3 fw-bolder text-dark">Followup</h2>
                               <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
                             </Card.Header>
-
-                            {item.itemDetails?.isFulfiled && item.fulfilDetails[0].video && (
-                              <div className="project-video-wrap mt-4">
-                                <iframe
-                                  title="user-item-video"
-                                  key="user-item-video"
-                                  width="498"
-                                  height="280"
-                                  src={
-                                    'https://www.youtube.com/embed/' +
-                                    item.fulfilDetails[0].video.split('?v=')[1]
-                                  }
-                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                  allowFullScreen
-                                ></iframe>
+                            <div className="d-flex flex-column gap-2">
+                              {' '}
+                              {item.itemDetails?.isFulfiled && item.fulfilDetails[0].video && (
+                                <div className="project-video-wrap mt-4">
+                                  <iframe
+                                    title="user-item-video"
+                                    key="user-item-video"
+                                    width="498"
+                                    height="280"
+                                    src={
+                                      'https://www.youtube.com/embed/' +
+                                      item.fulfilDetails[0].video.split('?v=')[1]
+                                    }
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                  ></iframe>
+                                </div>
+                              )}
+                              <div className="gallery__container">
+                                {item.itemDetails?.fulfil.length > 0 &&
+                                  Number(detail.key) === i &&
+                                  item.itemDetails?.fulfil.map((im, index) => {
+                                    return (
+                                      <GalleryImg
+                                        key={index}
+                                        thumbImgSrc={helper.CampaignProductFullImagePath + im.image}
+                                        bigImgSrc={helper.CampaignProductFullImagePath + im.image}
+                                      />
+                                    );
+                                  })}
                               </div>
-                            )}
-
-                            <div className="gallery__container">
-                              {item.itemDetails?.fulfil.length > 0 &&
-                                Number(detail.key) === i &&
-                                item.itemDetails?.fulfil.map((im, index) => {
-                                  return (
-                                    <GalleryImg
-                                      key={index}
-                                      thumbImgSrc={helper.CampaignProductFullImagePath + im.image}
-                                      bigImgSrc={helper.CampaignProductFullImagePath + im.image}
-                                    />
-                                  );
-                                })}
                             </div>
                           </div>
                         )}
