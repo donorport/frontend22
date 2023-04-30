@@ -32,6 +32,10 @@ const Map = ReactMapboxGl({
   accessToken: helper.MapBoxPrimaryKey
 });
 
+const STYLE_CURSOR_POINTER = {
+  cursor: 'pointer',
+}
+
 function CategorySelect({
   nameTitle,
   nameKey,
@@ -51,6 +55,7 @@ function CategorySelect({
           }}
           id={nameKey}
           name={nameKey}
+          style={STYLE_CURSOR_POINTER}
         >
           <option disabled selected value="nameTitle">
             Select {nameTitle}
@@ -1358,7 +1363,7 @@ const AddPost = (props) => {
           </Card>
         </Accordion>
         <div className="fulfilling-check-wrap pb-4">
-          <div className="form-check">
+          <div className="form-check" style={STYLE_CURSOR_POINTER}>
             <input
               type="checkbox"
               className="form-check-input"
@@ -1369,7 +1374,7 @@ const AddPost = (props) => {
                 changevalue(e);
               }}
             />
-            <label className="form-check-label" htmlFor="policy">
+            <label className="form-check-label" htmlFor="policy" style={STYLE_CURSOR_POINTER}>
               By posting your ad, you are agreeing to our <Link to="/terms">terms of service</Link>
               &nbsp; & <Link to="/privacy">privacy policy</Link> . Please do not post duplicate ads.
               You may not edit your post after it has received funding. You cannot delete your post
