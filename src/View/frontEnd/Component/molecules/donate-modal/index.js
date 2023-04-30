@@ -43,7 +43,7 @@ const DonateModal = (props) => {
 
   return (
     <Modal {...props} size="md" aria-labelledby="contained-modal-title-vcenter" centered>
-      <Modal.Header className="bg-primary text-white justify-content-center pt-5 pb-2">
+      <Modal.Header className="bg-primary text-white justify-content-center pt-1 pb-2 mb-3">
         {next ? (
           <Button
             variant="link"
