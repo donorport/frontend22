@@ -6,7 +6,6 @@ import Page from '../../../components/Page';
 import AdminTabs from '../Component/organisms/admin-tabs';
 import useWindowSize from '../../../hooks/device-check';
 import {
-  DashboardIcon,
   PostsIcon,
   ActivityIcon,
   TaxIcon,
@@ -58,7 +57,7 @@ function AdminDetail() {
             ? helper.CampaignAdminLogoPath + getCampaignDetails.data.data?.logo
             : noimg
         );
-        // console.log(getCampaignDetails.data.data)
+        console.log('admin-detail component:\n~~ useEffect:',{campaignDetails_results: getCampaignDetails.data.data})
         setData(getCampaignDetails.data.data);
       }
 
