@@ -12,6 +12,7 @@ import './style.scss';
 import { debounce } from 'lodash';
 
 function CartItem(props) {
+  console.log('CartItem component:', {cartItem: props.cartItem});
   let cartItem = props.cartItem;
   const [quantity, setQuantity] = useState();
 

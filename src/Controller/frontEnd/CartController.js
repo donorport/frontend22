@@ -25,7 +25,7 @@ export default function CartController() {
     transactionFee: 0
   });
   const { platformFee, transactionFee } = pricingFees;
-  
+
   const refreshCart = () => setIsUpdate(!update);
 
   const getFeesValues = async () => {
@@ -48,7 +48,7 @@ export default function CartController() {
       // user.setPlatformFee(data.platformFee)
     }
   };
-  
+
   useEffect(() => {
     (async () => {
       setLoading(false);
@@ -85,19 +85,19 @@ export default function CartController() {
       userAuthToken ? userAuthToken : CampaignAdminAuthToken,
       id
     );
-    if (removeCartItem) {
-      if (!removeCartItem.data.success) {
-        setLoading(false);
-        ToastAlert({ msg: removeCartItem.data.message, msgType: 'error' });
-      } else {
-        setIsUpdate(!update);
-        /*ToastAlert({ msg: removeCartItem.data.message, msgType: 'success' });*/
-        setLoading(false);
-      }
-    } else {
+    if (!removeCartItem) {
       setLoading(false);
       ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+      return;
     }
+    if (!removeCartItem.data.success) {
+      setLoading(false);
+      ToastAlert({ msg: removeCartItem.data.message, msgType: 'error' });
+      return;
+    }
+    setIsUpdate(!update);
+    /*ToastAlert({ msg: removeCartItem.data.message, msgType: 'success' });*/
+    setLoading(false);
   };
 
   const clearCart = async () => {
@@ -121,7 +121,7 @@ export default function CartController() {
   };
 
   const updateCartItem = async (quantity, id, productId, type) => {
-    console.log("cartController_________________")
+    console.log('cartController_________________');
     setLoading(false);
     setCartItem((items) =>
       items.map((i) => {
@@ -154,13 +154,12 @@ export default function CartController() {
       setLoading(false);
       ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
     }
-    refreshCart()
+    refreshCart();
   };
 
   const checkout = () => {
     navigate('/checkout');
   };
-
 
   return (
     <>
