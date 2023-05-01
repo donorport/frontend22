@@ -182,7 +182,9 @@ const AdminTax = () => {
 
   const handleClick = async (e, v) => {
     setPageNo(Number(v));
+    setLoading(true);
     await getTaxList(Number(v), sortField, order, activeYear);
+    setLoading(false);
   };
 
   const totalVal = (data) => {
@@ -205,13 +207,17 @@ const AdminTax = () => {
     const sortOrder = accessor === sortField && order === 'asc' ? 'desc' : 'asc';
     setSortField(accessor);
     setOrder(sortOrder);
+    setLoading(true);
     await getTaxList(pageNo, accessor, sortOrder, activeYear);
+    setLoading(false);
   };
 
   const onChangeFilterOption = async (e, v) => {
-    await getTaxList(pageNo, sortField, order, v);
+    setLoading(true);
     setActiveYear(v);
     setActiveKey(e);
+    await getTaxList(pageNo, sortField, order, v);
+    setLoading(false);
   };
   return (
     <>
