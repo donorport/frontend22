@@ -16,9 +16,10 @@ import './style.scss';
 const AdminProjects = () => {
   const [data, setData] = useOutletContext();
   const userAuthToken = localStorage.getItem('userAuthToken');
-  const CampaignAdminAuthToken = localStorage.getItem('');
-  const type = localStorage.getItem('type');
+  const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const tempCampaignAdminAuthToken = localStorage.getItem('tempCampaignAdminAuthToken');
+  const type = localStorage.getItem('type');
+
   const token = type
     ? type === 'temp'
       ? tempCampaignAdminAuthToken
@@ -197,6 +198,7 @@ const AdminProjects = () => {
   };
 
   const submitProjectForm = (s) => {
+    //console.log('submitProjectForm fn');
     //window.scrollTo(0, 0);
     const formaerrror = {};
     let rules = {};
@@ -231,8 +233,10 @@ const AdminProjects = () => {
       //'video.required': 'video is Required',
     };
 
+    //console.log('~~ validate:', state);
     validateAll(state, rules, message)
       .then(async () => {
+        //console.log('~~ validated!');
         setstate({
           ...state,
           error: formaerrror
@@ -257,39 +261,42 @@ const AdminProjects = () => {
         // console.log(formData)
 
         if (Object.keys(formaerrror).length === 0) {
-          // }
-
-          let addProject;
+          //console.log('~~ formaerrror.length === 0')
 
           setLoading(true);
+
+          let addProject;
           if (id !== '') {
             addProject = await projectApi.updateProject(token, formData, id);
           } else {
             addProject = await projectApi.add(token, formData);
           }
+          //console.log('done adding/updating:', {addProject});
 
-          if (addProject) {
-            if (addProject.data.success === false) {
-              setLoading(false);
-              ToastAlert({ msg: addProject.data.message, msgType: 'error' });
-            } else {
-              if (addProject.data.success === true) {
-                resetForm();
-                createProject(false);
-                setLoading(false);
-                setUpdate(!update);
-                ToastAlert({ msg: addProject.data.message, msgType: 'success' });
-                //
-              }
-            }
-          } else {
-            setLoading(false);
+          if (!addProject) {
+            //setLoading(false);
             ToastAlert({ msg: 'Project not saved', msgType: 'error' });
+            return 
+          }
+
+          if (addProject.data.success === false) {
+            //setLoading(false);
+            ToastAlert({ msg: addProject.data.message, msgType: 'error' });
+            return;
+          } 
+
+          if (addProject.data.success === true) {
+            resetForm();
+            createProject(false);
+            //setLoading(false);
+            setUpdate(!update);
+            ToastAlert({ msg: addProject.data.message, msgType: 'success' });
+            //
           }
         }
       })
       .catch((errors) => {
-        setLoading(false);
+        console.log('~~ VALIDATION ERRORS!', {errors});
         // console.log(errors)
         // const formaerrror = {};
         if (errors.length) {
@@ -304,6 +311,8 @@ const AdminProjects = () => {
           ...state,
           error: formaerrror
         });
+      }).finally(() => {
+        setLoading( false );
       });
   };
 
@@ -319,29 +328,34 @@ const AdminProjects = () => {
           label: 'Delete',
           onClick: async () => {
             setLoading(true);
-            if (id !== '') {
-              const deleteProjectApi = await projectApi.deleteProject(
-                CampaignAdminAuthToken ? CampaignAdminAuthToken : userAuthToken,
-                id
-              );
-              if (deleteProjectApi) {
-                if (deleteProjectApi.data.success === false) {
-                  setLoading(false);
-                  ToastAlert({ msg: deleteProjectApi.data.message, msgType: 'error' });
-                } else {
-                  if (deleteProjectApi.data.success === true) {
-                    setLoading(false);
-                    setUpdate(!update);
-                    ToastAlert({ msg: deleteProjectApi.data.message, msgType: 'success' });
-                  }
-                }
-              } else {
-                setLoading(false);
-                ToastAlert({ msg: 'Project not delete', msgType: 'error' });
-              }
-            } else {
+
+            if (id === '') {
               setLoading(false);
               ToastAlert({ msg: 'Project not delete id Not found', msgType: 'error' });
+              return;
+            }
+
+            const deleteProjectApi = await projectApi.deleteProject(
+              CampaignAdminAuthToken ? CampaignAdminAuthToken : userAuthToken,
+              id
+            );
+
+            if (!deleteProjectApi) {
+              setLoading(false);
+              ToastAlert({ msg: 'Project not delete', msgType: 'error' });
+              return;
+            }
+
+            if (deleteProjectApi.data.success === false) {
+              setLoading(false);
+              ToastAlert({ msg: deleteProjectApi.data.message, msgType: 'error' });
+              return;
+            } 
+
+            if (deleteProjectApi.data.success === true) {
+              setLoading(false);
+              setUpdate(!update);
+              ToastAlert({ msg: deleteProjectApi.data.message, msgType: 'success' });
             }
           }
         }
