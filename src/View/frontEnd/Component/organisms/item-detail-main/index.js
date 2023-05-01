@@ -50,7 +50,7 @@ function ProjectDetailMain(props) {
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  let maxQuentity = productDetails.unlimited
+  let maxQuantity = productDetails.unlimited
     ? 1000
     : productDetails.quantity - productDetails.soldout;
 
@@ -142,211 +142,31 @@ function ProjectDetailMain(props) {
     ) : (
       cart_btn
     );
+
   return (
     <div className="project__detail-main">
-      <div className="d-flex flex-column gap-2">
-        <div className="mb-1">
-          {' '}
-          <h4 className="project__detail-label mb-3p">Item</h4>
-          <h1 className="project__detail-title text-dark" style={{ textTransform: 'capitalize' }}>
-            {productDetails?.headline}
-          </h1>
-          <h5 className="project__detail-sublabel mb-0 fw-bolder">Product</h5>
-          <div className="project__detail-subtitle fw-bold">{productDetails?.brand} ™</div>
-          <h2 className="project__detail-price fs-1 text-price m-0">
-            {currencySymbol}
-            {priceFormat(price)}
-          </h2>
-        </div>
-
-        <div className="project__detail-meta d-flex align-items-center text-light">
-          <div className="d-flex align-items-center me-2 text-nowrap">
-            <FontAwesomeIcon icon={regular('clock')} className="me-1" />
-            {moment(productDetails?.created_at).format('MMMM DD, YYYY')}
-          </div>
-          {productDetails?.address && (
-            <div className="d-flex align-items-center me-2 text-nowrap">
-              <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
-              {address}
-            </div>
-          )}
-        </div>
-
-        {/* show for mobile view */}
-        {/* 
-        <div className="note d-none project__detail-img mb-3">
-          <img
-            className="img-fluid"
-            alt=""
-            src={helper.CampaignProductFullImagePath + productDetails?.image}
-          />
-        </div> */}
-
-        <div className="product__top px-0 d-flex align-items-center">
-          <div className="page__bar d-flex align-items-center flex-grow-1">
-            <ProgressBar
-              variant={productDetails.unlimited ? 'infinity' : 'success'}
-              now={productDetails.unlimited ? 100 : per}
-              className="page__progress flex-grow-1 me-1"
-            />
-            {productDetails.unlimited ? (
-              <span className="tag tag__ongoing tag__rounded fs-9">
-                <FontAwesomeIcon icon={regular('infinity')} />
-              </span>
-            ) : (
-              <span className="fw-bold" style={{ whiteSpace: 'nowrap' }}>
-                {productDetails.soldout} / {productDetails.quantity}{' '}
-                <span className="fs-9 fw-normal">sold</span>
-              </span>
-            )}
-          </div>
-          <div className="text-light d-flex align-items-center ms-3 gap-1">
-            <IconToggle
-              activeColor="rgb(246, 100, 97)"
-              icon={<FontAwesomeIcon icon={regular('heart')} />}
-              ischecked={props.wishListproductIds.includes(productDetails._id)}
-              checkedIcon={<FontAwesomeIcon icon={solid('heart')} />}
-              onClickFilter={onClickFilter}
-            />
-
-            <IconToggle
-              icon={<FontAwesomeIcon icon={regular('bell')} />}
-              checkedIcon={<FontAwesomeIcon icon={solid('bell')} />}
-              onClickFilter={(e) => props.followToProduct(e)}
-              name="Product"
-              ischecked={props.isFollow}
-            />
-
-            <ShareWidget
-              page="item"
-              text={`Help ${productDetails?.campaignDetails?.name} give away ${productDetails?.headline} on Donorport 🎉🎁`}
-              pageTitle={productDetails?.headline}
-              currUrl={`https://api.donorport.com/item/${productDetails?.slug}`}
-            />
-          </div>
-        </div>
-
-        <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-1">
-          <Link
-            size="lg"
-            variant="link"
-            className="btn__category text-decoration-none"
-            to={'/categories/' + productDetails?.categoryDetails?.slug}
-          >
-            <span
-              className="d-flex align-items-center icon__category ms-1"
-              style={{
-                fontFamily: 'fontAwesome',
-                color: productDetails?.categoryDetails?.color,
-                fontStyle: 'normal'
-              }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 640 512">
-                <path
-                  d={productDetails?.subCategoryDetails?.icon}
-                  fill={productDetails?.categoryDetails?.color}
-                ></path>{' '}
-              </svg>
-            </span>{' '}
-            <span className="fs-6 text-dark fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
-              {productDetails?.subCategoryDetails?.name}
-            </span>
-          </Link>
-          <Link
-            size="lg"
-            variant="link"
-            className="btn__category text-decoration-none btn btn-link btn-lg"
-            to={'/organization/' + productDetails?.campaignDetails?.slug}
-          >
-            <span className="d-flex align-items-center icon__category">
-              <img
-                alt=""
-                style={{ width: 'auto', maxHeight: '90%', maxWidth: '90%' }}
-                src={helper.CampaignAdminLogoPath + productDetails?.campaignDetails?.logo}
-              />
-            </span>
-            <span className="fs-6 text-dark fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
-              {productDetails?.campaignDetails?.name}
-            </span>
-          </Link>
-        </div>
-        <div>
-          <div className="note d-sm-none project__detail-img mb-3">
-            <img
-              className="img-fluid"
-              alt=""
-              src={helper.CampaignProductFullImagePath + productDetails?.image}
-            />
-          </div>
-          {embedlink && (
-            <div className="project-video-wrap mb-2">
-              <iframe
-                title="product-details-video"
-                key="product-details-video"
-                width="498"
-                height="280"
-                src={embedlink}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          )}
-          <h4 className="page__blurb fw-bolder">{productDetails.needheadline}</h4>
-          <div className="page__paragraph">
-            {productDetails?.description?.replace(/<\/?[^>]+(>|$)/g, '')}
-          </div>
-          {productDetails?.productImages &&
-            productDetails?.productImages.length > 0 &&
-            productDetails?.productImages.filter((e) => e.type === 'galleryImage').length > 0 && (
-              <div className="mt-2">
-                <ProjectGallery
-                  className="mb-3"
-                  title={true}
-                  tagTitle="Products"
-                  images={productDetails?.productImages}
-                />
-              </div>
-            )}
-        </div>
-      </div>
+      <ItemDetailsMain
+        productDetails={productDetails}
+        currencySymbol={currencySymbol}
+        price={price}
+        address={address}
+        embedlink={embedlink}
+        wishListproductIds={props.wishListproductIds}
+        followToProduct={props.followToProduct}
+        isFollow={props.isFollow}
+        onClickFilter={onClickFilter}
+        per={per}
+      />
 
       <div className="d-flex flex-column project__calculate">
-        {isFinish || (productDetails.isFulfiled && !productDetails.unlimited) ? (
-          <></>
-        ) : (
-          <>
-            <div className="sub__total mt-2">
-              <div className="text-dark fw-bold me-2">Subtotal:</div>
-              <div className="price fs-4 fw-bold text-success">
-                {currencySymbol}
-                {priceFormat(Number(price * quantity))}
-              </div>
-            </div>
-            <div className="d-flex align-items-center fs-5 py-1 mb-3">
-              <div className="project__count d-flex align-items-center justify-content-center mt-3p">
-                1
-              </div>
-              <div className="flex-grow-1 mx-2">
-                <Slider
-                  handleStyle={{
-                    width: '26px',
-                    height: '26px',
-                    border: 'none',
-                    background: '#3596F3',
-                    marginTop: '-10px',
-                    opacity: '1'
-                  }}
-                  min={1}
-                  max={maxQuentity}
-                  railStyle={{ backgroundColor: '#C7E3FB', height: '9px' }}
-                  onChange={(e) => setQuantity(e)}
-                />
-              </div>
-              <div className="project__count d-flex align-items-center justify-content-center mt-3p">
-                {maxQuentity}
-              </div>
-            </div>
-          </>
+        {!(isFinish || (productDetails.isFulfiled && !productDetails.unlimited)) && (
+          <SubtotalSlider
+            currencySymbol={currencySymbol}
+            price={price}
+            quantity={quantity}
+            maxQuantity={maxQuantity}
+            setQuantity={setQuantity}
+          />
         )}
 
         {/* <Button size="lg" className="w-100">
@@ -358,167 +178,360 @@ function ProjectDetailMain(props) {
       </div>
 
       {!isFinish && (
-        <div className="product__badge mt-5 text-light fs-5">
-          {productDetails.postTag && (
-            <IconText
-              className="pt-12p pb-12p"
-              icon={
-                <FontAwesomeIcon icon={solid('tag')} className="fs-3 text-info pt-12p pb-12p" />
-              }
-            >
-              Item was already purchased by the organization. Your purchase will cover those costs.
-            </IconText>
-          )}
-          {productDetails.unlimited && (
-            <IconText
-              className="pt-12p pb-12p"
-              icon={
-                <FontAwesomeIcon
-                  icon={solid('infinity')}
-                  className="fs-3 text-info pt-12p pb-12p"
-                />
-              }
-            >
-              Item is ongoing - there is no fixed quantity.
-            </IconText>
-          )}
-
-          {productDetails.tax && (
-            <IconText
-              className="pt-12p pb-12p"
-              icon={<FontAwesomeIcon icon={solid('calculator')} className="fs-3 text-info" />}
-            >
-              These items are tax deductible.
-            </IconText>
-          )}
-          {productDetails.media && (
-            <IconText
-              className="pt-12p pb-12p"
-              icon={<FontAwesomeIcon icon={solid('image')} className="fs-3 text-info" />}
-            >
-              The organization has indicated that they will upload Media from their purchase.
-            </IconText>
-          )}
-          {allStateAds?.length > 0 &&
-            user.stateName &&
-            allStateAds
-              .filter(
-                (ad) =>
-                  ad.categoryId === productDetails?.categoryId &&
-                  userAddress === ad?.stateDetails?.state
-              )
-              .map((ad, i) => {
-                //console.log('~~ filtered ads:', {ad, i});
-                return (
-                  <IconText
-                    className="pt-12p pb-12p"
-                    icon={
-                      // <FontAwesomeIcon icon="fa-solid fa-rectangle-ad" />
-                      <FontAwesomeIcon icon={solid('rectangle-ad')} className="fs-3 text-info" />
-                    }
-                    key={ad._id}
-                  >
-                    <a
-                      href={ad?.advertisementsDetails?.website}
-                      target="_blank"
-                      rel="noreferrer"
-                      key={i}
-                    >
-                      <img
-                        src={helper.sponsorLogoResizePath + ad?.advertisementsDetails?.logo}
-                        alt="sponsor"
-                        className="p-1"
-                        style={{ maxHeight: '75px' }}
-                      ></img>
-                    </a>
-                  </IconText>
-                );
-              })}
-        </div>
+        <UnfinishedSection
+          productDetails={productDetails}
+          allStateAds={allStateAds}
+          user={user}
+          userAddress={userAddress}
+        />
       )}
 
-      {isFinish || (productDetails.isFulfiled && !productDetails.unlimited) ? (
-        <div className="note note-info d-flex align-items-center mt-3">
-          <span className="post__badge post__badge--sold me-2 text-primary fs-3">
-            <FontAwesomeIcon icon={solid('circle-check')} />
-          </span>
-          <span className="fs-6 text-subtext">This item has been fully funded.</span>
-        </div>
-      ) : (
-        <></>
+      {isFinish ||
+        (productDetails.isFulfiled && !productDetails.unlimited && <FullyFundedSection />)}
+
+      {productDetails.isFulfiled && (productDetails.fulfiledproductsDetails?.video || productDetails?.productImages?.length > 0) && (
+        <FollowupMediaSection productDetails={productDetails} embedlink2={embedlink2} />
       )}
-
-      {productDetails.isFulfiled ? (
-        <>
-          {/* <div className="note note-info d-flex align-items-center mt-5">
-              <span className="post__badge post__badge--sold me-2 text-primary fs-3">
-                <FontAwesomeIcon icon={solid("circle-check")} />
-              </span>
-              <span className="fs-6 text-subtext">
-                This item has been fully funded.
-              </span>
-            </div> */}
-
-          {productDetails.isFulfiled && productDetails.fulfiledproductsDetails.video && (
-            <>
-              <div className="note note-info align-items-center mt-5">
-                <Card.Header className="post__accordion-header pb-2 pt-2">
-                  <h2 className="fs-3 fw-bolder text-dark">Followup</h2>
-                  <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
-                </Card.Header>
-                <div className="d-flex flex-column gap-2">
-                  <div className="project-video-wrap">
-                    <iframe
-                      title="product-details-video"
-                      key="product-details-video"
-                      width="498"
-                      height="280"
-                      src={embedlink2}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                  <div className="gallery__container">
-                    {productDetails?.productImages &&
-                      productDetails?.productImages.length > 0 &&
-                      productDetails?.productImages.map((img, i) => {
-                        if (img.type === 'fulfillImage') {
-                          return (
-                            <GalleryImg
-                              key={i}
-                              thumbImgSrc={helper.CampaignProductFullImagePath + img.image}
-                              bigImgSrc={helper.CampaignProductFullImagePath + img.image}
-                            />
-                          );
-                        }
-                      })}
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-        </>
-      ) : (
-        <></>
-      )}
-
-      {/* <div className="gallery__container">
-        {productDetails?.productImages &&
-          productDetails?.productImages.length > 0 &&
-          productDetails?.productImages.map((img, i) => {
-            if (img.type === 'fulfillImage') {
-              return (
-                <GalleryImg
-                  key={i}
-                  thumbImgSrc={helper.CampaignProductFullImagePath + img.image}
-                  bigImgSrc={helper.CampaignProductFullImagePath + img.image}
-                />
-              );
-            }
-          })}
-      </div> */}
     </div>
   );
 }
+
+const ItemDetailsMain = ({
+  productDetails,
+  currencySymbol,
+  price,
+  address,
+  embedlink,
+  wishListproductIds,
+  followToProduct,
+  isFollow,
+  onClickFilter,
+  per
+}) => (
+  <div className="d-flex flex-column gap-2">
+    <div className="mb-1">
+      {' '}
+      <h4 className="project__detail-label mb-3p">Item</h4>
+      <h1 className="project__detail-title text-dark" style={{ textTransform: 'capitalize' }}>
+        {productDetails?.headline}
+      </h1>
+      <h5 className="project__detail-sublabel mb-0 fw-bolder">Product</h5>
+      <div className="project__detail-subtitle fw-bold">{productDetails?.brand} ™</div>
+      <h2 className="project__detail-price fs-1 text-price m-0">
+        {currencySymbol}
+        {priceFormat(price)}
+      </h2>
+    </div>
+
+    <div className="project__detail-meta d-flex align-items-center text-light">
+      <div className="d-flex align-items-center me-2 text-nowrap">
+        <FontAwesomeIcon icon={regular('clock')} className="me-1" />
+        {moment(productDetails?.created_at).format('MMMM DD, YYYY')}
+      </div>
+      {productDetails?.address && (
+        <div className="d-flex align-items-center me-2 text-nowrap">
+          <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
+          {address}
+        </div>
+      )}
+    </div>
+
+    {/* show for mobile view */}
+    {/* 
+        <div className="note d-none project__detail-img mb-3">
+          <img
+            className="img-fluid"
+            alt=""
+            src={helper.CampaignProductFullImagePath + productDetails?.image}
+          />
+        </div> */}
+
+    <div className="product__top px-0 d-flex align-items-center">
+      <div className="page__bar d-flex align-items-center flex-grow-1">
+        <ProgressBar
+          variant={productDetails.unlimited ? 'infinity' : 'success'}
+          now={productDetails.unlimited ? 100 : per}
+          className="page__progress flex-grow-1 me-1"
+        />
+        {productDetails.unlimited ? (
+          <span className="tag tag__ongoing tag__rounded fs-9">
+            <FontAwesomeIcon icon={regular('infinity')} />
+          </span>
+        ) : (
+          <span className="fw-bold" style={{ whiteSpace: 'nowrap' }}>
+            {productDetails.soldout} / {productDetails.quantity}{' '}
+            <span className="fs-9 fw-normal">sold</span>
+          </span>
+        )}
+      </div>
+      <div className="text-light d-flex align-items-center ms-3 gap-1">
+        <IconToggle
+          activeColor="rgb(246, 100, 97)"
+          icon={<FontAwesomeIcon icon={regular('heart')} />}
+          ischecked={wishListproductIds.includes(productDetails._id)}
+          checkedIcon={<FontAwesomeIcon icon={solid('heart')} />}
+          onClickFilter={onClickFilter}
+        />
+
+        <IconToggle
+          icon={<FontAwesomeIcon icon={regular('bell')} />}
+          checkedIcon={<FontAwesomeIcon icon={solid('bell')} />}
+          onClickFilter={(e) => followToProduct(e)}
+          name="Product"
+          ischecked={isFollow}
+        />
+
+        <ShareWidget
+          page="item"
+          text={`Help ${productDetails?.campaignDetails?.name} give away ${productDetails?.headline} on Donorport 🎉🎁`}
+          pageTitle={productDetails?.headline}
+          currUrl={`https://api.donorport.com/item/${productDetails?.slug}`}
+        />
+      </div>
+    </div>
+
+    <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-1">
+      <Link
+        size="lg"
+        variant="link"
+        className="btn__category text-decoration-none"
+        to={'/categories/' + productDetails?.categoryDetails?.slug}
+      >
+        <span
+          className="d-flex align-items-center icon__category ms-1"
+          style={{
+            fontFamily: 'fontAwesome',
+            color: productDetails?.categoryDetails?.color,
+            fontStyle: 'normal'
+          }}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 640 512">
+            <path
+              d={productDetails?.subCategoryDetails?.icon}
+              fill={productDetails?.categoryDetails?.color}
+            ></path>{' '}
+          </svg>
+        </span>{' '}
+        <span className="fs-6 text-dark fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
+          {productDetails?.subCategoryDetails?.name}
+        </span>
+      </Link>
+      <Link
+        size="lg"
+        variant="link"
+        className="btn__category text-decoration-none btn btn-link btn-lg"
+        to={'/organization/' + productDetails?.campaignDetails?.slug}
+      >
+        <span className="d-flex align-items-center icon__category">
+          <img
+            alt=""
+            style={{ width: 'auto', maxHeight: '90%', maxWidth: '90%' }}
+            src={helper.CampaignAdminLogoPath + productDetails?.campaignDetails?.logo}
+          />
+        </span>
+        <span className="fs-6 text-dark fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
+          {productDetails?.campaignDetails?.name}
+        </span>
+      </Link>
+    </div>
+    <div>
+      <div className="note d-sm-none project__detail-img mb-3">
+        <img
+          className="img-fluid"
+          alt=""
+          src={helper.CampaignProductFullImagePath + productDetails?.image}
+        />
+      </div>
+      {embedlink && (
+        <div className="project-video-wrap mb-2">
+          <iframe
+            title="product-details-video"
+            key="product-details-video"
+            width="498"
+            height="280"
+            src={embedlink}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+      )}
+      <h4 className="page__blurb fw-bolder">{productDetails.needheadline}</h4>
+      <div className="page__paragraph">
+        {productDetails?.description?.replace(/<\/?[^>]+(>|$)/g, '')}
+      </div>
+      {productDetails?.productImages &&
+        productDetails?.productImages.length > 0 &&
+        productDetails?.productImages.filter((e) => e.type === 'galleryImage').length > 0 && (
+          <div className="mt-2">
+            <ProjectGallery
+              className="mb-3"
+              title={true}
+              tagTitle="Products"
+              images={productDetails?.productImages}
+            />
+          </div>
+        )}
+    </div>
+  </div>
+);
+
+const SubtotalSlider = ({ currencySymbol, price, quantity, maxQuantity, setQuantity }) => (
+  <>
+    <div className="sub__total mt-2">
+      <div className="text-dark fw-bold me-2">Subtotal:</div>
+      <div className="price fs-4 fw-bold text-success">
+        {currencySymbol}
+        {priceFormat(Number(price * quantity))}
+      </div>
+    </div>
+    <div className="d-flex align-items-center fs-5 py-1 mb-3">
+      <div className="project__count d-flex align-items-center justify-content-center mt-3p">1</div>
+      <div className="flex-grow-1 mx-2">
+        <Slider
+          handleStyle={{
+            width: '26px',
+            height: '26px',
+            border: 'none',
+            background: '#3596F3',
+            marginTop: '-10px',
+            opacity: '1'
+          }}
+          min={1}
+          max={maxQuantity}
+          railStyle={{ backgroundColor: '#C7E3FB', height: '9px' }}
+          onChange={(e) => setQuantity(e)}
+        />
+      </div>
+      <div className="project__count d-flex align-items-center justify-content-center mt-3p">
+        {maxQuantity}
+      </div>
+    </div>
+  </>
+);
+
+const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) => (
+  <div className="product__badge mt-5 text-light fs-5">
+    {productDetails.postTag && (
+      <IconText
+        className="pt-12p pb-12p"
+        icon={<FontAwesomeIcon icon={solid('tag')} className="fs-3 text-info pt-12p pb-12p" />}
+      >
+        Item was already purchased by the organization. Your purchase will cover those costs.
+      </IconText>
+    )}
+    {productDetails.unlimited && (
+      <IconText
+        className="pt-12p pb-12p"
+        icon={<FontAwesomeIcon icon={solid('infinity')} className="fs-3 text-info pt-12p pb-12p" />}
+      >
+        Item is ongoing - there is no fixed quantity.
+      </IconText>
+    )}
+
+    {productDetails.tax && (
+      <IconText
+        className="pt-12p pb-12p"
+        icon={<FontAwesomeIcon icon={solid('calculator')} className="fs-3 text-info" />}
+      >
+        These items are tax deductible.
+      </IconText>
+    )}
+    {productDetails.media && (
+      <IconText
+        className="pt-12p pb-12p"
+        icon={<FontAwesomeIcon icon={solid('image')} className="fs-3 text-info" />}
+      >
+        The organization has indicated that they will upload Media from their purchase.
+      </IconText>
+    )}
+    {allStateAds?.length > 0 &&
+      user.stateName &&
+      allStateAds
+        .filter(
+          (ad) =>
+            ad.categoryId === productDetails?.categoryId && userAddress === ad?.stateDetails?.state
+        )
+        .map((ad, i) => {
+          //console.log('~~ filtered ads:', {ad, i});
+          return (
+            <IconText
+              className="pt-12p pb-12p"
+              icon={
+                // <FontAwesomeIcon icon="fa-solid fa-rectangle-ad" />
+                <FontAwesomeIcon icon={solid('rectangle-ad')} className="fs-3 text-info" />
+              }
+              key={ad._id}
+            >
+              <a href={ad?.advertisementsDetails?.website} target="_blank" rel="noreferrer" key={i}>
+                <img
+                  src={helper.sponsorLogoResizePath + ad?.advertisementsDetails?.logo}
+                  alt="sponsor"
+                  className="p-1"
+                  style={{ maxHeight: '75px' }}
+                ></img>
+              </a>
+            </IconText>
+          );
+        })}
+  </div>
+);
+
+const FullyFundedSection = () => (
+  <div className="note note-info d-flex align-items-center mt-3">
+    <span className="post__badge post__badge--sold me-2 text-primary fs-3">
+      <FontAwesomeIcon icon={solid('circle-check')} />
+    </span>
+    <span className="fs-6 text-subtext">This item has been fully funded.</span>
+  </div>
+);
+
+const FollowupMediaSection = ({ productDetails, embedlink2 }) => (
+  <>
+    <div className="note note-info align-items-center mt-5">
+      <Card.Header className="post__accordion-header pb-2 pt-2">
+        <h2 className="fs-3 fw-bolder text-dark">Followup</h2>
+        <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
+      </Card.Header>
+      <div className="d-flex flex-column gap-2">
+        {productDetails.fulfiledproductsDetails?.video && (
+          <FollowupVideoSection embedlink2={embedlink2} />
+        )}
+
+        <div className="gallery__container">
+          {productDetails?.productImages?.length > 0 && (
+            <FollowupImagesSection images={productDetails.productImages} />
+          )}
+        </div>
+      </div>
+    </div>
+  </>
+);
+
+const FollowupVideoSection = ({ embedlink2 }) => (
+  <div className="project-video-wrap">
+    <iframe
+      title="product-details-video"
+      key="product-details-video"
+      width="498"
+      height="280"
+      src={embedlink2}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    ></iframe>
+  </div>
+);
+
+const FollowupImagesSection = ({ images }) =>
+  images.map((img, i) => {
+    if (img.type === 'fulfillImage') {
+      return (
+        <GalleryImg
+          key={i}
+          thumbImgSrc={helper.CampaignProductFullImagePath + img.image}
+          bigImgSrc={helper.CampaignProductFullImagePath + img.image}
+        />
+      );
+    }
+  });
 
 export default ProjectDetailMain;
