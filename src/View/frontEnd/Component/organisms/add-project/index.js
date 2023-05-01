@@ -397,9 +397,9 @@ const AddProject = (props) => {
       <div className="d-flex flex-wrap mb-3 p-20p border rounded-3">
         {productList.length > 0 &&
           productList.map((product) => {
-            const available = product.quantity !== product.soldout;
+            const isAvailable = product.quantity !== product.soldout;
             return (
-              available && (
+              isAvailable && (
                 <FeedTag
                   key={product.headline}
                   data={product}

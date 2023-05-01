@@ -33,19 +33,11 @@ const Map = ReactMapboxGl({
 });
 
 const STYLE_CURSOR_POINTER = {
-  cursor: 'pointer',
-}
+  cursor: 'pointer'
+};
 
-function CategorySelect({
-  nameTitle,
-  nameKey,
-  thisCat,
-  thisCatList,
-  onChange,
-  error
-}) {
+function CategorySelect({ nameTitle, nameKey, thisCat, thisCatList, onChange, error }) {
   return (
-  
     <div className="form-group ">
       <div className="">
         <select
@@ -63,19 +55,14 @@ function CategorySelect({
           {thisCatList.length > 0 &&
             thisCatList
               .sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }))
-              .map((cat) => {
-                return (
+              .map(
+                (cat) =>
                   cat.status === 1 && (
-                    <option
-                      key={cat._id}
-                      value={cat._id}
-                      selected={thisCat === cat._id}
-                    >
+                    <option key={cat._id} value={cat._id} selected={thisCat === cat._id}>
                       {cat.name}
                     </option>
                   )
-                );
-              })}
+              )}
         </select>
         <p className="error">{error ? (error[nameKey] ? error[nameKey] : '') : ''}</p>
       </div>
@@ -130,7 +117,7 @@ const STYLES_mapStyles = {
 
 const AddPost = (props) => {
   let organizationDetails = props.organizationDetails;
-  console.log(`AddPost component:\n~~`, {organizationDetails}); // {_id, _name: 'Alter Ego', ein, organizationUserName, .....}
+  console.log(`AddPost component:\n~~`, { organizationDetails }); // {_id, _name: 'Alter Ego', ein, organizationUserName, .....}
   let stateData = props.stateData;
   //const user = useSelector((state) => state.user);
   const {
@@ -208,7 +195,6 @@ const AddPost = (props) => {
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
 
   // console.log(gallaryImages)
-
 
   useEffect(() => {
     // console.log(user)
@@ -696,7 +682,7 @@ const AddPost = (props) => {
                       <div className="item-category-select">
                         <span className="title">Item Category</span>
                         <div className="d-flex gap-2">
-                          <CategorySelect 
+                          <CategorySelect
                             nameTitle="Category"
                             nameKey="category"
                             thisCat={category}
@@ -704,49 +690,7 @@ const AddPost = (props) => {
                             onChange={changevalue}
                             error={error}
                           />
-                          {/*
-                          <div className="form-group">
-                            <div className="">
-                              <select
-                                className="form-control"
-                                onChange={(e) => {
-                                  changevalue(e);
-                                }}
-                                id="category"
-                                name="category"
-                                defaultValue=" "
-                                value={category ?? null}
-                              >
-                                <option disabled value=" ">
-                                  Select Category
-                                </option>
-                                {categoryList.length > 0 &&
-                                  categoryList
-                                    .sort((a, b) =>
-                                      a.name.localeCompare(b.name, 'es', { sensitivity: 'base' })
-                                    )
-                                    .map((cat, i) => {
-                                      return (
-                                        cat.status === 1 && (
-                                          <option
-                                            key={cat._id}
-                                            value={cat._id}
-                                            // selected={category === cat._id}
-                                          >
-                                            {cat.name}
-                                          </option>
-                                        )
-                                      );
-                                    })}
-                              </select>
-                              <p className="error">
-                                {error ? (error.category ? error.category : '') : ''}
-                              </p>
-                            </div>
-                          </div>
-                          */}
-
-                          <CategorySelect 
+                          <CategorySelect
                             nameTitle="SubCategory"
                             nameKey="subcategory"
                             thisCat={subcategory}
@@ -754,47 +698,6 @@ const AddPost = (props) => {
                             onChange={changevalue}
                             error={error}
                           />
-                          {/*
-                          <div className="form-group ">
-                            <div className="">
-                              <select
-                                className="form-control"
-                                onChange={(e) => {
-                                  changevalue(e);
-                                }}
-                                id="subcategory"
-                                name="subcategory"
-                                defaultValue=" "
-                                value={subcategory ?? null}
-                              >
-                                <option disabled value=" ">
-                                  Select SubCategory
-                                </option>
-                                {subcategoryList.length > 0 &&
-                                  subcategoryList
-                                    .sort((a, b) =>
-                                      a.name.localeCompare(b.name, 'es', { sensitivity: 'base' })
-                                    )
-                                    .map((cat, i) => {
-                                      return (
-                                        cat.status === 1 && (
-                                          <option
-                                            key={cat._id}
-                                            value={cat._id}
-                                            //selected={subcategory === cat._id}
-                                          >
-                                            {cat.name}
-                                          </option>
-                                        )
-                                      );
-                                    })}
-                              </select>
-                              <p className="error">
-                                {error ? (error.subcategory ? error.subcategory : '') : ''}
-                              </p>
-                            </div>
-                          </div>
-                          */}
                         </div>
                       </div>
                     </form>
@@ -947,7 +850,7 @@ const AddPost = (props) => {
                             {moreImages?.length
                               ? moreImages.map((img, key) => {
                                   return (
-                                    <>
+                                    <React.Fragment key={key}>
                                       {/* <img src={img ? img !== "" ? helper.CampaignProductImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} />
                                     <span> X</span> */}
                                       <div className="img-wrap">
@@ -994,7 +897,7 @@ const AddPost = (props) => {
                                           data-id="103"
                                         />
                                       </div>*/}
-                                    </>
+                                    </React.Fragment>
                                   );
                                 })
                               : ''}
