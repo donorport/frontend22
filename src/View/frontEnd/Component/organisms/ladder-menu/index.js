@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import PropTypes from 'prop-types';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { CircularProgress } from '@mui/material';
 
 import './style.scss';
 
@@ -11,10 +12,10 @@ const propTypes = {
 };
 const currentYear = new Date().getFullYear();
 const defaultProps = {
-  items: [currentYear, currentYear - 1, currentYear - 2, 'Show All', ]
+  items: [currentYear, currentYear - 1, currentYear - 2, 'Show All']
 };
 
-const LadderMenu = ({ items, activeKey, onChangeFilterOption }) => {
+const LadderMenu = ({ items, activeKey, onChangeFilterOption, loading }) => {
   const [active, setActive] = useState(0);
 
   const handleClose = () => {
@@ -25,7 +26,10 @@ const LadderMenu = ({ items, activeKey, onChangeFilterOption }) => {
     <ClickAwayListener onClickAway={handleClose}>
       <div className="ladder__menu position-relative" style={{ minWidth: '200px' }}>
         <div className="ladder__dropdown--selected" onClick={() => setActive(true)}>
-          <div className="ladder__selected fw-semibold">{items[activeKey]}</div>
+          <div className="ladder__selected fw-semibold">
+            {items[activeKey]}
+            {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+          </div>
           <FontAwesomeIcon icon={solid('chevron-down')} className="icon chevron__icon" />
         </div>
 
@@ -36,7 +40,7 @@ const LadderMenu = ({ items, activeKey, onChangeFilterOption }) => {
               onClick={() => {
                 setActive(false);
                 // setSelectedKey(index)
-                onChangeFilterOption(index, item);
+                !loading && onChangeFilterOption(index, item);
               }}
               key={index}
             >

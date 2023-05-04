@@ -180,7 +180,7 @@ const AdminAdmin = () => {
 
           </div> */}
 
-          <ul className="d-flex flex-column list-unstyled flex__1 ps-0 gap-4">
+          <ul className="d-flex flex-column list-unstyled flex__1 ps-0 gap-4 pt-2">
             {teamMemberList.length > 0 &&
               teamMemberList.map((member, i) => {
                 // console.log(member)
@@ -206,10 +206,10 @@ const AdminAdmin = () => {
             The Organization Administrator controls access for Team Members
           </div> */}
 
-          <div className="note note--info text-dark">
+          {/* <div className="note note--info text-dark fs-6">
             <FontAwesomeIcon icon={regular('circle-info')} className="text-info me-1" />
             For support with user admin accounts click here.
-          </div>
+          </div> */}
         </div>
       </div>
     </>

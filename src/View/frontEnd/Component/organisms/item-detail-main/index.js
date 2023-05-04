@@ -410,7 +410,7 @@ const SubtotalSlider = ({ currencySymbol, price, quantity, maxQuantity, setQuant
 );
 
 const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) => (
-  <div className="product__badge mt-5 text-light fs-5">
+  <div className="product__badge mt-5 fs-5">
     {productDetails.postTag && (
       <IconText
         className="pt-12p pb-12p"

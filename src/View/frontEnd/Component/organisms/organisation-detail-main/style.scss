@@ -45,7 +45,6 @@
   font-weight: 900;
 }
 .page__paragraph {
-  color: #6f6f90ad;
   line-height: 1.6;
   font-size: 16px;
   margin: 0;
@@ -68,9 +67,8 @@
 
 .page__logo img {
   object-fit: contain;
-  max-height: 60px;
-  width: 60px;
-  max-width: 90px;
+  max-height: 46px;
+  max-width: 120px;
 }
 
 @include media-breakpoint-down(sm) {

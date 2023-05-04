@@ -232,8 +232,8 @@ const AdminTax = () => {
             where they will be able to view & download.
           </p>
         </div>
-        <div className="ms-sm-auto">
-          <LadderMenu activeKey={activeKey} onChangeFilterOption={onChangeFilterOption} />
+        <div className="d-flex align-items-center ms-sm-auto">
+          <LadderMenu loading={loading} activeKey={activeKey} onChangeFilterOption={onChangeFilterOption} />
         </div>
         {/*  <div className="d-flex align-items-center me-sm-2 flex-grow-1 mb-3 mb-sm-0">
           <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Tax</h1>

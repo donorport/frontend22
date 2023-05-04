@@ -37,13 +37,16 @@ function ProjectGallery(props) {
                     thumbImgSrc={
                       props.tagTitle === 'Project'
                         ? helper.ProjectImagePath + img.image
-                        : img.type === 'galleryImage' && helper.CampaignProductImagePath + img.image
+                        : img.type === 'galleryImage' && img.productId
+                        ? helper.CampaignProductImagePath + img.image
+                        : helper.CampaignAdminGalleryPath + img.image // fallback to original condition
                     }
                     bigImgSrc={
                       props.tagTitle === 'Project'
                         ? helper.ProjectFullImagePath + img.image
-                        : img.type === 'galleryImage' &&
-                          helper.CampaignProductFullImagePath + img.image
+                        : img.type === 'galleryImage' && img.productId
+                        ? helper.CampaignProductFullImagePath + img.image
+                        : helper.CampaignAdminGalleryFullPath + img.image // fallback to original condition
                     }
                   />
                 );
