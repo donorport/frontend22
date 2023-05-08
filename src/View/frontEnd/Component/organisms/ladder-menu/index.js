@@ -40,7 +40,7 @@ const LadderMenu = ({ items, activeKey, onChangeFilterOption, loading }) => {
               onClick={() => {
                 setActive(false);
                 // setSelectedKey(index)
-                !loading && onChangeFilterOption(index, item);
+                if (!loading) onChangeFilterOption(index, item);
               }}
               key={index}
             >
