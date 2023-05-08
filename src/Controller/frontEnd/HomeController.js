@@ -125,32 +125,43 @@ export default function HomeController() {
     if (!error) return;
 
     console.log('~~ WITH ERROR:', error);
+    console.log('~~ Setting countrySort to "CA"; checking for userAuthToken || CampaignAdminAuthToken...')
     dispatch(setUserCountrySort('CA'));
 
     // if no tokens, set a default UserCountry and UserState
     if (!userAuthToken && !CampaignAdminAuthToken) {
+      console.log('~~ ~~ NO TOKENS! Defaulting to setUserCountry(39) && setUserState(3830)! Returning')
       dispatch(setUserCountry(39));
       dispatch(setUserState(3830));
       return;
     }
 
     if (userAuthToken) {
+      console.log('~~ ~~ YES userAuthToken; setting currency & country & state')
       // set Country if it exists in userData, else default to Canadian
       const isUserWithCountryId = userData?.country_id > 0 ?? false;
       const country = isUserWithCountryId ? userData.country_id : 39;
+      console.log('~~ ~~ default: {39}', {isUserWithCountryId, country});
       const currencyData = {
         currency: isUserWithCountryId ? userData.currency : 'CAD',
-        currencySymbol: isUserWithCountryId ? userData.symbol : '$',
+        currencySymbol: isUserWithCountryId ? userData.symbol : '$'
       };
       dispatch(setUserCountry(country));
       dispatch(setCurrency(currencyData));
 
-      // set State if it exists in userData, else default to Toronto?
-      dispatch(setUserState((userData?.state_id > 0) ? userData.state_id : 3830))
+      // if state_id exists and is > 0, use it; otherwise use Toronto (default)
+      const state = userData?.state_id > 0 ? userData.state_id : 3830;
+      console.log('~~ ~~ default: {3830}', {state});
+      dispatch(setUserState(state));
 
     } else if (CampaignAdminAuthToken) {
-      dispatch(setUserCountry(CampaignAdmin?.country_id > 0 ? CampaignAdmin.country_id : 39));
-      dispatch(setUserState(CampaignAdmin?.state_id > 0 ? CampaignAdmin.state_id : 3830));
+      console.log('~~ ~~ YES CampaignAdminAuthToken; setting Country & State')
+      const country = CampaignAdmin?.country_id > 0 ? CampaignAdmin.country_id : 39;
+      const state = CampaignAdmin?.state_id > 0 ? CampaignAdmin.state_id : 3830;
+      console.log('~~ ~~ ',{state_id_gt_0: CampaignAdmin?.state_id > 0, country_id_gt_0: CampaignAdmin?.country_id > 0});
+      console.log('~~ ~~ defaults: {39, 3830}:', {country, state});
+      dispatch(setUserCountry(country));
+      dispatch(setUserState(state));
     }
   }
 
@@ -178,92 +189,132 @@ export default function HomeController() {
     }
   };
 
+  // success callback, takes coords and gets the location
   async function showPosition(position) {
-    // console.log('show')
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+    console.log('geolocation success callback:', { coords: position.coords });
+    const { latitude, longitude } = position.coords;
 
     // console.log(latitude, longitude)
-    if (latitude && longitude) {
-      const getLocationByLatLong = await locationApi.getLocationByLatLong(latitude, longitude);
-      if (getLocationByLatLong && getLocationByLatLong.data.status === 'OK') {
-        if (getLocationByLatLong.data.results.length > 0) {
-          // console.log(getLocationByLatLong.data.results[0])
-          let jsObjects = getLocationByLatLong.data.results[0].address_components;
-          let tempObj = {};
-          tempObj.stateName = jsObjects.find(
-            (settings) => settings.types[0] === 'administrative_area_level_1'
-          )?.long_name;
-          tempObj.zip = jsObjects.find(
-            (settings) => settings.types[0] === 'postal_code'
-          )?.long_name;
-          tempObj.cityName = jsObjects.find(
-            (settings) => settings.types[0] === 'administrative_area_level_2'
-          )?.long_name;
-          tempObj.area = jsObjects.find((settings) => settings.types[0] === 'route')?.long_name;
-          tempObj.countryName = jsObjects.find(
-            (settings) => settings.types[0] === 'country'
-          )?.long_name;
-          tempObj.countrySortName = jsObjects.find(
-            (settings) => settings.types[0] === 'country'
-          )?.short_name;
+    if (!latitude || !longitude) return;
 
-          tempObj.lat = latitude;
-          tempObj.lng = longitude;
-          // console.log(tempObj)
+    const getLocationByLatLong = await locationApi.getLocationByLatLong(latitude, longitude);
+    console.log(
+      '~~ got location from lat,lng:',
+      {
+        latitude,
+        longitude,
+        results0: getLocationByLatLong.data.results[0]
+      },
+      '\n ~~ making sure status is OK:'
+    );
 
-          dispatch(setUserAddress(tempObj));
+    if (!getLocationByLatLong || getLocationByLatLong.data.status !== 'OK') return;
+    console.log('~~ Status OK! Checking results.length:');
 
-          dispatch(
-            setUserCountrySort(
-              jsObjects.find((settings) => settings.types[0] === 'country').short_name
-            )
-          );
+    if (getLocationByLatLong.data.results.length <= 0) return;
+    console.log('~~ length > 0, breaking out address:');
 
-          // console.log(jsObjects.find(settings => settings.types[0] === 'administrative_area_level_1').long_name)
+    // console.log(getLocationByLatLong.data.results[0])
+    let { address_components } = getLocationByLatLong.data.results[0];
+    console.log('~~', { address_components });
 
-          jsObjects.filter(async (obj) => {
-            let tempObj = {};
+    let userAddressObj = {};
+    userAddressObj.stateName = address_components.find(
+      (settings) => settings.types[0] === 'administrative_area_level_1'
+    )?.long_name;
+    userAddressObj.zip = address_components.find(
+      (settings) => settings.types[0] === 'postal_code'
+    )?.long_name;
+    userAddressObj.cityName = address_components.find(
+      (settings) => settings.types[0] === 'administrative_area_level_2'
+    )?.long_name;
+    userAddressObj.area = address_components.find(
+      (settings) => settings.types[0] === 'route'
+    )?.long_name;
+    userAddressObj.countryName = address_components.find(
+      (settings) => settings.types[0] === 'country'
+    )?.long_name;
+    userAddressObj.countrySortName = address_components.find(
+      (settings) => settings.types[0] === 'country'
+    )?.short_name;
 
-            if (obj.types[0] === 'country') {
-              let countryName = obj.long_name;
-              tempObj.countryName = countryName;
+    userAddressObj.lat = latitude;
+    userAddressObj.lng = longitude;
 
-              // setAddress({
-              //     ...address,
-              //     countryName: countryName
-              // })
+    console.log('~~ built userAddressObj, saving to UserAddress:', { userAddressObj });
 
-              const getCountryData = await locationApi.currencyByCountry(token, countryName);
-              if (getCountryData) {
-                if (getCountryData.data.success) {
-                  dispatch(setUserCountrySort(getCountryData.data.data.iso2));
-                  dispatch(setUserCountry(getCountryData.data.data.id));
-                  let currencyData = {};
-                  currencyData.currency = getCountryData.data.data.currency;
-                  currencyData.currencySymbol = getCountryData.data.data.symbol;
-                  // console.log(getCountryData.data.data.symbol)
-                  dispatch(setCurrency(currencyData));
-                }
-              }
-            }
-          });
-          await getStateDetailsByName(
-            jsObjects.find((settings) => settings.types[0] === 'administrative_area_level_1')
-              .long_name
-          );
+    dispatch(setUserAddress(userAddressObj));
+
+    dispatch(
+      setUserCountrySort(
+        address_components.find((settings) => settings.types[0] === 'country').short_name
+      )
+    );
+
+    // console.log(jsObjects.find(settings => settings.types[0] === 'administrative_area_level_1').long_name)
+
+    address_components.filter(async (obj) => {
+      let tempObj = {};
+
+      if (obj.types[0] === 'country') {
+        let countryName = obj.long_name;
+        tempObj.countryName = countryName;
+
+        // setAddress({
+        //     ...address,
+        //     countryName: countryName
+        // })
+
+        const getCountryData = await locationApi.currencyByCountry(token, countryName);
+        if (getCountryData) {
+          if (getCountryData.data.success) {
+            dispatch(setUserCountrySort(getCountryData.data.data.iso2));
+            dispatch(setUserCountry(getCountryData.data.data.id));
+            let currencyData = {};
+            currencyData.currency = getCountryData.data.data.currency;
+            currencyData.currencySymbol = getCountryData.data.data.symbol;
+            // console.log(getCountryData.data.data.symbol)
+            dispatch(setCurrency(currencyData));
+          }
         }
       }
-    }
+    });
+    await getStateDetailsByName(
+      address_components.find((settings) => settings.types[0] === 'administrative_area_level_1')
+        .long_name
+    );
   }
+
+  const getCountryAdvertisement = async (countryId, stateId) => {
+    let data = {countryId, stateId};
+    const getCountryAdvertisementList = await advertisementApi.listCountryAdvertisement(data);
+
+    if (!getCountryAdvertisementList) return;
+
+    if (!getCountryAdvertisementList.data.success) return;
+
+    if (getCountryAdvertisementList.data.data.length <= 0) return; 
+
+    let tempArray = [];
+    getCountryAdvertisementList.data.data.forEach((ad) => {
+      if (ad.advertisementsDetails.length <= 0) return;
+
+      ad.advertisementsDetails.forEach((a) => {
+        tempArray.push(a);
+      });
+    });
+    setCountryAdvertisementList(tempArray);
+
+  };
 
   const getHomePageAdList = async () => {
     const adList = await advertisementApi.listHomeAd();
-    if (adList) {
-      if (adList.data.success === true) {
-        setHomeAdvertisementList(adList.data.data);
-      }
-    }
+
+    if (!adList) return;
+
+    if (!adList.data.success) return;
+
+    setHomeAdvertisementList(adList.data.data);
   };
 
   const getWishListProductList = async () => {
@@ -305,6 +356,7 @@ export default function HomeController() {
     }
   };
 
+  // fetch cart list & product list when user token changes
   useEffect(() => {
     (async () => {
       // console.log(343)
@@ -333,6 +385,7 @@ export default function HomeController() {
     })();
   }, [user.isUpdateCart, userAuthToken]);
 
+  // filter products by distance??
   useEffect(() => {
     (async () => {
       // if (user.isMapLocked) {
@@ -390,6 +443,7 @@ export default function HomeController() {
     })();
   }, [user.distance, allProductList, user.lat, user.lng, dispatch]);
 
+
   useEffect(() => {
     (async () => {
       // console.log(user.isUpdateLocationFilter)
@@ -430,6 +484,7 @@ export default function HomeController() {
     })();
   }, [allProductList, dispatch, tempProductList, user.isUpdateLocationFilter]);
 
+  // gets country advertisement list, other stuff?
   useEffect(() => {
     (async () => {
       try {
@@ -753,30 +808,96 @@ export default function HomeController() {
     // await filterProduct(e[0], e[1], search)
   };
 
+  // request position
   useEffect(() => {
     (async () => {
+      console.log({
+        taxEligible,
+        postTag,
+        infinite,
+        seletedCategoryList,
+        lowToHigh,
+        highToLow,
+        oldEst,
+        newEst,
+        userCountryId: user.countryId,
+        HighPrice,
+        lowPrice,
+        countryAdvertisementList,
+        homeadvertisementList
+      })
+      console.log('request position useEffect');
       // if no country...
       if (user.countryId === null || user.countryId === undefined || user.countryId === '') {
-        if (navigator.geolocation) {
+        console.log('~~ non-existant countryId, checking if can get location:');
+        if (navigator && navigator.geolocation) {
           // if location is available, attempt getCurrentPosition
-          navigator.geolocation.getCurrentPosition(showPosition, showError);
+          console.log('~~ YES geolocation API exists, getting current position...');
+          console.time('getCurrentPosition');
 
+          // DUMMY CALL, hopefully helps to make the second call work??
+          //navigator.geolocation.getCurrentPosition(() => {}, () => {}, {});
+
+          // ACTUAL CALL
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              console.log('** success callback wrapper');
+              console.timeEnd('getCurrentPosition');
+              showPosition(position);
+            },
+            async (error) => {
+              console.log('** error callback wrapper, attempting ipinfo.io lookup');
+              console.timeEnd('getCurrentPosition');
+              try {
+                const res = await fetch('https://ipinfo.io/geo');
+                if (res.status !== 200) throw new Error('Error fetching geo location from ipinfo.io/geo')
+
+                const json = await res.json();
+                console.log('~~ ~~ ~~ ipinfo.io response:',{res, json});
+
+                const [latitude, longitude] = json.loc.split(',');
+                const backupPosition = {
+                  coords: {
+                    latitude,
+                    longitude,
+                  }
+                }
+                showPosition(backupPosition);
+
+              } catch (backupError) {
+                console.log('~~ ~~ ~~ ipinfo.io ERROR:', {backupError});
+                showError(error);
+              }
+            },
+            { 
+              maximumAge: 1_000 * 60 * 60 * 24, // DON'T fetch again if last location is under one day old
+              //enableHighAccuracy: true, // MAKES IT SLOWER BY 6X (in one test)
+              timeout: 10_000,  // force escape the geo attempt if longer than this ms
+            }
+          );
+    
         } else {
+          console.log('~~ NO geolocation api is NOT available, setting a default position:');
+          // fallback; if no geolocation avaialble, set it to a default
           if (userAuthToken) {
+            console.log('~~ ~~ userAuthToken => using userData.country_id');
             dispatch(setUserCountry(userData.country_id));
           } else {
+            console.log('~~ ~~ NO userAuthToken!! => using CampaignAdmin.country_id');
             dispatch(setUserCountry(CampaignAdmin.country_id));
           }
         }
       } else {
+        console.log('~~ countryId EXISTS, filtering products');
         // we have the country, so filter the products
         setLoading(true);
         await filterProduct(lowPrice, HighPrice, resultTags, user.countryId);
         setLoading(false);
       }
 
-      // console.log('advertisement starts')
+      console.log('(advertisement starts, building ad lists)', {countryAdvertisementList, homeadvertisementList});
 
+      // now filter the advertisement list
       if (countryAdvertisementList.length > 0 && homeadvertisementList.length > 0) {
         let arr = arrayUnique(countryAdvertisementList.concat(homeadvertisementList));
         // console.log('arr', arr)
@@ -1002,28 +1123,6 @@ export default function HomeController() {
     setLoading(false);
   };
 
-  const getCountryAdvertisement = async (countryId, stateId) => {
-    let data = {};
-    data.countryId = countryId;
-    data.stateId = stateId;
-    const getCountryAdvertisementList = await advertisementApi.listCountryAdvertisement(data);
-
-    if (getCountryAdvertisementList) {
-      if (getCountryAdvertisementList.data.success) {
-        if (getCountryAdvertisementList.data.data.length > 0) {
-          let tempArray = [];
-          getCountryAdvertisementList.data.data.map((ad) => {
-            if (ad.advertisementsDetails.length > 0) {
-              ad.advertisementsDetails.map((a) => {
-                tempArray.push(a);
-              });
-            }
-          });
-          setCountryAdvertisementList(tempArray);
-        }
-      }
-    }
-  };
 
   const onChangeDonatePrice = async (e) => {
     let value = e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, '');

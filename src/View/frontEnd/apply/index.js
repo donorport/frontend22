@@ -99,7 +99,15 @@ const Apply = (props) => {
                       B Corp
                     </RadioToggle>
                   </div>*/}
-
+                    <InputContainer 
+                      autoComplete="new-password"
+                      name="name"
+                      value={name}
+                      onChange={changevalue}
+                      label="Contact Name"
+                      error={error}
+                    />
+                    {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                         <input
@@ -115,50 +123,76 @@ const Apply = (props) => {
                     {error && error.name && (
                       <p className="error">{error ? (error.name ? error.name : '') : ''}</p>
                     )}
+                    */}
 
+                    <SelectContainer 
+                      name="country"
+                      value={props.defaultCountry}
+                      onChange={props.onChangeCountry}
+                      label="Country"
+                      options={countryList}
+                      error={error}
+                    />
+                    {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
-                        {/* <input type="text" value='' /> */}
-                        {/* {countrySelect.current} */}
-                        <Select
-                          className="basic-single"
-                          classNamePrefix="select"
-                          autoComplete="nope"
-                          aria-autocomplete="none"
-                          value={props.defaultCountry}
-                          name="country"
-                          options={countryList}
-                          onChange={props.onChangeCountry}
-                          components={{
-                            IndicatorSeparator: () => null
-                          }}
-                        />
-                        <span className="input__span">Country</span>
-                      </label>
-                    </div>
-                    {error && error.country && <p className="error">{error.country}</p>}
+                    <Select
+                      className="basic-single"
+                      classNamePrefix="select"
+                      autoComplete="nope"
+                      aria-autocomplete="none"
+                      value={props.defaultCountry}
+                      name="country"
+                      options={countryList}
+                      onChange={props.onChangeCountry}
+                      components={{
+                        IndicatorSeparator: () => null
+                      }}
+                    />
+                    <span className="input__span">Country</span>
+                  </label>
+                </div>
+                {error && error.country && <p className="error">{error.country}</p>}
+                */}
 
+                    <SelectContainer 
+                      name="category"
+                      value={props.defaultCategory}
+                      onChange={props.onChangeCategory}
+                      label="Category"
+                      options={categoryList}
+                      error={error}
+                    />
+                    {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
-                        {/* <input type="text" value='' /> */}
-                        {/* {countrySelect.current} */}
-                        <Select
-                          className="basic-single"
-                          classNamePrefix="select"
-                          autoComplete="new-password"
-                          value={props.defaultCategory}
-                          name="country"
-                          options={categoryList}
-                          onChange={props.onChangeCategory}
-                          components={{
-                            IndicatorSeparator: () => null
-                          }}
-                        />
-                        <span className="input__span">Category</span>
-                      </label>
-                    </div>
-                    {error && error.category && <p className="error">{error.category}</p>}
+                    <Select
+                      className="basic-single"
+                      classNamePrefix="select"
+                      autoComplete="new-password"
+                      value={props.defaultCategory}
+                      name="country"
+                      options={categoryList}
+                      onChange={props.onChangeCategory}
+                      components={{
+                        IndicatorSeparator: () => null
+                      }}
+                    />
+                    <span className="input__span">Category</span>
+                  </label>
+                </div>
+                {error && error.category && <p className="error">{error.category}</p>}
+                */}
 
+                    <InputContainer 
+                      autoComplete="new-password"
+                      name="organization"
+                      value={organization}
+                      onChange={changevalue}
+                      label="Organization Name"
+                      error={error}
+                    />
+                    {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                         <input
@@ -176,7 +210,17 @@ const Apply = (props) => {
                         {error ? (error.organization ? error.organization : '') : ''}
                       </p>
                     )}
+                    */}
 
+                    <InputContainer 
+                      autoComplete="new-password"
+                      name="ein"
+                      value={ein}
+                      onChange={changevalue}
+                      label="Charity Registration Number"
+                      error={error}
+                    />
+                    {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                         <input
@@ -186,14 +230,24 @@ const Apply = (props) => {
                           value={ein}
                           onChange={(e) => changevalue(e)}
                         />
-                        {/* <span className="input__span">Employer Identification Number (EIN)</span> */}
-                        <span className="input__span">Charity Registration Number</span>
-                      </label>
-                    </div>
-                    {error && error.ein && (
-                      <p className="error">{error ? (error.ein ? error.ein : '') : ''}</p>
-                    )}
+                    <span className="input__span">Charity Registration Number</span>
+                  </label>
+                </div>
+                {error && error.ein && (
+                  <p className="error">{error ? (error.ein ? error.ein : '') : ''}</p>
+                )}
+                */}
 
+                    <InputContainer 
+                      autoComplete="new-password"
+                      type="email"
+                      name="email"
+                      value={email}
+                      onChange={changevalue}
+                      label="Email"
+                      error={error}
+                    />
+                    {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                         <input
@@ -209,7 +263,18 @@ const Apply = (props) => {
                     {error && error.email && (
                       <p className="error">{error ? (error.email ? error.email : '') : ''}</p>
                     )}
+                    */}
 
+                    <InputContainer 
+                      autoComplete="new-password"
+                      type="email"
+                      name="confirmEmail"
+                      value={confirmEmail}
+                      onChange={changevalue}
+                      label="Confirm Email"
+                      error={error}
+                    />
+                    {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                         <input
@@ -229,7 +294,18 @@ const Apply = (props) => {
                         {error ? (error.confirmEmail ? error.confirmEmail : '') : ''}
                       </p>
                     )}
+                    */}
 
+                    <InputContainer 
+                      autoComplete="new-password"
+                      type="password"
+                      name="password"
+                      value={password}
+                      onChange={changevalue}
+                      label="Password"
+                      error={error}
+                    />
+                    {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                         <input
@@ -247,7 +323,18 @@ const Apply = (props) => {
                     {error && error.password && (
                       <p className="error">{error ? (error.password ? error.password : '') : ''}</p>
                     )}
+                    */}
 
+                    <InputContainer 
+                      autoComplete="new-password"
+                      type="password"
+                      name="cpassword"
+                      value={cpassword}
+                      onChange={changevalue}
+                      label="Confirm Password"
+                      error={error}
+                    />
+                    {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                         <input
@@ -267,6 +354,7 @@ const Apply = (props) => {
                         {error ? (error.cpassword ? error.cpassword : '') : ''}
                       </p>
                     )}
+                    */}
 
                     <Button
                       variant="info"
@@ -324,5 +412,49 @@ const Apply = (props) => {
     </Page>
   );
 };
+
+const InputContainer = ({ type, name, value, autoComplete, onChange, label, error }) => (
+  <>
+    <div className="input__wrap d-flex">
+      <label className="input__label flex__1">
+        <input
+          autoComplete={autoComplete}
+          type={type ?? "text"}
+          name={name}
+          value={value}
+          onChange={onChange}
+        />
+        <span className="input__span">{label}</span>
+      </label>
+    </div>
+    {error && error?.[name] && <p className="error">{error[name]}</p>}
+  </>
+);
+
+const SelectContainer = ({name, value, options, onChange, label, error }) => (
+  <>
+    <div className="input__wrap d-flex">
+      <label className="input__label flex__1">
+        {/* <input type="text" value='' /> */}
+        {/* {countrySelect.current} */}
+        <Select
+          className="basic-single"
+          classNamePrefix="select"
+          autoComplete="nope"
+          aria-autocomplete="none"
+          value={value}
+          name={name}
+          options={options}
+          onChange={onChange}
+          components={{
+            IndicatorSeparator: () => null
+          }}
+        />
+        <span className="input__span">{label}</span>
+      </label>
+    </div>
+    {error && error?.[name] && <p className="error">{error[name]}</p>}
+  </>
+);
 
 export default Apply;

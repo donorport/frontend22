@@ -457,7 +457,7 @@ export default function Index(props) {
             {props.advertisementList.length > 0 && (
               <div className="mb-3 mb-sm-0">
                 <IconText
-                  size={42}
+                  size="42"
                   icon={
                     // <FontAwesomeIcon icon="fa-solid fa-rectangle-ad" />
                     <FontAwesomeIcon icon={solid('rectangle-ad')} className="fs-4 text-info" />

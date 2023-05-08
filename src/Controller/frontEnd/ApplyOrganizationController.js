@@ -4,17 +4,49 @@ import { useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import adminCampaignApi from '../../Api/admin/adminCampaign';
 import Apply from '../../View/frontEnd/apply';
-import FrontLoader from '../../Common/FrontLoader';
-import helper, { getCookie, setCookie, deleteCookie } from '../../Common/Helper';
+//import FrontLoader from '../../Common/FrontLoader';
+import { getCookie, setCookie, deleteCookie } from '../../Common/Helper';
 import locationApi from '../../Api/frontEnd/location';
 import categoryApi from '../../Api/admin/category';
-import Page from '../../components/Page';
-import social from '../../assets/images/emoji.svg';
+//import Page from '../../components/Page';
+//import social from '../../assets/images/emoji.svg';
+
+const STYLES_input = {
+  backgroundColor: '#f8fafd'
+};
+
+const APPLY_rules = {
+  name: 'required',
+  organization: 'required',
+  ein: 'required',
+  country: 'required',
+  email: 'required|email',
+  confirmEmail: 'required|same:email',
+  password: 'required|min:6',
+  cpassword: 'required|same:password',
+  category: 'required'
+};
+
+const APPLY_message = {
+  'name.required': 'Name is Required.',
+  'organization.required': 'Organization is Required.',
+  'ein.required': 'Ein Number is Required.',
+  'email.required': 'Email is Required.',
+  'email.email': 'Please enter a valid email.',
+  'confirmEmail.required': 'Please confirm your email.',
+  'confirmEmail.same': 'Emails must match.',
+  'password.min': 'Password must be at least 6 characters',
+  'password.required': 'Password is Required.',
+  'cpassword.required': 'Confirm Password is Required.',
+  'cpassword.same': 'Password and ConfirmPassword Must be same.',
+  'country.required': 'Please Select Country.',
+  'category.required': 'Category is Required.'
+};
 
 export default function ApplyOrganizationController() {
   const [selected, setSelected] = useState('charity');
   const [loading, setLoading] = useState(false);
-  const params = useParams();
+  //const params = useParams();
   const navigate = useNavigate();
   const [countryList, setCountryList] = useState([]);
   const [defaultCountry, setDefaultCountry] = useState([]);
@@ -47,9 +79,6 @@ export default function ApplyOrganizationController() {
     category
   } = state;
 
-  const inputStyle = {
-    backgroundColor: '#f8fafd'
-  };
   useEffect(() => {
     (async () => {
       await getCountryList();
@@ -175,7 +204,7 @@ export default function ApplyOrganizationController() {
         // value={val}
         // onChange={(e) => setCode(e, props.index)}
         onKeyUp={(e) => props.autoTab(e, props.index)}
-        style={inputStyle}
+        style={STYLES_input}
       />
     );
   };
@@ -185,35 +214,8 @@ export default function ApplyOrganizationController() {
   ));
 
   const apply = () => {
-    const rules = {
-      name: 'required',
-      organization: 'required',
-      ein: 'required',
-      country: 'required',
-      email: 'required|email',
-      confirmEmail: 'required|same:email',
-      password: 'required|min:6',
-      cpassword: 'required|same:password',
-      category: 'required'
-    };
 
-    const message = {
-      'name.required': 'name is Required.',
-      'organization.required': 'organization is Required.',
-      'ein.required': 'Ein Number is Required.',
-      'email.required': 'email is Required.',
-      'email.email': 'please enter valid email.',
-      'confirmEmail.required': 'Confirm Email is Required.',
-      'confirmEmail.same': 'Email and Confirm Email Must be same.',
-      'password.min': 'Password must be at least 6 characters',
-      'password.required': 'Password is Required.',
-      'cpassword.required': 'Confirm Password is Required.',
-      'cpassword.same': 'Password and ConfirmPassword Must be same.',
-      'country.required': 'Please Select Country.',
-      'category.required': 'Category is Required.'
-    };
-
-    validateAll(state, rules, message)
+    validateAll(state, APPLY_rules, APPLY_message)
       .then(async () => {
         setLoading(true);
         const formaerrror = {};

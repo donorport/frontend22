@@ -106,7 +106,7 @@ const helper_spliceImages = (id, source) => {
   let imgs = [...source];
   imgs.splice(id, 1);
   return imgs;
-}
+};
 
 const AdminPosts = () => {
   console.log('iFrame, AdminPosts');
@@ -120,7 +120,7 @@ const AdminPosts = () => {
   const token = type && type === 'temp' ? tempCampaignAdminAuthToken : CampaignAdminAuthToken;
 
   const [data] = useOutletContext();
-  console.log('admin-posts outletContext:', {data});
+  console.log('admin-posts outletContext:', { data });
 
   const [categoryList, setCategoryList] = useState([]);
   const [subcategoryList, setSubCategoryList] = useState([]);
@@ -154,7 +154,6 @@ const AdminPosts = () => {
 
   // item data state
   const [state, setstate] = useState(DEFAULT_EMPTY_STATE);
-
 
   const {
     id,
@@ -724,8 +723,8 @@ const AdminPosts = () => {
     }
 
     // inject the organization here, received from OutletContext: the current user/org name
-    const stateWithOrg = {...state, organization: data.name};
-    console.log('~~ validating...', {state, stateWithOrg});
+    const stateWithOrg = { ...state, organization: data.name };
+    console.log('~~ validating...', { state, stateWithOrg });
 
     validateAll(stateWithOrg, rules, SUBMIT_PRODUCT_FORM_VALIDATE_MESSAGE)
       .then(async () => {
@@ -1076,12 +1075,12 @@ const AdminPosts = () => {
 
       if (productData.imageDetails.length > 0) {
         //productData.imageDetails.map((img) => {
-          //if (img.type === 'galleryImage') {
-            //let tempObj = {};
-            //tempObj.img = img.image;
-            //tempObj.id = img._id;
-            //tempGImgArray.push(tempObj);
-          //}
+        //if (img.type === 'galleryImage') {
+        //let tempObj = {};
+        //tempObj.img = img.image;
+        //tempObj.id = img._id;
+        //tempGImgArray.push(tempObj);
+        //}
         //});
         tempGImgArray = helper_filterImagesByTypeAndMap(productData.imageDetails, 'galleryImage');
       }
@@ -1284,12 +1283,10 @@ const AdminPosts = () => {
       imgs = [...fulfilmoreImages];
       imgs = imgs.filter((item) => item.id !== id);
       setFulfilMoreImages(imgs);
-
     } else if (type === 'More') {
       imgs = [...moreImages];
       imgs = imgs.filter((item) => item.id !== id);
       setMoreImages(imgs);
-
     } else {
       imgs = [...gallaryImages];
       imgs = imgs.filter((item) => item.id !== id);
@@ -1300,6 +1297,7 @@ const AdminPosts = () => {
 
   // ran when updating or fulfilling the order (basically the "submit" button)
   const fulfilOrder = async () => {
+    console.log('~ fulfilOrder function');
     let formaerrror = {};
     let rules = {};
 
@@ -1318,6 +1316,7 @@ const AdminPosts = () => {
       formaerrror['fulfilPolicy'] =
         'Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy.';
     }
+
     if (!fulfilId) {
       rules.receiptFile = 'required';
     }
@@ -1326,7 +1325,42 @@ const AdminPosts = () => {
       'receiptFile.required': 'Receipt is Required'
     };
 
-    validateAll(fulfilState, rules, message)
+    console.log('~ ~~ validating...', { fulfilState, rules, fulfilProductDetails });
+    /*
+    fulfilState = {
+      "fulfilId": "", // this is the check 11 lines above
+      "fulfilMoreImg": [],
+      "videoUrl": "",
+      "receiptFile": "",
+      "fulfilPolicy": true,
+      "fulfilError": []
+    }
+    */
+
+    //fulfilProductDetails = {
+        //...
+
+        //"fulfilDetails": {
+            //"_id": "643fe2e4e3b0c2c21bcef42a",
+            //"organizationId": "63fe5d48448eff9f0a6412d8",
+            //"productId": "63fe6568448eff9f0a6414b9",
+            //"video": "",
+            //"receipt": "584a0610-deb0-11ed-accd-b7a870a5ecdc.pdf",
+            //"created_at": "2023-04-19T12:47:32.782Z",
+            //"updated_at": "2023-04-19T12:47:32.782Z",
+            //"__v": 0
+        //}
+    //}
+
+    // inject receiptFile if it exists inside of fulfilDetails (because the flow is weird and the receipt exists but for some reason it's not in this particular piece of state)
+    const modifiedState = {...fulfilState};
+    if (fulfilProductDetails?.fulfilDetails?.receipt !== '') {
+      modifiedState.receiptFile = fulfilProductDetails.fulfilDetails.receipt;
+    }
+
+    console.log('~ ~~ ! BEFORE VALIDATE:', {modifiedState});
+
+    validateAll(modifiedState, rules, message)
       .then(async () => {
         setFulfilState({
           ...fulfilState,
@@ -1356,6 +1390,7 @@ const AdminPosts = () => {
         // do the update/creation
         let fulfil;
         const isThisAnUpdate = !!fulfilId;
+        console.log('~ ~~ !~~', {isThisAnUpdate});
         if (isThisAnUpdate) {
           fulfil = await productApi.updateFulfilOrder(token, formData, fulfilId);
         } else {
@@ -1363,6 +1398,7 @@ const AdminPosts = () => {
         }
 
         if (!fulfil || !fulfil?.data?.success) {
+          console.log('~ ~~ !~~ (!fulfil || !fulfil?.data?.success)');
           ToastAlert({ msg: fulfil.data.message, msgType: 'error' });
           return;
         }
@@ -1379,6 +1415,7 @@ const AdminPosts = () => {
           errors.forEach((element) => {
             formaerrror[element.field] = element.message;
           });
+          console.log('~ ~~ !~~ errors.length > 0');
         } else {
           ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
         }
@@ -1400,7 +1437,8 @@ const AdminPosts = () => {
     createPost(true);
     setFulfil(true);
 
-    if (product.isFulfilled) { // not sure if the if statement is necessary, do we want this block to run on both occasions?
+    if (product.isFulfilled) {
+      // not sure if the if statement is necessary, do we want this block to run on both occasions?
       setFulfilState({
         ...fulfilState,
         fulfilId: product.fulfilDetails?._id,
@@ -1413,20 +1451,25 @@ const AdminPosts = () => {
 
       if (product.imageDetails.length <= 0) {
         setFulfilMoreImages([]);
-        console.log(`~~ showFulfillOrder fn: product.imageDetails.length <= 0; clearing fulfilMoreImages`) 
+        console.log(
+          `~~ showFulfillOrder fn: product.imageDetails.length <= 0; clearing fulfilMoreImages`
+        );
         return;
       }
     }
 
     let tempMImgArray = helper_filterImagesByTypeAndMap(product.imageDetails, 'fulfillImage');
-    console.log(`~~ picking out images to show: product.imageDetails:`, {imageDetails: product.imageDetails}, `\n ~~ tempMImgArray:`, {tempMImgArray}) 
+    console.log(
+      `~~ picking out images to show: product.imageDetails:`,
+      { imageDetails: product.imageDetails },
+      `\n ~~ tempMImgArray:`,
+      { tempMImgArray }
+    );
     setFulfilMoreImages(tempMImgArray);
   };
 
-
   // used to delete an image from the post
   const removeFulfilTempImages = async (id) => {
-
     //let imgs = [...fulfilMoreTempImages];
     //imgs.splice(id, 1);
     setFulfilMoreTempImages(helper_spliceImages(id, fulfilMoreTempImages));
@@ -1438,7 +1481,6 @@ const AdminPosts = () => {
       fulfilMoreImg: helper_spliceImages(id, fulfilMoreImg)
     });
   };
-
 
   const removeGallaryempImages = async (id, type) => {
     if (type === 'galleryImg') {
@@ -1506,41 +1548,41 @@ const AdminPosts = () => {
         </div>
       ) : !fulfil ? (
         <>
-        {/* adding a new product */}
-        <AddPost
-          createPost={createPost}
-          organizationDetails={data}
-          stateData={state}
-          handleDelete={handleDelete}
-          handleAddition={handleAddition}
-          handleDrag={handleDrag}
-          handleTagClick={handleTagClick}
-          onClearAll={onClearAll}
-          onTagUpdate={onTagUpdate}
-          onSelectProject={onSelectProject}
-          changevalue={changevalue}
-          changefile={changefile}
-          resetForm={resetForm}
-          submitProductForm={submitProductForm}
-          tags={tags}
-          categoryList={categoryList}
-          subcategoryList={subcategoryList}
-          Img={Img}
-          loading={loading}
-          tempImg={tempImg}
-          moreTempImages={moreTempImages}
-          moreImages={moreImages}
-          projectList={projectList}
-          removedProjects={removedProjects}
-          seletedProjectList={seletedProjectList}
-          gallaryTempImages={gallaryTempImages}
-          gallaryImages={gallaryImages}
-          setstate={setstate}
-          data={data}
-          deleteProductImage={deleteProductImage}
-          setModelShow={setModelShow}
-          removeGallaryempImages={removeGallaryempImages}
-        />
+          {/* adding a new product */}
+          <AddPost
+            createPost={createPost}
+            organizationDetails={data}
+            stateData={state}
+            handleDelete={handleDelete}
+            handleAddition={handleAddition}
+            handleDrag={handleDrag}
+            handleTagClick={handleTagClick}
+            onClearAll={onClearAll}
+            onTagUpdate={onTagUpdate}
+            onSelectProject={onSelectProject}
+            changevalue={changevalue}
+            changefile={changefile}
+            resetForm={resetForm}
+            submitProductForm={submitProductForm}
+            tags={tags}
+            categoryList={categoryList}
+            subcategoryList={subcategoryList}
+            Img={Img}
+            loading={loading}
+            tempImg={tempImg}
+            moreTempImages={moreTempImages}
+            moreImages={moreImages}
+            projectList={projectList}
+            removedProjects={removedProjects}
+            seletedProjectList={seletedProjectList}
+            gallaryTempImages={gallaryTempImages}
+            gallaryImages={gallaryImages}
+            setstate={setstate}
+            data={data}
+            deleteProductImage={deleteProductImage}
+            setModelShow={setModelShow}
+            removeGallaryempImages={removeGallaryempImages}
+          />
         </>
       ) : (
         <>
@@ -1791,7 +1833,7 @@ const PostDetailsMediaColumn = ({
   deleteProductImage,
   fulfilError
 }) => {
-  console.log(`PostDetailsMediaColumn:`, {fulfilMoreTempImages, fulfilmoreImages});
+  console.log(`PostDetailsMediaColumn:`, { fulfilMoreTempImages, fulfilmoreImages });
   return (
     <>
       <Card.Header className="post__accordion-header pb-3">
