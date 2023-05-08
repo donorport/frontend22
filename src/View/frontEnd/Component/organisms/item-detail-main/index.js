@@ -189,7 +189,7 @@ function ProjectDetailMain(props) {
       {isFinish ||
         (productDetails.isFulfiled && !productDetails.unlimited && <FullyFundedSection />)}
 
-      {productDetails.isFulfiled && (productDetails.fulfiledproductsDetails?.video || productDetails?.productImages?.length > 0) && (
+      {productDetails.isFulfiled && (productDetails.fulfiledproductsDetails?.video || productDetails?.productImages.some(image => image.type === 'fulfillImage')) && (
         <FollowupMediaSection productDetails={productDetails} embedlink2={embedlink2} />
       )}
     </div>
@@ -488,7 +488,7 @@ const FullyFundedSection = () => (
 const FollowupMediaSection = ({ productDetails, embedlink2 }) => (
   <>
     <div className="note note-info align-items-center mt-5">
-      <Card.Header className="post__accordion-header pb-2 pt-2">
+      <Card.Header className="post__accordion-header pb-2 pt-2 mb-2">
         <h2 className="fs-3 fw-bolder text-dark">Followup</h2>
         <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
       </Card.Header>

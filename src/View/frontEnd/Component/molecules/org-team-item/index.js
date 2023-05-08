@@ -45,7 +45,7 @@ function OrganisationTeamItem(props) {
           ''
         )} */}
 
-        <div className="org__team__item__price fs-7 fw-semibold text-lighter">
+        <div className="org__team__item__price fs-7 text-light">
           {moment(member?.created_at).format('MMMM DD, YYYY')}
         </div>
       </div>
