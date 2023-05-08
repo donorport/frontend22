@@ -760,7 +760,11 @@ const AddPost = (props) => {
                           >
                             here
                           </a>{' '}
-                          to learn more about transparent images and how to find them.
+                          to learn more about transparent images and how to find them, or use this{' '}
+                          <a href="https://www.remove.bg/upload" target="_blank" rel="noreferrer">
+                            free online tool
+                          </a>{' '}
+                          to remove a background.
                         </span>
                       </div>
                       <div>

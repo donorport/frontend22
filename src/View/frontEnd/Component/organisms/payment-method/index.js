@@ -987,7 +987,7 @@ const Payments = () => {
           {state.error && state.error.taxRate && <p className="error">{state.error.taxRate}</p>}
         </div>
 
-        <div className="note text-dark mb-2">
+        <div className="note text-dark mb-2 fs-6">
           The tax rate will be automatically added to the unit price of items you post to make sure
           you enough funds to cover the sales tax when you purchase the items.
         </div>

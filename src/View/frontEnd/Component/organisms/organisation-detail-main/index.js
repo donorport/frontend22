@@ -18,6 +18,7 @@ import helper, { convertAddress } from '../../../../../Common/Helper';
 import './style.scss';
 import { GalleryImg } from '../../atoms';
 import verified from '../../../../../assets/images/verified.png';
+import ProjectGallery from '../project-gallery';
 // import { State, Country } from 'country-state-city';
 
 function OrganisationDetailMain(props) {
@@ -55,11 +56,11 @@ function OrganisationDetailMain(props) {
           <div>
             <h4 className="project__detail-label mb-3p">Organization</h4>
             <h1 className="project__detail-title text-dark" style={{ textTransform: 'capitalize' }}>
-              <span>{organizationDetails?.name} </span>
+              <span className="me-1">{organizationDetails?.name}</span>
               <img style={{ width: '24px' }} src={verified} alt="" />
             </h1>
           </div>
-          <div className="page__logo page__logo--org ms-auto">
+          <div className="ps-2 page__logo page__logo--org ms-auto">
             <img
               alt=""
               src={helper.CampaignAdminLogoPath + organizationDetails?.logo}
@@ -175,8 +176,8 @@ function OrganisationDetailMain(props) {
             </div>
           )}
 
-          <div className="gallery__container">
-            {organizationDetails.images &&
+          <div>
+            {/* {organizationDetails.images &&
             Array.isArray(organizationDetails.images) &&
             organizationDetails.images.length > 0 ? (
               organizationDetails.images.map((image) => (
@@ -189,7 +190,16 @@ function OrganisationDetailMain(props) {
               ))
             ) : (
               <></>
-            )}
+            )} */}
+            {organizationDetails?.images &&
+              organizationDetails?.images.length > 0 &&
+              organizationDetails?.images.filter((e) => e.type === 'galleryImage').length > 0 && (
+                <ProjectGallery
+                  className="mb-3"
+                  title={false}
+                  images={organizationDetails?.images}
+                />
+              )}
           </div>
         </div>
         <div>

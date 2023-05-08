@@ -522,7 +522,7 @@ const ProfileSettings = () => {
   };
 
   const removeGallaryempImages = (id, isGalleryImg) => {
-    if(isGalleryImg){
+    if (isGalleryImg) {
       let imgs = [...galleryImages];
       imgs.splice(id - viewGalleryImages.length, 1);
       setGalleryImages(imgs);
@@ -568,6 +568,23 @@ const ProfileSettings = () => {
               <></>
             )}
           </div>
+          <div className="mt-3 note note--info mb-3 fs-6">
+            <span className="text-dark">
+              Please upload your logo on a trapnsparent background. Click{' '}
+              <a
+                href="https://www.youtube.com/watch?v=G3Y5PcuH23Y"
+                target="_blank"
+                rel="noreferrer"
+              >
+                here
+              </a>{' '}
+              to learn more about transparent images, or use this{' '}
+              <a href="https://www.remove.bg/upload" target="_blank" rel="noreferrer">
+                free online tool
+              </a>{' '}
+              to remove a background.
+            </span>
+          </div>
         </div>
 
         <div className="input__wrap mb-3">
@@ -605,7 +622,7 @@ const ProfileSettings = () => {
           </label>
           <div className="helper__text fs-7 text-end text-subtext">120 characters</div>
         </div>
-        <div className="note note--inputs mb-3">
+        <div className="note note--inputs mb-3 fs-6">
           A headline is the subtitle that appears on your organization's page that describes your
           cause in 120 characters or less.
         </div>
@@ -641,9 +658,7 @@ const ProfileSettings = () => {
             ></textarea>
             <span className="input__span">Mission</span>
           </label>
-          <div className="helper__text fs-7 text-end text-subtext">
-            250 characters
-          </div>
+          <div className="helper__text fs-7 text-end text-subtext">250 characters</div>
           {error && error.mission && <p className="error">{error.mission}</p>}
         </div>
 
@@ -772,6 +787,7 @@ const ProfileSettings = () => {
                 />
                 <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
                   <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
+                  <h3 style={{ fontSize: 'inherit' }}>Drag and drop or Select File</h3>
                 </div>
               </div>
             )}
@@ -780,13 +796,16 @@ const ProfileSettings = () => {
                 viewGalleryImages.map((img, key) => {
                   return (
                     <div key={key} className="d-flex img-wrap">
-                      <span className="close" onClick={() => {
-                        if(img._id) {
-                          removeGallaryempImages(key)
-                        } else {
-                          removeGallaryempImages(key, true)
-                        }
-                        }}>
+                      <span
+                        className="close"
+                        onClick={() => {
+                          if (img._id) {
+                            removeGallaryempImages(key);
+                          } else {
+                            removeGallaryempImages(key, true);
+                          }
+                        }}
+                      >
                         &times;
                       </span>
                       {img._id && img.image ? (
@@ -808,7 +827,7 @@ const ProfileSettings = () => {
                           style={{
                             backgroundImage: `url(${
                               helper.CampaignAdminGalleryFullPath + img.image
-                            })`,
+                            })`
                             // width: '100px',
                             // height: '100px'
                           }}
@@ -818,7 +837,7 @@ const ProfileSettings = () => {
                         <div
                           className="gallery__img"
                           style={{
-                            backgroundImage: `url(${img ? img : noImg})`,
+                            backgroundImage: `url(${img ? img : noImg})`
                             // width: '100px',
                             // height: '100px'
                           }}
@@ -864,7 +883,9 @@ const ProfileSettings = () => {
             </li>
           </ul>
           To delete your account please email
-          <a className="link" href="#">support@donorport.com</a>
+          <a className="link" href="#">
+            support@donorport.com
+          </a>
           {/* <button
             type="button"
             className="btn btn--deactivate"
