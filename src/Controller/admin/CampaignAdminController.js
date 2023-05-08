@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react"
-import FrontLoader from "../../Common/FrontLoader"
+//import FrontLoader from "../../Common/FrontLoader"
 import { validateAll } from "indicative/validator";
 import ToastAlert from "../../Common/ToastAlert"
 import { confirmAlert } from "react-confirm-alert"
 import Index from "../../View/admin/CampaignAdmin/Index"
 import adminCampaignApi from "../../Api/admin/adminCampaign";
 import CampaignAdminForm from "../../View/admin/CampaignAdmin/CampaignAdminForm";
-import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
-import { fa } from "faker/lib/locales";
+import { 
+  //Link as RouterLink, 
+  useNavigate, 
+  //useParams 
+} from 'react-router-dom';
+//import { fa } from "faker/lib/locales";
 import categoryApi from "../../Api/admin/category";
 import authApi from "../../Api/admin/auth";
 import { hasPermission } from "../../Common/Helper";
@@ -59,7 +63,7 @@ function CampaignAdminController() {
     })
 
     const {
-        name, error, email, promoVideo, slug, password, id, status, headline, category, address, stateid, city, country, url, linkedin, facebook, twitter, description, logo, amount, ein
+        name, email, promoVideo, slug, password, id, status, headline, category, address, stateid, city, country, url, linkedin, facebook, twitter, description, logo, amount, ein
     } = state;
 
     const [countryList, setCountryList] = useState([])

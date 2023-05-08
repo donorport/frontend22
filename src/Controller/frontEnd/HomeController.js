@@ -179,82 +179,85 @@ export default function HomeController() {
   };
 
   async function showPosition(position) {
-    // console.log('show')
+    console.log('geolocation success callback:', {position});
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
 
     // console.log(latitude, longitude)
-    if (latitude && longitude) {
-      const getLocationByLatLong = await locationApi.getLocationByLatLong(latitude, longitude);
-      if (getLocationByLatLong && getLocationByLatLong.data.status === 'OK') {
-        if (getLocationByLatLong.data.results.length > 0) {
-          // console.log(getLocationByLatLong.data.results[0])
-          let jsObjects = getLocationByLatLong.data.results[0].address_components;
-          let tempObj = {};
-          tempObj.stateName = jsObjects.find(
-            (settings) => settings.types[0] === 'administrative_area_level_1'
-          )?.long_name;
-          tempObj.zip = jsObjects.find(
-            (settings) => settings.types[0] === 'postal_code'
-          )?.long_name;
-          tempObj.cityName = jsObjects.find(
-            (settings) => settings.types[0] === 'administrative_area_level_2'
-          )?.long_name;
-          tempObj.area = jsObjects.find((settings) => settings.types[0] === 'route')?.long_name;
-          tempObj.countryName = jsObjects.find(
-            (settings) => settings.types[0] === 'country'
-          )?.long_name;
-          tempObj.countrySortName = jsObjects.find(
-            (settings) => settings.types[0] === 'country'
-          )?.short_name;
+    if (!latitude || !longitude) return;
 
-          tempObj.lat = latitude;
-          tempObj.lng = longitude;
-          // console.log(tempObj)
+    const getLocationByLatLong = await locationApi.getLocationByLatLong(latitude, longitude);
+    console.log('~~ got location from lat,lng:', {latitude, longitude, getLocationByLatLong, results0: getLocationByLatLong.data.results[0]});
 
-          dispatch(setUserAddress(tempObj));
+    if (!getLocationByLatLong || getLocationByLatLong.data.status !== 'OK') return;
 
-          dispatch(
-            setUserCountrySort(
-              jsObjects.find((settings) => settings.types[0] === 'country').short_name
-            )
-          );
+    if (getLocationByLatLong.data.results.length === 0) return;
 
-          // console.log(jsObjects.find(settings => settings.types[0] === 'administrative_area_level_1').long_name)
+    // console.log(getLocationByLatLong.data.results[0])
+    let jsObjects = getLocationByLatLong.data.results[0].address_components;
+    let tempObj = {};
+    tempObj.stateName = jsObjects.find(
+      (settings) => settings.types[0] === 'administrative_area_level_1'
+    )?.long_name;
+    tempObj.zip = jsObjects.find(
+      (settings) => settings.types[0] === 'postal_code'
+    )?.long_name;
+    tempObj.cityName = jsObjects.find(
+      (settings) => settings.types[0] === 'administrative_area_level_2'
+    )?.long_name;
+    tempObj.area = jsObjects.find((settings) => settings.types[0] === 'route')?.long_name;
+    tempObj.countryName = jsObjects.find(
+      (settings) => settings.types[0] === 'country'
+    )?.long_name;
+    tempObj.countrySortName = jsObjects.find(
+      (settings) => settings.types[0] === 'country'
+    )?.short_name;
 
-          jsObjects.filter(async (obj) => {
-            let tempObj = {};
+    tempObj.lat = latitude;
+    tempObj.lng = longitude;
+    // console.log(tempObj)
 
-            if (obj.types[0] === 'country') {
-              let countryName = obj.long_name;
-              tempObj.countryName = countryName;
+    dispatch(setUserAddress(tempObj));
 
-              // setAddress({
-              //     ...address,
-              //     countryName: countryName
-              // })
+    dispatch(
+      setUserCountrySort(
+        jsObjects.find((settings) => settings.types[0] === 'country').short_name
+      )
+    );
 
-              const getCountryData = await locationApi.currencyByCountry(token, countryName);
-              if (getCountryData) {
-                if (getCountryData.data.success) {
-                  dispatch(setUserCountrySort(getCountryData.data.data.iso2));
-                  dispatch(setUserCountry(getCountryData.data.data.id));
-                  let currencyData = {};
-                  currencyData.currency = getCountryData.data.data.currency;
-                  currencyData.currencySymbol = getCountryData.data.data.symbol;
-                  // console.log(getCountryData.data.data.symbol)
-                  dispatch(setCurrency(currencyData));
-                }
-              }
-            }
-          });
-          await getStateDetailsByName(
-            jsObjects.find((settings) => settings.types[0] === 'administrative_area_level_1')
-              .long_name
-          );
+    // console.log(jsObjects.find(settings => settings.types[0] === 'administrative_area_level_1').long_name)
+
+    jsObjects.filter(async (obj) => {
+      let tempObj = {};
+
+      if (obj.types[0] === 'country') {
+        let countryName = obj.long_name;
+        tempObj.countryName = countryName;
+
+        // setAddress({
+        //     ...address,
+        //     countryName: countryName
+        // })
+
+        const getCountryData = await locationApi.currencyByCountry(token, countryName);
+        if (getCountryData) {
+          if (getCountryData.data.success) {
+            dispatch(setUserCountrySort(getCountryData.data.data.iso2));
+            dispatch(setUserCountry(getCountryData.data.data.id));
+            let currencyData = {};
+            currencyData.currency = getCountryData.data.data.currency;
+            currencyData.currencySymbol = getCountryData.data.data.symbol;
+            // console.log(getCountryData.data.data.symbol)
+            dispatch(setCurrency(currencyData));
+          }
         }
       }
-    }
+    });
+    await getStateDetailsByName(
+      jsObjects.find((settings) => settings.types[0] === 'administrative_area_level_1')
+      .long_name
+    );
+
   }
 
   const getHomePageAdList = async () => {
@@ -305,6 +308,7 @@ export default function HomeController() {
     }
   };
 
+  // fetch cart list & product list when user token changes
   useEffect(() => {
     (async () => {
       // console.log(343)
@@ -333,6 +337,7 @@ export default function HomeController() {
     })();
   }, [user.isUpdateCart, userAuthToken]);
 
+  // filter products by distance??
   useEffect(() => {
     (async () => {
       // if (user.isMapLocked) {
@@ -753,15 +758,19 @@ export default function HomeController() {
     // await filterProduct(e[0], e[1], search)
   };
 
+  // request position
   useEffect(() => {
     (async () => {
+      console.log('request position useEffect')
       // if no country...
       if (user.countryId === null || user.countryId === undefined || user.countryId === '') {
+        console.log('~~ non-existant countryId, checking if can get location:')
         if (navigator.geolocation) {
           // if location is available, attempt getCurrentPosition
           navigator.geolocation.getCurrentPosition(showPosition, showError);
 
         } else {
+          // fallback; if no geolocation avaialble, set it to a default
           if (userAuthToken) {
             dispatch(setUserCountry(userData.country_id));
           } else {
@@ -777,6 +786,7 @@ export default function HomeController() {
 
       // console.log('advertisement starts')
 
+      // now filter the advertisement list
       if (countryAdvertisementList.length > 0 && homeadvertisementList.length > 0) {
         let arr = arrayUnique(countryAdvertisementList.concat(homeadvertisementList));
         // console.log('arr', arr)

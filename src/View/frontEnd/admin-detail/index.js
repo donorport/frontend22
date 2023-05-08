@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tab, Button, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -57,7 +57,9 @@ function AdminDetail() {
             ? helper.CampaignAdminLogoPath + getCampaignDetails.data.data?.logo
             : noimg
         );
-        console.log('admin-detail component:\n~~ useEffect:',{campaignDetails_results: getCampaignDetails.data.data})
+        console.log('admin-detail component:\n~~ useEffect:', {
+          campaignDetails_results: getCampaignDetails.data.data
+        });
         setData(getCampaignDetails.data.data);
       }
 
@@ -112,23 +114,22 @@ function AdminDetail() {
                         </span>
                         <span className="tab__text text-capitalize">{selectedTabKey}</span>
                         <span className="d-flex align-items-center ms-auto">
-                          {selectedTabKey === 'items' ? (
+                          {selectedTabKey === 'items' && (
                             <div>
                               {totalPriceArray.length > 0 &&
-                                totalPriceArray.map((val, key) => {
-                                  return (
-                                    <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
-                                      <FontAwesomeIcon
-                                        icon={solid('money-bills-simple')}
-                                        className="text-dark mr-12p fs-4"
-                                      />
-                                      {val[0]} {val[1]}
-                                    </span>
-                                  );
-                                })}
+                                totalPriceArray.map((val, key) => (
+                                  <span
+                                    key={key}
+                                    className="d-none d-sm-flex item__total-wrap d-flex ms-3"
+                                  >
+                                    <FontAwesomeIcon
+                                      icon={solid('money-bills-simple')}
+                                      className="text-dark mr-12p fs-4"
+                                    />
+                                    {val[0]} {val[1]}
+                                  </span>
+                                ))}
                             </div>
-                          ) : (
-                            ''
                           )}
 
                           <FontAwesomeIcon icon={solid('caret-down')} className="ms-auto" />
