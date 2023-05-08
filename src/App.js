@@ -1,35 +1,35 @@
 // routes
-import React, { useState, createContext, useEffect, useReducer } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import { userReducer } from './Reducer/userReducer';
-import useUser from './hooks/useUser';
+import React, { createContext } from 'react';
+import { ToastContainer } from 'react-toastify';
+//import { userReducer } from './Reducer/userReducer';
+//import useUser from './hooks/useUser';
 // import './styles/scss/global.scss'
 // import './styles/scss/global.scss'
 import { store } from './store';
 import { Provider } from 'react-redux';
-import Router from './routes';
+//import Router from './routes';
 // theme
 
-import ThemeConfig from './theme';
-import GlobalStyles from './theme/globalStyles';
+//import ThemeConfig from './theme';
+//import GlobalStyles from './theme/globalStyles';
 // components
-import ScrollToTop from './components/ScrollToTop';
-import { BaseOptionChartStyle } from './components/charts/BaseOptionChart';
-import Abc from './pages/Abc';
+//import ScrollToTop from './components/ScrollToTop';
+//import { BaseOptionChartStyle } from './components/charts/BaseOptionChart';
+//import Abc from './pages/Abc';
 import MainRoutes from './Routes/MainRoutes';
 
 export const UserContext = createContext({});
 
 export default function App() {
-  const [user, userdispatch] = useReducer(userReducer, {
-    isLoggedIn: false,
-    isUpdateCart: false,
-    isUpdateOrg: false,
-    data: {},
-    transactionFee: 0,
-    platformFee: 0
-  });
-  const UserProviderContext = useUser(user, userdispatch);
+  //const [user, userdispatch] = useReducer(userReducer, {
+    //isLoggedIn: false,
+    //isUpdateCart: false,
+    //isUpdateOrg: false,
+    //data: {},
+    //transactionFee: 0,
+    //platformFee: 0
+  //});
+  //const UserProviderContext = useUser(user, userdispatch);
   return (
     <>
       {/* <UserContext.Provider value={UserProviderContext}> */}
