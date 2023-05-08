@@ -1,43 +1,44 @@
-import React, { useState, useLayoutEffect, useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import {
-  BrowserRouter as Router,
+  //BrowserRouter as Router,
   Route,
   Routes,
   useLocation,
-  Link as RouterLink
+  //Link as RouterLink
 } from 'react-router-dom';
-// import { Link as RouterLink } from 'react-router-dom';
+
 // material
-import { styled } from '@mui/material/styles';
+//import { styled } from '@mui/material/styles';
+
 import ForgotPasswordController from '../Controller/frontEnd/ForgotPasswordController';
 import SigninController from '../Controller/frontEnd/SigninController';
 import SignupController from '../Controller/frontEnd/SignupController';
 // import HomePage from '../View/frontEnd/Layout/Home/HomePage';
 import LogoOnlyLayout from '../layouts/LogoOnlyLayout';
 
-import Login from '../pages/Login';
+//import Login from '../pages/Login';
 
 // import Router from '../routes';
-import Abc from '../pages/Abc';
+//import Abc from '../pages/Abc';
 import ThemeConfig from '../theme';
 import ScrollToTop from '../components/ScrollToTop';
 import GlobalStyles from '../theme/globalStyles';
 import { BaseOptionChartStyle } from '../components/charts/BaseOptionChart';
 import AdminPrivateRoutes from './AdminPrivateRoutes';
-import Logo from '../components/Logo';
-import UserPrivateRoutes from './UserPrivateRoutes';
+//import Logo from '../components/Logo';
+//import UserPrivateRoutes from './UserPrivateRoutes';
 import HomeController from '../Controller/frontEnd/HomeController';
 import FrontEndLayOut from './FrontEndLayOut';
 import OrganizationDetailsController from '../Controller/frontEnd/OrganizationDetailsController';
 import ItemDetailsController from '../Controller/frontEnd/ItemDetailsController';
 import ProjectDetailsController from '../Controller/frontEnd/ProjectDetailsController';
-import FrontEndAuthLayOut from './FrontEndAuthLayout';
+//import FrontEndAuthLayOut from './FrontEndAuthLayout';
 // import OrganizationAdminController from '../Controller/frontEnd/OrganizationAdminController';
-import CampaignAdminLayout from './CampaignAdminLayout';
+//import CampaignAdminLayout from './CampaignAdminLayout';
 import CartController from '../Controller/frontEnd/CartController';
 import CheckoutController from '../Controller/frontEnd/CheckoutController';
 import ThankYou from '../View/frontEnd/ThankYou';
-import AdminDashboard from '../View/frontEnd/Component/organisms/admin-dashboard';
+//import AdminDashboard from '../View/frontEnd/Component/organisms/admin-dashboard';
 import AdminDetail from '../View/frontEnd/admin-detail';
 import AdminPosts from '../View/frontEnd/Component/organisms/admin-posts';
 import AdminActivity from '../View/frontEnd/Component/organisms/admin-activity';
@@ -48,19 +49,19 @@ import ProfileSettings from '../View/frontEnd/Component/organisms/profile-settin
 import Payments from '../View/frontEnd/Component/organisms/payment-method';
 import AdminAdmin from '../View/frontEnd/Component/organisms/admin-admin';
 import AdminBilling from '../View/frontEnd/Component/organisms/admin-billing';
-import AdminControl from '../View/frontEnd/Component/organisms/admin-control';
+//import AdminControl from '../View/frontEnd/Component/organisms/admin-control';
 import UserDetail from '../View/frontEnd/user-detail';
 import UserDashboard from '../View/frontEnd/Component/organisms/user-dashboard';
 import UserItems from '../View/frontEnd/Component/organisms/user-items';
 import UserXp from '../View/frontEnd/Component/organisms/user-xp';
 import UserTax from '../View/frontEnd/Component/organisms/user-tax';
 import UserHistory from '../View/frontEnd/Component/organisms/user-history';
-import UserSettings from '../View/frontEnd/Component/organisms/user-settings';
+//import UserSettings from '../View/frontEnd/Component/organisms/user-settings';
 import UserSettingsTab from '../View/frontEnd/Component/organisms/user-settings-tab';
 import UserProfile from '../View/frontEnd/Component/organisms/user-profile';
 import UserAccounts from '../View/frontEnd/Component/organisms/user-accounts';
 import UserBilling from '../View/frontEnd/Component/organisms/user-billing';
-import UserControl from '../View/frontEnd/Component/organisms/user-control';
+//import UserControl from '../View/frontEnd/Component/organisms/user-control';
 import UserAdmin from '../View/frontEnd/Component/organisms/user-admin';
 import ResetPasswordController from '../Controller/frontEnd/ResetPasswordController';
 import ChangePassword from '../View/frontEnd/change-password';
@@ -78,7 +79,7 @@ import HelpArticle from '../View/frontEnd/help-article';
 import HelpContact from '../View/frontEnd/help-contact';
 import Trust from '../View/frontEnd/trust';
 import PlansController from '../Controller/frontEnd/PlansController';
-import VerifiedDonors from '../View/frontEnd/verified-donors';
+//import VerifiedDonors from '../View/frontEnd/verified-donors';
 import Terms from '../View/frontEnd/terms';
 import Privacy from '../View/frontEnd/privacy';
 import { CategoryProductsController } from '../Controller/frontEnd/CategoryProductsController';
@@ -87,20 +88,20 @@ import OrderConfirmPage from '../View/frontEnd/order-confirmation';
 import DonationConfirmPage from '../View/frontEnd/donation-confirmation/index';
 import Pricing from '../View/frontEnd/pricing';
 
-const HeaderStyle = styled('header')(({ theme }) => ({
-  top: 0,
-  left: 0,
-  lineHeight: 0,
-  width: '100%',
-  position: 'absolute',
-  padding: theme.spacing(3, 3, 0),
-  [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(5, 5, 0)
-  }
-}));
+//const HeaderStyle = styled('header')(({ theme }) => ({
+  //top: 0,
+  //left: 0,
+  //lineHeight: 0,
+  //width: '100%',
+  //position: 'absolute',
+  //padding: theme.spacing(3, 3, 0),
+  //[theme.breakpoints.up('sm')]: {
+    //padding: theme.spacing(5, 5, 0)
+  //}
+//}));
 
 export default function MainRoutes() {
-  const [login, setLogin] = useState(false);
+  //const [login, setLogin] = useState(false);
   const adminAuthToken = localStorage.getItem('adminAuthToken');
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const userAuthToken = localStorage.getItem('userAuthToken');
