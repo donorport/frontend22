@@ -80,7 +80,7 @@ function AdminDetail() {
             <div className="user__detail-wrap d-sm-flex">
               <div className="user__detail d-sm-flex px-sm-1">
                 <div className="tab__menu d-sm-flex flex-column align-items-center">
-                  <div className="user__img-wrap mt-4 mb-5 w-100 d-none d-sm-block">
+                  <div className="user__img-wrap mb-4 w-100 d-none d-sm-block border-bottom">
                     <div className="user__img-content">
                       <div
                         className="user__img charity_avatar_bg"
@@ -149,7 +149,7 @@ function AdminDetail() {
                       )}
                     </div>
                   ) : (
-                    <div className="desktop__tab">
+                    <div className="desktop__tab w-100">
                       <AdminTabs activeKey={selectedTabKey} data={data} />
                     </div>
                   )}

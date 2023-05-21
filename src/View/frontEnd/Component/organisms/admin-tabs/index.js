@@ -25,7 +25,7 @@ function AdminTabs({ activeKey, data, _onClick, ...otherProps }) {
   return (
     <>
       <Nav
-        className="tab__nav d-flex flex-column gap-sm-2 gap-0"
+        className="tab__nav d-flex flex-column gap-sm-1 gap-0"
         variant="pills"
         {...otherProps}
         onClick={_onClick}

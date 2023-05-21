@@ -334,12 +334,10 @@
 
 .desktop__tab .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
-  color: #fff;
-  border: 1px solid transparent !important;
-  background-color: #f8fafd !important;
-  border-color: var(--border-input) !important;
-  border-radius: 25px !important;
-  padding: 12px 16px !important;
+  color: rgb(44, 75, 255) !important;
+  background-color: rgb(213 219 255 / 36%) !important;
+  border: 1px solid transparent!important;
+  border-radius: 4px
 }
 
 .nav-link,
