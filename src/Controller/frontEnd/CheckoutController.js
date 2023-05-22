@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import FrontLoader from '../../Common/FrontLoader';
-import Cart from '../../View/frontEnd/cart';
+import { useNavigate } from 'react-router-dom';
+//import FrontLoader from '../../Common/FrontLoader';
+//import Cart from '../../View/frontEnd/cart';
 import cartApi from '../../Api/frontEnd/cart';
 import authApi from '../../Api/admin/auth';
 import ToastAlert from '../../Common/ToastAlert';
@@ -9,10 +9,10 @@ import Checkout from '../../View/frontEnd/checkout';
 import orderApi from '../../Api/frontEnd/order';
 import { validateAll } from 'indicative/validator';
 import settingApi from '../../Api/admin/setting';
-import helper, { getCalculatedPrice, priceFormat } from '../../Common/Helper';
+import { getCalculatedPrice } from '../../Common/Helper';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUserXp, setUserRank } from '../../user/user.action';
-import userApi from '../../Api/frontEnd/user';
+import { setUserXp } from '../../user/user.action';
+//import userApi from '../../Api/frontEnd/user';
 import Page from '../../components/Page';
 
 export default function CheckoutController() {
@@ -29,14 +29,14 @@ export default function CheckoutController() {
   const [serviceCharge, setServiceCharge] = useState(0);
   const dispatch = useDispatch();
 
-  const getUserRank = async () => {
-    const getRank = await userApi.getUserRank(userAuthToken);
-    if (getRank) {
-      if (getRank.data.success) {
-        dispatch(setUserRank(getRank.data.rank));
-      }
-    }
-  };
+  //const getUserRank = async () => {
+  //const getRank = await userApi.getUserRank(userAuthToken);
+  //if (getRank) {
+  //if (getRank.data.success) {
+  //dispatch(setUserRank(getRank.data.rank));
+  //}
+  //}
+  //};
 
   const user = useSelector((state) => state.user);
 
@@ -53,7 +53,7 @@ export default function CheckoutController() {
     if (getSettingsValue.data.data.length > 0) {
       let data = {};
 
-      getSettingsValue.data.data.map((d, i) => {
+      getSettingsValue.data.data.map((d) => {
         data[d.name] = d.value;
       });
       // console.log(data.forEachItem)
@@ -61,7 +61,7 @@ export default function CheckoutController() {
     }
   };
 
-  const params = useParams();
+  //const params = useParams();
   const navigate = useNavigate();
   const [state, setstate] = useState({
     name: '',
@@ -79,9 +79,7 @@ export default function CheckoutController() {
     error: []
   });
   const {
-    email,
     phone,
-    name,
     stateName,
     city,
     line1,
@@ -104,7 +102,6 @@ export default function CheckoutController() {
         }
       }
       await getSettingsValue();
-      let data = {};
       // const getSettingsValue = await settingApi.list(userAuthToken, Object.keys(pricingFees));
 
       // if (getSettingsValue.data.success) {
@@ -131,7 +128,7 @@ export default function CheckoutController() {
         let ProductItems = []; // for count xp
 
         if (getCartList.data.data.length > 0) {
-          getCartList.data.data.map((item, i) => {
+          getCartList.data.data.map((item) => {
             ProductItems.push(1 * item.quantity);
             // let transactionFee = data.transactionFee
             // let platformFee = data.platformFee
@@ -159,7 +156,7 @@ export default function CheckoutController() {
           setSubTotal(sum);
           // seTotal sent to Stripe. Confirmed in logs.
           let fees = sum * 0.0499 + 0.3;
-          setServiceCharge(fees)
+          setServiceCharge(fees);
           let grandTotal = sum + fees;
           setTotal(grandTotal);
         } else {
@@ -186,7 +183,7 @@ export default function CheckoutController() {
     console.log(chargesArray);
 
     if (cartItem && cartItem.length > 0) {
-      cartItem.map((item, i) => {
+      cartItem.map((item) => {
         let tempObj = {};
 
         if (chargesArray.some((e) => e.id === item.productDetails.organizationDetails._id)) {
@@ -254,7 +251,7 @@ export default function CheckoutController() {
         let p_ids = [];
 
         if (cartItem && cartItem.length > 0) {
-          cartItem.map((item, i) => {
+          cartItem.map((item) => {
             let tempObj = {};
             tempObj.id = item.productDetails._id;
             tempObj.quantity = item.quantity;
@@ -274,7 +271,7 @@ export default function CheckoutController() {
             let orderDetails = {};
             let productDetails = [];
             if (cartItem && cartItem.length > 0) {
-              cartItem.map((item, i) => {
+              cartItem.map((item) => {
                 let tempObj = {};
                 let price = item.productDetails.displayPrice
                   ? item.productDetails.displayPrice
@@ -299,7 +296,7 @@ export default function CheckoutController() {
                 tempObj.organizationCountryId =
                   item.productDetails?.organizationDetails?.country_id;
                 tempObj.productXp = item.quantity * Number(xpForeEachItem);
-                tempObj.organizationName = item.productDetails.organizationDetails.name
+                tempObj.organizationName = item.productDetails.organizationDetails.name;
 
                 productDetails.push(tempObj);
               });

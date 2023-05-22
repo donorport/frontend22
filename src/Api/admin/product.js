@@ -60,7 +60,7 @@ function product() {
     data.append('productSlug', cdata.productSlug);
     data.append('tags', JSON.stringify(cdata.tags));
 
-    // console.log(data)
+    console.log('~~ ~~ ~~ productApi.add:', { data: Object.fromEntries( data.entries() )});
 
     let res = {};
     await axios({
@@ -290,20 +290,26 @@ function product() {
     return res;
   };
 
-  const fulfilOrder = async (authToken, cdata) => {
+  const fulfilOrder = async (authToken, _productData) => {
     const data = new FormData();
-    if (cdata.moreImg && cdata.moreImg.length > 0) {
-      for (let i = 0; i < cdata.moreImg.length; i++) {
-        data.append('moreImg', cdata.moreImg[i]);
+    if (_productData.moreImg && _productData.moreImg.length > 0) {
+      for (let i = 0; i < _productData.moreImg.length; i++) {
+        data.append('moreImg', _productData.moreImg[i]);
       }
     }
-    data.append('image', cdata.image);
-    data.append('organizationId', cdata.organizationId);
-    data.append('productId', cdata.productId);
-    if (cdata.video) {
-      data.append('video', cdata.video);
+    // oldReceipt: string inside of req.body
+    data.append('oldReceipt', _productData.oldReceipt ?? '');
+    // new receipt: if exists, it's in req.files.newReceipt 
+    if (_productData.newReceipt) {
+      data.append('newReceipt', _productData.newReceipt); 
     }
-    data.append('organizationCountryId', cdata.organizationCountryId);
+
+    data.append('organizationId', _productData.organizationId);
+    data.append('productId', _productData.productId);
+    if (_productData.video) {
+      data.append('video', _productData.video);
+    }
+    data.append('organizationCountryId', _productData.organizationCountryId);
 
     let res = {};
     await axios({
@@ -332,7 +338,7 @@ function product() {
         data.append('moreImg', cdata.moreImg[i]);
       }
     }
-    if (cdata.image) {
+    if (cdata.receipt) {
       data.append('image', cdata.image);
     }
     data.append('organizationId', cdata.organizationId);

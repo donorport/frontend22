@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom";
-import FrontLoader from "../../Common/FrontLoader";
-import orderApi from "../../Api/admin/order";
+import { useNavigate } from "react-router-dom";
+//import FrontLoader from "../../Common/FrontLoader";
+//import orderApi from "../../Api/admin/order";
 import { hasPermission } from "../../Common/Helper";
 import authApi from "../../Api/admin/auth";
 import Index from "../../View/admin/partnership/Index";
@@ -23,10 +23,10 @@ export default function PartnershipInquiryController() {
         organization: '',
         reason: '',
     })
-    const { name, email, organization, reason } = state
+    //const { name, email, organization, reason } = state
 
 
-    const params = useParams();
+    //const params = useParams();
     const navigate = useNavigate();
 
 

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { hasPermission } from "../../Common/Helper";
-import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import authApi from "../../Api/admin/auth";
 import Index from "../../View/admin/Cms/Index";
 import AddCmsForm from "../../View/admin/Cms/AddCmsForm";
-import FrontLoader from "../../Common/FrontLoader"
+//import FrontLoader from "../../Common/FrontLoader"
 import { validateAll } from "indicative/validator";
 import ToastAlert from "../../Common/ToastAlert"
 import { confirmAlert } from "react-confirm-alert"
@@ -28,7 +28,7 @@ function CmsController() {
         slug: '',
         error: [],
     })
-    const { id, status, name, body, description, slug, error } = state
+    const { id, status, name, body, description, slug } = state
 
     useEffect(() => {
         (async () => {
@@ -62,31 +62,38 @@ function CmsController() {
                     slug: name,
                     [e.target.name]: value
                 })
-            } else {
-                setstate({
-                    ...state,
-                    [e.target.name]: value
-                })
+                return;
             }
-        } else if (e.target.name === 'slug') {
-            if (id === "") {
-                let slug = value.toLowerCase();
-                slug = slug.replace(/\s+/g, '-');
-                setstate({
-                    ...state,
-                    slug: slug,
-                })
-            }
-        } else {
+
             setstate({
                 ...state,
                 [e.target.name]: value
-            })
+            });
+            return;
+            
+        } 
+
+        if (e.target.name === 'slug') {
+            if (id !== "") {
+                return;
+            }
+
+            let slug = value.toLowerCase();
+            slug = slug.replace(/\s+/g, '-');
+            setstate({
+                ...state,
+                slug: slug,
+            });
+            return;
         }
 
+        setstate({
+            ...state,
+            [e.target.name]: value
+        });
     }
 
-    const resetForm = (e) => {
+    const resetForm = () => {
         setstate({
             ...state,
             id: '',
@@ -113,7 +120,7 @@ function CmsController() {
         })
     }
 
-    const submitCmsForm = (e) => {
+    const submitCmsForm = () => {
         // console.log(status)
         let rules;
         if (id) {

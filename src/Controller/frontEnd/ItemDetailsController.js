@@ -40,21 +40,21 @@ export default function ItemDetailsController() {
 
   const productListByCategory = useCallback(
     async (id) => {
-      let userCountry = user.countryId;
-      const getCategoryProducts = await productApi.listByCategory(token, id, userCountry);
-      if (getCategoryProducts.data.success === true) {
-        if (getCategoryProducts.data.data.length > 0) {
-          let tempArray = [];
-          getCategoryProducts.data.data.slice(0, 3).map((product, i) => {
-            if (product._id !== productDetails._id) {
-              tempArray.push(product);
-            }
-          });
-          setCategoryProducts(tempArray);
-        } else {
-          setCategoryProducts([]);
-        }
+      const getCategoryProducts = await productApi.listByCategory(token, id, user.countryId);
+
+      if (!getCategoryProducts.data.success === true) {
+        return;
       }
+
+      let tempArray = [];
+      if (getCategoryProducts.data.data.length > 0) {
+        getCategoryProducts.data.data.slice(0, 3).map((product) => {
+          if (product._id !== productDetails._id) {
+            tempArray.push(product);
+          }
+        });
+      }
+      setCategoryProducts(tempArray);
     },
     [productDetails._id, token, user.countryId]
   );
@@ -74,19 +74,19 @@ export default function ItemDetailsController() {
 
   const getWishListProductList = useCallback(async () => {
     const list = await wishlistApi.list(token);
-    if (list) {
-      if (list.data.success) {
-        if (list.data.data.length > 0) {
-          let temp = [];
-          list.data.data.map((item, i) => {
-            temp.push(item.productDetails._id);
-          });
-          setWishListProductIds(temp);
-        } else {
-          setWishListProductIds([]);
-        }
-      }
+    if (!list) {
+      return;
     }
+    if (!list.data.success) {
+      return;
+    }
+    let temp = [];
+    if (list.data.data.length > 0) {
+      list.data.data.map((item) => {
+        temp.push(item.productDetails._id);
+      });
+    }
+    setWishListProductIds(temp);
   }, [token]);
 
   const addProductToWishlist = async (productId) => {
@@ -94,15 +94,20 @@ export default function ItemDetailsController() {
     data.productId = productId;
     setLoading(true);
     const add = await wishlistApi.add(token, data);
-    if (add) {
-      if (add.data.success) {
-        dispatch(setIsUpdateCart(!user.isUpdateCart));
-      } else {
-        ToastAlert({ msg: add.data.message, msgType: 'error' });
-      }
-    } else {
+
+    if (!add) {
       ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+      setLoading(false);
+      return;
     }
+
+    if (!add.data.success) {
+      ToastAlert({ msg: add.data.message, msgType: 'error' });
+      setLoading(false);
+      return;
+    }
+    dispatch(setIsUpdateCart(!user.isUpdateCart));
+    setLoading(false);
   };
   const checkUserFollow = useCallback(
     async (productId) => {

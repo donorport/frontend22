@@ -81,7 +81,7 @@ const SUBMIT_PRODUCT_FORM_VALIDATE_MESSAGE = {
 };
 
 // Styles
-const Style_FileUploadInput = {
+const STYLE_FileUploadInput = {
   position: 'absolute',
   margin: 0,
   padding: 0,
@@ -189,7 +189,7 @@ const AdminPosts = () => {
   const [fulfilState, setFulfilState] = useState(DEFAULT_FULFIL_STATE);
   const [receiptImgName, setReceiptImgName] = useState('');
 
-  const { fulfilId, fulfilMoreImg, videoUrl, receiptFile, fulfilPolicy, fulfilError } = fulfilState;
+  const { fulfilId, fulfilMoreImg, videoUrl, fulfilPolicy, fulfilError } = fulfilState;
 
   const [fulfil, setFulfil] = useState(false);
 
@@ -467,16 +467,16 @@ const AdminPosts = () => {
 
   const changeReceiptFile = async (e) => {
     const file = e.target.files[0] ? e.target.files[0] : '';
-    if (file) {
-      setReceiptImgName(file.name);
-      console.log(file);
-      setFulfilState({
-        ...fulfilState,
-        receiptFile: file
-      });
-    } else {
+    if (!file) {
       clearReceiptFileState();
+      return;
     }
+    setReceiptImgName(file.name);
+    console.log(file);
+    setFulfilState({
+      ...fulfilState,
+      receiptFile: file
+    });
   };
 
   const changeGalleryImg = async (e) => {
@@ -812,6 +812,7 @@ const AdminPosts = () => {
         }
 
         // Api Call for update Profile
+        console.log('~~ ~~ ~~ CREATE PRODUCT -', {formData, id});
         setLoading(true);
         let addProduct =
           id !== ''
@@ -827,6 +828,7 @@ const AdminPosts = () => {
         if (addProduct.data.success === false) {
           setLoading(false);
           ToastAlert({ msg: addProduct.data.message, msgType: 'error' });
+          console.log('~~ ~~ ~~ CREATE PRODUCT - addProduct.data.message:', addProduct.data.message);
           return;
         }
 
@@ -1192,6 +1194,7 @@ const AdminPosts = () => {
   // console.log(data)
   const getProductList = useCallback(
     async (page, field, type) => {
+      console.log('getting product list (useCallback getProductList)');
       setLoading(true);
       let formData = {};
       formData.organizationId = data._id;
@@ -1296,6 +1299,7 @@ const AdminPosts = () => {
   };
 
   // ran when updating or fulfilling the order (basically the "submit" button)
+  // fulfilProductDetails?.fulfilDetails?.receipt === string of previously uploaded receipt
   const fulfilOrder = async () => {
     console.log('~ fulfilOrder function');
     let formaerrror = {};
@@ -1338,32 +1342,40 @@ const AdminPosts = () => {
     */
 
     //fulfilProductDetails = {
-        //...
+    //...
 
-        //"fulfilDetails": {
-            //"_id": "643fe2e4e3b0c2c21bcef42a",
-            //"organizationId": "63fe5d48448eff9f0a6412d8",
-            //"productId": "63fe6568448eff9f0a6414b9",
-            //"video": "",
-            //"receipt": "584a0610-deb0-11ed-accd-b7a870a5ecdc.pdf",
-            //"created_at": "2023-04-19T12:47:32.782Z",
-            //"updated_at": "2023-04-19T12:47:32.782Z",
-            //"__v": 0
-        //}
+    //"fulfilDetails": {
+    //"_id": "643fe2e4e3b0c2c21bcef42a",
+    //"organizationId": "63fe5d48448eff9f0a6412d8",
+    //"productId": "63fe6568448eff9f0a6414b9",
+    //"video": "",
+    //"receipt": "584a0610-deb0-11ed-accd-b7a870a5ecdc.pdf",
+    //"created_at": "2023-04-19T12:47:32.782Z",
+    //"updated_at": "2023-04-19T12:47:32.782Z",
+    //"__v": 0
     //}
+    //}
+    //
+    //
+    console.log('~ ~! pre-inject: is this the newly-uploaded receipt?', {fulfilStateReceiptFile: fulfilState.receiptFile})
 
-    // inject receiptFile if it exists inside of fulfilDetails (because the flow is weird and the receipt exists but for some reason it's not in this particular piece of state)
+    // both of these will be sent to the api/backend
+    const oldReceipt = fulfilProductDetails.fulfilDetails?.receipt ?? '';
+    const newReceipt = fulfilState.receiptFile ?? '';
+
+    // injecting the receipt file (if uploaded previously) so we can pass validation
+    // if NO new receipt file, if old receipt file exists, use it; else we don't have a receipt file
     const modifiedState = {...fulfilState};
-    if (fulfilProductDetails?.fulfilDetails?.receipt !== '') {
-      modifiedState.receiptFile = fulfilProductDetails.fulfilDetails.receipt;
+    if (!newReceipt || newReceipt === '') {
+      modifiedState.receiptFile = oldReceipt;
     }
 
-    console.log('~ ~~ ! BEFORE VALIDATE:', {modifiedState});
+    console.log('~ ~~ ! BEFORE VALIDATE:', { modifiedState, oldReceipt, newReceipt });
 
     validateAll(modifiedState, rules, message)
       .then(async () => {
         setFulfilState({
-          ...fulfilState,
+          ...fulfilState, // do I want to plug in modifiedState here??
           fulfilError: formaerrror
         });
 
@@ -1371,14 +1383,23 @@ const AdminPosts = () => {
           return;
         }
 
-        let formData = {};
+        // set up formData to pass to api service
+        const formData = {};
 
         if (fulfilMoreImg?.length > 0) {
           formData.moreImg = fulfilMoreImg;
         }
-        if (receiptFile) {
-          formData.image = receiptFile;
+
+        // send over new receipt, if exists
+        if (modifiedState.receiptFile) {
+          formData.newReceipt = newReceipt;
         }
+        
+        // send over old receipt, if exists
+        if (oldReceipt) {
+          formData.oldReceipt = oldReceipt;
+        }
+
         formData.organizationId = data._id;
         formData.productId = fulfilProductDetails._id;
         formData.organizationCountryId = data.country_id;
@@ -1387,18 +1408,19 @@ const AdminPosts = () => {
           formData.video = videoUrl;
         }
 
-        // do the update/creation
+        // do the update/creation!
         let fulfil;
         const isThisAnUpdate = !!fulfilId;
-        console.log('~ ~~ !~~', {isThisAnUpdate});
+        console.log('~ ~~ !~~', { isThisAnUpdate, formData });
         if (isThisAnUpdate) {
           fulfil = await productApi.updateFulfilOrder(token, formData, fulfilId);
         } else {
           fulfil = await productApi.fulfilOrder(token, formData);
         }
 
+        // check success
         if (!fulfil || !fulfil?.data?.success) {
-          console.log('~ ~~ !~~ (!fulfil || !fulfil?.data?.success)');
+          console.log('~ ~~ !~~ (!fulfil || !fulfil?.data?.success)', { fulfil });
           ToastAlert({ msg: fulfil.data.message, msgType: 'error' });
           return;
         }
@@ -1895,7 +1917,7 @@ const PostDetailsMediaColumn = ({
                 onChange={(e) => {
                   changefile(e);
                 }}
-                style={Style_FileUploadInput}
+                style={STYLE_FileUploadInput}
                 title=" "
               />
               <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
@@ -2030,7 +2052,8 @@ const PostDetailsReceiptArea = ({
 }) => {
   return (
     <>
-      <label htmlFor="videoInput" className="form__label mt-3">
+      {/* receipt upload label & input */}
+      <label htmlFor="receiptFile" className="form__label mt-3">
         Sales Receipt &nbsp;
         <span className="post-type-text" style={{ color: '#dd4646' }}>
           (required)
@@ -2053,14 +2076,12 @@ const PostDetailsReceiptArea = ({
         <input
           className="file-upload-input"
           type="file"
-          // name="identityDocumentImage"
-          // onChange={props.changevalue}
           name="receiptFile"
           id="receiptFile"
           onChange={(e) => {
             changefile(e);
           }}
-          style={Style_FileUploadInput}
+          style={STYLE_FileUploadInput}
           title=" "
         />
         <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
@@ -2080,7 +2101,7 @@ const PostDetailsReceiptArea = ({
 
       {/* sales receipt list, to show when receipt is uploaded */}
       {/* if file is deleted, or if product is not fulfilled, hide this. */}
-      {!(!fulfilProductDetails?.isFulfiled || deletedFile) && (
+      {fulfilProductDetails?.isFulfiled && !deletedFile && (
         <>
           <Card.Header className="post__accordion-header pb-3 mt-5">
             <span className="fs-3 fw-bolder text-dark">Sales Receipt</span>

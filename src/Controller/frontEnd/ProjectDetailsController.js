@@ -1,25 +1,25 @@
-import Index from '../../View/frontEnd/Layout/Home/Index';
-import productApi from '../../Api/admin/product';
+//import Index from '../../View/frontEnd/Layout/Home/Index';
+//import productApi from '../../Api/admin/product';
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import FrontLoader from '../../Common/FrontLoader';
-import OrganisationDetail from '../../View/frontEnd/organisation-detail';
-import organizationApi from '../../Api/frontEnd/organization';
+//import FrontLoader from '../../Common/FrontLoader';
+//import OrganisationDetail from '../../View/frontEnd/organisation-detail';
+//import organizationApi from '../../Api/frontEnd/organization';
 import ProjectDetail from '../../View/frontEnd/project-detail';
 import projectApi from '../../Api/frontEnd/project';
 import cartApi from '../../Api/frontEnd/cart';
 import ToastAlert from '../../Common/ToastAlert';
 import { useSelector, useDispatch } from 'react-redux';
 import { validateAll } from 'indicative/validator';
-import { setUserXp, setUserRank } from '../../user/user.action';
+import { setUserXp } from '../../user/user.action';
 import helper, { GetCardTypeByNumber, getCardIcon } from '../../Common/Helper';
-import userApi from '../../Api/frontEnd/user';
+//import userApi from '../../Api/frontEnd/user';
 import followApi from '../../Api/frontEnd/follow';
 import Page from '../../components/Page';
 
 export default function ProjectDetailsController() {
-  const [productList, setProductList] = useState([]);
-  const adminAuthToken = localStorage.getItem('adminAuthToken');
+  //const [productList, setProductList] = useState([]);
+  //const adminAuthToken = localStorage.getItem('adminAuthToken');
   const [loading, setLoading] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
@@ -53,18 +53,18 @@ export default function ProjectDetailsController() {
     cvv: '',
     error: []
   });
-  const { name, cardNumber, month, year, cvv, error } = state;
+  const { cardNumber, month, year, cvv } = state;
 
   const [cardNumberWithSpace, setCardNumberWithSpace] = useState('');
 
-  const getUserRank = async () => {
-    const getRank = await userApi.getUserRank(userAuthToken);
-    if (getRank) {
-      if (getRank.data.success) {
-        dispatch(setUserRank(getRank.data.rank));
-      }
-    }
-  };
+  //const getUserRank = async () => {
+  //const getRank = await userApi.getUserRank(userAuthToken);
+  //if (getRank) {
+  //if (getRank.data.success) {
+  //dispatch(setUserRank(getRank.data.rank));
+  //}
+  //}
+  //};
 
   const getCardNumber = async (num) => {
     if (num) {
@@ -175,14 +175,14 @@ export default function ProjectDetailsController() {
   const donate = async () => {
     if (token) {
       const rules = {
-       //name: 'required',
+        //name: 'required',
         cardNumber: 'required|number',
         month: 'required',
         year: 'required',
         cvv: 'required|number'
       };
       const message = {
-       // 'name.required': 'Card holder name is Required.',
+        // 'name.required': 'Card holder name is Required.',
         'cardNumber.required': 'Card number is Required.',
         'cardNumber.number': 'Card number can not be string.',
         'month.required': 'Month is Required.',
@@ -222,7 +222,7 @@ export default function ProjectDetailsController() {
           data.projectName = projectDetails?.name;
           data.serviceCharge = platformCost;
           data.organizationCountryId = projectDetails?.campaignDetails?.country_id;
-          data.xpToAdd = selectedValue * 10
+          data.xpToAdd = selectedValue * 10;
 
           const donateToProject = await projectApi.donate(userAuthToken, data);
           if (donateToProject) {
@@ -262,7 +262,7 @@ export default function ProjectDetailsController() {
           });
         });
     } else {
-      navigate('/signin')
+      navigate('/signin');
     }
   };
 

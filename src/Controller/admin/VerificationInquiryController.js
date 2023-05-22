@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom";
-import FrontLoader from "../../Common/FrontLoader";
-import orderApi from "../../Api/admin/order";
+import { useNavigate } from "react-router-dom";
+//import FrontLoader from "../../Common/FrontLoader";
+//import orderApi from "../../Api/admin/order";
 import { hasPermission } from "../../Common/Helper";
 import authApi from "../../Api/admin/auth";
 import inquiryApi from "../../Api/admin/inquiry";
@@ -11,7 +11,6 @@ import Details from "../../View/admin/verified/Details";
 
 
 export default function VerificationInquiryController() {
-
     const [inquiryList, setInquiryList] = useState([])
     const adminAuthToken = localStorage.getItem('adminAuthToken');
     const adminData = JSON.parse(localStorage.getItem('adminData'));
@@ -22,10 +21,10 @@ export default function VerificationInquiryController() {
         email: '',
         reason: '',
     })
-    const { name, email,reason } = state
+    //const { name, email,reason } = state
 
 
-    const params = useParams();
+    //const params = useParams();
     const navigate = useNavigate();
 
 

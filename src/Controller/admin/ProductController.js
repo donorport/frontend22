@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import FrontLoader from '../../Common/FrontLoader';
+//import FrontLoader from '../../Common/FrontLoader';
 import { validateAll } from 'indicative/validator';
 import ToastAlert from '../../Common/ToastAlert';
 import { confirmAlert } from 'react-confirm-alert';
-import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import categoryApi from '../../Api/admin/category';
 import Index from '../../View/admin/Products/Index';
 import AddProductForm from '../../View/admin/Products/AddProductForm';
@@ -24,7 +24,7 @@ function ProductController() {
   const [tempImg, setTempImg] = useState('');
   const [Img, setImg] = useState('');
   const [productList, setProductList] = useState([]);
-  const [iconList, setIconList] = useState([]);
+  //const [iconList, setIconList] = useState([]);
   const [projectList, setProjectList] = useState([]);
   const [update, setUpdate] = useState(false);
   const navigate = useNavigate();
@@ -74,8 +74,8 @@ function ProductController() {
   const {
     id,
     status,
-    title,
-    subtitle,
+    //title,
+    //subtitle,
     category,
     subcategory,
     description,
@@ -84,7 +84,7 @@ function ProductController() {
     quantity,
     organization,
     slug,
-    error,
+    //error,
     moreImg,
     galleryUrl,
     headline,
@@ -98,7 +98,7 @@ function ProductController() {
     address,
     lat,
     lng,
-    locationName
+    //locationName
   } = state;
 
   const [tags, setTags] = useState([]);
@@ -124,7 +124,7 @@ function ProductController() {
       if (getproductList.data.success === true) {
         if (adminData.roleName === 'CAMPAIGN_ADMIN') {
           if (getproductList.data.data.length > 0) {
-            getproductList.data.data.map((p, i) => {
+            getproductList.data.data.map((p) => {
               if (p.organizationId === adminData.id) {
                 temp.push(p);
               }
@@ -382,7 +382,7 @@ function ProductController() {
     });
   };
 
-  const resetForm = (e) => {
+  const resetForm = () => {
     setModal(false);
     setTags([]);
     setTempImg('');
@@ -467,7 +467,7 @@ function ProductController() {
     });
   };
 
-  const submitProductForm = (e) => {
+  const submitProductForm = () => {
     console.log("e")
     const formaerrror = {};
     if (tags.length === 0) {
@@ -589,7 +589,7 @@ function ProductController() {
         }
         let tagsArray = [];
         if (tags.length > 0) {
-          tags.map((ptage, i) => {
+          tags.map((ptage) => {
             tagsArray.push(ptage.id);
           });
         }
@@ -747,7 +747,7 @@ function ProductController() {
 
       let tempProjectArray = [];
       if (productData.projectDetails.length > 0) {
-        productData.projectDetails.map((project, i) => {
+        productData.projectDetails.map((project) => {
           tempProjectArray.push(project.projectId);
         });
         setSeletedProjectList(tempProjectArray);
@@ -756,7 +756,7 @@ function ProductController() {
       let tempMImgArray = [];
 
       if (productData.imageDetails.length > 0) {
-        productData.imageDetails.map((img, i) => {
+        productData.imageDetails.map((img) => {
           if (img.type === 'moreImage') {
             tempMImgArray.push(img.image);
           }
@@ -767,7 +767,7 @@ function ProductController() {
       let tempGImgArray = [];
 
       if (productData.imageDetails.length > 0) {
-        productData.imageDetails.map((img, i) => {
+        productData.imageDetails.map((img) => {
           if (img.type === 'galleryImage') {
             tempGImgArray.push(img.image);
           }
@@ -793,7 +793,7 @@ function ProductController() {
       if (productData.tags.length > 0) {
         addedTags = productData.tags;
 
-        addedTags.map((aadedTag, i) => {
+        addedTags.map((aadedTag) => {
           let tagsObj = {};
           tagsObj.id = aadedTag;
           tagsObj.text = aadedTag;

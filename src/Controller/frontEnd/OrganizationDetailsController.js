@@ -27,7 +27,7 @@ export default function OrganizationDetailsController() {
   const [projectList, setProjectList] = useState([]);
   const [purchasedItemList, setPurchasedItemList] = useState([]);
   const user = useSelector((state) => state.user);
-  const [serviceCharge, setServiceCharge] = useState(0);
+  //const [serviceCharge, setServiceCharge] = useState(0);
   const userData = JSON.parse(localStorage.getItem('userData'));
   const [selectedValue, setSelectedValue] = useState(25);
   const [donationList, setDonationList] = useState([]);
@@ -228,7 +228,7 @@ export default function OrganizationDetailsController() {
           data.organizationName = organizationDetails.name;
           data.organizationCountryId = organizationDetails.country_id;
           data.serviceCharge = platformCost;
-          data.xpToAdd = selectedValue * 10
+          data.xpToAdd = selectedValue * 10;
 
           const donateToOrganization = await organizationApi.donate(userAuthToken, data);
           if (donateToOrganization) {
@@ -237,7 +237,9 @@ export default function OrganizationDetailsController() {
             } else {
               let addXp = Number(donateToOrganization.data.xpToAdd);
               dispatch(setUserXp(user.xp + addXp));
-              navigate('/donate/' + donateToOrganization.data.donationId, {state:{xpToAdd: addXp}});
+              navigate('/donate/' + donateToOrganization.data.donationId, {
+                state: { xpToAdd: addXp }
+              });
             }
           } else {
             ToastAlert({ msg: 'Something went wrong', msgType: 'error' });

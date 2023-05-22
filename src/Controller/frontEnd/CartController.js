@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import FrontLoader from '../../Common/FrontLoader';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+//import FrontLoader from '../../Common/FrontLoader';
 import Cart from '../../View/frontEnd/cart';
 import cartApi from '../../Api/frontEnd/cart';
 import authApi from '../../Api/admin/auth';
@@ -18,13 +18,13 @@ export default function CartController() {
   // const user = useContext(UserContext)
   const [loading, setLoading] = useState(false);
   const [update, setIsUpdate] = useState(false);
-  const params = useParams();
+  //const params = useParams();
   const navigate = useNavigate();
   const [pricingFees, setPricingFees] = useState({
     platformFee: 0,
     transactionFee: 0
   });
-  const { platformFee, transactionFee } = pricingFees;
+  //const { platformFee, transactionFee } = pricingFees;
 
   const refreshCart = () => setIsUpdate(!update);
 
@@ -37,7 +37,7 @@ export default function CartController() {
     if (getSettingsValue.data.success) {
       let data = {};
 
-      getSettingsValue.data.data.map((d, i) => {
+      getSettingsValue.data.data.forEach((d) => {
         data[d.name] = d.value;
       });
 

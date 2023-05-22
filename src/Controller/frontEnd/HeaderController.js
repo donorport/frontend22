@@ -58,16 +58,15 @@ export default function HeaderController({ isHeaderGeo = false }) {
   //const { platformFee, transactionFee } = pricingFees;
 
   /*
-   * This is a wrapper function for those functions which need to 
-   * setLoading at start and at the end. Pass in a function and 
+   * This is a wrapper function for those functions which need to
+   * setLoading at start and at the end. Pass in a function and
    * this returns a function so it can be called normally.
    */
   const useLoading = (bodyFn) => async () => {
-      setLoading(true);
-      await bodyFn();
-      setLoading(false);
-    };
-
+    setLoading(true);
+    await bodyFn();
+    setLoading(false);
+  };
 
   const getUserFollowedOrgList = async () => {
     if (!userAuthToken) return;
@@ -278,7 +277,7 @@ export default function HeaderController({ isHeaderGeo = false }) {
 
       let data = {};
 
-      getSettingsValue.data.data.map((d, i) => {
+      getSettingsValue.data.data.map((d) => {
         data[d.name] = d.value;
       });
 

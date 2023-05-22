@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom";
-import FrontLoader from "../../Common/FrontLoader";
-import orderApi from "../../Api/admin/order";
-import { hasPermission } from "../../Common/Helper";
+import { useNavigate } from "react-router-dom";
+//import FrontLoader from "../../Common/FrontLoader";
+//import orderApi from "../../Api/admin/order";
+//import { hasPermission } from "../../Common/Helper";
 import authApi from "../../Api/admin/auth";
 // import Index from "../../View/admin/Order/Index";
-import OrderDetails from "../../View/admin/Order/OrderDetails";
+//import OrderDetails from "../../View/admin/Order/OrderDetails";
 import donationApi from "../../Api/admin/donation";
 import Index from "../../View/admin/Donation";
 
@@ -16,9 +16,9 @@ export default function DonationController() {
     const adminAuthToken = localStorage.getItem('adminAuthToken');
     const adminData = JSON.parse(localStorage.getItem('adminData'));
     const [loading, setLoading] = useState(false)
-    const [modal, setModal] = useState(false)
-    const [orderDetails, setOrderDetails] = useState({})
-    const [orderItemList, setOrderItemList] = useState([])
+    //const [modal, setModal] = useState(false)
+    //const [orderDetails, setOrderDetails] = useState({})
+    //const [orderItemList, setOrderItemList] = useState([])
     const [value, setValue] = useState('1');
     const [projectDonationList, setProjectDonationList] = useState([])
     const [organizationDonationList, setOrganizationDonationList] = useState([])
@@ -30,7 +30,7 @@ export default function DonationController() {
     };
 
 
-    const params = useParams();
+    //const params = useParams();
     const navigate = useNavigate();
 
 

@@ -125,23 +125,27 @@ export default function HomeController() {
     if (!error) return;
 
     console.log('~~ WITH ERROR:', error);
-    console.log('~~ Setting countrySort to "CA"; checking for userAuthToken || CampaignAdminAuthToken...')
+    console.log(
+      '~~ Setting countrySort to "CA"; checking for userAuthToken || CampaignAdminAuthToken...'
+    );
     dispatch(setUserCountrySort('CA'));
 
     // if no tokens, set a default UserCountry and UserState
     if (!userAuthToken && !CampaignAdminAuthToken) {
-      console.log('~~ ~~ NO TOKENS! Defaulting to setUserCountry(39) && setUserState(3830)! Returning')
+      console.log(
+        '~~ ~~ NO TOKENS! Defaulting to setUserCountry(39) && setUserState(3830)! Returning'
+      );
       dispatch(setUserCountry(39));
       dispatch(setUserState(3830));
       return;
     }
 
     if (userAuthToken) {
-      console.log('~~ ~~ YES userAuthToken; setting currency & country & state')
+      console.log('~~ ~~ YES userAuthToken; setting currency & country & state');
       // set Country if it exists in userData, else default to Canadian
       const isUserWithCountryId = userData?.country_id > 0 ?? false;
       const country = isUserWithCountryId ? userData.country_id : 39;
-      console.log('~~ ~~ default: {39}', {isUserWithCountryId, country});
+      console.log('~~ ~~ default: {39}', { isUserWithCountryId, country });
       const currencyData = {
         currency: isUserWithCountryId ? userData.currency : 'CAD',
         currencySymbol: isUserWithCountryId ? userData.symbol : '$'
@@ -151,15 +155,17 @@ export default function HomeController() {
 
       // if state_id exists and is > 0, use it; otherwise use Toronto (default)
       const state = userData?.state_id > 0 ? userData.state_id : 3830;
-      console.log('~~ ~~ default: {3830}', {state});
+      console.log('~~ ~~ default: {3830}', { state });
       dispatch(setUserState(state));
-
     } else if (CampaignAdminAuthToken) {
-      console.log('~~ ~~ YES CampaignAdminAuthToken; setting Country & State')
+      console.log('~~ ~~ YES CampaignAdminAuthToken; setting Country & State');
       const country = CampaignAdmin?.country_id > 0 ? CampaignAdmin.country_id : 39;
       const state = CampaignAdmin?.state_id > 0 ? CampaignAdmin.state_id : 3830;
-      console.log('~~ ~~ ',{state_id_gt_0: CampaignAdmin?.state_id > 0, country_id_gt_0: CampaignAdmin?.country_id > 0});
-      console.log('~~ ~~ defaults: {39, 3830}:', {country, state});
+      console.log('~~ ~~ ', {
+        state_id_gt_0: CampaignAdmin?.state_id > 0,
+        country_id_gt_0: CampaignAdmin?.country_id > 0
+      });
+      console.log('~~ ~~ defaults: {39, 3830}:', { country, state });
       dispatch(setUserCountry(country));
       dispatch(setUserState(state));
     }
@@ -286,14 +292,14 @@ export default function HomeController() {
   }
 
   const getCountryAdvertisement = async (countryId, stateId) => {
-    let data = {countryId, stateId};
+    let data = { countryId, stateId };
     const getCountryAdvertisementList = await advertisementApi.listCountryAdvertisement(data);
 
     if (!getCountryAdvertisementList) return;
 
     if (!getCountryAdvertisementList.data.success) return;
 
-    if (getCountryAdvertisementList.data.data.length <= 0) return; 
+    if (getCountryAdvertisementList.data.data.length <= 0) return;
 
     let tempArray = [];
     getCountryAdvertisementList.data.data.forEach((ad) => {
@@ -304,7 +310,6 @@ export default function HomeController() {
       });
     });
     setCountryAdvertisementList(tempArray);
-
   };
 
   const getHomePageAdList = async () => {
@@ -442,7 +447,6 @@ export default function HomeController() {
       // console.log(Math.floor(10000000 + Math.random() * 90000000))
     })();
   }, [user.distance, allProductList, user.lat, user.lng, dispatch]);
-
 
   useEffect(() => {
     (async () => {
@@ -825,7 +829,7 @@ export default function HomeController() {
         lowPrice,
         countryAdvertisementList,
         homeadvertisementList
-      })
+      });
       console.log('request position useEffect');
       // if no country...
       if (user.countryId === null || user.countryId === undefined || user.countryId === '') {
@@ -850,32 +854,31 @@ export default function HomeController() {
               console.timeEnd('getCurrentPosition');
               try {
                 const res = await fetch('https://ipinfo.io/geo');
-                if (res.status !== 200) throw new Error('Error fetching geo location from ipinfo.io/geo')
+                if (res.status !== 200)
+                  throw new Error('Error fetching geo location from ipinfo.io/geo');
 
                 const json = await res.json();
-                console.log('~~ ~~ ~~ ipinfo.io response:',{res, json});
+                console.log('~~ ~~ ~~ ipinfo.io response:', { res, json });
 
                 const [latitude, longitude] = json.loc.split(',');
                 const backupPosition = {
                   coords: {
                     latitude,
-                    longitude,
+                    longitude
                   }
-                }
+                };
                 showPosition(backupPosition);
-
               } catch (backupError) {
-                console.log('~~ ~~ ~~ ipinfo.io ERROR:', {backupError});
+                console.log('~~ ~~ ~~ ipinfo.io ERROR:', { backupError });
                 showError(error);
               }
             },
-            { 
+            {
               maximumAge: 1_000 * 60 * 60 * 24, // DON'T fetch again if last location is under one day old
               //enableHighAccuracy: true, // MAKES IT SLOWER BY 6X (in one test)
-              timeout: 10_000,  // force escape the geo attempt if longer than this ms
+              timeout: 10_000 // force escape the geo attempt if longer than this ms
             }
           );
-    
         } else {
           console.log('~~ NO geolocation api is NOT available, setting a default position:');
           // fallback; if no geolocation avaialble, set it to a default
@@ -895,7 +898,10 @@ export default function HomeController() {
         setLoading(false);
       }
 
-      console.log('(advertisement starts, building ad lists)', {countryAdvertisementList, homeadvertisementList});
+      console.log('(advertisement starts, building ad lists)', {
+        countryAdvertisementList,
+        homeadvertisementList
+      });
 
       // now filter the advertisement list
       if (countryAdvertisementList.length > 0 && homeadvertisementList.length > 0) {
@@ -1122,7 +1128,6 @@ export default function HomeController() {
     await filterProduct(lowPrice, HighPrice, finalArray, user.countryId);
     setLoading(false);
   };
-
 
   const onChangeDonatePrice = async (e) => {
     let value = e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, '');

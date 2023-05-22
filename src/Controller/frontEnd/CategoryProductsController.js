@@ -1,40 +1,40 @@
 import Index from '../../View/frontEnd/Layout/Home/Index';
 import productApi from '../../Api/frontEnd/product';
-import React, { useState, useEffect, useContext } from 'react';
-import FrontLoader from '../../Common/FrontLoader';
+import React, { useState, useEffect } from 'react';
+//import FrontLoader from '../../Common/FrontLoader';
 import ToastAlert from '../../Common/ToastAlert';
 import cartApi from '../../Api/frontEnd/cart';
-import settingApi from '../../Api/admin/setting';
+//import settingApi from '../../Api/admin/setting';
 // import { UserContext } from '../../App';
-import adminCampaignApi from '../../Api/admin/adminCampaign';
+//import adminCampaignApi from '../../Api/admin/adminCampaign';
 import categoryApi from '../../Api/admin/category';
-import locationApi from '../../Api/frontEnd/location';
+//import locationApi from '../../Api/frontEnd/location';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  setCurrency,
-  setUserLanguage,
-  setCurrencyPrice,
-  setProfileImage,
+  //setCurrency,
+  //setUserLanguage,
+  //setCurrencyPrice,
+  //setProfileImage,
   setIsUpdateCart,
-  setUserCountry,
-  setUserAddress,
+  //setUserCountry,
+  //setUserAddress,
   setProductCount,
   setLocationFilter
 } from '../../user/user.action';
 import advertisementApi from '../../Api/admin/advertisement';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { arrayUnique, getCalculatedPrice } from '../../Common/Helper';
+import { useParams, useNavigate } from 'react-router-dom';
+//import { getCalculatedPrice } from '../../Common/Helper';
 import wishlistApi from '../../Api/frontEnd/wishlist';
 import { getDistance } from 'geolib';
 import Page from '../../components/Page';
 
-export function CategoryProductsController(){
+export function CategoryProductsController() {
   const [productList, setProductList] = useState([]);
-  const [advertisementList, setAdvertisementList] = useState([]);
+  //const [advertisementList, setAdvertisementList] = useState([]);
   const [homeadvertisementList, setHomeAdvertisementList] = useState([]);
   const [categoryadvertisementList, setCategoryAdvertisementList] = useState([]);
-  const [countryAdvertisementList, setCountryAdvertisementList] = useState([]);
-  const getCalc = getCalculatedPrice();
+  //const [countryAdvertisementList, setCountryAdvertisementList] = useState([]);
+  //const getCalc = getCalculatedPrice();
   const navigate = useNavigate();
 
   const [wishListproductList, setWishListProductList] = useState([]);
@@ -59,10 +59,10 @@ export function CategoryProductsController(){
   const [seletedCategoryList, setSeletedCategoryList] = useState([]);
   const [selectedKey, setSelectedKey] = useState(3);
   const dispatch = useDispatch();
-  const userData = JSON.parse(localStorage.getItem('userData'));
-  const CampaignAdmin = JSON.parse(localStorage.getItem('CampaignAdmin'));
+  //const userData = JSON.parse(localStorage.getItem('userData'));
+  //const CampaignAdmin = JSON.parse(localStorage.getItem('CampaignAdmin'));
   const params = useParams();
-  const location = useLocation();
+  //const location = useLocation();
   const [categoryDetails, setCategoryDetails] = useState({
     id: '',
     name: '',
@@ -104,11 +104,11 @@ export function CategoryProductsController(){
     highToLow,
     oldEst,
     newEst,
-    leastFunded,
-    mostFunded,
+    //leastFunded,
+    //mostFunded,
     HighPrice,
-    lowPrice,
-    search
+    lowPrice
+    //search
   } = filters;
 
   const [pricingFees, setPricingFees] = useState({
@@ -116,7 +116,7 @@ export function CategoryProductsController(){
     transactionFee: 0
   });
 
-  const { platformFee, transactionFee } = pricingFees;
+  //const { platformFee, transactionFee } = pricingFees;
 
   const onClickFilter = (e) => {
     setfilters({
@@ -142,14 +142,14 @@ export function CategoryProductsController(){
     }
   };
 
-  const getHomePageAdList = async () => {
-    const adList = await advertisementApi.listHomeAd(token);
-    if (adList) {
-      if (adList.data.success === true) {
-        setHomeAdvertisementList(adList.data.data);
-      }
-    }
-  };
+  //const getHomePageAdList = async () => {
+  //const adList = await advertisementApi.listHomeAd(token);
+  //if (adList) {
+  //if (adList.data.success === true) {
+  //setHomeAdvertisementList(adList.data.data);
+  //}
+  //}
+  //};
 
   const getCategoryAdList = async (catId) => {
     let data = {};
@@ -158,32 +158,23 @@ export function CategoryProductsController(){
     data.stateId = user.stateId;
 
     const adList = await advertisementApi.categoryPageAdList(data);
-    if (adList) {
-      // console.log('first')
-      if (adList.data.success === true) {
-        if (adList.data.data.length > 0) {
-          let tempArray = [];
-          adList.data.data.map((ad, i) => {
-            tempArray.push(ad.advertisementsDetails);
-          });
-          setCategoryAdvertisementList(tempArray);
-        }
-        // console.log(adList.data.data)
-        // setAdvertisementList(adList.data.data)
-      }
+    if (adList?.data?.success !== true) {
+      return;
     }
+    if (adList.data.data.length > 0) {
+      setCategoryAdvertisementList(adList.data.data.map((ad) => ad.advertisementsDetails));
+    }
+    // console.log(adList.data.data)
+    // setAdvertisementList(adList.data.data)
   };
   const productListByCategory = async (id) => {
     let userCountry = user.countryId;
     const getCategoryProducts = await productApi.listByCategory(token, id, userCountry);
-    if (getCategoryProducts.data.success === true) {
-      if (getCategoryProducts.data.data.length > 0) {
-        let tempArray = [];
-        getCategoryProducts.data.data.map((product, i) => {
-          tempArray.push(product);
-        });
-        setCategoryProducts(tempArray);
-      }
+    if (getCategoryProducts?.data?.success !== true) {
+      return;
+    }
+    if (getCategoryProducts.data.data.length > 0) {
+      setCategoryProducts(getCategoryProducts.data.data.map((product) => product));
     }
   };
 
@@ -207,35 +198,27 @@ export function CategoryProductsController(){
 
   const getWishListProductList = async () => {
     const list = await wishlistApi.list(token);
-    if (list) {
-      if (list.data.success) {
-        setWishListProductList(list.data.data);
-        if (list.data.data.length > 0) {
-          let temp = [];
-          list.data.data.map((item, i) => {
-            temp.push(item.productDetails._id);
-          });
-          setWishListProductIds(temp);
-        } else {
-          setWishListProductIds([]);
-        }
-      }
+    if (!list?.data?.success) {
+      return;
     }
+    setWishListProductList(list.data.data);
+    let temp = [];
+    if (list.data.data.length > 0) {
+      temp = list.data.data.map((item) => item.productDetails._id);
+    }
+    setWishListProductIds(temp);
   };
 
   const getCartList = async () => {
     const getCartList = await cartApi.list(userAuthToken);
-    if (getCartList.data.success === true) {
-      if (getCartList.data.data.length > 0) {
-        let productIds = [];
-        getCartList.data.data.map((p, i) => {
-          productIds.push(p.productId);
-        });
-        setCartProductIds(productIds);
-      } else {
-        setCartProductIds([]);
-      }
+    if (getCartList.data.success !== true) {
+      return;
     }
+    let productIds = [];
+    if (getCartList.data.data.length > 0) {
+      productIds = getCartList.data.data.map((p) => p.productId);
+    }
+    setCartProductIds(productIds);
   };
 
   const addProductToWishlist = async (productId) => {
@@ -257,14 +240,17 @@ export function CategoryProductsController(){
       ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
     }
   };
+
   useEffect(() => {
     (async () => {
-      if (userAuthToken) {
-        await getCartList();
-
-        await getWishListProductList();
-        setLoading(false);
+      if (!userAuthToken) {
+        return;
       }
+
+      await getCartList();
+
+      await getWishListProductList();
+      setLoading(false);
     })();
   }, [user.isUpdateCart]);
 
@@ -295,9 +281,9 @@ export function CategoryProductsController(){
 
           let productTagsArray = [];
           await Promise.all(
-            getproductList.data.data.map(async (p, i) => {
+            getproductList.data.data.map(async (p) => {
               await Promise.all(
-                p.tags.map((value, i) => {
+                p.tags.map((value) => {
                   let tempObj = {};
                   tempObj.color = p.categoryDetails.color ? p.categoryDetails.color : 'red';
 
@@ -352,7 +338,7 @@ export function CategoryProductsController(){
         let productArray = [];
 
         if (categoryProducts.length > 0 && d > 1) {
-          categoryProducts.map((p, i) => {
+          categoryProducts.map((p) => {
             if (p.lat && p.lng) {
               let dis = getDistance(
                 { latitude: user.lat, longitude: user.lng },
@@ -677,7 +663,7 @@ export function CategoryProductsController(){
 
             let finalArray = [];
             if (t.length > 0) {
-              t.map((t1, key) => {
+              t.map((t1) => {
                 finalArray.push(t1.tag);
               });
             }
@@ -709,7 +695,7 @@ export function CategoryProductsController(){
       let p = productList.filter((e) => Number(e.displayPrice ? e.displayPrice : e.price) < value);
 
       if (p.length > 0) {
-        p.map((itm, key) => {
+        p.map((itm) => {
           let price1 = Number(itm.displayPrice ? itm.displayPrice : itm.price);
           // if (value > cartTotal + getCalc.getData(itm.price)) {
           if (value > cartTotal + price1) {
@@ -727,7 +713,6 @@ export function CategoryProductsController(){
                 cartTotal += price1 * 2;
               }
             } else {
-              let counts = {};
               // cart.forEach(function (x) { counts[x] = (counts[x] || 0) + 1 })
               let checkQ = Number(itm.quantity) - Number(itm.soldout);
               if (!p_ids[itm._id]) {
@@ -797,7 +782,7 @@ export function CategoryProductsController(){
             }
 
             if (p.length > 0) {
-              p.map((itm, key) => {
+              p.map((itm) => {
                 let price3 = itm.displayPrice ? itm.displayPrice : itm.price;
                 // if (value > cartTotal + getCalc.getData(itm.price)) {
                 if (value > cartTotal + price3) {
@@ -817,7 +802,6 @@ export function CategoryProductsController(){
                       cartTotal += price3;
                     }
                   } else {
-                    let counts = {};
                     // cart.forEach(function (x) { counts[x] = (counts[x] || 0) + 1 })
                     let checkQ = Number(itm.quantity) - Number(itm.soldout);
                     if (!p_ids[itm._id]) {
@@ -856,7 +840,7 @@ export function CategoryProductsController(){
       if (cartProductList.length > 0) {
         let data = {};
         let tempArray = [];
-        cartProductList.map((itm, i) => {
+        cartProductList.map((itm) => {
           let tempobj = {};
           if (tempArray.some((e) => e.productId === itm)) {
             let objIndex = tempArray.findIndex((obj) => obj.productId === itm);
@@ -908,7 +892,7 @@ export function CategoryProductsController(){
 
     let finalArray = [];
     if (tags.length > 0) {
-      tags.map((t1, key) => {
+      tags.map((t1) => {
         finalArray.push(t1.tag);
       });
     }

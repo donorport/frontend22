@@ -1,6 +1,6 @@
 import ToastAlert from '../../Common/ToastAlert';
 import { validateAll } from 'indicative/validator';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import adminCampaignApi from '../../Api/admin/adminCampaign';
 import Apply from '../../View/frontEnd/apply';
@@ -66,18 +66,7 @@ export default function ApplyOrganizationController() {
     error: []
   });
 
-  const {
-    error,
-    name,
-    organization,
-    ein,
-    email,
-    confirmEmail,
-    password,
-    cpassword,
-    country,
-    category
-  } = state;
+  const { name, organization, ein, email, password, country, category } = state;
 
   useEffect(() => {
     (async () => {
@@ -107,7 +96,7 @@ export default function ApplyOrganizationController() {
     if (getCategoryList.data.success === true) {
       if (getCategoryList.data.data.length > 0) {
         let tempArray = [];
-        getCategoryList.data.data.map((category, i) => {
+        getCategoryList.data.data.map((category) => {
           let Obj = {};
           Obj.value = category._id;
           Obj.label = category.name;
@@ -126,7 +115,7 @@ export default function ApplyOrganizationController() {
     if (getCountryList) {
       if (getCountryList.data.success) {
         if (getCountryList.data.data.length > 0) {
-          getCountryList.data.data.map((country, i) => {
+          getCountryList.data.data.map((country) => {
             let Obj = {};
             Obj.value = country.id;
             Obj.label = country.country;
@@ -214,7 +203,6 @@ export default function ApplyOrganizationController() {
   ));
 
   const apply = () => {
-
     validateAll(state, APPLY_rules, APPLY_message)
       .then(async () => {
         setLoading(true);
@@ -311,22 +299,22 @@ export default function ApplyOrganizationController() {
 
   return (
     <>
-        <Apply
-          stateData={state}
-          blocks={blocks}
-          activateCode={activateCode}
-          selected={selected}
-          onValueChange={onValueChange}
-          changevalue={changevalue}
-          apply={apply}
-          countryList={countryList}
-          onChangeCountry={onChangeCountry}
-          defaultCountry={defaultCountry}
-          categoryList={categoryList}
-          defaultCategory={defaultCategory}
-          onChangeCategory={onChangeCategory}
-          loading={loading}
-        />
+      <Apply
+        stateData={state}
+        blocks={blocks}
+        activateCode={activateCode}
+        selected={selected}
+        onValueChange={onValueChange}
+        changevalue={changevalue}
+        apply={apply}
+        countryList={countryList}
+        onChangeCountry={onChangeCountry}
+        defaultCountry={defaultCountry}
+        categoryList={categoryList}
+        defaultCategory={defaultCategory}
+        onChangeCategory={onChangeCategory}
+        loading={loading}
+      />
     </>
   );
 }
