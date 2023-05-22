@@ -115,7 +115,7 @@ function AdminTabs({ activeKey, data, _onClick, ...otherProps }) {
               <span className="tab__icon">
                 <ProjectIcon active={activeKey === 'project'} />
               </span>
-              <span className="tab__text">Project</span>
+              <span className="tab__text">Projects</span>
             </Nav.Link>
           </Nav.Item>
         </Link>
