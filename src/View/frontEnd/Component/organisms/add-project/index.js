@@ -12,7 +12,41 @@ import noimg from '../../../../../assets/images/noimg1.png';
 import Textarea from '../text-area';
 import Input from '../input';
 import './style.scss';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
+
+const STYLES_FileUploadInput = {
+  position: 'absolute',
+  margin: 0,
+  padding: 0,
+  width: '100%',
+  height: '100%',
+  outline: 'none',
+  opacity: 0,
+  cursor: 'pointer'
+};
+
+const STYLES_ImageUploadWrap = {
+  marginTop: '20px',
+  // border: " 4px dashed #3773c6",
+  position: 'relative',
+  width: '100%'
+};
+
+const id1 = 'name';
+const max25 = 25;
+const title1 = 'Name';
+const placeholder1 = 'Ex: Christmas Drive';
+
+const id2 = 'headline';
+const max45 = 45;
+const title2 = 'Headline';
+const placeholder2 = 'Ex: Feeding the homeless every Friday night';
+
+const id3 = 'description';
+const rows3 = 5;
+const max250 = 250;
+const title3 = 'Description';
+const placeholder3 = 'Enter some details about your need';
 
 const AddProject = (props) => {
   const { status, name, headline, video, description, error, infinite } =
@@ -31,41 +65,27 @@ const AddProject = (props) => {
   let discardProject = props.discardProject;
 
   console.log({productList})
-  const [id1] = useState('name');
-  const [id2] = useState('headline');
-  const [id3] = useState('description');
-  const [title1] = useState('Name');
-  const [title2] = useState('Headline');
-  const [title3] = useState('Description');
-  const [placeholder1] = useState('Ex: Christmas Drive');
-  const [placeholder2] = useState('Ex: Feeding the homeless every Friday night');
-  const [placeholder3] = useState('Enter some details about your need');
-  const [rows3] = useState(5);
-  const [max25] = useState(25);
-  const [max45] = useState(45);
-  const [max250] = useState(250);
+  //const [id1] = useState('name');
+  //const [max25] = useState(25);
+  //const [title1] = useState('Name');
+  //const [placeholder1] = useState('Ex: Christmas Drive');
+
+  //const [id2] = useState('headline');
+  //const [max45] = useState(45);
+  //const [title2] = useState('Headline');
+  //const [placeholder2] = useState('Ex: Feeding the homeless every Friday night');
+
+  //const [id3] = useState('description');
+  //const [rows3] = useState(5);
+  //const [max250] = useState(250);
+  //const [title3] = useState('Description');
+  //const [placeholder3] = useState('Enter some details about your need');
+
 
   const change = async (e) => {
     props.changevalue(e);
   };
 
-  const fileuploadinput = {
-    position: 'absolute',
-    margin: 0,
-    padding: 0,
-    width: '100%',
-    height: '100%',
-    outline: 'none',
-    opacity: 0,
-    cursor: 'pointer'
-  };
-
-  const imageuploadwrap = {
-    marginTop: '20px',
-    // border: " 4px dashed #3773c6",
-    position: 'relative',
-    width: '100%'
-  };
 
   return (
     <div className="add__project">
@@ -278,7 +298,7 @@ const AddProject = (props) => {
               <div
                 className="image-upload-wrap fs-2"
                 style={{
-                  ...imageuploadwrap,
+                  ...STYLES_ImageUploadWrap,
                   backgroundColor: '#e5f4ff',
                   borderRadius: '9px',
                   border: '2px dashed rgba(62, 170, 255, 0.58)',
@@ -296,7 +316,7 @@ const AddProject = (props) => {
                   multiple
                   onChange={(e) => props.changefile(e)}
                   title=" "
-                  style={fileuploadinput}
+                  style={STYLES_FileUploadInput}
                 />
                 <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
                   <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
