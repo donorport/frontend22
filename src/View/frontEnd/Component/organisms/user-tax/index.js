@@ -183,7 +183,7 @@ const UserTax = () => {
       <header className="py-sm-2 pb-2 w-100 d-sm-flex align-items-center">
         <div className="me-sm-2 flex-grow-1">
           <h1 className="d-sm-flex page__title fs-3 fw-bolder">Annual Tax Receipts</h1>
-          <p className="d-sm-block fs-6 text-light">
+          <p className="d-sm-block fs-5 text-light">
             View your order history and download your tax receipts here. Your files will be
             available for download once they have been uploaded by the charity. The values listed in
             the table below represent the amount paid to the charity less any non-deductible service

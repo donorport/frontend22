@@ -98,9 +98,15 @@ const UserItems = () => {
       {/*<FrontLoader loading={loading} />*/}
       {!detail.show ? (
         <div>
-          <header className="py-sm-2 pb-2 mb-3 w-100 d-none d-sm-flex align-items-center">
-            <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">My Items</h1>
-            <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
+          <header className="py-sm-2 pb-2 mb-2 w-100 d-none d-sm-flex align-items-center">
+            <div className="me-sm-2 flex-grow-1">
+              <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">My Items</h1>
+              <p className="d-sm-block fs-5 text-light">
+                Check in on the items you donated to. Click on the title of the item to view the
+                post details and see follow-up media and view sales and tax receipt file uploads.
+              </p>
+              <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
+            </div>
             {totalPriceArray.length > 0 &&
               totalPriceArray.map((val, index) => {
                 return (

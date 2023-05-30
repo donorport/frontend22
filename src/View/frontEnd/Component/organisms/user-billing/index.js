@@ -191,7 +191,7 @@ const UserBilling = () => {
                           </div>
                           <div className="fw-semibold text-light fs-7">{moment(date).format('MMMM DD, YYYY')}</div>
                         </div>
-                        <div className="d-sm-none order__link text-subtext mt-6p me-sm-3">
+                        <div className="d-sm-none order__link text-subtext mt-6p">
                           #{TransactionId}
                         </div>
                       </div>
@@ -243,7 +243,7 @@ const UserBilling = () => {
                                 </div>
                                 <div className="fw-semibold text-light fs-7">{moment(date).format('MMMM DD, YYYY')}</div>
                               </div>
-                              <div className="d-sm-none order__link text-subtext mt-6p me-sm-3">
+                              <div className="d-sm-none order__link text-subtext mt-6p">
                                 #{TransactionId}
                               </div>
                             </div>

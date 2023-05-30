@@ -162,7 +162,7 @@ const Product = (props) => {
       cart_btn
     );
   return (
-    <div className="product border p-2">
+    <div className="product p-1">
       <Link
         to={'/categories/' + categorySlug}
         // params={{ testvalue: "hello" }}
@@ -199,7 +199,7 @@ const Product = (props) => {
           </div>
         </div>
         <div className="product__mid d-flex align-items-center justify-content-center">
-          <div className="proudct__img-wrap d-flex align-items-center justify-content-center">
+          <div className="margin-auto position-absolute proudct__img-wrap d-flex align-items-center justify-content-center">
             <Link to={'/item/' + props.slug}>
               <img
                 className="product__img img-fluid"
@@ -210,7 +210,7 @@ const Product = (props) => {
           </div>
         </div>
         <div className="product__right position-relative d-flex flex-column align-items-center pt-12p">
-          <div className="flex-grow-1 product__org">
+          <div className="d-flex me-1 justify-content-end product__org">
             <Link to={'/organization/' + props.campaignDetails?.slug} className="">
               <img alt="" className="img-fluid org__img charity_avatar_bg" src={organisation} />
             </Link>
@@ -271,7 +271,7 @@ const Product = (props) => {
         )}
       </div>
 
-      <div className="product__details border-top d-flex align-items-center pt-2 px-1">
+      <div className="product__details d-flex align-items-center py-2 px-2">
         {<div className="d-flex">{btn}</div>}
         <div className="product__meta d-flex align-items-center ms-auto">
           {(props.projectDetails?.length > 0 || props.projectProducts.length > 0) && (

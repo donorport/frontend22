@@ -31,7 +31,7 @@ function OrganisationTeamItem(props) {
         <div className="org__team__item__title pr-12p">
           <div className="org__team__item__name mb-3p text-dark fw-bold fs-5">{name}</div>
           {props.showEmail ? (
-            <div className="org__team__item__location text-light fw-light mb-6p fs-5">{email}</div>
+            <div className="org__team__item__location text-light fw-light mb-6p fs-6">{email}</div>
           ) : (
             ''
           )}

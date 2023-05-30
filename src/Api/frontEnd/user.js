@@ -90,7 +90,7 @@ function user() {
     return res;
   };
 
-  const getUserOrderDetails = async (authToken, pageNo) => {
+  const getUserOrderDetails = async (authToken, formData) => {
     let res = {};
     await axios({
       method: 'post',
@@ -104,9 +104,7 @@ function user() {
         withCredentials: true,
         mode: 'no-cors'
       },
-      data: {
-        pageNo: pageNo
-      }
+      data: formData
     }).then((response) => {
       res = response;
     });

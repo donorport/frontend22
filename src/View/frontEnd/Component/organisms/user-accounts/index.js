@@ -39,8 +39,8 @@ const UserAccounts = () => {
           <div className="linked__item d-flex align-items-center p-1">
             <div className="accounts__icon">
               <ListItemImg
-                size={42}
-                className="rounded-circle p-2"
+                size={24}
+                className="p-1"
                 imgSrc={share}
               />
             </div>

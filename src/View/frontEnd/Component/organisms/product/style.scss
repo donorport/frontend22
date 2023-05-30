@@ -52,11 +52,12 @@
 
   // .product__org
   &__org {
-    width: 40px;
+    width: 90px;
     // height: 32px;
     text-align: center;
 
     .org__img {
+      width: 40px;
       max-height: 100%;
     }
   }
@@ -114,13 +115,14 @@
     //color: #45bb82;
     font-size: 16px;
     font-weight: 900;
-    background: #f8fafd;
     border-radius: 12px;
   }
 
   // .product__details
   &__details {
     // height: 40px;
+    background: #f8fafd;
+    border-radius: 9px
     // padding: 12px;
   }
   // .product__header
