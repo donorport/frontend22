@@ -59,11 +59,11 @@ const ActivityTable = (props) => {
             activityList.map((list, i) => {
               // console.log(list)
               return (
-                <li className="table__list-item px-2 py-1 border-bottom">
+                <li className="table__list-item px-2 border-bottom">
                   <div className="d-sm-flex align-items-center flex-grow-1">
                     <div className="d-flex align-items-center me-sm-2 flex__1">
                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
-                        <div className="text-light fw-bold fs-4">
+                        <div className="text-light fw-bold fs-5">
                           {list.type === 'BOUGHT' || list.type === 'DONATED'
                             ? data.symbol + priceFormat(list.amount)
                             : ''}

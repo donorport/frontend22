@@ -67,7 +67,8 @@ const ProductList = ({ allProps }) =>
   allProps.productList.map(
     (item, index) =>
       item.status === 1 && (
-        <Col sm="6" md="4" lg="3" className="mb-2" key={index}>
+        // <Col sm="6" md="4" lg="3" className="mb-2" key={index}>
+        <Col sm="6" md="4" lg="3" className="p-2" key={index}>
           <Product
             {...item}
             addToCart={allProps.addToCart}
@@ -372,7 +373,7 @@ export default function Index(props) {
               {props.filters.taxEligible ? (
                 <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
                   <span className="filter__item-icon">
-                    <FontAwesomeIcon icon={solid('calculator')} color="#3a94d4" />
+                    <FontAwesomeIcon icon={solid('paperclip')} color="#3a94d4" />
                   </span>
                   <Button
                     variant="link"

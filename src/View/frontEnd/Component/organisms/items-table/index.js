@@ -70,7 +70,7 @@ const ItemsTable = (props) => {
                   : item.itemDetails.price * item.quantity;
 
               return (
-                <li className="table__list-item p-2 border-bottom" key={key}>
+                <li className="table__list-item px-2 py-2 border-bottom" key={key}>
                   <div className="d-xl-flex align-items-center flex-grow-1">
                     <Button
                       variant="link"
@@ -165,8 +165,8 @@ const ItemsTable = (props) => {
                         {item.itemDetails?.tax && (
                           <span className="category__link p-1 text-decoration-none">
                             <FontAwesomeIcon
-                              icon={solid('calculator')}
-                              className="fs-3 text-info"
+                              icon={solid('paperclip')}
+                              className="fs-3 text-primary"
                             />
                           </span>
                         )}
@@ -187,7 +187,7 @@ const ItemsTable = (props) => {
                           <span className="category__link p-1 text-decoration-none">
                             <FontAwesomeIcon
                               icon={solid('clapperboard-play')}
-                              className="fs-3 text-info"
+                              className="fs-3 text-primary"
                             />
                           </span>
                         )}

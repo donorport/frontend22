@@ -414,7 +414,7 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
     {productDetails.postTag && (
       <IconText
         className="pt-12p pb-12p"
-        icon={<FontAwesomeIcon icon={solid('tag')} className="fs-3 text-info pt-12p pb-12p" />}
+        icon={<FontAwesomeIcon icon={solid('tag')} className="fs-3 text-primary pt-12p pb-12p" />}
       >
         Item was already purchased by the organization. Your purchase will cover those costs.
       </IconText>
@@ -431,7 +431,7 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
     {productDetails.tax && (
       <IconText
         className="pt-12p pb-12p"
-        icon={<FontAwesomeIcon icon={solid('calculator')} className="fs-3 text-info" />}
+        icon={<FontAwesomeIcon icon={solid('paperclip')} className="fs-3 text-primary" />}
       >
         These items are tax deductible.
       </IconText>
@@ -439,7 +439,7 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
     {productDetails.media && (
       <IconText
         className="pt-12p pb-12p"
-        icon={<FontAwesomeIcon icon={solid('image')} className="fs-3 text-info" />}
+        icon={<FontAwesomeIcon icon={solid('image')} className="fs-3 text-primary" />}
       >
         The organization has indicated that they will upload Media from their purchase.
       </IconText>
@@ -458,7 +458,7 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
               className="pt-12p pb-12p"
               icon={
                 // <FontAwesomeIcon icon="fa-solid fa-rectangle-ad" />
-                <FontAwesomeIcon icon={solid('rectangle-ad')} className="fs-3 text-info" />
+                <FontAwesomeIcon icon={solid('rectangle-ad')} className="fs-3 text-primary" />
               }
               key={ad._id}
             >

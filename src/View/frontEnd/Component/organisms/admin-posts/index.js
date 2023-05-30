@@ -431,29 +431,71 @@ const AdminPosts = () => {
   // used when uploading a file, saves the file to state
   const changeMainImg = async (e) => {
     const file = e.target.files[0] ? e.target.files[0] : '';
-
+    setLoading(true);
     const isFileHaveAlpha = await hasAlpha(file);
-    if (!isFileHaveAlpha) {
-      ToastAlert({
-        msg: 'Please upload an image with transparent background',
-        msgType: 'error'
-      });
-      setstate({
-        ...state,
-        image: ''
-      });
-      setTempImg('');
-      return;
-    }
+
+    // if (!isFileHaveAlpha) {
+    //   ToastAlert({
+    //     msg: 'Please upload an image with a transparent background',
+    //     msgType: 'error'
+    //   });
+    //   setstate({
+    //     ...state,
+    //     image: file
+    //   });
+    //   setTempImg(URL.createObjectURL(file));
+    //   return;
+    // }
 
     let extension = file.name.substr(file.name.lastIndexOf('.') + 1);
 
-    if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
-      setTempImg(URL.createObjectURL(file));
-      setstate({ ...state, image: file });
-    } else {
-      setstate({ ...state, image: '' });
-    }
+    setTimeout(() => {
+      if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
+        // Use remove.bg API to remove background only if image is not transparent
+        if (!isFileHaveAlpha) {
+          //Remove the alert when live::
+          // ToastAlert({
+          //   msg: 'Please upload an image with a transparent background',
+          //   msgType: 'error'
+          // });
+          setLoading(false);
+          // Working Code to Auto-remove BG on non-transparent images:::
+
+          const formData = new FormData();
+          formData.append('image_file', file);
+          formData.append('size', 'auto');
+
+          fetch('https://api.remove.bg/v1.0/removebg', {
+            method: 'POST',
+            headers: {
+              // 'X-API-Key': 'PU1dB98cyNC8WdeCT6cR1v8C' // Replace with your remove.bg API key
+              'X-API-Key': 'DAbtpKuv6tt8wzNJP7Qua5jy' // Replace with your remove.bg API key
+            },
+            body: formData
+          })
+            .then((response) => response.blob())
+            .then((result) => {
+              const modifiedFile = new File([result], file.name, { type: 'image/png' });
+              setTempImg(URL.createObjectURL(modifiedFile));
+              setstate({ ...state, image: modifiedFile });
+              setLoading(false);
+            })
+            .catch((error) => {
+              console.error('Failed to remove background:', error);
+              setstate({ ...state, image: '' });
+              setLoading(false);
+            });
+        } else {
+          setTempImg(URL.createObjectURL(file));
+          setstate({ ...state, image: file });
+          setLoading(false);
+        }
+      } else {
+        setstate({ ...state, image: '' });
+        setTempImg('');
+        setLoading(false);
+      }
+    }, 5000);
   };
 
   const clearReceiptFileState = () => {
@@ -812,7 +854,7 @@ const AdminPosts = () => {
         }
 
         // Api Call for update Profile
-        console.log('~~ ~~ ~~ CREATE PRODUCT -', {formData, id});
+        console.log('~~ ~~ ~~ CREATE PRODUCT -', { formData, id });
         setLoading(true);
         let addProduct =
           id !== ''
@@ -828,7 +870,10 @@ const AdminPosts = () => {
         if (addProduct.data.success === false) {
           setLoading(false);
           ToastAlert({ msg: addProduct.data.message, msgType: 'error' });
-          console.log('~~ ~~ ~~ CREATE PRODUCT - addProduct.data.message:', addProduct.data.message);
+          console.log(
+            '~~ ~~ ~~ CREATE PRODUCT - addProduct.data.message:',
+            addProduct.data.message
+          );
           return;
         }
 
@@ -1357,7 +1402,9 @@ const AdminPosts = () => {
     //}
     //
     //
-    console.log('~ ~! pre-inject: is this the newly-uploaded receipt?', {fulfilStateReceiptFile: fulfilState.receiptFile})
+    console.log('~ ~! pre-inject: is this the newly-uploaded receipt?', {
+      fulfilStateReceiptFile: fulfilState.receiptFile
+    });
 
     // both of these will be sent to the api/backend
     const oldReceipt = fulfilProductDetails.fulfilDetails?.receipt ?? '';
@@ -1365,7 +1412,7 @@ const AdminPosts = () => {
 
     // injecting the receipt file (if uploaded previously) so we can pass validation
     // if NO new receipt file, if old receipt file exists, use it; else we don't have a receipt file
-    const modifiedState = {...fulfilState};
+    const modifiedState = { ...fulfilState };
     if (!newReceipt || newReceipt === '') {
       modifiedState.receiptFile = oldReceipt;
     }
@@ -1394,7 +1441,7 @@ const AdminPosts = () => {
         if (modifiedState.receiptFile) {
           formData.newReceipt = newReceipt;
         }
-        
+
         // send over old receipt, if exists
         if (oldReceipt) {
           formData.oldReceipt = oldReceipt;

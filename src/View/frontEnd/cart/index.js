@@ -147,7 +147,7 @@ const Cart = (props) => {
                     <div className="d-flex align-items-center flex-grow-sm-0 flex-grow-1 justify-content-start justify-content-sm-end ">
                       {item.productDetails?.tax && (
                         <div className="checkout__tax p-1 d-flex align-items-center justify-content-center order-sm-0 order-1">
-                          <FontAwesomeIcon icon={solid('calculator')} className="text-info fs-4" />
+                          <FontAwesomeIcon icon={solid('paperclip')} className="text-primary fs-4" />
                         </div>
                       )}
                       <Link

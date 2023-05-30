@@ -814,7 +814,7 @@ export default function HomeController() {
 
   // request position
   useEffect(() => {
-    (async () => {
+    const fetchData = async () => {
       console.log({
         taxEligible,
         postTag,
@@ -831,91 +831,87 @@ export default function HomeController() {
         homeadvertisementList
       });
       console.log('request position useEffect');
-      // if no country...
-      if (user.countryId === null || user.countryId === undefined || user.countryId === '') {
-        console.log('~~ non-existant countryId, checking if can get location:');
+  
+      // Check if countryId exists
+      if (!user.countryId) {
+        console.log('~~ non-existent countryId, checking if location can be obtained:');
+  
         if (navigator && navigator.geolocation) {
-          // if location is available, attempt getCurrentPosition
+          // If geolocation API is available, attempt to get current position
           console.log('~~ YES geolocation API exists, getting current position...');
           console.time('getCurrentPosition');
-
-          // DUMMY CALL, hopefully helps to make the second call work??
-          //navigator.geolocation.getCurrentPosition(() => {}, () => {}, {});
-
-          // ACTUAL CALL
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              console.log('** success callback wrapper');
-              console.timeEnd('getCurrentPosition');
-              showPosition(position);
-            },
-            async (error) => {
-              console.log('** error callback wrapper, attempting ipinfo.io lookup');
-              console.timeEnd('getCurrentPosition');
-              try {
-                const res = await fetch('https://ipinfo.io/geo');
-                if (res.status !== 200)
-                  throw new Error('Error fetching geo location from ipinfo.io/geo');
-
-                const json = await res.json();
-                console.log('~~ ~~ ~~ ipinfo.io response:', { res, json });
-
-                const [latitude, longitude] = json.loc.split(',');
-                const backupPosition = {
-                  coords: {
-                    latitude,
-                    longitude
-                  }
-                };
-                showPosition(backupPosition);
-              } catch (backupError) {
-                console.log('~~ ~~ ~~ ipinfo.io ERROR:', { backupError });
-                showError(error);
-              }
-            },
-            {
-              maximumAge: 1_000 * 60 * 60 * 24, // DON'T fetch again if last location is under one day old
-              //enableHighAccuracy: true, // MAKES IT SLOWER BY 6X (in one test)
-              timeout: 10_000 // force escape the geo attempt if longer than this ms
+  
+          try {
+            const position = await new Promise((resolve, reject) => {
+              navigator.geolocation.getCurrentPosition(resolve, reject, {
+                maximumAge: 1000 * 60 * 60 * 24, // DON'T fetch again if last location is under one day old
+                timeout: 10000 // force escape the geo attempt if longer than this ms
+              });
+            });
+  
+            console.log('** success callback wrapper');
+            console.timeEnd('getCurrentPosition');
+            showPosition(position);
+          } catch (error) {
+            console.log('** error callback wrapper, attempting ipinfo.io lookup');
+            console.timeEnd('getCurrentPosition');
+  
+            try {
+              const res = await fetch('https://ipinfo.io/geo');
+              if (res.status !== 200)
+                throw new Error('Error fetching geo location from ipinfo.io/geo');
+  
+              const json = await res.json();
+              console.log('~~ ~~ ~~ ipinfo.io response:', { res, json });
+  
+              const [latitude, longitude] = json.loc.split(',');
+              const backupPosition = {
+                coords: {
+                  latitude,
+                  longitude
+                }
+              };
+              showPosition(backupPosition);
+            } catch (backupError) {
+              console.log('~~ ~~ ~~ ipinfo.io ERROR:', { backupError });
+              showError(error);
             }
-          );
-        } else {
-          console.log('~~ NO geolocation api is NOT available, setting a default position:');
-          // fallback; if no geolocation avaialble, set it to a default
-          if (userAuthToken) {
-            console.log('~~ ~~ userAuthToken => using userData.country_id');
-            dispatch(setUserCountry(userData.country_id));
-          } else {
-            console.log('~~ ~~ NO userAuthToken!! => using CampaignAdmin.country_id');
-            dispatch(setUserCountry(CampaignAdmin.country_id));
           }
+        } else {
+          console.log('~~ NO geolocation API is NOT available, setting a default position:');
+          // fallback; if no geolocation available, set it to a default
+          const countryId = userAuthToken ? userData.country_id : CampaignAdmin.country_id;
+          console.log('~~ ~~ userAuthToken', userAuthToken);
+          console.log('~~ ~~ countryId', countryId);
+          dispatch(setUserCountry(countryId));
         }
       } else {
         console.log('~~ countryId EXISTS, filtering products');
-        // we have the country, so filter the products
+        // We have the country, so filter the products
         setLoading(true);
         await filterProduct(lowPrice, HighPrice, resultTags, user.countryId);
         setLoading(false);
       }
-
+  
       console.log('(advertisement starts, building ad lists)', {
         countryAdvertisementList,
         homeadvertisementList
       });
-
-      // now filter the advertisement list
-      if (countryAdvertisementList.length > 0 && homeadvertisementList.length > 0) {
-        let arr = arrayUnique(countryAdvertisementList.concat(homeadvertisementList));
-        // console.log('arr', arr)
-        setAdvertisementList(arr);
-      } else if (countryAdvertisementList.length > 0 && homeadvertisementList.length === 0) {
-        setAdvertisementList(countryAdvertisementList);
-        // console.log('countryAdvertisementList', countryAdvertisementList)
-      } else if (countryAdvertisementList.length === 0 && homeadvertisementList.length > 0) {
-        setAdvertisementList(homeadvertisementList);
-        // console.log('homeadvertisementList', homeadvertisementList)
+  
+      // Now filter the advertisement list
+      let arr = [];
+      if (countryAdvertisementList.length > 0) {
+        arr = arr.concat(countryAdvertisementList);
       }
-    })();
+      if (homeadvertisementList.length > 0) {
+        arr = arr.concat(homeadvertisementList);
+      }
+      if (arr.length > 0) {
+        setAdvertisementList(arrayUnique(arr));
+      }
+    };
+  
+    fetchData();
   }, [
     taxEligible,
     postTag,
@@ -931,6 +927,7 @@ export default function HomeController() {
     countryAdvertisementList,
     homeadvertisementList
   ]);
+  
 
   const filterProduct = async (
     low_price = lowPrice,

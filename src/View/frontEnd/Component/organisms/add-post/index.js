@@ -25,6 +25,8 @@ import { CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Textarea from '../text-area';
 import Input from '../input';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default; // eslint-disable-line
 
@@ -128,6 +130,7 @@ const AddPost = (props) => {
     category,
     subcategory,
     description,
+    loading,
     price,
     //image,
     quantity,
@@ -243,6 +246,10 @@ const AddPost = (props) => {
   const [max20] = useState(20);
   const [max45] = useState(45);
   const [max250] = useState(250);
+
+  const Banner = () => {
+    return <div className="banner">Loading...</div>;
+  };
 
   return (
     <div className="add-post">
@@ -623,8 +630,8 @@ const AddPost = (props) => {
                         <div className="d-flex gap-2">
                           <div className="d-flex align-items-center">
                             <FontAwesomeIcon
-                              className="fs-3 text-info"
-                              icon={solid('calculator')}
+                              className="fs-3 text-primary"
+                              icon={solid('paperclip')}
                             />
                             <div className="d-flex py-12p px-18p">
                               <ToggleSwitch
@@ -647,7 +654,7 @@ const AddPost = (props) => {
                             </div>
                           </div>
                           <div className="d-flex align-items-center image__switch-wrap">
-                            <FontAwesomeIcon className="fs-3 text-info" icon={solid('image')} />
+                            <FontAwesomeIcon className="fs-3 text-primary" icon={solid('image')} />
                             <div className="d-flex py-12p px-18p">
                               <ToggleSwitch
                                 checked={media}
@@ -667,7 +674,7 @@ const AddPost = (props) => {
                         <div className="d-flex note note--info mb-1 fs-6">
                           <FontAwesomeIcon
                             className="me-2 fs-3 text-info"
-                            icon={solid('calculator')}
+                            icon={solid('paperclip')}
                           />
                           Toggle this if you intend on providing a tax receipt for donations made
                           toward this post.
@@ -705,7 +712,15 @@ const AddPost = (props) => {
                   <div className="col-lg-6">
                     <form className="video-detail-form">
                       <div className="main-upload-image-wrap">
-                        <div className="form__label">Main Image</div>
+                        <div className="form__label">
+                          Main Image{' '}
+                          {props.loading && (
+                            // <CircularProgress className="ms-1" color="inherit" size={21} />
+                            <Box sx={{ width: '100%' }}>
+                              <LinearProgress />
+                            </Box>
+                          )}
+                        </div>
                         <div className="upload-wrap mb-3">
                           {/* <FontAwesomeIcon
                             icon={solid("cloud-arrow-up")}
@@ -746,12 +761,16 @@ const AddPost = (props) => {
                         <p className="error">{error ? (error.image ? error.image : '') : ''}</p>
                         <canvas id="canvas1" width={300} height={300}></canvas>
                       </div>
-                      <div className="note note--info mb-3 fs-6">
-                        <FontAwesomeIcon
-                          icon={regular('circle-info')}
-                          className="text-info icon-method mr-3p"
-                        />
-                        <span className="text-dark">
+                      {props.loading && (
+                        <Box sx={{ width: '100%' }}>
+                          <div className="d-flex note note--info mb-3 fs-5 gap-2">
+                            <CircularProgress color="secondary" size={21}></CircularProgress>
+                            <FontAwesomeIcon
+                              icon={regular('bolt')}
+                              className="text-info icon-method mr-3p fs-4"
+                            />
+                            Processing uploaded image...
+                            {/* <span className="text-dark">
                           Please upload a transparent image of the product. Click{' '}
                           <a
                             href="https://www.youtube.com/watch?v=G3Y5PcuH23Y"
@@ -765,8 +784,20 @@ const AddPost = (props) => {
                             free online tool
                           </a>{' '}
                           to remove a background.
-                        </span>
-                      </div>
+                        </span> */}
+                          </div>
+                        </Box>
+                      )}
+                      {!props.loading && (
+                        <Box sx={{ width: '100%' }}>
+                          <div className="d-flex note note--info mb-3 fs-6">
+                            <span className="text-dark">
+                              Upload an image of the product with a transparent background. The image should
+                              closesly resemble the product you will purchase but does not need to be exact. Accepted file formats: <a className="link">png, jpg, svg</a>
+                            </span>
+                          </div>
+                        </Box>
+                      )}
                       <div>
                         <div className="project-title-optional">
                           <div className="form__label">
@@ -1293,7 +1324,7 @@ const AddPost = (props) => {
           <p className="error">{error ? (error.policy ? error.policy : '') : ''}</p>
         )}
         <div className="note fs-6 mb-5" style={{ maxWidth: '100%' }}>
-          When your post has been fully funded, you are required to upload an image of the sales
+          When your post has been fully funded, you will be asked to upload an image of the sales
           receipt to complete the order. A fuflfill button will appear on funded posts. Click this
           button to upload your sales receipt and complete the order.
         </div>

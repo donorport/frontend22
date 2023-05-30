@@ -144,7 +144,7 @@ const FilterDropdown = (props) => {
                     iconSize={24}
                     activeColor="#3a94d4"
                     icon={<FontAwesomeIcon icon={regular('calculator')} className="tax__icon" />}
-                    checkedIcon={<FontAwesomeIcon icon={solid('calculator')} />}
+                    checkedIcon={<FontAwesomeIcon icon={solid('paperclip')} />}
                     name="taxEligible"
                     onClickFilter={props.onClickFilter}
                     ischecked={props.filters?.taxEligible}

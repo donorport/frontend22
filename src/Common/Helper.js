@@ -479,106 +479,58 @@ export function hasAlpha(file) {
 
     img.onload = () => {
       // create canvas
+      const { width, height } = img;
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
-      canvas.width = img.width;
-      canvas.height = img.height;
+      canvas.width = width;
+      canvas.height = height;
       ctx.drawImage(img, 0, 0);
 
       // get image data
-      const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const imageData = ctx.getImageData(0, 0, width, height);
+      const { data } = imageData;
 
       // check if image has any transparent background
-      const hasTransparent = [...data.data].some((value, index) => {
+      const hasTransparent = Array.from(data).some((value, index) => {
         return index % 4 === 3 && value < 255;
       });
 
-      return hasTransparent ? resolve(true) : resolve(false);
+      resolve(hasTransparent);
     };
   });
-
-  /*  let canvas = document.getElementById("canvas");
-    let ctx = canvas.getContext("2d");
-
-    let img = new Image();
-    img.crossOrigin = 'anonymous'
-    img.onload = start1;
-    img.src = file;
-    function start1() {
-
-        canvas.width = img.width;
-        canvas.height = img.height;
-
-        ctx.drawImage(img, 0, 0);
-
-        let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        let data = imgData.data;
-        let hasAlpha = false;
-        for (let i = 0; i < data.length; i += 4) {
-            if (data[i + 3] < 255) {
-                hasAlpha = true;
-                break;
-            }
-        }
-        return hasAlpha
-
-    //   $p1.text(hasAlpha);
-
-    }
-    return start1;
-
-*/
-
-  // return new Promise((resolve, reject) => {
-  //   let hasAlpha = false;
-  //   const canvas = document.querySelector('canvas');
-  //   const ctx = canvas.getContext('2d');
-  //   console.log(ctx)
-
-  //   const img = new Image();
-  //   img.crossOrigin = 'Anonymous';
-  //   img.onerror = reject;
-  //   img.onload = function() {
-  //     canvas.width = img.width;
-  //     canvas.height = img.height;
-
-  //     ctx.drawImage(img, 0, 0);
-  //     const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-
-  //     for (let j = 0; j < imgData.length; j += 4) {
-  //       if (imgData[j + 3] < 255) {
-  //         hasAlpha = true;
-  //         break;
-  //       }
-  //     }
-  //     resolve(hasAlpha);
-  //   };
-  //   img.src = URL.createObjectURL(file);
-  // });
 }
+
 export function countInArray(array, what) {
   return array.filter((item) => item === what).length;
 }
 
-export function convertAddress(e) {
+export function convertAddress(address) {
   try {
-    const split = e.split(',');
+    const split = address.split(',');
+    const countryName = split[split.length - 1].trim();
+    const stateProvince = split[split.length - 2].trim();
 
-    const countryName = Country.getAllCountries().filter(
-      (c) => c.name === split[split.length - 1].replace(' ', '')
+    const country = Country.getAllCountries().find(
+      (c) => c.name.replace(/\s/g, '') === countryName
     );
 
-    const resultStateProvince = split[split.length - 2];
+    if (!country) {
+      throw new Error(`Country not found for address "${address}"`);
+    }
 
-    const state = State.getStatesOfCountry(countryName[0].isoCode).filter((e) =>
-      resultStateProvince.includes(e.name)
+    const states = State.getStatesOfCountry(country.isoCode).filter((state) =>
+      state.name.includes(stateProvince)
     );
 
-    return `${split[split.length - 3]}${state.length > 0 ? `, ${state[0].isoCode}` : ''}`;
-  } catch (e) {
-    console.error(`function convertAddress failed with address "${e}"`);
+    const stateCode = states.length > 0 ? `, ${states[0].isoCode}` : '';
+
+    return `${split[split.length - 3].trim()}${stateCode}`;
+  } catch (error) {
+    console.error(`convertAddress failed with address "${address}": ${error}`);
+    return null; // or return an error message instead of null
   }
 }
+
 
 export function convertState(e) {
   try {

@@ -242,7 +242,7 @@ const UserItems = () => {
                           className="product__type product__type-tax icon icon__solid-900"
                           style={{ fontSize: 'x-large' }}
                         >
-                          <FontAwesomeIcon icon={solid('calculator')} />
+                          <FontAwesomeIcon icon={solid('paperclip')} />
                         </span>
                       )}
                       {item.itemDetails?.postTag && (

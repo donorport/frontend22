@@ -76,7 +76,7 @@ const SummaryContent = (props) => {
                   </div>
                   {item.productDetails?.tax && (
                     <div className="checkout__tax p-1 d-flex align-items-center justify-content-center">
-                      <FontAwesomeIcon icon={solid('calculator')} className="text-info fs-4" />
+                      <FontAwesomeIcon icon={solid('paperclip')} className="text-info fs-4" />
                     </div>
                   )}
                   <span className="checkout__subtotal--price text-end mt-6p fs-5 fw-bold text-light ms-3 fs-sm-4 fs-4">
@@ -137,7 +137,7 @@ const SummaryContent = (props) => {
       </div>
       {cartItem.findIndex((p) => p?.productDetails?.tax) !== -1 ? (
         <div className="checkout__legend d-flex my-3 fs-7 p-2">
-          <FontAwesomeIcon icon={solid('calculator')} className="fs-4 text-info me-1" />
+          <FontAwesomeIcon icon={solid('paperclip')} className="fs-4 text-info me-1" />
           <span style={{ lineHeight: '2' }}>
             You'll receive a tax deductabile receipt for this donation.
           </span>

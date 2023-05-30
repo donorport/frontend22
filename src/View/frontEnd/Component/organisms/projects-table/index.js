@@ -116,7 +116,7 @@ const ProjectsTable = (props) => {
             projectList.map((project, i) => {
               // console.log(project)
               return (
-                <li className="table__list-item p-2 border-bottom" key={i}>
+                <li className="table__list-item px-2 py-2 border-bottom" key={i}>
                   <div className="d-xl-flex align-items-center flex-grow-1">
                     <div className="billing__main d-flex align-items-center text-dark me-sm-3 mb-2">
                       <div className="ms-auto ms-sm-0 me-sm-2 post__value">
