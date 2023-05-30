@@ -272,7 +272,7 @@ const Product = (props) => {
       </div>
 
       <div className="product__details border-top d-flex align-items-center pt-2 px-1">
-        {<div className="d-flex">{btn}</div>}
+        <div className="d-flex">{btn}</div>
         <div className="product__meta d-flex align-items-center ms-auto">
           {(props.projectDetails?.length > 0 || props.projectProducts.length > 0) && (
             <span className="product__type icon icon__solid-900 text-success">
