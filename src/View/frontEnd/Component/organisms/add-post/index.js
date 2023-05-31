@@ -130,7 +130,7 @@ const AddPost = (props) => {
     category,
     subcategory,
     description,
-    loading,
+    //loading,
     price,
     //image,
     quantity,
@@ -247,9 +247,9 @@ const AddPost = (props) => {
   const [max45] = useState(45);
   const [max250] = useState(250);
 
-  const Banner = () => {
-    return <div className="banner">Loading...</div>;
-  };
+  //const Banner = () => {
+  //return <div className="banner">Loading...</div>;
+  //};
 
   return (
     <div className="add-post">
@@ -266,27 +266,12 @@ const AddPost = (props) => {
 
         <div className="d-flex ms-auto gap-2">
           {stateData.status !== 1 && (
-            <>
-              <Button
-                variant="warning"
-                size="lg"
-                className="text-white fw-bold fs-6"
-                // onClick={() => submitProductForm(-1)}
-                onClick={() => setModelShow(true)}
-              >
-                Save as Draft
-              </Button>
-              <Button
-                style={{ opacity: props.loading ? '0.7' : '1' }}
-                variant="info"
-                size="lg"
-                className="d-flex align-items-center justify-content-center fs-6 fw-bold"
-                onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
-              >
-                Create Post
-                {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
-              </Button>
-            </>
+            <SaveCreateButtons 
+              loading={props.loading}
+              submitProductForm={submitProductForm}
+              setModelShow={setModelShow}
+              selectedProjectList={seletedProjectList}
+            />
           )}
           {stateData.status === 1 && (
             <Button
@@ -792,8 +777,10 @@ const AddPost = (props) => {
                         <Box sx={{ width: '100%' }}>
                           <div className="d-flex note note--info mb-3 fs-6">
                             <span className="text-dark">
-                              Upload an image of the product with a transparent background. The image should
-                              closesly resemble the product you will purchase but does not need to be exact. Accepted file formats: <a className="link">png, jpg, svg</a>
+                              Upload an image of the product with a transparent background. The
+                              image should closesly resemble the product you will purchase but does
+                              not need to be exact. Accepted file formats:{' '}
+                              <a className="link">png, jpg, svg</a>
                             </span>
                           </div>
                         </Box>
@@ -1353,30 +1340,43 @@ const AddPost = (props) => {
             </>
           ) : (
             <div className="d-flex gap-2">
-              <Button
-                variant="warning"
-                size="lg"
-                className="text-white fw-bold fs-6"
-                // onClick={() => submitProductForm(-1)}
-                onClick={() => setModelShow(true)}
-              >
-                Save as Draft
-              </Button>
-              <Button
-                style={{ opacity: props.loading ? '0.7' : '1' }}
-                variant="info"
-                size="lg"
-                className="d-flex align-items-center justify-content-center fs-6 fw-bold"
-                onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
-              >
-                Create Post
-                {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
-              </Button>
+                <SaveCreateButtons 
+                  loading={props.loading}
+                  submitProductForm={submitProductForm}
+                  setModelShow={setModelShow}
+                  selectedProjectList={seletedProjectList}
+                />
             </div>
           )}
         </div>
       </div>
     </div>
+  );
+};
+
+const SaveCreateButtons = (props) => {
+  return (
+    <>
+      <Button
+        variant="warning"
+        size="lg"
+        className="text-white fw-bold fs-6"
+        // onClick={() => submitProductForm(-1)}
+        onClick={() => props.setModelShow(true)}
+      >
+        Save as Draft
+      </Button>
+      <Button
+        style={{ opacity: props.loading ? '0.7' : '1' }}
+        variant="info"
+        size="lg"
+        className="d-flex align-items-center justify-content-center fs-6 fw-bold"
+        onClick={() => !props.loading && props.submitProductForm(1, props.selectedProjectList)}
+      >
+        Create Post
+        {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+      </Button>
+    </>
   );
 };
 
