@@ -106,12 +106,7 @@ const ActivityTable = (props) => {
                       ) : list.type === 'Share' ? (
                         <>
                           <span className="p-2 mr-12p">
-                            <img
-                              width={36}
-                              alt=""
-                              className="img-fluid"
-                              src={speech}
-                            />
+                            <img width={36} alt="" className="img-fluid" src={speech} />
                           </span>
                           <div className="">
                             <span className="text-dark fw-bold">Followed</span>
@@ -120,12 +115,7 @@ const ActivityTable = (props) => {
                       ) : list.type === 'FOLLOWED' ? (
                         <>
                           <span className="p-2 mr-12p">
-                            <img
-                              width={36}
-                              alt=""
-                              className="img-fluid"
-                              src={speech}
-                            />
+                            <img width={36} alt="" className="img-fluid" src={speech} />
                           </span>
                           <div className="">
                             <span className="text-dark fw-bold">Followed</span>
@@ -134,12 +124,7 @@ const ActivityTable = (props) => {
                       ) : list.type === 'DONATED' ? (
                         <>
                           <span className="p-2 mr-12p">
-                            <img
-                              width={36}
-                              alt=""
-                              className="img-fluid"
-                              src={donation}
-                            />
+                            <img width={36} alt="" className="img-fluid" src={donation} />
                           </span>
                           <div className="">
                             <span className="text-dark fw-bold">Donation</span>
@@ -231,11 +216,11 @@ const ActivityTable = (props) => {
             </div>
           </li> */}
         </ul>
-        {props.totalPages > 1 ? (
-          <div
-            className="py-2 mt-2 d-flex justify-content-center border-top"
-            style={{ background: '#f8fafd78' }}
-          >
+        <div
+          className="py-2 mt-2 d-flex justify-content-center border-top"
+          style={{ background: '#f8fafd78' }}
+        >
+          {props.totalPages > 1 ? (
             <Stack spacing={2}>
               <Pagination
                 count={props.totalPages}
@@ -247,10 +232,10 @@ const ActivityTable = (props) => {
                 showLastButton
               />
             </Stack>
-          </div>
-        ) : (
-          <></>
-        )}
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     </>
   );

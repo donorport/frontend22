@@ -17,12 +17,6 @@
     text-decoration: none;
   }
 }
-@include media-breakpoint-down(sm) {
-  .tab__nav > * a:not(.active) {
-    margin-bottom: 12px;
-  }
-}
-
 .tab__icon {
   display: flex;
   font-size: 24px;
@@ -32,7 +26,16 @@
 .desktop__tab .tab__text {
   display: none;
 }
-
+@include media-breakpoint-up(md) {
+  .tab__btn {
+    justify-content: center;
+  }
+}
+@include media-breakpoint-down(sm) {
+  .tab__nav > * a:not(.active) {
+    margin-bottom: 12px;
+  }
+}
 @media screen and (min-width: 990px) {
   .desktop__tab .tab__icon {
     margin-right: 12px;

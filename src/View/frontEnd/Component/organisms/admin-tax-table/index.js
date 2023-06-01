@@ -52,7 +52,7 @@ const AdminTaxTable = (props) => {
     let tempSub = [];
     let sum;
     if (data.length > 0) {
-      data.map((i ) => {
+      data.map((i) => {
         //tempSub.push(i.amount);
         let productTotal = i.orderItemDetails?.totalPrice;
         let donationTotal = (i.amount - 0.3) / 1.0499;
@@ -69,7 +69,6 @@ const AdminTaxTable = (props) => {
     }
     return sum.toFixed(2);
   };
-
 
   const useStyles = makeStyles(() => ({
     ul: {
@@ -203,7 +202,9 @@ const AdminTaxTable = (props) => {
                                 <div className="fw-bold fs-5">{item[0].userDetails?.name}</div>
                                 <div className="text-light mb-1">{item[0].userDetails?.email}</div>
                                 <div className="text-light">
-                                  {item[0].userDetails?.street + ', ' + item[0].userDetails?.city_id}
+                                  {item[0].userDetails?.street +
+                                    ', ' +
+                                    item[0].userDetails?.city_id}
                                   &nbsp;
                                   {item[0].userDetails?.stateDetails?.[0]?.state +
                                     ', ' +
@@ -528,11 +529,11 @@ const AdminTaxTable = (props) => {
             </>
           )}
           <>
-            {props.totalPages > 1 ? (
-              <div
-                className="py-2 mt-2 d-flex justify-content-center border-top"
-                style={{ background: '#f8fafd78' }}
-              >
+            <div
+              className="py-2 mt-2 d-flex justify-content-center border-top"
+              style={{ background: '#f8fafd78' }}
+            >
+              {props.totalPages > 1 ? (
                 <Stack spacing={2}>
                   <Pagination
                     pageSize={PageSize}
@@ -545,10 +546,10 @@ const AdminTaxTable = (props) => {
                     showLastButton
                   />
                 </Stack>
-              </div>
-            ) : (
-              <></>
-            )}
+              ) : (
+                <></>
+              )}
+            </div>
           </>
         </ul>
         <Modal size="lg" show={showModal && currentItem != null} onHide={onModalClose}>

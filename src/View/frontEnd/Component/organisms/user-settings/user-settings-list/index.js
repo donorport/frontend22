@@ -90,7 +90,7 @@ function UserSettingsList(props) {
               /> */}
           <UserSettingsItem
             icon={<FontAwesomeIcon icon={solid('right-from-bracket')} />}
-            label="Sign In"
+            label="Log In / Sign up"
             onClick={() => navigate('/signIn')}
           />
         </>

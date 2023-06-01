@@ -254,7 +254,7 @@ const AddPost = (props) => {
   return (
     <div className="add-post">
       {/* {console.log(location)} */}
-      <div className="d-flex align-items-center flex-grow-1 pb-20p mb-3 border-bottom">
+      <div className="d-flex align-items-center flex-grow-1 pb-20p mb-3 border-bottom flex-wrap">
         <Button variant="link" className="me-sm-2 me-1" onClick={() => props.createPost(false)}>
           <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
         </Button>
@@ -264,7 +264,7 @@ const AddPost = (props) => {
           <div className="lh-1 fs-3 fw-bolder me-sm-3 flex__1">Edit Post</div>
         )}
 
-        <div className="d-flex ms-auto gap-2">
+        <div className="d-flex gap-2">
           {stateData.status !== 1 && (
             <>
               <Button

@@ -12,7 +12,8 @@
     "lint": "eslint --ext .js,.jsx ./src",
     "lint:fix": "eslint --fix --ext .js,.jsx ./src",
     "serve:dev": "SET NODE_ENV=\"development\" && nodemon server.js",
-    "serve:prod": "SET NODE_ENV=\"production\" && nodemon server.js"
+    "serve:prod": "SET NODE_ENV=\"production\" && nodemon server.js",
+    "preinstall": "echo '//npm.fontawesome.com/:_authToken=C9034308-90AD-40EA-9930-7D05368C439E' > .npmrc"
   },
   "eslintConfig": {
     "extends": [
@@ -42,7 +43,8 @@
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@fancyapps/ui": "^4.0.26",
-    "@fortawesome/fontawesome-pro": "^6.1.1",
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "@fortawesome/fontawesome-pro": "^6.4.0",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
@@ -103,6 +105,7 @@
     "react-bootstrap": "^2.1.2",
     "react-confirm-alert": "^2.8.0",
     "react-csv": "^2.2.2",
+    "react-custom-radio-buttons-group": "^1.0.5",
     "react-data-table-component": "^7.4.7",
     "react-data-table-component-extensions": "^1.5.2",
     "react-dnd": "^14.0.2",
@@ -113,6 +116,7 @@
     "react-geocode": "^0.2.3",
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^1.1.2",
+    "react-image-crop": "^10.1.4",
     "react-mapbox-autocomplete": "^0.2.3",
     "react-mapbox-gl": "^4.8.6",
     "react-owl-carousel": "^2.3.3",
