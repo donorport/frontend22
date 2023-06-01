@@ -1,5 +1,5 @@
-const formatUrlWithHttps = (url) =>
+const formatUrlWithHttp = (url) =>
   url.replace(/^(?:(.*:)?\/\/)?(.*)/i, (match, schemma, nonSchemmaUrl) =>
-    schemma ? match : `https://${nonSchemmaUrl}`
+    schemma ? match : `http://${nonSchemmaUrl}`
   );
-export default formatUrlWithHttps;
+export default formatUrlWithHttp;

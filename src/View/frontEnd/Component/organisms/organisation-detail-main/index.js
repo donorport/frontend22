@@ -11,12 +11,12 @@ import IconToggle from '../../atoms/icon-toggle';
 import RoundedIcon from '../../atoms/rounded-icon';
 // import WidgetTitle from "../widget-title"
 // import TagTitle from '../../atoms/tag-title';
-import IconButton from '../../molecules/icon-button';
+//import IconButton from '../../molecules/icon-button';
 import ShareWidget from '../share-widget';
 import OrganisationWidget from '../organisation-widget';
 import helper, { convertAddress } from '../../../../../Common/Helper';
 import './style.scss';
-import { GalleryImg } from '../../atoms';
+//import { GalleryImg } from '../../atoms';
 import verified from '../../../../../assets/images/verified.png';
 import ProjectGallery from '../project-gallery';
 // import { State, Country } from 'country-state-city';

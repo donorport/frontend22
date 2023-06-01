@@ -8,7 +8,7 @@ import adminCampaignApi from '../../Api/admin/adminCampaign';
 import categoryApi from '../../Api/admin/category';
 import { validateAll } from 'indicative/validator';
 import ToastAlert from '../../Common/ToastAlert';
-import formatUrlWithHttps from '../../utils/formatUrl';
+import formatUrlWithHttp from '../../utils/formatUrl';
 //import { confirmAlert } from "react-confirm-alert"
 
 function ProfileController() {
@@ -187,7 +187,7 @@ function ProfileController() {
     } 
 
     if (e.target.name ==='url') {
-      value = formatUrlWithHttps(value);
+      value = formatUrlWithHttp(value);
     }
     setState({
       ...state,
