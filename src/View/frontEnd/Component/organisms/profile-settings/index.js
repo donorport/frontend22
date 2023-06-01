@@ -23,6 +23,7 @@ import locationApi from '../../../../../Api/frontEnd/location';
 import categoryApi from '../../../../../Api/admin/category';
 
 import './style.scss';
+import formatUrlWithHttps from '../../../../../utils/formatUrl';
 
 const imageuploadwrap = {
   marginTop: '20px',
@@ -249,6 +250,12 @@ const ProfileSettings = () => {
 
   const changevalue = (e) => {
     let value = e.target.value;
+
+    // for website url, make sure we have `https://` on the front
+    if (e.target.name === 'url') {
+      value = formatUrlWithHttps(value.toLowerCase());
+    }
+
     setState({
       ...state,
       [e.target.name]: value

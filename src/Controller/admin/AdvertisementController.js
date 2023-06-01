@@ -17,6 +17,7 @@ import AdvertiseSetting from '../../View/admin/Advertisement/AdvertiseSetting';
 import productApi from '../../Api/frontEnd/product';
 import locationApi from '../../Api/frontEnd/location';
 import categoryApi from '../../Api/admin/category';
+import formatUrlWithHttps from '../../utils/formatUrl';
 
 export default function AdvertisementController() {
   const [advertiseList, setAdvertiseList] = useState([]);
@@ -423,6 +424,11 @@ export default function AdvertisementController() {
 
   const changevalue = (e) => {
     let value = e.target.value;
+
+    if (e.target.name === 'website') {
+      value = formatUrlWithHttps(value);
+    }
+
     setstate({
       ...state,
       [e.target.name]: value
