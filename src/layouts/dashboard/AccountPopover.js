@@ -1,19 +1,19 @@
 import { Icon } from '@iconify/react';
-import { useRef, useState,useContext } from 'react';
-import homeFill from '@iconify/icons-eva/home-fill';
-import personFill from '@iconify/icons-eva/person-fill';
-import settings2Fill from '@iconify/icons-eva/settings-2-fill';
+import { useRef, useState } from 'react';
+//import homeFill from '@iconify/icons-eva/home-fill';
+//import personFill from '@iconify/icons-eva/person-fill';
+//import settings2Fill from '@iconify/icons-eva/settings-2-fill';
 import { Link as RouterLink,useNavigate } from 'react-router-dom';
 // material
 import { alpha } from '@mui/material/styles';
-import { Button, Box, Divider, MenuItem, Typography, Avatar, IconButton } from '@mui/material';
+import { Button, Box, MenuItem, Typography, Avatar, IconButton } from '@mui/material';
 // components
 import MenuPopover from '../../components/MenuPopover';
 //
 import account from '../../_mocks_/account';
 // import { UserContext } from '../../App';
 import { confirmAlert } from 'react-confirm-alert';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setLogout } from "../../user/user.action"
 
 // ----------------------------------------------------------------------

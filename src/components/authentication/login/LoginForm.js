@@ -1,25 +1,24 @@
 import * as Yup from 'yup';
 import { useState } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as useNavigate } from 'react-router-dom';
 import { useFormik, Form, FormikProvider } from 'formik';
 import { Icon } from '@iconify/react';
 import eyeFill from '@iconify/icons-eva/eye-fill';
 import eyeOffFill from '@iconify/icons-eva/eye-off-fill';
 // material
 import {
-  Link,
+  //Link,
   Stack,
-  Checkbox,
+  //Checkbox,
   TextField,
   IconButton,
-  InputAdornment,
-  FormControlLabel
+  InputAdornment
+  //FormControlLabel
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import ToastAlert from '../../../Common/ToastAlert';
 
 import authApi from '../../../Api/admin/auth';
-
 
 // ----------------------------------------------------------------------
 
@@ -27,19 +26,19 @@ export default function LoginForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [state, setState] = useState({
-    email: '',
-    password: ''
-  });
-  const { email, password } = state;
+  //const [state, setState] = useState({
+    //email: '',
+    //password: ''
+  //});
+  //const { email, password } = state;
 
-  const onChangeValue = (e) => {
-    let value = e.target.value;
-    setState({
-      ...state,
-      [e.target.name]: value
-    });
-  };
+  //const onChangeValue = (e) => {
+  //let value = e.target.value;
+  //setState({
+  //...state,
+  //[e.target.name]: value
+  //});
+  //};
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Email must be a valid email address').required('Email is required'),
@@ -54,8 +53,8 @@ export default function LoginForm() {
     },
     validationSchema: LoginSchema,
     onSubmit: async () => {
-      setLoading(true)
-      const login = await authApi.login(formik.values.email, formik.values.password)
+      setLoading(true);
+      const login = await authApi.login(formik.values.email, formik.values.password);
       if (login) {
         if (!login.data.success || login.data.status !== 1) {
           setLoading(false);
@@ -106,7 +105,14 @@ export default function LoginForm() {
     }
   });
 
-  const { errors, touched, values, isSubmitting, handleSubmit, getFieldProps } = formik;
+  const {
+    errors,
+    touched,
+    //values,
+    isSubmitting,
+    handleSubmit,
+    getFieldProps
+  } = formik;
 
   const handleShowPassword = () => {
     setShowPassword((show) => !show);
@@ -114,7 +120,7 @@ export default function LoginForm() {
 
   return (
     <>
-     {/*<FrontLoader loading={loading} />*/}
+      {/*<FrontLoader loading={loading} />*/}
       <FormikProvider value={formik}>
         {/* {console.log(formik.values)} */}
         <Form autoComplete="off" noValidate onSubmit={handleSubmit}>

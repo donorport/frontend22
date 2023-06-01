@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 // import { UserContext } from '../App';
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
@@ -11,8 +11,8 @@ import { Box, List, Collapse, ListItemText, ListItemIcon, ListItemButton } from 
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css'
 // import hasPermission from '../Common/Helper'
-import { hasPermission } from '../Common/Helper'
-import { useSelector, useDispatch } from "react-redux";
+//import { hasPermission } from '../Common/Helper'
+import { useDispatch } from "react-redux";
 import { setLogout } from "../user/user.action"
 // ----------------------------------------------------------------------
 
@@ -59,7 +59,7 @@ function NavItem({ item, active }) {
   // const user = useContext(UserContext)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const adminData = JSON.parse(localStorage.getItem('adminData'));
+  //const adminData = JSON.parse(localStorage.getItem('adminData'));
   const theme = useTheme();
   const isActiveRoot = active(item.path);
   const { title, path, icon, info, children } = item;
@@ -192,7 +192,7 @@ NavSection.propTypes = {
 
 export default function NavSection({ navConfig, ...other }) {
   const { pathname } = useLocation();
-  const adminData = JSON.parse(localStorage.getItem('adminData'));
+  //const adminData = JSON.parse(localStorage.getItem('adminData'));
   const match = (path) => (path ? !!matchPath({ path, end: false }, pathname) : false);
 
   return (
