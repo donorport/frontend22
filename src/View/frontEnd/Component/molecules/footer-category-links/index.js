@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import './style.scss';
 
 const propTypes = {
@@ -98,7 +98,7 @@ function FooterCategoryLinks({ categoryName, list, ...otherProps }) {
       {sharedProps.categoryName === 'Marketplace' && (
         <ul className="list-unstyled footer__links">
           {sharedProps.list.length > 0 &&
-            sharedProps.list.map((l, i) => {
+            sharedProps.list.map((l) => {
               return (
                 <li className="footer__link-item">
                   <a href={'/categories/' + l.slug} className="footer__link">

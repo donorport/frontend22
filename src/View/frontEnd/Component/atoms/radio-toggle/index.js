@@ -22,12 +22,12 @@ function RadioToggle(props) {
 
   const [_checked, setChecked] = useState(checked);
 
-  const sharedProps = {
-    checked,
-    color,
-    disabled,
-    // ...otherProps,
-  };
+  //const sharedProps = {
+    //checked,
+    //color,
+    //disabled,
+    //// ...otherProps,
+  //};
   return (
     <label className={`radio__toggle-label ${checked ? 'active' : ''}`} style={{ backgroundColor: checked ? color : 'transparent', opacity: disabled ? '0.4' : 1 }} onClick={() => !disabled ? setChecked(!checked) : ''}>
       <input type="radio" value={checked} className="radio__toggle-input" name={props.value} onClick={(e)=>props.onChange(e)} />

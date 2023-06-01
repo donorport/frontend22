@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import IconButton from '../icon-button';
+//import IconButton from '../icon-button';
 import Avatar from '../../atoms/avatar';
 import AvatarImg from '../../../../../assets/images/avatar.png';
 import helper, { priceFormat, getCalculatedPrice } from '../../../../../Common/Helper';
@@ -53,8 +53,8 @@ function HistoryItem({ active, ...otherProps }) {
   let currencySymbol =
     type === 'donation' ? item?.currencySymbol : item?.orderDetails?.currencySymbol;
   let xp = type === 'donation' ? item?.userDetails?.xp : item?.orderDetails?.userDetails?.xp;
-  let isDeleted =
-    type === 'donation' ? item?.userDetails?.isDeleted : item?.orderDetails?.userDetails?.isDeleted;
+  //let isDeleted =
+    //type === 'donation' ? item?.userDetails?.isDeleted : item?.orderDetails?.userDetails?.isDeleted;
   const page = location.pathname.split('/').length > 0 && location.pathname.split('/')[1];
 
   // console.log(location.pathname.split('/')[1])

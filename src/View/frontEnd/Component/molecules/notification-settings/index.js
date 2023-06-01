@@ -1,17 +1,17 @@
 // import React from "react";
-import React, { useState, useEffect } from "react";
-import ToggleSwitch from '../../atoms/toggle-switch'
-import controlsApi from "../../../../../Api/frontEnd/controls";
+import React, { useState, useEffect } from 'react';
+import ToggleSwitch from '../../atoms/toggle-switch';
+import controlsApi from '../../../../../Api/frontEnd/controls';
 
-import "./style.scss";
+import './style.scss';
 
 function NotificationSettings() {
-  const [check1, setCheck1] = useState(0);
-  const [check2, setCheck2] = useState(0);
+  //const [check1, setCheck1] = useState(0);
+  //const [check2, setCheck2] = useState(0);
   const userAuthToken = localStorage.getItem('userAuthToken');
 
   const [controls, setControls] = useState({
-    _id: "",
+    _id: '',
     turn_of: true,
     status: true,
     new_item_posted: true,
@@ -19,9 +19,19 @@ function NotificationSettings() {
     org_new_item_posted: true,
     org_change_profile: true,
     project_new_item_posted: true,
-    poroject_fully_funded: true,
-  })
-  const { _id, turn_of, status, new_item_posted, milestones, org_new_item_posted, org_change_profile, project_new_item_posted, poroject_fully_funded, } = controls
+    poroject_fully_funded: true
+  });
+  const {
+    _id,
+    turn_of,
+    status,
+    new_item_posted,
+    milestones,
+    org_new_item_posted,
+    //org_change_profile,
+    project_new_item_posted,
+    poroject_fully_funded
+  } = controls;
 
   const changevalue = async (e) => {
     let value = e.target.checked;
@@ -29,31 +39,23 @@ function NotificationSettings() {
     setControls({
       ...controls,
       [e.target.name]: value
+    });
+    let data = {};
+    data[e.target.name] = value;
 
-    })
-    let data = {}
-    data[e.target.name] = value
-  
-    await controlsApi.saveControls(userAuthToken, data, _id)
-  }
-
-
+    await controlsApi.saveControls(userAuthToken, data, _id);
+  };
 
   useEffect(() => {
     (async () => {
-
-      const getControlSetting = await controlsApi.list(userAuthToken)
+      const getControlSetting = await controlsApi.list(userAuthToken);
       if (getControlSetting.data.success) {
-
         setControls({
           ...getControlSetting.data.data
-        })
+        });
       }
-
-
-    })()
-
-  }, [])
+    })();
+  }, []);
   return (
     <div className="notifications-wrap">
       <div>
@@ -63,8 +65,7 @@ function NotificationSettings() {
         <ul className="notify-settings-list list-unstyled">
           <li className="notify__settings-item d-flex align-items-center">
             <div>
-              Turn <strong className="text-dark">OFF</strong>&nbsp;all
-              notifications
+              Turn <strong className="text-dark">OFF</strong>&nbsp;all notifications
             </div>
             <div className="menu__toggle ms-auto">
               <ToggleSwitch
@@ -73,7 +74,6 @@ function NotificationSettings() {
                 colorOne="#efefef"
                 colorTwo="#06D6A0"
                 name="turn_of"
-
               />
             </div>
           </li>
@@ -86,7 +86,6 @@ function NotificationSettings() {
                 colorOne="#efefef"
                 colorTwo="#06D6A0"
                 name="status"
-
               />
             </div>
           </li>
@@ -99,7 +98,6 @@ function NotificationSettings() {
                 colorOne="#efefef"
                 colorTwo="#06D6A0"
                 name="new_item_posted"
-
               />
             </div>
           </li>
@@ -112,7 +110,6 @@ function NotificationSettings() {
                 colorOne="#efefef"
                 colorTwo="#06D6A0"
                 name="milestones"
-
               />
             </div>
           </li>
@@ -133,7 +130,6 @@ function NotificationSettings() {
                 colorOne="#efefef"
                 colorTwo="#06D6A0"
                 name="org_new_item_posted"
-
               />
             </div>
           </li>
@@ -146,7 +142,6 @@ function NotificationSettings() {
                 colorOne="#efefef"
                 colorTwo="#06D6A0"
                 name="poroject_fully_funded"
-
               />
             </div>
           </li>
@@ -167,7 +162,6 @@ function NotificationSettings() {
                 colorOne="#efefef"
                 colorTwo="#06D6A0"
                 name="project_new_item_posted"
-
               />
             </div>
           </li>

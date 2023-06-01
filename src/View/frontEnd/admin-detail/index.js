@@ -42,7 +42,7 @@ function AdminDetail() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
   const location = useLocation();
-  let currentOption = location.pathname.split('/')[3];
+  //let currentOption = location.pathname.split('/')[3];
   const [logoImg, setlogoImg] = useState('');
 
   useEffect(() => {

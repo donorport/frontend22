@@ -1,7 +1,7 @@
 // import React from "react";
-import React, { useState } from "react";
+import React from "react";
 import _uniqueId from 'lodash/uniqueId';
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 
 import "./style.scss";
 
@@ -46,7 +46,7 @@ import "./style.scss";
 // ToggleSwitch.defaultProps = defaultProps;
 // ToggleSwitch.propTypes = propTypes;
 const ToggleSwitch = (props) => {
-  const [id] = useState(_uniqueId('switch-'));
+  //const [id] = useState(_uniqueId('switch-'));
   let check = props.checked
   return (
     <>

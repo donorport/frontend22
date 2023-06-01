@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import { ListItemImg } from '../../atoms';
 import './style.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import helper, { getCalculatedPrice, priceFormat } from '../../../../../Common/Helper';
 import { Link } from 'react-router-dom';
 

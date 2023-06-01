@@ -6,9 +6,9 @@ import ListItemImg from '../../atoms/list-item-img';
 import moment from 'moment';
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import helper from '../../../../../Common/Helper';
-import cartApi from '../../../../../Api/frontEnd/cart';
+//import cartApi from '../../../../../Api/frontEnd/cart';
 import { useSelector, useDispatch } from 'react-redux';
 import { setIsUpdateCart } from '../../../../../user/user.action';
 
@@ -22,7 +22,7 @@ function OrganisationItem(props) {
     props.tagTitle === 'Project'
       ? props.productPrice[product?.itemDetails?._id]
       : props.productPrice[product?._id];
-  const setproductPrice = props.setproductPrice;
+  //const setproductPrice = props.setproductPrice;
   const [totalPrice, setTotalPrice] = useState(productPrice);
   const [totalQuantity, setTotalQuantity] = useState(1);
   let headline = props.tagTitle === 'Project' ? product?.itemDetails?.headline : product?.headline;

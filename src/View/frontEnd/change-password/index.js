@@ -1,18 +1,32 @@
 import { useState } from 'react';
 import { Button, InputGroup, Container, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 // import DefaultLayout from "@templates/default-layout";
 
 import DefaultLayout from '../Component/templates/default-layout';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ToastAlert from '../../../Common/ToastAlert';
 import { validateAll } from 'indicative/validator';
 import './style.scss';
 
 import userApi from '../../../Api/frontEnd/user';
 import adminCampaignApi from '../../../Api/admin/adminCampaign';
+
+const CHANGE_RULES = {
+  currentPassword: 'required',
+  newPassword: 'required|min:6',
+  confirmPassword: 'required|same:newPassword'
+};
+
+const CHANGE_MESSAGE = {
+  'currentPassword.required': 'Current Password is Required.',
+  'newPassword.min': 'New Password must be at least 6 characters',
+  'newPassword.required': 'New Password is Required.',
+  'confirmPassword.required': 'Confirm Password is Required.',
+  'confirmPassword.same': 'Password and ConfirmPassword Must be same.'
+};
 
 const ChangePassword = () => {
   const [showCPassword, toggleCPassword] = useState(false);
@@ -21,7 +35,7 @@ const ChangePassword = () => {
   const [loading, setLoading] = useState(false);
   const userAuthToken = localStorage.getItem('userAuthToken');
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
-  const params = useParams();
+  //const params = useParams();
   const navigate = useNavigate();
   const [state, setstate] = useState({
     newPassword: '',
@@ -30,7 +44,12 @@ const ChangePassword = () => {
     error: []
   });
 
-  const { error, newPassword, confirmPassword, currentPassword } = state;
+  const {
+    error,
+    newPassword,
+    //confirmPassword,
+    currentPassword
+  } = state;
 
   const changevalue = (e) => {
     let value = e.target.value;
@@ -41,20 +60,7 @@ const ChangePassword = () => {
   };
 
   const change = () => {
-    const rules = {
-      currentPassword: 'required',
-      newPassword: 'required|min:6',
-      confirmPassword: 'required|same:newPassword'
-    };
-
-    const message = {
-      'currentPassword.required': 'Current Password is Required.',
-      'newPassword.min': 'New Password must be at least 6 characters',
-      'newPassword.required': 'New Password is Required.',
-      'confirmPassword.required': 'Confirm Password is Required.',
-      'confirmPassword.same': 'Password and ConfirmPassword Must be same.'
-    };
-    validateAll(state, rules, message)
+    validateAll(state, CHANGE_RULES, CHANGE_MESSAGE)
       .then(async () => {
         const formaerrror = {};
         setstate({
@@ -106,7 +112,7 @@ const ChangePassword = () => {
 
   return (
     <>
-     {/*<FrontLoader loading={loading} />*/}
+      {/*<FrontLoader loading={loading} />*/}
       <DefaultLayout>
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-3">

@@ -4,7 +4,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Button, Modal } from 'react-bootstrap';
 import Avatar from '../../atoms/avatar';
 import helper, { getCalculatedPrice, priceFormat } from '../../../../../Common/Helper';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
 
@@ -19,9 +19,9 @@ const DonateModal = (props) => {
   const organizationDetails = props.organizationDetails;
   const user = useSelector((state) => state.user);
   const userAuthToken = localStorage.getItem('userAuthToken');
-  const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
+  //const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const userData = JSON.parse(localStorage.getItem('userData'));
-  const CampaignAdmin = JSON.parse(localStorage.getItem('CampaignAdmin'));
+  //const CampaignAdmin = JSON.parse(localStorage.getItem('CampaignAdmin'));
 
   const selectedValue = props.selectedValue;
   const setSelectedValue = props.setSelectedValue;

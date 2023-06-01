@@ -2,7 +2,7 @@ import React from 'react';
 import './style.scss';
 import { Link } from 'react-router-dom';
 // import { setUserCountry} from "../../user/user.action"
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import logo from '../../../../../assets/images/logo.svg';
 
 // class Logo extends React.Component {

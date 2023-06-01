@@ -8,7 +8,7 @@ import Select from 'react-select';
 
 import './style.scss';
 
-const accountHolderTypes = [
+const ACCOUNT_HOLDER_TYPES = [
   { value: 'individual', label: 'Individual' },
   { value: 'company', label: 'Company' }
 ];
@@ -37,8 +37,8 @@ const AddBankModal = (props) => {
                 className="basic-single"
                 classNamePrefix="select"
                 name="accountHolderType"
-                defaultValue={accountHolderTypes[0]}
-                options={accountHolderTypes}
+                defaultValue={ACCOUNT_HOLDER_TYPES[0]}
+                options={ACCOUNT_HOLDER_TYPES}
                 onChange={(e) => {
                   props.setBankAccount({ ...props.bankAccount, BusinessType: e.value });
                   // console.log(e.value)

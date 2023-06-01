@@ -1,4 +1,4 @@
-import { useState } from "react";
+//import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { regular } from "@fortawesome/fontawesome-svg-core/import.macro";
 import _uniqueId from "lodash/uniqueId";
@@ -11,7 +11,7 @@ const propTypes = {
 
 const FeedTag = (props) => {
   let data = props.data
-  const [id] = useState(_uniqueId("tag-"));
+  //const [id] = useState(_uniqueId("tag-"));
 
   let checked = props.checked;
   let cantChange = props.cantChange;

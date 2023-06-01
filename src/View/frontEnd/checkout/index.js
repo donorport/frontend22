@@ -8,15 +8,15 @@ import Logo from '../Component/atoms/logo';
 import Avatar from '../Component/atoms/avatar';
 import SummaryContent from '../Component/organisms/summary-content';
 import useWindowSize from '../../../hooks/device-check';
-import { useSelector, useDispatch } from 'react-redux';
-import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+//import styled from 'styled-components';
 import './style.scss';
 import { Link } from 'react-router-dom';
-import { sortedLastIndex } from 'lodash';
+//import { sortedLastIndex } from 'lodash';
 import { CircularProgress } from '@mui/material';
-import Slider from '@material-ui/core/Slider';
-import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
+//import Slider from '@material-ui/core/Slider';
+//import TextField from '@material-ui/core/TextField';
+//import InputAdornment from '@material-ui/core/InputAdornment';
 import { priceFormat } from '../../../Common/Helper';
 import mastercard from '../../../assets/images/mastercard.svg';
 import visa from '../../../assets/images/visa.svg';
@@ -44,30 +44,30 @@ const Checkout = (props) => {
   const userAuthToken = localStorage.getItem('userAuthToken');
   const userData = JSON.parse(localStorage.getItem('userData'));
 
-  const [show, setShow] = useState(false);
+  //const [show, setShow] = useState(false);
 
-  const showInput = () => {
-    setShow(true);
-  };
-  const hideInput = () => {
-    setShow(false);
-  };
+  //const showInput = () => {
+    //setShow(true);
+  //};
+  //const hideInput = () => {
+    //setShow(fa,lse);
+  //};
 
-  const [value, setValue] = useState('');
-  const addCommas = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  const removeNonNumeric = (num) => num.toString().replace(/[^0-9]/g, '');
+  //const [value, setValue] = useState('');
+  //const addCommas = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  //const removeNonNumeric = (num) => num.toString().replace(/[^0-9]/g, '');
 
-  const handleChange = (event) => setValue(addCommas(removeNonNumeric(event.target.value)));
+  //const handleChange = (event) => setValue(addCommas(removeNonNumeric(event.target.value)));
   // console.log(summaryElementRef.current?.clientHeight);
-  const marks = [
-    { value: 0, label: '0%' },
-    { value: 5, label: '' },
-    { value: 10, label: '' },
-    { value: 15, label: '' },
-    { value: 20, label: '' },
-    { value: 25, label: '' },
-    { value: 30, label: '30%' }
-  ];
+  //const marks = [
+    //{ value: 0, label: '0%' },
+    //{ value: 5, label: '' },
+    //{ value: 10, label: '' },
+    //{ value: 15, label: '' },
+    //{ value: 20, label: '' },
+    //{ value: 25, label: '' },
+    //{ value: 30, label: '30%' }
+  //];
 
   return (
     <div className="checkout__page">
@@ -512,68 +512,68 @@ const Checkout = (props) => {
     </div>
   );
 };
-const StyledInput = styled.div`
-  & .MuiOutlinedInput-input,
-  & .MuiInputBase-input,
-  & .MuiInputAdornment-root > p {
-    font-weight: 700;
-    font-size: 21px;
-    font-family: 'Jcfonts linotte', sans-serif;
-    color: #9896b1;
-  }
-`;
-const StyledSlider = styled.div`
-  & .tip__label {
-    font-family: 'Jcfonts linotte', sans-serif;
-  }
-  & .tip__slider {
-    & .MuiSlider-rail {
-      height: 9px;
-      background-color: #3898ec;
-      border-radius: 19px;
-    }
-    & .MuiSlider-mark {
-      width: 4px;
-      height: 9px;
-      background-color: #fff;
-    }
-    & .MuiSlider-markLabel {
-      font-family: 'Jcfonts linotte';
-      font-weight: 600;
-      top: 9px;
-      transform: translateX(50%);
-    }
-    & .MuiSlider-markLabel[data-index='0'] {
-      transform: translateX(-150%);
-      color: rgba(0, 0, 0, 0.54) !important;
-    }
-    & .MuiSlider-mark[data-index='6'] {
-      display: none;
-    }
-    & .MuiSlider-markActive {
-      display: none;
-      color: rgba(0, 0, 0, 0.54) !important;
-    }
-    & .MuiSlider-track {
-      height: 9px;
-      display: block;
-      position: absolute;
-      background-color: #3898ec;
-      border-radius: 19px;
-    }
-    & .MuiSlider-valueLabel {
-      color: #ffffff00 !important;
-    }
-    & .MuiSlider-thumb {
-      height: 29px;
-      width: 29px;
-      background-color: #3898ec;
-      border: 4px solid #bedaf8;
-      margin-top: -10px;
-    }
-    &.PrivateValueLabel-circle {
-      background-color: unset !important;
-    }
-  }
-`;
+//const StyledInput = styled.div`
+  //& .MuiOutlinedInput-input,
+  //& .MuiInputBase-input,
+  //& .MuiInputAdornment-root > p {
+    //font-weight: 700;
+    //font-size: 21px;
+    //font-family: 'Jcfonts linotte', sans-serif;
+    //color: #9896b1;
+  //}
+//`;
+//const StyledSlider = styled.div`
+  //& .tip__label {
+    //font-family: 'Jcfonts linotte', sans-serif;
+  //}
+  //& .tip__slider {
+    //& .MuiSlider-rail {
+      //height: 9px;
+      //background-color: #3898ec;
+      //border-radius: 19px;
+    //}
+    //& .MuiSlider-mark {
+      //width: 4px;
+      //height: 9px;
+      //background-color: #fff;
+    //}
+    //& .MuiSlider-markLabel {
+      //font-family: 'Jcfonts linotte';
+      //font-weight: 600;
+      //top: 9px;
+      //transform: translateX(50%);
+    //}
+    //& .MuiSlider-markLabel[data-index='0'] {
+      //transform: translateX(-150%);
+      //color: rgba(0, 0, 0, 0.54) !important;
+    //}
+    //& .MuiSlider-mark[data-index='6'] {
+      //display: none;
+    //}
+    //& .MuiSlider-markActive {
+      //display: none;
+      //color: rgba(0, 0, 0, 0.54) !important;
+    //}
+    //& .MuiSlider-track {
+      //height: 9px;
+      //display: block;
+      //position: absolute;
+      //background-color: #3898ec;
+      //border-radius: 19px;
+    //}
+    //& .MuiSlider-valueLabel {
+      //color: #ffffff00 !important;
+    //}
+    //& .MuiSlider-thumb {
+      //height: 29px;
+      //width: 29px;
+      //background-color: #3898ec;
+      //border: 4px solid #bedaf8;
+      //margin-top: -10px;
+    //}
+    //&.PrivateValueLabel-circle {
+      //background-color: unset !important;
+    //}
+  //}
+//`;
 export default Checkout;

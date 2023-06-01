@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import ListItemImg from '../../atoms/list-item-img';
 import helper from '../../../../../Common/Helper';
 import { Link } from 'react-router-dom';
-import profile from '../../../../../assets/images/avatar.png';
+//import profile from '../../../../../assets/images/avatar.png';
 
 import './style.scss';
 

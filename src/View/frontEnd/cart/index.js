@@ -11,7 +11,7 @@ import './style.scss';
 
 const Cart = (props) => {
   let cartItem = props.cartItem;
-  const [total, setTotal] = useState(0);
+  //const [total, setTotal] = useState(0);
   const [subTotal, setSubTotal] = useState(0);
   //const [salesTax, setSalesTax] = useState(0);
   let transactionFee = props.pricingFees?.transactionFee;
@@ -49,7 +49,7 @@ const Cart = (props) => {
   useEffect(() => {
     if (props.cartItem.length > 0) {
       let tempPriceArray = [];
-      props.cartItem.map((item, i) => {
+      props.cartItem.map((item) => {
         // let price = Math.round(item.productDetails?.price + (totalCharge / 100) * item.productDetails?.price)
         // let price = getCalc.getData(item.productDetails?.price);
         let price = item.productDetails?.displayPrice

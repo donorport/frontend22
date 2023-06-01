@@ -5,7 +5,7 @@ import organizationApi from '../../../../../Api/frontEnd/organization';
 import React, { useState, useEffect } from 'react';
 import helper, { getCookie, setCookie, deleteCookie } from '../../../../../Common/Helper';
 import ToastAlert from '../../../../../Common/ToastAlert';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import removeImg from '../../../../../assets/images/remove-link.svg';
 
 function LinkedOrg(props) {
@@ -301,7 +301,7 @@ function LinkedOrg(props) {
               // console.log(member)
               return (
                 member.typeId !== currentId && (
-                  <li className="linked__item py-2">
+                  <li className="linked__item py-2" key={i}>
                     <div className="linked__item-link px-12p d-flex align-items-center flex-grow-1">
                       <Avatar size={42} border={0} shadow={false} avatarUrl={image} />
                       <div className="linked__item-label fs-7 fw-bold pl-12p">

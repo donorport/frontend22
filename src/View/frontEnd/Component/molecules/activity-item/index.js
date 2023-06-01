@@ -66,10 +66,10 @@ function ActivityItem(props) {
   //   return Math.round(per);
 
   // }
-  const CampaignAdmin = JSON.parse(localStorage.getItem('CampaignAdmin'));
-  const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
-  const userAuthToken = localStorage.getItem('userAuthToken');
-  const token = userAuthToken ? userAuthToken : CampaignAdminAuthToken;
+  //const CampaignAdmin = JSON.parse(localStorage.getItem('CampaignAdmin'));
+  //const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
+  //const userAuthToken = localStorage.getItem('userAuthToken');
+  //const token = userAuthToken ? userAuthToken : CampaignAdminAuthToken;
 
   let userData = props.userData;
   let newSlug;
@@ -84,7 +84,7 @@ function ActivityItem(props) {
     let per = 0;
 
     if (data?.length > 0) {
-      data.map((p, i) => {
+      data.map((p) => {
         if (!p.itemDetails.unlimited) {
           let itm = (Number(p.itemDetails.soldout) / Number(p.itemDetails.quantity)) * 100;
           allProductPer.push(itm);

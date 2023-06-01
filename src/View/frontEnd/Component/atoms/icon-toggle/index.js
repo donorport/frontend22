@@ -1,18 +1,18 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 import "./style.scss";
 
-const propTypes = {
-  checked: PropTypes.bool,
-  activeColor: PropTypes.string,
-  icon: PropTypes.element,
-  checkedIcon: PropTypes.element,
-};
+//const propTypes = {
+  //checked: PropTypes.bool,
+  //activeColor: PropTypes.string,
+  //icon: PropTypes.element,
+  //checkedIcon: PropTypes.element,
+//};
 
-const defaultProps = {
-  checked: false,
-  activeColor: "",
-};
+//const defaultProps = {
+  //checked: false,
+  //activeColor: "",
+//};
 
 function IconToggle(props) {
   const {
