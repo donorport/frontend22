@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 // import { Button, Modal } from "react-bootstrap";
-import { Button, Card } from '@mui/material';
+import { Button } from '@mui/material';
 
 // import ListItemImg from "@components/atoms/list-item-img";
 import ListItemImg from '../../atoms/list-item-img';
 import Select from 'react-select';
 import './style.scss';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -20,12 +20,47 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import Dialog from '@mui/material/Dialog';
-import locationApi from '../../../../../Api/frontEnd/location';
+//import locationApi from '../../../../../Api/frontEnd/location';
 import { TabContainer } from 'react-bootstrap';
 
-const Transition = React.forwardRef(function Transition(propss, ref) {
+const Transition = React.forwardRef(function Transition(propss) {
   return <Slide direction="up" {...propss} />;
 });
+
+const businessTypes = [
+  { value: 'individual ', label: 'Individual ' },
+  { value: 'company', label: 'Company' },
+  { value: 'nonprofit', label: 'Nonprofit' },
+  { value: 'government_entity', label: 'Government entity' }
+];
+
+const accountHolderTypes = [
+  { value: 'individual ', label: 'Individual ' },
+  { value: 'company', label: 'Company' }
+];
+
+const btnstyle = {
+  backgroundColor: '#3773c6',
+  color: 'white'
+};
+
+const fileuploadinput = {
+  position: 'absolute',
+  margin: 0,
+  padding: 0,
+  width: '100%',
+  height: '100%',
+  outline: 'none',
+  opacity: 0,
+  cursor: 'pointer'
+};
+
+const imageuploadwrap = {
+  marginTop: '20px',
+  // border: " 4px dashed #3773c6",
+  position: 'relative',
+  width: '100%'
+};
 
 const AddBankModal = (props) => {
   let stateData = props.stateData;
@@ -49,7 +84,7 @@ const AddBankModal = (props) => {
   let stateList = props.stateList;
   let defaultState = props.defaultState;
   let setDefaultState = props.setDefaultState;
-  const handleChange = props.handleChange;
+  //const handleChange = props.handleChange;
   const value = props.value;
 
   // console.log(stateData.dob)
@@ -86,18 +121,6 @@ const AddBankModal = (props) => {
   //     }
   //   }
   // }
-
-  const businessTypes = [
-    { value: 'individual ', label: 'Individual ' },
-    { value: 'company', label: 'Company' },
-    { value: 'nonprofit', label: 'Nonprofit' },
-    { value: 'government_entity', label: 'Government entity' }
-  ];
-
-  const accountHolderTypes = [
-    { value: 'individual ', label: 'Individual ' },
-    { value: 'company', label: 'Company' }
-  ];
 
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -136,28 +159,6 @@ const AddBankModal = (props) => {
   //   setValue(newValue);
   // };
 
-  const btnstyle = {
-    backgroundColor: '#3773c6',
-    color: 'white'
-  };
-
-  const fileuploadinput = {
-    position: 'absolute',
-    margin: 0,
-    padding: 0,
-    width: '100%',
-    height: '100%',
-    outline: 'none',
-    opacity: 0,
-    cursor: 'pointer'
-  };
-
-  const imageuploadwrap = {
-    marginTop: '20px',
-    // border: " 4px dashed #3773c6",
-    position: 'relative',
-    width: '100%'
-  };
 
   return (
     <>
