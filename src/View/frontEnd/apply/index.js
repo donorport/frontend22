@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Button, InputGroup, Container, Form } from 'react-bootstrap';
+import React from 'react';
+import { Button, Container, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import './style.scss';
 import DefaultLayout from '../Component/templates/default-layout';
-import RadioToggle from '../Component/atoms/radio-toggle';
+//import RadioToggle from '../Component/atoms/radio-toggle';
 import Select from 'react-select';
 import CircularProgress from '@mui/material/CircularProgress';
 import Page from '../../../components/Page';
@@ -15,8 +15,8 @@ const Apply = (props) => {
 
   const blocks = props.blocks;
   const activateCode = props.activateCode;
-  const selected = props.selected;
-  const onValueChange = props.onValueChange;
+  //const selected = props.selected;
+  //const onValueChange = props.onValueChange;
   const changevalue = props.changevalue;
   const applyOrganization = props.apply;
   const countryList = props.countryList;

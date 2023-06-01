@@ -8,6 +8,7 @@ import adminCampaignApi from '../../Api/admin/adminCampaign';
 import categoryApi from '../../Api/admin/category';
 import { validateAll } from 'indicative/validator';
 import ToastAlert from '../../Common/ToastAlert';
+import formatUrlWithHttps from '../../utils/formatUrl';
 //import { confirmAlert } from "react-confirm-alert"
 
 function ProfileController() {
@@ -155,6 +156,7 @@ function ProfileController() {
   const changevalue = async (e) => {
     let value = e.target.value;
 
+
     if (e.target.name === 'country') {
       setLoading(false);
       const getCountryStateList = await adminCampaignApi.stateListByCountry(adminAuthToken, value);
@@ -167,7 +169,9 @@ function ProfileController() {
         [e.target.name]: value
       });
       setLoading(false);
-    } else if (e.target.name === 'stateid') {
+      return;
+    } 
+    if (e.target.name === 'stateid') {
       setLoading(false);
       const getStateCityList = await adminCampaignApi.cityListByState(adminAuthToken, value);
       if (getStateCityList.data.success === true) {
@@ -179,12 +183,17 @@ function ProfileController() {
         [e.target.name]: value
       });
       setLoading(false);
-    } else {
-      setState({
-        ...state,
-        [e.target.name]: value
-      });
+      return;
+    } 
+
+    if (e.target.name ==='url') {
+      value = formatUrlWithHttps(value);
     }
+    setState({
+      ...state,
+      [e.target.name]: value
+    });
+
   };
   const handleOnDiscriptionChangeValue = (e) => {
     setState({

@@ -862,6 +862,7 @@ const AdminPosts = () => {
             : await productApi.add(token, formData);
 
         if (!addProduct) {
+          console.log('~~ ~~ ~~ CREATE PRODUCT - NO addProduct!:', addProduct);
           setLoading(false);
           ToastAlert({ msg: 'Product not save', msgType: 'error' });
           return;

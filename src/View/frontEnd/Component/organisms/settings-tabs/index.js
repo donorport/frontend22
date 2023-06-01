@@ -6,7 +6,7 @@ import {
   ProfileIcon,
   AccountsIcon,
   BillingIcon,
-  ControlsIcon,
+  //ControlsIcon,
   AdministratorIcon
 } from './tab-icons';
 import { Link, useLocation } from 'react-router-dom';

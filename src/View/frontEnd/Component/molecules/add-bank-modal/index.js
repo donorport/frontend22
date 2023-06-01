@@ -1,20 +1,20 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import CircularProgress from '@mui/material/CircularProgress';
-import { Button, Modal } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import Select from 'react-select';
 
-import ListItemImg from '../../atoms/list-item-img';
+//import ListItemImg from '../../atoms/list-item-img';
 
 import './style.scss';
 
+const accountHolderTypes = [
+  { value: 'individual', label: 'Individual' },
+  { value: 'company', label: 'Company' }
+];
+
 const AddBankModal = (props) => {
   // console.log(props.bankAccount.accError)
-
-  const accountHolderTypes = [
-    { value: 'individual', label: 'Individual' },
-    { value: 'company', label: 'Company' }
-  ];
 
   const { bankloading } = props;
 
