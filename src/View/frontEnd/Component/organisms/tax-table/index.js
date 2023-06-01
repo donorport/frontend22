@@ -412,12 +412,12 @@ const TaxTable = (props) => {
             //   <li className="table__list-item p-2">No Records to Display</li>
             // </div>
             <li className="table__list-item p-2 fw-bold d-flex justify-content-center">
-            {props.loading ? (
-              <CircularProgress className="ms-2" color="inherit" size={32} />
-            ) : (
-              <> No entries to show</>
-            )}
-          </li>
+              {props.loading ? (
+                <CircularProgress className="ms-2" color="inherit" size={32} />
+              ) : (
+                <> No entries to show</>
+              )}
+            </li>
           )}
 
           {/* <li className="table__list-item p-2">
@@ -459,28 +459,26 @@ const TaxTable = (props) => {
             </div>
           </li> */}
         </ul>
-        {props.totalPages > 1 && (
-          <div
+        <div
             className="py-2 mt-2 d-flex justify-content-center border-top"
             style={{ background: '#f8fafd78' }}
           >
-            {props.totalPages > 1 ? (
-              <Stack spacing={2}>
-                <Pagination
-                  count={props.totalPages}
-                  page={props.pageNo}
-                  onChange={props.handleClick}
-                  shape="rounded"
-                  classes={{ ul: classes.ul }}
-                  showFirstButton
-                  showLastButton
-                />
-              </Stack>
-            ) : (
-              <></>
-            )}
-          </div>
+        {props.totalPages > 1 ? (
+            <Stack spacing={2}>
+              <Pagination
+                count={props.totalPages}
+                page={props.pageNo}
+                onChange={props.handleClick}
+                shape="rounded"
+                classes={{ ul: classes.ul }}
+                showFirstButton
+                showLastButton
+              />
+            </Stack>
+        ) : (
+          <></>
         )}
+                  </div>
       </div>
 
       {props.taxList.length > 0 && (

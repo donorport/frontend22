@@ -235,11 +235,11 @@ const ProjectsTable = (props) => {
             </li>
           )}
         </ul>
-        {props.totalPages > 1 ? (
-          <div
-            className="py-2 mt-2 d-flex justify-content-center border-top"
-            style={{ background: '#f8fafd78' }}
-          >
+        <div
+          className="py-2 mt-2 d-flex justify-content-center border-top"
+          style={{ background: '#f8fafd78' }}
+        >
+          {props.totalPages > 1 ? (
             <Stack spacing={2}>
               <Pagination
                 count={props.totalPages}
@@ -251,10 +251,10 @@ const ProjectsTable = (props) => {
                 showLastButton
               />
             </Stack>
-          </div>
-        ) : (
-          <></>
-        )}
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     </>
   );

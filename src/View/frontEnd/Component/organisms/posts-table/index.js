@@ -209,7 +209,7 @@ const PostsTable = (props) => {
                         ) : (
                           product.status === 1 &&
                           (product.quantity <= product.soldout || product.unlimited) && (
-                            <ButtonShowFulfillOrder 
+                            <ButtonShowFulfillOrder
                               onClick={() => {
                                 props.showFulfillOrder(product);
                               }}
@@ -223,11 +223,15 @@ const PostsTable = (props) => {
                             <ButtonEditProduct onClick={() => props.editProduct(product)} />
 
                             {product.soldout <= 0 && (
-                              <ButtonDeleteProduct onClick={() => props.deleteProduct(product._id)} />
+                              <ButtonDeleteProduct
+                                onClick={() => props.deleteProduct(product._id)}
+                              />
                             )}
 
                             {product.status === -1 && (
-                              <ButtonPublishProduct onClick={() => props.publishProduct(product._id, product)} />
+                              <ButtonPublishProduct
+                                onClick={() => props.publishProduct(product._id, product)}
+                              />
                             )}
                           </>
                         )}
@@ -243,12 +247,11 @@ const PostsTable = (props) => {
             </li>
           )}
         </ul>
-
-        {props.totalPages > 1 ? (
-          <div
-            className="py-2 mt-2 d-flex justify-content-center border-top"
-            style={{ background: '#f8fafd78' }}
-          >
+        <div
+          className="py-2 mt-2 d-flex justify-content-center border-top"
+          style={{ background: '#f8fafd78' }}
+        >
+          {props.totalPages > 1 ? (
             <Stack spacing={2}>
               <Pagination
                 count={props.totalPages}
@@ -260,52 +263,34 @@ const PostsTable = (props) => {
                 showLastButton
               />
             </Stack>
-          </div>
-        ) : (
-          <></>
-        )}
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     </>
   );
 };
 
-const ButtonPublishProduct = ({onClick}) => (
-  <Button
-    variant="info"
-    className=" mr-2"
-    onClick={onClick}
-  >
+const ButtonPublishProduct = ({ onClick }) => (
+  <Button variant="info" className=" mr-2" onClick={onClick}>
     Publish
   </Button>
-)
+);
 
-const ButtonDeleteProduct = ({onClick}) => (
-  <Button
-    variant="link"
-    className="p-0  mr-2"
-    onClick={onClick}
-  >
-    <FontAwesomeIcon
-      icon={solid('trash')}
-      className="text-danger fs-2 me-2"
-    />
+const ButtonDeleteProduct = ({ onClick }) => (
+  <Button variant="link" className="p-0  mr-2" onClick={onClick}>
+    <FontAwesomeIcon icon={solid('trash')} className="text-danger fs-2 me-2" />
   </Button>
-)
+);
 
-const ButtonEditProduct = ({onClick}) => (
-  <Button
-    variant="link"
-    className="p-0 mr-2"
-    onClick={onClick}
-  >
-    <FontAwesomeIcon
-      icon={solid('edit')}
-      className="text-warning fs-2 me-2"
-    />
+const ButtonEditProduct = ({ onClick }) => (
+  <Button variant="link" className="p-0 mr-2" onClick={onClick}>
+    <FontAwesomeIcon icon={solid('edit')} className="text-warning fs-2 me-2" />
   </Button>
-)
+);
 
-const ButtonShowFulfillOrder = ({onClick}) => (
+const ButtonShowFulfillOrder = ({ onClick }) => (
   <Button
     variant="success"
     className="btn-md fw-bold"
@@ -314,20 +299,13 @@ const ButtonShowFulfillOrder = ({onClick}) => (
   >
     Fulfill Order
   </Button>
-)
+);
 
-const ButtonShowFulfillOrderArrow = ({onClick}) => (
-  <Button
-    variant="link"
-    className="p-0"
-    onClick={onClick}
-  >
-    <FontAwesomeIcon
-      icon={solid('square-up-right')}
-      className="text-success fs-2 me-2"
-    />
+const ButtonShowFulfillOrderArrow = ({ onClick }) => (
+  <Button variant="link" className="p-0" onClick={onClick}>
+    <FontAwesomeIcon icon={solid('square-up-right')} className="text-success fs-2 me-2" />
   </Button>
-)
+);
 
 PostsTable.propTypes = {
   organizationDetails: PropTypes.object,

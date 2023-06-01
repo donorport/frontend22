@@ -72,7 +72,7 @@ const HistoryList = (props) => {
   return (
     <>
       <div className="list__table mb-2 mb-sm-0">
-      <div className="list__table-sort d-flex justify-content-sort">
+        <div className="list__table-sort d-flex justify-content-sort">
           <div className="flex__1">
             <Button
               variant="link"
@@ -87,9 +87,8 @@ const HistoryList = (props) => {
               )}
             </Button>
           </div>
-
         </div>
-        <ul className="list__table-list pt-2">
+        <ul className="list__table-list pt-2 ps-sm-3 ps-0">
           {orderList.length > 0 ? (
             orderList.map((order, i) => {
               // console.log(order.uniqueTransactionId)
