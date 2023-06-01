@@ -2,33 +2,33 @@ import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { useState, useEffect } from 'react';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
+//import Chip from '@mui/material/Chip';
+//import Stack from '@mui/material/Stack';
 
 // import { ListItemImg, ToggleSwitch } from "@components/atoms";
 
-import ListItemImg from '../../atoms/list-item-img';
-import ToggleSwitch from '../../atoms/toggle-switch';
+//import ListItemImg from '../../atoms/list-item-img';
+//import ToggleSwitch from '../../atoms/toggle-switch';
 // import { Link } from "react-router-dom";
 import AddBankModal from '../../molecules/add-bank-modal';
 import './style.scss';
 import adminCampaignApi from '../../../../../Api/admin/adminCampaign';
-import FrontLoader from '../../../../../Common/FrontLoader';
+//import FrontLoader from '../../../../../Common/FrontLoader';
 import { validateAll } from 'indicative/validator';
 import ToastAlert from '../../../../../Common/ToastAlert';
 import { confirmAlert } from 'react-confirm-alert';
-import { encryptData, decryptData } from '../../../../../Common/Helper';
+//import { encryptData, decryptData } from '../../../../../Common/Helper';
 import locationApi from '../../../../../Api/frontEnd/location';
-import { Link, Outlet, useOutletContext, useParams, useNavigate } from 'react-router-dom';
-import { DataArraySharp } from '@mui/icons-material';
-import Label from '../../../../../components/Label';
-import CheckIcon from '@mui/icons-material/Check';
+import { useOutletContext, useParams } from 'react-router-dom';
+//import { DataArraySharp } from '@mui/icons-material';
+//import Label from '../../../../../components/Label';
+//import CheckIcon from '@mui/icons-material/Check';
 import { setIsAccountAdd } from '../../../../../user/user.action';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const Payments = () => {
-  const [modalShow, setModalShow] = useState(false);
+  //const [modalShow, setModalShow] = useState(false);
   const [bankAccountList, setBankAccountList] = useState([]);
   // const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
@@ -48,18 +48,18 @@ const Payments = () => {
   const [data, setData] = useOutletContext();
   const dispatch = useDispatch();
   const params = useParams();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [countryList, setCountryList] = useState([]);
   const [stateList, setStateList] = useState([]);
   const [defaultState, setDefaultState] = useState([]);
-  const [tempImg, setTempImg] = useState('');
-  const [tempImgName, setTempImgName] = useState('');
-  const [selectedDoc, setSelectedDoc] = useState('');
-  const [value, setValue] = useState(0);
+  //const [tempImg, setTempImg] = useState('');
+  //const [tempImgName, setTempImgName] = useState('');
+  //const [selectedDoc, setSelectedDoc] = useState('');
+  //const [value, setValue] = useState(0);
   const [bankloading, setBankloading] = useState(false);
-  const [defaultTypeOfBusiness, setDefaultTypeOfBusiness] = useState([
-    { value: 'individual ', label: 'Individual ' }
-  ]);
+  //const [defaultTypeOfBusiness, setDefaultTypeOfBusiness] = useState([
+    //{ value: 'individual ', label: 'Individual ' }
+  //]);
 
   const [state, setstate] = useState({
     registerdBusinessAddress: 'CA',
@@ -96,38 +96,38 @@ const Payments = () => {
     currency: 'CAD'
   });
   const {
-    status,
-    accountHolderName,
-    accountHolderType,
-    routingNumber,
-    error,
-    accountNumber,
+    //status,
+    //accountHolderName,
+    //accountHolderType,
+    //routingNumber,
+    //error,
+    //accountNumber,
     registerdBusinessAddress,
-    typeOfBusiness,
-    firstName,
-    lastName,
-    personalEmail,
-    dob,
-    phoneNo,
-    ssn,
-    homeCountry,
-    addLine1,
-    addLine2,
-    city,
-    stateName,
-    zip,
-    personalIdNumber,
-    businessName,
-    businessWebsite,
-    mcc,
-    bankEmail,
-    identity,
-    identityDocumentImage,
-    confirmAccountNumber,
+    //typeOfBusiness,
+    //firstName,
+    //lastName,
+    //personalEmail,
+    //dob,
+    //phoneNo,
+    //ssn,
+    //homeCountry,
+    //addLine1,
+    //addLine2,
+    //city,
+    //stateName,
+    //zip,
+    //personalIdNumber,
+    //businessName,
+    //businessWebsite,
+    //mcc,
+    //bankEmail,
+    //identity,
+    //identityDocumentImage,
+    //confirmAccountNumber,
     taxRate,
     paymentLoginId,
     TransactionKey,
-    currency
+    //currency
   } = state;
 
   const [bankAccount, setBankAccount] = useState({
@@ -139,7 +139,15 @@ const Payments = () => {
     accEmail: '',
     accError: []
   });
-  const { BusinessType, country, companyName, fname, lname, accError, accEmail } = bankAccount;
+  const {
+    BusinessType,
+    country,
+    companyName,
+    fname,
+    lname,
+    //accError,
+    accEmail
+  } = bankAccount;
 
   const getBankAccountList = async () => {
     const getAccountList = await adminCampaignApi.listBankAccount(token);
@@ -208,7 +216,6 @@ const Payments = () => {
     })();
   }, [data]);
 
-
   // useEffect(() => {
   //   console.log("document.cookie: ", document.cookie)
   //   document.cookie.split(";").forEach((c) => {
@@ -227,18 +234,18 @@ const Payments = () => {
     });
   };
 
-  const hideAccForm = () => {
-    setBankAccount({
-      ...bankAccount,
-      BusinessType: 'individual',
-      country: data.iso2,
-      companyName: '',
-      fname: '',
-      lname: '',
-      accError: []
-    });
-    setModalShow(false);
-  };
+  //const hideAccForm = () => {
+    //setBankAccount({
+      //...bankAccount,
+      //BusinessType: 'individual',
+      //country: data.iso2,
+      //companyName: '',
+      //fname: '',
+      //lname: '',
+      //accError: []
+    //});
+    //setModalShow(false);
+  //};
 
   const getCountryList = async () => {
     let tempArray = [];
@@ -246,7 +253,7 @@ const Payments = () => {
     if (getCountryList) {
       if (getCountryList.data.success) {
         if (getCountryList.data.data.length > 0) {
-          getCountryList.data.data.map((country, i) => {
+          getCountryList.data.data.map((country) => {
             let Obj = {};
             Obj.value = country.iso2;
             Obj.label = country.country;
@@ -266,7 +273,7 @@ const Payments = () => {
     if (getCountryStateList) {
       if (getCountryStateList.data.success) {
         if (getCountryStateList.data.data.length > 0) {
-          getCountryStateList.data.data.map((state, i) => {
+          getCountryStateList.data.data.map((state) => {
             let Obj = {};
             Obj.value = state.state;
             Obj.label = state.state;
@@ -279,201 +286,201 @@ const Payments = () => {
     }
   };
 
-  const changevalue = (e) => {
-    let value = e.target.value;
+  //const changevalue = (e) => {
+    //let value = e.target.value;
 
-    if (
-      e.target.name === 'accountNumber' ||
-      e.target.name === 'phoneNo' ||
-      e.target.name === 'ssn' ||
-      e.target.name === 'personalIdNumber' ||
-      e.target.name === 'mcc'
-    ) {
-      value = e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, '');
-    }
-    if (e.target.name === 'identity') {
-      setSelectedDoc(e.target.getAttribute('data-label'));
+    //if (
+      //e.target.name === 'accountNumber' ||
+      //e.target.name === 'phoneNo' ||
+      //e.target.name === 'ssn' ||
+      //e.target.name === 'personalIdNumber' ||
+      //e.target.name === 'mcc'
+    //) {
+      //value = e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, '');
+    //}
+    //if (e.target.name === 'identity') {
+      //setSelectedDoc(e.target.getAttribute('data-label'));
 
-      setstate({
-        ...state,
-        [e.target.name]: value
-      });
-    }
-    if (e.target.name === 'identityDocumentImage') {
-      // console.log(e)
-      let file = e.target.files[0] ? e.target.files[0] : '';
-      if (file) {
-        setTempImg(URL.createObjectURL(file));
-        setTempImgName(file.name);
-        setstate({
-          ...state,
-          identityDocumentImage: file
-        });
-      } else {
-        setTempImg('');
-        setTempImgName('');
-        setstate({
-          ...state,
-          identityDocumentImage: ''
-        });
-      }
-    } else {
-      setstate({
-        ...state,
-        [e.target.name]: value
-      });
-    }
-  };
+      //setstate({
+        //...state,
+        //[e.target.name]: value
+      //});
+    //}
+    //if (e.target.name === 'identityDocumentImage') {
+      //// console.log(e)
+      //let file = e.target.files[0] ? e.target.files[0] : '';
+      //if (file) {
+        //setTempImg(URL.createObjectURL(file));
+        //setTempImgName(file.name);
+        //setstate({
+          //...state,
+          //identityDocumentImage: file
+        //});
+      //} else {
+        //setTempImg('');
+        //setTempImgName('');
+        //setstate({
+          //...state,
+          //identityDocumentImage: ''
+        //});
+      //}
+    //} else {
+      //setstate({
+        //...state,
+        //[e.target.name]: value
+      //});
+    //}
+  //};
 
-  const resetForm = () => {
-    setModalShow(false);
-    setDefaultCountry(countryList.find((x) => x.value === registerdBusinessAddress));
-    setDefaultTypeOfBusiness({ value: 'individual ', label: 'Individual ' });
-    setTempImg('');
-    setTempImgName('');
-    setSelectedDoc('');
-    setValue(0);
-    setstate({
-      ...state,
-      registerdBusinessAddress: 'US',
-      typeOfBusiness: 'individual',
-      firstName: '',
-      lastName: '',
-      personalEmail: '',
-      dob: '',
-      phoneNo: '',
-      ssn: '',
-      homeCountry: 'US',
-      addLine1: '',
-      addLine2: '',
-      city: '',
-      stateName: '',
-      zip: '',
-      personalIdNumber: '',
-      businessName: '',
-      businessWebsite: '',
-      mcc: '',
-      accountHolderName: '',
-      accountHolderType: 'individual',
-      routingNumber: '',
-      accountNumber: '',
-      confirmAccountNumber: '',
-      bankEmail: '',
-      identity: '',
-      identityDocumentImage: '',
-      status: 1,
-      error: []
-    });
-  };
-  const openModel = () => {
-    setDefaultCountry(countryList.find((x) => x.value === registerdBusinessAddress));
-    setDefaultTypeOfBusiness({ value: 'individual ', label: 'Individual ' });
-    setModalShow(true);
-    setTempImg('');
-    setTempImgName('');
-    setSelectedDoc('');
-    setValue(0);
-    setstate({
-      ...state,
-      registerdBusinessAddress: 'US',
-      typeOfBusiness: 'individual',
-      firstName: '',
-      lastName: '',
-      personalEmail: '',
-      dob: '',
-      phoneNo: '',
-      ssn: '',
-      homeCountry: 'US',
-      addLine1: '',
-      addLine2: '',
-      city: '',
-      stateName: '',
-      zip: '',
-      personalIdNumber: '',
-      businessName: '',
-      businessWebsite: '',
-      mcc: '',
-      accountHolderName: '',
-      accountHolderType: 'individual',
-      routingNumber: '',
-      accountNumber: '',
-      confirmAccountNumber: '',
-      bankEmail: '',
-      identity: '',
-      identityDocumentImage: '',
-      status: 1,
-      error: []
-    });
-  };
+  //const resetForm = () => {
+    //setModalShow(false);
+    //setDefaultCountry(countryList.find((x) => x.value === registerdBusinessAddress));
+    //setDefaultTypeOfBusiness({ value: 'individual ', label: 'Individual ' });
+    //setTempImg('');
+    //setTempImgName('');
+    //setSelectedDoc('');
+    //setValue(0);
+    //setstate({
+      //...state,
+      //registerdBusinessAddress: 'US',
+      //typeOfBusiness: 'individual',
+      //firstName: '',
+      //lastName: '',
+      //personalEmail: '',
+      //dob: '',
+      //phoneNo: '',
+      //ssn: '',
+      //homeCountry: 'US',
+      //addLine1: '',
+      //addLine2: '',
+      //city: '',
+      //stateName: '',
+      //zip: '',
+      //personalIdNumber: '',
+      //businessName: '',
+      //businessWebsite: '',
+      //mcc: '',
+      //accountHolderName: '',
+      //accountHolderType: 'individual',
+      //routingNumber: '',
+      //accountNumber: '',
+      //confirmAccountNumber: '',
+      //bankEmail: '',
+      //identity: '',
+      //identityDocumentImage: '',
+      //status: 1,
+      //error: []
+    //});
+  //};
+  //const openModel = () => {
+    //setDefaultCountry(countryList.find((x) => x.value === registerdBusinessAddress));
+    //setDefaultTypeOfBusiness({ value: 'individual ', label: 'Individual ' });
+    //setModalShow(true);
+    //setTempImg('');
+    //setTempImgName('');
+    //setSelectedDoc('');
+    //setValue(0);
+    //setstate({
+      //...state,
+      //registerdBusinessAddress: 'US',
+      //typeOfBusiness: 'individual',
+      //firstName: '',
+      //lastName: '',
+      //personalEmail: '',
+      //dob: '',
+      //phoneNo: '',
+      //ssn: '',
+      //homeCountry: 'US',
+      //addLine1: '',
+      //addLine2: '',
+      //city: '',
+      //stateName: '',
+      //zip: '',
+      //personalIdNumber: '',
+      //businessName: '',
+      //businessWebsite: '',
+      //mcc: '',
+      //accountHolderName: '',
+      //accountHolderType: 'individual',
+      //routingNumber: '',
+      //accountNumber: '',
+      //confirmAccountNumber: '',
+      //bankEmail: '',
+      //identity: '',
+      //identityDocumentImage: '',
+      //status: 1,
+      //error: []
+    //});
+  //};
 
-  const addBankAccount = (e) => {
-    // console.log(status)
-    const rules = {
-      accountHolderName: 'required',
-      accountHolderType: 'required',
-      routingNumber: 'required',
-      accountNumber: 'required'
-    };
-    const message = {
-      'accountHolderType.required': 'AccountHolder Type is Required.',
-      'accountHolderName.required': 'Category accountHolderName is Required.',
-      'routingNumber.required': 'Routing Number is Required.',
-      'accountNumber.required': 'Account Number is Required.'
-    };
-    validateAll(state, rules, message)
-      .then(async () => {
-        const formaerrror = {};
-        setstate({
-          ...state,
-          error: formaerrror
-        });
+  //const addBankAccount = (e) => {
+    //// console.log(status)
+    //const rules = {
+      //accountHolderName: 'required',
+      //accountHolderType: 'required',
+      //routingNumber: 'required',
+      //accountNumber: 'required'
+    //};
+    //const message = {
+      //'accountHolderType.required': 'AccountHolder Type is Required.',
+      //'accountHolderName.required': 'Category accountHolderName is Required.',
+      //'routingNumber.required': 'Routing Number is Required.',
+      //'accountNumber.required': 'Account Number is Required.'
+    //};
+    //validateAll(state, rules, message)
+      //.then(async () => {
+        //const formaerrror = {};
+        //setstate({
+          //...state,
+          //error: formaerrror
+        //});
 
-        let data = {};
-        // data.accountHolderName = encryptData(accountHolderName)
-        // data.accountHolderType = encryptData(accountHolderType)
-        // data.status = status
-        // data.routingNumber = encryptData(routingNumber.toString())
-        // data.accountNumber = encryptData(accountNumber.toString())
+        //let data = {};
+        //// data.accountHolderName = encryptData(accountHolderName)
+        //// data.accountHolderType = encryptData(accountHolderType)
+        //// data.status = status
+        //// data.routingNumber = encryptData(routingNumber.toString())
+        //// data.accountNumber = encryptData(accountNumber.toString())
 
-        // Api Call for update Profile
-        setLoading(true);
-        const addBank = await adminCampaignApi.addBankAccount(token, data);
+        //// Api Call for update Profile
+        //setLoading(true);
+        //const addBank = await adminCampaignApi.addBankAccount(token, data);
 
-        if (addBank) {
-          if (addBank.data.success === false) {
-            setLoading(false);
-            ToastAlert({ msg: addBank.data.message, msgType: 'error' });
-          } else {
-            if (addBank.data.success === true) {
-              resetForm();
-              setLoading(false);
-              setUpdate(!update);
-              ToastAlert({ msg: addBank.data.message, msgType: 'success' });
-            }
-          }
-        } else {
-          setLoading(false);
-          ToastAlert({ msg: 'Bank Account Not Added', msgType: 'error' });
-        }
-      })
-      .catch((errors) => {
-        // console.log(errors)
-        setLoading(false);
-        const formaerrror = {};
-        if (errors && errors.length) {
-          errors.forEach((element) => {
-            formaerrror[element.field] = element.message;
-          });
-        } else {
-          ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
-        }
+        //if (addBank) {
+          //if (addBank.data.success === false) {
+            //setLoading(false);
+            //ToastAlert({ msg: addBank.data.message, msgType: 'error' });
+          //} else {
+            //if (addBank.data.success === true) {
+              //resetForm();
+              //setLoading(false);
+              //setUpdate(!update);
+              //ToastAlert({ msg: addBank.data.message, msgType: 'success' });
+            //}
+          //}
+        //} else {
+          //setLoading(false);
+          //ToastAlert({ msg: 'Bank Account Not Added', msgType: 'error' });
+        //}
+      //})
+      //.catch((errors) => {
+        //// console.log(errors)
+        //setLoading(false);
+        //const formaerrror = {};
+        //if (errors && errors.length) {
+          //errors.forEach((element) => {
+            //formaerrror[element.field] = element.message;
+          //});
+        //} else {
+          //ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
+        //}
 
-        setstate({
-          ...state,
-          error: formaerrror
-        });
-      });
-  };
+        //setstate({
+          //...state,
+          //error: formaerrror
+        //});
+      //});
+  //};
 
   const removeBank = (id) => {
     confirmAlert({
@@ -552,202 +559,202 @@ const Payments = () => {
       ]
     });*/
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    // setTempImg('')
-    // setTempImgName('')
-    // setstate({
-    //   ...state,
-    //   identityDocumentImage: ''
-    // })
-  };
+  //const handleChange = (event, newValue) => {
+    //setValue(newValue);
+    //// setTempImg('')
+    //// setTempImgName('')
+    //// setstate({
+    ////   ...state,
+    ////   identityDocumentImage: ''
+    //// })
+  //};
 
-  const goToBack = (key) => {
-    setValue(key);
-  };
+  //const goToBack = (key) => {
+    //setValue(key);
+  //};
 
-  const goToNextStep = (key) => {
-    let rules = {};
-    let message = {};
+  //const goToNextStep = (key) => {
+    //let rules = {};
+    //let message = {};
 
-    switch (key) {
-      case 1:
-        rules = {
-          firstName: 'required',
-          lastName: 'required',
-          personalEmail: 'required|email',
-          dob: 'required',
-          phoneNo: 'required',
-          addLine1: 'required',
-          addLine2: 'required',
-          stateName: 'required',
-          zip: 'required',
-          city: 'required',
-          ssn: 'required',
-          personalIdNumber: 'required'
-        };
+    //switch (key) {
+      //case 1:
+        //rules = {
+          //firstName: 'required',
+          //lastName: 'required',
+          //personalEmail: 'required|email',
+          //dob: 'required',
+          //phoneNo: 'required',
+          //addLine1: 'required',
+          //addLine2: 'required',
+          //stateName: 'required',
+          //zip: 'required',
+          //city: 'required',
+          //ssn: 'required',
+          //personalIdNumber: 'required'
+        //};
 
-        message = {
-          'firstName.required': 'First Name is Required.',
-          'lastName.required': 'Last Name is Required.',
-          'personalEmail.required': 'Email is Required.',
-          'personalEmail.email': 'Please Enter valid Email.',
-          'dob.required': 'Date of birth is Required.',
-          'phoneNo.required': 'Phone Number is Required.',
-          'addLine1.required': 'Address Line 1 is Required.',
-          'addLine2.required': 'Address Line 2 is Required.',
-          'stateName.required': 'State is Required.',
-          'zip.required': 'Zip code is Required.',
-          'personalIdNumber.required': 'personal Id Number is Required.',
-          'ssn.required': 'SSN is Required.',
-          'city.required': 'city is Required.'
-        };
-        break;
+        //message = {
+          //'firstName.required': 'First Name is Required.',
+          //'lastName.required': 'Last Name is Required.',
+          //'personalEmail.required': 'Email is Required.',
+          //'personalEmail.email': 'Please Enter valid Email.',
+          //'dob.required': 'Date of birth is Required.',
+          //'phoneNo.required': 'Phone Number is Required.',
+          //'addLine1.required': 'Address Line 1 is Required.',
+          //'addLine2.required': 'Address Line 2 is Required.',
+          //'stateName.required': 'State is Required.',
+          //'zip.required': 'Zip code is Required.',
+          //'personalIdNumber.required': 'personal Id Number is Required.',
+          //'ssn.required': 'SSN is Required.',
+          //'city.required': 'city is Required.'
+        //};
+        //break;
 
-      case 2:
-        rules = {
-          businessName: 'required',
-          businessWebsite: 'required',
-          mcc: 'required'
-        };
+      //case 2:
+        //rules = {
+          //businessName: 'required',
+          //businessWebsite: 'required',
+          //mcc: 'required'
+        //};
 
-        message = {
-          'businessName.required': 'Business Name is Required.',
-          'businessWebsite.required': 'Business Website is Required.',
-          'mcc.required': 'MCC is Required.'
-        };
+        //message = {
+          //'businessName.required': 'Business Name is Required.',
+          //'businessWebsite.required': 'Business Website is Required.',
+          //'mcc.required': 'MCC is Required.'
+        //};
 
-        break;
+        //break;
 
-      case 3:
-        rules = {
-          accountHolderName: 'required',
-          bankEmail: 'required|email',
-          routingNumber: 'required',
-          accountNumber: 'required',
-          confirmAccountNumber: 'required|same:accountNumber'
-        };
+      //case 3:
+        //rules = {
+          //accountHolderName: 'required',
+          //bankEmail: 'required|email',
+          //routingNumber: 'required',
+          //accountNumber: 'required',
+          //confirmAccountNumber: 'required|same:accountNumber'
+        //};
 
-        message = {
-          'accountHolderName.required': 'Accountholder Name is Required.',
-          'bankEmail.required': 'Email is Required.',
-          'bankEmail.email': 'Please Enter valid Email.',
-          'routingNumber.required': 'Routing number is Required.',
-          'accountNumber.required': 'Account number is Required.',
-          'confirmAccountNumber.required': 'Confirm Account number is Required.',
-          'confirmAccountNumber.same': 'Account number and Confirm Account Number is Required.'
-        };
+        //message = {
+          //'accountHolderName.required': 'Accountholder Name is Required.',
+          //'bankEmail.required': 'Email is Required.',
+          //'bankEmail.email': 'Please Enter valid Email.',
+          //'routingNumber.required': 'Routing number is Required.',
+          //'accountNumber.required': 'Account number is Required.',
+          //'confirmAccountNumber.required': 'Confirm Account number is Required.',
+          //'confirmAccountNumber.same': 'Account number and Confirm Account Number is Required.'
+        //};
 
-        break;
+        //break;
 
-      case 4:
-        rules = {
-          identity: 'required'
-        };
+      //case 4:
+        //rules = {
+          //identity: 'required'
+        //};
 
-        message = {
-          'identity.required': 'Please select type of Identity document to Upload'
-        };
+        //message = {
+          //'identity.required': 'Please select type of Identity document to Upload'
+        //};
 
-        break;
+        //break;
 
-      case 5:
-        rules = {
-          identityDocumentImage: 'required'
-        };
+      //case 5:
+        //rules = {
+          //identityDocumentImage: 'required'
+        //};
 
-        message = {
-          'identityDocumentImage.required': 'Please upload Identity Document'
-        };
+        //message = {
+          //'identityDocumentImage.required': 'Please upload Identity Document'
+        //};
 
-        break;
+        //break;
 
-      default:
-        break;
-    }
+      //default:
+        //break;
+    //}
 
-    validateAll(state, rules, message)
-      .then(async () => {
-        const formaerrror = {};
-        setstate({
-          ...state,
-          error: formaerrror
-        });
+    //validateAll(state, rules, message)
+      //.then(async () => {
+        //const formaerrror = {};
+        //setstate({
+          //...state,
+          //error: formaerrror
+        //});
 
-        setLoading(true);
-        if (key !== 5) {
-          setValue(key + 1);
-        } else {
-          let fdata = {};
-          fdata.registerdBusinessAddress = registerdBusinessAddress;
-          fdata.typeOfBusiness = typeOfBusiness;
-          fdata.firstName = firstName;
-          fdata.lastName = lastName;
-          fdata.personalEmail = personalEmail;
-          fdata.dob = dob;
-          fdata.phoneNo = phoneNo;
-          fdata.ssn = ssn;
-          fdata.homeCountry = homeCountry;
-          fdata.addLine1 = addLine1;
-          fdata.addLine2 = addLine2;
-          fdata.city = city;
-          fdata.stateName = stateName;
-          fdata.zip = zip;
-          fdata.personalIdNumber = personalIdNumber;
-          fdata.businessName = businessName;
-          fdata.businessWebsite = businessWebsite;
-          fdata.mcc = mcc;
-          fdata.accountHolderName = accountHolderName;
-          fdata.accountHolderType = accountHolderType;
-          fdata.routingNumber = routingNumber;
-          fdata.accountNumber = accountNumber;
-          fdata.bankEmail = bankEmail;
-          fdata.identityDocumentType = identity;
-          fdata.identityDocumentImage = identityDocumentImage;
-          fdata.status = status;
-          fdata.countryId = data.country_id;
-          fdata.currency = currency;
+        //setLoading(true);
+        //if (key !== 5) {
+          //setValue(key + 1);
+        //} else {
+          //let fdata = {};
+          //fdata.registerdBusinessAddress = registerdBusinessAddress;
+          //fdata.typeOfBusiness = typeOfBusiness;
+          //fdata.firstName = firstName;
+          //fdata.lastName = lastName;
+          //fdata.personalEmail = personalEmail;
+          //fdata.dob = dob;
+          //fdata.phoneNo = phoneNo;
+          //fdata.ssn = ssn;
+          //fdata.homeCountry = homeCountry;
+          //fdata.addLine1 = addLine1;
+          //fdata.addLine2 = addLine2;
+          //fdata.city = city;
+          //fdata.stateName = stateName;
+          //fdata.zip = zip;
+          //fdata.personalIdNumber = personalIdNumber;
+          //fdata.businessName = businessName;
+          //fdata.businessWebsite = businessWebsite;
+          //fdata.mcc = mcc;
+          //fdata.accountHolderName = accountHolderName;
+          //fdata.accountHolderType = accountHolderType;
+          //fdata.routingNumber = routingNumber;
+          //fdata.accountNumber = accountNumber;
+          //fdata.bankEmail = bankEmail;
+          //fdata.identityDocumentType = identity;
+          //fdata.identityDocumentImage = identityDocumentImage;
+          //fdata.status = status;
+          //fdata.countryId = data.country_id;
+          //fdata.currency = currency;
 
-          const addBank = await adminCampaignApi.addBankAccount(token, fdata);
-          // console.log(addBank)
+          //const addBank = await adminCampaignApi.addBankAccount(token, fdata);
+          //// console.log(addBank)
 
-          if (addBank) {
-            if (addBank.data.success === false) {
-              setLoading(false);
-              ToastAlert({ msg: addBank.data.message, msgType: 'error' });
-            } else {
-              if (addBank.data.success === true) {
-                resetForm();
-                setLoading(false);
-                setUpdate(!update);
-                ToastAlert({ msg: addBank.data.message, msgType: 'success' });
-              }
-            }
-          } else {
-            setLoading(false);
-            ToastAlert({ msg: 'Bank Account Not Added', msgType: 'error' });
-          }
-        }
-        setLoading(false);
-      })
-      .catch((errors) => {
-        console.log(errors);
-        setLoading(false);
-        const formaerrror = {};
-        if (errors && errors.length) {
-          errors.forEach((element) => {
-            formaerrror[element.field] = element.message;
-          });
-        } else {
-          ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
-        }
+          //if (addBank) {
+            //if (addBank.data.success === false) {
+              //setLoading(false);
+              //ToastAlert({ msg: addBank.data.message, msgType: 'error' });
+            //} else {
+              //if (addBank.data.success === true) {
+                //resetForm();
+                //setLoading(false);
+                //setUpdate(!update);
+                //ToastAlert({ msg: addBank.data.message, msgType: 'success' });
+              //}
+            //}
+          //} else {
+            //setLoading(false);
+            //ToastAlert({ msg: 'Bank Account Not Added', msgType: 'error' });
+          //}
+        //}
+        //setLoading(false);
+      //})
+      //.catch((errors) => {
+        //console.log(errors);
+        //setLoading(false);
+        //const formaerrror = {};
+        //if (errors && errors.length) {
+          //errors.forEach((element) => {
+            //formaerrror[element.field] = element.message;
+          //});
+        //} else {
+          //ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
+        //}
 
-        setstate({
-          ...state,
-          error: formaerrror
-        });
-      });
-  };
+        //setstate({
+          //...state,
+          //error: formaerrror
+        //});
+      //});
+  //};
 
   const onChangeTaxRate = (e) => {
     let value = e.target.value;
@@ -826,14 +833,14 @@ const Payments = () => {
       });
   }
 
-  const checkAcc = async (accountId) => {
-    let data = {};
-    data.accountId = accountId;
-    const check = await adminCampaignApi.chekConnectAccount(token, data);
-    if (check && check.data.success) {
-      await getBankAccountList();
-    }
-  };
+  //const checkAcc = async (accountId) => {
+    //let data = {};
+    //data.accountId = accountId;
+    //const check = await adminCampaignApi.chekConnectAccount(token, data);
+    //if (check && check.data.success) {
+      //await getBankAccountList();
+    //}
+  //};
 
   const addExpressAccount = async () => {
     setBankloading(true);
@@ -867,10 +874,10 @@ const Payments = () => {
         formData.email = accEmail;
         formData.business_type = BusinessType;
         formData.slug = data.slug;
-        let fullUrl = window.location.href
+        let fullUrl = window.location.href;
 
-        let redirectUrlMinusPayments = fullUrl.split("payments")[0]
-        formData.redirectUrl = redirectUrlMinusPayments + "payments"
+        let redirectUrlMinusPayments = fullUrl.split('payments')[0];
+        formData.redirectUrl = redirectUrlMinusPayments + 'payments';
 
         if (BusinessType === 'individual') {
           formData.first_name = fname;
@@ -994,7 +1001,7 @@ const Payments = () => {
         <Button
           variant="info"
           onClick={() => {
-            if(!saveloading) myFunction('taxRate')
+            if (!saveloading) myFunction('taxRate');
           }}
           style={{
             opacity: saveloading ? '0.7' : '1'
@@ -1006,8 +1013,8 @@ const Payments = () => {
         <div className="mb-5 mt-5">
           <h4 className="fw-bolder">Add Payout Account</h4>
           <div className="text-subtext mb-3">
-            Link the bank account that {CampaignAdmin?.name || "your Charity"} will use to receive direct deposits
-            from our donors.
+            Link the bank account that {CampaignAdmin?.name || 'your Charity'} will use to receive
+            direct deposits from our donors.
           </div>
           <div className="d-flex align-items-center mb-5">
             {/*     <span className="text-subtext flex__1">
