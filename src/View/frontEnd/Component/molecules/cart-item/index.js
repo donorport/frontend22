@@ -47,13 +47,13 @@ function CartItem(props) {
   }, [quantity, updateQuantity]);
 console.log({quantity})
   return (
-    <li className="cd__cart__item px-1 py-2 d-flex align-items-center border-bottom">
-      <div className="d-flex align-items-center">
+    <li className="d-flex cd__cart__item ps-1 py-2 d-flex align-items-center border-bottom">
+      <div className="flex-grow-1 d-flex align-items-center">
         <ListItemImg
           size={62}
           imgSrc={helper.CampaignProductImagePath + cartItem?.productDetails?.image}
         />
-        <div className="cd__cart__main pl-12p" style={{ width: '105px' }}>
+        <div className="flex-grow-1 cd__cart__main pl-12p">
           <div className="cd__cart__title pr-12p">
             <Link
               to={'/item/' + cartItem?.productDetails.slug}

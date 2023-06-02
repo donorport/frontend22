@@ -67,8 +67,8 @@
 
 .page__logo img {
   object-fit: contain;
-  max-height: 46px;
-  max-width: 120px;
+  // max-height: 46px;
+  // max-width: 120px;
 }
 
 @include media-breakpoint-down(sm) {
