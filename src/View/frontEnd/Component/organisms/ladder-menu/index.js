@@ -16,10 +16,21 @@ const defaultProps = {
 };
 
 const LadderMenu = ({ items, activeKey, onChangeFilterOption, loading }) => {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(false);
+  const [loadingId, setLoadingId] = useState([]);
 
   const handleClose = () => {
     setActive(false);
+  };
+
+  const handleMenuClick = (index, item) => {
+    setActive(false);
+    if (!loading) {
+      onChangeFilterOption(index, item);
+    }
+    let tempArray = [...loadingId];
+    tempArray.push(`loading-${index}`);
+    setLoadingId(tempArray);
   };
 
   return (
@@ -28,7 +39,9 @@ const LadderMenu = ({ items, activeKey, onChangeFilterOption, loading }) => {
         <div className="ladder__dropdown--selected" onClick={() => setActive(true)}>
           <div className="ladder__selected fw-semibold">
             {items[activeKey]}
-            {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+            {loading && loadingId.indexOf(`loading-${activeKey}`) !== -1 && (
+              <CircularProgress className="ms-2" color="inherit" size={12} />
+            )}
           </div>
           <FontAwesomeIcon icon={solid('chevron-down')} className="icon chevron__icon" />
         </div>
@@ -37,11 +50,7 @@ const LadderMenu = ({ items, activeKey, onChangeFilterOption, loading }) => {
           {items.map((item, index) => (
             <li
               className="ladder__menu-item"
-              onClick={() => {
-                setActive(false);
-                // setSelectedKey(index)
-                if (!loading) onChangeFilterOption(index, item);
-              }}
+              onClick={() => handleMenuClick(index, item)}
               key={index}
             >
               {item}
@@ -52,6 +61,7 @@ const LadderMenu = ({ items, activeKey, onChangeFilterOption, loading }) => {
     </ClickAwayListener>
   );
 };
+
 
 LadderMenu.defaultProps = defaultProps;
 LadderMenu.propTypes = propTypes;

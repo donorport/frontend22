@@ -192,7 +192,7 @@ const UserTax = () => {
         </div>
 
         <div className="ms-sm-auto">
-          <LadderMenu activeKey={activeKey} onChangeFilterOption={onChangeFilterOption} />
+          <LadderMenu loading={loading} activeKey={activeKey} onChangeFilterOption={onChangeFilterOption} />
         </div>
       </header>
 

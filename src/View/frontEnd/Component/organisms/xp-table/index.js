@@ -122,7 +122,7 @@ const XpTable = (props) => {
   return (
     <>
       <div className="list__table mb-2 mb-sm-0">
-        <div className="list__table-sort d-flex justify-content-sort">
+        <div className="list__table-sort d-flex justify-content-sort border-bottom">
           <div className="flex__1">
             <Button
               variant="link"

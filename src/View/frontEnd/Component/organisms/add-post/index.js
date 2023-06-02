@@ -246,6 +246,7 @@ const AddPost = (props) => {
   const [max20] = useState(20);
   const [max45] = useState(45);
   const [max250] = useState(250);
+  const [loadingId, setLoadingId] = useState([]);
 
   //const Banner = () => {
   //return <div className="banner">Loading...</div>;
@@ -699,7 +700,7 @@ const AddPost = (props) => {
                       <div className="main-upload-image-wrap">
                         <div className="form__label">
                           Main Image{' '}
-                          {props.loading && (
+                          {props.loading && loadingId && (
                             // <CircularProgress className="ms-1" color="inherit" size={21} />
                             <Box sx={{ width: '100%' }}>
                               <LinearProgress />
@@ -738,6 +739,7 @@ const AddPost = (props) => {
                               id="mainImg"
                               name="mainImg"
                               onChange={(e) => {
+                                setLoadingId(true);
                                 changefile(e);
                               }}
                             />
@@ -746,7 +748,7 @@ const AddPost = (props) => {
                         <p className="error">{error ? (error.image ? error.image : '') : ''}</p>
                         <canvas id="canvas1" width={300} height={300}></canvas>
                       </div>
-                      {props.loading && (
+                      {props.loading && loadingId && (
                         <Box sx={{ width: '100%' }}>
                           <div className="d-flex note note--info mb-3 fs-5 gap-2">
                             <CircularProgress color="secondary" size={21}></CircularProgress>

@@ -128,7 +128,7 @@ const AdminTaxTable = (props) => {
   return (
     <>
       <div className="admin__tax-table list__table mb-4">
-        <div className="list__table-sort d-flex justify-content-sort">
+        <div className="list__table-sort d-flex justify-content-sort border-bottom">
           <div className="flex__1">
             <Button
               variant="link"
