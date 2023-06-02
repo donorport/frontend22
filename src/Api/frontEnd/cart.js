@@ -70,10 +70,7 @@ function cart() {
     }
 
     const updateCart = async (authToken, quantity, id, productId,type) => {
-
-
-        let res = {};
-        await axios({
+        return axios({
             method: 'put',
             url: `${helper.ApiUrl}cart/${id}`,
             responseType: 'json',
@@ -93,10 +90,7 @@ function cart() {
 
             }
 
-        }).then((response) => {
-            res = response
         });
-        return res;
     }
 
     const removeCartProduct = async (authToken, productId) => {

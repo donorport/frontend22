@@ -12,7 +12,7 @@ import './style.scss';
 import { debounce } from 'lodash';
 
 function CartItem(props) {
-  console.log('CartItem component:', {cartItem: props.cartItem});
+  //console.log('CartItem component:', { cartItem: props.cartItem });
   let cartItem = props.cartItem;
   const [quantity, setQuantity] = useState();
 
@@ -30,8 +30,9 @@ function CartItem(props) {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateQuantity = useCallback(
-    debounce(async (quantity) => {
-      await props.updateCartItem(quantity, cartItem?._id, cartItem?.productDetails?._id, 'plus');
+    debounce(async (oldQuantity, newQuantity) => {
+      const type = oldQuantity > newQuantity ? 'plus' : 'minus';
+      await props.updateCartItem(newQuantity, cartItem?._id, cartItem?.productDetails?._id, type);
     }, 1000),
     []
   );
@@ -42,10 +43,12 @@ function CartItem(props) {
   }, [cartItem]);
 
   useEffect(() => {
-    updateQuantity(quantity);
+    //updateQuantity(quantity);
     props.updateChildCart();
   }, [quantity, updateQuantity]);
-console.log({quantity})
+
+  console.log({ quantity });
+
   return (
     <li className="d-flex cd__cart__item ps-1 py-2 d-flex align-items-center border-bottom">
       <div className="flex-grow-1 d-flex align-items-center">
@@ -74,7 +77,10 @@ console.log({quantity})
             <FontAwesomeIcon
               icon={regular('angle-down')}
               onClick={() => {
-                if (quantity > 1) setQuantity(quantity - 1);
+                if (quantity > 1) {
+                  setQuantity(quantity - 1);
+                  updateQuantity(quantity, quantity - 1);
+                }
               }}
             />
           </Button>
@@ -85,11 +91,34 @@ console.log({quantity})
             id={1}
             value={quantity}
             onChange={(e) => {
-              if(Number(e.target.value) > -1){
-                setQuantity(e.target.value === "" ? 0 : Number(e.target.value));
-              }
-              if(cartItem?.productDetails.soldout + Number(e.target.value) >= cartItem?.productDetails.quantity && !cartItem.productDetails.unlimited) {
-                setQuantity(cartItem?.productDetails.quantity - cartItem?.productDetails.soldout);
+              const value = Number(e.target.value);
+              const isIncrease = value > quantity;
+
+              if (isIncrease) {
+                const isUnlimited = cartItem.productDetails.unlimited;
+
+                if (isUnlimited) {
+                  setQuantity(value);
+                  updateQuantity(quantity, value);
+                  return;
+                }
+
+                // if we are limited, need to get the availableCount
+                // e.g. 15 tents quantity, - 0 soldOut === 15 availableCount
+                const availableCount =
+                  cartItem?.productDetails.quantity - cartItem?.productDetails.soldout;
+                const qty = (availableCount < value) ? availableCount : value;
+
+                //console.log('~~ ~~ CART: ~~ ~~ limited qty available', {availableCount, qty});
+
+                setQuantity(qty);
+                updateQuantity(quantity, qty);
+
+              } else {
+                // decreasing, limit to 1
+                const newQty = e.target.value === '' || value <= 0 ? 1 : value;
+                setQuantity(newQty);
+                updateQuantity(quantity, newQty);
               }
             }}
           />
@@ -107,8 +136,10 @@ console.log({quantity})
                 if (
                   cartItem?.productDetails.soldout + quantity < cartItem?.productDetails.quantity ||
                   cartItem.productDetails.unlimited
-                )
+                ) {
                   setQuantity(quantity + 1);
+                  updateQuantity(quantity, quantity + 1);
+                }
               }}
             />
           </Button>

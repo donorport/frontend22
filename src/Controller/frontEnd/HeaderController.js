@@ -242,10 +242,12 @@ export default function HeaderController({ isHeaderGeo = false }) {
 
   const updateCartItem = useLoading(async (quantity, id, productId, type) => {
     console.log(`header${isHeaderGeo ? '-GEO-' : ''}Controller_____________ `, {
+      id,
       productId,
       type,
-      quantity
+      quantity,
     });
+
 
     //setLoading(true);
     const updateCartItem = await cartApi.updateCart(userAuthToken, quantity, id, productId, type);
