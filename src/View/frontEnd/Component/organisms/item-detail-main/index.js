@@ -100,8 +100,8 @@ function ProjectDetailMain(props) {
     })();
   }, [productDetails]);
 
-  const onClickFilter = async (e) => {
-    await props.addProductToWishlist(productDetails._id);
+  const onClickFilter = (e) => {
+    props.addProductToWishlist(productDetails._id);
   };
   const cart_btn = addedToCard ? (
     <Button

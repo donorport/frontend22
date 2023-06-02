@@ -1,36 +1,32 @@
-import React, { useState } from "react";
-import { Button, Dropdown } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { light, solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import Avatar from "../../atoms/avatar";
-import LinkedOrg from "../../molecules/linked-org";
-import FollowingList from "../wishlist/index";
-import UserSettingsList from "./user-settings-list";
+import React, { useState } from 'react';
+import { Button, Dropdown } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import Avatar from '../../atoms/avatar';
+import LinkedOrg from '../../molecules/linked-org';
+import FollowingList from '../wishlist/index';
+import UserSettingsList from './user-settings-list';
 // import { Link } from "react-router-dom";
-import AvatarImg from "../../../../../assets/images/avatar.png";
-import helper, { getCalculatedPrice } from "../../../../../Common/Helper";
-import { useSelector, useDispatch } from "react-redux";
-import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
+import AvatarImg from '../../../../../assets/images/avatar.png';
+import { getCalculatedPrice } from '../../../../../Common/Helper';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-
-import "./style.scss";
-
+import './style.scss';
 
 const UserSettings = (props) => {
-
   const userData = JSON.parse(localStorage.getItem('userData'));
   const CampaignAdmin = JSON.parse(localStorage.getItem('CampaignAdmin'));
-  const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
-  const userAuthToken = localStorage.getItem('userAuthToken');
+  //const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
+  //const userAuthToken = localStorage.getItem('userAuthToken');
   const user = useSelector((state) => state.user);
-  const getC = getCalculatedPrice()
+  const getC = getCalculatedPrice();
   const navigate = useNavigate();
-
 
   const [state, setState] = useState({
     wishlist: false,
-    linked_org: false,
-  })
+    linked_org: false
+  });
 
   const goBack = () => {
     setState({ ...state, wishlist: false, linked_org: false });
@@ -57,19 +53,26 @@ const UserSettings = (props) => {
   });
 
   const onClickOrg = () => {
-    localStorage.setItem('type', 'main')
-    navigate('/campaign/' + CampaignAdmin?.slug + '/posts', { state: { type: 'temp' } }, { replace: true })
-
-  }
+    localStorage.setItem('type', 'main');
+    navigate(
+      '/campaign/' + CampaignAdmin?.slug + '/posts',
+      { state: { type: 'temp' } },
+      { replace: true }
+    );
+  };
   const onClickLeaderBoard = () => {
     navigate('/leaderboard');
-  }
+  };
 
   return (
     <>
       <Dropdown className="d-flex" autoClose="outside">
         <Dropdown.Toggle as={UserButton}>
-          <Avatar size={39} className={userData ? 'donor_avatar_bg' : 'charity_avatar_bg'} avatarUrl={user.profileImage ? user.profileImage : AvatarImg} />
+          <Avatar
+            size={39}
+            className={userData ? 'donor_avatar_bg' : 'charity_avatar_bg'}
+            avatarUrl={user.profileImage ? user.profileImage : AvatarImg}
+          />
         </Dropdown.Toggle>
 
         <Dropdown.Menu className="profile__dropdown w-310 dropdown-top-arrow">
@@ -82,10 +85,10 @@ const UserSettings = (props) => {
                   onClick={() => goBack()}
                 >
                   {/* <i className="fa-solid fa-chevron-left"></i> */}
-                  <FontAwesomeIcon icon={solid("chevron-left")} />
+                  <FontAwesomeIcon icon={solid('chevron-left')} />
                 </Button>
               ) : (
-                ""
+                ''
               )}
 
               {state.wishlist ? (
@@ -94,61 +97,56 @@ const UserSettings = (props) => {
                 <div>Organizations</div>
               ) : (
                 <div className="d-flex align-items-center w-100">
-                  <Avatar avatarUrl={user.profileImage} className={userData ? 'donor_avatar_bg' : 'charity_avatar_bg'} />
+                  <Avatar
+                    avatarUrl={user.profileImage}
+                    className={userData ? 'donor_avatar_bg' : 'charity_avatar_bg'}
+                  />
 
-                  {
-                    CampaignAdmin?.name ?
-                      <Button
-                        onClick={() => onClickOrg()}
-                        // to={'/campaign/' + CampaignAdmin?.slug + '/dashboard'}
-                        variant="link"
-                        className="p-0 ms-2 btn__link-dark text-decoration-none"
+                  {CampaignAdmin?.name ? (
+                    <Button
+                      onClick={() => onClickOrg()}
+                      // to={'/campaign/' + CampaignAdmin?.slug + '/dashboard'}
+                      variant="link"
+                      className="p-0 ms-2 btn__link-dark text-decoration-none"
                       // state={{ type: "main" }}
-
-                      >
-                        {CampaignAdmin?.name}
-                      </Button> : userData ?
-                        <Button
-                          href="#"
-                          variant="link"
-                          className="p-0 ms-2 btn__link-dark text-decoration-none"
-                        >
-                          {userData?.name ? userData.name : CampaignAdmin?.name}
-                        </Button>
-                        :
-                        <Button
-                          href="#"
-                          variant="link"
-                          className="p-0 ms-2 btn__link-dark text-decoration-none"
-                        >
-                          Welcome User
-                        </Button>
-                  }
-
-                  {
-                    userData &&
-                    <a
-                      href="/leaderboard"
-                      className="btn btn__xs  ms-auto"
                     >
+                      {CampaignAdmin?.name}
+                    </Button>
+                  ) : userData ? (
+                    <Button
+                      href="#"
+                      variant="link"
+                      className="p-0 ms-2 btn__link-dark text-decoration-none"
+                    >
+                      {userData?.name ? userData.name : CampaignAdmin?.name}
+                    </Button>
+                  ) : (
+                    <Button
+                      href="#"
+                      variant="link"
+                      className="p-0 ms-2 btn__link-dark text-decoration-none"
+                    >
+                      Welcome User
+                    </Button>
+                  )}
 
-
-                      <span className="mr-3p">
-                        {getC.getUserRank(user.xp)}
-                      </span>
-
+                  {userData && (
+                    <a href="/leaderboard" className="btn btn__xs  ms-auto">
+                      <span className="mr-3p">{getC.getUserRank(user.xp)}</span>
                     </a>
-                  }
+                  )}
                 </div>
               )}
             </div>
 
             <div className="activity__dropdown-body">
               {state.wishlist ? (
-                <FollowingList wishListproductList={props.wishListproductList} addProductToWishlist={props.addProductToWishlist} />
-              ) : state.linked_org ? (
-                <LinkedOrg getAuthToken={props.getAuthToken}
+                <FollowingList
+                  wishListproductList={props.wishListproductList}
+                  addProductToWishlist={props.addProductToWishlist}
                 />
+              ) : state.linked_org ? (
+                <LinkedOrg getAuthToken={props.getAuthToken} />
               ) : (
                 <UserSettingsList
                   onWishlistClick={() => showWishList()}
@@ -165,6 +163,6 @@ const UserSettings = (props) => {
       </Dropdown>
     </>
   );
-}
+};
 
 export default UserSettings;
