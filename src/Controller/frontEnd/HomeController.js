@@ -341,24 +341,20 @@ export default function HomeController() {
   };
 
   const addProductToWishlist = async (productId) => {
-    let data = {};
-    data.productId = productId;
+    let data = {productId};
     setLoading(true);
-    const add = await wishlistApi.add(token, data);
+    const add = await wishlistApi.toggle(token, data);
     if (add) {
       if (add.data.success) {
-        setLoading(false);
         // await getWishListProductList()
         dispatch(setIsUpdateCart(!user.isUpdateCart));
       } else {
-        setLoading(false);
-
         ToastAlert({ msg: add.data.message, msgType: 'error' });
       }
     } else {
-      setLoading(false);
       ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
     }
+    setLoading(false);
   };
 
   // fetch cart list & product list when user token changes

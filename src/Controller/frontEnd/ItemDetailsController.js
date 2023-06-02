@@ -90,23 +90,20 @@ export default function ItemDetailsController() {
   }, [token]);
 
   const addProductToWishlist = async (productId) => {
-    let data = {};
-    data.productId = productId;
+    let data = { productId };
     setLoading(true);
-    const add = await wishlistApi.add(token, data);
+    const add = await wishlistApi.toggle(token, data);
 
-    if (!add) {
+    if (add) {
+      if (add.data.success) {
+        dispatch(setIsUpdateCart(!user.isUpdateCart)); 
+      } else {
+        ToastAlert({ msg: add.data.message, msgType: 'error' });
+      }
+    } else {
       ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
-      setLoading(false);
-      return;
     }
 
-    if (!add.data.success) {
-      ToastAlert({ msg: add.data.message, msgType: 'error' });
-      setLoading(false);
-      return;
-    }
-    dispatch(setIsUpdateCart(!user.isUpdateCart));
     setLoading(false);
   };
   const checkUserFollow = useCallback(

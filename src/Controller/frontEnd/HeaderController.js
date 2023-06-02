@@ -62,9 +62,9 @@ export default function HeaderController({ isHeaderGeo = false }) {
    * setLoading at start and at the end. Pass in a function and
    * this returns a function so it can be called normally.
    */
-  const useLoading = (bodyFn) => async () => {
+  const useLoading = (bodyFn) => async (...args) => {
     setLoading(true);
-    await bodyFn();
+    await bodyFn(...args);
     setLoading(false);
   };
 
@@ -88,15 +88,18 @@ export default function HeaderController({ isHeaderGeo = false }) {
     const list = await wishlistApi.list(token);
 
     if (list && list.data.success) {
-      // console.log(list.data.data)
       setWishListProductList(list.data.data);
     }
+
+    console.log('getWishListProductList result:', {success: list?.data?.success ?? false, list})
   };
 
   const addProductToWishlist = useLoading(async (productId) => {
-    let data = {};
-    data.productId = productId;
-    const add = await wishlistApi.add(token, data);
+    let data = {
+      productId,
+    };
+    console.log('addProductToWishlist: toggling the item:', {productId});
+    const add = await wishlistApi.toggle(token, data);
 
     if (!add) {
       ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
@@ -211,8 +214,10 @@ export default function HeaderController({ isHeaderGeo = false }) {
         // console.log('token')
         await getNotificationList();
       }
+
       if (token && token !== '') {
         const verifyUser = await authApi.verifyToken(token);
+
         if (!verifyUser.data.success) {
           localStorage.clear();
           navigate('/login');

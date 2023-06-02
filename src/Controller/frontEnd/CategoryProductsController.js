@@ -222,23 +222,20 @@ export function CategoryProductsController() {
   };
 
   const addProductToWishlist = async (productId) => {
-    let data = {};
-    data.productId = productId;
-    setLoading(false);
-    const add = await wishlistApi.add(token, data);
+    let data = {productId};
+    setLoading(true);
+    const add = await wishlistApi.toggle(token, data);
     if (add) {
       if (add.data.success) {
-        setLoading(false);
         await getWishListProductList();
         dispatch(setIsUpdateCart(!user.isUpdateCart));
       } else {
-        setLoading(false);
         ToastAlert({ msg: add.data.message, msgType: 'error' });
       }
     } else {
-      setLoading(false);
       ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
     }
+    setLoading(false);
   };
 
   useEffect(() => {

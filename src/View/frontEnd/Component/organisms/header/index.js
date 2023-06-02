@@ -41,7 +41,7 @@ const Header = ({
 
           { isHeaderGeo && isPathnameNotCategories && <GeoLocation /> }
 
-          {userAuthToken ? (
+          {userAuthToken && (
             <>
               <ShoppingCart
                 cartItem={cartItem}
@@ -59,8 +59,6 @@ const Header = ({
                 removeFollowedOrganization={removeFollowedOrganization}
               />
             </>
-          ) : (
-            <></>
           )}
 
           <UserSettings
