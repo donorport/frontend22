@@ -1777,41 +1777,143 @@ const ModalSaveAsDraft = ({ modelShow, setModelShow, submitProductForm }) => {
   );
 };
 
-const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => {
+const PostsTableHeader = ({ totalRecord, user, productList, createNewPost, slug }) => {
+  const [isOnboardingVisible, setOnboardingVisible] = useState(true);
+  const hideOnboarding = () => {
+    setOnboardingVisible(false);
+  };
+  const showOnboarding = () => {
+    setOnboardingVisible(true);
+  };
   return (
-    <header className="py-sm-2 mb-3 w-100 d-sm-flex align-items-center">
-      <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Posts</h1>
-      <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
+    <>
+      {/* If bank details aren't added, show onboarding */}
+      {!user.isAccountAdded && isOnboardingVisible && (
+        <div className="onboarding d-flex flex-column mw-100 p-5 border rounded-3">
+          <div className="d-flex align-items-start">
+            <div className="flex-grow-1">
+              {' '}
+              <h3>Getting Started</h3>
+              <span className="fs-5">Follow these steps before creating your first post.</span>
+            </div>
+            <Button variant="link" className="m-0 p-0 fs-3" onClick={hideOnboarding}>
+              <FontAwesomeIcon icon={solid('circle-xmark')} className="fs-3 me-1" />
+            </Button>
+          </div>
 
-      <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
-        <FontAwesomeIcon icon={solid('money-bills-simple')} className="text-dark mr-12p fs-4" />
-        <span>{user.currencySymbol}</span>
-        {productList && productList.length > 0
-          ? productList
-              .reduce(
-                (previousTotal, current) =>
-                  previousTotal + Number(current.displayPrice * current.soldout),
-                0
-              )
-              .toLocaleString('en-US', {
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2
-              })
-          : 0}
-      </span>
+          <div className="my-2 d-flex gap-2 p2 mw-100">
+            <div className="bg-white rounded-3 d-flex flex-grow-1 border p-5">
+              <div className="d-flex flex-column justify-content-start align-items-start">
+                {' '}
+                <div className="d-flex align-items-center">
+                  <FontAwesomeIcon
+                    icon={solid('user')}
+                    className="text-primary onboarding__icon me-2"
+                  />
+                  <div>
+                    <h4 className="m-0">BUILD PROFILE</h4>
+                  </div>
+                </div>
+                <p className="mt-3 fs-5">
+                  Add your charity logo, location, mission statement and more.
+                </p>
+                <Link
+                  variant="link"
+                  className="text-light p-0 fw-normal fs-4"
+                  to={'/campaign/' + slug + '/settings/profile'}
+                >
+                  <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" /> Go to
+                  Settings
+                </Link>
+              </div>
+            </div>
+            <div className=" note rounded-3 d-flex flex-grow-1 border p-5">
+              <div className="d-flex flex-column justify-content-start align-items-start">
+                {' '}
+                <div className="d-flex align-items-center">
+                  <FontAwesomeIcon
+                    icon={solid('wallet')}
+                    className="text-primary onboarding__icon me-2"
+                  />
+                  <div>
+                    <h4 className="m-0">ADD BANK</h4>
+                  </div>
+                </div>
+                <p className="mt-3 fs-5">Link your bank and set your sales tax rate.</p>
+                <Link
+                  variant="link"
+                  className="text-light p-0 fw-normal fs-4"
+                  to={'/campaign/' + slug + '/settings/payments'}
+                >
+                  <FontAwesomeIcon icon={regular('circle-plus')} className="me-1" /> Add Bank
+                </Link>
+              </div>
+            </div>
+            <div className="bg-white rounded-3 d-flex flex-grow-1 border p-5">
+              <div className="d-flex flex-column justify-content-start align-items-start">
+                {' '}
+                <div className="d-flex align-items-center">
+                  <FontAwesomeIcon
+                    icon={solid('rocket-launch')}
+                    className="text-secondary onboarding__icon me-2"
+                  />
+                  <div>
+                    <h4 className="m-0">CREATE A POST</h4>
+                  </div>
+                </div>
+                <p className="mt-3 fs-5">
+                  Congratulations, you're now ready to create your first post!
+                </p>
+                <Button
+                  variant="link"
+                  className="text-light fw-semibold m-0 p-0 fs-4"
+                  onClick={hideOnboarding}
+                >
+                  Dismiss
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
-      <div className="d-flex align-items-center ms-sm-auto justify-content-end">
-        <Button
-          variant="info"
-          size="lg"
-          className="me-2 fw-bold fs-6"
-          onClick={() => createNewPost()}
-        >
-          Create New
-        </Button>
-        {/* <LadderMenuItems /> */}
-      </div>
-    </header>
+      <header className="py-sm-2 mb-3 w-100 d-sm-flex align-items-center">
+        <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Posts</h1>{' '}
+        <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
+        <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
+          <FontAwesomeIcon icon={solid('money-bills-simple')} className="text-dark mr-12p fs-4" />
+          <span>{user.currencySymbol}</span>
+          {productList && productList.length > 0
+            ? productList
+                .reduce(
+                  (previousTotal, current) =>
+                    previousTotal + Number(current.displayPrice * current.soldout),
+                  0
+                )
+                .toLocaleString('en-US', {
+                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 2
+                })
+            : 0}
+        </span>
+        {!user.isAccountAdded && isOnboardingVisible && (
+          <Button className="btn bg-white border-0 text-light" onClick={showOnboarding}>
+            Getting Started <FontAwesomeIcon icon={solid('wand-magic-sparkles')} className="ms-1" />
+          </Button>
+        )}
+        <div className="d-flex align-items-center ms-sm-auto justify-content-end">
+          <Button
+            variant="info"
+            size="lg"
+            className="me-2 fw-bold fs-6"
+            onClick={() => createNewPost()}
+          >
+            Create New
+          </Button>
+          {/* <LadderMenuItems /> */}
+        </div>
+      </header>
+    </>
   );
 };
 
