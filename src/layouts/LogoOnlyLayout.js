@@ -1,5 +1,5 @@
 // import { Link as RouterLink, Outlet } from 'react-router-dom';
-import { BrowserRouter as Route, Routes, Link as RouterLink } from 'react-router-dom'
+import { Route, Routes, Link as RouterLink } from 'react-router-dom'
 
 // material
 import { styled } from '@mui/material/styles';

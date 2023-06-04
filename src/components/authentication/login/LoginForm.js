@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import { useState } from 'react';
-import { Link as useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useFormik, Form, FormikProvider } from 'formik';
 import { Icon } from '@iconify/react';
 import eyeFill from '@iconify/icons-eva/eye-fill';
