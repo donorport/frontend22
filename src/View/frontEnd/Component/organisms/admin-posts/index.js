@@ -428,6 +428,24 @@ const AdminPosts = () => {
     }
   };
 
+
+  const changefile = async (e) => {
+    // console.log('gg')
+    // console.log(e.target.id)
+    if (e.target.id === 'mainImg') {
+      await changeMainImg(e);
+      // console.log(URL.createObjectURL(file))
+    } else if (e.target.id === 'receiptFile') {
+      await changeReceiptFile(e);
+    } else if (e.target.id === 'galleryImg') {
+      await changeGalleryImg(e);
+    } else if (e.target.id === 'moreImg') {
+      await changeMoreImg(e);
+    } else if (e.target.id === 'fulfilmoreImages') {
+      await changeFulfilMoreImages(e);
+    }
+  };
+  
   // used when uploading a file, saves the file to state
   const changeMainImg = async (e) => {
     const file = e.target.files[0] ? e.target.files[0] : '';
@@ -625,23 +643,6 @@ const AdminPosts = () => {
       ...fulfilState,
       fulfilMoreImg: combineMain
     });
-  };
-
-  const changefile = async (e) => {
-    // console.log('gg')
-    // console.log(e.target.id)
-    if (e.target.id === 'mainImg') {
-      await changeMainImg(e);
-      // console.log(URL.createObjectURL(file))
-    } else if (e.target.id === 'receiptFile') {
-      await changeReceiptFile(e);
-    } else if (e.target.id === 'galleryImg') {
-      await changeGalleryImg(e);
-    } else if (e.target.id === 'moreImg') {
-      await changeMoreImg(e);
-    } else if (e.target.id === 'fulfilmoreImages') {
-      await changeFulfilMoreImages(e);
-    }
   };
 
   const resetForm = async () => {
@@ -2075,7 +2076,7 @@ const PostDetailsMediaColumn = ({
               </div>
             </div>
 
-            <div className="grid mt-3 mb-3 w-100">
+            <div className="grid w-100">
               {fulfilMoreTempImages?.length ? (
                 fulfilMoreTempImages.map((img, key) => (
                   <PostDetailsProductImage

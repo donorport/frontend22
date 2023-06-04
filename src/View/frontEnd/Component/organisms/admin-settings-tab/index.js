@@ -32,7 +32,7 @@ const AdminSettingsTab = () => {
           }}
         >
           <div>
-            Your account is actively receiving donations. Please add a{' '}
+            Your account is active and may be receiving donations. Please add a{' '}
             <Link
               to={'/campaign/' + data?.slug + '/settings/payments'}
               className="note__span note__span--text"

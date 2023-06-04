@@ -326,7 +326,7 @@ const AddProject = (props) => {
               {error && error.moreImg && (
                 <p className="error">{error ? (error.moreImg ? error.moreImg : '') : ''}</p>
               )}
-              <div className="grid mt-3 mb-3 w-100">
+              <div className="grid w-100">
                 {tempImages?.length ? (
                   tempImages.map((img, key) => {
                     return (

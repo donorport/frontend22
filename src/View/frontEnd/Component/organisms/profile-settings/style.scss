@@ -1,7 +1,11 @@
 .icon__hide {
   color: #dd4646;
 }
-
+.filelabel {
+  .hidden {
+    display: none;
+  }
+}
 .note {
   background-color: var(--bkg-shade);
   max-width: 600px;

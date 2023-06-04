@@ -24,6 +24,7 @@ import categoryApi from '../../../../../Api/admin/category';
 
 import './style.scss';
 import formatUrlWithHttp from '../../../../../utils/formatUrl';
+import Box from '@mui/material/Box';
 
 const imageuploadwrap = {
   marginTop: '20px',
@@ -228,24 +229,74 @@ const ProfileSettings = () => {
   // };
 
   const changefile = async (e) => {
-    let file = e.target.files[0] ? e.target.files[0] : '';
-    if (await hasAlpha(file)) {
-      setTempImg(URL.createObjectURL(file));
-      setState({
-        ...state,
-        logo: file
-      });
-    } else {
-      ToastAlert({
-        msg: 'Please upload an image with transparent background',
-        msgType: 'error'
-      });
-      setState({
-        ...state,
-        image: ''
-      });
-      setTempImg('');
+    // let file = e.target.files[0] ? e.target.files[0] : '';
+    // if (await hasAlpha(file)) {
+    //   setTempImg(URL.createObjectURL(file));
+    //   setState({
+    //     ...state,
+    //     logo: file
+    //   });
+    // } else {
+    //   ToastAlert({
+    //     msg: 'Please upload an image with transparent background',
+    //     msgType: 'error'
+    //   });
+    //   setState({
+    //     ...state,
+    //     image: ''
+    //   });
+    //   setTempImg('');
+    // }
+    if (e.target.id === 'FileInput') {
+      await changeMainImg(e);
+      // console.log(URL.createObjectURL(file))
     }
+  };
+  const VALID_IMAGE_FILE_EXTENSIONS = ['jpg', 'png', 'jpeg', 'svg'];
+  // used when uploading a file, saves the file to state
+  const changeMainImg = async (e) => {
+    const file = e.target.files[0] ? e.target.files[0] : '';
+    setLoading(true);
+    const isFileHaveAlpha = await hasAlpha(file);
+    let extension = file.name.substr(file.name.lastIndexOf('.') + 1);
+    setTimeout(() => {
+      if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
+        if (!isFileHaveAlpha) {
+          setLoading(false);
+          const formData = new FormData();
+          formData.append('image_file', file);
+          formData.append('size', 'auto');
+
+          fetch('https://api.remove.bg/v1.0/removebg', {
+            method: 'POST',
+            headers: {
+              'X-API-Key': 'DAbtpKuv6tt8wzNJP7Qua5jy'
+            },
+            body: formData
+          })
+            .then((response) => response.blob())
+            .then((result) => {
+              const modifiedFile = new File([result], file.name, { type: 'image/png' });
+              setTempImg(URL.createObjectURL(modifiedFile));
+              setState({ ...state, logo: modifiedFile });
+              setLoading(false);
+            })
+            .catch((error) => {
+              console.error('Failed to remove background:', error);
+              setState({ ...state, logo: '' });
+              setLoading(false);
+            });
+        } else {
+          setTempImg(URL.createObjectURL(file));
+          setState({ ...state, logo: file });
+          setLoading(false);
+        }
+      } else {
+        setState({ ...state, logo: '' });
+        setTempImg('');
+        setLoading(false);
+      }
+    }, 2500);
   };
 
   const changevalue = (e) => {
@@ -555,7 +606,7 @@ const ProfileSettings = () => {
               <i className="fa fa-paperclip "></i>
               <span className="title">Logo</span>
               <input
-                className="FileUpload1"
+                className="FileUpload1 hidden"
                 id="FileInput"
                 name="booking_attachment"
                 type="file"
@@ -563,7 +614,7 @@ const ProfileSettings = () => {
               />
             </label>
             {tempImg !== '' || logo !== '' ? (
-              <div className="col-sm-6 ml-3">
+              <div className="d-flex justify-content-center col-sm-6 ml-3 note">
                 <img
                   src={tempImg ? tempImg : logo ? helper.CampaignAdminLogoPath + logo : ''}
                   alt="Donorport Logo Icon"
@@ -575,23 +626,26 @@ const ProfileSettings = () => {
               <></>
             )}
           </div>
-          <div className="mt-3 note note--info mb-3 fs-6">
-            <span className="text-dark">
-              Please upload your logo on a trapnsparent background. Click{' '}
-              <a
-                href="https://www.youtube.com/watch?v=G3Y5PcuH23Y"
-                target="_blank"
-                rel="noreferrer"
-              >
-                here
-              </a>{' '}
-              to learn more about transparent images, or use this{' '}
-              <a href="https://www.remove.bg/upload" target="_blank" rel="noreferrer">
-                free online tool
-              </a>{' '}
-              to remove a background.
-            </span>
-          </div>
+          {loading ? (
+            <Box sx={{ width: '100%' }}>
+              <div className="d-flex note note--info mt-3 mb-3 fs-5 gap-2">
+                <CircularProgress color="secondary" size={21}></CircularProgress>
+                <FontAwesomeIcon
+                  icon={regular('bolt')}
+                  className="text-info icon-method mr-3p fs-4"
+                />
+                Processing uploaded image...
+              </div>
+            </Box>
+          ) : (
+            <div className="d-flex note note--info my-3 fs-6">
+              <span className="text-dark">
+                Upload an image of the product with a transparent background. The image should
+                closesly resemble the product you will purchase but does not need to be exact.
+                Accepted file formats: <a className="link">png, jpg, svg</a>
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="input__wrap mb-3">
@@ -798,7 +852,7 @@ const ProfileSettings = () => {
                 </div>
               </div>
             )}
-            <div className="grid mt-3 mb-3 w-100">
+            <div className="grid w-100">
               {viewGalleryImages?.length ? (
                 viewGalleryImages.map((img, key) => {
                   return (
@@ -872,7 +926,7 @@ const ProfileSettings = () => {
         >
           Save Details {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
         </Button>
-        <div className="fw-bolder mb-3">Account Deactivation</div>
+        <div className="fw-bolder my-3">Account Deactivation</div>
         <div className="deactivate">
           <h5>Do you really want to leave us?</h5>
           <ul className="list list--deactivate">

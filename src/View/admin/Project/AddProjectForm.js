@@ -258,7 +258,7 @@ export default function AddProjectForm(props) {
                 }}
               />
               {/* <label className="custom-file-label" htmlFor="customFile" style={{ margin: "0px 10px 0px 10px" }}> Choose files </label> */}
-              <div className="grid mt-3 mb-3 w-100">
+              <div className="grid w-100">
                 {props.tempImages?.length
                   ? props.tempImages.map((img, key) => {
                       return (
