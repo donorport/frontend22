@@ -1184,12 +1184,12 @@ const Payments = () => {
               );
             })}
           {bankAccountList.length > 0 && (
-            <div className="px-1 py-20p mt-1 mb-20p fs-7 text-subtext">
+            <div className="px-1 py-20p mt-1 mb-20p text-subtext">
               <FontAwesomeIcon icon={solid('shield-halved')} className="fs-5 text-primary me-2" />
               This method will be used for deposits from donations / items you post.
             </div>
           )}
-          <div className="note text-dark">
+          <div className="note text-dark fs-6">
             Funds will be deposited into this account when items you post are fully funded or marked
             as infinity items, or if you receive cash donations.
           </div>

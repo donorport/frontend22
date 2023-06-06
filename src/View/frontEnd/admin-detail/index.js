@@ -19,6 +19,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import noimg from '../../../assets/images/avatar.png';
 import { useSelector } from 'react-redux';
 import NoFooter from '../Component/templates/no-footer';
+import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 
 function AdminDetail() {
   // const user = useContext(UserContext)
@@ -182,6 +183,9 @@ function AdminDetail() {
             </div>
           </Tab.Container>
         </Container>
+        <div className="App">
+          <TawkMessengerReact propertyId="647f8495cc26a871b0210594" widgetId="1h291rq9e" />
+        </div>
       </NoFooter>
     </Page>
   );
