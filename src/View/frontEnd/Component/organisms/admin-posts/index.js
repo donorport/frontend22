@@ -1897,11 +1897,11 @@ const PostsTableHeader = ({ totalRecord, user, productList, createNewPost, slug 
                 })
             : 0}
         </span>
-        {!user.isAccountAdded && isOnboardingVisible && (
+        {/* {!user.isAccountAdded && isOnboardingVisible && (
           <Button className="btn bg-white border-0 text-light" onClick={showOnboarding}>
             Getting Started <FontAwesomeIcon icon={solid('wand-magic-sparkles')} className="ms-1" />
           </Button>
-        )}
+        )} */}
         <div className="d-flex align-items-center ms-sm-auto justify-content-end">
           <Button
             variant="info"

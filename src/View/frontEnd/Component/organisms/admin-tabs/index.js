@@ -1,15 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { Nav } from 'react-bootstrap';
-import {
-  DashboardIcon,
-  PostsIcon,
-  ActivityIcon,
-  TaxIcon,
-  ProjectIcon,
-  SettingsIcon
-} from './tab-icons';
+import { PostsIcon, ActivityIcon, TaxIcon, ProjectIcon, SettingsIcon } from './tab-icons';
 
 import './style.scss';
 import { Link, useLocation } from 'react-router-dom';
@@ -30,28 +22,10 @@ function AdminTabs({ activeKey, data, _onClick, ...otherProps }) {
         {...otherProps}
         onClick={_onClick}
       >
-        {/* <Link to={'/campaign/' + data?.slug + '/dashboard'}>
-          <Nav.Item>
-            <Nav.Link
-              eventKey="dashboard"
-              className={
-                currentOption === 'dashboard'
-                  ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'
-                  : 'tab__btn d-flex align-items-center text-dark '
-              }
-            >
-              <span className="tab__icon">
-                <DashboardIcon active={activeKey === 'dashboard'} />
-              </span>
-              <span className="tab__text">Dashboard</span>
-            </Nav.Link>
-          </Nav.Item>
-        </Link>*/}
-
         <Link to={'/campaign/' + data?.slug + '/posts'}>
           <Nav.Item>
             <Nav.Link
-              eventKey="posts"
+              active={activeKey === 'posts'}
               className={
                 currentOption === 'posts'
                   ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'
@@ -69,7 +43,7 @@ function AdminTabs({ activeKey, data, _onClick, ...otherProps }) {
         <Link to={'/campaign/' + data?.slug + '/activity'}>
           <Nav.Item onClick={_onClick}>
             <Nav.Link
-              eventKey="activity"
+              active={activeKey === 'activity'}
               className={
                 currentOption === 'activity'
                   ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'
@@ -87,7 +61,7 @@ function AdminTabs({ activeKey, data, _onClick, ...otherProps }) {
         <Link to={'/campaign/' + data?.slug + '/tax'}>
           <Nav.Item onClick={_onClick}>
             <Nav.Link
-              eventKey="tax"
+              active={activeKey === 'tax'}
               className={
                 currentOption === 'tax'
                   ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'
@@ -105,7 +79,7 @@ function AdminTabs({ activeKey, data, _onClick, ...otherProps }) {
         <Link to={'/campaign/' + data?.slug + '/project'}>
           <Nav.Item onClick={_onClick}>
             <Nav.Link
-              eventKey="project"
+              active={activeKey === 'project'}
               className={
                 currentOption === 'project'
                   ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'
@@ -123,7 +97,7 @@ function AdminTabs({ activeKey, data, _onClick, ...otherProps }) {
         <Link to={'/campaign/' + data?.slug + '/settings/profile'}>
           <Nav.Item className="" onClick={_onClick}>
             <Nav.Link
-              eventKey="settings"
+              active={activeKey === 'settings'}
               className={
                 currentOption === 'settings'
                   ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'

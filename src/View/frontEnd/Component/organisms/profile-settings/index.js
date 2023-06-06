@@ -65,11 +65,12 @@ const ProfileSettings = () => {
   const [countryList, setCountryList] = useState([]);
   const [stateList, setStateList] = useState([]);
   const [cityList, setCityList] = useState([]);
+  const [loadingId, setLoadingId] = useState(false);
 
   const [defaultCountry, setDefaultCountry] = useState([]);
   const [defaultState, setDefaultState] = useState([]);
   const [defaultCity, setDefaultCity] = useState([]);
-
+  const [errors, setErrors] = useState([]);
   const [defaultCategory, setDefaultCategory] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
@@ -256,13 +257,13 @@ const ProfileSettings = () => {
   // used when uploading a file, saves the file to state
   const changeMainImg = async (e) => {
     const file = e.target.files[0] ? e.target.files[0] : '';
-    setLoading(true);
+    setLoadingId(true);
     const isFileHaveAlpha = await hasAlpha(file);
     let extension = file.name.substr(file.name.lastIndexOf('.') + 1);
     setTimeout(() => {
       if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
         if (!isFileHaveAlpha) {
-          setLoading(false);
+          setLoadingId(false);
           const formData = new FormData();
           formData.append('image_file', file);
           formData.append('size', 'auto');
@@ -279,22 +280,22 @@ const ProfileSettings = () => {
               const modifiedFile = new File([result], file.name, { type: 'image/png' });
               setTempImg(URL.createObjectURL(modifiedFile));
               setState({ ...state, logo: modifiedFile });
-              setLoading(false);
+              setLoadingId(false);
             })
             .catch((error) => {
               console.error('Failed to remove background:', error);
               setState({ ...state, logo: '' });
-              setLoading(false);
+              setLoadingId(false);
             });
         } else {
           setTempImg(URL.createObjectURL(file));
           setState({ ...state, logo: file });
-          setLoading(false);
+          setLoadingId(false);
         }
       } else {
         setState({ ...state, logo: '' });
         setTempImg('');
-        setLoading(false);
+        setLoadingId(false);
       }
     }, 2500);
   };
@@ -421,7 +422,7 @@ const ProfileSettings = () => {
   const updateProfile = () => {
     const rules = {
       name: 'required',
-      mission: 'required',
+      // mission: 'required',
       //promoVideo: "required",
       //city: 'required',
       stateId: 'required',
@@ -431,12 +432,12 @@ const ProfileSettings = () => {
     };
 
     const message = {
-      'name.required': 'Name is Required.',
-      'mission.required': 'mission is Required.',
-      //'promoVideo.required': 'Promo Video is Required.',
-      'ein.required': 'Ein Number is Required.',
+      'name.required': 'Organization Name is Required.',
+      'mission.required': 'Mission is Required.',
+      'promoVideo.required': 'Promo Video is Required.',
+      'ein.required': 'Charity Registration Number is Required.',
       'stateId.required': 'State is Required.',
-      //'city.required': 'City is Required.',
+      'city.required': 'City is Required.',
       'country.required': 'Country is Required.',
       'category.required': 'Category is Required.'
     };
@@ -479,10 +480,12 @@ const ProfileSettings = () => {
           if (!addUser.data.success) {
             setLoading(false);
             ToastAlert({ msg: addUser.data.message, msgType: 'error' });
+            setErrors([addUser.data.message]);
           } else {
             setUpdate(!update);
             // user.setUpdateOrg(!user.isUpdateOrg)
             dispatch(setIsUpdateOrganization(!user.isUpdateOrg));
+            setErrors([]);
             if (tempImg && tempImg !== '') {
               dispatch(setProfileImage(tempImg));
             }
@@ -511,6 +514,7 @@ const ProfileSettings = () => {
           ...state,
           error: formaerrror
         });
+        setErrors(errors.map((error) => error.message));
       });
   };
 
@@ -610,7 +614,10 @@ const ProfileSettings = () => {
                 id="FileInput"
                 name="booking_attachment"
                 type="file"
-                onChange={(e) => changefile(e)}
+                onChange={(e) => {
+                  setLoadingId(true);
+                  changefile(e);
+                }}
               />
             </label>
             {tempImg !== '' || logo !== '' ? (
@@ -626,7 +633,7 @@ const ProfileSettings = () => {
               <></>
             )}
           </div>
-          {loading ? (
+          {loadingId ? (
             <Box sx={{ width: '100%' }}>
               <div className="d-flex note note--info mt-3 mb-3 fs-5 gap-2">
                 <CircularProgress color="secondary" size={21}></CircularProgress>
@@ -640,9 +647,8 @@ const ProfileSettings = () => {
           ) : (
             <div className="d-flex note note--info my-3 fs-6">
               <span className="text-dark">
-                Upload an image of the product with a transparent background. The image should
-                closesly resemble the product you will purchase but does not need to be exact.
-                Accepted file formats: <a className="link">png, jpg, svg</a>
+                Upload an image of the product with a transparent background. Accepted file formats:{' '}
+                <a className="link">png, jpg, svg</a>
               </span>
             </div>
           )}
@@ -926,6 +932,28 @@ const ProfileSettings = () => {
         >
           Save Details {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
         </Button>
+        {errors.length > 0 && (
+          <div className="note">
+            <div className="mt-2 d-flex">
+              <FontAwesomeIcon
+                icon={regular('circle-exclamation')}
+                className="text-danger icon-method me-1 fs-4"
+              />
+              <p className="fs-5 fw-semibold border-bottom pb-3">
+                Please fill out the required fields to save:
+              </p>
+            </div>
+
+            <ol className="fs-5 d-flex gap-1 flex-column list-group list-group-numbered">
+              {errors.map((error, index) => (
+                <li key={index}>
+                  <span className="text-danger">{error}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
+
         <div className="fw-bolder my-3">Account Deactivation</div>
         <div className="deactivate">
           <h5>Do you really want to leave us?</h5>
