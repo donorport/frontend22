@@ -505,6 +505,10 @@ export function countInArray(array, what) {
 }
 
 export function convertAddress(address) {
+  if (!address) {
+    throw new Error('Address is undefined');
+  }
+
   try {
     const split = address.split(',');
     const countryName = split[split.length - 1].trim();
@@ -530,6 +534,7 @@ export function convertAddress(address) {
     return null; // or return an error message instead of null
   }
 }
+
 
 
 export function convertState(e) {

@@ -22,6 +22,7 @@ import { Button, Card, Col, Row, Dropdown, Modal } from 'react-bootstrap';
 import moment from 'moment';
 import _ from 'lodash';
 import pencil from '../../../../../assets/images/pencil.svg';
+import trophy from '../../../../../assets/images/trophy.svg';
 
 const VALID_IMAGE_FILE_EXTENSIONS = ['jpg', 'png', 'jpeg', 'svg'];
 const DEFAULT_EMPTY_STATE = {
@@ -428,7 +429,6 @@ const AdminPosts = () => {
     }
   };
 
-
   const changefile = async (e) => {
     // console.log('gg')
     // console.log(e.target.id)
@@ -445,7 +445,7 @@ const AdminPosts = () => {
       await changeFulfilMoreImages(e);
     }
   };
-  
+
   // used when uploading a file, saves the file to state
   const changeMainImg = async (e) => {
     const file = e.target.files[0] ? e.target.files[0] : '';
@@ -1161,8 +1161,12 @@ const AdminPosts = () => {
 
   const createNewPost = () => {
     if (user.isAccountAdded) {
-      resetForm();
-      createPost(true);
+      if (data.taxRate) {
+        resetForm();
+        createPost(true);
+      } else {
+        ToastAlert({ msg: 'Please set the tax rate before posting.', msgType: 'error' });
+      }
     } else {
       let path = '/campaign/' + data.slug + '/settings/payments';
       navigate(path);
@@ -1578,8 +1582,196 @@ const AdminPosts = () => {
   };
 
   console.log({ fulfilProductDetails });
+  const [isOnboardingVisible, setOnboardingVisible] = useState(true);
+  const hideOnboarding = () => {
+    setOnboardingVisible(false);
+  };
+  const showOnboarding = () => {
+    setOnboardingVisible(true);
+  };
+
+  const [steps, setSteps] = useState([
+    { label: 'Build your profile', isComplete: data.logo },
+    { label: 'Add your tax rate', isComplete: data.taxRate },
+    { label: 'Connect your bank', isComplete: user.isAccountAdded }
+  ]);
+
+  const completedSteps = steps.filter((step) => step.isComplete);
+  const numCompletedSteps = completedSteps.length;
+
+  useEffect(() => {
+    const updatedSteps = steps.map((step) => {
+      if (step.label === 'Build your profile') {
+        return { ...step, isComplete: data.logo !== null };
+      } else if (step.label === 'Add your tax rate') {
+        return { ...step, isComplete: data.taxRate !== null };
+      } else if (step.label === 'Connect your bank') {
+        return { ...step, isComplete: user.isAccountAdded };
+      }
+      return step;
+    });
+
+    setSteps(updatedSteps);
+  }, []);
+
   return (
     <>
+      {(!user.isAccountAdded || !data.taxRate || !data.logo) && isOnboardingVisible && (
+        <div>
+          <div className="onboarding--stepper">
+            <div className="d-flex">
+              <p className="fs-4 fw-semibold">Complete your setup!</p>
+              <img src={trophy} className="ms-auto" style={{ width: '72px' }} alt="" width="90%" />
+            </div>
+            <div className="counter fs-5 mb-2">
+              {numCompletedSteps} of {steps.length}
+            </div>
+            <div className="d-flex gap-2 stepper fs-5 mb-3">
+              {steps.map((step, index) => (
+                <div className="d-flex flex-grow-1 flex-column mb-3" key={index}>
+                  <div
+                    className={`d-flex flex-grow-1 step__indicator py-1 ${
+                      step.isComplete ? 'bg-secondary' : 'bg-lighter'
+                    }`}
+                    style={
+                      index === 0
+                        ? { borderTopLeftRadius: '9px', borderBottomLeftRadius: '9px' }
+                        : index === steps.length - 1
+                        ? { borderTopRightRadius: '9px', borderBottomRightRadius: '9px' }
+                        : {}
+                    }
+                  ></div>
+                  <div
+                    className={`flex-grow-1 step ${step.isComplete ? 'complete' : ''}`}
+                    // onClick={() => handleStepClick(index)}
+                  >
+                    <div className="d-flex mt-3">
+                      <div className="step-indicator">
+                        {step.isComplete ? (
+                          <FontAwesomeIcon
+                            icon={solid('circle-check')}
+                            className="text-secondary fs-4 me-1"
+                          />
+                        ) : (
+                          <FontAwesomeIcon
+                            icon={regular('circle')}
+                            className="text-light fs-4 me-1"
+                          />
+                        )}
+                      </div>
+                      {step.label === 'Build your profile' ? (
+                        <Link
+                          variant="link"
+                          className="link text-dark p-0 fs-5"
+                          to={'/campaign/' + data.slug + '/settings/profile'}
+                        >
+                          <span className="step-label fw-semibold">{step.label}</span>
+                        </Link>
+                      ) : (
+                        <Link
+                          variant="link"
+                          className="text-dark p-0 fs-5"
+                          to={'/campaign/' + data.slug + '/settings/payments'}
+                        >
+                          <span className="step-label fw-semibold">{step.label}</span>
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="onboarding d-flex flex-column mw-100 p-5 border rounded-3">
+            <div className="d-flex align-items-start">
+              <div className="flex-grow-1">
+                <h3>Getting Started</h3>
+                <span className="fs-5">Follow these steps before creating your first post.</span>
+              </div>
+              {/* <Button variant="link" className="m-0 p-0 fs-3">
+                <FontAwesomeIcon
+                  icon={solid('circle-xmark')}
+                  className="fs-3 me-1"
+                  onClick={hideOnboarding}
+                />
+              </Button> */}
+            </div>
+
+            <div className="my-2 d-flex gap-2 p2 mw-100">
+              <div className="bg-white rounded-3 d-flex flex-grow-1 border p-5">
+                <div className="d-flex flex-column justify-content-start align-items-start">
+                  <div className="d-flex align-items-center">
+                    <FontAwesomeIcon
+                      icon={solid('user')}
+                      className="text-primary onboarding__icon me-2"
+                    />
+                    <div>
+                      <h4 className="m-0">BUILD PROFILE</h4>
+                    </div>
+                  </div>
+                  <p className="mt-3 fs-5">
+                    Add your charity logo, location, mission statement and more.
+                  </p>
+                  <Link
+                    variant="link"
+                    className="text-light p-0 fw-normal fs-4"
+                    to={'/campaign/' + data.slug + '/settings/profile'}
+                  >
+                    <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" />Go to
+                    Settings
+                  </Link>
+                </div>
+              </div>
+              <div className="note rounded-3 d-flex flex-grow-1 border p-5">
+                <div className="d-flex flex-column justify-content-start align-items-start">
+                  <div className="d-flex align-items-center">
+                    <FontAwesomeIcon
+                      icon={solid('building-columns')}
+                      className="text-primary onboarding__icon me-2"
+                    />
+                    <div>
+                      <h4 className="m-0">ADD BANK</h4>
+                    </div>
+                  </div>
+                  <p className="mt-3 fs-5">Link your bank and set your sales tax rate.</p>
+                  <Link
+                    variant="link"
+                    className="text-light p-0 fw-normal fs-4"
+                    to={'/campaign/' + data.slug + '/settings/payments'}
+                  >
+                    <FontAwesomeIcon icon={regular('circle-plus')} className="me-1" />Add Bank
+                  </Link>
+                </div>
+              </div>
+              <div className="bg-white rounded-3 d-flex flex-grow-1 border p-5">
+                <div className="d-flex flex-column justify-content-start align-items-start">
+                  <div className="d-flex align-items-center">
+                    <FontAwesomeIcon
+                      icon={solid('wand-magic-sparkles')}
+                      className="text-secondary onboarding__icon me-2"
+                    />
+                    <div>
+                      <h4 className="m-0">CREATE A POST</h4>
+                    </div>
+                  </div>
+                  <p className="mt-3 fs-5">
+                    Congratulations, you're now ready to create your first post!
+                  </p>
+                  {/* <Button
+                    variant="link"
+                    className="text-light fw-semibold m-0 p-0 fs-4"
+                    onClick={hideOnboarding}
+                  >
+                    Dismiss
+                  </Button> */}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* {console.log('state', displayPrice)} */}
       {/*<FrontLoader loading={loading} />*/}
 
@@ -1721,6 +1913,52 @@ const AdminPosts = () => {
   );
 };
 
+const PostsTableHeader = ({ totalRecord, user, productList, createNewPost, slug }) => {
+  return (
+    <>
+      <header className="py-sm-2 mb-3 w-100 d-sm-flex align-items-center">
+        <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Posts</h1>{' '}
+        <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
+        <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
+          <FontAwesomeIcon icon={solid('money-bills-simple')} className="text-dark mr-12p fs-4" />
+          <span>{user.currencySymbol}</span>
+          {productList && productList.length > 0
+            ? productList
+                .reduce(
+                  (previousTotal, current) =>
+                    previousTotal + Number(current.displayPrice * current.soldout),
+                  0
+                )
+                .toLocaleString('en-US', {
+                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 2
+                })
+            : 0}
+        </span>
+        {/* {!user.isAccountAdded && isOnboardingVisible && (
+          <Button className="btn bg-white border-0 text-light" onClick={showOnboarding}>
+            Getting Started <FontAwesomeIcon icon={solid('wand-magic-sparkles')} className="ms-1" />
+          </Button>
+        )} */}
+        <div className="d-flex align-items-center ms-sm-auto justify-content-end">
+          {/* {user.isAccountAdded && data.taxRate && !data.logo && ( */}
+            <Button
+              variant="info"
+              size="lg"
+              className="me-2 fw-bold fs-6"
+              onClick={() => createNewPost()}
+            >
+              Create New
+            </Button>
+          {/* )} */}
+
+          {/* <LadderMenuItems /> */}
+        </div>
+      </header>
+    </>
+  );
+};
+
 const ModalSaveAsDraft = ({ modelShow, setModelShow, submitProductForm }) => {
   return (
     <div
@@ -1775,146 +2013,6 @@ const ModalSaveAsDraft = ({ modelShow, setModelShow, submitProductForm }) => {
         </div>
       </div>
     </div>
-  );
-};
-
-const PostsTableHeader = ({ totalRecord, user, productList, createNewPost, slug }) => {
-  const [isOnboardingVisible, setOnboardingVisible] = useState(true);
-  const hideOnboarding = () => {
-    setOnboardingVisible(false);
-  };
-  const showOnboarding = () => {
-    setOnboardingVisible(true);
-  };
-  return (
-    <>
-      {/* If bank details aren't added, show onboarding */}
-      {!user.isAccountAdded && isOnboardingVisible && (
-        <div className="onboarding d-flex flex-column mw-100 p-5 border rounded-3">
-          <div className="d-flex align-items-start">
-            <div className="flex-grow-1">
-              {' '}
-              <h3>Getting Started</h3>
-              <span className="fs-5">Follow these steps before creating your first post.</span>
-            </div>
-            <Button variant="link" className="m-0 p-0 fs-3" onClick={hideOnboarding}>
-              <FontAwesomeIcon icon={solid('circle-xmark')} className="fs-3 me-1" />
-            </Button>
-          </div>
-
-          <div className="my-2 d-flex gap-2 p2 mw-100">
-            <div className="bg-white rounded-3 d-flex flex-grow-1 border p-5">
-              <div className="d-flex flex-column justify-content-start align-items-start">
-                {' '}
-                <div className="d-flex align-items-center">
-                  <FontAwesomeIcon
-                    icon={solid('user')}
-                    className="text-primary onboarding__icon me-2"
-                  />
-                  <div>
-                    <h4 className="m-0">BUILD PROFILE</h4>
-                  </div>
-                </div>
-                <p className="mt-3 fs-5">
-                  Add your charity logo, location, mission statement and more.
-                </p>
-                <Link
-                  variant="link"
-                  className="text-light p-0 fw-normal fs-4"
-                  to={'/campaign/' + slug + '/settings/profile'}
-                >
-                  <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" /> Go to
-                  Settings
-                </Link>
-              </div>
-            </div>
-            <div className=" note rounded-3 d-flex flex-grow-1 border p-5">
-              <div className="d-flex flex-column justify-content-start align-items-start">
-                {' '}
-                <div className="d-flex align-items-center">
-                  <FontAwesomeIcon
-                    icon={solid('wallet')}
-                    className="text-primary onboarding__icon me-2"
-                  />
-                  <div>
-                    <h4 className="m-0">ADD BANK</h4>
-                  </div>
-                </div>
-                <p className="mt-3 fs-5">Link your bank and set your sales tax rate.</p>
-                <Link
-                  variant="link"
-                  className="text-light p-0 fw-normal fs-4"
-                  to={'/campaign/' + slug + '/settings/payments'}
-                >
-                  <FontAwesomeIcon icon={regular('circle-plus')} className="me-1" /> Add Bank
-                </Link>
-              </div>
-            </div>
-            <div className="bg-white rounded-3 d-flex flex-grow-1 border p-5">
-              <div className="d-flex flex-column justify-content-start align-items-start">
-                {' '}
-                <div className="d-flex align-items-center">
-                  <FontAwesomeIcon
-                    icon={solid('rocket-launch')}
-                    className="text-secondary onboarding__icon me-2"
-                  />
-                  <div>
-                    <h4 className="m-0">CREATE A POST</h4>
-                  </div>
-                </div>
-                <p className="mt-3 fs-5">
-                  Congratulations, you're now ready to create your first post!
-                </p>
-                <Button
-                  variant="link"
-                  className="text-light fw-semibold m-0 p-0 fs-4"
-                  onClick={hideOnboarding}
-                >
-                  Dismiss
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      <header className="py-sm-2 mb-3 w-100 d-sm-flex align-items-center">
-        <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Posts</h1>{' '}
-        <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
-        <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
-          <FontAwesomeIcon icon={solid('money-bills-simple')} className="text-dark mr-12p fs-4" />
-          <span>{user.currencySymbol}</span>
-          {productList && productList.length > 0
-            ? productList
-                .reduce(
-                  (previousTotal, current) =>
-                    previousTotal + Number(current.displayPrice * current.soldout),
-                  0
-                )
-                .toLocaleString('en-US', {
-                  maximumFractionDigits: 2,
-                  minimumFractionDigits: 2
-                })
-            : 0}
-        </span>
-        {/* {!user.isAccountAdded && isOnboardingVisible && (
-          <Button className="btn bg-white border-0 text-light" onClick={showOnboarding}>
-            Getting Started <FontAwesomeIcon icon={solid('wand-magic-sparkles')} className="ms-1" />
-          </Button>
-        )} */}
-        <div className="d-flex align-items-center ms-sm-auto justify-content-end">
-          <Button
-            variant="info"
-            size="lg"
-            className="me-2 fw-bold fs-6"
-            onClick={() => createNewPost()}
-          >
-            Create New
-          </Button>
-          {/* <LadderMenuItems /> */}
-        </div>
-      </header>
-    </>
   );
 };
 

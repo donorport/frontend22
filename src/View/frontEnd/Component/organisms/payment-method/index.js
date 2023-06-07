@@ -1011,7 +1011,7 @@ const Payments = () => {
         </Button>
 
         <div className="mb-5 mt-5">
-          <h4 className="fw-bolder">Add Payout Account</h4>
+          <h4 className="fw-bolder">Connect your Bank</h4>
           <div className="text-subtext mb-3">
             Link the bank account that {CampaignAdmin?.name || 'your Charity'} will use to receive
             direct deposits from our donors.
