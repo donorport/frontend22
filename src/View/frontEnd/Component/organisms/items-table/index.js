@@ -164,10 +164,7 @@ const ItemsTable = (props) => {
                       <div className="d-none d-sm-flex billing__buttons d-flex align-items-center gap-1">
                         {item.itemDetails?.tax && (
                           <span className="category__link p-1 text-decoration-none">
-                            <FontAwesomeIcon
-                              icon={solid('paperclip')}
-                              className="fs-3 text-primary"
-                            />
+                            <FontAwesomeIcon icon={solid('paperclip')} className="fs-3 text-info" />
                           </span>
                         )}
                         {item.fulfilDetails.length > 0 && item.fulfilDetails[0]?.receipt && (
@@ -180,7 +177,11 @@ const ItemsTable = (props) => {
                         )}
                         {item.itemDetails.postTag && (
                           <span className="category__link p-1 text-decoration-none">
-                            <FontAwesomeIcon icon={solid('tag')} className="fs-3 text-primary" />
+                            <FontAwesomeIcon
+                              icon={solid('tag')}
+                              className="fs-3"
+                              color="rgb(148, 122, 218)"
+                            />
                           </span>
                         )}
                         {item.fulfilDetails.length > 0 && item.fulfilDetails[0]?.video && (

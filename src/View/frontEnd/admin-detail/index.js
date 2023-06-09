@@ -84,7 +84,7 @@ function AdminDetail() {
                   <div className="user__img-wrap mb-4 w-100 d-none d-sm-block border-bottom">
                     <div className="user__img-content py-3">
                       <div
-                        className="user__img charity_avatar_bg"
+                        className="user__img user__img--admin charity_avatar_bg"
                         style={{
                           backgroundImage:
                             // "url()",

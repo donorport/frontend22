@@ -6,8 +6,11 @@ import ShoppingCart from '../shopping-cart';
 import Activity from '../activity';
 import UserSettings from '../user-settings';
 import GeoLocation from '../geo-location';
-
+import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import './style.scss';
+import Tooltip from '@mui/material/Tooltip';
 
 const Header = ({
   cartItem,
@@ -23,10 +26,11 @@ const Header = ({
   wishListproductList,
   addProductToWishlist,
   getAuthToken,
-  isHeaderGeo = false,
+  isHeaderGeo = false
 }) => {
   const userAuthToken = localStorage.getItem('userAuthToken');
-
+  // redux get the user
+  const user = useSelector((state) => state.user);
   const location = useLocation();
   const pathWords = location.pathname.split('/');
   const isPathnameNotCategories = pathWords[1].toLowerCase() !== 'categories';
@@ -37,10 +41,16 @@ const Header = ({
     <header className="d-flex frontend_pages main-header">
       <Container className="d-flex align-items-center" fluid>
         <Logo />
-        <div className="position-relative ms-auto header__right d-flex gap-1">
-
-          { isHeaderGeo && isPathnameNotCategories && <GeoLocation /> }
-
+        <div className="position-relative ms-auto header__right d-flex align-items-center gap-1">
+          {isHeaderGeo && isPathnameNotCategories && <GeoLocation />}
+          {user.isAccountAdded && (
+            <Tooltip title="Setup complete. You can start receiving donations.">
+                <div className="me-2 fw-bold d-flex align-items-center badge--active text-white bg-secondary fs-6 px-1">
+                  <FontAwesomeIcon icon={solid('bolt-lightning')} className="fs-6 me-6pt" />
+                  <div className="active__text">Active</div>
+                </div>
+            </Tooltip>
+          )}
           {userAuthToken && (
             <>
               <ShoppingCart

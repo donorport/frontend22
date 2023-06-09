@@ -47,6 +47,7 @@ function ProductController() {
     subtitle: '',
     headline: '',
     brand: '',
+    address: '',
     category: '',
     subcategory: '',
     description: '',
@@ -67,7 +68,6 @@ function ProductController() {
 
     organizationLocation: '',
     locationName: '',
-    address: '',
     lat: 0,
     lng: 0
   });
@@ -89,23 +89,23 @@ function ProductController() {
     galleryUrl,
     headline,
     brand,
+    address,
     needheadline,
     galleryImg,
     unlimited,
     tax,
     postTag,
     organizationCountryId,
-    address,
     lat,
-    lng,
+    lng
     //locationName
   } = state;
 
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
-        (async () => {
-            setLoading(true);
+    (async () => {
+      setLoading(true);
 
       if (!hasPermission(adminData.roleName, 'PRODUCT')) {
         navigate('/admin/dashboard');
@@ -400,6 +400,7 @@ function ProductController() {
       subtitle: '',
       headline: '',
       brand: '',
+      address: '',
       category: '',
       subcategory: '',
       description: '',
@@ -417,7 +418,6 @@ function ProductController() {
       postTag: false,
       organizationCountryId: '',
       galleryImg: [],
-      address: '',
       organizationLocation: '',
       locationName: '',
       lat: 0,
@@ -442,6 +442,7 @@ function ProductController() {
       subtitle: '',
       headline: '',
       brand: '',
+      address: '',
       category: '',
       subcategory: '',
       description: '',
@@ -461,14 +462,13 @@ function ProductController() {
       galleryImg: [],
       organizationLocation: '',
       locationName: '',
-      address: '',
       lat: 0,
       lng: 0
     });
   };
 
   const submitProductForm = () => {
-    console.log("e")
+    console.log('e');
     const formaerrror = {};
     if (tags.length === 0) {
       formaerrror['tags'] = 'Please Enter Tags';
@@ -489,6 +489,7 @@ function ProductController() {
     if (id) {
       rules = {
         brand: 'required',
+        address: 'required',
         needheadline: 'required',
         // galleryUrl: 'required',
         status: 'required',
@@ -506,6 +507,7 @@ function ProductController() {
         rules = {
           brand: 'required',
           needheadline: 'required',
+          address: 'required',
           // galleryUrl: 'required',
           status: 'required',
           headline: 'required',
@@ -521,6 +523,7 @@ function ProductController() {
         rules = {
           brand: 'required',
           needheadline: 'required',
+          address: 'required',
           // galleryUrl: 'required',
           status: 'required',
           headline: 'required',
@@ -537,20 +540,21 @@ function ProductController() {
     }
 
     const message = {
-      'status.required': 'Status is Required',
-      'needheadline.required': 'Need Headline is Required',
+      'status.required': 'Status is required',
+      'needheadline.required': 'Need Headline is required',
+      'address.required': 'Location is required',
       // 'galleryUrl.required': 'gallery Url is Required',
 
-      'brand.required': 'Brand is Required',
-      'headline.required': 'Headline is Required',
+      'brand.required': 'Brand is required',
+      'headline.required': 'Headline is required',
       'category.required': 'Category is Required',
-      'subcategory.required': 'Subcategory is Required',
-      'description.required': 'Description is Required',
-      'price.required': 'Price is Required',
-      'image.required': 'image is Required',
+      'subcategory.required': 'Subcategory is required',
+      'description.required': 'Description is required',
+      'price.required': 'Price is required',
+      'image.required': 'Image is required',
       // 'quantity.required': 'Quantity is Required',
-      'organization.required': 'Organization is Required',
-      'slug.required': 'Slug is Required'
+      'organization.required': 'Organization is required',
+      'slug.required': 'Slug is required'
     };
 
     validateAll(state, rules, message)
@@ -567,7 +571,6 @@ function ProductController() {
         // data.title = title
         // data.subtitle = subtitle
         data.status = status;
-
         data.brand = brand;
         data.needheadline = needheadline;
         data.galleryUrl = galleryUrl;

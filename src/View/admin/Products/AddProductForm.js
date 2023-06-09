@@ -215,6 +215,15 @@ export default function AddProductForm(props) {
                       location.
                     </span>
                   </div>
+                  {stateData.error && stateData.error.address && (
+                    <p className="error">
+                      {stateData.error
+                        ? stateData.error.address
+                          ? stateData.error.address
+                          : ''
+                        : ''}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="col-sm-1"></div>
@@ -383,7 +392,7 @@ export default function AddProductForm(props) {
                         <div
                           className="gallery__img"
                           style={{
-                            backgroundImage: `url(${img ? img : noimg})`,
+                            backgroundImage: `url(${img ? img : noimg})`
                             // width: '100px',
                             // height: '100px'
                           }}
@@ -799,7 +808,7 @@ export default function AddProductForm(props) {
                         <div
                           className="gallery__img"
                           style={{
-                            backgroundImage: `url(${img ? img : noimg})`,
+                            backgroundImage: `url(${img ? img : noimg})`
                             // width: '100px',
                             // height: '100px'
                           }}

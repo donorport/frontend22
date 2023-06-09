@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { Button, Row, Container, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import DefaultLayout from '../Component/templates/default-layout';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 import './style.scss';
 import Page from '../../../components/Page';
 import spacing from '../../../assets/images/grid.svg';
@@ -10,8 +13,55 @@ import full from '../../../assets/images/full-logo.svg';
 import white from '../../../assets/images/full-logo(white).svg';
 
 const Media = () => {
+
+  const onDownload = (fileName) => {
+    const link = document.createElement('a');
+    link.download = fileName;
+    link.href = require(`../../../assets/images/${fileName}`).default;
+    link.click();
+  };
+
+  const onDownloadKit = () => {
+    const zip = new JSZip();
+
+    const addFileToZip = (fileName, fileUrl) => {
+      return fetch(fileUrl)
+        .then((response) => response.blob())
+        .then((blob) => {
+          zip.file(fileName, blob);
+        });
+    };
+
+    const files = [
+      {
+        fileName: 'full-logo.svg',
+        fileUrl: require('../../../assets/images/full-logo.svg').default
+      },
+      {
+        fileName: 'full-logo(white).svg',
+        fileUrl: require('../../../assets/images/full-logo(white).svg').default
+      },
+      { fileName: 'logo.svg', fileUrl: require('../../../assets/images/logo.svg').default }
+    ];
+
+    const promises = files.map((file) => addFileToZip(file.fileName, file.fileUrl));
+
+    Promise.all(promises)
+      .then(() => {
+        zip.generateAsync({ type: 'blob' })
+          .then((blob) => {
+            saveAs(blob, 'media-kit.zip');
+          })
+          .catch((error) => console.error(error));
+      })
+      .catch((error) => console.error(error));
+  };
+  
   return (
-    <Page title="Donorport | Media" description="Share the Donorport brand with your customers, clients and community">
+    <Page
+      title="Donorport | Media"
+      description="Share the Donorport brand with your customers, clients and community"
+    >
       <DefaultLayout>
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-5">
@@ -82,7 +132,12 @@ const Media = () => {
               <div className="media__box position-relative d-flex p-3 justify-content-center align-items-center rounded border border-2 mb-2 mb-sm-0">
                 <img src={full} alt="" className="img-fluid" />
                 <div className="btn__wrap d-flex align-items-center justify-content-center">
-                  <Button variant="info" size="lg" className="btn__download fw-bold">
+                  <Button
+                    onClick={() => onDownload('full-logo.svg')}
+                    variant="info"
+                    size="lg"
+                    className="btn__download fw-bold"
+                  >
                     Download
                   </Button>
                 </div>
@@ -90,7 +145,12 @@ const Media = () => {
               <div className="media__box position-relative d-flex p-3 justify-content-center align-items-center rounded border border-2 bg-black mb-2 mb-sm-0">
                 <img src={white} alt="" className="img-fluid" />
                 <div className="btn__wrap d-flex align-items-center justify-content-center">
-                  <Button variant="info" size="lg" className="btn__download fw-bold">
+                  <Button
+                    onClick={() => onDownload('full-logo(white).svg')}
+                    variant="info"
+                    size="lg"
+                    className="btn__download fw-bold"
+                  >
                     Download
                   </Button>
                 </div>
@@ -98,15 +158,20 @@ const Media = () => {
               <div className="media__box position-relative d-flex p-3 justify-content-center align-items-center rounded border border-2">
                 <img src={logo} alt="" className="img-fluid" />
                 <div className="btn__wrap d-flex align-items-center justify-content-center">
-                  <Button variant="info" size="lg" className="btn__download fw-bold">
+                  <Button
+                    onClick={() => onDownload('logo.svg')}
+                    variant="info"
+                    size="lg"
+                    className="btn__download fw-bold"
+                  >
                     Download
                   </Button>
                 </div>
               </div>
             </div>
 
-            <Button variant="primary" size="lg" className="fw-bold fs-6">
-              Download Kit (3mb)
+            <Button onClick={onDownloadKit} variant="primary" size="lg" className="fw-bold fs-6">
+              Download Kit
             </Button>
           </Container>
         </div>

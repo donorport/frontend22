@@ -1718,8 +1718,8 @@ const AdminPosts = () => {
                     className="text-light p-0 fw-normal fs-4"
                     to={'/campaign/' + data.slug + '/settings/profile'}
                   >
-                    <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" />Go to
-                    Settings
+                    <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" />
+                    Go to Settings
                   </Link>
                 </div>
               </div>
@@ -1740,7 +1740,8 @@ const AdminPosts = () => {
                     className="text-light p-0 fw-normal fs-4"
                     to={'/campaign/' + data.slug + '/settings/payments'}
                   >
-                    <FontAwesomeIcon icon={regular('circle-plus')} className="me-1" />Add Bank
+                    <FontAwesomeIcon icon={regular('circle-plus')} className="me-1" />
+                    Add Bank
                   </Link>
                 </div>
               </div>
@@ -1771,9 +1772,6 @@ const AdminPosts = () => {
           </div>
         </div>
       )}
-
-      {/* {console.log('state', displayPrice)} */}
-      {/*<FrontLoader loading={loading} />*/}
 
       <ModalSaveAsDraft
         modelShow={modelShow}
@@ -1942,14 +1940,14 @@ const PostsTableHeader = ({ totalRecord, user, productList, createNewPost, slug 
         )} */}
         <div className="d-flex align-items-center ms-sm-auto justify-content-end">
           {/* {user.isAccountAdded && data.taxRate && !data.logo && ( */}
-            <Button
-              variant="info"
-              size="lg"
-              className="me-2 fw-bold fs-6"
-              onClick={() => createNewPost()}
-            >
-              Create New
-            </Button>
+          <Button
+            variant="info"
+            size="lg"
+            className="me-2 fw-bold fs-6"
+            onClick={() => createNewPost()}
+          >
+            Create New
+          </Button>
           {/* )} */}
 
           {/* <LadderMenuItems /> */}

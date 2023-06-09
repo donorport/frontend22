@@ -522,7 +522,7 @@ const AdminProjects = () => {
             </div>
           </header>
           {!hasProduct.length > 0 ? (
-            <div className="mb-3 note fs-5 mw-100">
+            <div className="mb-3 note fs-6 mw-100">
               In order to create a project, you'll first need to post some items.{' '}
               <Link to={'/campaign/' + data.slug + '/posts'} className="link">
                 Click here

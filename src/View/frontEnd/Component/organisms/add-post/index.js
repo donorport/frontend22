@@ -108,6 +108,23 @@ const STYLES_fileUploadInput = {
   opacity: 0,
   cursor: 'pointer'
 };
+const fileuploadinput = {
+  position: 'absolute',
+  margin: 0,
+  padding: 0,
+  width: '100%',
+  height: '100%',
+  outline: 'none',
+  opacity: 0,
+  cursor: 'pointer'
+};
+
+const imageuploadwrap = {
+  marginTop: '20px',
+  // border: " 4px dashed #3773c6",
+  position: 'relative',
+  width: '100%'
+};
 
 const STYLES_mapStyles = {
   londonCycle: 'mapbox://styles/mapbox/light-v9',
@@ -267,7 +284,7 @@ const AddPost = (props) => {
 
         <div className="d-flex gap-2">
           {stateData.status !== 1 && (
-            <SaveCreateButtons 
+            <SaveCreateButtons
               loading={props.loading}
               submitProductForm={submitProductForm}
               setModelShow={setModelShow}
@@ -616,7 +633,7 @@ const AddPost = (props) => {
                         <div className="d-flex gap-2">
                           <div className="d-flex align-items-center">
                             <FontAwesomeIcon
-                              className="fs-3 text-primary"
+                              className="fs-3 text-info"
                               icon={solid('paperclip')}
                             />
                             <div className="d-flex py-12p px-18p">
@@ -629,7 +646,7 @@ const AddPost = (props) => {
                             </div>
                           </div>
                           <div className="d-flex align-items-center">
-                            <FontAwesomeIcon className="fs-3 text-primary" icon={solid('tag')} />
+                            <FontAwesomeIcon className="fs-3" color="#947ada"  icon={solid('tag')} />
                             <div className="d-flex py-12p px-18p">
                               <ToggleSwitch
                                 id="postTag"
@@ -666,7 +683,7 @@ const AddPost = (props) => {
                           toward this post.
                         </div>
                         <div className="d-flex note note--info mb-5 fs-6">
-                          <FontAwesomeIcon className="me-2 fs-3 text-primary" icon={solid('tag')} />
+                          <FontAwesomeIcon className="me-2 fs-3" color="#947ada" icon={solid('tag')} />
                           Toggle this if you have already purchased these items and are posting to
                           recouperate the cost.
                         </div>
@@ -707,11 +724,7 @@ const AddPost = (props) => {
                             </Box>
                           )}
                         </div>
-                        <div className="upload-wrap mb-3">
-                          {/* <FontAwesomeIcon
-                            icon={solid("cloud-arrow-up")}
-                            className="icon-cloud"
-                          /> */}
+                        {/* <div className="upload-wrap mb-3">
                           {Img || tempImg ? (
                             <img
                               src={
@@ -744,6 +757,72 @@ const AddPost = (props) => {
                               }}
                             />
                           </label>
+                        </div> */}
+                        <div
+                          className="image-upload-wrap fs-2 mb-3"
+                          // style={{
+                          //   ...imageuploadwrap,
+                          //   border:
+                          //     !props.tempImgName &&
+                          //     props.tempImgName === '' &&
+                          //     stateData.error.identityDocumentImage
+                          //       ? '4px dashed red'
+                          //       : '4px dashed #3773c6'
+                          // }}
+                          style={{
+                            ...imageuploadwrap,
+                            backgroundColor: '#e5f4ff',
+                            borderRadius: '9px',
+                            border: '2px dashed rgba(62, 170, 255, 0.58)',
+                            fontSize: '60px'
+                          }}
+                        >
+                          <input
+                            className="file-upload-input"
+                            type="file"
+                            id="mainImg"
+                            name="mainImg"
+                            onChange={(e) => {
+                              setLoadingId(true);
+                              changefile(e);
+                            }}
+                            accept="image/*"
+                            style={fileuploadinput}
+                            // title="upload an image"
+                          />
+                          {Img || tempImg ? (
+                            <img
+                              src={
+                                tempImg
+                                  ? tempImg
+                                  : Img
+                                  ? Img !== ''
+                                    ? helper.CampaignProductFullImagePath + Img
+                                    : noimg
+                                  : noimg
+                              }
+                              alt="lk"
+                              className="w-100"
+                              style={{ objectFit: 'contain' }}
+                            />
+                          ) : (
+                            <div
+                              className="drag-text"
+                              style={{ textAlign: 'center', padding: '70px' }}
+                            >
+                              <FontAwesomeIcon
+                                icon={solid('cloud-arrow-up')}
+                                className="icon-cloud"
+                              />
+                              <h3 style={{ fontSize: 'inherit' }}>
+                                {props.tempImgName && props.tempImgName !== ''
+                                  ? props.tempImgName
+                                  : stateData.error.identityDocumentImage
+                                  ? 'Please Upload Selected Document'
+                                  : 'Drag and drop or Select File'}
+                              </h3>
+                            </div>
+                          )}
                         </div>
                         <p className="error">{error ? (error.image ? error.image : '') : ''}</p>
                         <canvas id="canvas1" width={300} height={300}></canvas>
@@ -1342,12 +1421,12 @@ const AddPost = (props) => {
             </>
           ) : (
             <div className="d-flex gap-2">
-                <SaveCreateButtons 
-                  loading={props.loading}
-                  submitProductForm={submitProductForm}
-                  setModelShow={setModelShow}
-                  selectedProjectList={seletedProjectList}
-                />
+              <SaveCreateButtons
+                loading={props.loading}
+                submitProductForm={submitProductForm}
+                setModelShow={setModelShow}
+                selectedProjectList={seletedProjectList}
+              />
             </div>
           )}
         </div>

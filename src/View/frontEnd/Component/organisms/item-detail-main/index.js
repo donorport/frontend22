@@ -422,7 +422,7 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
     {productDetails.unlimited && (
       <IconText
         className="pt-12p pb-12p"
-        icon={<FontAwesomeIcon icon={solid('infinity')} className="fs-3 text-info pt-12p pb-12p" />}
+        icon={<FontAwesomeIcon icon={solid('infinity')} className="fs-3 text-primary pt-12p pb-12p" />}
       >
         Item is ongoing - there is no fixed quantity.
       </IconText>
@@ -431,7 +431,7 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
     {productDetails.tax && (
       <IconText
         className="pt-12p pb-12p"
-        icon={<FontAwesomeIcon icon={solid('paperclip')} className="fs-3 text-primary" />}
+        icon={<FontAwesomeIcon icon={solid('paperclip')} className="fs-3 text-info" />}
       >
         These items are tax deductible.
       </IconText>

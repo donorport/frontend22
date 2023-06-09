@@ -9,7 +9,10 @@ import './style.scss';
 
 const ItemTags = () => {
   return (
-    <Page title="Donorport | Badges" description="Learn about each post type and quickly determine if your donation is tax eligible, has already been purchased, or will receive followup media">
+    <Page
+      title="Donorport | Badges"
+      description="Learn about each post type and quickly determine if your donation is tax eligible, has already been purchased, or will receive followup media"
+    >
       <DefaultLayout>
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-5">
@@ -59,6 +62,23 @@ const ItemTags = () => {
                       These are items that the organization has already purchased. By donating to
                       Tab items, you are helping the organization recouperate the costs of the
                       purchase they've already made.
+                    </div>
+                  </div>
+                </li>
+                <li className="d-flex align-items-center py-3">
+                  <ListItemImg
+                    size={84}
+                    className="flex-shrink-0"
+                    icon={
+                      <FontAwesomeIcon icon={solid('camera')} className="fs-2 text-primary p-3" />
+                    }
+                  />
+                  <div className="ms-3">
+                    <h3 className="fs-4 mb-0 fw-bolder text-dark">Media</h3>
+                    <div className="text-light fs-5 lh-1.5">
+                      Items marked with a camera indicate that the charity will upload follow-up
+                      media for your donation. You will be able to track this media on your profile
+                      page inside of the Items tab.
                     </div>
                   </div>
                 </li>

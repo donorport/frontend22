@@ -98,7 +98,7 @@ const AdminBilling = () => {
     <>
       {/*<FrontLoader loading={loading} />*/}
       <div className="mw-600">
-        <div className="mb-5">
+        {/* <div className="mb-5">
           <div className="flex__1 mb-3">
             <h4 className="fw-bolder">Premium Plan</h4>
             <div className="text-subtext">Your current account plan:</div>
@@ -107,7 +107,7 @@ const AdminBilling = () => {
           <Link variant="info" className=" btn btn-info rounded-pill ms-auto" to="/plans">
             Free Plan <FontAwesomeIcon icon={solid('cloud')} className="ms-1" />
           </Link>
-        </div>
+        </div> */}
 
         {/* <div className="mb-5">
           <div className="flex__1 mb-3">

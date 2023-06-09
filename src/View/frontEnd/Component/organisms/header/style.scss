@@ -1,4 +1,13 @@
 .frontend_pages {
+  .badge--active {
+    border-radius: 19px;
+    height: 21px;
+    cursor: pointer;
+    padding: 12px 0px;
+  }
+  .active__text {
+    margin-left: 3px
+  }
   .main-header {
     min-height: 80px;
     max-height: 80px;
