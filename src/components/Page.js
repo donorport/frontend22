@@ -60,7 +60,7 @@ Page.defaultProps = {
   img: '',
   description: '',
   url: '',
-  showTags: false
+  showTags: true
 };
 
 export default Page;
