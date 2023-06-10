@@ -9,6 +9,7 @@ import wishlistApi from '../../Api/frontEnd/wishlist';
 import { setIsUpdateCart } from '../../user/user.action';
 import followApi from '../../Api/frontEnd/follow';
 import Page from '../../components/Page';
+import helper from '../../Common/Helper';
 
 export default function ItemDetailsController() {
   const [productList, setProductList] = useState([]);
@@ -96,7 +97,7 @@ export default function ItemDetailsController() {
 
     if (add) {
       if (add.data.success) {
-        dispatch(setIsUpdateCart(!user.isUpdateCart)); 
+        dispatch(setIsUpdateCart(!user.isUpdateCart));
       } else {
         ToastAlert({ msg: add.data.message, msgType: 'error' });
       }
@@ -239,7 +240,12 @@ export default function ItemDetailsController() {
 
   return (
     <>
-      <Page showTags={false}>
+      <Page
+        // showTags={false}
+        title={'Donorport | ' + productDetails?.headline}
+        description={productDetails?.description}
+        img={helper.CampaignProductFullImagePath + productDetails?.image}
+      >
         <ItemDetail
           productDetails={productDetails}
           categoryProducts={categoryProducts}

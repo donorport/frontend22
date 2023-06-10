@@ -222,7 +222,7 @@ export function CategoryProductsController() {
   };
 
   const addProductToWishlist = async (productId) => {
-    let data = {productId};
+    let data = { productId };
     setLoading(true);
     const add = await wishlistApi.toggle(token, data);
     if (add) {
@@ -904,8 +904,7 @@ export function CategoryProductsController() {
       {/*<FrontLoader loading={loading} />*/}
       <Page
         title={'Donorport | ' + categoryDetails?.name}
-        description="Donorport promises to remain a neutral platform and will never 
-            prevent a registered charity from posting and reciving funds from our donors."
+        description={`Browse ${categoryDetails?.name} to find your next donation`}
       >
         <Index
           productList={productList}

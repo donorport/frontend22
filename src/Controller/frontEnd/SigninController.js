@@ -309,7 +309,7 @@ function SigninController() {
             /> */}
       <Page
         title="Donorport | Login"
-        description="Log in to your Donorport account or singup today"
+        description="Login to your Donorport account or singup today"
       >
         <Login
           signIn={signIn}

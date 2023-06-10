@@ -25,6 +25,21 @@ const Page = forwardRef(({ children, title, img, description, url, showTags, ...
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={img} />
+                {/* Structured Data Markup for Sitelinks */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "url": "${url}",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "${url}/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            }
+          `}
+        </script>
       </Helmet>
     )}
     {children}

@@ -345,8 +345,7 @@ export default function ProjectDetailsController() {
   }, [user.countryId]);
   return (
     <>
-      <Page
-        showTags={false}
+      <Page // showTags={false}
         title={'Donorport | ' + projectDetails?.name}
         description={projectDetails?.description}
       >

@@ -5,12 +5,16 @@ import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import Logo from '../Component/atoms/logo';
+import { GoogleLogin } from 'react-google-login';
 
 import './style.scss';
 
 const Login = (props) => {
   let stateData = props.stateData;
-
+  const responseGoogle = (response) => {
+    // Handle the response from Google Sign-In
+    console.log(response);
+  };
   const [showPassword, togglePassword] = useState(false);
   return (
     <div className="d-flex flex-column bg-lighter authPage">
@@ -126,6 +130,15 @@ const Login = (props) => {
                   />
                   <span className="fw-bold">Sign in with Google</span>
   </Button>*/}
+
+              {/* <GoogleLogin
+                clientId="842709512025-uab2cipbdmtq5fv2c0fd8asn1crtg1e0.apps.googleusercontent.com"
+                buttonText="Sign in with Google"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={'single_host_origin'}
+              /> */}
+
               <Button
                 size="lg"
                 className="fw-bold w-100 mb-4"
@@ -135,6 +148,7 @@ const Login = (props) => {
                 Login
                 {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
               </Button>
+
               {/* <Button
                   variant="link"
                   className="text-light w-100 p-0 fw-normal"

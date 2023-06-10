@@ -350,7 +350,11 @@ export default function OrganizationDetailsController() {
 
   return (
     <>
-      <Page showTags={false}>
+      <Page
+        // showTags={false}
+        title={'Donorport | ' + organizationDetails?.name}
+        description={organizationDetails?.description}
+      >
         <OrganisationDetail
           organizationDetails={organizationDetails}
           projectList={projectList}

@@ -151,14 +151,33 @@ function CampaignAdminController() {
     })();
   }, [update]);
 
+  // const changefile = (e) => {
+  //   let file = e.target.files[0] ? e.target.files[0] : '';
+  //   setImg(URL.createObjectURL(file));
+
+  //   setState({
+  //     ...state,
+  //     logo: file
+  //   });
+  // };
+
   const changefile = (e) => {
     let file = e.target.files[0] ? e.target.files[0] : '';
-    setImg(URL.createObjectURL(file));
+    if (file) {
+      setTempImg(URL.createObjectURL(file));
 
-    setState({
-      ...state,
-      logo: file
-    });
+      setState({
+        ...state,
+        logo: file
+      });
+    } else {
+      setTempImg('');
+
+      setState({
+        ...state,
+        logo: ''
+      });
+    }
   };
 
   const addCampaignAdmin = () => {
@@ -357,14 +376,13 @@ function CampaignAdminController() {
 
   const updateCampaignAdmin = () => {
     const rules = {
-      name: 'required'
+      name: 'required',
       // description: "required",
       // twitter: "required",
       // facebook: "required",
       // linkedin: "required",
       // url: "required",
       // address: "required",
-
       // country: "required",
       // city: "required",
       // stateid: "required",
@@ -372,18 +390,17 @@ function CampaignAdminController() {
       // headline: 'required',
       // promoVideo: 'required'
     };
-
+  
     const message = {
       'email.required': 'Email is Required.',
       'name.required': 'Name is Required.',
-      'email.email': 'please enter valid email.',
-      'description.required': 'description is Required.',
+      'email.email': 'Please enter a valid email.',
+      'description.required': 'Description is Required.',
       'twitter.required': 'Twitter is Required.',
       'facebook.required': 'Facebook is Required.',
       'linkedin.required': 'Linkedin is Required.',
       'url.required': 'Website is Required.',
       'address.required': 'Address is Required.',
-
       'category.required': 'Category is Required.',
       'country.required': 'Country is Required.',
       'city.required': 'City is Required.',
@@ -391,6 +408,7 @@ function CampaignAdminController() {
       'headline.required': 'Headline is Required',
       'promoVideo.required': 'Promo Video is Required'
     };
+  
     validateAll(state, rules, message)
       .then(async () => {
         const formaerrror = {};
@@ -398,6 +416,7 @@ function CampaignAdminController() {
           ...state,
           error: formaerrror
         });
+  
         let data = {};
         data.name = name;
         data.status = status;
@@ -408,7 +427,6 @@ function CampaignAdminController() {
         if (logo && logo !== '') {
           data.logo = logo;
         }
-
         data.description = description;
         data.twitter = twitter;
         data.facebook = facebook;
@@ -423,31 +441,26 @@ function CampaignAdminController() {
         data.headline = headline;
         data.promoVideo = promoVideo;
         data.ein = ein;
-
+  
         setLoading(false);
-        const updateCampaignAdmin = await adminCampaignApi.updateCampaignAdmin(
-          adminAuthToken,
-          data,
-          id
-        );
-        if (updateCampaignAdmin) {
-          if (!updateCampaignAdmin.data.success) {
-            setLoading(false);
-            ToastAlert({ msg: updateCampaignAdmin.data.message, msgType: 'error' });
-          } else {
+        try {
+          const updatedData = await updateCampaignAdmin(id, data, adminAuthToken);
+          if (updatedData.data.success) {
             setUpdate(!update);
             setLoading(false);
-            ToastAlert({ msg: updateCampaignAdmin.data.message, msgType: 'success' });
+            ToastAlert({ msg: updatedData.data.message, msgType: 'success' });
             setModal(false);
             resetForm();
+          } else {
+            setLoading(false);
+            ToastAlert({ msg: updatedData.data.message, msgType: 'error' });
           }
-        } else {
+        } catch (err) {
           setLoading(false);
           ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
         }
       })
       .catch((errors) => {
-        // console.log(errors)
         setLoading(false);
         const formaerrror = {};
         if (errors.length) {
@@ -457,13 +470,15 @@ function CampaignAdminController() {
         } else {
           ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
         }
-
         setState({
           ...state,
           error: formaerrror
         });
       });
   };
+  
+  // Assuming you have defined the updateCampaignAdmin function that accepts id, data, and adminAuthToken as arguments and returns a promise.
+  
 
   const changevalue = async (e) => {
     let value = e.target.value;
