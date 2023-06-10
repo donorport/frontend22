@@ -43,7 +43,7 @@ const About = (props) => {
   let embedlink = video ? 'https://www.youtube.com/embed/' + videoid : '';
 
   return (
-    <Page title="Donorport | About Us" description="The world's first and largest crowd-funding platform for non-profits & charities. Donate directly to the needs of the organization and help them fund all of their material needs">
+    <Page title="Donorport | About Us" description="Donate directly to the needs of the organization and help them fund all of their material needs.">
     <DefaultLayout className="about">
       <div className="section--hero section--design">
         <Container fluid>

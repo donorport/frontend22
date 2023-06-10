@@ -7,7 +7,7 @@ import { Box } from '@mui/material';
 // ----------------------------------------------------------------------
 
 const Page = forwardRef(({ children, title, img, description, url, showTags, ...other }, ref) => (
-  <Box ref={ref} {...other}>
+  <Box key={url} ref={ref} {...other}>
     {showTags && (
       <Helmet>
         <title>{title}</title>
@@ -60,7 +60,7 @@ Page.defaultProps = {
   img: '',
   description: '',
   url: '',
-  showTags: true
+  showTags: false
 };
 
 export default Page;
