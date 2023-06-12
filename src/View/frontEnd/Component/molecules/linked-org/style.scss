@@ -50,7 +50,6 @@
 
 .activate {
   display: flex;
-  padding: 12px;
   justify-content: space-around;
   flex-wrap: nowrap;
   align-items: center;
@@ -68,11 +67,16 @@
   font-size: 24px;
 }
 
+@include media-breakpoint-down(sm) {
+  .activate__button {
+    width: 100%;
+  }
+}
 .activate__input {
   outline: none;
-  width: 20px;
-  height: 20px;
-  font-size: 16px;
+  width: 56px;
+  height: 56px;
+  font-size: 42px;
   line-height: normal;
   border: 0px solid #b9c6d4;
   border-bottom: 1px solid #b9c6d4;
