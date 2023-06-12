@@ -1389,9 +1389,11 @@ const AdminPosts = () => {
     let formaerrror = {};
     let rules = {};
 
+    const fulfilDetails_id = fulfilProductDetails?.fulfilDetails?._id;
+
     const MAX_IMAGE_LENGTH = helper.MAX_IMAGE_LENGTH;
 
-    let checkMore = fulfilId
+    let checkMore = fulfilDetails_id
       ? fulfilmoreImages?.length + fulfilMoreImg?.length
       : fulfilMoreImg?.length;
 
@@ -1405,7 +1407,7 @@ const AdminPosts = () => {
         'Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy.';
     }
 
-    if (!fulfilId) {
+    if (!fulfilDetails_id) {
       rules.receiptFile = 'required';
     }
 
@@ -1414,32 +1416,8 @@ const AdminPosts = () => {
     };
 
     console.log('~ ~~ validating...', { fulfilState, rules, fulfilProductDetails });
-    /*
-    fulfilState = {
-      "fulfilId": "", // this is the check 11 lines above
-      "fulfilMoreImg": [],
-      "videoUrl": "",
-      "receiptFile": "",
-      "fulfilPolicy": true,
-      "fulfilError": []
-    }
-    */
-
-    //fulfilProductDetails = {
-    //...
-
-    //"fulfilDetails": {
-    //"_id": "643fe2e4e3b0c2c21bcef42a",
-    //"organizationId": "63fe5d48448eff9f0a6412d8",
-    //"productId": "63fe6568448eff9f0a6414b9",
-    //"video": "",
-    //"receipt": "584a0610-deb0-11ed-accd-b7a870a5ecdc.pdf",
-    //"created_at": "2023-04-19T12:47:32.782Z",
-    //"updated_at": "2023-04-19T12:47:32.782Z",
-    //"__v": 0
-    //}
-    //}
-    //
+    // fulfilState has the new video URL that we need to save
+    // should be saved into fulfilProductDetails.fulfilDetails.video
     //
     console.log('~ ~! pre-inject: is this the newly-uploaded receipt?', {
       fulfilStateReceiptFile: fulfilState.receiptFile
@@ -1496,10 +1474,10 @@ const AdminPosts = () => {
 
         // do the update/creation!
         let fulfil;
-        const isThisAnUpdate = !!fulfilId;
-        console.log('~ ~~ !~~', { isThisAnUpdate, formData });
+        const isThisAnUpdate = !!fulfilDetails_id;
+        console.log('~ ~~ !~~', {fulfilDetails_id, isThisAnUpdate, formData });
         if (isThisAnUpdate) {
-          fulfil = await productApi.updateFulfilOrder(token, formData, fulfilId);
+          fulfil = await productApi.updateFulfilOrder(token, formData, fulfilDetails_id);
         } else {
           fulfil = await productApi.fulfilOrder(token, formData);
         }
@@ -2188,11 +2166,13 @@ const PostDetailsMediaColumn = ({
             allowFullScreen
           ></iframe>
         </div>
+
         <label htmlFor="videoUrl" className="form__label">
           Images &nbsp;
           <span className="post-type-text">(optional)</span>
         </label>
-        <div className="">
+
+        <div>
           <div className="upload-picture-video-block mb-2" style={{ display: 'contents' }}>
             <div
               className="image-upload-wrap fs-2"
@@ -2223,7 +2203,7 @@ const PostDetailsMediaColumn = ({
             </div>
 
             <div className="grid w-100">
-              {fulfilMoreTempImages?.length &&
+              {fulfilMoreTempImages?.length > 0 &&
                 fulfilMoreTempImages.map((img, key) => (
                   <PostDetailsProductImage
                     key={key}
@@ -2234,7 +2214,7 @@ const PostDetailsMediaColumn = ({
                     }}
                   />
                 ))}
-              {fulfilmoreImages?.length &&
+              {fulfilmoreImages?.length > 0 &&
                 fulfilmoreImages.map((img, key) => (
                   <PostDetailsProductImage
                     key={key}
@@ -2252,6 +2232,7 @@ const PostDetailsMediaColumn = ({
                   />
                 ))}
             </div>
+
             {fulfilError && fulfilError.fulfilMoreImg && (
               <p className="error">
                 {fulfilError ? (fulfilError.fulfilMoreImg ? fulfilError.fulfilMoreImg : '') : ''}
