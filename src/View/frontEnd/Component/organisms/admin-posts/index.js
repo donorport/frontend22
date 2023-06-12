@@ -23,6 +23,7 @@ import moment from 'moment';
 import _ from 'lodash';
 import pencil from '../../../../../assets/images/pencil.svg';
 import trophy from '../../../../../assets/images/trophy.svg';
+import { CircularProgress } from '@mui/material';
 
 const VALID_IMAGE_FILE_EXTENSIONS = ['jpg', 'png', 'jpeg', 'svg'];
 const DEFAULT_EMPTY_STATE = {
@@ -150,7 +151,8 @@ const AdminPosts = () => {
   const [order, setOrder] = useState('asc');
   const [fulfilProductDetails, setFulfilProductDetails] = useState({});
   const [showReceipt, setShowReceipt] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [addPostLoading, setAddPostLoading] = useState(false);
+  const [isDataLoading, setIsDataLoading] = useState(true);
   // const [primaryBankDetails, setPrimaryBankDetails] = useState({});
 
   // item data state
@@ -229,22 +231,26 @@ const AdminPosts = () => {
     (async () => {
       // console.log(data)
       // console.log(data.country_id)
-      setLoading(true);
+      setAddPostLoading(true);
       const getCategoryListResponse = await categoryApi.listCategory(token);
       if (getCategoryListResponse.data.success === true) {
-        const fetchedCatList = getCategoryListResponse.data.data
+        const fetchedCatList = getCategoryListResponse.data.data;
         setCategoryList(fetchedCatList);
 
-        console.log({data: fetchedCatList});
+        console.log({ data: fetchedCatList });
 
         // sort category list so we can grab the first one, so we can fetch subcategories
         // then we can have the default cat + subcat for when creating a new post
-        const defaultCategory = fetchedCatList
-            .sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }))[0];
+        const defaultCategory = fetchedCatList.sort((a, b) =>
+          a.name.localeCompare(b.name, 'es', { sensitivity: 'base' })
+        )[0];
 
-        console.log({defaultCategory});
+        console.log({ defaultCategory });
 
-        const getsubCategoryListResponse = await categoryApi.listSubCategory(token, defaultCategory._id);
+        const getsubCategoryListResponse = await categoryApi.listSubCategory(
+          token,
+          defaultCategory._id
+        );
         if (getsubCategoryListResponse.data.success === true) {
           setSubCategoryList(getsubCategoryListResponse.data.data);
         }
@@ -253,7 +259,7 @@ const AdminPosts = () => {
 
       if (data._id) await orgProjectList();
       // await getPrimaryBankAccount();
-      setLoading(false);
+      setAddPostLoading(false);
     })();
   }, [data._id]);
 
@@ -267,7 +273,7 @@ const AdminPosts = () => {
   // almost exact same as above.... why?
   useEffect(() => {
     (async () => {
-      setLoading(true);
+      setAddPostLoading(true);
       const getCategoryListResponse = await categoryApi.listCategory(token);
       if (getCategoryListResponse.data.success === true) {
         setCategoryList(getCategoryListResponse.data.data);
@@ -275,7 +281,7 @@ const AdminPosts = () => {
 
       if (data._id) await orgProjectList();
       // await getPrimaryBankAccount();
-      setLoading(false);
+      setAddPostLoading(false);
     })();
   }, [data._id, orgProjectList, token]);
 
@@ -465,7 +471,7 @@ const AdminPosts = () => {
   // used when uploading a file, saves the file to state
   const changeMainImg = async (e) => {
     const file = e.target.files[0] ? e.target.files[0] : '';
-    setLoading(true);
+    setAddPostLoading(true);
     const isFileHaveAlpha = await hasAlpha(file);
 
     // if (!isFileHaveAlpha) {
@@ -492,7 +498,7 @@ const AdminPosts = () => {
           //   msg: 'Please upload an image with a transparent background',
           //   msgType: 'error'
           // });
-          setLoading(false);
+          setAddPostLoading(false);
           // Working Code to Auto-remove BG on non-transparent images:::
 
           const formData = new FormData();
@@ -512,22 +518,22 @@ const AdminPosts = () => {
               const modifiedFile = new File([result], file.name, { type: 'image/png' });
               setTempImg(URL.createObjectURL(modifiedFile));
               setstate({ ...state, image: modifiedFile });
-              setLoading(false);
+              setAddPostLoading(false);
             })
             .catch((error) => {
               console.error('Failed to remove background:', error);
               setstate({ ...state, image: '' });
-              setLoading(false);
+              setAddPostLoading(false);
             });
         } else {
           setTempImg(URL.createObjectURL(file));
           setstate({ ...state, image: file });
-          setLoading(false);
+          setAddPostLoading(false);
         }
       } else {
         setstate({ ...state, image: '' });
         setTempImg('');
-        setLoading(false);
+        setAddPostLoading(false);
       }
     }, 5000);
   };
@@ -672,15 +678,18 @@ const AdminPosts = () => {
     setGallaryImages([]);
     setSeletedProjectList([]);
     // get default sub/category so it can be in state
-    const defaultCategory = categoryList
-                .sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }))[0];
-    const defaultSubcategory = subcategoryList
-                .sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }))[0];
+    const defaultCategory = categoryList.sort((a, b) =>
+      a.name.localeCompare(b.name, 'es', { sensitivity: 'base' })
+    )[0];
+    const defaultSubcategory = subcategoryList.sort((a, b) =>
+      a.name.localeCompare(b.name, 'es', { sensitivity: 'base' })
+    )[0];
+    console.log({defaultCategory, defaultSubcategory});
     const newEmptyState = {
       ...DEFAULT_EMPTY_STATE,
       status: -1, // the only difference between the reset state and default
       category: defaultCategory._id,
-      subcategory: defaultSubcategory._id,
+      subcategory: defaultSubcategory._id
     };
     setstate(newEmptyState);
     //setstate({
@@ -865,6 +874,7 @@ const AdminPosts = () => {
         formData.displayPrice = displayPrice ? priceFormat(displayPrice) : 0;
         formData.category_id = category;
         formData.subcategory_id = subcategory;
+        console.log({formData, category, subcategory});
 
         if (quantity) {
           formData.quantity = quantity;
@@ -879,7 +889,7 @@ const AdminPosts = () => {
 
         // Api Call for update Profile
         console.log('~~ ~~ ~~ CREATE PRODUCT -', { formData, id });
-        setLoading(true);
+        setAddPostLoading(true);
         let addProduct =
           id !== ''
             ? await productApi.updateProduct(token, formData, id)
@@ -887,13 +897,13 @@ const AdminPosts = () => {
 
         if (!addProduct) {
           console.log('~~ ~~ ~~ CREATE PRODUCT - NO addProduct!:', addProduct);
-          setLoading(false);
+          setAddPostLoading(false);
           ToastAlert({ msg: 'Product not save', msgType: 'error' });
           return;
         }
 
         if (addProduct.data.success === false) {
-          setLoading(false);
+          setAddPostLoading(false);
           ToastAlert({ msg: addProduct.data.message, msgType: 'error' });
           console.log(
             '~~ ~~ ~~ CREATE PRODUCT - addProduct.data.message:',
@@ -903,7 +913,7 @@ const AdminPosts = () => {
         }
 
         if (addProduct.data.success === true) {
-          setLoading(false);
+          setAddPostLoading(false);
           resetForm();
           setUpdate(!update);
           createPost(false);
@@ -947,7 +957,7 @@ const AdminPosts = () => {
       })
       .catch((errors) => {
         console.log('~~ validation CATCH');
-        setLoading(false);
+        setAddPostLoading(false);
         // console.log(errors)
         // const formaerrror = {};
         console.log({ errors });
@@ -978,26 +988,26 @@ const AdminPosts = () => {
         {
           label: 'Delete',
           onClick: async () => {
-            setLoading(true);
+            setAddPostLoading(true);
             if (id === '') {
-              setLoading(false);
+              setAddPostLoading(false);
               ToastAlert({ msg: 'Product not delete id Not found', msgType: 'error' });
               return;
             }
 
             const deleteProductApi = await productApi.deleteProduct(token, id);
             if (!deleteProductApi) {
-              setLoading(false);
+              setAddPostLoading(false);
               ToastAlert({ msg: 'Product not delete', msgType: 'error' });
               return;
             }
 
             if (deleteProductApi.data.success === false) {
-              setLoading(false);
+              setAddPostLoading(false);
               ToastAlert({ msg: deleteProductApi.data.message, msgType: 'error' });
             }
             if (deleteProductApi.data.success === true) {
-              setLoading(false);
+              setAddPostLoading(false);
               setUpdate(!update);
               createPost(false);
               ToastAlert({ msg: deleteProductApi.data.message, msgType: 'success' });
@@ -1026,7 +1036,7 @@ const AdminPosts = () => {
           label: 'Delete',
           onClick: async () => {
             if (id === '') {
-              setLoading(false);
+              setAddPostLoading(false);
               ToastAlert({ msg: 'Product not deleted: id Not found', msgType: 'error' });
               return;
             }
@@ -1061,7 +1071,7 @@ const AdminPosts = () => {
               ToastAlert(e);
             } finally {
               // remove loading state
-              setLoading(false);
+              setAddPostLoading(false);
             }
           }
         }
@@ -1073,20 +1083,20 @@ const AdminPosts = () => {
     setGallaryTempImages([]);
     setMoreTempImages([]);
     setTempImg('');
-    setLoading(true);
+    setAddPostLoading(true);
     let formData = {};
     formData.productId = productData._id;
 
     const getProductDetails = await productApi.productDetailsById(token, formData);
     if (getProductDetails.data.success === true) {
-      setLoading(false);
+      setAddPostLoading(false);
 
       productData = getProductDetails.data.data[0];
 
       // console.log(productData)
 
       if (!(productData && productData !== null && productData !== '')) {
-        setLoading(false);
+        setAddPostLoading(false);
         ToastAlert({
           msg: 'Something went wrong category data not found please try again',
           msgType: 'error'
@@ -1178,7 +1188,7 @@ const AdminPosts = () => {
         setSubCategoryList(getsubCategoryList.data.data);
       }
       createPost(true);
-      setLoading(false);
+      setAddPostLoading(false);
     }
   };
 
@@ -1219,24 +1229,24 @@ const AdminPosts = () => {
       return;
     }
 
-    setLoading(true);
+    setAddPostLoading(true);
 
     const publish = await productApi.publishProduct(token, id, 'PUBLISH');
 
     if (!publish) {
-      setLoading(false);
+      setAddPostLoading(false);
       ToastAlert({ msg: 'Product not published', msgType: 'error' });
       return;
     }
 
     if (publish.data.success === false) {
-      setLoading(false);
+      setAddPostLoading(false);
       ToastAlert({ msg: publish.data.message, msgType: 'error' });
       return;
     }
 
     if (publish.data.success === true) {
-      setLoading(false);
+      setAddPostLoading(false);
       setUpdate(!update);
       ToastAlert({ msg: publish.data.message, msgType: 'success' });
     }
@@ -1245,19 +1255,19 @@ const AdminPosts = () => {
   const unPublishProduct = async (id) => {
     const publish = await productApi.publishProduct(token, id, 'UNPUBLISH');
     if (!publish) {
-      setLoading(false);
+      setAddPostLoading(false);
       ToastAlert({ msg: 'Product not Published', msgType: 'error' });
       return;
     }
 
     if (publish.data.success === false) {
-      setLoading(false);
+      setAddPostLoading(false);
       ToastAlert({ msg: publish.data.message, msgType: 'error' });
       return;
     }
 
     if (publish.data.success === true) {
-      setLoading(false);
+      setAddPostLoading(false);
       setUpdate(!update);
       setFulfil(false);
       createPost(false);
@@ -1269,7 +1279,7 @@ const AdminPosts = () => {
   const getProductList = useCallback(
     async (page, field, type) => {
       console.log('getting product list (useCallback getProductList)');
-      setLoading(true);
+      setAddPostLoading(true);
       let formData = {};
       formData.organizationId = data._id;
       formData.pageNo = page;
@@ -1296,7 +1306,7 @@ const AdminPosts = () => {
 
       setTotalPages(getOrganizationProducts.data.totalPages);
       setTotalRecord(getOrganizationProducts.data.totalRecord);
-      setLoading(false);
+      setAddPostLoading(false);
     },
     [data._id, token]
   );
@@ -1347,11 +1357,11 @@ const AdminPosts = () => {
 
   // used to delete product images - how is this different from fulfilMoreImgs???
   const deleteProductImage = async (id, type) => {
-    setLoading(true);
+    setAddPostLoading(true);
     const deleteImg = await productApi.deleteProductImages(token, id);
 
     if (!deleteImg.data.success) {
-      setLoading(false);
+      setAddPostLoading(false);
       return;
     }
 
@@ -1369,7 +1379,7 @@ const AdminPosts = () => {
       imgs = imgs.filter((item) => item.id !== id);
       setGallaryImages(imgs);
     }
-    setLoading(false);
+    setAddPostLoading(false);
   };
 
   // ran when updating or fulfilling the order (basically the "submit" button)
@@ -1524,7 +1534,7 @@ const AdminPosts = () => {
         });
       })
       .finally(() => {
-        setLoading(false);
+        setAddPostLoading(false);
       });
   };
 
@@ -1606,12 +1616,12 @@ const AdminPosts = () => {
 
   console.log({ fulfilProductDetails });
   const [isOnboardingVisible, setOnboardingVisible] = useState(true);
-  const hideOnboarding = () => {
-    setOnboardingVisible(false);
-  };
-  const showOnboarding = () => {
-    setOnboardingVisible(true);
-  };
+  //const hideOnboarding = () => {
+  //setOnboardingVisible(false);
+  //};
+  //const showOnboarding = () => {
+  //setOnboardingVisible(true);
+  //};
 
   const [steps, setSteps] = useState([
     { label: 'Build your profile', isComplete: data.logo },
@@ -1626,10 +1636,10 @@ const AdminPosts = () => {
     const updatedSteps = steps.map((step) => {
       if (step.label === 'Build your profile') {
         return { ...step, isComplete: data.logo !== null };
-      } 
+      }
       if (step.label === 'Add your tax rate') {
         return { ...step, isComplete: data.taxRate !== null };
-      } 
+      }
       if (step.label === 'Connect your bank') {
         return { ...step, isComplete: user.isAccountAdded };
       }
@@ -1638,6 +1648,21 @@ const AdminPosts = () => {
 
     setSteps(updatedSteps);
   }, []);
+
+  useEffect(() => {
+    console.log({ user, data });
+    // when data is loaded (and we have user) then turn off isDataLoading
+    if (user && JSON.stringify(data) !== '{}') {
+      setIsDataLoading(false);
+    }
+  }, [data, user]);
+
+  if (isDataLoading)
+    return (
+      <div className="mt-5 d-flex justify-content-center">
+        <CircularProgress />
+      </div>
+    );
 
   return (
     <>
@@ -1854,7 +1879,7 @@ const AdminPosts = () => {
             categoryList={categoryList}
             subcategoryList={subcategoryList}
             Img={Img}
-            loading={loading}
+            loading={addPostLoading}
             tempImg={tempImg}
             moreTempImages={moreTempImages}
             moreImages={moreImages}
@@ -2198,7 +2223,7 @@ const PostDetailsMediaColumn = ({
             </div>
 
             <div className="grid w-100">
-              {fulfilMoreTempImages?.length ? (
+              {fulfilMoreTempImages?.length &&
                 fulfilMoreTempImages.map((img, key) => (
                   <PostDetailsProductImage
                     key={key}
@@ -2208,28 +2233,24 @@ const PostDetailsMediaColumn = ({
                       backgroundImage: `url(${img ? img : noimg})`
                     }}
                   />
-                ))
-              ) : (
-                <></>
-              )}
-              {fulfilmoreImages?.length
-                ? fulfilmoreImages.map((img, key) => (
-                    <PostDetailsProductImage
-                      key={key}
-                      handleDelete={() => deleteProductImage(img.id, 'Fulfil')}
-                      imgClass="gallery__img"
-                      imgStyle={{
-                        backgroundImage: `url(${
-                          img.img
-                            ? img.img !== ''
-                              ? helper.CampaignProductFullImagePath + img.img
-                              : noimg
+                ))}
+              {fulfilmoreImages?.length &&
+                fulfilmoreImages.map((img, key) => (
+                  <PostDetailsProductImage
+                    key={key}
+                    handleDelete={() => deleteProductImage(img.id, 'Fulfil')}
+                    imgClass="gallery__img"
+                    imgStyle={{
+                      backgroundImage: `url(${
+                        img.img
+                          ? img.img !== ''
+                            ? helper.CampaignProductFullImagePath + img.img
                             : noimg
-                        })`
-                      }}
-                    />
-                  ))
-                : ''}
+                          : noimg
+                      })`
+                    }}
+                  />
+                ))}
             </div>
             {fulfilError && fulfilError.fulfilMoreImg && (
               <p className="error">
