@@ -1603,9 +1603,11 @@ const AdminPosts = () => {
     const updatedSteps = steps.map((step) => {
       if (step.label === 'Build your profile') {
         return { ...step, isComplete: data.logo !== null };
-      } else if (step.label === 'Add your tax rate') {
+      } 
+      if (step.label === 'Add your tax rate') {
         return { ...step, isComplete: data.taxRate !== null };
-      } else if (step.label === 'Connect your bank') {
+      } 
+      if (step.label === 'Connect your bank') {
         return { ...step, isComplete: user.isAccountAdded };
       }
       return step;

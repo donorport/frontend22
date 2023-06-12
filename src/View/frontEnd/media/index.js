@@ -12,6 +12,8 @@ import logo from '../../../assets/images/logo.svg';
 import full from '../../../assets/images/full-logo.svg';
 import white from '../../../assets/images/full-logo(white).svg';
 
+/* eslint-disable global-require, import/no-dynamic-require */
+
 const Media = () => {
 
   const onDownload = (fileName) => {
