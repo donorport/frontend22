@@ -1,14 +1,13 @@
-import React from 'react';
-import { Button, Container, Form } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Button, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import './style.scss';
-import DefaultLayout from '../Component/templates/default-layout';
-//import RadioToggle from '../Component/atoms/radio-toggle';
 import Select from 'react-select';
 import CircularProgress from '@mui/material/CircularProgress';
 import Page from '../../../components/Page';
 import mobile from '../../../assets/images/mobile.svg';
+import apply from '../../../assets/images/apply-iso.svg';
 import Logo from '../Component/atoms/logo';
 
 const Apply = (props) => {
@@ -24,6 +23,28 @@ const Apply = (props) => {
   const countryList = props.countryList;
   const categoryList = props.categoryList;
 
+  const handleScrollToBottom = () => {
+    window.scrollTo(0, document.documentElement.scrollHeight);
+  };
+
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+  //     const isAtBottom = scrollTop + clientHeight === scrollHeight;
+  //     // Disable the button if already at the bottom of the page
+  //     const button = document.getElementById('scrollToBottomButton');
+  //     if (button) {
+  //       button.disabled = isAtBottom;
+  //     }
+  //   };
+
+  //   window.addEventListener('scroll', handleScroll);
+
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
+
   return (
     <Page
       title="Donorport | Apply"
@@ -32,7 +53,19 @@ const Apply = (props) => {
       <div className="frontend_pages">
         <div className="container d-flex flex-column flex-sm-row password-reset position-relative p-0">
           <div className="p-5 p-sm-0 col-sm-6 col-md-5 mt-5 mw-600">
-            <Logo />
+            <div className="d-flex">
+              {' '}
+              <Logo />
+              <Button
+                className="d-flex d-sm-none ms-auto"
+                id="scrollToBottomButton"
+                onClick={handleScrollToBottom}
+              >
+                <FontAwesomeIcon className="fs-5 me-1" icon={regular('bolt')} />
+                Activate
+              </Button>
+            </div>
+
             <h1 className="mt-5 text-dark fw-bolder pt-2 mb-4">Getting Started</h1>
             {/* <div className="fs-5 text-light mb-4">
                 Activate your account to create your organization's administration page or apply to
@@ -40,8 +73,9 @@ const Apply = (props) => {
               </div> */}
             <h4 className="fw-bolder text-dark">Step 1 - Create your account</h4>
             <div className="text-light mb-4 fs-5 pe-5">
-              Before you can post on Donorport, you must first be approved by the Donorport team.
-              Fill out the form below and click Submit to apply.
+              Fill out the form below and click Submit to apply to post on Donorport. Once your
+              application has been approved, a 4 digit activation code will be sent to the email you
+              provided.
             </div>
 
             <div className="mw-400">
@@ -351,30 +385,32 @@ const Apply = (props) => {
           <div className="flex-grow-1 bg-lighter" style={{ padding: '9%' }}>
             {' '}
             <h2 className="fw-bolder text-dark">Step 2 - Activate</h2>
-            <div className="text-light mb-2 fs-4 mw-600">
-              Once Donorport has approved your application, a 4 digit authentication code will be
-              sent to the email you provided. Enter the code in the box below to activate your
-              account.
+            <div className="text-light mb-2 fs-5 mw-600">
+              Enter your 4 digit activation code in the box below to activate your account.
             </div>
-            <div className="d-flex flex-wrap mt-5 activate mb-1 mw-600">
-              <div className="activate__icon">
-                <FontAwesomeIcon className="fs-1 me-3" icon={regular('key')} />
+            <div className="d-flex gap-4 flex-wrap mt-5 activate mb-1 mw-600">
+              <div className="flex-grow-1 d-flex">
+                {' '}
+                <div className="activate__icon">
+                  <FontAwesomeIcon className="fs-1 me-3" icon={regular('key')} />
+                </div>
+                <div className="activate__code d-flex gap-1 flex__1 justify-content-around">
+                  {blocks}
+                </div>
               </div>
-              <div className="activate__code d-flex gap-1 flex__1 justify-content-around">
-                {blocks}
-              </div>
+
               <Button
                 variant="primary"
                 size="lg"
-                className="activate__button mt-5 mt-sm-0 ms-2 fw-bold fs-4 py-2 px-4"
+                className="flex-grow-1 activate__button ms-2 fw-bold fs-4 py-2 px-4"
                 style={{ height: 'auto', borderRadius: '36px' }}
                 onClick={() => activateCode()}
               >
                 Activate
               </Button>
             </div>
-            <div className="d-flex align-items-center justify-content-sm-center">
-              <img src={mobile} className="img-fluid" alt="" />
+            <div style={{marginTop: '15%'}} className="d-flex align-items-center justify-content-sm-center">
+              <img src={apply} className="img-fluid" alt="" />
             </div>
             {/* <h3 className="fw-bolder text-dark">Why Donorport?</h3>
             <div className="fee__list d-sm-flex fs-5 text-light">

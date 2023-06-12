@@ -1426,7 +1426,7 @@ const AddPost = (props) => {
 const SaveCreateButtons = (props) => {
   return (
     <>
-      {/* <Button
+      <Button
         variant="warning"
         size="lg"
         className="text-white fw-bold fs-6"
@@ -1434,7 +1434,7 @@ const SaveCreateButtons = (props) => {
         onClick={() => props.setModelShow(true)}
       >
         Save as Draft
-      </Button> */}
+      </Button>
       <Button
         style={{ opacity: props.loading ? '0.7' : '1' }}
         variant="info"
