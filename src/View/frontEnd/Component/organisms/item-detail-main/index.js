@@ -42,9 +42,9 @@ function ProjectDetailMain(props) {
   let address = productDetails?.address ? convertAddress(productDetails?.address) : '';
 
   const [quantity, setQuantity] = useState(1);
-  const [loading, setLoading] = useState(false);
+  //const [loading, setLoading] = useState(false);
   const [allStateAds, setAllStateAds] = useState();
-  const [adData, setAdData] = useState();
+  //const [adData, setAdData] = useState();
   const [addedToCard, setAddedToCard] = useState(false);
   const [userAddress, setUserAddress] = useState(false);
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
@@ -189,9 +189,11 @@ function ProjectDetailMain(props) {
       {isFinish ||
         (productDetails.isFulfiled && !productDetails.unlimited && <FullyFundedSection />)}
 
-      {productDetails.isFulfiled && (productDetails.fulfiledproductsDetails?.video || productDetails?.productImages.some(image => image.type === 'fulfillImage')) && (
-        <FollowupMediaSection productDetails={productDetails} embedlink2={embedlink2} />
-      )}
+      {productDetails.isFulfiled &&
+        (productDetails.fulfiledproductsDetails?.video ||
+          productDetails?.productImages.some((image) => image.type === 'fulfillImage')) && (
+          <FollowupMediaSection productDetails={productDetails} embedlink2={embedlink2} />
+        )}
     </div>
   );
 }
@@ -422,7 +424,9 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
     {productDetails.unlimited && (
       <IconText
         className="pt-12p pb-12p"
-        icon={<FontAwesomeIcon icon={solid('infinity')} className="fs-3 text-primary pt-12p pb-12p" />}
+        icon={
+          <FontAwesomeIcon icon={solid('infinity')} className="fs-3 text-primary pt-12p pb-12p" />
+        }
       >
         Item is ongoing - there is no fixed quantity.
       </IconText>
