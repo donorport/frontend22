@@ -8,6 +8,8 @@ import DefaultLayout from '../Component/templates/default-layout';
 import Select from 'react-select';
 import CircularProgress from '@mui/material/CircularProgress';
 import Page from '../../../components/Page';
+import mobile from '../../../assets/images/mobile.svg';
+import Logo from '../Component/atoms/logo';
 
 const Apply = (props) => {
   const { error, name, organization, ein, email, confirmEmail, password, cpassword } =
@@ -28,46 +30,23 @@ const Apply = (props) => {
       description="Create you charity account. For more information about the application process please naviagte to the About Us page"
     >
       <div className="frontend_pages">
-        <DefaultLayout>
-          <div className="password-reset position-relative ">
-            <Container fluid className="position-relative pb-5 pt-5 container-fluid">
-              <div className="mw-600">
-                <h1 className="text-dark fw-bolder pt-2 mb-4">Getting Started</h1>
-                {/* <div className="fs-5 text-light mb-4">
+        <div className="container d-flex flex-column flex-sm-row password-reset position-relative p-0">
+          <div className="p-5 p-sm-0 col-sm-6 col-md-5 mt-5 mw-600">
+            <Logo />
+            <h1 className="mt-5 text-dark fw-bolder pt-2 mb-4">Getting Started</h1>
+            {/* <div className="fs-5 text-light mb-4">
                 Activate your account to create your organization's administration page or apply to
                 receive your activation code.
               </div> */}
-                <h4 className="fw-bolder text-dark">Step 1 - Create your account</h4>
-                <div className="text-light mb-4 fs-5">
-                  Before you can post on Donorport, you must first be approved by the Donorport
-                  team. Fill out the form below and click Submit to apply.
-                </div>
-                <h4 className="fw-bolder text-dark">Step 2 - Activate</h4>
-                <div className="text-light mb-2 fs-5">
-                  Once Donorport has approved your application, a 4 digit authentication code will
-                  be sent to the email you provided. Enter the code in the box below to activate
-                  your account.
-                </div>
-                <div className="activate mw-400 mb-5">
-                  <div className="activate__icon">
-                    <FontAwesomeIcon icon={regular('fingerprint')} />
-                  </div>
-                  <div className="activate__code d-flex flex__1 justify-content-around">
-                    {blocks}
-                  </div>
-                  <Button
-                    variant="info"
-                    size="lg"
-                    className="ms-2 fw-bold fs-6"
-                    onClick={() => activateCode()}
-                  >
-                    Activate
-                  </Button>
-                </div>
+            <h4 className="fw-bolder text-dark">Step 1 - Create your account</h4>
+            <div className="text-light mb-4 fs-5 pe-5">
+              Before you can post on Donorport, you must first be approved by the Donorport team.
+              Fill out the form below and click Submit to apply.
+            </div>
 
-                <div className="mw-400">
-                  <Form className="mb-5" autocomplete="off">
-                    {/*    <div className="py-1 d-flex justify-content-between fs-4 mb-3">
+            <div className="mw-400">
+              <Form className="mb-5" autocomplete="off">
+                {/*    <div className="py-1 d-flex justify-content-between fs-4 mb-3">
                     <RadioToggle
                       outline={true}
                       checked={selected === 'charity'}
@@ -99,15 +78,15 @@ const Apply = (props) => {
                       B Corp
                     </RadioToggle>
                   </div>*/}
-                    <InputContainer 
-                      autoComplete="new-password"
-                      name="name"
-                      value={name}
-                      onChange={changevalue}
-                      label="Contact Name"
-                      error={error}
-                    />
-                    {/*
+                <InputContainer
+                  autoComplete="new-password"
+                  name="name"
+                  value={name}
+                  onChange={changevalue}
+                  label="Contact Name"
+                  error={error}
+                />
+                {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                         <input
@@ -125,15 +104,15 @@ const Apply = (props) => {
                     )}
                     */}
 
-                    <SelectContainer 
-                      name="country"
-                      value={props.defaultCountry}
-                      onChange={props.onChangeCountry}
-                      label="Country"
-                      options={countryList}
-                      error={error}
-                    />
-                    {/*
+                <SelectContainer
+                  name="country"
+                  value={props.defaultCountry}
+                  onChange={props.onChangeCountry}
+                  label="Country"
+                  options={countryList}
+                  error={error}
+                />
+                {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                     <Select
@@ -155,15 +134,15 @@ const Apply = (props) => {
                 {error && error.country && <p className="error">{error.country}</p>}
                 */}
 
-                    <SelectContainer 
-                      name="category"
-                      value={props.defaultCategory}
-                      onChange={props.onChangeCategory}
-                      label="Category"
-                      options={categoryList}
-                      error={error}
-                    />
-                    {/*
+                <SelectContainer
+                  name="category"
+                  value={props.defaultCategory}
+                  onChange={props.onChangeCategory}
+                  label="Category"
+                  options={categoryList}
+                  error={error}
+                />
+                {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                     <Select
@@ -184,15 +163,15 @@ const Apply = (props) => {
                 {error && error.category && <p className="error">{error.category}</p>}
                 */}
 
-                    <InputContainer 
-                      autoComplete="new-password"
-                      name="organization"
-                      value={organization}
-                      onChange={changevalue}
-                      label="Organization Name"
-                      error={error}
-                    />
-                    {/*
+                <InputContainer
+                  autoComplete="new-password"
+                  name="organization"
+                  value={organization}
+                  onChange={changevalue}
+                  label="Organization Name"
+                  error={error}
+                />
+                {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                         <input
@@ -212,15 +191,15 @@ const Apply = (props) => {
                     )}
                     */}
 
-                    <InputContainer 
-                      autoComplete="new-password"
-                      name="ein"
-                      value={ein}
-                      onChange={changevalue}
-                      label="Charity Registration Number"
-                      error={error}
-                    />
-                    {/*
+                <InputContainer
+                  autoComplete="new-password"
+                  name="ein"
+                  value={ein}
+                  onChange={changevalue}
+                  label="Charity Registration Number"
+                  error={error}
+                />
+                {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                         <input
@@ -238,16 +217,16 @@ const Apply = (props) => {
                 )}
                 */}
 
-                    <InputContainer 
-                      autoComplete="new-password"
-                      type="email"
-                      name="email"
-                      value={email}
-                      onChange={changevalue}
-                      label="Email"
-                      error={error}
-                    />
-                    {/*
+                <InputContainer
+                  autoComplete="new-password"
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={changevalue}
+                  label="Email"
+                  error={error}
+                />
+                {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                         <input
@@ -265,16 +244,16 @@ const Apply = (props) => {
                     )}
                     */}
 
-                    <InputContainer 
-                      autoComplete="new-password"
-                      type="email"
-                      name="confirmEmail"
-                      value={confirmEmail}
-                      onChange={changevalue}
-                      label="Confirm Email"
-                      error={error}
-                    />
-                    {/*
+                <InputContainer
+                  autoComplete="new-password"
+                  type="email"
+                  name="confirmEmail"
+                  value={confirmEmail}
+                  onChange={changevalue}
+                  label="Confirm Email"
+                  error={error}
+                />
+                {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                         <input
@@ -296,16 +275,16 @@ const Apply = (props) => {
                     )}
                     */}
 
-                    <InputContainer 
-                      autoComplete="new-password"
-                      type="password"
-                      name="password"
-                      value={password}
-                      onChange={changevalue}
-                      label="Password"
-                      error={error}
-                    />
-                    {/*
+                <InputContainer
+                  autoComplete="new-password"
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={changevalue}
+                  label="Password"
+                  error={error}
+                />
+                {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                         <input
@@ -325,16 +304,16 @@ const Apply = (props) => {
                     )}
                     */}
 
-                    <InputContainer 
-                      autoComplete="new-password"
-                      type="password"
-                      name="cpassword"
-                      value={cpassword}
-                      onChange={changevalue}
-                      label="Confirm Password"
-                      error={error}
-                    />
-                    {/*
+                <InputContainer
+                  autoComplete="new-password"
+                  type="password"
+                  name="cpassword"
+                  value={cpassword}
+                  onChange={changevalue}
+                  label="Confirm Password"
+                  error={error}
+                />
+                {/*
                     <div className="input__wrap d-flex">
                       <label className="input__label flex__1">
                         <input
@@ -356,58 +335,85 @@ const Apply = (props) => {
                     )}
                     */}
 
-                    <Button
-                      variant="info"
-                      size="lg"
-                      className="fw-bold px-4 mt-2"
-                      style={{ width: '100%', opacity: props.loading ? '0.7' : '1' }}
-                      onClick={() => !props.loading && applyOrganization()}
-                    >
-                      Submit
-                      {props.loading && (
-                        <CircularProgress className="ms-1" color="inherit" size={12} />
-                      )}
-                    </Button>
-                  </Form>
+                <Button
+                  variant="info"
+                  size="lg"
+                  className="fw-bold px-4 mt-2"
+                  style={{ width: '100%', opacity: props.loading ? '0.7' : '1' }}
+                  onClick={() => !props.loading && applyOrganization()}
+                >
+                  Submit
+                  {props.loading && <CircularProgress className="ms-1" color="inherit" size={12} />}
+                </Button>
+              </Form>
+            </div>
+          </div>
+          <div className="flex-grow-1 bg-lighter" style={{ padding: '9%' }}>
+            {' '}
+            <h2 className="fw-bolder text-dark">Step 2 - Activate</h2>
+            <div className="text-light mb-2 fs-4 mw-600">
+              Once Donorport has approved your application, a 4 digit authentication code will be
+              sent to the email you provided. Enter the code in the box below to activate your
+              account.
+            </div>
+            <div className="d-flex flex-wrap mt-5 activate mb-1 mw-600">
+              <div className="activate__icon">
+                <FontAwesomeIcon className="fs-1 me-3" icon={regular('key')} />
+              </div>
+              <div className="activate__code d-flex gap-1 flex__1 justify-content-around">
+                {blocks}
+              </div>
+              <Button
+                variant="primary"
+                size="lg"
+                className="activate__button mt-5 mt-sm-0 ms-2 fw-bold fs-4 py-2 px-4"
+                style={{ height: 'auto', borderRadius: '36px' }}
+                onClick={() => activateCode()}
+              >
+                Activate
+              </Button>
+            </div>
+            <div className="d-flex align-items-center justify-content-sm-center">
+              <img src={mobile} className="img-fluid" alt="" />
+            </div>
+            {/* <h3 className="fw-bolder text-dark">Why Donorport?</h3>
+            <div className="fee__list d-sm-flex fs-5 text-light">
+              <div className="">
+                <div className="d-flex align-items-center my-3">
+                  <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                  <span>Organization keeps 100% of the proceeds</span>
                 </div>
-
-                <h3 className="fw-bolder text-dark">Why Donorport?</h3>
-
-                <div className="fee__list d-sm-flex fs-5 text-light">
-                  <div className="">
-                    <div className="d-flex align-items-center my-3">
-                      <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                      <span>Organization keeps 100% of the proceeds</span>
-                    </div>
-                    <div className="d-flex align-items-center my-3">
-                      <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                      <span>Manage all of your tax receipts on one place</span>
-                    </div>
-                    <div className="d-flex align-items-center my-3">
-                      <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                      <span>Scale your donations using the donation amount tool</span>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="d-flex align-items-center my-3">
-                      <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                      <span>Completely transparent; Sales receipts, need media</span>
-                    </div>
-                    <div className="d-flex align-items-center my-3">
-                      <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                      <span>Money back guaranteed for unfunded items</span>
-                    </div>
-                    <div className="d-flex align-items-center my-3">
-                      <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                      <span>24/7 Support for Organizations and Donors</span>
-                    </div>
-                  </div>
+                <div className="d-flex align-items-center my-3">
+                  <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                  <span>Manage all of your tax receipts on one place</span>
+                </div>
+                <div className="d-flex align-items-center my-3">
+                  <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                  <span>Scale your donations using the donation amount tool</span>
                 </div>
               </div>
-            </Container>
+
+              <div>
+                <div className="d-flex align-items-center my-3">
+                  <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                  <span>Completely transparent; Sales receipts, need media</span>
+                </div>
+                <div className="d-flex align-items-center my-3">
+                  <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                  <span>Money back guaranteed for unfunded items</span>
+                </div>
+                <div className="d-flex align-items-center my-3">
+                  <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                  <span>24/7 Support for Organizations and Donors</span>
+                </div>
+              </div>
+            </div> */}
           </div>
-        </DefaultLayout>
+          <div
+            className="bg-lighter position-absolute"
+            style={{ top: '0', left: '100%', width: 'calc(100% - 600px)', height: '100%' }}
+          ></div>
+        </div>
       </div>
     </Page>
   );
@@ -419,7 +425,7 @@ const InputContainer = ({ type, name, value, autoComplete, onChange, label, erro
       <label className="input__label flex__1">
         <input
           autoComplete={autoComplete}
-          type={type ?? "text"}
+          type={type ?? 'text'}
           name={name}
           value={value}
           onChange={onChange}
@@ -431,7 +437,7 @@ const InputContainer = ({ type, name, value, autoComplete, onChange, label, erro
   </>
 );
 
-const SelectContainer = ({name, value, options, onChange, label, error }) => (
+const SelectContainer = ({ name, value, options, onChange, label, error }) => (
   <>
     <div className="input__wrap d-flex">
       <label className="input__label flex__1">
