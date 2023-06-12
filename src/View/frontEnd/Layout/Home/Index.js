@@ -6,8 +6,8 @@ import { Product, FilterDropdown, LadderMenu } from '../../Component/organisms';
 import { useEffect, useState } from 'react';
 import './style.scss';
 import HeaderController from '../../../../Controller/frontEnd/HeaderController';
-//import IconText from '../../Component/molecules/icon-text';
-import { getCalculatedPrice } from '../../../../Common/Helper';
+import IconText from '../../Component/molecules/icon-text';
+import helper, { getCalculatedPrice } from '../../../../Common/Helper';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import corrupt from '../../../../assets/images/corrupt.png';
@@ -456,7 +456,7 @@ export default function Index(props) {
               </Button>
             </div> */}
             </div>
-            {/* {props.advertisementList.length > 0 && (
+            {props.advertisementList?.length > 0 && (
               <div className="mb-3 mb-sm-0">
                 <IconText
                   size="42"
@@ -466,20 +466,20 @@ export default function Index(props) {
                   }
                 >
                   {props.advertisementList.map((ad, i) => {
-                    return (
+                    if ( ad.website && ad.logo ) return (
                       <a href={ad.website} target="_blank" rel="noreferrer" key={i}>
                         <img
                           src={helper.sponsorLogoResizePath + ad.logo}
                           alt="sponsor"
                           className="px-2"
                           style={{ maxHeight: '55px' }}
-                        ></img>
+                        />
                       </a>
                     );
                   })}
                 </IconText>
               </div>
-            )} */}
+            )}
             <div>
               {/* <IconText
               className=""
