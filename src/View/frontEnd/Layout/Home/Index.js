@@ -6,8 +6,8 @@ import { Product, FilterDropdown, LadderMenu } from '../../Component/organisms';
 import { useEffect, useState } from 'react';
 import './style.scss';
 import HeaderController from '../../../../Controller/frontEnd/HeaderController';
-import IconText from '../../Component/molecules/icon-text';
-import helper, { getCalculatedPrice } from '../../../../Common/Helper';
+//import IconText from '../../Component/molecules/icon-text';
+import { getCalculatedPrice } from '../../../../Common/Helper';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import corrupt from '../../../../assets/images/corrupt.png';
@@ -219,7 +219,8 @@ export default function Index(props) {
                 {props.searchTag.length > 0 &&
                   props.searchTag.map((tag, i) => {
                     return (
-                      <li
+                      <li 
+                        key={i}
                         className="search__tag"
                         onClick={() => props.deSelectTag(tag.tag)}
                         style={{ backgroundColor: tag.color, marginRight: '10px' }}
@@ -327,10 +328,10 @@ export default function Index(props) {
             <div className="tag__list d-flex align-items-center flex__1 ms-sm-2 gap-1 mb-2 mb-sm-0 overflow-auto px-sm-0 px-2 mx-sm-0 mx-n2">
               {props.seletedCategoryList.length > 0 &&
                 props.categoryList.length > 0 &&
-                props.categoryList.map((c, i) => {
+                props.categoryList.map((c) => {
                   return (
                     props.seletedCategoryList.includes(c._id) && (
-                      <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
+                      <div key={c._id} className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
                         <span className="filter__item-icon">
                           {/* <img
                         alt=""
