@@ -51,20 +51,24 @@ function CategorySelect({ nameTitle, nameKey, thisCat, thisCatList, onChange, er
           name={nameKey}
           style={STYLE_CURSOR_POINTER}
         >
+          {/*
           <option disabled selected value="nameTitle">
             Select {nameTitle}
           </option>
-          {thisCatList.length > 0 &&
-            thisCatList
-              .sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }))
-              .map(
-                (cat) =>
-                  cat.status === 1 && (
-                    <option key={cat._id} value={cat._id} selected={thisCat === cat._id}>
-                      {cat.name}
-                    </option>
-                  )
-              )}
+          */}
+          <optgroup label={nameTitle}>
+            {thisCatList.length > 0 &&
+              thisCatList
+                .sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }))
+                .map(
+                  (cat, index) =>
+                    cat.status === 1 && (
+                      <option key={cat._id} value={cat._id} selected={thisCat ? thisCat === cat._id : index === 0}>
+                        {cat.name}
+                      </option>
+                    )
+                )}
+          </optgroup>
         </select>
         <p className="error">{error ? (error[nameKey] ? error[nameKey] : '') : ''}</p>
       </div>
@@ -107,23 +111,6 @@ const STYLES_fileUploadInput = {
   outline: 'none',
   opacity: 0,
   cursor: 'pointer'
-};
-const fileuploadinput = {
-  position: 'absolute',
-  margin: 0,
-  padding: 0,
-  width: '100%',
-  height: '100%',
-  outline: 'none',
-  opacity: 0,
-  cursor: 'pointer'
-};
-
-const imageuploadwrap = {
-  marginTop: '20px',
-  // border: " 4px dashed #3773c6",
-  position: 'relative',
-  width: '100%'
 };
 
 const STYLES_mapStyles = {
@@ -632,10 +619,7 @@ const AddPost = (props) => {
                         </label>
                         <div className="d-flex gap-2">
                           <div className="d-flex align-items-center">
-                            <FontAwesomeIcon
-                              className="fs-3 text-info"
-                              icon={solid('paperclip')}
-                            />
+                            <FontAwesomeIcon className="fs-3 text-info" icon={solid('paperclip')} />
                             <div className="d-flex py-12p px-18p">
                               <ToggleSwitch
                                 id="tax"
@@ -646,7 +630,7 @@ const AddPost = (props) => {
                             </div>
                           </div>
                           <div className="d-flex align-items-center">
-                            <FontAwesomeIcon className="fs-3" color="#947ada"  icon={solid('tag')} />
+                            <FontAwesomeIcon className="fs-3" color="#947ada" icon={solid('tag')} />
                             <div className="d-flex py-12p px-18p">
                               <ToggleSwitch
                                 id="postTag"
@@ -683,7 +667,11 @@ const AddPost = (props) => {
                           toward this post.
                         </div>
                         <div className="d-flex note note--info mb-5 fs-6">
-                          <FontAwesomeIcon className="me-2 fs-3" color="#947ada" icon={solid('tag')} />
+                          <FontAwesomeIcon
+                            className="me-2 fs-3"
+                            color="#947ada"
+                            icon={solid('tag')}
+                          />
                           Toggle this if you have already purchased these items and are posting to
                           recouperate the cost.
                         </div>
@@ -761,7 +749,7 @@ const AddPost = (props) => {
                         <div
                           className="image-upload-wrap fs-2 mb-3"
                           // style={{
-                          //   ...imageuploadwrap,
+                          //   ...STYLES_imageUploadWrap,
                           //   border:
                           //     !props.tempImgName &&
                           //     props.tempImgName === '' &&
@@ -770,7 +758,7 @@ const AddPost = (props) => {
                           //       : '4px dashed #3773c6'
                           // }}
                           style={{
-                            ...imageuploadwrap,
+                            ...STYLES_imageUploadWrap,
                             backgroundColor: '#e5f4ff',
                             borderRadius: '9px',
                             border: '2px dashed rgba(62, 170, 255, 0.58)',
@@ -787,7 +775,7 @@ const AddPost = (props) => {
                               changefile(e);
                             }}
                             accept="image/*"
-                            style={fileuploadinput}
+                            style={STYLES_fileUploadInput}
                             // title="upload an image"
                           />
                           {Img || tempImg ? (
@@ -817,7 +805,7 @@ const AddPost = (props) => {
                               <h3 style={{ fontSize: 'inherit' }}>
                                 {props.tempImgName && props.tempImgName !== ''
                                   ? props.tempImgName
-                                  : stateData.error.identityDocumentImage
+                                  : stateData?.error?.identityDocumentImage
                                   ? 'Please Upload Selected Document'
                                   : 'Drag and drop or Select File'}
                               </h3>

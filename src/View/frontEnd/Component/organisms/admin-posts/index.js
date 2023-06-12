@@ -232,7 +232,23 @@ const AdminPosts = () => {
       setLoading(true);
       const getCategoryListResponse = await categoryApi.listCategory(token);
       if (getCategoryListResponse.data.success === true) {
-        setCategoryList(getCategoryListResponse.data.data);
+        const fetchedCatList = getCategoryListResponse.data.data
+        setCategoryList(fetchedCatList);
+
+        console.log({data: fetchedCatList});
+
+        // sort category list so we can grab the first one, so we can fetch subcategories
+        // then we can have the default cat + subcat for when creating a new post
+        const defaultCategory = fetchedCatList
+            .sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }))[0];
+
+        console.log({defaultCategory});
+
+        const getsubCategoryListResponse = await categoryApi.listSubCategory(token, defaultCategory._id);
+        if (getsubCategoryListResponse.data.success === true) {
+          setSubCategoryList(getsubCategoryListResponse.data.data);
+        }
+        //console.log({defaultCategory, subcatList: getsubCategoryListResponse.data.data});
       }
 
       if (data._id) await orgProjectList();
@@ -655,9 +671,16 @@ const AdminPosts = () => {
     setGallaryTempImages([]);
     setGallaryImages([]);
     setSeletedProjectList([]);
+    // get default sub/category so it can be in state
+    const defaultCategory = categoryList
+                .sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }))[0];
+    const defaultSubcategory = subcategoryList
+                .sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }))[0];
     const newEmptyState = {
       ...DEFAULT_EMPTY_STATE,
-      status: -1 // the only difference between the reset state and default
+      status: -1, // the only difference between the reset state and default
+      category: defaultCategory._id,
+      subcategory: defaultSubcategory._id,
     };
     setstate(newEmptyState);
     //setstate({
@@ -839,9 +862,9 @@ const AdminPosts = () => {
         formData.organizationCountryId = data.country_id;
         formData.price = price ? Number(price) : 0;
         formData.description = description;
+        formData.displayPrice = displayPrice ? priceFormat(displayPrice) : 0;
         formData.category_id = category;
         formData.subcategory_id = subcategory;
-        formData.displayPrice = displayPrice ? priceFormat(displayPrice) : 0;
 
         if (quantity) {
           formData.quantity = quantity;
@@ -1603,9 +1626,11 @@ const AdminPosts = () => {
     const updatedSteps = steps.map((step) => {
       if (step.label === 'Build your profile') {
         return { ...step, isComplete: data.logo !== null };
-      } else if (step.label === 'Add your tax rate') {
+      } 
+      if (step.label === 'Add your tax rate') {
         return { ...step, isComplete: data.taxRate !== null };
-      } else if (step.label === 'Connect your bank') {
+      } 
+      if (step.label === 'Connect your bank') {
         return { ...step, isComplete: user.isAccountAdded };
       }
       return step;
