@@ -456,7 +456,7 @@ export default function Index(props) {
               </Button>
             </div> */}
             </div>
-            {props.advertisementList?.length > 0 && (
+            {/* {props.advertisementList?.length > 0 && (
               <div className="mb-3 mb-sm-0">
                 <IconText
                   size="42"
@@ -479,7 +479,7 @@ export default function Index(props) {
                   })}
                 </IconText>
               </div>
-            )}
+            )} */}
             <div>
               {/* <IconText
               className=""

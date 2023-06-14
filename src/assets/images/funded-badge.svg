@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="97.650757mm"
-   height="67.241592mm"
-   viewBox="0 0 97.650757 67.241592"
+   width="98.550728mm"
+   height="68.141563mm"
+   viewBox="0 0 98.550728 68.141563"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
@@ -27,13 +27,13 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="0.83125073"
-     inkscape:cx="132.93221"
-     inkscape:cy="211.12764"
-     inkscape:window-width="1280"
-     inkscape:window-height="747"
-     inkscape:window-x="697"
-     inkscape:window-y="1105"
+     inkscape:zoom="1.6625015"
+     inkscape:cx="189.77427"
+     inkscape:cy="145.26303"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
      inkscape:window-maximized="1"
      inkscape:current-layer="g10015" />
   <defs
@@ -49,7 +49,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-37.038536,-90.548194)">
+     transform="translate(-36.588551,-90.098208)">
     <g
        id="g10015"
        transform="rotate(-15.899392,85.863789,124.16905)">
@@ -63,9 +63,9 @@
          style="font-size:72px;line-height:1.25;font-family:'Plus Jakarta Display';-inkscape-font-specification:'Plus Jakarta Display, Normal';white-space:pre;shape-inside:url(#rect1112);fill:#36cc5e;fill-opacity:1;stroke:none;stroke-width:2.51339;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"><tspan
            x="117.52539"
            y="433.22282"
-           id="tspan1274"><tspan
+           id="tspan1154"><tspan
              style="font-weight:bold;font-family:Fredoka;-inkscape-font-specification:'Fredoka Bold'"
-             id="tspan1272">FUNDED</tspan></tspan></text>
+             id="tspan1152">FUNDED</tspan></tspan></text>
       <circle
          style="fill:#36cc5e;fill-opacity:1;stroke:none;stroke-width:0.665;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
          id="circle156"
@@ -97,7 +97,7 @@
         </g>
       </g>
       <rect
-         style="fill:none;stroke:#36cc5e;stroke-width:2.327;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+         style="fill:none;stroke:#36cc5e;stroke-width:3.227;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
          id="rect7227"
          width="91.873001"
          height="28.60393"

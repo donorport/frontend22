@@ -27,7 +27,7 @@ import { GalleryImg } from '../Component/atoms';
 import WidgetTitle from '../Component/atoms/widget-title';
 import TagTitle from '../Component/atoms/tag-title';
 import { useSelector } from 'react-redux';
-import funded from '../../../assets/images/funded-badge.svg';
+import funded from '../../../assets/images/funded-badge.png';
 // style
 import './style.scss';
 import HeaderController from '../../../Controller/frontEnd/HeaderController';
