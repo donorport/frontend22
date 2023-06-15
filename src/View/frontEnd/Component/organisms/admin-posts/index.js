@@ -202,9 +202,6 @@ const AdminPosts = () => {
   // redux get the user
   const user = useSelector((state) => state.user);
 
-  let videoid = fulfilState.videoUrl ? fulfilState.videoUrl.split('?v=')[1] : '';
-  let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
-
   const [tags, setTags] = useState([]);
 
   // callback fetches projectList for the org, sets projectList and OGProjectList
@@ -318,17 +315,16 @@ const AdminPosts = () => {
   };
 
   const onSelectProject = (e) => {
+    let tempRemoveArry = [...removedProjects];
     if (e.target.checked) {
-      let tempArry = [...removedProjects];
       setSeletedProjectList([...seletedProjectList, e.target.id]);
-      const index = tempArry.indexOf(e.target.id);
+      const index = tempRemoveArry.indexOf(e.target.id);
       if (index > -1) {
-        tempArry.splice(index, 1);
-        setRemovedProjects([...tempArry]);
+        tempRemoveArry.splice(index, 1);
+        setRemovedProjects([...tempRemoveArry]);
       }
     } else {
       let tempArry = [...seletedProjectList];
-      let tempRemoveArry = [...removedProjects];
       const index = tempArry.indexOf(e.target.id);
       if (index > -1) {
         setRemovedProjects([...tempRemoveArry, e.target.id]);
@@ -451,20 +447,20 @@ const AdminPosts = () => {
     }
   };
 
-  const changefile = async (e) => {
+  const changefile = (e) => {
     // console.log('gg')
     // console.log(e.target.id)
     if (e.target.id === 'mainImg') {
-      await changeMainImg(e);
+      changeMainImg(e);
       // console.log(URL.createObjectURL(file))
     } else if (e.target.id === 'receiptFile') {
-      await changeReceiptFile(e);
+      changeReceiptFile(e);
     } else if (e.target.id === 'galleryImg') {
-      await changeGalleryImg(e);
+      changeGalleryImg(e);
     } else if (e.target.id === 'moreImg') {
-      await changeMoreImg(e);
+      changeMoreImg(e);
     } else if (e.target.id === 'fulfilmoreImages') {
-      await changeFulfilMoreImages(e);
+      changeFulfilMoreImages(e);
     }
   };
 
@@ -491,50 +487,52 @@ const AdminPosts = () => {
 
     setTimeout(() => {
       if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
-        // Use remove.bg API to remove background only if image is not transparent
-        if (!isFileHaveAlpha) {
-          //Remove the alert when live::
-          // ToastAlert({
-          //   msg: 'Please upload an image with a transparent background',
-          //   msgType: 'error'
-          // });
-          setAddPostLoading(false);
-          // Working Code to Auto-remove BG on non-transparent images:::
-
-          const formData = new FormData();
-          formData.append('image_file', file);
-          formData.append('size', 'auto');
-
-          fetch('https://api.remove.bg/v1.0/removebg', {
-            method: 'POST',
-            headers: {
-              // 'X-API-Key': 'PU1dB98cyNC8WdeCT6cR1v8C' // Replace with your remove.bg API key
-              'X-API-Key': 'DAbtpKuv6tt8wzNJP7Qua5jy' // Replace with your remove.bg API key
-            },
-            body: formData
-          })
-            .then((response) => response.blob())
-            .then((result) => {
-              const modifiedFile = new File([result], file.name, { type: 'image/png' });
-              setTempImg(URL.createObjectURL(modifiedFile));
-              setstate({ ...state, image: modifiedFile });
-              setAddPostLoading(false);
-            })
-            .catch((error) => {
-              console.error('Failed to remove background:', error);
-              setstate({ ...state, image: '' });
-              setAddPostLoading(false);
-            });
-        } else {
-          setTempImg(URL.createObjectURL(file));
-          setstate({ ...state, image: file });
-          setAddPostLoading(false);
-        }
-      } else {
         setstate({ ...state, image: '' });
         setTempImg('');
         setAddPostLoading(false);
+        return;
       }
+      if (isFileHaveAlpha) {
+        setTempImg(URL.createObjectURL(file));
+        setstate({ ...state, image: file });
+        setAddPostLoading(false);
+        return;
+      }
+
+      // Use remove.bg API to remove background only if image is not transparent
+
+      //Remove the alert when live::
+      // ToastAlert({
+      //   msg: 'Please upload an image with a transparent background',
+      //   msgType: 'error'
+      // });
+      setAddPostLoading(false);
+      // Working Code to Auto-remove BG on non-transparent images:::
+
+      const formData = new FormData();
+      formData.append('image_file', file);
+      formData.append('size', 'auto');
+
+      fetch('https://api.remove.bg/v1.0/removebg', {
+        method: 'POST',
+        headers: {
+          // 'X-API-Key': 'PU1dB98cyNC8WdeCT6cR1v8C' // Replace with your remove.bg API key
+          'X-API-Key': 'DAbtpKuv6tt8wzNJP7Qua5jy' // Replace with your remove.bg API key
+        },
+        body: formData
+      })
+        .then((response) => response.blob())
+        .then((result) => {
+          const modifiedFile = new File([result], file.name, { type: 'image/png' });
+          setTempImg(URL.createObjectURL(modifiedFile));
+          setstate({ ...state, image: modifiedFile });
+          setAddPostLoading(false);
+        })
+        .catch((error) => {
+          console.error('Failed to remove background:', error);
+          setstate({ ...state, image: '' });
+          setAddPostLoading(false);
+        });
     }, 5000);
   };
 
@@ -684,7 +682,7 @@ const AdminPosts = () => {
     const defaultSubcategory = subcategoryList.sort((a, b) =>
       a.name.localeCompare(b.name, 'es', { sensitivity: 'base' })
     )[0];
-    console.log({defaultCategory, defaultSubcategory});
+    console.log({ defaultCategory, defaultSubcategory });
     const newEmptyState = {
       ...DEFAULT_EMPTY_STATE,
       status: -1, // the only difference between the reset state and default
@@ -874,7 +872,7 @@ const AdminPosts = () => {
         formData.displayPrice = displayPrice ? priceFormat(displayPrice) : 0;
         formData.category_id = category;
         formData.subcategory_id = subcategory;
-        console.log({formData, category, subcategory});
+        console.log({ formData, category, subcategory });
 
         if (quantity) {
           formData.quantity = quantity;
@@ -1475,7 +1473,7 @@ const AdminPosts = () => {
         // do the update/creation!
         let fulfil;
         const isThisAnUpdate = !!fulfilDetails_id;
-        console.log('~ ~~ !~~', {fulfilDetails_id, isThisAnUpdate, formData });
+        console.log('~ ~~ !~~', { fulfilDetails_id, isThisAnUpdate, formData });
         if (isThisAnUpdate) {
           fulfil = await productApi.updateFulfilOrder(token, formData, fulfilDetails_id);
         } else {
@@ -1660,18 +1658,18 @@ const AdminPosts = () => {
                   <div
                     className={`d-flex flex-grow-1 step__indicator py-1 ${
                       step.isComplete ? 'bg-secondary' : 'bg-lighter'
-                    }`}
+                      }`}
                     style={
                       index === 0
                         ? { borderTopLeftRadius: '9px', borderBottomLeftRadius: '9px' }
                         : index === steps.length - 1
-                        ? { borderTopRightRadius: '9px', borderBottomRightRadius: '9px' }
-                        : {}
+                          ? { borderTopRightRadius: '9px', borderBottomRightRadius: '9px' }
+                          : {}
                     }
                   ></div>
                   <div
                     className={`flex-grow-1 step ${step.isComplete ? 'complete' : ''}`}
-                    // onClick={() => handleStepClick(index)}
+                  // onClick={() => handleStepClick(index)}
                   >
                     <div className="d-flex mt-3">
                       <div className="step-indicator">
@@ -1681,11 +1679,11 @@ const AdminPosts = () => {
                             className="text-secondary fs-4 me-1"
                           />
                         ) : (
-                          <FontAwesomeIcon
-                            icon={regular('circle')}
-                            className="text-light fs-4 me-1"
-                          />
-                        )}
+                            <FontAwesomeIcon
+                              icon={regular('circle')}
+                              className="text-light fs-4 me-1"
+                            />
+                          )}
                       </div>
                       {step.label === 'Build your profile' ? (
                         <Link
@@ -1696,14 +1694,14 @@ const AdminPosts = () => {
                           <span className="step-label fw-semibold">{step.label}</span>
                         </Link>
                       ) : (
-                        <Link
-                          variant="link"
-                          className="text-dark p-0 fs-5"
-                          to={'/campaign/' + data.slug + '/settings/payments'}
-                        >
-                          <span className="step-label fw-semibold">{step.label}</span>
-                        </Link>
-                      )}
+                          <Link
+                            variant="link"
+                            className="text-dark p-0 fs-5"
+                            to={'/campaign/' + data.slug + '/settings/payments'}
+                          >
+                            <span className="step-label fw-semibold">{step.label}</span>
+                          </Link>
+                        )}
                     </div>
                   </div>
                 </div>
@@ -1874,72 +1872,73 @@ const AdminPosts = () => {
           />
         </>
       ) : (
-        <>
-          {/* Add photos or fulfil product */}
-          {/*
+            <>
+              {/* Add photos or fulfil product */}
+              {/*
            * details view
            *
            */}
-          <PostDetailsNavigation
-            closeFulfilForm={closeFulfilForm}
-            fulfilProductDetails={fulfilProductDetails}
-          />
+              <PostDetailsNavigation
+                closeFulfilForm={closeFulfilForm}
+                fulfilProductDetails={fulfilProductDetails}
+              />
 
-          <PostDetailsNotificationBanner fulfilProductDetails={fulfilProductDetails} />
+              <PostDetailsNotificationBanner fulfilProductDetails={fulfilProductDetails} />
 
-          <Card className="mt-0 mt-sm-5">
-            <Row className="mw-850 ml-5">
-              <Col lg="6">
-                <PostDetailsTransactionSummary
-                  fulfilProductDetails={fulfilProductDetails}
-                  data={data}
-                />
+              <Card className="mt-0 mt-sm-5">
+                <Row className="mw-850 ml-5">
+                  <Col lg="6">
+                    <PostDetailsTransactionSummary
+                      fulfilProductDetails={fulfilProductDetails}
+                      data={data}
+                    />
 
-                <PostDetailsReceiptArea
-                  receiptImgName={receiptImgName}
-                  fulfilError={fulfilError}
-                  changefile={changefile}
-                  fulfilProductDetails={fulfilProductDetails}
-                  deletedFile={deletedFile}
-                  setShowReceipt={setShowReceipt}
-                  download={download}
-                  deleteFulfilorder={deleteFulfilorder}
-                  showReceipt={showReceipt}
-                />
-              </Col>
+                    <PostDetailsReceiptArea
+                      receiptImgName={receiptImgName}
+                      fulfilError={fulfilError}
+                      changefile={changefile}
+                      fulfilProductDetails={fulfilProductDetails}
+                      deletedFile={deletedFile}
+                      setShowReceipt={setShowReceipt}
+                      download={download}
+                      deleteFulfilorder={deleteFulfilorder}
+                      showReceipt={showReceipt}
+                    />
+                  </Col>
 
-              <Col lg="6">
-                <PostDetailsMediaColumn
-                  videoUrl={videoUrl}
-                  changevalue={changevalue}
-                  embedlink={embedlink}
-                  changefile={changefile}
-                  fulfilMoreTempImages={fulfilMoreTempImages}
-                  removeFulfilTempImages={removeFulfilTempImages}
-                  fulfilmoreImages={fulfilmoreImages}
-                  deleteProductImage={deleteProductImage}
-                  fulfilError={fulfilError}
-                />
-              </Col>
-            </Row>
-          </Card>
+                  <Col lg="6">
+                    <PostDetailsMediaColumn
+                      fulfilState={fulfilState}
+                      fulfilProductDetails={fulfilProductDetails}
+                      videoUrl={videoUrl}
+                      changevalue={changevalue}
+                      changefile={changefile}
+                      fulfilMoreTempImages={fulfilMoreTempImages}
+                      removeFulfilTempImages={removeFulfilTempImages}
+                      fulfilmoreImages={fulfilmoreImages}
+                      deleteProductImage={deleteProductImage}
+                      fulfilError={fulfilError}
+                    />
+                  </Col>
+                </Row>
+              </Card>
 
-          <PostDetailsTosAndButtons
-            fulfilPolicy={fulfilPolicy}
-            changevalue={changevalue}
-            fulfilError={fulfilError}
-            fulfilProductDetails={fulfilProductDetails}
-            closeFulfilForm={closeFulfilForm}
-            unPublishProduct={unPublishProduct}
-            fulfilOrder={fulfilOrder}
-          />
-        </>
-      )}
+              <PostDetailsTosAndButtons
+                fulfilPolicy={fulfilPolicy}
+                changevalue={changevalue}
+                fulfilError={fulfilError}
+                fulfilProductDetails={fulfilProductDetails}
+                closeFulfilForm={closeFulfilForm}
+                unPublishProduct={unPublishProduct}
+                fulfilOrder={fulfilOrder}
+              />
+            </>
+          )}
     </>
   );
 };
 
-const PostsTableHeader = ({ totalRecord, user, productList, createNewPost, slug }) => {
+const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => {
   return (
     <>
       <header className="py-sm-2 mb-3 w-100 d-sm-flex align-items-center">
@@ -1950,15 +1949,15 @@ const PostsTableHeader = ({ totalRecord, user, productList, createNewPost, slug 
           <span>{user.currencySymbol}</span>
           {productList && productList.length > 0
             ? productList
-                .reduce(
-                  (previousTotal, current) =>
-                    previousTotal + Number(current.displayPrice * current.soldout),
-                  0
-                )
-                .toLocaleString('en-US', {
-                  maximumFractionDigits: 2,
-                  minimumFractionDigits: 2
-                })
+              .reduce(
+                (previousTotal, current) =>
+                  previousTotal + Number(current.displayPrice * current.soldout),
+                0
+              )
+              .toLocaleString('en-US', {
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2
+              })
             : 0}
         </span>
         {/* {!user.isAccountAdded && isOnboardingVisible && (
@@ -2108,11 +2107,11 @@ const PostDetailsNotificationBanner = ({ fulfilProductDetails }) => {
             time. A copy of the sales receipt will be shared with your donors.
           </span>
         ) : (
-          <span className="fs-6 text-subtext">
-            Congratulations! Your post has been fully funded. Upload the sales receipt to complete
-            your order. A copy of the sales receipt will be shared with your donors.
-          </span>
-        )}
+            <span className="fs-6 text-subtext">
+              Congratulations! Your post has been fully funded. Upload the sales receipt to complete
+              your order. A copy of the sales receipt will be shared with your donors.
+            </span>
+          )}
       </div>
     </div>
   );
@@ -2120,9 +2119,9 @@ const PostDetailsNotificationBanner = ({ fulfilProductDetails }) => {
 
 // inside here, it's failing to display photos
 const PostDetailsMediaColumn = ({
-  videoUrl,
+  fulfilProductDetails,
+  fulfilState,
   changevalue,
-  embedlink,
   changefile,
   fulfilMoreTempImages,
   removeFulfilTempImages,
@@ -2130,7 +2129,13 @@ const PostDetailsMediaColumn = ({
   deleteProductImage,
   fulfilError
 }) => {
-  console.log(`PostDetailsMediaColumn:`, { fulfilMoreTempImages, fulfilmoreImages });
+
+  const videoUrl = fulfilState.videoUrl || fulfilProductDetails.fulfilDetails.video;
+
+  let videoid = videoUrl ? videoUrl.split('?v=')[1] : '';
+  let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
+
+  console.log(`PostDetailsMediaColumn:`, { fulfilState, fulfilProductDetails, videoUrl: videoUrl, embedlink, fulfilMoreTempImages, fulfilmoreImages });
   return (
     <>
       <Card.Header className="post__accordion-header pb-3">
@@ -2148,8 +2153,9 @@ const PostDetailsMediaColumn = ({
             placeholder="YouTube URL"
             name="videoUrl"
             id="videoUrl"
-            value={videoUrl}
+            value={videoUrl ?? ''}
             onChange={(e) => {
+              // when this changes, we're changing fulfilState.videoUrl
               changevalue(e);
             }}
           />
@@ -2227,7 +2233,7 @@ const PostDetailsMediaColumn = ({
                             ? helper.CampaignProductFullImagePath + img.img
                             : noimg
                           : noimg
-                      })`
+                        })`
                     }}
                   />
                 ))}
@@ -2278,8 +2284,8 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
               })
                 ? fulfilProductDetails?.soldout
                 : Number(fulfilProductDetails?.quantity).toLocaleString('en-US', {
-                    maximumFractionDigits: 2
-                  })}
+                  maximumFractionDigits: 2
+                })}
             </span>
           </div>
           <div className="d-flex align-items-center pt-1 mb-2">
@@ -2302,9 +2308,9 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
               (fulfilProductDetails?.displayPrice
                 ? fulfilProductDetails?.displayPrice
                 : fulfilProductDetails?.price) *
-                (fulfilProductDetails?.unlimited
-                  ? fulfilProductDetails?.soldout
-                  : fulfilProductDetails?.quantity)
+              (fulfilProductDetails?.unlimited
+                ? fulfilProductDetails?.soldout
+                : fulfilProductDetails?.quantity)
             )}
           </span>
         </div>
@@ -2364,8 +2370,8 @@ const PostDetailsReceiptArea = ({
             {receiptImgName && receiptImgName !== ''
               ? receiptImgName
               : fulfilError.receiptFile
-              ? 'Please Select File'
-              : 'Drag and drop or Select File'}
+                ? 'Please Select File'
+                : 'Drag and drop or Select File'}
           </h3>
         </div>
       </div>
@@ -2409,14 +2415,14 @@ const PostDetailsReceiptArea = ({
                     fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] === 'svg' ||
                     fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] === 'jpeg' ||
                     fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] === 'jpg') && (
-                    <Dropdown.Item
-                      className="d-flex align-items-center p-2"
-                      onClick={() => setShowReceipt(true)}
-                    >
-                      <span className="fw-bold fs-7 flex__1">View</span>
-                      <FontAwesomeIcon icon={solid('magnifying-glass')} className="ms-1" />
-                    </Dropdown.Item>
-                  )}
+                      <Dropdown.Item
+                        className="d-flex align-items-center p-2"
+                        onClick={() => setShowReceipt(true)}
+                      >
+                        <span className="fw-bold fs-7 flex__1">View</span>
+                        <FontAwesomeIcon icon={solid('magnifying-glass')} className="ms-1" />
+                      </Dropdown.Item>
+                    )}
                   <Dropdown.Divider />
                   <Dropdown.Item
                     className="d-flex align-items-center p-2"
