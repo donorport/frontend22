@@ -63,7 +63,7 @@ const PostsTable = (props) => {
         >
           {productList.length > 0 ? (
             productList.map((product) => {
-              console.log('~~ postTable - productList map:', { product });
+              //console.log('~~ postTable - productList map:', { product });
               let revenue = Number(product.displayPrice * product.soldout).toLocaleString('en-US', {
                 maximumFractionDigits: 2
               });

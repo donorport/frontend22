@@ -3,17 +3,15 @@ import helper from "../../Common/Helper";
 
 function advertisement() {
 
-    const add = async (authToken, cdata) => {
-
-
+    const add = (authToken, cdata) => {
         const data = new FormData();
 
         data.append('name', cdata.name);
         data.append('website', cdata.website);
         data.append('logo', cdata.logo);
         data.append('status', cdata.status);
-        let res = {};
-        await axios({
+
+        return axios({
             method: 'post',
             url: `${helper.ApiUrl}advertisement`,
             responseType: 'json',
@@ -26,11 +24,7 @@ function advertisement() {
                 mode: 'no-cors',
             },
             data: data
-
-        }).then((response) => {
-            res = response
         });
-        return res;
     }
 
     const list = async (authToken) => {
@@ -73,16 +67,10 @@ function advertisement() {
 
         if (cdata.status) {
             data.append('status', cdata.status);
-
         }
 
 
-
-
-
-
-        let res = {};
-        await axios({
+        return axios({
             method: 'put',
             url: `${helper.ApiUrl}advertisement/${id}`,
             responseType: 'json',
@@ -95,16 +83,10 @@ function advertisement() {
                 mode: 'no-cors',
             },
             data: data
-
-        }).then((response) => {
-            res = response
         });
-        return res;
     }
 
-    const deleteAdvertisement = async (authToken, id) => {
-        let res = {};
-        await axios({
+    const deleteAdvertisement = (authToken, id) => axios({
             method: 'delete',
             url: `${helper.ApiUrl}advertisement/${id}`,
             responseType: 'json',
@@ -116,12 +98,7 @@ function advertisement() {
                 withCredentials: true,
                 mode: 'no-cors',
             },
-
-        }).then((response) => {
-            res = response
         });
-        return res;
-    }
 
 
     const publishAdd = async (authToken, data) => {
@@ -192,48 +169,35 @@ function advertisement() {
         return res;
     }
 
-    const listHomeAd = async (authToken) => {
-        let res = {};
-        await axios({
-            method: 'get',
-            url: `${helper.ApiUrl}advertisement/home`,
-            responseType: 'json',
-            headers: {
-                "x-access-token": authToken,
-                "Access-Control-Allow-Origin": "*",
-                'Access-Control-Allow-Credentials': 'true',
-                "Access-Control-Allow-Headers": "Content-Type, Authorization",
-                withCredentials: true,
-                mode: 'no-cors',
-            },
-        }).then((response) => {
-            res = response
-        });
-        return res;
-    }
+    const listHomeAd = (authToken) => axios({
+        method: 'get',
+        url: `${helper.ApiUrl}advertisement/home`,
+        responseType: 'json',
+        headers: {
+            "x-access-token": authToken,
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Credentials': 'true',
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            withCredentials: true,
+            mode: 'no-cors',
+        },
+    });
 
 
-    const publishAddToCategory = async (authToken, data) => {
-        let res = {};
-        await axios({
-            method: 'post',
-            url: `${helper.ApiUrl}advertisement/category`,
-            responseType: 'json',
-            headers: {
-                "x-access-token": authToken,
-                "Access-Control-Allow-Origin": "*",
-                'Access-Control-Allow-Credentials': 'true',
-                "Access-Control-Allow-Headers": "Content-Type, Authorization",
-                withCredentials: true,
-                mode: 'no-cors',
-            },
-            data: data
-
-        }).then((response) => {
-            res = response
-        });
-        return res;
-    }
+    const publishAddToCategory = (authToken, data) => axios({
+        method: 'post',
+        url: `${helper.ApiUrl}advertisement/category`,
+        responseType: 'json',
+        headers: {
+            "x-access-token": authToken,
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Credentials': 'true',
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            withCredentials: true,
+            mode: 'no-cors',
+        },
+        data: data
+    });
 
     const listCategoryAdvertisement = async (authToken, data) => {
         let res = {};
@@ -300,91 +264,66 @@ function advertisement() {
         });
         return res;
     }
-    const addAdvertiseToCategoryCountryState = async (authToken,data) => {
-        let res = {};
-        await axios({
-            method: 'post',
-            url: `${helper.ApiUrl}advertisement/country/state/category`,
-            responseType: 'json',
-            headers: {
-                "x-access-token": authToken,
-                "Access-Control-Allow-Origin": "*",
-                'Access-Control-Allow-Credentials': 'true',
-                "Access-Control-Allow-Headers": "Content-Type, Authorization",
-                withCredentials: true,
-                mode: 'no-cors',
-            },
-            data: data
+    const addAdvertiseToCategoryCountryState = (authToken, data) => axios({
+        method: 'post',
+        url: `${helper.ApiUrl}advertisement/country/state/category`,
+        responseType: 'json',
+        headers: {
+            "x-access-token": authToken,
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Credentials': 'true',
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            withCredentials: true,
+            mode: 'no-cors',
+        },
+        data: data
+    });
 
-        }).then((response) => {
-            res = response
-        });
-        return res;
-    }
+    const listByCategoryStateAndAdvertisement = (data) => axios({
+        method: 'post',
+        url: `${helper.ApiUrl}advertisement/country/state/category/list`,
+        responseType: 'json',
+        headers: {
+            // "x-access-token": authToken,
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Credentials': 'true',
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            withCredentials: true,
+            mode: 'no-cors',
+        },
+        data: data
+    });
 
-    const listByCategoryStateAndAdvertisement = async (data) => {
-        let res = {};
-        await axios({
-            method: 'post',
-            url: `${helper.ApiUrl}advertisement/country/state/category/list`,
-            responseType: 'json',
-            headers: {
-                // "x-access-token": authToken,
-                "Access-Control-Allow-Origin": "*",
-                'Access-Control-Allow-Credentials': 'true',
-                "Access-Control-Allow-Headers": "Content-Type, Authorization",
-                withCredentials: true,
-                mode: 'no-cors',
-            },
-            data: data
+    const categoryPageAdList = (data) => axios({
+        method: 'post',
+        url: `${helper.ApiUrl}advertisement/list`,
+        responseType: 'json',
+        headers: {
+            // "x-access-token": authToken,
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Credentials': 'true',
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            withCredentials: true,
+            mode: 'no-cors',
+        },
+        data: data
+    });
 
-        }).then((response) => {
-            res = response
-        });
-        return res;
-    }
 
-    const categoryPageAdList = async (data) => {
-        let res = {};
-        await axios({
-            method: 'post',
-            url: `${helper.ApiUrl}advertisement/list`,
-            responseType: 'json',
-            headers: {
-                // "x-access-token": authToken,
-                "Access-Control-Allow-Origin": "*",
-                'Access-Control-Allow-Credentials': 'true',
-                "Access-Control-Allow-Headers": "Content-Type, Authorization",
-                withCredentials: true,
-                mode: 'no-cors',
-            },
-            data: data
-
-        }).then((response) => {
-            res = response
-        });
-        return res;
-    }
-    const allStateAds = async () => {
-        let res = {};
-        await axios({
-            method: 'get',
-            url: `${helper.ApiUrl}advertisement/allstates`,
-            responseType: 'json',
-            headers: {
-                // "x-access-token": authToken,
-                "Access-Control-Allow-Origin": "*",
-                'Access-Control-Allow-Credentials': 'true',
-                "Access-Control-Allow-Headers": "Content-Type, Authorization",
-                withCredentials: true,
-                mode: 'no-cors',
-            },
-
-        }).then((response) => {
-            res = response
-        });
-        return res;
-    }
+    const allStateAds = () => axios({
+        method: 'get',
+        url: `${helper.ApiUrl}advertisement/allstates`,
+        responseType: 'json',
+        headers: {
+            // "x-access-token": authToken,
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Credentials': 'true',
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            withCredentials: true,
+            mode: 'no-cors',
+        },
+    });
+    
 
 
     return {
