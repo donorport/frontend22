@@ -198,7 +198,7 @@ const AddPost = (props) => {
 
   // console.log(galleryUrl)
   let url = galleryUrl;
-  let videoid = url ? url?.split('?v=')[1] : '';
+  let videoid = url ? url?.split('?v=')[1].split('&')[0] : '';
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
 
   // console.log(gallaryImages)

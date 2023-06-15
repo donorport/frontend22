@@ -39,7 +39,7 @@ const About = (props) => {
   const navigate = useNavigate();
   let video = "https://www.youtube.com/watch?v=YCgPe_iwHl8"
 
-  let videoid = video ? video.split('?v=')[1] : '';
+  let videoid = video ? video.split('?v=')[1].split('&')[0] : '';
   let embedlink = video ? 'https://www.youtube.com/embed/' + videoid : '';
 
   return (

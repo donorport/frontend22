@@ -1,7 +1,7 @@
 import ToastAlert from '../../Common/ToastAlert';
 import { validateAll } from 'indicative/validator';
 import { useNavigate } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import adminCampaignApi from '../../Api/admin/adminCampaign';
 import Apply from '../../View/frontEnd/apply';
 //import FrontLoader from '../../Common/FrontLoader';
@@ -52,6 +52,8 @@ export default function ApplyOrganizationController() {
   const [defaultCountry, setDefaultCountry] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [defaultCategory, setDefaultCategory] = useState([]);
+  const [isApplied, setIsApplied] = useState(false);
+  const scrollRef = useRef();
 
   const [state, setstate] = useState({
     name: '',
@@ -232,6 +234,8 @@ export default function ApplyOrganizationController() {
             setLoading(false);
             ToastAlert({ msg: applyCampaignAdmin.data.message, msgType: 'success' });
             resetForm();
+            setIsApplied(true); // Set codeApplied state to true
+            scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
           }
         } else {
           setLoading(false);
@@ -307,6 +311,7 @@ export default function ApplyOrganizationController() {
         onValueChange={onValueChange}
         changevalue={changevalue}
         apply={apply}
+        isApplied={isApplied}
         countryList={countryList}
         onChangeCountry={onChangeCountry}
         defaultCountry={defaultCountry}

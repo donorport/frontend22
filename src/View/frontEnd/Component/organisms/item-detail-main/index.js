@@ -25,9 +25,9 @@ import { setAllAds } from '../../../../../user/user.action';
 function ProjectDetailMain(props) {
   let productDetails = props.productDetails;
 
-  let videoid = productDetails.galleryUrl ? productDetails.galleryUrl.split('?v=')[1] : '';
+  let videoid = productDetails.galleryUrl ? productDetails.galleryUrl.split('?v=')[1].split('&')[0] : '';
   let videoid2 = productDetails?.fulfiledproductsDetails?.video
-    ? productDetails?.fulfiledproductsDetails?.video.split('?v=')[1]
+    ? productDetails?.fulfiledproductsDetails?.video.split('?v=')[1].split('&')[0]
     : '';
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
   let embedlink2 = videoid2 ? 'https://www.youtube.com/embed/' + videoid2 : '';

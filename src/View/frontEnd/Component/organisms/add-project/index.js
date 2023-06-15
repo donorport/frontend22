@@ -1,7 +1,7 @@
 import { Button, Row, Col } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid, } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 // import { ToggleSwitch, FeedTag, FileUpload } from "@components/atoms";
 
@@ -49,11 +49,10 @@ const title3 = 'Description';
 const placeholder3 = 'Enter some details about your need';
 
 const AddProject = (props) => {
-  const { status, name, headline, video, description, error, infinite } =
-    props.stateData;
+  const { status, name, headline, video, description, error, infinite } = props.stateData;
 
   let url = video;
-  let videoid = url.split('?v=')[1];
+  let videoid = url ? url?.split('?v=')[1].split('&')[0] : '';
   let embedlink = url ? 'https://www.youtube.com/embed/' + videoid : '';
 
   let tempImages = props.tempImages;
@@ -64,7 +63,7 @@ const AddProject = (props) => {
   let submitProjectForm = props.submitProjectForm;
   let discardProject = props.discardProject;
 
-  console.log({productList})
+  console.log({ productList });
   //const [id1] = useState('name');
   //const [max25] = useState(25);
   //const [title1] = useState('Name');
@@ -81,11 +80,9 @@ const AddProject = (props) => {
   //const [title3] = useState('Description');
   //const [placeholder3] = useState('Enter some details about your need');
 
-
   const change = async (e) => {
     props.changevalue(e);
   };
-
 
   return (
     <div className="add__project">
@@ -342,7 +339,7 @@ const AddProject = (props) => {
                         <div
                           className="gallery__img"
                           style={{
-                            backgroundImage: `url(${img ? img : noimg})`,
+                            backgroundImage: `url(${img ? img : noimg})`
                             // width: '100px',
                             // height: '100px'
                           }}
@@ -385,7 +382,7 @@ const AddProject = (props) => {
                                     ? helper.ProjectImagePath + img.img
                                     : noimg
                                   : noimg
-                              })`,
+                              })`
                               // width: '100px',
                               // height: '100px'
                             }}

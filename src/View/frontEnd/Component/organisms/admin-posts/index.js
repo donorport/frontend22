@@ -202,7 +202,7 @@ const AdminPosts = () => {
   // redux get the user
   const user = useSelector((state) => state.user);
 
-  let videoid = fulfilState.videoUrl ? fulfilState.videoUrl.split('?v=')[1] : '';
+  let videoid = fulfilState.videoUrl ? fulfilState.videoUrl.split('?v=')[1].split('&')[0] : '';
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
 
   const [tags, setTags] = useState([]);
