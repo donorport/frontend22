@@ -490,7 +490,7 @@ const AdminPosts = () => {
     let extension = file.name.substr(file.name.lastIndexOf('.') + 1);
 
     setTimeout(() => {
-      if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
+      if (!VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
         setstate({ ...state, image: '' });
         setTempImg('');
         setAddPostLoading(false);
