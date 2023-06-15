@@ -380,6 +380,12 @@ const Apply = (props) => {
                   {props.loading && <CircularProgress className="ms-1" color="inherit" size={12} />}
                 </Button>
               </Form>
+              {props.isApplied && (
+                <div className="note fs-5 mb-5">
+                  Congratulations, you have successfully applied to post as a charity on Donorport.
+                  We will review your submission and send you an activation code within 72 hours
+                </div>
+              )}
             </div>
           </div>
           <div className="flex-grow-1 bg-lighter" style={{ padding: '9%' }}>
@@ -409,7 +415,10 @@ const Apply = (props) => {
                 Activate
               </Button>
             </div>
-            <div style={{marginTop: '15%'}} className="d-flex align-items-center justify-content-sm-center">
+            <div
+              style={{ marginTop: '15%' }}
+              className="d-flex align-items-center justify-content-sm-center"
+            >
               <img src={apply} className="img-fluid" alt="" />
             </div>
             {/* <h3 className="fw-bolder text-dark">Why Donorport?</h3>

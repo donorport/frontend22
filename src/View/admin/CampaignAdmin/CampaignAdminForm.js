@@ -7,9 +7,8 @@ import noimg from '../../../assets/images/noimg1.png';
 export default function CampaignAdminForm(props) {
   let stateData = props.stateData;
 
-  let url = stateData.promoVideo;
-  let id = url?.split('?v=')[1];
-  let embedlink = url ? 'https://www.youtube.com/embed/' + id : '';
+  let videoid = stateData.promoVideo ? stateData.promoVideo?.split('?v=')[1].split('&')[0] : '';
+  let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
 
   // console.log(stateData)
   return (

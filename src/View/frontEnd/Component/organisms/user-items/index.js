@@ -149,9 +149,11 @@ const UserItems = () => {
           console.log({ item });
           // item = detail
           let videoid = item.itemDetails.galleryUrl
-            ? item.itemDetails.galleryUrl.split('?v=')[1]
+            ? item.itemDetails.galleryUrl.split('?v=')[1].split('&')[0]
             : '';
+
           let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
+
           let address = item.itemDetails?.address ? convertAddress(item.itemDetails?.address) : '';
           // console.log(item.appliedTaxPer)
           // let price = Math.round(Number(item.productPrice) + (Number(item.appliedTaxPer) / 100) * Number(item.productPrice))

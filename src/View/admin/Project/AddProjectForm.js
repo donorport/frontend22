@@ -36,7 +36,7 @@ export default function AddProjectForm(props) {
   let stateData = props.stateData;
   const adminData = JSON.parse(localStorage.getItem('adminData'));
   let url = stateData.video;
-  let id = url.split('?v=')[1];
+  let id = url ? url.split('?v=')[1].split('&')[0] : '';
   let embedlink = 'https://www.youtube.com/embed/' + id;
 
   // console.log('stateData',stateData)
@@ -265,7 +265,7 @@ export default function AddProjectForm(props) {
                         <div
                           className="gallery__img"
                           style={{
-                            backgroundImage: `url(${img ? img : noimg})`,
+                            backgroundImage: `url(${img ? img : noimg})`
                             // width: '100px',
                             // height: '100px'
                           }}

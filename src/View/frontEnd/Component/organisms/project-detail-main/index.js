@@ -39,8 +39,9 @@ function ProjectDetailMain(props) {
   let productDetails = props.productDetails;
   let video = projectDetails?.video;
 
-  let videoid = video ? video.split('?v=')[1] : '';
+  let videoid = video ? video.split('?v=')[1].split('&')[0] : '';
   let embedlink = video ? 'https://www.youtube.com/embed/' + videoid : '';
+
   const [address, setAddress] = useState('');
 
   // const countProjectProcess = (data) => {
