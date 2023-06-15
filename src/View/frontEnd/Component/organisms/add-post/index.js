@@ -63,7 +63,11 @@ function CategorySelect({ nameTitle, nameKey, thisCat, thisCatList, onChange, er
                 .map(
                   (cat, index) =>
                     cat.status === 1 && (
-                      <option key={cat._id} value={cat._id} selected={thisCat ? thisCat === cat._id : index === 0}>
+                      <option
+                        key={cat._id}
+                        value={cat._id}
+                        selected={thisCat ? thisCat === cat._id : index === 0}
+                      >
                         {cat.name}
                       </option>
                     )
@@ -375,6 +379,9 @@ const AddPost = (props) => {
                         </div>
                       </div>
                     </div>
+                    {error && error.address && (
+                      <p className="error">{error ? (error.address ? error.address : '') : ''}</p>
+                    )}
                     <div className="note note--clear">
                       <FontAwesomeIcon icon={regular('circle-info')} className="text-info mr-3p" />
                       <span>

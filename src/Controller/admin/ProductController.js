@@ -489,7 +489,7 @@ function ProductController() {
     if (id) {
       rules = {
         brand: 'required',
-        address: 'required',
+        location: 'required',
         needheadline: 'required',
         // galleryUrl: 'required',
         status: 'required',
