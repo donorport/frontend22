@@ -891,9 +891,9 @@ const AdminPosts = () => {
         console.log('~~ ~~ ~~ CREATE PRODUCT -', { formData, id });
         setAddPostLoading(true);
         let addProduct =
-          id !== ''
-            ? await productApi.updateProduct(token, formData, id)
-            : await productApi.add(token, formData);
+          id === ''
+            ? await productApi.add(token, formData)
+            : await productApi.updateProduct(token, formData, id);
 
         if (!addProduct) {
           console.log('~~ ~~ ~~ CREATE PRODUCT - NO addProduct!:', addProduct);

@@ -126,19 +126,21 @@ export function CategoryProductsController() {
   };
 
   const getCategoryDetails = async () => {
-    let data = {};
-    data.slug = params.slug;
+    const data = {
+      slug: params.slug
+    };
     const details = await categoryApi.categoryDetails(token, data);
-    if (details && details.data.success) {
-      if (details.data.data.length > 0) {
-        setCategoryDetails({
-          ...categoryDetails,
-          id: details.data.data[0]?._id,
-          name: details.data.data[0].name,
-          color: details.data.data[0].color,
-          icon: details.data.data[0].iconDetails?.class
-        });
-      }
+    if (!details || !details.data.success) {
+      return;
+    }
+    if (details.data.data.length > 0) {
+      setCategoryDetails({
+        ...categoryDetails,
+        id: details.data.data[0]?._id,
+        name: details.data.data[0].name,
+        color: details.data.data[0].color,
+        icon: details.data.data[0].iconDetails?.class
+      });
     }
   };
 
@@ -152,23 +154,29 @@ export function CategoryProductsController() {
   //};
 
   const getCategoryAdList = async (catId) => {
-    let data = {};
-    data.categoryId = catId;
-    data.countryId = user.countryId;
-    data.stateId = user.stateId;
+    console.log('fn CategoryProductsController->getCategoryAdList');
+    const data = {
+      categoryId: catId,
+      countryId: user.countryId,
+      stateId: user.stateId
+    };
 
     const adList = await advertisementApi.categoryPageAdList(data);
+    //console.log({adList, data: adList?.data?.data});
     if (adList?.data?.success !== true) {
+      console.log('~~ failed to get adList');
       return;
     }
+
     if (adList.data.data.length > 0) {
-      setCategoryAdvertisementList(adList.data.data.map((ad) => ad.advertisementsDetails));
+      setCategoryAdvertisementList(adList.data.data);
     }
     // console.log(adList.data.data)
     // setAdvertisementList(adList.data.data)
   };
+
   const productListByCategory = async (id) => {
-    let userCountry = user.countryId;
+    const userCountry = user.countryId;
     const getCategoryProducts = await productApi.listByCategory(token, id, userCountry);
     if (getCategoryProducts?.data?.success !== true) {
       return;
@@ -191,9 +199,7 @@ export function CategoryProductsController() {
   // }
 
   useEffect(() => {
-    (async () => {
-      await getCategoryDetails();
-    })();
+    getCategoryDetails();
   }, [params]);
 
   const getWishListProductList = async () => {
@@ -239,13 +245,12 @@ export function CategoryProductsController() {
   };
 
   useEffect(() => {
+    if (!userAuthToken) {
+      return;
+    }
+
     (async () => {
-      if (!userAuthToken) {
-        return;
-      }
-
       await getCartList();
-
       await getWishListProductList();
       setLoading(false);
     })();
@@ -254,21 +259,20 @@ export function CategoryProductsController() {
   useEffect(() => {
     (async () => {
       setLoading(false);
-      let obj = {};
-      obj.userCountry = user.countryId;
+      const obj = {
+        userCountry: user.countryId
+      };
       const getproductList = await productApi.list(token, obj);
       if (getproductList.data.success === true) {
+        let productTagsArray = [];
         if (getproductList.data.data.length > 0) {
-          let min = Math.min(
-            ...getproductList.data.data.map((item) =>
-              item?.displayPrice ? item?.displayPrice : item.price
-            )
-          );
-          let max = Math.max(
-            ...getproductList.data.data.map((item) =>
-              item?.displayPrice ? item?.displayPrice : item.price
-            )
-          );
+          // sort prices low to high
+          const productListPricesArray = getproductList.data.data
+            .map((item) => (item?.displayPrice ? item?.displayPrice : item.price))
+            .sort((a, b) => a - b);
+
+          const min = productListPricesArray[0];
+          const max = productListPricesArray[productListPricesArray.length - 1];
 
           setprodctFilterData({
             ...prodctFilterData,
@@ -276,28 +280,23 @@ export function CategoryProductsController() {
             lowestPrice: min
           });
 
-          let productTagsArray = [];
-          await Promise.all(
-            getproductList.data.data.map(async (p) => {
-              await Promise.all(
-                p.tags.map((value) => {
-                  let tempObj = {};
-                  tempObj.color = p.categoryDetails.color ? p.categoryDetails.color : 'red';
+          getproductList.data.data.forEach((p) => {
+            p.tags.forEach((value) => {
+              const tempObj = {
+                color: p.categoryDetails.color ? p.categoryDetails.color : 'red',
+                tag: value
+              };
 
-                  tempObj.tag = value;
-                  productTagsArray.push(tempObj);
-                })
-              );
-            })
-          );
+              productTagsArray.push(tempObj);
+            });
+          });
+
           productTagsArray = productTagsArray.filter(
             (value, index, self) => index === self.findIndex((t) => t.tag === value.tag)
           );
-
-          setProductTags(productTagsArray);
-        } else {
-          setProductTags([]);
         }
+        // empty array, OR the filled productTagsArray
+        setProductTags(productTagsArray);
       }
 
       // setCategoryDetails({
@@ -312,6 +311,7 @@ export function CategoryProductsController() {
         platformFee: user.platformFee,
         transactionFee: user.transactionFee
       });
+
       if (user.countryId && categoryDetails?.id) {
         await getCategoryAdList(categoryDetails?.id);
         await productListByCategory(categoryDetails?.id);
@@ -328,32 +328,35 @@ export function CategoryProductsController() {
       // console.log(user.distance)
       // console.log(user.isUpdateLocationFilter)
       // console.log(user.lng)
-      if (user.distance && user.distance.split(' ').length > 0) {
-        let d = Number(user.distance.split(' ')[0]);
-        // console.log(d)
+      if (!(user.distance && user.distance.split(' ').length > 0)) {
+        return;
+      }
 
-        let productArray = [];
+      const d = Number(user.distance.split(' ')[0]);
+      // console.log(d)
 
-        if (categoryProducts.length > 0 && d > 1) {
-          categoryProducts.map((p) => {
-            if (p.lat && p.lng) {
-              let dis = getDistance(
-                { latitude: user.lat, longitude: user.lng },
-                { latitude: p.lat, longitude: p.lng }
-              );
-              // console.log('dis', dis / 1000)
-              if (d > dis / 1000) {
-                productArray.push(p);
-              }
-              //   console.log(dis/1000)
+      let productArray = [];
+
+      if (categoryProducts.length > 0 && d > 1) {
+        categoryProducts.forEach((p) => {
+          if (p.lat && p.lng) {
+            const dis = getDistance(
+              { latitude: user.lat, longitude: user.lng },
+              { latitude: p.lat, longitude: p.lng }
+            );
+            // console.log('dis', dis / 1000)
+            if (d > dis / 1000) {
+              productArray.push(p);
             }
-          });
-          dispatch(setProductCount(productArray.length));
-          if (user.isUpdateLocationFilter === true) {
-            // console.log('first')
-            setProductList(productArray);
-            dispatch(setLocationFilter(false));
+            //   console.log(dis/1000)
           }
+        });
+
+        dispatch(setProductCount(productArray.length));
+        if (user.isUpdateLocationFilter === true) {
+          // console.log('first')
+          setProductList(productArray);
+          dispatch(setLocationFilter(false));
         }
       }
     })();
@@ -380,45 +383,43 @@ export function CategoryProductsController() {
   };
 
   const addToCart = async (id) => {
-    if (token) {
-      setLoading(false);
-      let data = {};
-      data.productId = id;
-      const addItemToCart = await cartApi.add(userAuthToken, data);
-      if (addItemToCart) {
-        if (!addItemToCart.data.success) {
-          setLoading(false);
-          ToastAlert({ msg: addItemToCart.data.message, msgType: 'error' });
-        } else {
-          setIsUpdate(!update);
-          /*ToastAlert({ msg: addItemToCart.data.message, msgType: 'success' });*/
-          setLoading(false);
-        }
+    if (!token) {
+      navigate('/signin');
+      return;
+    }
+
+    setLoading(false);
+    const data = {
+      productId: id
+    };
+    const addItemToCart = await cartApi.add(userAuthToken, data);
+    if (addItemToCart) {
+      if (!addItemToCart.data.success) {
+        ToastAlert({ msg: addItemToCart.data.message, msgType: 'error' });
       } else {
-        setLoading(false);
-        ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+        setIsUpdate(!update);
+        /*ToastAlert({ msg: addItemToCart.data.message, msgType: 'success' });*/
       }
     } else {
-      navigate('/signin');
+      ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
     }
+    setLoading(false);
   };
 
   const removeCartItem = async (id) => {
-    setLoading(false);
+    setLoading(true);
     const removeCartItem = await cartApi.removeCartProduct(userAuthToken, id);
     if (removeCartItem) {
       if (!removeCartItem.data.success) {
-        setLoading(false);
         ToastAlert({ msg: removeCartItem.data.message, msgType: 'error' });
       } else {
         setIsUpdate(!update);
         /*ToastAlert({ msg: removeCartItem.data.message, msgType: 'success' });*/
-        setLoading(false);
       }
     } else {
-      setLoading(false);
       ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
     }
+    setLoading(false);
   };
 
   const onChangeFilterOption = (index) => {
@@ -471,8 +472,8 @@ export function CategoryProductsController() {
         break;
       case 4:
         productList.sort(function (a, b) {
-          let firstPer = (a.soldout / a.quantity) * 100;
-          let secPer = (b.soldout / b.quantity) * 100;
+          const firstPer = (a.soldout / a.quantity) * 100;
+          const secPer = (b.soldout / b.quantity) * 100;
           return firstPer - secPer;
         });
 
@@ -528,7 +529,7 @@ export function CategoryProductsController() {
       // console.log(params)
       // console.log(params.slug)
 
-      setLoading(false);
+      setLoading(true);
       if (categoryDetails?.id) {
         await filterProduct(lowPrice, HighPrice, resultTags, user.countryId);
       }
@@ -559,11 +560,11 @@ export function CategoryProductsController() {
     search_product = resultTags,
     userCountry = user.countryId
   ) => {
-    let data = {};
+    let data = {
+      search: search_product
+    };
 
-    data.search = search_product;
-    let temp = [];
-    temp.push(categoryDetails?.id);
+    let temp = [categoryDetails?.id];
     // console.log(temp)
     data.categoryId = temp;
     // console.log(temp)

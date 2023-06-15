@@ -219,7 +219,7 @@ export default function Index(props) {
                 {props.searchTag.length > 0 &&
                   props.searchTag.map((tag, i) => {
                     return (
-                      <li 
+                      <li
                         key={i}
                         className="search__tag"
                         onClick={() => props.deSelectTag(tag.tag)}
@@ -331,7 +331,10 @@ export default function Index(props) {
                 props.categoryList.map((c) => {
                   return (
                     props.seletedCategoryList.includes(c._id) && (
-                      <div key={c._id} className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
+                      <div
+                        key={c._id}
+                        className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2"
+                      >
                         <span className="filter__item-icon">
                           {/* <img
                         alt=""
@@ -465,17 +468,19 @@ export default function Index(props) {
                     <FontAwesomeIcon icon={solid('rectangle-ad')} className="fs-4 text-info" />
                   }
                 >
-                  {props.advertisementList.map((ad, i) => {
-                    if ( ad.website && ad.logo ) return (
-                      <a href={ad.website} target="_blank" rel="noreferrer" key={i}>
-                        <img
-                          src={helper.sponsorLogoResizePath + ad.logo}
-                          alt="sponsor"
-                          className="px-2"
-                          style={{ maxHeight: '55px' }}
-                        />
-                      </a>
-                    );
+                  {props.advertisementList?.map((ad, i) => {
+                    console.log('map over advertisementList:', { ad });
+                    if (ad?.website && ad?.logo)
+                      return (
+                        <a href={ad.website} target="_blank" rel="noreferrer" key={i}>
+                          <img
+                            src={helper.sponsorLogoResizePath + ad.logo}
+                            alt="sponsor"
+                            className="px-2"
+                            style={{ maxHeight: '55px' }}
+                          />
+                        </a>
+                      );
                   })}
                 </IconText>
               </div>
