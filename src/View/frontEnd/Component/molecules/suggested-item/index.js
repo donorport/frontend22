@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PlaceholderImg from "../../../../../assets/images/placeholder.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import funded from '../../../../../assets/images/funded-badge.svg';
+import funded from '../../../../../assets/images/funded-badge.png';
 import "./style.scss";
 
 const propTypes = {
