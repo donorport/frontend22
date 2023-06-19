@@ -100,12 +100,12 @@ export default function AddProductForm(props) {
 
   const adminData = JSON.parse(localStorage.getItem('adminData'));
   let url = stateData.galleryUrl;
-  let id = url?.split('?v=')[1].split('&')[0];
+  let id = url ? url?.split('?v=')[1].split('&')[0] : '';
   let embedlink = 'https://www.youtube.com/embed/' + id;
   return (
     <>
       <Dialog
-        fullScreen
+        // fullScreen
         open={props.modal}
         onClose={() => props.setModal(false)}
         TransitionComponent={Transition}

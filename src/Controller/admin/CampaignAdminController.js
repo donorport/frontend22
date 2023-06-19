@@ -294,6 +294,9 @@ function CampaignAdminController() {
       message: 'Are you sure ?',
       buttons: [
         {
+          label: 'No'
+        },
+        {
           label: 'Yes',
 
           onClick: async () => {
@@ -313,9 +316,6 @@ function CampaignAdminController() {
               ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
             }
           }
-        },
-        {
-          label: 'No'
         }
       ]
     });
@@ -376,7 +376,7 @@ function CampaignAdminController() {
 
   const updateCampaignAdmin = () => {
     const rules = {
-      name: 'required',
+      name: 'required'
       // description: "required",
       // twitter: "required",
       // facebook: "required",
@@ -390,7 +390,7 @@ function CampaignAdminController() {
       // headline: 'required',
       // promoVideo: 'required'
     };
-  
+
     const message = {
       'email.required': 'Email is Required.',
       'name.required': 'Name is Required.',
@@ -408,7 +408,7 @@ function CampaignAdminController() {
       'headline.required': 'Headline is Required',
       'promoVideo.required': 'Promo Video is Required'
     };
-  
+
     validateAll(state, rules, message)
       .then(async () => {
         const formaerrror = {};
@@ -416,7 +416,7 @@ function CampaignAdminController() {
           ...state,
           error: formaerrror
         });
-  
+
         let data = {};
         data.name = name;
         data.status = status;
@@ -441,7 +441,7 @@ function CampaignAdminController() {
         data.headline = headline;
         data.promoVideo = promoVideo;
         data.ein = ein;
-  
+
         setLoading(false);
         try {
           const updatedData = await updateCampaignAdmin(id, data, adminAuthToken);
@@ -476,9 +476,8 @@ function CampaignAdminController() {
         });
       });
   };
-  
+
   // Assuming you have defined the updateCampaignAdmin function that accepts id, data, and adminAuthToken as arguments and returns a promise.
-  
 
   const changevalue = async (e) => {
     let value = e.target.value;

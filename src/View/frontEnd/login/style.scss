@@ -355,6 +355,7 @@
       line-height: 1.3rem;
       padding-right: 24px;
       padding-left: 24px;
+      border-left: 1px solid #e6e6e6;
       @include media-breakpoint-up(sm) {
         padding: 4.8rem 4.3rem;
         width: 43%;

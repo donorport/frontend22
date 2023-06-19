@@ -467,24 +467,24 @@ function ProductController() {
     });
   };
 
-  const submitProductForm = () => {
+  const submitProductForm = async () => {
     console.log('e');
-    const formaerrror = {};
+    const formaerror = {};
     if (tags.length === 0) {
-      formaerrror['tags'] = 'Please Enter Tags';
+      formaerror['tags'] = 'Please Enter Tags';
     }
     if (!id) {
-      // if (moreImg?.length > 0 && moreImg.length <= 1) {
-      //     formaerrror['moreImg'] = "Please select more then one image"
-      // }
-      // if (!galleryImg?.length) {
-      //     formaerrror['galleryImg'] = "Please select more then one image"
-      // }
-      // if (galleryImg?.length <= 1) {
-      //     formaerrror['galleryImg'] = "Please select more then one image"
-      // }
+      if (moreImg?.length > 0 && moreImg.length <= 1) {
+        formaerror['moreImg'] = "Please select more than one image";
+      }
+      if (!galleryImg?.length) {
+        formaerror['galleryImg'] = "Please select more than one image";
+      }
+      if (galleryImg?.length <= 1) {
+        formaerror['galleryImg'] = "Please select more than one image";
+      }
     }
-
+  
     let rules;
     if (id) {
       rules = {
@@ -538,13 +538,13 @@ function ProductController() {
         };
       }
     }
-
+  
     const message = {
       'status.required': 'Status is required',
       'needheadline.required': 'Need Headline is required',
       'address.required': 'Location is required',
       // 'galleryUrl.required': 'gallery Url is Required',
-
+  
       'brand.required': 'Brand is required',
       'headline.required': 'Headline is required',
       'category.required': 'Category is Required',
@@ -556,125 +556,125 @@ function ProductController() {
       'organization.required': 'Organization is required',
       'slug.required': 'Slug is required'
     };
-
-    validateAll(state, rules, message)
-      .then(async () => {
-        setLoading(true);
-        // const formaerrror = {};
-        setstate({
-          ...state,
-          error: formaerrror
-        });
-
-        let data = {};
-
-        // data.title = title
-        // data.subtitle = subtitle
-        data.status = status;
-        data.brand = brand;
-        data.needheadline = needheadline;
-        data.galleryUrl = galleryUrl;
-        data.headline = headline;
-        data.unlimited = unlimited;
-        data.tax = tax;
-        data.postTag = postTag;
-
-        if (image) {
-          data.image = image;
-        }
-        if (adminData.roleName === 'CAMPAIGN_ADMIN') {
-          data.organizationId = adminData.id;
-        } else {
-          data.organizationId = organization;
-        }
-        if (!id && id === '') {
-          data.productSlug = slug;
-        }
-        let tagsArray = [];
-        if (tags.length > 0) {
-          tags.map((ptage) => {
-            tagsArray.push(ptage.id);
-          });
-        }
-
-        if (moreImg?.length > 0) {
-          data.moreImg = moreImg;
-        }
-        if (galleryImg?.length > 0) {
-          data.galleryImg = galleryImg;
-        }
-        if (seletedProjectList?.length > 0) {
-          data.prjects = seletedProjectList;
-        }
-
-        if (address) {
-          data.address = address;
-        }
-
-        if (lat) {
-          data.lat = lat;
-        }
-
-        if (lng) {
-          data.lng = lng;
-        }
-
-        data.organizationCountryId = organizationCountryId;
-        data.price = price;
-        data.description = description;
-        data.category_id = category;
-        data.subcategory_id = subcategory;
-        data.quantity = quantity;
-        data.tags = tagsArray;
-
-        if (Object.keys(formaerrror).length === 0) {
-          // }
-
-          let addProduct;
-          // Api Call for update Profile
-          setLoading(false);
-          if (id !== '') {
-            addProduct = await productApi.updateProduct(adminAuthToken, data, id);
-          } else {
-            addProduct = await productApi.add(adminAuthToken, data);
-          }
-
-          if (addProduct) {
-            if (addProduct.data.success === false) {
-              setLoading(false);
-              ToastAlert({ msg: addProduct.data.message, msgType: 'error' });
-            } else {
-              if (addProduct.data.success === true) {
-                resetForm();
-                setLoading(false);
-                setUpdate(!update);
-                ToastAlert({ msg: addProduct.data.message, msgType: 'success' });
-              }
-            }
-          } else {
-            setLoading(false);
-            ToastAlert({ msg: 'Product not save', msgType: 'error' });
-          }
-        }
-      })
-      .catch((errors) => {
-        setLoading(false);
-        // console.log(errors)
-        // const formaerrror = {};
-        if (errors.length) {
-          errors.forEach((element) => {
-            formaerrror[element.field] = element.message;
-          });
-        } else {
-          ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
-        }
-
-        setstate({
-          ...state,
-          error: formaerrror
-        });
+  
+    try {
+      await validateAll(state, rules, message);
+      setLoading(true);
+      console.log("Validate?");
+      // const formaerrror = {};
+      setstate({
+        ...state,
+        error: formaerror
       });
+  
+      let data = {};
+  
+      // data.title = title
+      // data.subtitle = subtitle
+      data.status = status;
+      data.brand = brand;
+      data.needheadline = needheadline;
+      data.galleryUrl = galleryUrl;
+      data.headline = headline;
+      data.unlimited = unlimited;
+      data.tax = tax;
+      data.postTag = postTag;
+  
+      if (image) {
+        data.image = image;
+      }
+      if (adminData.roleName === 'CAMPAIGN_ADMIN') {
+        data.organizationId = adminData.id;
+      } else {
+        data.organizationId = organization;
+      }
+      if (!id && id === '') {
+        data.productSlug = slug;
+      }
+      let tagsArray = [];
+      if (tags.length > 0) {
+        tags.map((ptage) => {
+          tagsArray.push(ptage.id);
+        });
+      }
+  
+      if (moreImg?.length > 0) {
+        data.moreImg = moreImg;
+      }
+      if (galleryImg?.length > 0) {
+        data.galleryImg = galleryImg;
+      }
+      if (seletedProjectList?.length > 0) {
+        data.prjects = seletedProjectList;
+      }
+  
+      if (address) {
+        data.address = address;
+      }
+  
+      if (lat) {
+        data.lat = lat;
+      }
+  
+      if (lng) {
+        data.lng = lng;
+      }
+  
+      data.organizationCountryId = organizationCountryId;
+      data.price = price;
+      data.description = description;
+      data.category_id = category;
+      data.subcategory_id = subcategory;
+      data.quantity = quantity;
+      data.tags = tagsArray;
+      if (Object.keys(formaerror).length === 0) {
+        // }
+  
+        let addProduct;
+        // Api Call for update Profile
+        setLoading(false);
+        if (id !== '') {
+          addProduct = await productApi.updateProduct(adminAuthToken, data, id);
+        } else {
+          addProduct = await productApi.add(adminAuthToken, data);
+        }
+  
+        if (addProduct) {
+          if (addProduct.data.success === false) {
+            setLoading(false);
+            ToastAlert({ msg: addProduct.data.message, msgType: 'error' });
+          } else {
+            if (addProduct.data.success === true) {
+              resetForm();
+              setLoading(false);
+              setUpdate(!update);
+              ToastAlert({ msg: addProduct.data.message, msgType: 'success' });
+            }
+          }
+        } else {
+          setLoading(false);
+          ToastAlert({ msg: 'Product not save', msgType: 'error' });
+        }
+      }
+    } catch (errors) {
+      setLoading(false);
+      // console.log(errors)
+      // const formaerrror = {};
+      if (errors.length) {
+        errors.forEach((element) => {
+          formaerror[element.field] = element.message;
+        });
+      } else {
+        ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
+      }
+  
+      setstate({
+        ...state,
+        error: formaerror
+      });
+    }
   };
+  
 
   const deleteProduct = (id) => {
     confirmAlert({
