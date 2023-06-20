@@ -7,9 +7,7 @@ import Select from 'react-select';
 import CircularProgress from '@mui/material/CircularProgress';
 import Page from '../../../components/Page';
 import apply from '../../../assets/images/apply-iso.svg';
-import success from '../../../assets/images/success.gif';
 import Logo from '../Component/atoms/logo';
-import Footer from '../Component/organisms/footer';
 
 const Apply = (props) => {
   const { error, name, organization, ein, email, confirmEmail, password, cpassword } =
