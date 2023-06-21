@@ -89,6 +89,7 @@ const UserItems = () => {
     setOrder(sortOrder);
     await getOrderItemList(pageNo, accessor, sortOrder);
   };
+
   const onItemClick = (key) => {
     setDetail({ ...detail, key: key, show: true });
   };
@@ -146,7 +147,7 @@ const UserItems = () => {
         // const item = detail
         orderItemList.length > 0 &&
         orderItemList.map((item, i) => {
-          console.log({ item });
+          console.log({ item, itemDetails: item.itemDetails, fulfilDetails: item.fulfilDetails });
           // item = detail
           let videoid = item.itemDetails.galleryUrl
             ? item.itemDetails.galleryUrl.split('?v=')[1].split('&')[0]

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 // import { Outlet } from 'react-router-dom';
 // material
@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles';
 // import DashboardApp from 'src/pages/DashboardApp';
 // import DashboardNavbar from 'src/layouts/dashboard/DashboardNavbar';
 // import DashboardSidebar from 'src/layouts/dashboard/DashboardSidebar';
-import DashboardApp from '../pages/DashboardApp';
+//import DashboardApp from '../pages/DashboardApp';
 import DashboardSidebar from '../layouts/dashboard/DashboardSidebar';
 import DashboardNavbar from '../layouts/dashboard/DashboardNavbar';
 import UserController from '../Controller/admin/UserController';

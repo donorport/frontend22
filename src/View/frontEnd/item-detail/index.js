@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from 'react';
 
 // third party
-import { Col, Container, Row, Button } from 'react-bootstrap';
+import { Col, Container, Row, 
+  //Button 
+} from 'react-bootstrap';
 
 // app specific
 // import SuggestionWrapper from "@components/molecules/suggestion-wrapper";
@@ -15,7 +17,7 @@ import { Col, Container, Row, Button } from 'react-bootstrap';
 //   SimilarItems,
 // } from "@components/organisms";
 
-import Header from '../Component/organisms/header';
+//import Header from '../Component/organisms/header';
 import Footer from '../Component/organisms/footer';
 import History from '../Component/organisms/history';
 import SuggestedList from '../Component/organisms/suggested-list';
@@ -81,7 +83,7 @@ const ItemDetail = (props) => {
 
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const userAuthToken = localStorage.getItem('userAuthToken');
-  const token = CampaignAdminAuthToken ? CampaignAdminAuthToken : userAuthToken;
+  //const token = CampaignAdminAuthToken ? CampaignAdminAuthToken : userAuthToken;
   const [productListByCountry, setProductListByCountry] = useState([]);
   useEffect(() => {
     setProductListByCountry(
@@ -153,12 +155,12 @@ const ItemDetail = (props) => {
             <div className="gallery__container pb-5" style={{ maxWidth: '400px' }}>
               {productDetails?.productImages &&
                 productDetails?.productImages.length > 0 &&
-                productDetails?.productImages.map((img, i) => {
+                productDetails?.productImages.map((img, key) => {
                   if (img.type === 'moreImage') {
                     // console.log(img)
                     return (
                       <GalleryImg
-                        key={i}
+                        key={key}
                         thumbImgSrc={helper.CampaignProductFullImagePath + img.image}
                         bigImgSrc={helper.CampaignProductFullImagePath + img.image}
                       />
@@ -219,9 +221,9 @@ const ItemDetail = (props) => {
 
         {allProjects &&
           allProjects.length > 0 &&
-          allProjects.map((project, i) => {
+          allProjects.map((project, key) => {
             return (
-              <div>
+              <div key={key}>
                 <Row className="py-5 border-top">
                   <Col md="6" className="mb-4 mb-0">
                     <TagTitle>Projects</TagTitle>

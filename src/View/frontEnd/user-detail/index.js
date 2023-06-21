@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tab, Button, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -13,7 +13,9 @@ import {
   SettingsIcon
 } from '../Component/organisms/user-tabs/tab-icons';
 import userApi from '../../../Api/frontEnd/user';
-import helper, { ImageExist } from '../../../Common/Helper';
+import helper
+//, { ImageExist } 
+  from '../../../Common/Helper';
 import AvatarImg from '../../../assets/images/avatar.png';
 import { useSelector } from 'react-redux';
 import NoFooter from '../Component/templates/no-footer';
@@ -111,7 +113,7 @@ function UserDetail(props) {
                               {totalPriceArray.length > 0 &&
                                 totalPriceArray.map((val, key) => {
                                   return (
-                                    <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
+                                    <span key={key} className="d-none d-sm-flex item__total-wrap d-flex ms-3">
                                       <FontAwesomeIcon
                                         icon={solid('money-bills-simple')}
                                         className="text-dark mr-12p fs-4"
