@@ -17,7 +17,7 @@ import plusFill from '@iconify/icons-eva/plus-fill';
 import trash from '@iconify/icons-eva/trash-2-fill';
 import editfill from '@iconify/icons-eva/edit-fill';
 import Label from '../../../components/Label';
-
+import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
@@ -27,6 +27,10 @@ import moment from 'moment';
 import Page from '../../../components/Page';
 
 export default function Index(props) {
+  const [rowsPerPage, setRowsPerPage] = useState(50);
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 50));
+  };
   const columns = [
     { name: 'Name', selector: 'name', sortable: true },
     { name: 'Email', selector: 'email', sortable: true },
@@ -129,6 +133,9 @@ export default function Index(props) {
               pagination
               highlightOnHover
               defaultSortFieldId="created_at"
+              paginationPerPage={rowsPerPage}
+              paginationRowsPerPageOptions={[10, 20, 50, 100]} // Customize the available options
+              onChangeRowsPerPage={handleChangeRowsPerPage} // Handle rows per page change
             />
           </DataTableExtensions>
         </Card>

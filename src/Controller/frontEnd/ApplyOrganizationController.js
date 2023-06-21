@@ -1,7 +1,7 @@
 import ToastAlert from '../../Common/ToastAlert';
 import { validateAll } from 'indicative/validator';
 import { useNavigate } from 'react-router-dom';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import adminCampaignApi from '../../Api/admin/adminCampaign';
 import Apply from '../../View/frontEnd/apply';
 //import FrontLoader from '../../Common/FrontLoader';
@@ -53,7 +53,7 @@ export default function ApplyOrganizationController() {
   const [categoryList, setCategoryList] = useState([]);
   const [defaultCategory, setDefaultCategory] = useState([]);
   const [isApplied, setIsApplied] = useState(false);
-  const scrollRef = useRef();
+  // const scrollRef = useRef();
 
   const [state, setstate] = useState({
     name: '',
@@ -235,11 +235,11 @@ export default function ApplyOrganizationController() {
             ToastAlert({ msg: applyCampaignAdmin.data.message, msgType: 'success' });
             resetForm();
             setIsApplied(true); // Set codeApplied state to true
-            scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            // scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
           }
         } else {
           setLoading(false);
-          ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+          ToastAlert({ msg: 'Something went wrong (applyCampaignAdmin)', msgType: 'error' });
         }
       })
       .catch((errors) => {
@@ -250,7 +250,7 @@ export default function ApplyOrganizationController() {
             formaerrror[element.field] = element.message;
           });
         } else {
-          ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+          ToastAlert({ msg: 'Something went wrong (applyCampaignAdmin 2)', msgType: 'error' });
         }
 
         setstate({

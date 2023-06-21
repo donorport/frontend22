@@ -68,6 +68,7 @@ const DEFAULT_FULFIL_STATE = {
 
 const SUBMIT_PRODUCT_FORM_VALIDATE_MESSAGE = {
   'status.required': 'Status is Required',
+  'address.required': 'Locations is Required',
   'needheadline.required': 'Need Headline is Required',
   'galleryUrl.required': 'gallery Url is Required',
   'brand.required': 'Brand is Required',
@@ -778,6 +779,7 @@ const AdminPosts = () => {
       // since it's const, we assign properties
       Object.assign(rules, {
         brand: 'required',
+        address: 'required',
         needheadline: 'required',
         // galleryUrl: 'required',
         status: 'required',
@@ -819,6 +821,8 @@ const AdminPosts = () => {
         // formData.products = seletedProjectList;
 
         formData.brand = brand;
+
+        formData.address = address;
         formData.needheadline = needheadline.trim();
         if (galleryUrl && galleryUrl !== '') {
           formData.galleryUrl = galleryUrl;
@@ -857,9 +861,9 @@ const AdminPosts = () => {
           formData.prjects = seletedProjectList;
         }
 
-        if (address) {
-          formData.address = address;
-        }
+        // if (address) {
+        //   formData.address = address;
+        // }
 
         if (lat) {
           formData.lat = lat;

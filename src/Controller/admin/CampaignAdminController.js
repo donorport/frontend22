@@ -339,6 +339,9 @@ function CampaignAdminController() {
       message: 'Are you sure ?',
       buttons: [
         {
+          label: 'No'
+        },
+        {
           label: 'Yes',
 
           onClick: async () => {
@@ -358,9 +361,6 @@ function CampaignAdminController() {
               ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
             }
           }
-        },
-        {
-          label: 'No'
         }
       ]
     });

@@ -89,6 +89,7 @@
     "framer-motion": "^4.1.17",
     "fs": "^0.0.1-security",
     "geolib": "^3.3.3",
+    "google-auth-library": "^8.8.0",
     "history": "^5.0.1",
     "humanparser": "^2.6.0",
     "indicative": "^7.4.4",
