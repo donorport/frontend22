@@ -17,6 +17,94 @@ import authApi from '../../Api/admin/auth';
 import { hasPermission } from '../../Common/Helper';
 import Payout from '../../View/admin/CampaignAdmin/Payout';
 
+const ADD_CAMPAIGN_ADMIN_RULES = {
+  name: 'required',
+  email: 'required|email',
+  password: 'required|min:6',
+  logo: 'required',
+  description: 'required',
+  twitter: 'required',
+  facebook: 'required',
+  linkedin: 'required',
+  url: 'required',
+  address: 'required',
+  country: 'required',
+  city: 'required',
+  stateid: 'required',
+  category: 'required',
+  slug: 'required',
+  headline: 'required',
+  promoVideo: 'required'
+};
+
+const ADD_CAMPAIGN_ADMIN_VALIDATION_MESSAGES = {
+  'email.required': 'Email is Required.',
+  'name.required': 'Name is Required.',
+  'email.email': 'please enter valid email.',
+  'password.min': 'Password must be at least 6 characters',
+  'password.required': 'Password is Required.',
+
+  'logo.required': 'logo is Required.',
+  'description.required': 'description is Required.',
+  'twitter.required': 'Twitter is Required.',
+  'facebook.required': 'Facebook is Required.',
+  'linkedin.required': 'Linkedin is Required.',
+  'url.required': 'Website is Required.',
+  'address.required': 'Address is Required.',
+
+  'category.required': 'Category is Required.',
+  'country.required': 'Country is Required.',
+  'city.required': 'City is Required.',
+  'stateid.required': 'State is Required.',
+  'slug.required': 'Slug is Required',
+  'headline.required': 'Headline is Required',
+  'promoVideo.required': 'Promo Video is Required'
+};
+
+const UPDATE_CAMPAIGN_ADMIN_RULES = {
+  name: 'required',
+  // description: "required",
+  // twitter: "required",
+  // facebook: "required",
+  // linkedin: "required",
+  // url: "required",
+  // address: "required",
+  // country: "required",
+  // city: "required",
+  // stateid: "required",
+  // category: "required",
+  // headline: 'required',
+  // promoVideo: 'required'
+};
+
+const UPDATE_CAMPAIGN_ADMIN_VALIDATION_MESSAGES = {
+  'email.required': 'Email is Required.',
+  'name.required': 'Name is Required.',
+  'email.email': 'Please enter a valid email.',
+  'description.required': 'Description is Required.',
+  'twitter.required': 'Twitter is Required.',
+  'facebook.required': 'Facebook is Required.',
+  'linkedin.required': 'Linkedin is Required.',
+  'url.required': 'Website is Required.',
+  'address.required': 'Address is Required.',
+  'category.required': 'Category is Required.',
+  'country.required': 'Country is Required.',
+  'city.required': 'City is Required.',
+  'stateid.required': 'State is Required.',
+  'headline.required': 'Headline is Required',
+  'promoVideo.required': 'Promo Video is Required'
+};
+
+const PAY_TO_ORGANIZATION_RULES = {
+  account: 'required',
+  amount: 'required'
+};
+
+const PAY_TO_ORGANIZATION_VALIDATION_MESSAGES = {
+  'account.required': 'Please select account.',
+  'amount.required': 'Please Enter amount to pay.'
+};
+
 function CampaignAdminController() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -181,50 +269,7 @@ function CampaignAdminController() {
   };
 
   const addCampaignAdmin = () => {
-    const rules = {
-      name: 'required',
-      email: 'required|email',
-      password: 'required|min:6',
-      logo: 'required',
-      description: 'required',
-      twitter: 'required',
-      facebook: 'required',
-      linkedin: 'required',
-      url: 'required',
-      address: 'required',
-      country: 'required',
-      city: 'required',
-      stateid: 'required',
-      category: 'required',
-      slug: 'required',
-      headline: 'required',
-      promoVideo: 'required'
-    };
-
-    const message = {
-      'email.required': 'Email is Required.',
-      'name.required': 'Name is Required.',
-      'email.email': 'please enter valid email.',
-      'password.min': 'Password must be at least 6 characters',
-      'password.required': 'Password is Required.',
-
-      'logo.required': 'logo is Required.',
-      'description.required': 'description is Required.',
-      'twitter.required': 'Twitter is Required.',
-      'facebook.required': 'Facebook is Required.',
-      'linkedin.required': 'Linkedin is Required.',
-      'url.required': 'Website is Required.',
-      'address.required': 'Address is Required.',
-
-      'category.required': 'Category is Required.',
-      'country.required': 'Country is Required.',
-      'city.required': 'City is Required.',
-      'stateid.required': 'State is Required.',
-      'slug.required': 'Slug is Required',
-      'headline.required': 'Headline is Required',
-      'promoVideo.required': 'Promo Video is Required'
-    };
-    validateAll(state, rules, message)
+    validateAll(state, ADD_CAMPAIGN_ADMIN_RULES, ADD_CAMPAIGN_ADMIN_VALIDATION_MESSAGES)
       .then(async () => {
         const formaerrror = {};
         setState({
@@ -375,48 +420,14 @@ function CampaignAdminController() {
   };
 
   const updateCampaignAdmin = () => {
-    const rules = {
-      name: 'required',
-      // description: "required",
-      // twitter: "required",
-      // facebook: "required",
-      // linkedin: "required",
-      // url: "required",
-      // address: "required",
-      // country: "required",
-      // city: "required",
-      // stateid: "required",
-      // category: "required",
-      // headline: 'required',
-      // promoVideo: 'required'
-    };
-  
-    const message = {
-      'email.required': 'Email is Required.',
-      'name.required': 'Name is Required.',
-      'email.email': 'Please enter a valid email.',
-      'description.required': 'Description is Required.',
-      'twitter.required': 'Twitter is Required.',
-      'facebook.required': 'Facebook is Required.',
-      'linkedin.required': 'Linkedin is Required.',
-      'url.required': 'Website is Required.',
-      'address.required': 'Address is Required.',
-      'category.required': 'Category is Required.',
-      'country.required': 'Country is Required.',
-      'city.required': 'City is Required.',
-      'stateid.required': 'State is Required.',
-      'headline.required': 'Headline is Required',
-      'promoVideo.required': 'Promo Video is Required'
-    };
-  
-    validateAll(state, rules, message)
+    validateAll(state, UPDATE_CAMPAIGN_ADMIN_RULES, UPDATE_CAMPAIGN_ADMIN_VALIDATION_MESSAGES)
       .then(async () => {
         const formaerrror = {};
         setState({
           ...state,
           error: formaerrror
         });
-  
+
         let data = {};
         data.name = name;
         data.status = status;
@@ -441,27 +452,22 @@ function CampaignAdminController() {
         data.headline = headline;
         data.promoVideo = promoVideo;
         data.ein = ein;
-  
-        setLoading(false);
+
         try {
-          const updatedData = await updateCampaignAdmin(id, data, adminAuthToken);
+          const updatedData = await adminCampaignApi.updateCampaignAdmin(adminAuthToken, data, id);
           if (updatedData.data.success) {
             setUpdate(!update);
-            setLoading(false);
             ToastAlert({ msg: updatedData.data.message, msgType: 'success' });
             setModal(false);
             resetForm();
           } else {
-            setLoading(false);
             ToastAlert({ msg: updatedData.data.message, msgType: 'error' });
           }
         } catch (err) {
-          setLoading(false);
           ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
         }
       })
       .catch((errors) => {
-        setLoading(false);
         const formaerrror = {};
         if (errors.length) {
           errors.forEach((element) => {
@@ -474,11 +480,13 @@ function CampaignAdminController() {
           ...state,
           error: formaerrror
         });
+      }).finally(() => {
+        setLoading(false);
       });
   };
-  
+
   // Assuming you have defined the updateCampaignAdmin function that accepts id, data, and adminAuthToken as arguments and returns a promise.
-  
+
 
   const changevalue = async (e) => {
     let value = e.target.value;
@@ -540,6 +548,7 @@ function CampaignAdminController() {
       });
     }
   };
+
   const payoutToAdmin = async (data) => {
     await TransactionHistory(data._id);
     setPayoutModal(true);
@@ -562,17 +571,7 @@ function CampaignAdminController() {
   };
 
   const payToOrganization = () => {
-    const rules = {
-      account: 'required',
-      amount: 'required'
-    };
-
-    const message = {
-      'account.required': 'Please select account.',
-      'amount.required': 'Please Enter amount to pay.'
-    };
-
-    validateAll(state, rules, message)
+    validateAll(state, PAY_TO_ORGANIZATION_RULES, PAY_TO_ORGANIZATION_VALIDATION_MESSAGES)
       .then(async () => {
         const formaerrror = {};
         setState({
