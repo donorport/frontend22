@@ -3,7 +3,7 @@ import {
   //BrowserRouter as Router,
   Route,
   Routes,
-  useLocation,
+  useLocation
   //Link as RouterLink
 } from 'react-router-dom';
 
@@ -24,7 +24,7 @@ import ThemeConfig from '../theme';
 import ScrollToTop from '../components/ScrollToTop';
 import GlobalStyles from '../theme/globalStyles';
 import { BaseOptionChartStyle } from '../components/charts/BaseOptionChart';
-import AdminPrivateRoutes from './AdminPrivateRoutes';
+//import AdminPrivateRoutes from './AdminPrivateRoutes';
 //import Logo from '../components/Logo';
 //import UserPrivateRoutes from './UserPrivateRoutes';
 import HomeController from '../Controller/frontEnd/HomeController';
@@ -87,17 +87,21 @@ import LeaderBoard from '../View/frontEnd/Component/organisms/leaderboard';
 import OrderConfirmPage from '../View/frontEnd/order-confirmation';
 import DonationConfirmPage from '../View/frontEnd/donation-confirmation/index';
 import Pricing from '../View/frontEnd/pricing';
+import { CircularProgress } from '@mui/material';
+
+// lazy import for admin routes
+const AdminPrivateRoutes = React.lazy(() => import('./AdminPrivateRoutes'));
 
 //const HeaderStyle = styled('header')(({ theme }) => ({
-  //top: 0,
-  //left: 0,
-  //lineHeight: 0,
-  //width: '100%',
-  //position: 'absolute',
-  //padding: theme.spacing(3, 3, 0),
-  //[theme.breakpoints.up('sm')]: {
-    //padding: theme.spacing(5, 5, 0)
-  //}
+//top: 0,
+//left: 0,
+//lineHeight: 0,
+//width: '100%',
+//position: 'absolute',
+//padding: theme.spacing(3, 3, 0),
+//[theme.breakpoints.up('sm')]: {
+//padding: theme.spacing(5, 5, 0)
+//}
 //}));
 
 export default function MainRoutes() {
@@ -235,7 +239,9 @@ export default function MainRoutes() {
             <ScrollToTop />
             <GlobalStyles />
             <BaseOptionChartStyle />
-            <AdminPrivateRoutes />
+            <React.Suspense fallback={<LoadingPage />}>
+              <AdminPrivateRoutes />
+            </React.Suspense>
           </ThemeConfig>
         ) : (
           <></>
@@ -325,3 +331,11 @@ export default function MainRoutes() {
     </div>
   );
 }
+
+const LoadingPage = () => {
+  return (
+    <div className="mt-5 d-flex justify-content-center">
+      <CircularProgress />
+    </div>
+  );
+};
