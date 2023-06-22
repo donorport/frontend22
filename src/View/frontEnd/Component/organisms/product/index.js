@@ -290,7 +290,7 @@ const Product = (props) => {
             </span>
           )}
           {props.media && (
-            <span className="product__type product__type-tab icon icon__solid-900">
+            <span className="product__type product__type-media icon icon__solid-900">
               <FontAwesomeIcon className="fs-3 text-primary" icon={solid('camera')} />
             </span>
           )}

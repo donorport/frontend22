@@ -39,3 +39,12 @@
 // load utility styles
 @import "./utils";
 
+h1,
+h2,
+h3:not(.szh-accordion__item-heading),
+h4,
+h5,
+h6 {
+	font-family: "Custom", sans-serif;
+	letter-spacing: -0.03em;
+}
