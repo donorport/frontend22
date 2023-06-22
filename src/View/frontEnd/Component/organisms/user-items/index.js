@@ -398,7 +398,7 @@ const UserItems = () => {
                                     height="280"
                                     src={
                                       'https://www.youtube.com/embed/' +
-                                      item.fulfilDetails[0].video.split('?v=')[1]
+                                      item.fulfilDetails[0].video.split('?v=')[1].split('&')[0]
                                     }
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen

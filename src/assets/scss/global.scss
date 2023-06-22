@@ -40,7 +40,7 @@
 @import "./utils";
 
 h1,
-h2,
+h2:not(.project__detail-price),
 h3:not(.szh-accordion__item-heading),
 h4,
 h5,
