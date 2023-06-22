@@ -319,7 +319,7 @@ function LinkedOrg(props) {
               );
             })}
         </ul>
-        <div className="menu__title">
+        {/* <div className="menu__title">
           <h6 className="mb-0 fs-7">Add an Organization</h6>
 
           <a
@@ -328,43 +328,18 @@ function LinkedOrg(props) {
           >
             request access
           </a>
-        </div>
-        <div className="activate">
+        </div> */}
+        {/* <div className="activate">
           <div className="activate__icon">
             <i className="fa-regular fa-fingerprint "></i>
           </div>
           <div className="activate__code">
-            {/* <input
-              type="text"
-              className="activate__input"
-              name="verifyCode1"
-            />
-            <input
-              type="text"
-              className="activate__input"
-              name="verifyCode2"
-            />
-            <input
-              type="text"
-              className="activate__input"
-              name="verifyCode3"
-            />
-            <input
-              type="text"
-              className="activate__input"
-              name="verifyCode4"
-            />
-            <input
-              type="text"
-              className="activate__input"
-              name="verifyCode5"
-            /> */}
             {blocks}
           </div>
           <Button variant="info" className="ms-auto" onClick={() => activateCode()}>
             Activate
           </Button>
-        </div>
+        </div> */}
       </div>
     </>
   );
