@@ -29,7 +29,7 @@ import Page from '../../../components/Page';
 export default function Index(props) {
   const [rowsPerPage, setRowsPerPage] = useState(50);
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 50));
+    setRowsPerPage(parseInt(event.target.value, 10));
   };
   const columns = [
     { name: 'Name', selector: 'name', sortable: true },
