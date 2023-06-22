@@ -17,6 +17,7 @@ import { Provider } from 'react-redux';
 //import { BaseOptionChartStyle } from './components/charts/BaseOptionChart';
 //import Abc from './pages/Abc';
 import MainRoutes from './Routes/MainRoutes';
+import './assets/css/style.scss';
 
 export const UserContext = createContext({});
 
