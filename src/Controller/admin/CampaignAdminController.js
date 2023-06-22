@@ -367,56 +367,57 @@ function CampaignAdminController() {
   };
 
   const getUserRecord = async (data) => {
-    if (data && data !== null && data !== '') {
-      // }
-      // console.log(data)
-      setLoading(false);
-      if (data.country_id && data.country_id !== null && data.country_id > 0) {
-        const getCountryStateList = await adminCampaignApi.stateListByCountry(
-          adminAuthToken,
-          data.country_id
-        );
-        if (getCountryStateList.data.success === true) {
-          setStateList(getCountryStateList.data.data);
-        }
-      }
-      if (data.state_id && data.state_id !== null && data.state_id > 0) {
-        const getStateCityList = await adminCampaignApi.cityListByState(
-          adminAuthToken,
-          data.state_id
-        );
-        if (getStateCityList.data.success === true) {
-          setCityList(getStateCityList.data.data);
-        }
-      }
-
-      // console.log(data)
-      setTempImg(data.logo);
-      setState({
-        ...state,
-        id: data._id,
-        name: data.name,
-        email: data.email,
-        status: data.status,
-        description: data.description,
-        twitter: data.twitter,
-        facebook: data.facebook,
-        linkedin: data.linkedin,
-        url: data.url,
-        country: data.country_id,
-        city: data.city_id,
-        stateid: data.state_id,
-        address: data.address,
-        category: data.category_id,
-        slug: data.slug,
-        headline: data.headline,
-        promoVideo: data.promoVideo,
-        ein: data.ein,
-        error: []
-      });
-      setLoading(false);
-      setModal(true);
+    if (!data || data === null || data === '') {
+      return;
     }
+    // }
+    console.log('getUserRecord:', {data})
+    setLoading(false);
+    if (data.country_id && data.country_id !== null && data.country_id > 0) {
+      const getCountryStateList = await adminCampaignApi.stateListByCountry(
+        adminAuthToken,
+        data.country_id
+      );
+      if (getCountryStateList.data.success === true) {
+        setStateList(getCountryStateList.data.data);
+      }
+    }
+    if (data.state_id && data.state_id !== null && data.state_id > 0) {
+      const getStateCityList = await adminCampaignApi.cityListByState(
+        adminAuthToken,
+        data.state_id
+      );
+      if (getStateCityList.data.success === true) {
+        setCityList(getStateCityList.data.data);
+      }
+    }
+
+    // console.log(data)
+    setTempImg(data.logo);
+    setState({
+      ...state,
+      id: data._id,
+      name: data.name,
+      email: data.email,
+      status: data.status,
+      description: data.description,
+      twitter: data.twitter,
+      facebook: data.facebook,
+      linkedin: data.linkedin,
+      url: data.url,
+      country: data.country_id,
+      city: data.city_id,
+      stateid: data.state_id,
+      address: data.address,
+      category: data.category_id,
+      slug: data.slug,
+      headline: data.headline,
+      promoVideo: data.promoVideo,
+      ein: data.ein,
+      error: []
+    });
+    setLoading(false);
+    setModal(true);
   };
 
   const updateCampaignAdmin = () => {
@@ -430,7 +431,7 @@ function CampaignAdminController() {
 
         let data = {};
         data.name = name;
-        data.status = status;
+        data.status = status; // default === 1
         data.email = email;
         if (password && password !== '') {
           data.password = password;
