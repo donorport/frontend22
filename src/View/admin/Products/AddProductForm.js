@@ -30,7 +30,8 @@ const Map = ReactMapboxGl({
 const Transition = React.forwardRef(function Transition(propss, ref) {
   return <Slide direction="up" {...propss} />;
 });
-const productv = {
+
+const PRODUCT_V_CHECKBOX_STYLES = {
   cursor: 'pointer',
   display: 'block',
   position: 'absolute',
@@ -48,7 +49,8 @@ const productv = {
   // 'WebkitAppearance': 'none',
   // '-moz-appearance': 'none',
 };
-let variantStyle = {
+
+const PRODUCT_V_P_WRAPPER_VARIANT_STYLES = {
   fontSize: '14px',
   color: '#00ab55',
   // textTransform: "uppercase",
@@ -62,15 +64,16 @@ let variantStyle = {
   marginBottom: '5px'
 };
 
+const MAP_STYLES = {
+  londonCycle: 'mapbox://styles/mapbox/light-v9',
+  light: 'mapbox://styles/mapbox/light-v9',
+  dark: 'mapbox://styles/mapbox/dark-v9',
+  basic: 'mapbox://styles/mapbox/basic-v9',
+  outdoor: 'mapbox://styles/mapbox/outdoors-v10'
+};
+
 export default function AddProductForm(props) {
   console.log('iFrame, AddProductForm');
-  const mapStyles = {
-    londonCycle: 'mapbox://styles/mapbox/light-v9',
-    light: 'mapbox://styles/mapbox/light-v9',
-    dark: 'mapbox://styles/mapbox/dark-v9',
-    basic: 'mapbox://styles/mapbox/basic-v9',
-    outdoor: 'mapbox://styles/mapbox/outdoors-v10'
-  };
 
   let stateData = props.stateData;
 
@@ -98,10 +101,10 @@ export default function AddProductForm(props) {
     // })
   };
 
-  const adminData = JSON.parse(localStorage.getItem('adminData'));
-  let url = stateData.galleryUrl;
-  let id = url ? url?.split('?v=')[1].split('&')[0] : '';
-  let embedlink = 'https://www.youtube.com/embed/' + id;
+  //const adminData = JSON.parse(localStorage.getItem('adminData'));
+  //let url = stateData.galleryUrl;
+  //let id = url ? url?.split('?v=')[1].split('&')[0] : '';
+  //let embedlink = 'https://www.youtube.com/embed/' + id;
   return (
     <>
       <Dialog
@@ -146,7 +149,7 @@ export default function AddProductForm(props) {
                   Select Organization
                 </option>
                 {props.campaignAdminList.length > 0 &&
-                  props.campaignAdminList.map((admin, i) => {
+                  props.campaignAdminList.map((admin, key) => {
                     // console.log(admin)
 
                     let obj = {};
@@ -158,6 +161,7 @@ export default function AddProductForm(props) {
                     return (
                       admin.status === 1 && (
                         <option
+                          key={key}
                           value={JSON.stringify(obj)}
                           selected={stateData.organization === admin._id}
                         >
@@ -230,7 +234,7 @@ export default function AddProductForm(props) {
 
               <div className="col-sm-4">
                 <Map
-                  style={mapStyles.outdoor}
+                  style={MAP_STYLES.outdoor}
                   // onMove={false}
                   zoom={[12]}
                   containerStyle={{
@@ -390,6 +394,7 @@ export default function AddProductForm(props) {
                   ? props.moreTempImages.map((img, key) => {
                       return (
                         <div
+                        key={key}
                           className="gallery__img"
                           style={{
                             backgroundImage: `url(${img ? img : noimg})`
@@ -404,6 +409,7 @@ export default function AddProductForm(props) {
                   ? props.moreImages.map((img, key) => {
                       return (
                         <img
+                          key={key}
                           src={
                             img
                               ? img !== ''
@@ -557,10 +563,10 @@ export default function AddProductForm(props) {
                   Select Category
                 </option>
                 {props.categoryList.length > 0 &&
-                  props.categoryList.map((cat, i) => {
+                  props.categoryList.map((cat) => {
                     return (
                       cat.status === 1 && (
-                        <option value={cat._id} selected={stateData.category === cat._id}>
+                        <option value={cat._id} key={cat._id} selected={stateData.category === cat._id}>
                           {cat.name}
                         </option>
                       )
@@ -590,10 +596,10 @@ export default function AddProductForm(props) {
                   Select SubCategory
                 </option>
                 {props.subcategoryList.length > 0 &&
-                  props.subcategoryList.map((cat, i) => {
+                  props.subcategoryList.map((cat) => {
                     return (
                       cat.status === 1 && (
-                        <option value={cat._id} selected={stateData.subcategory === cat._id}>
+                        <option value={cat._id} key={cat._id} selected={stateData.subcategory === cat._id}>
                           {cat.name}
                         </option>
                       )
@@ -653,10 +659,9 @@ export default function AddProductForm(props) {
                 props.projectList.length > 0 &&
                 props.projectList.map((project, i) => {
                   return (
-                    <>
                       <p
                         style={{
-                          ...variantStyle,
+                          ...PRODUCT_V_P_WRAPPER_VARIANT_STYLES,
                           position: 'relative',
                           backgroundColor: props.seletedProjectList.includes(project._id)
                             ? '#00ab55'
@@ -665,19 +670,18 @@ export default function AddProductForm(props) {
                             ? 'white'
                             : '#00ab55'
                         }}
-                        key={i}
+                        key={project._id}
                       >
                         <input
                           type="checkbox"
                           id={project._id}
                           checked={props.seletedProjectList.includes(project._id)}
-                          style={productv}
+                          style={PRODUCT_V_CHECKBOX_STYLES}
                           name={'project_' + i}
                           onClick={(e) => props.onSelectProject(e)}
                         />
                         {project.name}
                       </p>
-                    </>
                   );
                 })}
             </div>
@@ -806,6 +810,7 @@ export default function AddProductForm(props) {
                   ? props.gallaryTempImages.map((img, key) => {
                       return (
                         <div
+                          key={key}
                           className="gallery__img"
                           style={{
                             backgroundImage: `url(${img ? img : noimg})`
@@ -820,6 +825,7 @@ export default function AddProductForm(props) {
                   ? props.gallaryImages.map((img, key) => {
                       return (
                         <img
+                          key={key}
                           src={
                             img
                               ? img !== ''
