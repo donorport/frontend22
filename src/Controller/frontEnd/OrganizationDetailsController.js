@@ -190,13 +190,13 @@ export default function OrganizationDetailsController() {
         cvv: 'required|number'
       };
       const message = {
-        // 'name.required': 'Card holder name is Required.',
-        'cardNumber.required': 'Card number is Required.',
-        'cardNumber.number': 'Card number can not be string.',
-        'month.required': 'Month is Required.',
-        'year.required': 'Year number is Required.',
-        'cvv.required': 'cvv is Required.',
-        'cvv.number': 'cvv can not be string.'
+        // 'name.required': 'Card holder name is required.',
+        'cardNumber.required': 'Card number is required.',
+        'cardNumber.number': 'Card number must not contain letters.',
+        'month.required': 'Month is required.',
+        'year.required': 'Year number is required.',
+        'cvv.required': 'CVV is required.',
+        'cvv.number': 'CVV must not contain letters.'
       };
       validateAll(state, rules, message)
         .then(async () => {

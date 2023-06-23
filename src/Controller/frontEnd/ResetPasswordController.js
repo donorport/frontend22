@@ -63,10 +63,10 @@ export default function ResetPasswordController() {
     };
 
     const message = {
-      'otp.required': 'OTP is Required.',
+      'otp.required': 'OTP is required.',
       'password.min': 'Password must be at least 6 characters',
-      'password.required': 'Password is Required.',
-      'cpassword.required': 'Confirm Password is Required.',
+      'password.required': 'Password is required.',
+      'cpassword.required': 'Confirm Password is required.',
       'cpassword.same': 'Password and ConfirmPassword Must be same.'
     };
     validateAll(state, rules, message)

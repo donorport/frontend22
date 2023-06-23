@@ -68,12 +68,12 @@ export default function Rank(props) {
         }
 
         const message = {
-            'captian.required': 'Captian is Required.',
-            'admiral.required': 'Admiral is Required.',
-            'pirate.required': 'Pirate is Required.',
-            'narwhal.required': 'Narwhal is Required.',
-            'beluga.required': 'Beluga is Required.',
-            'fish.required': 'Fish is Required.',
+            'captian.required': 'Captian is required.',
+            'admiral.required': 'Admiral is required.',
+            'pirate.required': 'Pirate is required.',
+            'narwhal.required': 'Narwhal is required.',
+            'beluga.required': 'Beluga is required.',
+            'fish.required': 'Fish is required.',
         }
 
         validateAll(state, rules, message).then(async () => {

@@ -227,10 +227,10 @@ const AdminProjects = () => {
     }
 
     const message = {
-      'name.required': 'Name is Required',
-      'headline.required': 'Headline is Required',
-      'description.required': 'Description is Required'
-      //'video.required': 'video is Required',
+      'name.required': 'Name is required',
+      'headline.required': 'Headline is required',
+      'description.required': 'Description is required'
+      //'video.required': 'video is required',
     };
 
     //console.log('~~ validate:', state);

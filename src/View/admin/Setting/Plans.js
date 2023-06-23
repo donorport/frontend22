@@ -86,10 +86,10 @@ export default function Plans(props) {
         }
 
         const message = {
-            'price.required': 'price is Required.',
-            'post.required': 'post is Required.',
-            'project.required': 'project is Required.',
-            'keywords.required': 'keywords is Required.',
+            'price.required': 'price is required.',
+            'post.required': 'post is required.',
+            'project.required': 'project is required.',
+            'keywords.required': 'keywords is required.',
         }
 
         validateAll(PLAN === 'basicData' ? basicData : PLAN === 'proData' ? proData : enterpriseData, rules, message).then(async () => {

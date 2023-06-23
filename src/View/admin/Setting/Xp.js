@@ -60,12 +60,12 @@ export default function Xp(props) {
         }
 
         const message = {
-            'topDonator.required': 'This Field is Required.',
-            'topDonation.required': 'This Field is Required.',
-            'forEachItem.required': 'This Field is Required.',
-            'forEachDonation.required': 'This Field is Required.',
-            'forEachShare.required': 'This Field is Required.',
-            'forEachOrganization.required': 'This Field is Required.',
+            'topDonator.required': 'This Field is required.',
+            'topDonation.required': 'This Field is required.',
+            'forEachItem.required': 'This Field is required.',
+            'forEachDonation.required': 'This Field is required.',
+            'forEachShare.required': 'This Field is required.',
+            'forEachOrganization.required': 'This Field is required.',
         }
 
         validateAll(state, rules, message).then(async () => {

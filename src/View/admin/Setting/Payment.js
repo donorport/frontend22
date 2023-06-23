@@ -56,9 +56,9 @@ export default function Payment(props) {
         }
 
         const message = {
-            'publishableKey.required': 'Publishable key is Required.',
-            'secretKey.required': 'Secret key is Required.',
-            'currency.required': 'Currency is Required.',
+            'publishableKey.required': 'Publishable key is required.',
+            'secretKey.required': 'Secret key is required.',
+            'currency.required': 'Currency is required.',
 
 
         }

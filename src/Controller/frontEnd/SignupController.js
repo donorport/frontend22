@@ -18,12 +18,12 @@ const SIGNUP_RULES = {
 };
 
 const SIGNUP_MESSAGE = {
-  'email.required': 'Email is Required.',
-  'name.required': 'Name is Required.',
+  'email.required': 'Email is required.',
+  'name.required': 'Name is required.',
   'email.email': 'please enter valid email.',
   'password.min': 'Password must be at least 6 characters',
-  'password.required': 'Password is Required.',
-  'cpassword.required': 'Confirm Password is Required.',
+  'password.required': 'Password is required.',
+  'cpassword.required': 'Confirm Password is required.',
   'cpassword.same': 'Password and Confirm Password Must be Same',
   'country.required': 'Please Select Country.'
 };

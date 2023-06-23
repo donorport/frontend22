@@ -77,7 +77,7 @@ const Register = (props) => {
                 )}
                 <input
                   type="text"
-                  className="form-control"
+                  className="input__wrap form-control"
                   name="name"
                   id="name"
                   value={stateData.name}
@@ -93,7 +93,7 @@ const Register = (props) => {
               <div className="mb-3">
                 <input
                   type="email"
-                  className="form-control"
+                  className="input__wrap form-control"
                   id="email"
                   placeholder="Email"
                   name="email"

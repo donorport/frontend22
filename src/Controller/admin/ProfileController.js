@@ -221,24 +221,24 @@ function ProfileController() {
     };
 
     const message = {
-      'email.required': 'Email is Required.',
-      'name.required': 'Name is Required.',
+      'email.required': 'Email is required.',
+      'name.required': 'Name is required.',
       'email.email': 'please enter valid email.',
       'password.min': 'Password must be at least 6 characters',
-      'password.required': 'Password is Required.',
+      'password.required': 'Password is required.',
 
-      // 'logo.required': 'logo is Required.',
-      'description.required': 'description is Required.',
-      'twitter.required': 'Twitter is Required.',
-      'facebook.required': 'Facebook is Required.',
-      'linkedin.required': 'Linkedin is Required.',
-      'url.required': 'Website is Required.',
-      'address.required': 'Address is Required.',
+      // 'logo.required': 'logo is required.',
+      'description.required': 'description is required.',
+      'twitter.required': 'Twitter is required.',
+      'facebook.required': 'Facebook is required.',
+      'linkedin.required': 'Linkedin is required.',
+      'url.required': 'Website is required.',
+      'address.required': 'Address is required.',
 
-      'category.required': 'Category is Required.',
-      'country.required': 'Country is Required.',
-      'city.required': 'City is Required.',
-      'stateid.required': 'State is Required.'
+      'category.required': 'Category is required.',
+      'country.required': 'Country is required.',
+      'city.required': 'City is required.',
+      'stateid.required': 'State is required.'
     };
 
     validateAll(state, rules, message)
@@ -313,13 +313,13 @@ function ProfileController() {
     };
 
     const message = {
-      'email.required': 'Email is Required.',
+      'email.required': 'Email is required.',
       'email.email': 'please enter valid email.',
       'newPassword.min': 'New Password must be at least 6 characters',
-      'newPassword.required': 'New Password is Required.',
-      'confirmPassword.required': 'Confirm Password is Required.',
+      'newPassword.required': 'New Password is required.',
+      'confirmPassword.required': 'Confirm Password is required.',
       'confirmPassword.same': 'New Password and Confirm Password Must be Same',
-      'currentPassword.required': 'Current Password is Required.'
+      'currentPassword.required': 'Current Password is required.'
     };
 
     validateAll(state, rules, message)

@@ -14,7 +14,7 @@ const SEND_OTP_RULES = {
 };
 
 const SEND_OTP_MESSAGE = {
-  'email.required': 'Email is Required.',
+  'email.required': 'Email is required.',
   'email.email': 'please enter valid email.'
 };
 export default function ForgotPasswordController() {

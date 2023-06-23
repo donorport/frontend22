@@ -422,10 +422,10 @@ const Payments = () => {
       //accountNumber: 'required'
     //};
     //const message = {
-      //'accountHolderType.required': 'AccountHolder Type is Required.',
-      //'accountHolderName.required': 'Category accountHolderName is Required.',
-      //'routingNumber.required': 'Routing Number is Required.',
-      //'accountNumber.required': 'Account Number is Required.'
+      //'accountHolderType.required': 'AccountHolder Type is required.',
+      //'accountHolderName.required': 'Category accountHolderName is required.',
+      //'routingNumber.required': 'Routing Number is required.',
+      //'accountNumber.required': 'Account Number is required.'
     //};
     //validateAll(state, rules, message)
       //.then(async () => {
@@ -595,19 +595,19 @@ const Payments = () => {
         //};
 
         //message = {
-          //'firstName.required': 'First Name is Required.',
-          //'lastName.required': 'Last Name is Required.',
-          //'personalEmail.required': 'Email is Required.',
+          //'firstName.required': 'First Name is required.',
+          //'lastName.required': 'Last Name is required.',
+          //'personalEmail.required': 'Email is required.',
           //'personalEmail.email': 'Please Enter valid Email.',
-          //'dob.required': 'Date of birth is Required.',
-          //'phoneNo.required': 'Phone Number is Required.',
-          //'addLine1.required': 'Address Line 1 is Required.',
-          //'addLine2.required': 'Address Line 2 is Required.',
-          //'stateName.required': 'State is Required.',
-          //'zip.required': 'Zip code is Required.',
-          //'personalIdNumber.required': 'personal Id Number is Required.',
-          //'ssn.required': 'SSN is Required.',
-          //'city.required': 'city is Required.'
+          //'dob.required': 'Date of birth is required.',
+          //'phoneNo.required': 'Phone Number is required.',
+          //'addLine1.required': 'Address Line 1 is required.',
+          //'addLine2.required': 'Address Line 2 is required.',
+          //'stateName.required': 'State is required.',
+          //'zip.required': 'Zip code is required.',
+          //'personalIdNumber.required': 'personal Id Number is required.',
+          //'ssn.required': 'SSN is required.',
+          //'city.required': 'city is required.'
         //};
         //break;
 
@@ -619,9 +619,9 @@ const Payments = () => {
         //};
 
         //message = {
-          //'businessName.required': 'Business Name is Required.',
-          //'businessWebsite.required': 'Business Website is Required.',
-          //'mcc.required': 'MCC is Required.'
+          //'businessName.required': 'Business Name is required.',
+          //'businessWebsite.required': 'Business Website is required.',
+          //'mcc.required': 'MCC is required.'
         //};
 
         //break;
@@ -636,13 +636,13 @@ const Payments = () => {
         //};
 
         //message = {
-          //'accountHolderName.required': 'Accountholder Name is Required.',
-          //'bankEmail.required': 'Email is Required.',
+          //'accountHolderName.required': 'Accountholder Name is required.',
+          //'bankEmail.required': 'Email is required.',
           //'bankEmail.email': 'Please Enter valid Email.',
-          //'routingNumber.required': 'Routing number is Required.',
-          //'accountNumber.required': 'Account number is Required.',
-          //'confirmAccountNumber.required': 'Confirm Account number is Required.',
-          //'confirmAccountNumber.same': 'Account number and Confirm Account Number is Required.'
+          //'routingNumber.required': 'Routing number is required.',
+          //'accountNumber.required': 'Account number is required.',
+          //'confirmAccountNumber.required': 'Confirm Account number is required.',
+          //'confirmAccountNumber.same': 'Account number and Confirm Account Number is required.'
         //};
 
         //break;
@@ -780,9 +780,9 @@ const Payments = () => {
     // }
     const rules = rule;
     const message = {
-      'taxRate.required': 'Tax Rate is Required.',
-      'paymentLoginId.required': 'Api Login Id is Required.',
-      'TransactionKey.required': 'Transaction Key is Required.'
+      'taxRate.required': 'Tax Rate is required.',
+      'paymentLoginId.required': 'Api Login Id is required.',
+      'TransactionKey.required': 'Transaction Key is required.'
     };
     validateAll(state, rules, message)
       .then(async () => {
@@ -855,11 +855,11 @@ const Payments = () => {
     }
 
     let message = {
-      'accEmail.required': 'Email is Required.',
+      'accEmail.required': 'Email is required.',
       'accEmail.email': 'Please enter valid email.',
-      'lname.required': 'Last Name is Required.',
-      'fname.required': 'First Name is Required.',
-      'companyName.required': 'Company Name is Required.'
+      'lname.required': 'Last Name is required.',
+      'fname.required': 'First Name is required.',
+      'companyName.required': 'Company Name is required.'
     };
     validateAll(bankAccount, rules, message)
       .then(async () => {
@@ -991,9 +991,8 @@ const Payments = () => {
             />
             <span className="input__span">Ex: HST/ON 13%</span>
           </label>
-          {state.error && state.error.taxRate && <p className="error">{state.error.taxRate}</p>}
         </div>
-
+        {state.error && state.error.taxRate && <p className="error">{state.error.taxRate}</p>}
         <div className="note text-dark mb-2 fs-6">
           The tax rate will be automatically added to the unit price of items you post to make sure
           you enough funds to cover the sales tax when you purchase the items.

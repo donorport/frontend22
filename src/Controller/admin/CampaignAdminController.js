@@ -38,27 +38,27 @@ const ADD_CAMPAIGN_ADMIN_RULES = {
 };
 
 const ADD_CAMPAIGN_ADMIN_VALIDATION_MESSAGES = {
-  'email.required': 'Email is Required.',
-  'name.required': 'Name is Required.',
+  'email.required': 'Email is required.',
+  'name.required': 'Name is required.',
   'email.email': 'please enter valid email.',
   'password.min': 'Password must be at least 6 characters',
-  'password.required': 'Password is Required.',
+  'password.required': 'Password is required.',
 
-  'logo.required': 'logo is Required.',
-  'description.required': 'description is Required.',
-  'twitter.required': 'Twitter is Required.',
-  'facebook.required': 'Facebook is Required.',
-  'linkedin.required': 'Linkedin is Required.',
-  'url.required': 'Website is Required.',
-  'address.required': 'Address is Required.',
+  'logo.required': 'logo is required.',
+  'description.required': 'description is required.',
+  'twitter.required': 'Twitter is required.',
+  'facebook.required': 'Facebook is required.',
+  'linkedin.required': 'Linkedin is required.',
+  'url.required': 'Website is required.',
+  'address.required': 'Address is required.',
 
-  'category.required': 'Category is Required.',
-  'country.required': 'Country is Required.',
-  'city.required': 'City is Required.',
-  'stateid.required': 'State is Required.',
-  'slug.required': 'Slug is Required',
-  'headline.required': 'Headline is Required',
-  'promoVideo.required': 'Promo Video is Required'
+  'category.required': 'Category is required.',
+  'country.required': 'Country is required.',
+  'city.required': 'City is required.',
+  'stateid.required': 'State is required.',
+  'slug.required': 'Slug is required',
+  'headline.required': 'Headline is required',
+  'promoVideo.required': 'Promo Video is required'
 };
 
 const UPDATE_CAMPAIGN_ADMIN_RULES = {
@@ -78,21 +78,21 @@ const UPDATE_CAMPAIGN_ADMIN_RULES = {
 };
 
 const UPDATE_CAMPAIGN_ADMIN_VALIDATION_MESSAGES = {
-  'email.required': 'Email is Required.',
-  'name.required': 'Name is Required.',
+  'email.required': 'Email is required.',
+  'name.required': 'Name is required.',
   'email.email': 'Please enter a valid email.',
-  'description.required': 'Description is Required.',
-  'twitter.required': 'Twitter is Required.',
-  'facebook.required': 'Facebook is Required.',
-  'linkedin.required': 'Linkedin is Required.',
-  'url.required': 'Website is Required.',
-  'address.required': 'Address is Required.',
-  'category.required': 'Category is Required.',
-  'country.required': 'Country is Required.',
-  'city.required': 'City is Required.',
-  'stateid.required': 'State is Required.',
-  'headline.required': 'Headline is Required',
-  'promoVideo.required': 'Promo Video is Required'
+  'description.required': 'Description is required.',
+  'twitter.required': 'Twitter is required.',
+  'facebook.required': 'Facebook is required.',
+  'linkedin.required': 'Linkedin is required.',
+  'url.required': 'Website is required.',
+  'address.required': 'Address is required.',
+  'category.required': 'Category is required.',
+  'country.required': 'Country is required.',
+  'city.required': 'City is required.',
+  'stateid.required': 'State is required.',
+  'headline.required': 'Headline is required',
+  'promoVideo.required': 'Promo Video is required'
 };
 
 const PAY_TO_ORGANIZATION_RULES = {

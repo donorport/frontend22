@@ -140,10 +140,10 @@ function CmsController() {
         }
 
         const message = {
-            'body.required': 'Body is Required.',
-            'name.required': 'page name is Required.',
-            'description.required': 'Description is Required.',
-            'slug.required': 'Slug is Required.',
+            'body.required': 'Body is required.',
+            'name.required': 'page name is required.',
+            'description.required': 'Description is required.',
+            'slug.required': 'Slug is required.',
 
         }
         validateAll(state, rules, message).then(async () => {

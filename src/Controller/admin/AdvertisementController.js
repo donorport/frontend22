@@ -483,10 +483,10 @@ export default function AdvertisementController() {
     }
 
     const message = {
-      'status.required': 'Status is Required.',
-      'name.required': 'Name is Required.',
-      'website.required': 'Website is Required.',
-      'logo.required': 'Logo is Required.'
+      'status.required': 'Status is required.',
+      'name.required': 'Name is required.',
+      'website.required': 'Website is required.',
+      'logo.required': 'Logo is required.'
     };
     validateAll(state, rules, message)
       .then(async () => {

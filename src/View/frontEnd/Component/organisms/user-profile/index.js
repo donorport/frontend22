@@ -391,14 +391,14 @@ const UserProfile = () => {
     };
 
     const message = {
-      'name.required': 'Name is Required.',
-      'street.required': 'Street is Required.',
-      'zip.required': 'zip is Required.',
-      'stateId.required': 'State is Required.',
-      'city.required': 'City is Required.',
-      'country.required': 'Country is Required.',
-      'language.required': 'Language is Required.',
-      'currency.required': 'Currency is Required.'
+      'name.required': 'Name is required.',
+      'street.required': 'Street is required.',
+      'zip.required': 'zip is required.',
+      'stateId.required': 'State is required.',
+      'city.required': 'City is required.',
+      'country.required': 'Country is required.',
+      'language.required': 'Language is required.',
+      'currency.required': 'Currency is required.'
     };
 
     validateAll(state, rules, message)

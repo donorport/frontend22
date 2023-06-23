@@ -77,10 +77,10 @@ export default function Email(props) {
 
 
         const message = {
-            'host.required': 'Host is Required.',
-            'port.required': 'Port is Required.',
-            'email.required': 'Email is Required.',
-            'password.required': 'Password is Required.',
+            'host.required': 'Host is required.',
+            'port.required': 'Port is required.',
+            'email.required': 'Email is required.',
+            'password.required': 'Password is required.',
 
         }
 

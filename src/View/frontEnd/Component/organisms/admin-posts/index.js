@@ -67,20 +67,20 @@ const DEFAULT_FULFIL_STATE = {
 };
 
 const SUBMIT_PRODUCT_FORM_VALIDATE_MESSAGE = {
-  'status.required': 'Status is Required',
-  'address.required': 'Locations is Required',
-  'needheadline.required': 'Need Headline is Required',
-  'galleryUrl.required': 'gallery Url is Required',
-  'brand.required': 'Brand is Required',
-  'headline.required': 'Headline is Required',
-  'category.required': 'Category is Required',
-  'subcategory.required': 'Subcategory is Required',
-  'description.required': 'Description is Required',
-  'price.required': 'Price is Required',
-  'image.required': 'image is Required',
-  'quantity.required': 'Quantity is Required',
-  'organization.required': 'Organization is Required',
-  'slug.required': 'Slug is Required'
+  'status.required': 'Status is required',
+  'address.required': 'Locations is required',
+  'needheadline.required': 'Need Headline is required',
+  'galleryUrl.required': 'gallery Url is required',
+  'brand.required': 'Brand is required',
+  'headline.required': 'Headline is required',
+  'category.required': 'Category is required',
+  'subcategory.required': 'Subcategory is required',
+  'description.required': 'Description is required',
+  'price.required': 'Price is required',
+  'image.required': 'Product Image is required',
+  'quantity.required': 'Quantity is required',
+  'organization.required': 'Organization is required',
+  'slug.required': 'Slug is required'
 };
 
 // Styles
@@ -1396,7 +1396,7 @@ const AdminPosts = () => {
     }
 
     const message = {
-      'receiptFile.required': 'Receipt is Required'
+      'receiptFile.required': 'Receipt is required'
     };
 
     console.log('~ ~~ validating...', { fulfilState, rules, fulfilProductDetails });

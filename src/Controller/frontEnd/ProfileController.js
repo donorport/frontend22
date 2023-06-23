@@ -56,7 +56,7 @@ export default function ProfileController() {
     };
 
     const message = {
-      'name.required': 'Name is Required.'
+      'name.required': 'Name is required.'
     };
     validateAll(state, rules, message)
       .then(async () => {
@@ -110,13 +110,13 @@ export default function ProfileController() {
     };
 
     const message = {
-      'email.required': 'Email is Required.',
+      'email.required': 'Email is required.',
       'email.email': 'please enter valid email.',
       'new_password.min': 'New Password must be at least 6 characters',
-      'new_password.required': 'New Password is Required.',
-      'cpassword.required': 'Confirm Password is Required.',
+      'new_password.required': 'New Password is required.',
+      'cpassword.required': 'Confirm Password is required.',
       'cpassword.same': 'New Password and Confirm Password Must be Same',
-      'current_password.required': 'Current Password is Required.'
+      'current_password.required': 'Current Password is required.'
     };
     validateAll(state, rules, message)
       .then(async () => {

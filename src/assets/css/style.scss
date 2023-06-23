@@ -47,14 +47,24 @@
   font-family: 'Linotte-Light' !important;
 } */
 
+// .error {
+//   font-size: 90%;
+//   margin-top: 2px;
+//   color: #dc3545 !important;
+//   background: yellow
+// }
 .error {
   font-size: 90%;
-  margin-top: 2px;
-  color: #dc3545 !important;
-  background: yellow
-  /* margin-right: 425px; */
+  // margin: 16px 0;
+  margin: 0 !important;
+  padding: 6px 9px;
+  color: #e61b1b !important;
+  background: #ffe2e2;
+  font-weight: 400;
 }
-
+.input__wrap {
+  margin: 1.6rem 0px 0.6rem;
+}
 .inputerror {
   border-color: #dc3545 !important;
 }
@@ -88,8 +98,8 @@
 
 .react-confirm-alert-overlay {
   background: hsl(0deg 0% 100% / 45%) !important;
-  -webkit-animation: react-confirm-alert-fadeIn .2s .2s forwards;
-  animation: react-confirm-alert-fadeIn .2s .2s forwards;
+  -webkit-animation: react-confirm-alert-fadeIn 0.2s 0.2s forwards;
+  animation: react-confirm-alert-fadeIn 0.2s 0.2s forwards;
 }
 
 .react-confirm-alert-overlay-custom {
@@ -111,7 +121,7 @@
   max-width: 500px;
 }
 
-.react-confirm-alert-body>h1 {
+.react-confirm-alert-body > h1 {
   margin-bottom: 1.3rem;
   text-decoration: underline;
 }
@@ -122,20 +132,20 @@
   justify-content: space-between;
 }
 
-.react-confirm-alert-button-group>button {
+.react-confirm-alert-button-group > button {
   z-index: 9999999999999 !important;
   font-size: 16px;
   padding: 12px 45px;
   font-weight: 900;
 }
 
-.react-confirm-alert-button-group>button:first-child {
+.react-confirm-alert-button-group > button:first-child {
   background-color: unset;
   color: inherit;
   padding: 12px 21px;
 }
 
-.react-confirm-alert-button-group>button:last-child {
+.react-confirm-alert-button-group > button:last-child {
   background-color: #87c387 !important;
   padding: 12px 32px !important;
   color: white;
@@ -336,23 +346,23 @@
 }
 
 .nav-pills .nav-link.active,
-.nav-pills .show>.nav-link {
+.nav-pills .show > .nav-link {
   color: #fff;
   background-color: #00ab55 !important;
 }
 
 .desktop__tab .nav-pills .nav-link.active,
-.nav-pills .show>.nav-link {
+.nav-pills .show > .nav-link {
   color: rgb(44, 75, 255) !important;
   background-color: rgb(213 219 255 / 36%) !important;
-  border: 1px solid transparent!important;
-  border-radius: 4px
+  border: 1px solid transparent !important;
+  border-radius: 4px;
 }
 
-.nav-link,
-.nav-link:hover {
-  color: #00ab55;
-}
+// .nav-link,
+// .nav-link:hover {
+//   color: #00ab55;
+// }
 
 .img100px {
   width: 100px !important;
@@ -464,7 +474,7 @@
   -webkit-appearance: none;
   appearance: none;
   box-shadow: none;
-  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   min-height: calc(1.25em + 1.5rem + 2px);
   padding: 0.75rem 1.25rem;
   font-size: 1rem;
@@ -472,7 +482,7 @@
 }
 
 .ReactTags__tagInputField::placeholder {
-  color: rgba(0, 0, 0, .2509803922);
+  color: rgba(0, 0, 0, 0.2509803922);
   font-weight: 400;
   font-size: 14px;
 }
@@ -550,7 +560,7 @@ button.ReactTags__remove {
   align-content: stretch;
 }
 
-.input-group>input {
+.input-group > input {
   flex: 1 0 auto;
 }
 
@@ -658,23 +668,23 @@ button.ReactTags__remove {
   transition: 0.2s;
 }
 
-.--switch input:checked+.--slider .fa-check {
+.--switch input:checked + .--slider .fa-check {
   display: block;
 }
 
-.--switch input:checked+.--slider .fa-times {
+.--switch input:checked + .--slider .fa-times {
   display: none;
 }
 
-.--switch input:checked+.--slider {
+.--switch input:checked + .--slider {
   background-color: #52b69a;
 }
 
-.--switch input:focus+.--slider {
+.--switch input:focus + .--slider {
   box-shadow: 0 0 1px #52b69a;
 }
 
-.--switch input:checked+.--slider:before {
+.--switch input:checked + .--slider:before {
   -webkit-transform: translateX(25px);
   -ms-transform: translateX(25px);
   transform: translateX(25px);
@@ -718,12 +728,14 @@ button.ReactTags__remove {
 }
 
 #insta {
-  background: radial-gradient(circle at 30% 107%,
-      #fdf497 0%,
-      #fdf497 5%,
-      #fd5949 45%,
-      #d6249f 60%,
-      #285aeb 90%);
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
   -webkit-background-clip: text;
   /* Also define standard property for compatibility */
   background-clip: text;
@@ -745,7 +757,6 @@ button.ReactTags__remove {
 }
 
 @include media-breakpoint-down(sm) {
-
   .filter__dropdown,
   .geo__dropdown {
     overflow: hidden !important;
@@ -896,7 +907,7 @@ a.MuiListItemButton-root.active:focus {
 }
 
 .input__span,
-.input__label textarea:focus+.input__span {
+.input__label textarea:focus + .input__span {
   transform: translatey(-23px) !important;
   outline: none;
 }
@@ -914,8 +925,8 @@ a.MuiListItemButton-root.active:focus {
   width: unset !important;
 }
 
-.btn-check:checked+.btn,
-.btn-check:active+.btn,
+.btn-check:checked + .btn,
+.btn-check:active + .btn,
 .btn:active,
 .btn.active {
   box-shadow: unset !important;
@@ -1109,7 +1120,7 @@ a.MuiListItemButton-root.active:focus {
   box-shadow: 0px 3px 5px 0px #e8e8e8;
 }
 
-.plans .plan input[type='radio']:checked+.plan-content:after {
+.plans .plan input[type='radio']:checked + .plan-content:after {
   /* content: ""; */
   position: absolute;
   height: 8px;
@@ -1123,7 +1134,7 @@ a.MuiListItemButton-root.active:focus {
   box-shadow: 0px 0px 0px 2px #0066ff;
 }
 
-.plans .plan input[type='radio']:checked+.plan-content {
+.plans .plan input[type='radio']:checked + .plan-content {
   border: 2px solid #216ee0;
   background: #eaf1fe;
   -webkit-transition: ease-in 0.3s;
@@ -1157,7 +1168,7 @@ a.MuiListItemButton-root.active:focus {
     display: inline-block;
   }
 
-  .plans .plan input[type='radio']:checked+.plan-content:after {
+  .plans .plan input[type='radio']:checked + .plan-content:after {
     top: 45%;
     -webkit-transform: translate(-50%);
     -ms-transform: translate(-50%);
@@ -1173,7 +1184,6 @@ a.MuiListItemButton-root.active:focus {
 }
 
 @media screen and (max-width: 540px) {
-
   /*  .activity__dropdown {
     transform: translatey(75px) !important;
   }
@@ -1188,7 +1198,7 @@ a.MuiListItemButton-root.active:focus {
     transition: height 0.4s;
   }
 
-  .plans .plan input[type='radio']:checked+.plan-content:after {
+  .plans .plan input[type='radio']:checked + .plan-content:after {
     top: 20px;
     right: 10px;
   }
@@ -1232,7 +1242,16 @@ li.search__tag {
 .search__tag span {
   text-transform: lowercase;
 }
-
+.search__container input {
+  background: #ffffff00 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.search__container input:focus {
+  outline: none !important;
+  text-decoration: none !important;
+  border: none !important
+}
 .search__container li a {
   position: absolute;
   top: 0;

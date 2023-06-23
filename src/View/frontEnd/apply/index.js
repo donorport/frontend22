@@ -79,7 +79,7 @@ const Apply = (props) => {
 
             <div>
               {!props.isApplied ? (
-                <Form className="mb-5 pb-5 mw-400" autocomplete="off">
+                <Form className="d-flex flex-column mb-5 pb-5 mw-400" autocomplete="off">
                   {/*    <div className="py-1 d-flex justify-content-between fs-4 mb-3">
                     <RadioToggle
                       outline={true}
@@ -497,6 +497,11 @@ const InputContainer = ({ type, name, value, autoComplete, onChange, label, erro
           name={name}
           value={value}
           onChange={onChange}
+          className={
+            error && error?.[name]
+              ? 'inputerror'
+              : ''
+          }
         />
         <span className="input__span">{label}</span>
       </label>

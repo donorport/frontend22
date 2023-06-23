@@ -92,8 +92,8 @@ export default function PricingFees(props) {
         // }
 
         const message = {
-            'platformFee.required': 'Platform Fee is Required.',
-            'transactionFee.required': 'Transaction Fee is Required.',
+            'platformFee.required': 'Platform Fee is required.',
+            'transactionFee.required': 'Transaction Fee is required.',
 
         }
 
