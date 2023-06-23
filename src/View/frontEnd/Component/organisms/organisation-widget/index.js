@@ -12,19 +12,22 @@ import ToggleSwitch from '../../atoms/toggle-switch';
 
 import OrganisationItem from '../../molecules/org-item';
 import './style.scss';
-import helper, { getCalculatedPrice, countInArray } from '../../../../../Common/Helper';
+import //helper, 
+{ 
+  getCalculatedPrice, 
+  //countInArray 
+} from '../../../../../Common/Helper';
 import cartApi from '../../../../../Api/frontEnd/cart';
 import { useSelector, useDispatch } from 'react-redux';
 import { setIsUpdateCart } from '../../../../../user/user.action';
 import { useNavigate } from 'react-router-dom';
-import OrganisationDetail from 'src/View/frontEnd/organisation-detail';
 
 function OrganisationWidget(props) {
   const [check, setCheck] = useState(false);
   const [loadMore, setLoadMore] = useState(false);
   const [price, setPrice] = useState();
   const [cartProductList, setCartProductList] = useState([]);
-  const [cartProductIds, setCartProductIds] = useState([]);
+  //const [cartProductIds, setCartProductIds] = useState([]);
   const [availabileProducts, setAvailabileProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
 
@@ -37,13 +40,14 @@ function OrganisationWidget(props) {
   let productDetails = props.productDetails;
   let currencySymbol = getCalc.currencySymbol();
   const { organizationName } = props;
-  function getOccurrence(array, value) {
-    let count = 0;
-    // array.forEach((v) => (v === value && count++));
-    // return count;
-    count = array.filter((x) => x === value).length;
-    return count;
-  }
+
+  //function getOccurrence(array, value) {
+    //let count = 0;
+    //// array.forEach((v) => (v === value && count++));
+    //// return count;
+    //count = array.filter((x) => x === value).length;
+    //return count;
+  //}
 
   useEffect(() => {
     (async () => {
@@ -53,14 +57,14 @@ function OrganisationWidget(props) {
         let tempnotw = [];
 
         if (props.tagTitle === 'Project') {
-          productDetails.map((product, i) => {
+          productDetails.map((product) => {
             // obj[product?.itemDetails?._id] = getCalc.getData(product?.itemDetails?.price)
             obj[product?.itemDetails?._id] = product?.itemDetails?.displayPrice
               ? product?.itemDetails?.displayPrice
               : product?.itemDetails?.price;
           });
         } else {
-          productDetails.map((product, i) => {
+          productDetails.map((product) => {
             // console.log(product)
             // obj[product._id] = getCalc.getData(product?.price)
             obj[product._id] = product?.displayPrice ? product?.displayPrice : product?.price;
@@ -136,12 +140,12 @@ function OrganisationWidget(props) {
       let tempP = [];
       let tempnotw = [];
       if (productDetails.length > 0) {
-        productDetails.map((pr, i) => {
+        productDetails.map((pr) => {
           let product = pr;
 
           let infinite =
             props.tagTitle === 'Project' ? product?.itemDetails?.unlimited : product?.unlimited;
-          let tax = props.tagTitle === 'Project' ? product?.itemDetails?.tax : product?.tax;
+          //let tax = props.tagTitle === 'Project' ? product?.itemDetails?.tax : product?.tax;
 
           let soldout =
             props.tagTitle === 'Project' ? product?.itemDetails?.soldout : product?.soldout;
@@ -195,7 +199,7 @@ function OrganisationWidget(props) {
       // console.log(p)
 
       if (p.length > 0) {
-        p.map((itm, key) => {
+        p.map((itm) => {
           let price1;
 
           if (props.tagTitle === 'Project') {
@@ -352,7 +356,7 @@ function OrganisationWidget(props) {
             // console.log('after', p)
 
             if (p.length > 0) {
-              p.map((itm, key) => {
+              p.map((itm) => {
                 let price3;
 
                 if (props.tagTitle === 'Project') {
@@ -375,7 +379,7 @@ function OrganisationWidget(props) {
 
                     cartTotal += price3;
                   } else {
-                    let counts = {};
+                    //let counts = {};
                     // cart?.forEach(function (x) { counts[x] = (counts[x] || 0) + 1 })
                     let checkQ =
                       props.tagTitle === 'Project'
@@ -422,7 +426,7 @@ function OrganisationWidget(props) {
       if (cartProductList.length > 0) {
         let data = {};
         let tempArray = [];
-        cartProductList.map((itm, i) => {
+        cartProductList.map((itm) => {
           let tempobj = {};
           if (tempArray.some((e) => e.productId === itm)) {
             let objIndex = tempArray.findIndex((obj) => obj.productId === itm);

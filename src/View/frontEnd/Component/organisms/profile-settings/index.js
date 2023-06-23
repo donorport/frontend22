@@ -26,12 +26,12 @@ import './style.scss';
 import formatUrlWithHttp from '../../../../../utils/formatUrl';
 import Box from '@mui/material/Box';
 
-const imageuploadwrap = {
+const IMAGE_UPLOAD_WRAP_STYLES = {
   marginTop: '20px',
   position: 'relative',
   width: '100%'
 };
-const fileuploadinput = {
+const FILE_UPLOAD_INPUT_STYLES = {
   position: 'absolute',
   margin: 0,
   padding: 0,
@@ -42,9 +42,33 @@ const fileuploadinput = {
   cursor: 'pointer'
 };
 
-const validExtensions = ['jpg', 'png', 'jpeg', 'gif'];
+const VALID_GALLARY_IMAGE_EXTENSIONS = ['jpg', 'png', 'jpeg', 'gif'];
+const VALID_MAIN_IMAGE_FILE_EXTENSIONS = ['jpg', 'png', 'jpeg', 'svg'];
+
+const UPDATE_PROFILE_VALIDATION_RULES = {
+  name: 'required',
+  // mission: 'required',
+  //promoVideo: "required",
+  //city: 'required',
+  stateId: 'required',
+  country: 'required',
+  category: 'required',
+  ein: 'required'
+};
+
+const UPDATE_PROFILE_VALIDATION_MESSAGES = {
+  'name.required': 'Organization Name is Required.',
+  'mission.required': 'Mission is Required.',
+  'promoVideo.required': 'Promo Video is Required.',
+  'ein.required': 'Charity Registration Number is Required.',
+  'stateId.required': 'State is Required.',
+  'city.required': 'City is Required.',
+  'country.required': 'Country is Required.',
+  'category.required': 'Category is Required.'
+};
 
 const ProfileSettings = () => {
+  let timeoutId;
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -253,50 +277,58 @@ const ProfileSettings = () => {
       // console.log(URL.createObjectURL(file))
     }
   };
-  const VALID_IMAGE_FILE_EXTENSIONS = ['jpg', 'png', 'jpeg', 'svg'];
+
+  // clear the timeout
+  useEffect(() => {
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    }
+  }, []);
+
   // used when uploading a file, saves the file to state
   const changeMainImg = async (e) => {
     const file = e.target.files[0] ? e.target.files[0] : '';
     setLoadingId(true);
     const isFileHaveAlpha = await hasAlpha(file);
     let extension = file.name.substr(file.name.lastIndexOf('.') + 1);
-    setTimeout(() => {
-      if (VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
-        if (!isFileHaveAlpha) {
-          setLoadingId(false);
-          const formData = new FormData();
-          formData.append('image_file', file);
-          formData.append('size', 'auto');
-
-          fetch('https://api.remove.bg/v1.0/removebg', {
-            method: 'POST',
-            headers: {
-              'X-API-Key': 'DAbtpKuv6tt8wzNJP7Qua5jy'
-            },
-            body: formData
-          })
-            .then((response) => response.blob())
-            .then((result) => {
-              const modifiedFile = new File([result], file.name, { type: 'image/png' });
-              setTempImg(URL.createObjectURL(modifiedFile));
-              setState({ ...state, logo: modifiedFile });
-              setLoadingId(false);
-            })
-            .catch((error) => {
-              console.error('Failed to remove background:', error);
-              setState({ ...state, logo: '' });
-              setLoadingId(false);
-            });
-        } else {
-          setTempImg(URL.createObjectURL(file));
-          setState({ ...state, logo: file });
-          setLoadingId(false);
-        }
-      } else {
+    if (timeoutId) clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      if (!VALID_MAIN_IMAGE_FILE_EXTENSIONS.includes(extension)) {
         setState({ ...state, logo: '' });
         setTempImg('');
         setLoadingId(false);
+        return;
       }
+      if (isFileHaveAlpha) {
+        setTempImg(URL.createObjectURL(file));
+        setState({ ...state, logo: file });
+        setLoadingId(false);
+        return;
+      }
+      setLoadingId(false);
+      const formData = new FormData();
+      formData.append('image_file', file);
+      formData.append('size', 'auto');
+
+      fetch('https://api.remove.bg/v1.0/removebg', {
+        method: 'POST',
+        headers: {
+          'X-API-Key': 'DAbtpKuv6tt8wzNJP7Qua5jy'
+        },
+        body: formData
+      })
+        .then((response) => response.blob())
+        .then((result) => {
+          const modifiedFile = new File([result], file.name, { type: 'image/png' });
+          setTempImg(URL.createObjectURL(modifiedFile));
+          setState({ ...state, logo: modifiedFile });
+        })
+        .catch((error) => {
+          console.error('Failed to remove background:', error);
+          setState({ ...state, logo: '' });
+        }).finally(() => {
+          setLoadingId(false);
+        });
     }, 2500);
   };
 
@@ -443,7 +475,7 @@ const ProfileSettings = () => {
     };
 
     let tempGallery = [...viewGalleryImages];
-    validateAll(state, rules, message)
+    validateAll(state, UPDATE_PROFILE_VALIDATION_RULES, UPDATE_PROFILE_VALIDATION_MESSAGES)
       .then(async () => {
         const formaerrror = {};
         setState({
@@ -535,19 +567,17 @@ const ProfileSettings = () => {
             const deleteUser = await adminCampaignApi.deleteCampaignAdmin(token, id);
             if (deleteUser) {
               if (!deleteUser.data.success) {
-                setLoading(false);
                 ToastAlert({ msg: deleteUser.data.message, msgType: 'error' });
               } else {
                 dispatch(setLogout());
                 navigate('/signin');
                 //
-                setLoading(false);
                 ToastAlert({ msg: deleteUser.data.message, msgType: 'success' });
               }
             } else {
-              setLoading(false);
               ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
             }
+            setLoading(false);
           }
         }
       ]
@@ -569,7 +599,7 @@ const ProfileSettings = () => {
       let tempMainFileArry = [];
       for (let i = 0; i < files.length; i++) {
         let extension = files[i].name.substr(files[i].name.lastIndexOf('.') + 1);
-        if (validExtensions.includes(extension)) {
+        if (VALID_GALLARY_IMAGE_EXTENSIONS.includes(extension)) {
           tempMainFileArry.push(files[i]);
           mImgtempArry.push(URL.createObjectURL(files[i]));
         }
@@ -630,8 +660,8 @@ const ProfileSettings = () => {
                 />
               </div>
             ) : (
-              <></>
-            )}
+                <></>
+              )}
           </div>
           {loadingId ? (
             <Box sx={{ width: '100%' }}>
@@ -645,13 +675,13 @@ const ProfileSettings = () => {
               </div>
             </Box>
           ) : (
-            <div className="d-flex note note--info my-3 fs-6">
-              <span className="text-dark">
-                Upload an image of the product with a transparent background. Accepted file formats:{' '}
-                <a className="link">png, jpg, svg</a>
-              </span>
-            </div>
-          )}
+              <div className="d-flex note note--info my-3 fs-6">
+                <span className="text-dark">
+                  Upload an image of the product with a transparent background. Accepted file formats:{' '}
+                  <a className="link">png, jpg, svg</a>
+                </span>
+              </div>
+            )}
         </div>
 
         <div className="input__wrap mb-3">
@@ -845,32 +875,32 @@ const ProfileSettings = () => {
             {viewGalleryImages?.length >= MAX_IMAGE_LENGTH ? (
               <p className="image-upload-wrap mb-3 fs-5">Maximum Images Allowed (5) Reached</p>
             ) : (
-              <div
-                className="image-upload-wrap fs-2"
-                style={{
-                  ...imageuploadwrap,
-                  backgroundColor: '#e5f4ff',
-                  borderRadius: '9px',
-                  border: '2px dashed rgba(62, 170, 255, 0.58)',
-                  fontSize: '60px'
-                }}
-              >
-                <input
-                  className="file-upload-input"
-                  type="file"
-                  name="moreImg[]"
-                  id="moreImg"
-                  accept=".jpg,.gif,.png"
-                  multiple
-                  onChange={onGalleryImagesChange}
-                  style={fileuploadinput}
-                />
-                <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
-                  <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
-                  <h3 style={{ fontSize: 'inherit' }}>Drag and drop or Select File</h3>
+                <div
+                  className="image-upload-wrap fs-2"
+                  style={{
+                    ...IMAGE_UPLOAD_WRAP_STYLES,
+                    backgroundColor: '#e5f4ff',
+                    borderRadius: '9px',
+                    border: '2px dashed rgba(62, 170, 255, 0.58)',
+                    fontSize: '60px'
+                  }}
+                >
+                  <input
+                    className="file-upload-input"
+                    type="file"
+                    name="moreImg[]"
+                    id="moreImg"
+                    accept=".jpg,.gif,.png"
+                    multiple
+                    onChange={onGalleryImagesChange}
+                    style={FILE_UPLOAD_INPUT_STYLES}
+                  />
+                  <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
+                    <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
+                    <h3 style={{ fontSize: 'inherit' }}>Drag and drop or Select File</h3>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
             <div className="grid w-100">
               {viewGalleryImages?.length ? (
                 viewGalleryImages.map((img, key) => {
@@ -907,29 +937,29 @@ const ProfileSettings = () => {
                           style={{
                             backgroundImage: `url(${
                               helper.CampaignAdminGalleryFullPath + img.image
-                            })`
+                              })`
                             // width: '100px',
                             // height: '100px'
                           }}
                           alt="gallery"
                         ></div>
                       ) : (
-                        <div
-                          className="gallery__img"
-                          style={{
-                            backgroundImage: `url(${img ? img : noImg})`
-                            // width: '100px',
-                            // height: '100px'
-                          }}
-                          alt="lk"
-                        ></div>
-                      )}
+                          <div
+                            className="gallery__img"
+                            style={{
+                              backgroundImage: `url(${img ? img : noImg})`
+                              // width: '100px',
+                              // height: '100px'
+                            }}
+                            alt="lk"
+                          ></div>
+                        )}
                     </div>
                   );
                 })
               ) : (
-                <></>
-              )}
+                  <></>
+                )}
             </div>
           </div>
         </div>

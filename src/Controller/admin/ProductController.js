@@ -13,6 +13,25 @@ import authApi from '../../Api/admin/auth';
 import { hasPermission } from '../../Common/Helper';
 import projectApi from '../../Api/admin/project';
 
+
+const SUBMIT_PRODUCT_FORM_VALIDATION_MESSAGES = {
+  'status.required': 'Status is required',
+  'needheadline.required': 'Need Headline is required',
+  'address.required': 'Location is required',
+  // 'galleryUrl.required': 'gallery Url is Required',
+
+  'brand.required': 'Brand is required',
+  'headline.required': 'Headline is required',
+  'category.required': 'Category is Required',
+  'subcategory.required': 'Subcategory is required',
+  'description.required': 'Description is required',
+  'price.required': 'Price is required',
+  'image.required': 'Image is required',
+  // 'quantity.required': 'Quantity is Required',
+  'organization.required': 'Organization is required',
+  'slug.required': 'Slug is required'
+};
+
 function ProductController() {
   const validExtensions = ['jpg', 'png', 'jpeg'];
 
@@ -119,21 +138,19 @@ function ProductController() {
 
       //Product List
       //----------------------------------
-      let temp = [];
       const getproductList = await productApi.list(adminAuthToken);
       if (getproductList.data.success === true) {
+        let temp = getproductList.data.data;
         if (adminData.roleName === 'CAMPAIGN_ADMIN') {
           if (getproductList.data.data.length > 0) {
-            getproductList.data.data.map((p) => {
+            temp = getproductList.data.data.map((p) => {
               if (p.organizationId === adminData.id) {
-                temp.push(p);
+                return p;
               }
             });
-            setProductList(temp);
           }
-        } else {
-          setProductList(getproductList.data.data);
         }
+        setProductList(temp);
       }
       // setUpdate(true)
 
@@ -484,58 +501,32 @@ function ProductController() {
         formaerror['galleryImg'] = "Please select more than one image";
       }
     }
-  
-    let rules;
+
+    const rules = {
+      brand: 'required',
+      needheadline: 'required',
+      status: 'required',
+      headline: 'required',
+      category: 'required',
+      subcategory: 'required',
+      description: 'required',
+      price: 'required',
+      // galleryUrl: 'required',
+      // quantity: 'required',
+      // slug: 'required'
+    };
+
     if (id) {
-      rules = {
-        brand: 'required',
-        location: 'required',
-        needheadline: 'required',
-        // galleryUrl: 'required',
-        status: 'required',
-        headline: 'required',
-        category: 'required',
-        subcategory: 'required',
-        description: 'required',
-        price: 'required',
-        // quantity: 'required',
-        organization: 'required'
-        // slug: 'required'
-      };
+      rules.lat = 'required';
+      rules.lng = 'required';
+      rules.organization = 'required';
     } else {
-      if (adminData.roleName === 'CAMPAIGN_ADMIN') {
-        rules = {
-          brand: 'required',
-          needheadline: 'required',
-          address: 'required',
-          // galleryUrl: 'required',
-          status: 'required',
-          headline: 'required',
-          category: 'required',
-          subcategory: 'required',
-          description: 'required',
-          price: 'required',
-          image: 'required',
-          // quantity: 'required',
-          slug: 'required'
-        };
-      } else {
-        rules = {
-          brand: 'required',
-          needheadline: 'required',
-          address: 'required',
-          // galleryUrl: 'required',
-          status: 'required',
-          headline: 'required',
-          category: 'required',
-          subcategory: 'required',
-          description: 'required',
-          price: 'required',
-          image: 'required',
-          // quantity: 'required',
-          organization: 'required',
-          slug: 'required'
-        };
+      rules.address = 'required';
+      rules.image = 'required';
+      rules.slug = 'required';
+
+      if (adminData.roleName !== 'CAMPAIGN_ADMIN') {
+        rules.organization = 'required';
       }
     }
   
@@ -558,17 +549,18 @@ function ProductController() {
     };
   
     try {
-      await validateAll(state, rules, message);
+      const res = await validateAll(state, rules, SUBMIT_PRODUCT_FORM_VALIDATION_MESSAGES);
+
       setLoading(true);
-      console.log("Validate?");
+      console.log("Validate?:", {res});
       // const formaerrror = {};
       setstate({
         ...state,
         error: formaerror
       });
-  
+
       let data = {};
-  
+
       // data.title = title
       // data.subtitle = subtitle
       data.status = status;
@@ -579,7 +571,7 @@ function ProductController() {
       data.unlimited = unlimited;
       data.tax = tax;
       data.postTag = postTag;
-  
+
       if (image) {
         data.image = image;
       }
@@ -597,7 +589,7 @@ function ProductController() {
           tagsArray.push(ptage.id);
         });
       }
-  
+
       if (moreImg?.length > 0) {
         data.moreImg = moreImg;
       }
@@ -607,19 +599,19 @@ function ProductController() {
       if (seletedProjectList?.length > 0) {
         data.prjects = seletedProjectList;
       }
-  
+
       if (address) {
         data.address = address;
       }
-  
+
       if (lat) {
         data.lat = lat;
       }
-  
+
       if (lng) {
         data.lng = lng;
       }
-  
+
       data.organizationCountryId = organizationCountryId;
       data.price = price;
       data.description = description;
@@ -629,7 +621,7 @@ function ProductController() {
       data.tags = tagsArray;
       if (Object.keys(formaerror).length === 0) {
         // }
-  
+
         let addProduct;
         // Api Call for update Profile
         setLoading(false);
@@ -638,26 +630,22 @@ function ProductController() {
         } else {
           addProduct = await productApi.add(adminAuthToken, data);
         }
-  
+
         if (addProduct) {
           if (addProduct.data.success === false) {
-            setLoading(false);
             ToastAlert({ msg: addProduct.data.message, msgType: 'error' });
           } else {
             if (addProduct.data.success === true) {
               resetForm();
-              setLoading(false);
               setUpdate(!update);
               ToastAlert({ msg: addProduct.data.message, msgType: 'success' });
             }
           }
         } else {
-          setLoading(false);
           ToastAlert({ msg: 'Product not save', msgType: 'error' });
         }
       }
     } catch (errors) {
-      setLoading(false);
       // console.log(errors)
       // const formaerrror = {};
       if (errors.length) {
@@ -667,14 +655,17 @@ function ProductController() {
       } else {
         ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
       }
-  
+
+      console.log({errors, formaerror});
       setstate({
         ...state,
         error: formaerror
       });
+    } finally {
+      setLoading(false);
     }
   };
-  
+
 
   const deleteProduct = (id) => {
     confirmAlert({

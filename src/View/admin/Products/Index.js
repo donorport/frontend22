@@ -104,11 +104,27 @@ export default function Index(props) {
       button: true
     }
   ];
+
   const data = [];
   if (props.productList && props.productList.length > 0) {
     props.productList.map((user) => {
       data.push(user);
     });
+
+    const log_data_indicesWithoutLatLng = data.reduce((accum, item, index) => {
+      if (item.lat === '' && item.lng === '') {
+        const newIndices = accum.indices;
+        newIndices.push(index);
+
+        const newItems = accum.items;
+        newItems.push(item);
+
+        return {indices: newIndices, items: newItems};
+      }
+      return accum;
+    }, {indices: [], items: []})
+
+    console.log({data, log_data_indicesWithoutLatLng});
   }
 
   const tableData = {
