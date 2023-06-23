@@ -32,8 +32,9 @@ const SUBMIT_PRODUCT_FORM_VALIDATION_MESSAGES = {
   'slug.required': 'Slug is required'
 };
 
+const VALID_IMAGE_EXTENSIONS = ['jpg', 'png', 'jpeg'];
+
 function ProductController() {
-  const validExtensions = ['jpg', 'png', 'jpeg'];
 
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -84,6 +85,7 @@ function ProductController() {
     postTag: false,
     organizationCountryId: '',
     galleryImg: [],
+    media: false,
 
     organizationLocation: '',
     locationName: '',
@@ -115,10 +117,13 @@ function ProductController() {
     tax,
     postTag,
     organizationCountryId,
+    media,
+    displayPrice,
     lat,
     lng
     //locationName
   } = state;
+  console.log('ProductController render:', { state });
 
   const [tags, setTags] = useState([]);
 
@@ -151,6 +156,7 @@ function ProductController() {
           }
         }
         setProductList(temp);
+        console.log({ temp });
       }
       // setUpdate(true)
 
@@ -325,7 +331,7 @@ function ProductController() {
 
       if (file) {
         let extension = file.name.substr(file.name.lastIndexOf('.') + 1);
-        if (validExtensions.includes(extension)) {
+        if (VALID_IMAGE_EXTENSIONS.includes(extension)) {
           setTempImg(URL.createObjectURL(file));
           setstate({
             ...state,
@@ -356,7 +362,7 @@ function ProductController() {
           let extension = gImgtempObj[0][i].name.substr(
             gImgtempObj[0][i].name.lastIndexOf('.') + 1
           );
-          if (validExtensions.includes(extension)) {
+          if (VALID_IMAGE_EXTENSIONS.includes(extension)) {
             tempGallaryFileArry.push(gImgtempObj[0][i]);
             gImgtempArry.push(URL.createObjectURL(gImgtempObj[0][i]));
           }
@@ -378,7 +384,7 @@ function ProductController() {
           let extension = mImgtempObj[0][i].name.substr(
             mImgtempObj[0][i].name.lastIndexOf('.') + 1
           );
-          if (validExtensions.includes(extension)) {
+          if (VALID_IMAGE_EXTENSIONS.includes(extension)) {
             tempMainFileArry.push(mImgtempObj[0][i]);
             mImgtempArry.push(URL.createObjectURL(mImgtempObj[0][i]));
           }
@@ -530,13 +536,13 @@ function ProductController() {
       }
     }
 
-    console.log({state, rules}); // lat, lng are empty in state
+    console.log({ state, rules }); // lat, lng are empty in state
 
     try {
       const res = await validateAll(state, rules, SUBMIT_PRODUCT_FORM_VALIDATION_MESSAGES);
 
       setLoading(true);
-      console.log("Validate?:", {res});
+      console.log("Validate?:", { res });
       // const formaerrror = {};
       setstate({
         ...state,
@@ -555,6 +561,8 @@ function ProductController() {
       data.unlimited = unlimited;
       data.tax = tax;
       data.postTag = postTag;
+      data.media = media;
+      data.displayPrice = displayPrice;
 
       if (image) {
         data.image = image;
@@ -603,31 +611,32 @@ function ProductController() {
       data.subcategory_id = subcategory;
       data.quantity = quantity;
       data.tags = tagsArray;
-      if (Object.keys(formaerror).length === 0) {
-        // }
-
-        let addProduct;
-        // Api Call for update Profile
+      if (Object.keys(formaerror).length !== 0) {
         setLoading(false);
-        if (id !== '') {
-          addProduct = await productApi.updateProduct(adminAuthToken, data, id);
-        } else {
-          addProduct = await productApi.add(adminAuthToken, data);
-        }
+        return;
+      }
 
-        if (addProduct) {
-          if (addProduct.data.success === false) {
-            ToastAlert({ msg: addProduct.data.message, msgType: 'error' });
-          } else {
-            if (addProduct.data.success === true) {
-              resetForm();
-              setUpdate(!update);
-              ToastAlert({ msg: addProduct.data.message, msgType: 'success' });
-            }
-          }
+      let addProduct;
+      // Api Call for update Profile
+      setLoading(false);
+      if (id !== '') {
+        addProduct = await productApi.updateProduct(adminAuthToken, data, id);
+      } else {
+        addProduct = await productApi.add(adminAuthToken, data);
+      }
+
+      if (addProduct) {
+        if (addProduct.data.success === false) {
+          ToastAlert({ msg: addProduct.data.message, msgType: 'error' });
         } else {
-          ToastAlert({ msg: 'Product not save', msgType: 'error' });
+          if (addProduct.data.success === true) {
+            resetForm();
+            setUpdate(!update);
+            ToastAlert({ msg: addProduct.data.message, msgType: 'success' });
+          }
         }
+      } else {
+        ToastAlert({ msg: 'Product not save', msgType: 'error' });
       }
     } catch (errors) {
       // console.log(errors)
@@ -640,7 +649,7 @@ function ProductController() {
         ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
       }
 
-      console.log({errors, formaerror});
+      console.log({ errors, formaerror });
       setstate({
         ...state,
         error: formaerror
@@ -693,12 +702,17 @@ function ProductController() {
   const editProduct = async (productData) => {
     setLoading(true);
     if (productData && productData !== null && productData !== '') {
+      console.log('editing product:', { productData });
       setModal(true);
       setstate({
+        address: productData.address ?? '',
+        brand: productData.brand,
+        //campaignDetails: productData.campaignDetails,
+        //categoryDetails: productData.categoryDetails,
+
         id: productData._id,
         status: productData.status,
         headline: productData.headline,
-        brand: productData.brand,
         category: productData.categoryId,
         subcategory: productData.subcategoryId,
         description: productData.description,
@@ -709,76 +723,52 @@ function ProductController() {
         needheadline: productData.needheadline,
         galleryUrl: productData.galleryUrl,
 
+        media: productData.media,
+        displayPrice: productData.displayPrice,
+
         unlimited: productData.unlimited,
         tax: productData.tax,
         postTag: productData.postTag,
 
-        address: productData.address ? productData.address : '',
         lat: productData.lat ? productData.lat : '',
         lng: productData.lng ? productData.lng : ''
-        // address: productData.address ? productData.address : "",
       });
 
       if (productData.organizationId) {
         await orgProjectList(productData.organizationId);
       }
 
-      let tempProjectArray = [];
       if (productData.projectDetails.length > 0) {
-        productData.projectDetails.map((project) => {
-          tempProjectArray.push(project.projectId);
+        const tempProjectArray = productData.projectDetails.map((project) => {
+          return project.projectId;
         });
         setSeletedProjectList(tempProjectArray);
       }
 
-      let tempMImgArray = [];
-
       if (productData.imageDetails.length > 0) {
-        productData.imageDetails.map((img) => {
-          if (img.type === 'moreImage') {
-            tempMImgArray.push(img.image);
-          }
+        const tempMoreImgArray = productData.imageDetails.filter((img) => {
+          return (img.type === 'moreImage');
         });
-        setMoreImages(tempMImgArray);
+        setMoreImages(tempMoreImgArray);
       }
 
-      let tempGImgArray = [];
-
       if (productData.imageDetails.length > 0) {
-        productData.imageDetails.map((img) => {
-          if (img.type === 'galleryImage') {
-            tempGImgArray.push(img.image);
-          }
+        const tempGallaryImgArray = productData.imageDetails.filter((img) => {
+          return (img.type === 'galleryImage');
         });
-        setGallaryImages(tempGImgArray);
+        setGallaryImages(tempGallaryImgArray);
       }
 
-      // let mytags = []
-      // let addedTags = [];
-      // if (productData.tags !== null && productData.tags !== '' && productData.tags !== undefined) {
-      //     addedTags = productData.tags.split(',');
-      // }
-      // addedTags.map((aadedTag, i) => {
-      //     let tagsObj = {}
-      //     tagsObj.id = aadedTag
-      //     tagsObj.text = aadedTag
-      //     mytags.push(tagsObj)
-      // })
-      // setTags(mytags)
-
-      let mytags = [];
-      let addedTags = [];
       if (productData.tags.length > 0) {
-        addedTags = productData.tags;
-
-        addedTags.map((aadedTag) => {
-          let tagsObj = {};
-          tagsObj.id = aadedTag;
-          tagsObj.text = aadedTag;
-          mytags.push(tagsObj);
+        const myTags = productData.tags.map((aadedTag) => {
+          return {
+            id: aadedTag,
+            text: aadedTag,
+          }
         });
-        setTags(mytags);
+        setTags(myTags);
       }
+
       setImg(productData.image);
 
       const getsubCategoryList = await categoryApi.listSubCategory(
@@ -788,14 +778,13 @@ function ProductController() {
       if (getsubCategoryList.data.success === true) {
         setSubCategoryList(getsubCategoryList.data.data);
       }
-      setLoading(false);
     } else {
-      setLoading(false);
       ToastAlert({
         msg: 'Something went wrong category data not found please try again',
         msgType: 'error'
       });
     }
+    setLoading(false);
   };
 
   const handleDelete = (i) => {
