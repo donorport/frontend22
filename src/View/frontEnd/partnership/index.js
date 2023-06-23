@@ -63,9 +63,9 @@ const Partnership = () => {
     };
 
     const message = {
-      'name.required': 'name is Required.',
-      'reason.required': 'This Field is Required.',
-      'email.required': 'email is Required.'
+      'name.required': 'Name is required.',
+      'reason.required': 'This field is required.',
+      'email.required': 'Email is required.'
     };
     validateAll(state, rules, message)
       .then(async () => {

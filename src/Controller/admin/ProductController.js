@@ -543,16 +543,16 @@ function ProductController() {
       'status.required': 'Status is required',
       'needheadline.required': 'Need Headline is required',
       'address.required': 'Location is required',
-      // 'galleryUrl.required': 'gallery Url is Required',
+      // 'galleryUrl.required': 'gallery Url is required',
   
       'brand.required': 'Brand is required',
       'headline.required': 'Headline is required',
-      'category.required': 'Category is Required',
+      'category.required': 'Category is required',
       'subcategory.required': 'Subcategory is required',
       'description.required': 'Description is required',
       'price.required': 'Price is required',
       'image.required': 'Image is required',
-      // 'quantity.required': 'Quantity is Required',
+      // 'quantity.required': 'Quantity is required',
       'organization.required': 'Organization is required',
       'slug.required': 'Slug is required'
     };

@@ -98,17 +98,17 @@ function UserController() {
     };
 
     const message = {
-      'email.required': 'Email is Required.',
-      'name.required': 'Name is Required.',
+      'email.required': 'Email is required.',
+      'name.required': 'Name is required.',
       'email.email': 'please enter valid email.',
       'password.min': 'Password must be at least 6 characters',
-      'password.required': 'Password is Required.',
+      'password.required': 'Password is required.',
 
-      'zip.required': 'Zip Code is Required.',
-      'country.required': 'Country is Required.',
-      'city.required': 'City is Required.',
-      'stateid.required': 'State is Required.',
-      'street.required': 'Street Address is Required.'
+      'zip.required': 'Zip Code is required.',
+      'country.required': 'Country is required.',
+      'city.required': 'City is required.',
+      'stateid.required': 'State is required.',
+      'street.required': 'Street Address is required.'
     };
     validateAll(state, rules, message)
       .then(async () => {
@@ -250,17 +250,17 @@ function UserController() {
     };
 
     const message = {
-      'email.required': 'Email is Required.',
-      'name.required': 'Name is Required.',
+      'email.required': 'Email is required.',
+      'name.required': 'Name is required.',
       'email.email': 'please enter valid email.',
-      'username.required': 'Username is Required.',
-      'role.required': 'Role is Required.',
+      'username.required': 'Username is required.',
+      'role.required': 'Role is required.',
 
-      'zip.required': 'Zip Code is Required.',
-      'country.required': 'Country is Required.',
-      'city.required': 'City is Required.',
-      'stateid.required': 'State is Required.',
-      'street.required': 'Street Address is Required.'
+      'zip.required': 'Zip Code is required.',
+      'country.required': 'Country is required.',
+      'city.required': 'City is required.',
+      'stateid.required': 'State is required.',
+      'street.required': 'Street Address is required.'
     };
     validateAll(state, rules, message)
       .then(async () => {

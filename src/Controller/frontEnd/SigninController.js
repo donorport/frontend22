@@ -31,9 +31,9 @@ const SIGNIN_RULES = {
 };
 
 const SIGNIN_MESSAGE = {
-  'email.required': 'Email is Required.',
+  'email.required': 'Email is required.',
   'email.email': 'please enter valid email.',
-  'password.required': 'Password is Required.'
+  'password.required': 'Password is required.'
 };
 
 function SigninController() {

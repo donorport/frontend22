@@ -104,7 +104,9 @@ const AddBankModal = (props) => {
                   </span>
                 </label>
               </div>
-
+              {props.bankAccount.accError && props.bankAccount.accError.fname && (
+                <p className="error">{props.bankAccount.accError.fname}</p>
+              )}
               <div className="input__wrap d-flex">
                 <label className="input__label flex__1">
                   <input
@@ -129,6 +131,9 @@ const AddBankModal = (props) => {
                   </span>
                 </label>
               </div>
+              {props.bankAccount.accError && props.bankAccount.accError.lname && (
+                <p className="error">{props.bankAccount.accError.lname}</p>
+              )}
             </>
           ) : (
             <div className="input__wrap d-flex">
@@ -165,7 +170,7 @@ const AddBankModal = (props) => {
               variant="info"
               // onClick={props.onHide}
               onClick={() => {
-                if(!bankloading) props.addExpressAccount();
+                if (!bankloading) props.addExpressAccount();
               }}
               className="d-flex m-0"
             >

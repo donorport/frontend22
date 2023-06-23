@@ -57,9 +57,9 @@ export default function Aws(props) {
         }
 
         const message = {
-            'awsAccessKeyId.required': 'Access key is Required.',
-            'awsSecretAccessKey.required': 'Secret key is Required.',
-            'bucketName.required': 'Bucket name is Required.',
+            'awsAccessKeyId.required': 'Access key is required.',
+            'awsSecretAccessKey.required': 'Secret key is required.',
+            'bucketName.required': 'Bucket name is required.',
 
 
         }

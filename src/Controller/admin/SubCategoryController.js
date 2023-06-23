@@ -102,9 +102,9 @@ function SubCategoryController() {
       icon: 'required'
     };
     const message = {
-      'status.required': 'Status is Required.',
-      'name.required': 'Category name is Required.',
-      'icon.required': 'Category Icon is Required.'
+      'status.required': 'Status is required.',
+      'name.required': 'Category name is required.',
+      'icon.required': 'Category Icon is required.'
     };
     validateAll(state, rules, message)
       .then(async () => {

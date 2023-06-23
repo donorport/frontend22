@@ -711,7 +711,7 @@ const AddPost = (props) => {
                     <form className="video-detail-form">
                       <div className="main-upload-image-wrap">
                         <div className="form__label">
-                          Main Image{' '}
+                          Product Image
                           {props.loading && loadingId && (
                             // <CircularProgress className="ms-1" color="inherit" size={21} />
                             <Box sx={{ width: '100%' }}>
@@ -1084,7 +1084,7 @@ const AddPost = (props) => {
                   </div>
 
                   <div className="manage-post-type">
-                    You can add this product to any of your existing projects. Yellow tags have only 1 product which is Required. To manage your
+                    You can add this product to any of your existing projects. Yellow tags have only 1 product which is required. To manage your
                     projects &nbsp;{' '}
                     <a href="./project" className="link">
                       click here

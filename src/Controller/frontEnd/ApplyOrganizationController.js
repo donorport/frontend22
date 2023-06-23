@@ -28,19 +28,19 @@ const APPLY_rules = {
 };
 
 const APPLY_message = {
-  'name.required': 'Name is Required.',
-  'organization.required': 'Organization is Required.',
-  'ein.required': 'Ein Number is Required.',
-  'email.required': 'Email is Required.',
+  'name.required': 'Name is required.',
+  'organization.required': 'Organization is required.',
+  'ein.required': 'Ein Number is required.',
+  'email.required': 'Email is required.',
   'email.email': 'Please enter a valid email.',
   'confirmEmail.required': 'Please confirm your email.',
   'confirmEmail.same': 'Emails must match.',
   'password.min': 'Password must be at least 6 characters',
-  'password.required': 'Password is Required.',
-  'cpassword.required': 'Confirm Password is Required.',
+  'password.required': 'Password is required.',
+  'cpassword.required': 'Confirm Password is required.',
   'cpassword.same': 'Password and ConfirmPassword Must be same.',
   'country.required': 'Please Select Country.',
-  'category.required': 'Category is Required.'
+  'category.required': 'Category is required.'
 };
 
 export default function ApplyOrganizationController() {

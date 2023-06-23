@@ -96,11 +96,11 @@ export default function FooterLinks(props) {
 
 
         const message = {
-            'twitter.required': 'Twitter is Required.',
-            'facebook.required': 'Facebook is Required.',
-            'instagram.required': 'Instagram is Required.',
-            'discord.required': 'Discord is Required.',
-            'footerEmail.required': 'Email is Required.',
+            'twitter.required': 'Twitter is required.',
+            'facebook.required': 'Facebook is required.',
+            'instagram.required': 'Instagram is required.',
+            'discord.required': 'Discord is required.',
+            'footerEmail.required': 'Email is required.',
 
 
         }

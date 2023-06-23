@@ -21,10 +21,10 @@ const CHANGE_RULES = {
 };
 
 const CHANGE_MESSAGE = {
-  'currentPassword.required': 'Current Password is Required.',
+  'currentPassword.required': 'Current Password is required.',
   'newPassword.min': 'New Password must be at least 6 characters',
-  'newPassword.required': 'New Password is Required.',
-  'confirmPassword.required': 'Confirm Password is Required.',
+  'newPassword.required': 'New Password is required.',
+  'confirmPassword.required': 'Confirm Password is required.',
   'confirmPassword.same': 'Password and ConfirmPassword Must be same.'
 };
 

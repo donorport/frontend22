@@ -432,14 +432,14 @@ const ProfileSettings = () => {
     };
 
     const message = {
-      'name.required': 'Organization Name is Required.',
-      'mission.required': 'Mission is Required.',
-      'promoVideo.required': 'Promo Video is Required.',
-      'ein.required': 'Charity Registration Number is Required.',
-      'stateId.required': 'State is Required.',
-      'city.required': 'City is Required.',
-      'country.required': 'Country is Required.',
-      'category.required': 'Category is Required.'
+      'name.required': 'Organization Name is required.',
+      'mission.required': 'Mission is required.',
+      'promoVideo.required': 'Promo Video is required.',
+      'ein.required': 'Charity Registration Number is required.',
+      'stateId.required': 'State is required.',
+      'city.required': 'City is required.',
+      'country.required': 'Country is required.',
+      'category.required': 'Category is required.'
     };
 
     let tempGallery = [...viewGalleryImages];
@@ -656,18 +656,31 @@ const ProfileSettings = () => {
 
         <div className="input__wrap mb-3">
           <label className="input__label flex__1">
-            <input type="text" name="name" value={name} onChange={(e) => changevalue(e)} />
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => changevalue(e)}
+              className={error && error?.name ? 'inputerror' : ''}
+            />
             <span className="input__span">Organization Name</span>
           </label>
-          {error && error.name && <p className="error">{error.name}</p>}
-          <Link variant="link" className="text-light p-0 fw-normal" to={'/organization/' + slug}>
-            <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" /> Go to Profile
-          </Link>
+          <div className="my-2">
+            <Link variant="link" className="text-light p-0 fw-normal" to={'/organization/' + slug}>
+              <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" /> Go to Profile
+            </Link>
+          </div>
         </div>
-
+        {error && error.name && <p className="error">{error.name}</p>}
         <div className="input__wrap d-flex">
           <label className="input__label flex__1">
-            <input type="text" name="ein" value={ein} onChange={(e) => changevalue(e)} />
+            <input
+              type="text"
+              name="ein"
+              value={ein}
+              onChange={(e) => changevalue(e)}
+              className={error && error?.ein ? 'inputerror' : ''}
+            />
             {/* <span className="input__span">Employer Identification Number (EIN)</span> */}
             <span className="input__span">Charity Registration Number</span>
           </label>
@@ -933,7 +946,7 @@ const ProfileSettings = () => {
           Save Details {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
         </Button>
         {errors.length > 0 && (
-          <div className="note">
+          <div className="p-5 text-danger" style={{ backgroundColor: '#ffe9e9' }}>
             <div className="mt-2 d-flex">
               <FontAwesomeIcon
                 icon={regular('circle-exclamation')}
@@ -947,7 +960,7 @@ const ProfileSettings = () => {
             <ol className="fs-5 d-flex gap-1 flex-column list-group list-group-numbered">
               {errors.map((error, index) => (
                 <li key={index}>
-                  <span className="text-danger">{error}</span>
+                  <span>{error}</span>
                 </li>
               ))}
             </ol>
