@@ -221,6 +221,7 @@ function OrganisationDetailMain(props) {
         productDetails={organizationDetails?.productsDetails}
         addToCart={props.addToCart}
         checkItemInCart={props.checkItemInCart}
+        organizationName={organizationDetails?.name}
       />
     </div>
   );

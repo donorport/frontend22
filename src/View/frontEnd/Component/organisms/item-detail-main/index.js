@@ -256,7 +256,7 @@ const ItemDetailsMain = ({
           className="page__progress flex-grow-1 me-1"
         />
         {productDetails.unlimited ? (
-          <span className="tag tag__ongoing tag__rounded fs-9">
+          <span className="tag tag--ongoing tag__rounded fs-9">
             <FontAwesomeIcon icon={regular('infinity')} />
           </span>
         ) : (

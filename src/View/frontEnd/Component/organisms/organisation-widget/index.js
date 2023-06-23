@@ -17,6 +17,7 @@ import cartApi from '../../../../../Api/frontEnd/cart';
 import { useSelector, useDispatch } from 'react-redux';
 import { setIsUpdateCart } from '../../../../../user/user.action';
 import { useNavigate } from 'react-router-dom';
+import OrganisationDetail from 'src/View/frontEnd/organisation-detail';
 
 function OrganisationWidget(props) {
   const [check, setCheck] = useState(false);
@@ -35,7 +36,7 @@ function OrganisationWidget(props) {
   const user = useSelector((state) => state.user);
   let productDetails = props.productDetails;
   let currencySymbol = getCalc.currencySymbol();
-  
+  const { organizationName } = props;
   function getOccurrence(array, value) {
     let count = 0;
     // array.forEach((v) => (v === value && count++));
@@ -467,15 +468,17 @@ function OrganisationWidget(props) {
       <div className="mb-2">
         <WidgetTitle>Items</WidgetTitle>
       </div>
+      {productDetails?.length > 0 ? (
+        <div>
+          {' '}
+          <div className="d-sm-flex align-items-center mb-1 pb-2 border-bottom">
+            <div
+              className="donate-section d-flex align-items-center flex-grow-1 mb-2 mb-sm-0"
+              style={{ border: 'unset', background: 'unset' }}
+            >
+              <span className="fw-6 me-2">Donate:</span>
 
-      <div className="d-sm-flex align-items-center mb-1 pb-2 border-bottom">
-        <div
-          className="donate-section d-flex align-items-center flex-grow-1 mb-2 mb-sm-0"
-          style={{ border: 'unset', background: 'unset' }}
-        >
-          <span className="fw-6 me-2">Donate:</span>
-
-          {/*<InputGroup className="donate__control">
+              {/*<InputGroup className="donate__control">
             <InputGroup.Text className="">{currencySymbol}</InputGroup.Text>
             <FormControl
               type="text"
@@ -487,70 +490,76 @@ function OrganisationWidget(props) {
             />
           </InputGroup>*/}
 
-          <InputGroup className="donate-value-control">
-            <InputGroup.Text id="btnGroupAddon" className="donate-value-symbol">
-              {currencySymbol}
-            </InputGroup.Text>
-            <FormControl
-              type="text"
-              placeholder="0"
-              maxLength={6}
-              className="donate-value-input ps-1"
-              value={price}
-              onChange={(e) => onChangeDonatePrice(e)}
-            />
-          </InputGroup>
+              <InputGroup className="donate-value-control">
+                <InputGroup.Text id="btnGroupAddon" className="donate-value-symbol">
+                  {currencySymbol}
+                </InputGroup.Text>
+                <FormControl
+                  type="text"
+                  placeholder="0"
+                  maxLength={6}
+                  className="donate-value-input ps-1"
+                  value={price}
+                  onChange={(e) => onChangeDonatePrice(e)}
+                />
+              </InputGroup>
 
-          <div className="d-flex align-items-center ms-auto">
-            <span className="fs-7 me-1">Tax Receipt?</span>
-            <ToggleSwitch checked={check} changevalue={() => onChangeTax(!check)} />
+              <div className="d-flex align-items-center ms-auto">
+                <span className="fs-7 me-1">Tax Receipt?</span>
+                <ToggleSwitch checked={check} changevalue={() => onChangeTax(!check)} />
+              </div>
+            </div>
+            <Button
+              variant="outline-primary"
+              className="organisation__cart-btn"
+              style={{ border: '2px solid' }}
+              onClick={() => onClickAddToCart()}
+            >
+              Add to cart ({cartProductList.length})
+            </Button>
           </div>
-        </div>
-        <Button
-          variant="outline-primary"
-          className="organisation__cart-btn"
-          style={{ border: '2px solid' }}
-          onClick={() => onClickAddToCart()}
-        >
-          Add to cart ({cartProductList.length})
-        </Button>
-      </div>
-      <div className="note note__info mb-12p mt-1">
-        <FontAwesomeIcon icon={regular('circle-info')} className="text-info mr-6p" />
-        Item availability will be confirmed at checkout.
-      </div>
-      <ul className="list-unstyled mb-0">
-        {allProducts?.length > 0 ? (
-          allProducts.slice(0, loadMore ? allProducts.length : 3).map((product, i) => {
-            return (
-              <OrganisationItem
-                product={product}
-                productPrice={productPrice}
-                setproductPrice={setproductPrice}
-                tagTitle={props.tagTitle}
-                key={i}
-                addToCart={props.addToCart}
-                checkItemInCart={props.checkItemInCart}
-                currencySymbol={currencySymbol}
-              />
-            );
-          })
-        ) : (
-          <p className="fs-6 mt-2">There are no tax eligible products for this Project</p>
-        )}
-        {/* <OrganisationItem />
+          <div className="note note__info mb-12p mt-1">
+            <FontAwesomeIcon icon={regular('circle-info')} className="text-info mr-6p" />
+            Item availability will be confirmed at checkout.
+          </div>
+          <ul className="list-unstyled mb-0">
+            {allProducts?.length > 0 ? (
+              allProducts.slice(0, loadMore ? allProducts.length : 3).map((product, i) => {
+                return (
+                  <OrganisationItem
+                    product={product}
+                    productPrice={productPrice}
+                    setproductPrice={setproductPrice}
+                    tagTitle={props.tagTitle}
+                    key={i}
+                    addToCart={props.addToCart}
+                    checkItemInCart={props.checkItemInCart}
+                    currencySymbol={currencySymbol}
+                  />
+                );
+              })
+            ) : (
+              <p className="fs-6 mt-2">
+                There are no tax eligible products posted for {organizationName}
+              </p>
+            )}
+            {/* <OrganisationItem />
         <OrganisationItem /> */}
-      </ul>
-      {!loadMore && allProducts?.length > 3 && (
-        <div className="more__log">
-          <Button
-            variant="info"
-            className="fs-6 pt-12p pb-12p w-100"
-            onClick={() => setLoadMore(true)}
-          >
-            Load More . . .
-          </Button>
+          </ul>
+          {!loadMore && allProducts?.length > 3 && (
+            <div className="more__log">
+              <Button
+                variant="info"
+                className="fs-6 pt-12p pb-12p w-100"
+                onClick={() => setLoadMore(true)}
+              >
+                Load More . . .
+              </Button>
+            </div>
+          )}
         </div>
+      ) : (
+        <p className="fs-6">{organizationName} hasn't posted any items.</p>
       )}
     </>
   );
