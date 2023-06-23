@@ -13,6 +13,7 @@ import './style.scss';
 
 function OrganisationProjectsWidget(props) {
   let projectList = props.projectList;
+  const organizationDetails = props.organizationDetails;
   //console.log(projectList);
   const [loadMore, setLoadMore] = useState(false);
   return (
@@ -26,7 +27,7 @@ function OrganisationProjectsWidget(props) {
             return <OrganisationProjectItem project={project} key={i} />;
           })
         ) : (
-          <p>No Projects created</p>
+          <p>{organizationDetails?.name} hasn't created any Projects.</p>
         )}
         {/* <OrganisationProjectItem /> */}
       </ul>

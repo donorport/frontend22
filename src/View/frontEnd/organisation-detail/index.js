@@ -71,9 +71,9 @@ const OrganisationDetail = (props) => {
           </div>
         </div>
       </SuggestionWrapper>
-      <Container fluid className="py-3 py-sm-5">
+      <Container fluid className="pt-3 pt-sm-5">
         <Row>
-          <Col md="7" className="mb-4">
+          <Col md="7">
             <OrganisationDetailMain
               followToOrganization={props.followToOrganization}
               organizationDetails={organizationDetails}
@@ -90,7 +90,10 @@ const OrganisationDetail = (props) => {
       <Container fluid>
         <Row className="py-5">
           <Col md="6" className="mb-4 mb-0" style={{ maxWidth: '545px' }}>
-            <OrganisationProjectsWidget projectList={projectList} />
+            <OrganisationProjectsWidget
+              projectList={projectList}
+              organizationDetails={organizationDetails}
+            />
           </Col>
           <Col md="6"></Col>
         </Row>
