@@ -17,7 +17,7 @@ import { WithContext as ReactTags } from 'react-tag-input';
 import noimg from '../../../../../assets/images/noimg1.png';
 import helper, { priceFormat } from '../../../../../Common/Helper';
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
-//import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -129,7 +129,8 @@ const AddPost = (props) => {
   let organizationDetails = props.organizationDetails;
   console.log(`AddPost component:\n~~`, { organizationDetails }); // {_id, _name: 'Alter Ego', ein, organizationUserName, .....}
   let stateData = props.stateData;
-  //const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user);
+  console.log('AddPost', {user});
   const {
     //id,
     //status,
@@ -186,7 +187,7 @@ const AddPost = (props) => {
   let gallaryImages = props.gallaryImages;
   let removedProjects = props.removedProjects;
 
-  const change = async (e) => {
+  const change = (e) => {
     props.changevalue(e);
   };
 
@@ -196,8 +197,8 @@ const AddPost = (props) => {
   const [location, setLocation] = useState({
     organizationLocation: '',
     locationName: '',
-    lat: 0,
-    lng: 0
+    lat: user.lat,
+    lng: user.lng,
   });
 
   // console.log(galleryUrl)
@@ -222,6 +223,7 @@ const AddPost = (props) => {
   }, [props.data, stateData]);
 
   const sugg = (result, lat, lng) => {
+    console.log('add-post fn sugg:', {result, lat, lng});
     props.setstate({
       ...stateData,
       address: result,

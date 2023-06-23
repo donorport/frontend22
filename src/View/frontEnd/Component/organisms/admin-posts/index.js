@@ -112,6 +112,10 @@ const helper_spliceImages = (id, source) => {
 };
 
 const AdminPosts = () => {
+  // redux get the user
+  const user = useSelector((state) => state.user);
+  let timeoutId;
+
   console.log('iFrame, AdminPosts');
   const navigate = useNavigate();
 
@@ -199,9 +203,6 @@ const AdminPosts = () => {
 
   const [fulfilMoreTempImages, setFulfilMoreTempImages] = useState([]);
   const [fulfilmoreImages, setFulfilMoreImages] = useState([]);
-
-  // redux get the user
-  const user = useSelector((state) => state.user);
 
   let videoid = fulfilState.videoUrl ? fulfilState.videoUrl.split('?v=')[1].split('&')[0] : '';
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
@@ -365,28 +366,20 @@ const AdminPosts = () => {
     if (e.target.name === 'category') {
       // get subCategory List on Category Change
       const getsubCategoryList = await categoryApi.listSubCategory(token, value);
+      let subcategory = '';
       if (getsubCategoryList.data.success === true) {
         setSubCategoryList(getsubCategoryList.data.data);
+
         if (getsubCategoryList.data.data.length > 0) {
-          setstate({
-            ...state,
-            subcategory: getsubCategoryList.data.data[0]._id,
-            [e.target.name]: value
-          });
-        } else {
-          setstate({
-            ...state,
-            subcategory: '',
-            [e.target.name]: value
-          });
+          subcategory = getsubCategoryList.data.data[0]._id;
         }
-      } else {
-        setstate({
-          ...state,
-          subcategory: '',
-          [e.target.name]: value
-        });
       }
+      setstate({
+        ...state,
+        subcategory: subcategory,
+        [e.target.name]: value
+      });
+
     } else if (e.target.name === 'headline') {
       let productNameVar = value.toLowerCase();
       productNameVar = productNameVar.replace(/\s+/g, '-');
@@ -468,6 +461,12 @@ const AdminPosts = () => {
     }
   };
 
+  useEffect(() => {
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    }
+  }, [])
+
   // used when uploading a file, saves the file to state
   const changeMainImg = async (e) => {
     const file = e.target.files[0] ? e.target.files[0] : '';
@@ -489,7 +488,8 @@ const AdminPosts = () => {
 
     let extension = file.name.substr(file.name.lastIndexOf('.') + 1);
 
-    setTimeout(() => {
+    if (timeoutId) clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
       if (!VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
         setstate({ ...state, image: '' });
         setTempImg('');
@@ -530,15 +530,17 @@ const AdminPosts = () => {
           const modifiedFile = new File([result], file.name, { type: 'image/png' });
           setTempImg(URL.createObjectURL(modifiedFile));
           setstate({ ...state, image: modifiedFile });
-          setAddPostLoading(false);
         })
         .catch((error) => {
           console.error('Failed to remove background:', error);
           setstate({ ...state, image: '' });
+        }).finally(() => {
           setAddPostLoading(false);
         });
     }, 5000);
   };
+
+  
 
   const clearReceiptFileState = () => {
     setReceiptImgName('');
@@ -693,37 +695,8 @@ const AdminPosts = () => {
       category: defaultCategory._id,
       subcategory: defaultSubcategory._id
     };
+
     setstate(newEmptyState);
-    //setstate({
-    //id: '',
-    //status: -1,
-    //title: '',
-    //subtitle: '',
-    //headline: '',
-    //brand: '',
-    //category: '',
-    //subcategory: '',
-    //description: '',
-    //price: '',
-    //displayPrice: '',
-    //image: '',
-    //quantity: '',
-    //organization: '',
-    //slug: '',
-    //error: [],
-    //moreImg: [],
-    //galleryUrl: '',
-    //needheadline: '',
-    //address: '',
-    //lat: '',
-    //lng: '',
-    //unlimited: false,
-    //tax: false,
-    //postTag: false,
-    //media: false,
-    //policy: false,
-    //galleryImg: []
-    //});
   };
 
   // when creating a product??
@@ -867,10 +840,14 @@ const AdminPosts = () => {
 
         if (lat) {
           formData.lat = lat;
+        } else {
+          formData.lat = user.lat ?? '';
         }
 
         if (lng) {
           formData.lng = lng;
+        } else {
+          formData.lng = user.lng ?? '';
         }
 
         formData.organizationCountryId = data.country_id;
@@ -984,6 +961,7 @@ const AdminPosts = () => {
   console.log({ state });
   const deleteProduct = (id) => {
     confirmAlert({
+      overlayClassName: "react-confirm-alert-overlay-custom",
       title: 'Delete Post?',
       message: 'Are you sure to delete this post?',
       buttons: [
@@ -1030,6 +1008,7 @@ const AdminPosts = () => {
   const deleteFulfilorder = (id, prodcutId, organizationId) => {
     console.log('Posts, deleteFulfilorder, values: ', { id, prodcutId, organizationId });
     confirmAlert({
+      overlayClassName: "react-confirm-alert-overlay-custom",
       title: 'Delete Receipt?',
       message:
         'Are you sure you want to delete the Sales Receipt? This will remove the Fulfilled Status',
@@ -1127,8 +1106,8 @@ const AdminPosts = () => {
         tax: productData.tax,
         postTag: productData.postTag,
         address: productData.address ? productData.address : '',
-        lat: productData.lat ? productData.lat : '',
-        lng: productData.lng ? productData.lng : '',
+        lat: productData.lat ?? user.lat ?? '',
+        lng: productData.lng ?? user.lng ?? '',
         media: productData.media ? productData.media : false,
         displayPrice: productData.displayPrice ? productData.displayPrice : productData.price,
         policy: true
@@ -1640,12 +1619,13 @@ const AdminPosts = () => {
     }
   }, [data, user]);
 
-  if (isDataLoading)
+  if (isDataLoading) {
     return (
       <div className="mt-5 d-flex justify-content-center">
         <CircularProgress />
       </div>
     );
+  }
 
   return (
     <>
