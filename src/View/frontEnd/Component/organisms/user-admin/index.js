@@ -185,17 +185,12 @@ const UserAdmin = () => {
             {/* <Button variant="success" className="btn__xs px-2 rounded-pill ms-2 text-uppercase">Active</Button> */}
           </div>
 
-          <div className="activate">
+          <div className="activate note">
             <div className="activate__icon">
               <FontAwesomeIcon icon={regular('fingerprint')} />
             </div>
             <div className="activate__code">
               {blocks}
-              {/* <input type="text" className="activate__input" name="verifyCode1" />
-            <input type="text" className="activate__input" name="verifyCode2" />
-            <input type="text" className="activate__input" name="verifyCode3" />
-            <input type="text" className="activate__input" name="verifyCode4" />
-            <input type="text" className="activate__input" name="verifyCode5" /> */}
             </div>
             <Button variant="info" className="ms-auto" onClick={() => activateCode()}>
               Activate

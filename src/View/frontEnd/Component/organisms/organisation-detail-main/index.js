@@ -53,20 +53,22 @@ function OrganisationDetailMain(props) {
   return (
     <div className="project__detail-main">
       <div className="d-flex flex-column mb-4 gap-2">
-        <div className="d-flex align-items-center mb-1">
-          <div>
-            <h4 className="project__detail-label mb-3p">Organization</h4>
-            <h1 className="project__detail-title text-dark" style={{ textTransform: 'capitalize' }}>
+        <div className="d-flex flex-column mb-1">
+          <h4 className="project__detail-label mb-3p">Organization</h4>
+          <div className="d-flex flex-wrap">
+            <h1 className="flex-grow-1 project__detail-title text-dark text-capitalize" style={{ flex: 0 }}>
               <span className="me-1">{organizationDetails?.name}</span>
-              <img style={{ width: '24px' }} src={verified} alt="" />
+              <img className="mt-auto" style={{ width: '24px', height: '24px' }} src={verified} alt="" />
             </h1>
-          </div>
-          <div className="ps-2 page__logo page__logo--org ms-auto">
-            <img
-              alt=""
-              src={helper.CampaignAdminLogoPath + organizationDetails?.logo}
-              className="charity_avatar_bg"
-            />
+
+            <div className="justify-content-end page__logo page__logo--org">
+              <img
+                alt=""
+                src={helper.CampaignAdminLogoPath + organizationDetails?.logo}
+                className="charity_avatar_bg"
+                style={{maxWidth: '90px'}}
+              />
+            </div>
           </div>
         </div>
 

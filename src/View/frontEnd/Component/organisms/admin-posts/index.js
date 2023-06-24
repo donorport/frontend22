@@ -70,7 +70,7 @@ const SUBMIT_PRODUCT_FORM_VALIDATE_MESSAGE = {
   'status.required': 'Status is required',
   'address.required': 'Locations is required',
   'needheadline.required': 'Need Headline is required',
-  'galleryUrl.required': 'gallery Url is required',
+  'galleryUrl.required': 'gallery URL is required',
   'brand.required': 'Brand is required',
   'headline.required': 'Headline is required',
   'category.required': 'Category is required',
@@ -112,10 +112,6 @@ const helper_spliceImages = (id, source) => {
 };
 
 const AdminPosts = () => {
-  // redux get the user
-  const user = useSelector((state) => state.user);
-  let timeoutId;
-
   console.log('iFrame, AdminPosts');
   const navigate = useNavigate();
 
@@ -203,6 +199,9 @@ const AdminPosts = () => {
 
   const [fulfilMoreTempImages, setFulfilMoreTempImages] = useState([]);
   const [fulfilmoreImages, setFulfilMoreImages] = useState([]);
+
+  // redux get the user
+  const user = useSelector((state) => state.user);
 
   let videoid = fulfilState.videoUrl ? fulfilState.videoUrl.split('?v=')[1].split('&')[0] : '';
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
@@ -366,20 +365,28 @@ const AdminPosts = () => {
     if (e.target.name === 'category') {
       // get subCategory List on Category Change
       const getsubCategoryList = await categoryApi.listSubCategory(token, value);
-      let subcategory = '';
       if (getsubCategoryList.data.success === true) {
         setSubCategoryList(getsubCategoryList.data.data);
-
         if (getsubCategoryList.data.data.length > 0) {
-          subcategory = getsubCategoryList.data.data[0]._id;
+          setstate({
+            ...state,
+            subcategory: getsubCategoryList.data.data[0]._id,
+            [e.target.name]: value
+          });
+        } else {
+          setstate({
+            ...state,
+            subcategory: '',
+            [e.target.name]: value
+          });
         }
+      } else {
+        setstate({
+          ...state,
+          subcategory: '',
+          [e.target.name]: value
+        });
       }
-      setstate({
-        ...state,
-        subcategory: subcategory,
-        [e.target.name]: value
-      });
-
     } else if (e.target.name === 'headline') {
       let productNameVar = value.toLowerCase();
       productNameVar = productNameVar.replace(/\s+/g, '-');
@@ -461,12 +468,6 @@ const AdminPosts = () => {
     }
   };
 
-  useEffect(() => {
-    return () => {
-      if (timeoutId) clearTimeout(timeoutId);
-    }
-  }, [])
-
   // used when uploading a file, saves the file to state
   const changeMainImg = async (e) => {
     const file = e.target.files[0] ? e.target.files[0] : '';
@@ -488,8 +489,7 @@ const AdminPosts = () => {
 
     let extension = file.name.substr(file.name.lastIndexOf('.') + 1);
 
-    if (timeoutId) clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
+    setTimeout(() => {
       if (!VALID_IMAGE_FILE_EXTENSIONS.includes(extension)) {
         setstate({ ...state, image: '' });
         setTempImg('');
@@ -530,17 +530,15 @@ const AdminPosts = () => {
           const modifiedFile = new File([result], file.name, { type: 'image/png' });
           setTempImg(URL.createObjectURL(modifiedFile));
           setstate({ ...state, image: modifiedFile });
+          setAddPostLoading(false);
         })
         .catch((error) => {
           console.error('Failed to remove background:', error);
           setstate({ ...state, image: '' });
-        }).finally(() => {
           setAddPostLoading(false);
         });
     }, 5000);
   };
-
-  
 
   const clearReceiptFileState = () => {
     setReceiptImgName('');
@@ -695,8 +693,37 @@ const AdminPosts = () => {
       category: defaultCategory._id,
       subcategory: defaultSubcategory._id
     };
-
     setstate(newEmptyState);
+    //setstate({
+    //id: '',
+    //status: -1,
+    //title: '',
+    //subtitle: '',
+    //headline: '',
+    //brand: '',
+    //category: '',
+    //subcategory: '',
+    //description: '',
+    //price: '',
+    //displayPrice: '',
+    //image: '',
+    //quantity: '',
+    //organization: '',
+    //slug: '',
+    //error: [],
+    //moreImg: [],
+    //galleryUrl: '',
+    //needheadline: '',
+    //address: '',
+    //lat: '',
+    //lng: '',
+    //unlimited: false,
+    //tax: false,
+    //postTag: false,
+    //media: false,
+    //policy: false,
+    //galleryImg: []
+    //});
   };
 
   // when creating a product??
@@ -840,14 +867,10 @@ const AdminPosts = () => {
 
         if (lat) {
           formData.lat = lat;
-        } else {
-          formData.lat = user.lat ?? '';
         }
 
         if (lng) {
           formData.lng = lng;
-        } else {
-          formData.lng = user.lng ?? '';
         }
 
         formData.organizationCountryId = data.country_id;
@@ -961,7 +984,6 @@ const AdminPosts = () => {
   console.log({ state });
   const deleteProduct = (id) => {
     confirmAlert({
-      overlayClassName: "react-confirm-alert-overlay-custom",
       title: 'Delete Post?',
       message: 'Are you sure to delete this post?',
       buttons: [
@@ -1008,7 +1030,6 @@ const AdminPosts = () => {
   const deleteFulfilorder = (id, prodcutId, organizationId) => {
     console.log('Posts, deleteFulfilorder, values: ', { id, prodcutId, organizationId });
     confirmAlert({
-      overlayClassName: "react-confirm-alert-overlay-custom",
       title: 'Delete Receipt?',
       message:
         'Are you sure you want to delete the Sales Receipt? This will remove the Fulfilled Status',
@@ -1106,8 +1127,8 @@ const AdminPosts = () => {
         tax: productData.tax,
         postTag: productData.postTag,
         address: productData.address ? productData.address : '',
-        lat: productData.lat ?? user.lat ?? '',
-        lng: productData.lng ?? user.lng ?? '',
+        lat: productData.lat ? productData.lat : '',
+        lng: productData.lng ? productData.lng : '',
         media: productData.media ? productData.media : false,
         displayPrice: productData.displayPrice ? productData.displayPrice : productData.price,
         policy: true
@@ -1619,13 +1640,12 @@ const AdminPosts = () => {
     }
   }, [data, user]);
 
-  if (isDataLoading) {
+  if (isDataLoading)
     return (
       <div className="mt-5 d-flex justify-content-center">
         <CircularProgress />
       </div>
     );
-  }
 
   return (
     <>
@@ -1711,7 +1731,7 @@ const AdminPosts = () => {
               </Button> */}
             </div>
 
-            <div className="my-2 d-flex gap-2 p2 mw-100">
+            <div className="flex-wrap flex-lg-nowrap my-2 d-flex gap-2 p2 mw-100">
               <div className="bg-white rounded-3 d-flex flex-grow-1 border p-5">
                 <div className="d-flex flex-column justify-content-start align-items-start">
                   <div className="d-flex align-items-center">
@@ -1928,7 +1948,7 @@ const AdminPosts = () => {
 const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => {
   return (
     <>
-      <header className="py-sm-2 mb-3 w-100 d-sm-flex align-items-center">
+      <header className="py-2 mb-sm-3 w-100 d-sm-flex align-items-center">
         <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Posts</h1>{' '}
         <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
         <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">

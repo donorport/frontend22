@@ -42,6 +42,11 @@ const FilterDropdown = (props) => {
     // TODO: for transition we need to uncomment this line but it breaks filter lottie animation
     // need to fix that
     setHidden(state);
+    if (state && window.innerWidth < 768) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   };
 
   React.useEffect(() => {

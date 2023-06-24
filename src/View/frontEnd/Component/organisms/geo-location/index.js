@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import { Button, Dropdown, InputGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -24,7 +23,8 @@ import './style.scss';
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default; // eslint-disable-line
 
 let Map = ReactMapboxGl({
-  accessToken: helper.MapBoxPrimaryKey
+  accessToken: helper.MapBoxPrimaryKey,
+  attributionControl: false, // Disable the default attribution control
 });
 
 const GeoLocation = () => {
@@ -43,9 +43,16 @@ const GeoLocation = () => {
     zoom: 6.5
   });
 
-  const onDropdownToggle = (state) => setHidden(state);
-  console.log({user})
-  // eslint-disable-next-line react/prop-types
+  const onDropdownToggle = (isOpen) => setHidden(isOpen);
+
+  useEffect(() => {
+    if (hidden && window.innerWidth < 768) {
+      document.body.style.overflow = 'hidden'; // Disable scrolling
+    } else {
+      document.body.style.overflow = 'auto'; // Enable scrolling
+    }
+  }, [hidden]);
+
   const ToggleButton = React.forwardRef(({ children, onClick }, ref) => {
     return (
       <Button
@@ -113,6 +120,7 @@ const GeoLocation = () => {
     dispatch(setLocationFilter('true'));
     setHidden(false);
   };
+
   return (
     <>
       <div
@@ -152,7 +160,7 @@ const GeoLocation = () => {
               <div className="geo__distance" id="">
                 <div className="me-1 fs-5">
                   {/* {objectVal} */}
-                  {user.distance === "0 m" ? "50 km" : user.distance}
+                  {user.distance === '0 m' ? '50 km' : user.distance}
                 </div>
               </div>
 

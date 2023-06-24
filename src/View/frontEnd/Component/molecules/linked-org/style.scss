@@ -74,11 +74,10 @@
 }
 .activate__input {
   outline: none;
+  width: 36px;
+  height: 36px;
   font-weight: 700;
   color: #323347;
-  width: 56px;
-  height: 56px;
-  font-size: 42px;
   line-height: normal;
   border: 0px solid #b9c6d4;
   border-bottom: 1px solid #b9c6d4;
@@ -90,4 +89,9 @@
   text-transform: uppercase;
   box-shadow: none;
   transition: all 0.2s ease-out;
+}
+.activate__input--apply {
+  width: 56px;
+  height: 56px;
+  font-size: 42px;
 }

@@ -393,7 +393,7 @@ const UserProfile = () => {
     const message = {
       'name.required': 'Name is required.',
       'street.required': 'Street is required.',
-      'zip.required': 'zip is required.',
+      'zip.required': 'Zip Code is required.',
       'stateId.required': 'State is required.',
       'city.required': 'City is required.',
       'country.required': 'Country is required.',

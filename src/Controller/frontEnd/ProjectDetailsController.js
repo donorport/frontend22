@@ -187,8 +187,8 @@ export default function ProjectDetailsController() {
         'cardNumber.number': 'Card number can not be string.',
         'month.required': 'Month is required.',
         'year.required': 'Year number is required.',
-        'cvv.required': 'cvv is required.',
-        'cvv.number': 'cvv can not be string.'
+        'cvv.required': 'CVV is required.',
+        'cvv.number': 'CVV can not be string.'
       };
       validateAll(state, rules, message)
         .then(async () => {

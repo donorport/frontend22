@@ -30,7 +30,7 @@ const APPLY_rules = {
 const APPLY_message = {
   'name.required': 'Name is required.',
   'organization.required': 'Organization is required.',
-  'ein.required': 'Ein Number is required.',
+  'ein.required': 'Charity Registration Number is required.',
   'email.required': 'Email is required.',
   'email.email': 'Please enter a valid email.',
   'confirmEmail.required': 'Please confirm your email.',
@@ -187,7 +187,7 @@ export default function ApplyOrganizationController() {
     elemRefs.push(ref);
     return (
       <input
-        className="activate__input block"
+        className="activate__input activate__input--apply block"
         data-index={props.index}
         ref={ref}
         maxLength={1}

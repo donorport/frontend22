@@ -19,7 +19,7 @@ function OrganisationTeamItem(props) {
   let avatar = helper.CampaignAdminLogoPath + member?.campaignadminDetails?.logo;
 
   return (
-    <li className="d-flex org__team__item d-sm-flex align-items-start">
+    <li className="d-flex flex-wrap org__team__item d-sm-flex align-items-start">
       <Avatar
         size={46}
         avatarUrl={image ? image : AvatarImg}
