@@ -201,6 +201,7 @@ const AddProject = (props) => {
                 title={title1}
                 placeholder={placeholder1}
                 onChange={change}
+                error={error}
               />
               {error && error.name && (
                 <p className="error">{error ? (error.name ? error.name : '') : ''}</p>
@@ -216,6 +217,7 @@ const AddProject = (props) => {
                 title={title2}
                 placeholder={placeholder2}
                 onChange={change}
+                error={error}
               />
               {error && error.headline && (
                 <p className="error">{error ? (error.headline ? error.headline : '') : ''}</p>
@@ -232,6 +234,7 @@ const AddProject = (props) => {
                 title={title3}
                 placeholder={placeholder3}
                 onChange={change}
+                error={error}
               />
               {error && error.description && (
                 <p className="error">{error ? (error.description ? error.description : '') : ''}</p>

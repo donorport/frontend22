@@ -25,6 +25,8 @@ import categoryApi from '../../../../../Api/admin/category';
 import './style.scss';
 import formatUrlWithHttp from '../../../../../utils/formatUrl';
 import Box from '@mui/material/Box';
+import Input from '../input';
+import Textarea from '../text-area';
 
 const IMAGE_UPLOAD_WRAP_STYLES = {
   marginTop: '20px',
@@ -47,6 +49,7 @@ const VALID_MAIN_IMAGE_FILE_EXTENSIONS = ['jpg', 'png', 'jpeg', 'svg'];
 
 const UPDATE_PROFILE_VALIDATION_RULES = {
   name: 'required',
+  headline: 'required',
   // mission: 'required',
   //promoVideo: "required",
   //city: 'required',
@@ -58,6 +61,7 @@ const UPDATE_PROFILE_VALIDATION_RULES = {
 
 const UPDATE_PROFILE_VALIDATION_MESSAGES = {
   'name.required': 'Organization Name is Required.',
+  'headline.required': 'Headline is Required.',
   'mission.required': 'Mission is Required.',
   'promoVideo.required': 'Promo Video is Required.',
   'ein.required': 'Charity Registration Number is Required.',
@@ -282,7 +286,7 @@ const ProfileSettings = () => {
   useEffect(() => {
     return () => {
       if (timeoutId) clearTimeout(timeoutId);
-    }
+    };
   }, []);
 
   // used when uploading a file, saves the file to state
@@ -326,7 +330,8 @@ const ProfileSettings = () => {
         .catch((error) => {
           console.error('Failed to remove background:', error);
           setState({ ...state, logo: '' });
-        }).finally(() => {
+        })
+        .finally(() => {
           setLoadingId(false);
         });
     }, 2500);
@@ -627,6 +632,26 @@ const ProfileSettings = () => {
     viewImgs.splice(id, 1);
     setViewGalleryImages(viewImgs);
   };
+
+  const change = async (e) => {
+    changevalue(e);
+  };
+
+  const id1 = 'headline';
+  const max90 = 90;
+  const title1 = 'Headline';
+  // const placeholder1 = 'Ex: Christmas Drive';
+
+  const id2 = 'mission';
+  const max120 = 120;
+  const title2 = 'Mission';
+  const rows = 5;
+  // const placeholder2 = 'Ex: Christmas Drive';
+
+  const id3 = 'promovideo';
+  const title3 = 'YouTube URL';
+  // const placeholder3 = 'YouTube URL';
+
   return (
     <>
       {/*<FrontLoader loading={loading} />*/}
@@ -660,8 +685,8 @@ const ProfileSettings = () => {
                 />
               </div>
             ) : (
-                <></>
-              )}
+              <></>
+            )}
           </div>
           {loadingId ? (
             <Box sx={{ width: '100%' }}>
@@ -675,13 +700,13 @@ const ProfileSettings = () => {
               </div>
             </Box>
           ) : (
-              <div className="d-flex note note--info my-3 fs-6">
-                <span className="text-dark">
-                  Upload an image of the product with a transparent background. Accepted file formats:{' '}
-                  <a className="link">png, jpg, svg</a>
-                </span>
-              </div>
-            )}
+            <div className="d-flex note note--info my-3 fs-6">
+              <span className="text-dark">
+                Upload an image of the product with a transparent background. Accepted file formats:{' '}
+                <a className="link">png, jpg, svg</a>
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="input__wrap mb-3">
@@ -725,18 +750,6 @@ const ProfileSettings = () => {
           </label>
         </div>
 
-        <div className="input__wrap mb-3">
-          <label className="input__label mb-2">
-            <input type="text" name="headline" value={headline} onChange={(e) => changevalue(e)} />
-            <span className="input__span">Headline</span>
-          </label>
-          <div className="helper__text fs-7 text-end text-subtext">120 characters</div>
-        </div>
-        <div className="note note--inputs mb-3 fs-6">
-          A headline is the subtitle that appears on your organization's page that describes your
-          cause in 120 characters or less.
-        </div>
-
         <div className="input__wrap d-flex">
           <label className="input__label flex__1">
             {/* <input type="text" value='' /> */}
@@ -758,7 +771,33 @@ const ProfileSettings = () => {
         {error && error.category && <p className="error">{error.category}</p>}
 
         <div className="input__wrap mb-3">
-          <label className="input__label mb-2">
+          {/* <label className="input__label mb-2">
+            <input type="text" name="headline" value={headline} onChange={(e) => changevalue(e)} />
+            <span className="input__span">Headline</span>
+          </label>
+          <div className="helper__text fs-7 text-end text-subtext">120 characters</div> */}
+          <Input
+            id={id1}
+            name={id1}
+            value={headline}
+            maxInput={max90}
+            maxLength={max90}
+            title={title1}
+            // placeholder={placeholder1}
+            onChange={change}
+            error={error}
+          />
+          {error && error.headline && (
+            <p className="error">{error ? (error.headline ? error.headline : '') : ''}</p>
+          )}
+          <div className="note note--inputs mb-3 fs-6">
+            A headline is the subtitle that appears on your organization's page that describes your
+            cause in 120 characters or less.
+          </div>
+        </div>
+
+        <div className="input__wrap mb-3">
+          {/* <label className="input__label mb-2">
             <textarea
               rows="6"
               name="mission"
@@ -768,7 +807,19 @@ const ProfileSettings = () => {
             ></textarea>
             <span className="input__span">Mission</span>
           </label>
-          <div className="helper__text fs-7 text-end text-subtext">250 characters</div>
+          <div className="helper__text fs-7 text-end text-subtext">250 characters</div> */}
+          <Textarea
+            id={id2}
+            name={id2}
+            value={mission}
+            maxInput={max120}
+            maxLength={max120}
+            rows={rows}
+            title={title2}
+            // placeholder={placeholder2}
+            onChange={change}
+            error={error}
+          />
           {error && error.mission && <p className="error">{error.mission}</p>}
         </div>
 
@@ -844,18 +895,20 @@ const ProfileSettings = () => {
         <h4 className="fw-bolder">Promo Video</h4>
         <div className="text-subtext mb-3">This video appears on your organization's page:</div>
         <div className="input__wrap mb-3">
-          <label className="input__label">
-            <input
-              className="input__text"
-              type="text"
-              name="promoVideo"
-              onChange={(e) => changevalue(e)}
-              placeholder="YouTube URL"
-              value={promoVideo}
-            />
-          </label>
-          {error && error.promoVideo && <p className="error">{error.promoVideo}</p>}
+          <Input
+            id={id3}
+            name={id3}
+            value={promoVideo}
+            title={title3}
+            // placeholder={placeholder3}
+            onChange={change}
+            error={error}
+          />
+          {error && error.promoVideo && (
+            <p className="error">{error ? (error.promoVideo ? error.promoVideo : '') : ''}</p>
+          )}
         </div>
+
         {embedlink && (
           <div className="project-video-wrap mb-1">
             <iframe
@@ -875,32 +928,32 @@ const ProfileSettings = () => {
             {viewGalleryImages?.length >= MAX_IMAGE_LENGTH ? (
               <p className="image-upload-wrap mb-3 fs-5">Maximum Images Allowed (5) Reached</p>
             ) : (
-                <div
-                  className="image-upload-wrap fs-2"
-                  style={{
-                    ...IMAGE_UPLOAD_WRAP_STYLES,
-                    backgroundColor: '#e5f4ff',
-                    borderRadius: '9px',
-                    border: '2px dashed rgba(62, 170, 255, 0.58)',
-                    fontSize: '60px'
-                  }}
-                >
-                  <input
-                    className="file-upload-input"
-                    type="file"
-                    name="moreImg[]"
-                    id="moreImg"
-                    accept=".jpg,.gif,.png"
-                    multiple
-                    onChange={onGalleryImagesChange}
-                    style={FILE_UPLOAD_INPUT_STYLES}
-                  />
-                  <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
-                    <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
-                    <h3 style={{ fontSize: 'inherit' }}>Drag and drop or Select File</h3>
-                  </div>
+              <div
+                className="image-upload-wrap fs-2"
+                style={{
+                  ...IMAGE_UPLOAD_WRAP_STYLES,
+                  backgroundColor: '#e5f4ff',
+                  borderRadius: '9px',
+                  border: '2px dashed rgba(62, 170, 255, 0.58)',
+                  fontSize: '60px'
+                }}
+              >
+                <input
+                  className="file-upload-input"
+                  type="file"
+                  name="moreImg[]"
+                  id="moreImg"
+                  accept=".jpg,.gif,.png"
+                  multiple
+                  onChange={onGalleryImagesChange}
+                  style={FILE_UPLOAD_INPUT_STYLES}
+                />
+                <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
+                  <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
+                  <h3 style={{ fontSize: 'inherit' }}>Drag and drop or Select File</h3>
                 </div>
-              )}
+              </div>
+            )}
             <div className="grid w-100">
               {viewGalleryImages?.length ? (
                 viewGalleryImages.map((img, key) => {
@@ -937,29 +990,29 @@ const ProfileSettings = () => {
                           style={{
                             backgroundImage: `url(${
                               helper.CampaignAdminGalleryFullPath + img.image
-                              })`
+                            })`
                             // width: '100px',
                             // height: '100px'
                           }}
                           alt="gallery"
                         ></div>
                       ) : (
-                          <div
-                            className="gallery__img"
-                            style={{
-                              backgroundImage: `url(${img ? img : noImg})`
-                              // width: '100px',
-                              // height: '100px'
-                            }}
-                            alt="lk"
-                          ></div>
-                        )}
+                        <div
+                          className="gallery__img"
+                          style={{
+                            backgroundImage: `url(${img ? img : noImg})`
+                            // width: '100px',
+                            // height: '100px'
+                          }}
+                          alt="lk"
+                        ></div>
+                      )}
                     </div>
                   );
                 })
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
             </div>
           </div>
         </div>

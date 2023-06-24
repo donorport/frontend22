@@ -55,10 +55,10 @@ function OrganisationDetailMain(props) {
       <div className="d-flex flex-column mb-4 gap-2">
         <div className="d-flex flex-column mb-1">
           <h4 className="project__detail-label mb-3p">Organization</h4>
-          <div className="d-flex flex-wrap">
+          <div className="d-flex flex-wrap me-3">
             <h1 className="flex-grow-1 project__detail-title text-dark text-capitalize" style={{ flex: 0 }}>
-              <span className="me-1">{organizationDetails?.name}</span>
-              <img className="mt-auto" style={{ width: '24px', height: '24px' }} src={verified} alt="" />
+              <span>{organizationDetails?.name}</span>
+              <img className="ms-1 mt-auto" style={{ width: '24px', height: '24px' }} src={verified} alt="" />
             </h1>
 
             <div className="justify-content-end page__logo page__logo--org">
@@ -66,7 +66,7 @@ function OrganisationDetailMain(props) {
                 alt=""
                 src={helper.CampaignAdminLogoPath + organizationDetails?.logo}
                 className="charity_avatar_bg"
-                style={{maxWidth: '90px'}}
+                // style={{width: '90px'}}
               />
             </div>
           </div>

@@ -130,7 +130,7 @@ const AddPost = (props) => {
   console.log(`AddPost component:\n~~`, { organizationDetails }); // {_id, _name: 'Alter Ego', ein, organizationUserName, .....}
   let stateData = props.stateData;
   const user = useSelector((state) => state.user);
-  console.log('AddPost', {user});
+  console.log('AddPost', { user });
   const {
     //id,
     //status,
@@ -198,10 +198,10 @@ const AddPost = (props) => {
     organizationLocation: '',
     locationName: '',
     lat: user.lat,
-    lng: user.lng,
+    lng: user.lng
   });
 
-  // console.log(galleryUrl)
+  console.log(galleryUrl)
   let url = galleryUrl;
   let videoid = url ? url?.split('?v=')[1].split('&')[0] : '';
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
@@ -223,7 +223,7 @@ const AddPost = (props) => {
   }, [props.data, stateData]);
 
   const sugg = (result, lat, lng) => {
-    console.log('add-post fn sugg:', {result, lat, lng});
+    console.log('add-post fn sugg:', { result, lat, lng });
     props.setstate({
       ...stateData,
       address: result,
@@ -257,6 +257,9 @@ const AddPost = (props) => {
   const [max45] = useState(45);
   const [max250] = useState(250);
   const [loadingId, setLoadingId] = useState([]);
+
+  const id5 = 'galleryUrl';
+  const title5 = 'YouTube URL';
 
   //const Banner = () => {
   //return <div className="banner">Loading...</div>;
@@ -438,6 +441,7 @@ const AddPost = (props) => {
                           title={title1}
                           placeholder={placeholder1}
                           onChange={change}
+                          error={error}
                         />
                         {error && error.headline && (
                           <p className="error">
@@ -455,6 +459,7 @@ const AddPost = (props) => {
                           title={title2}
                           placeholder={placeholder2}
                           onChange={change}
+                          error={error}
                         />
                         {/* <p className="error">Required</p> */}
                         {error && error.brand && (
@@ -1121,6 +1126,7 @@ const AddPost = (props) => {
                         title={title3}
                         placeholder={placeholder3}
                         onChange={change}
+                        error={error}
                       />
                       {error && error.needheadline && (
                         <p className="error">
@@ -1139,6 +1145,7 @@ const AddPost = (props) => {
                         title={title4}
                         placeholder={placeholder4}
                         onChange={change}
+                        error={error}
                       />
                       {error && error.description && (
                         <p className="error">
@@ -1155,7 +1162,7 @@ const AddPost = (props) => {
                         Need Media&nbsp;
                         <span className="fs-7 text-light ms-1 fw-normal">(optional)</span>
                       </label>
-                      <input
+                      {/* <input
                         type="text"
                         className="form-control form-control-lg"
                         // id="videoInput"
@@ -1166,6 +1173,15 @@ const AddPost = (props) => {
                         onChange={(e) => {
                           changevalue(e);
                         }}
+                      /> */}
+                      <Input
+                        id={id5}
+                        name={id5}
+                        value={galleryUrl}
+                        title={title5}
+                        // placeholder={placeholder1}
+                        onChange={change}
+                        error={error}
                       />
                     </div>
 
