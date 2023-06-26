@@ -54,7 +54,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
 
   const handleCloseSidebar = () => {
     setSidebarOpen(false);
-    onCloseSidebar && onCloseSidebar();
+    if ( onCloseSidebar ) onCloseSidebar();
   };
 
   const handleLinkClick = () => {
