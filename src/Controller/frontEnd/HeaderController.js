@@ -431,6 +431,7 @@ export default function HeaderController({ isHeaderGeo = false }) {
         removeCartItem={removeCartItem}
         updateCartItem={updateCartItem}
         wishListproductList={wishListproductList}
+        // productList={productList}
         addProductToWishlist={addProductToWishlist}
         getAuthToken={getAuthToken}
         notificationList={notificationList}

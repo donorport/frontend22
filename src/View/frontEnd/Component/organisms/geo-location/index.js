@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import ReactMapboxGl, { Marker, ScaleControl } from 'react-mapbox-gl';
+import ReactMapboxGl, { Marker, ScaleControl, Layer, Feature } from 'react-mapbox-gl';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
@@ -24,10 +24,16 @@ mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worke
 
 let Map = ReactMapboxGl({
   accessToken: helper.MapBoxPrimaryKey,
-  attributionControl: false, // Disable the default attribution control
+  attributionControl: false // Disable the default attribution control
 });
 
-const GeoLocation = () => {
+const GeoLocation = (props) => {
+  const productList = props.productList;
+  const wishlistproductList = props.wishListproductList;
+
+  console.log('ITEMS XYZ', productList);
+  console.log('WL XYZ', wishlistproductList);
+
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const mapStyles = {
@@ -120,6 +126,17 @@ const GeoLocation = () => {
     dispatch(setLocationFilter('true'));
     setHidden(false);
   };
+  const [customMarkerImage, setCustomMarkerImage] = useState('');
+
+  useEffect(() => {
+    const markerImages = wishlistproductList.map((item) => {
+      const { organizationDetails } = item.productDetails;
+      const image = organizationDetails.logo; // Assuming "logo" is the property containing the image name or path
+      const fullImageUrl = helper.CampaignAdminLogoFullPath + image;
+      return fullImageUrl;
+    });
+    setCustomMarkerImage(markerImages);
+  }, [wishlistproductList]);
 
   return (
     <>
@@ -202,6 +219,22 @@ const GeoLocation = () => {
                   <Marker coordinates={[user.lng, user.lat]} className="mapbox-marker-custom">
                     <div className="mapboxgl-user-location-dot"></div>
                   </Marker>
+                  {/* Add the marker layer and features */}
+                  <Layer
+                    type="symbol"
+                    id="marker"
+                    layout={{ 'icon-image': 'marker-15', 'icon-size': 4 }}
+                  >
+                    {wishlistproductList?.map((item, index) => (
+                      <Feature
+                        key={index}
+                        coordinates={[item.productDetails.lng, item.productDetails.lat]}
+                        onClick={() => {
+                          // Handle marker click event if needed
+                        }}
+                      ></Feature>
+                    ))}
+                  </Layer>
                 </Map>
               ) : (
                 <></>

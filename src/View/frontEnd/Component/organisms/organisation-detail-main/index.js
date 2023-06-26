@@ -53,10 +53,10 @@ function OrganisationDetailMain(props) {
   return (
     <div className="project__detail-main">
       <div className="d-flex flex-column mb-4 gap-2">
-        <div className="d-flex flex-column mb-1">
+        <div className="d-flex flex-column">
           <h4 className="project__detail-label mb-3p">Organization</h4>
           <div className="d-flex flex-wrap me-3">
-            <h1 className="flex-grow-1 project__detail-title text-dark text-capitalize" style={{ flex: 0 }}>
+            <h1 className="flex-grow-1 project__detail-title text-dark text-capitalize mb-0" style={{ flex: 0 }}>
               <span>{organizationDetails?.name}</span>
               <img className="ms-1 mt-auto" style={{ width: '24px', height: '24px' }} src={verified} alt="" />
             </h1>

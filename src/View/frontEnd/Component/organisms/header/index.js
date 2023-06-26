@@ -24,6 +24,7 @@ const Header = ({
   followToOrganization,
   removeFollowedOrganization,
   wishListproductList,
+  productList,
   addProductToWishlist,
   getAuthToken,
   isHeaderGeo = false
@@ -42,13 +43,15 @@ const Header = ({
       <Container className="d-flex align-items-center" fluid>
         <Logo />
         <div className="position-relative ms-auto header__right d-flex align-items-center gap-1">
-          {isHeaderGeo && isPathnameNotCategories && <GeoLocation />}
+          {isHeaderGeo && isPathnameNotCategories && (
+            <GeoLocation productList={productList} wishListproductList={wishListproductList} />
+          )}
           {user.isAccountAdded && (
             <Tooltip title="Setup complete. You can start receiving donations.">
-                <div className="me-2 fw-bold d-flex align-items-center badge--active text-white bg-secondary fs-6 px-1">
-                  <FontAwesomeIcon icon={solid('bolt-lightning')} className="fs-6 me-6pt" />
-                  <div className="active__text">Active</div>
-                </div>
+              <div className="me-2 fw-bold d-flex align-items-center badge--active text-white bg-secondary fs-6 px-1">
+                <FontAwesomeIcon icon={solid('bolt-lightning')} className="fs-6 me-6pt" />
+                <div className="active__text">Active</div>
+              </div>
             </Tooltip>
           )}
           {userAuthToken && (
