@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Dropdown, InputGroup } from 'react-bootstrap';
+import { Button, Dropdown, InputGroup, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import Slider from 'rc-slider';
@@ -12,7 +12,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ReactComponent as SearchIcon } from '../../../../../assets/svg/search.svg';
 import helper from '../../../../../Common/Helper';
 import { Link } from 'react-router-dom';
-import { Modal } from 'react-bootstrap';
 import {
   setDistance,
   setLatLong,
