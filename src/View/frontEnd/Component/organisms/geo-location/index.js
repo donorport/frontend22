@@ -29,9 +29,9 @@ let Map = ReactMapboxGl({
   attributionControl: false // Disable the default attribution control
 });
 
-const getCustomMarkerData = (item) => {
-  const image = item.productDetails.image;
-  const price = item.productDetails.displayPrice;
+const getCustomMarkerData = (productDetails) => {
+  const image = productDetails.image;
+  const price = productDetails.displayPrice;
   const fullImageUrl = helper.CampaignProductImagePath + image;
   return { imageUrl: fullImageUrl, price: price }; // Include price in the returned object
 }
@@ -209,28 +209,17 @@ const GeoLocation = (props) => {
                   <Marker coordinates={[user.lng, user.lat]} className="mapbox-marker-user">
                     <div className="mapboxgl-user-location-dot"></div>
                   </Marker>
-                  {/* Add the custom marker layer */}
-                  {/*
-                  <Layer type="symbol" id="custom-marker-layer" layout={{ visibility: 'visible' }}>
-                    {wishlistproductList?.map((item, index) => (
-                      <Feature
-                        key={index}
-                        coordinates={[item.productDetails.lng, item.productDetails.lat]}
-                        onClick={() => {
-                        }}
-                      />
-                    ))}
-                  </Layer>
-                  */}
-                  {wishlistproductList.map((marker, index) => {
-                    const {imageUrl, price} = getCustomMarkerData(marker);
+                  {/* Add markers for products */}
+                  {props.productList?.length > 0 && props.productList.map((item, index) => {
+                    console.log('map markers:', {marker: item});
+                    const {imageUrl, price} = getCustomMarkerData(item);
 
                     return (
                     <Marker
                       key={index}
                       coordinates={[
-                        marker.productDetails.lng,
-                        marker.productDetails.lat,
+                        item.lng,
+                        item.lat,
                       ]}
                       className="mapbox-marker-custom"
                     >
@@ -238,7 +227,7 @@ const GeoLocation = (props) => {
                         className="link"
                         variant="link"
                         target="_blank"
-                        to={'/item/' + marker.productDetails?.slug}
+                        to={'/item/' + item.slug}
                       >
                         {' '}
                         <img

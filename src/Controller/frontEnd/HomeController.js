@@ -341,7 +341,7 @@ export default function HomeController() {
   };
 
   const addProductToWishlist = async (productId) => {
-    let data = {productId};
+    let data = { productId };
     setLoading(true);
     const add = await wishlistApi.toggle(token, data);
     if (add) {
@@ -445,43 +445,37 @@ export default function HomeController() {
   }, [user.distance, allProductList, user.lat, user.lng, dispatch]);
 
   useEffect(() => {
-    (async () => {
+    // console.log(user.isUpdateLocationFilter)
+    // if (user.isMapLocked) {
+    if (user.isUpdateLocationFilter === 'true') {
+      // console.log('tr')
+
       // console.log(user.isUpdateLocationFilter)
-      // if (user.isMapLocked) {
-      if (user.isUpdateLocationFilter === 'true') {
-        // console.log('tr')
+      if (tempProductList.length > 0) {
+        let productTagsArray = [];
+        tempProductList.forEach((p) => {
+          p.tags.forEach((value) => {
+            let tempObj = {
+              color: p.categoryDetails.color ? p.categoryDetails.color : 'red',
+              tag: value,
+            };
+            productTagsArray.push(tempObj);
+          })
+        })
+        productTagsArray = productTagsArray.filter(
+          (value, index, self) => index === self.findIndex((t) => t.tag === value.tag)
+        );
 
-        // console.log(user.isUpdateLocationFilter)
-        if (tempProductList.length > 0) {
-          let productTagsArray = [];
-          await Promise.all(
-            tempProductList.map(async (p) => {
-              await Promise.all(
-                p.tags.map((value) => {
-                  let tempObj = {};
-                  tempObj.color = p.categoryDetails.color ? p.categoryDetails.color : 'red';
-
-                  tempObj.tag = value;
-                  productTagsArray.push(tempObj);
-                })
-              );
-            })
-          );
-          productTagsArray = productTagsArray.filter(
-            (value, index, self) => index === self.findIndex((t) => t.tag === value.tag)
-          );
-
-          setProductTags(productTagsArray);
-          setProductList(tempProductList);
-        }
-        dispatch(setLocationFilter('false'));
+        setProductTags(productTagsArray);
+        setProductList(tempProductList);
       }
-      // }
-      // else {
-      //     await filterProduct(lowPrice, HighPrice, resultTags, user.countryId)
-      //     dispatch(setProductCount(0))
-      // }
-    })();
+      dispatch(setLocationFilter('false'));
+    }
+    // }
+    // else {
+    //     await filterProduct(lowPrice, HighPrice, resultTags, user.countryId)
+    //     dispatch(setProductCount(0))
+    // }
   }, [allProductList, dispatch, tempProductList, user.isUpdateLocationFilter]);
 
   // gets country advertisement list, other stuff?
@@ -827,16 +821,16 @@ export default function HomeController() {
         homeadvertisementList
       });
       console.log('request position useEffect');
-  
+
       // Check if countryId exists
       if (!user.countryId) {
         console.log('~~ non-existent countryId, checking if location can be obtained:');
-  
+
         if (navigator && navigator.geolocation) {
           // If geolocation API is available, attempt to get current position
           console.log('~~ YES geolocation API exists, getting current position...');
           console.time('getCurrentPosition');
-  
+
           try {
             const position = await new Promise((resolve, reject) => {
               navigator.geolocation.getCurrentPosition(resolve, reject, {
@@ -844,22 +838,22 @@ export default function HomeController() {
                 timeout: 10000 // force escape the geo attempt if longer than this ms
               });
             });
-  
+
             console.log('** success callback wrapper');
             console.timeEnd('getCurrentPosition');
             showPosition(position);
           } catch (error) {
             console.log('** error callback wrapper, attempting ipinfo.io lookup');
             console.timeEnd('getCurrentPosition');
-  
+
             try {
               const res = await fetch('https://ipinfo.io/geo');
               if (res.status !== 200)
                 throw new Error('Error fetching geo location from ipinfo.io/geo');
-  
+
               const json = await res.json();
               console.log('~~ ~~ ~~ ipinfo.io response:', { res, json });
-  
+
               const [latitude, longitude] = json.loc.split(',');
               const backupPosition = {
                 coords: {
@@ -888,12 +882,12 @@ export default function HomeController() {
         await filterProduct(lowPrice, HighPrice, resultTags, user.countryId);
         setLoading(false);
       }
-  
+
       console.log('(advertisement starts, building ad lists)', {
         countryAdvertisementList,
         homeadvertisementList
       });
-  
+
       // Now filter the advertisement list
       let arr = [];
       if (countryAdvertisementList.length > 0) {
@@ -906,7 +900,7 @@ export default function HomeController() {
         setAdvertisementList(arrayUnique(arr));
       }
     };
-  
+
     fetchData();
   }, [
     taxEligible,
@@ -923,7 +917,7 @@ export default function HomeController() {
     countryAdvertisementList,
     homeadvertisementList
   ]);
-  
+
 
   const filterProduct = async (
     low_price = lowPrice,
