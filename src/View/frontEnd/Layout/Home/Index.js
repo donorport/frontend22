@@ -185,7 +185,7 @@ export default function Index(props) {
     <>
       {/* {loading && <CircularProgress />} */}
 
-      <HeaderController isHeaderGeo={true} />
+      <HeaderController productList={props.productList} isHeaderGeo={true} />
 
       <div className="bg-lighter border-bottom">
         <Container

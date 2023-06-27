@@ -29,6 +29,13 @@ let Map = ReactMapboxGl({
   attributionControl: false // Disable the default attribution control
 });
 
+const getCustomMarkerData = (productDetails) => {
+  const image = productDetails.image;
+  const price = productDetails.displayPrice;
+  const fullImageUrl = helper.CampaignProductImagePath + image;
+  return { imageUrl: fullImageUrl, price: price }; // Include price in the returned object
+}
+
 const GeoLocation = (props) => {
   const wishlistproductList = props.wishListproductList;
   const user = useSelector((state) => state.user);
@@ -123,19 +130,6 @@ const GeoLocation = (props) => {
     dispatch(setLocationFilter('true'));
     setHidden(false);
   };
-  const [customMarkerImage, setCustomMarkerImage] = useState([]);
-
-  useEffect(() => {
-    const markerImages = wishlistproductList.map((item) => {
-      const { organizationDetails } = item.productDetails;
-      // const image = organizationDetails.logo;
-      const image = item.productDetails.image;
-      const price = item.productDetails.displayPrice;
-      const fullImageUrl = helper.CampaignProductImagePath + image;
-      return { imageUrl: fullImageUrl, price: price }; // Include price in the returned object
-    });
-    setCustomMarkerImage(markerImages);
-  }, [wishlistproductList]);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -219,32 +213,20 @@ const GeoLocation = (props) => {
                     <div className="radius-circle"></div>
                   </div>
                   <ScaleControl style={{ zIndex: '-1' }} />
-                  <Modal show={showModal} onHide={handleCloseModal}>
-                    <span>SHOW</span>
-                  </Modal>
-                  <Marker
-                    coordinates={[user.lng, user.lat]}
-                    className="mapbox-marker-custom"
-                    onClick={() => setShowModal(true)}
-                  >
+                  <Marker coordinates={[user.lng, user.lat]} className="mapbox-marker-user">
                     <div className="mapboxgl-user-location-dot"></div>
                   </Marker>
-                  {/* Add the custom marker layer */}
-                  <Layer type="symbol" id="custom-marker-layer" layout={{ visibility: 'visible' }}>
-                    {wishlistproductList?.map((item, index) => (
-                      <Feature
-                        key={index}
-                        coordinates={[item.productDetails.lng, item.productDetails.lat]}
-                        onClick={() => {}}
-                      />
-                    ))}
-                  </Layer>
-                  {customMarkerImage.map((marker, index) => (
+                  {/* Add markers for products */}
+                  {props.productList?.length > 0 && props.productList.map((item, index) => {
+                    console.log('map markers:', {marker: item});
+                    const {imageUrl, price} = getCustomMarkerData(item);
+
+                    return (
                     <Marker
                       key={index}
                       coordinates={[
-                        wishlistproductList[index].productDetails.lng,
-                        wishlistproductList[index].productDetails.lat
+                        item.lng,
+                        item.lat,
                       ]}
                       className="mapbox-marker-custom"
                     >
@@ -252,11 +234,11 @@ const GeoLocation = (props) => {
                         className="link d-flex align-items-center justify-content-center"
                         variant="link"
                         target="_blank"
-                        to={'/item/' + wishlistproductList[index]?.productDetails?.slug}
+                        to={'/item/' + item.slug}
                       >
                         {' '}
                         <img
-                          src={marker.imageUrl}
+                          src={imageUrl}
                           alt={`Custom Marker ${index}`}
                           style={{ maxHeight: '42px', maxWidth: '58px' }}
                         />
@@ -264,11 +246,11 @@ const GeoLocation = (props) => {
                           style={{ padding: '2px 3px' }}
                           className="d-flex align-items-center justify-content-center rounded-3 fs-6 fw-semibold bg-primary text-white"
                         >
-                          ${marker.price}
+                          ${price}
                         </h6>
                       </Link>
                     </Marker>
-                  ))}
+                  )})}
                 </Map>
               ) : (
                 <></>

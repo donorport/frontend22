@@ -17,7 +17,7 @@ import adminCampaignApi from '../../Api/admin/adminCampaign';
 // eslint-disable-next-line import/no-unresolved
 import moment from 'moment';
 
-export default function HeaderController({ isHeaderGeo = false }) {
+export default function HeaderController({ productList, isHeaderGeo = false }) {
   const userAuthToken = localStorage.getItem('userAuthToken');
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const token = userAuthToken
@@ -431,7 +431,7 @@ export default function HeaderController({ isHeaderGeo = false }) {
         removeCartItem={removeCartItem}
         updateCartItem={updateCartItem}
         wishListproductList={wishListproductList}
-        // productList={productList}
+        productList={productList}
         addProductToWishlist={addProductToWishlist}
         getAuthToken={getAuthToken}
         notificationList={notificationList}
