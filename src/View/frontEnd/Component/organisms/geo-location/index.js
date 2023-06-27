@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ReactComponent as SearchIcon } from '../../../../../assets/svg/search.svg';
 import helper from '../../../../../Common/Helper';
 import { Link } from 'react-router-dom';
-
+import { Modal } from 'react-bootstrap';
 import {
   setDistance,
   setLatLong,
@@ -137,6 +137,12 @@ const GeoLocation = (props) => {
     setCustomMarkerImage(markerImages);
   }, [wishlistproductList]);
 
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
       <div
@@ -203,6 +209,7 @@ const GeoLocation = (props) => {
                   style={mapStyles.day}
                   zoom={[zoomLevel]}
                   center={[user.lng, user.lat]}
+                  // This manages the update results and displaying the scale level for zoom in KM:
                   // onRender={(e) => setObjectVal(e.boxZoom._container.outerText)}
                   onMove={(event) => {
                     setViewState(event.viewState);
@@ -212,7 +219,14 @@ const GeoLocation = (props) => {
                     <div className="radius-circle"></div>
                   </div>
                   <ScaleControl style={{ zIndex: '-1' }} />
-                  <Marker coordinates={[user.lng, user.lat]} className="mapbox-marker-custom">
+                  <Modal show={showModal} onHide={handleCloseModal}>
+                    <span>SHOW</span>
+                  </Modal>
+                  <Marker
+                    coordinates={[user.lng, user.lat]}
+                    className="mapbox-marker-custom"
+                    onClick={() => setShowModal(true)}
+                  >
                     <div className="mapboxgl-user-location-dot"></div>
                   </Marker>
                   {/* Add the custom marker layer */}
@@ -221,8 +235,7 @@ const GeoLocation = (props) => {
                       <Feature
                         key={index}
                         coordinates={[item.productDetails.lng, item.productDetails.lat]}
-                        onClick={() => {
-                        }}
+                        onClick={() => {}}
                       />
                     ))}
                   </Layer>
@@ -236,7 +249,7 @@ const GeoLocation = (props) => {
                       className="mapbox-marker-custom"
                     >
                       <Link
-                      className="link"
+                        className="link d-flex align-items-center justify-content-center"
                         variant="link"
                         target="_blank"
                         to={'/item/' + wishlistproductList[index]?.productDetails?.slug}
@@ -245,9 +258,14 @@ const GeoLocation = (props) => {
                         <img
                           src={marker.imageUrl}
                           alt={`Custom Marker ${index}`}
-                          style={{ maxHeight: '62px', maxWidth: '68px' }}
+                          style={{ maxHeight: '42px', maxWidth: '58px' }}
                         />
-                        <p className="py-1 px-1 rounded-3 fs-4 fw-semibold bg-white text-dark">${marker.price}</p>
+                        <h6
+                          style={{ padding: '2px 3px' }}
+                          className="d-flex align-items-center justify-content-center rounded-3 fs-6 fw-semibold bg-primary text-white"
+                        >
+                          ${marker.price}
+                        </h6>
                       </Link>
                     </Marker>
                   ))}
