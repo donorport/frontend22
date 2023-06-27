@@ -206,7 +206,7 @@ const GeoLocation = (props) => {
                     <div className="radius-circle"></div>
                   </div>
                   <ScaleControl style={{ zIndex: '-1' }} />
-                  <Marker coordinates={[user.lng, user.lat]} className="mapbox-marker-custom">
+                  <Marker coordinates={[user.lng, user.lat]} className="mapbox-marker-user">
                     <div className="mapboxgl-user-location-dot"></div>
                   </Marker>
                   {/* Add the custom marker layer */}
