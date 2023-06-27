@@ -34,10 +34,39 @@ const getCustomMarkerData = (productDetails) => {
   const price = productDetails.displayPrice;
   const fullImageUrl = helper.CampaignProductImagePath + image;
   return { imageUrl: fullImageUrl, price: price }; // Include price in the returned object
-}
+};
+
+const groupProductsByLocation = (products) => {
+  // go through each item
+  // if we already have a group for the current lat/lng, add it to that group
+  // else, create a new group
+  const grouped = products.reduce((accum, currentItem) => {
+    const { lat, lng } = currentItem;
+    const loc = `${lat},${lng}`; // our key for looking up the groups in the map
+
+    //if we have the location saved, grab out the group and append our currentItem
+    if (accum[loc] !== undefined) {
+      const foundGroup = accum[loc];
+      foundGroup.push(currentItem);
+      accum[loc] = foundGroup;
+    } else {
+      accum[loc] = [currentItem];
+    }
+
+    return accum;
+  }, {});
+
+  //console.log({ grouped });
+  const groupedArrayOfEntries = Object.entries(grouped);
+
+  // the grouped result is a map with key: locationString, and value: [item | ...items]
+  //console.log('groupProductsByLocation:', { groupedArrayOfEntries });
+
+  return groupedArrayOfEntries;
+};
 
 const GeoLocation = (props) => {
-  const wishlistproductList = props.wishListproductList;
+  const listOfGroupedProducts = groupProductsByLocation(props.productList);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const mapStyles = {
@@ -80,13 +109,8 @@ const GeoLocation = (props) => {
   });
 
   const toggleState = () => {
-    if (locked) {
-      setLocked(false);
-      dispatch(setMapLock(false));
-    } else {
-      setLocked(true);
-      dispatch(setMapLock(true));
-    }
+    dispatch(setMapLock(!locked));
+    setLocked(!locked);
   };
 
   const sugg = (result, lat, lng) => {
@@ -210,35 +234,118 @@ const GeoLocation = (props) => {
                     <div className="mapboxgl-user-location-dot"></div>
                   </Marker>
                   {/* Add markers for products */}
-                  {props.productList?.length > 0 && props.productList.map((item, index) => {
-                    console.log('map markers:', {marker: item});
-                    const {imageUrl, price} = getCustomMarkerData(item);
+                  {/*
+                  {props.productList?.length > 0 &&
+                    props.productList.map((item, index) => {
+                      console.log('map markers:', { item });
+                      const { imageUrl, price } = getCustomMarkerData(item);
 
-                    return (
-                    <Marker
-                      key={index}
-                      coordinates={[
-                        item.lng,
-                        item.lat,
-                      ]}
-                      className="mapbox-marker-custom"
-                    >
-                      <Link
-                        className="link"
-                        variant="link"
-                        target="_blank"
-                        to={'/item/' + item.slug}
-                      >
-                        {' '}
-                        <img
-                          src={imageUrl}
-                          alt={`Custom Marker ${index}`}
-                          style={{ maxHeight: '62px', maxWidth: '68px' }}
-                        />
-                        <p className="py-1 px-1 rounded-3 fs-4 fw-semibold bg-white text-dark">${price}</p>
-                      </Link>
-                    </Marker>
-                  )})}
+                      return (
+                        <Marker
+                          key={index}
+                          coordinates={[item.lng, item.lat]}
+                          className="mapbox-marker-custom"
+                        >
+                          <Link
+                            className="link"
+                            variant="link"
+                            target="_blank"
+                            to={'/item/' + item.slug}
+                          >
+                            {' '}
+                            <img
+                              src={imageUrl}
+                              alt={`Custom Marker ${index}`}
+                              style={{ maxHeight: '62px', maxWidth: '68px' }}
+                            />
+                            <p className="py-1 px-1 rounded-3 fs-4 fw-semibold bg-white text-dark">
+                              ${price}
+                            </p>
+                          </Link>
+                        </Marker>
+                      );
+                    })}
+                  */}
+
+                  {listOfGroupedProducts.length > 0 &&
+                    listOfGroupedProducts.map(([loc, groupOfItems], index) => {
+                      //console.log('map markers:', { loc, groupOfItems });
+                      if (groupOfItems.length > 1) {
+                        const [lat, lng] = loc.split(',');
+                        return (
+                          <Marker
+                            key={index}
+                            coordinates={[lng, lat]}
+                            className="mapbox-marker-custom"
+                          >
+                            <div
+                              className="mapbox-marker-multi-container rounded-3 bg-white py-1 px-1"
+                              style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}
+                            >
+                              {groupOfItems.map((item, gi) => {
+                                const customIndex = `${index}-${gi}`;
+                                const { imageUrl, price } = getCustomMarkerData(item);
+
+                                return (
+                                  <Link
+                                    className="link"
+                                    variant="link"
+                                    target="_blank"
+                                    to={'/item/' + item.slug}
+                                    style={{ display: 'flex', alignItems: 'center' }}
+                                  >
+                                    {' '}
+                                    <img
+                                      src={imageUrl}
+                                      alt={`Custom Marker ${customIndex}`}
+                                      style={{
+                                        maxHeight: '31px',
+                                        maxWidth: '34px',
+                                        display: 'inline-block'
+                                      }}
+                                    />
+                                    <p
+                                      className="py-1 px-1 rounded-3 fs-4 fw-semibold bg-white text-dark"
+                                      style={{ display: 'inline-block' }}
+                                    >
+                                      ${price}
+                                    </p>
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </Marker>
+                        );
+                      }
+
+                      const item = groupOfItems[0];
+                      const { imageUrl, price } = getCustomMarkerData(item);
+
+                      return (
+                        <Marker
+                          key={index}
+                          coordinates={[item.lng, item.lat]}
+                          className="mapbox-marker-custom"
+                        >
+                          <Link
+                            className="link"
+                            variant="link"
+                            target="_blank"
+                            to={'/item/' + item.slug}
+                          >
+                            {' '}
+                            <img
+                              src={imageUrl}
+                              alt={`Custom Marker ${index}`}
+                              style={{ maxHeight: '62px', maxWidth: '68px' }}
+                            />
+                            <p className="py-1 px-1 rounded-3 fs-4 fw-semibold bg-white text-dark">
+                              ${price}
+                            </p>
+                          </Link>
+                        </Marker>
+                      );
+                    })}
                 </Map>
               ) : (
                 <></>
