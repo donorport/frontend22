@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ReactComponent as SearchIcon } from '../../../../../assets/svg/search.svg';
 import helper from '../../../../../Common/Helper';
 import { Link } from 'react-router-dom';
-
+import { Modal } from 'react-bootstrap';
 import {
   setDistance,
   setLatLong,
@@ -155,6 +155,12 @@ const GeoLocation = (props) => {
     setHidden(false);
   };
 
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
       <div
@@ -221,6 +227,7 @@ const GeoLocation = (props) => {
                   style={mapStyles.day}
                   zoom={[zoomLevel]}
                   center={[user.lng, user.lat]}
+                  // This manages the update results and displaying the scale level for zoom in KM:
                   // onRender={(e) => setObjectVal(e.boxZoom._container.outerText)}
                   onMove={(event) => {
                     setViewState(event.viewState);
