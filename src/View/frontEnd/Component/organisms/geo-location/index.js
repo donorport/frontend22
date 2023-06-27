@@ -11,6 +11,8 @@ import MapboxAutocomplete from 'react-mapbox-autocomplete';
 import { useSelector, useDispatch } from 'react-redux';
 import { ReactComponent as SearchIcon } from '../../../../../assets/svg/search.svg';
 import helper from '../../../../../Common/Helper';
+import { Link } from 'react-router-dom';
+
 import {
   setDistance,
   setLatLong,
@@ -28,12 +30,7 @@ let Map = ReactMapboxGl({
 });
 
 const GeoLocation = (props) => {
-  const productList = props.productList;
   const wishlistproductList = props.wishListproductList;
-
-  console.log('ITEMS XYZ', productList);
-  console.log('WL XYZ', wishlistproductList);
-
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const mapStyles = {
@@ -46,13 +43,13 @@ const GeoLocation = (props) => {
   const [hidden, setHidden] = useState(false);
   const [objectVal, setObjectVal] = useState();
   const [viewState, setViewState] = useState({
-    zoom: 6.5
+    zoom: 10
   });
 
   const onDropdownToggle = (isOpen) => setHidden(isOpen);
 
   useEffect(() => {
-    if (hidden && window.innerWidth < 768) {
+    if (hidden) {
       document.body.style.overflow = 'hidden'; // Disable scrolling
     } else {
       document.body.style.overflow = 'auto'; // Enable scrolling
@@ -126,14 +123,16 @@ const GeoLocation = (props) => {
     dispatch(setLocationFilter('true'));
     setHidden(false);
   };
-  const [customMarkerImage, setCustomMarkerImage] = useState('');
+  const [customMarkerImage, setCustomMarkerImage] = useState([]);
 
   useEffect(() => {
     const markerImages = wishlistproductList.map((item) => {
       const { organizationDetails } = item.productDetails;
-      const image = organizationDetails.logo; // Assuming "logo" is the property containing the image name or path
-      const fullImageUrl = helper.CampaignAdminLogoFullPath + image;
-      return fullImageUrl;
+      // const image = organizationDetails.logo;
+      const image = item.productDetails.image;
+      const price = item.productDetails.displayPrice;
+      const fullImageUrl = helper.CampaignProductImagePath + image;
+      return { imageUrl: fullImageUrl, price: price }; // Include price in the returned object
     });
     setCustomMarkerImage(markerImages);
   }, [wishlistproductList]);
@@ -202,12 +201,9 @@ const GeoLocation = (props) => {
                 <Map
                   {...viewState}
                   style={mapStyles.day}
-                  // containerStyle={{
-                  //   height: '300px', width: '300px'
-                  // }}
                   zoom={[zoomLevel]}
                   center={[user.lng, user.lat]}
-                  onRender={(e) => setObjectVal(e.boxZoom._container.outerText)}
+                  // onRender={(e) => setObjectVal(e.boxZoom._container.outerText)}
                   onMove={(event) => {
                     setViewState(event.viewState);
                   }}
@@ -219,22 +215,42 @@ const GeoLocation = (props) => {
                   <Marker coordinates={[user.lng, user.lat]} className="mapbox-marker-custom">
                     <div className="mapboxgl-user-location-dot"></div>
                   </Marker>
-                  {/* Add the marker layer and features */}
-                  <Layer
-                    type="symbol"
-                    id="marker"
-                    layout={{ 'icon-image': 'marker-15', 'icon-size': 4 }}
-                  >
+                  {/* Add the custom marker layer */}
+                  <Layer type="symbol" id="custom-marker-layer" layout={{ visibility: 'visible' }}>
                     {wishlistproductList?.map((item, index) => (
                       <Feature
                         key={index}
                         coordinates={[item.productDetails.lng, item.productDetails.lat]}
                         onClick={() => {
-                          // Handle marker click event if needed
                         }}
-                      ></Feature>
+                      />
                     ))}
                   </Layer>
+                  {customMarkerImage.map((marker, index) => (
+                    <Marker
+                      key={index}
+                      coordinates={[
+                        wishlistproductList[index].productDetails.lng,
+                        wishlistproductList[index].productDetails.lat
+                      ]}
+                      className="mapbox-marker-custom"
+                    >
+                      <Link
+                      className="link"
+                        variant="link"
+                        target="_blank"
+                        to={'/item/' + wishlistproductList[index]?.productDetails?.slug}
+                      >
+                        {' '}
+                        <img
+                          src={marker.imageUrl}
+                          alt={`Custom Marker ${index}`}
+                          style={{ maxHeight: '62px', maxWidth: '68px' }}
+                        />
+                        <p className="py-1 px-1 rounded-3 fs-4 fw-semibold bg-white text-dark">${marker.price}</p>
+                      </Link>
+                    </Marker>
+                  ))}
                 </Map>
               ) : (
                 <></>
