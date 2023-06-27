@@ -29,6 +29,13 @@ let Map = ReactMapboxGl({
   attributionControl: false // Disable the default attribution control
 });
 
+const getCustomMarkerData = (item) => {
+  const image = item.productDetails.image;
+  const price = item.productDetails.displayPrice;
+  const fullImageUrl = helper.CampaignProductImagePath + image;
+  return { imageUrl: fullImageUrl, price: price }; // Include price in the returned object
+}
+
 const GeoLocation = (props) => {
   const wishlistproductList = props.wishListproductList;
   const user = useSelector((state) => state.user);
@@ -123,19 +130,6 @@ const GeoLocation = (props) => {
     dispatch(setLocationFilter('true'));
     setHidden(false);
   };
-  const [customMarkerImage, setCustomMarkerImage] = useState([]);
-
-  useEffect(() => {
-    const markerImages = wishlistproductList.map((item) => {
-      const { organizationDetails } = item.productDetails;
-      // const image = organizationDetails.logo;
-      const image = item.productDetails.image;
-      const price = item.productDetails.displayPrice;
-      const fullImageUrl = helper.CampaignProductImagePath + image;
-      return { imageUrl: fullImageUrl, price: price }; // Include price in the returned object
-    });
-    setCustomMarkerImage(markerImages);
-  }, [wishlistproductList]);
 
   return (
     <>
@@ -216,6 +210,7 @@ const GeoLocation = (props) => {
                     <div className="mapboxgl-user-location-dot"></div>
                   </Marker>
                   {/* Add the custom marker layer */}
+                  {/*
                   <Layer type="symbol" id="custom-marker-layer" layout={{ visibility: 'visible' }}>
                     {wishlistproductList?.map((item, index) => (
                       <Feature
@@ -226,31 +221,35 @@ const GeoLocation = (props) => {
                       />
                     ))}
                   </Layer>
-                  {customMarkerImage.map((marker, index) => (
+                  */}
+                  {wishlistproductList.map((marker, index) => {
+                    const {imageUrl, price} = getCustomMarkerData(marker);
+
+                    return (
                     <Marker
                       key={index}
                       coordinates={[
-                        wishlistproductList[index].productDetails.lng,
-                        wishlistproductList[index].productDetails.lat
+                        marker.productDetails.lng,
+                        marker.productDetails.lat,
                       ]}
                       className="mapbox-marker-custom"
                     >
                       <Link
-                      className="link"
+                        className="link"
                         variant="link"
                         target="_blank"
-                        to={'/item/' + wishlistproductList[index]?.productDetails?.slug}
+                        to={'/item/' + marker.productDetails?.slug}
                       >
                         {' '}
                         <img
-                          src={marker.imageUrl}
+                          src={imageUrl}
                           alt={`Custom Marker ${index}`}
                           style={{ maxHeight: '62px', maxWidth: '68px' }}
                         />
-                        <p className="py-1 px-1 rounded-3 fs-4 fw-semibold bg-white text-dark">${marker.price}</p>
+                        <p className="py-1 px-1 rounded-3 fs-4 fw-semibold bg-white text-dark">${price}</p>
                       </Link>
                     </Marker>
-                  ))}
+                  )})}
                 </Map>
               ) : (
                 <></>
