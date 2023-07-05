@@ -349,6 +349,21 @@ function organization() {
     return res;
   };
 
+  const getDonationsByUserId = async (authToken, data) => axios({
+      method: 'get',
+      url: `${helper.ApiUrl}donations/${data.userId}`,
+      responseType: 'json',
+      headers: {
+        'x-access-token': authToken,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        withCredentials: true,
+        mode: 'no-cors'
+      },
+  })
+
+
   return {
     details,
     organizationPurchasedItemHistory,
@@ -365,7 +380,8 @@ function organization() {
     getPaymentHistory,
     getDonationDetails,
     updateSalesTax,
-    organizatationDeleteTaxReceipt
+    organizatationDeleteTaxReceipt,
+    getDonationsByUserId,
   };
 }
 const organizationApi = organization();

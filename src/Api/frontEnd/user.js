@@ -48,7 +48,7 @@ function user() {
     });
     return res;
   };
-  
+
   const updatePassword = async (authToken, data) => {
     let res = {};
     await axios({
@@ -255,9 +255,8 @@ function user() {
     return res;
   };
 
-  const getUserHighXpList = async (authToken, data) => {
-    let res = {};
-    await axios({
+  const getUserHighXpList = (authToken, data) =>
+    axios({
       method: 'post',
       url: `${helper.ApiUrl}user/highXp`,
       responseType: 'json',
@@ -270,10 +269,23 @@ function user() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
+
+  const getAllUserOrderDetails = (authToken, data) => {
+    //console.log('userApi getAllUserOrderDetails');
+    return axios({
+      method: 'get',
+      url: `${helper.ApiUrl}user/orders/${data.userId}`,
+      responseType: 'json',
+      headers: {
+        'x-access-token': authToken,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        withCredentials: true,
+        mode: 'no-cors'
+      }
+    });
   };
 
   return {
@@ -288,7 +300,8 @@ function user() {
     getUserRank,
     getUserPaymentHistory,
     deleteUser,
-    getUserHighXpList
+    getUserHighXpList,
+    getAllUserOrderDetails
   };
 }
 const userApi = user();

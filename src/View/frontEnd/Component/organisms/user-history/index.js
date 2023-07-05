@@ -5,84 +5,186 @@ import IconToggle from '../../atoms/icon-toggle';
 // import { HistoryList } from "@components/organisms"
 import HistoryList from '../history-list';
 import React, { useState, useEffect } from 'react';
-import { Outlet, Link, useLocation, useOutletContext } from 'react-router-dom';
+import { 
+  //Outlet, 
+  //Link, 
+  //useLocation, 
+  useOutletContext 
+} from 'react-router-dom';
 import userApi from '../../../../../Api/frontEnd/user';
-import FrontLoader from '../../../../../Common/FrontLoader';
+//import FrontLoader from '../../../../../Common/FrontLoader';
 
 import './style.scss';
+import organizationApi from '../../../../../Api/frontEnd/organization';
+//import { useSelector } from 'react-redux';
+
+//TODO:
+//const HISTORY_FILTER_OPTIONS = [
+  //'ALL',
+  //'ORDERS',
+  //'DONATIONS',
+//];
 
 const UserHistory = () => {
   const [data, setData] = useOutletContext();
-  const [orderList, setOrderList] = useState([]);
+  //const [orderList, setOrderList] = useState([]);
   const userAuthToken = localStorage.getItem('userAuthToken');
-  const [loading, setLoading] = useState(false);
+  //const [loading, setLoading] = useState(false);
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalRecord, setTotalRecord] = useState(0);
   const [activeList, setActiveList] = useState([]);
-  const [ischecked, setIschecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [sortField, setSortField] = useState('created_at');
-  const [order, setOrder] = useState('asc');
+  const [sortingOrder, setSortingOrder] = useState('asc');
 
-  const getUserOrders = async (page, field, type) => {
-    setLoading(true);
-    let formData = {};
-    formData.organizationId = data._id;
-    formData.pageNo = page;
-    formData.sortField = field;
-    formData.sortType = type;
-    formData.filter = true;
+  const [userDonations, setUserDonations] = useState([]);
+  const [allUserOrderDetails, setAllUserOrderDetails] = useState([]);
+  // masterList holds combined orders + donations, and is sorted based on sortingOrder
+  const [masterList, setMasterList] = useState([]);
+  // thisPageList holds the items for this page only (10 items)
+  const [thisPageList, setThisPageList] = useState([]);
 
-    const getUserOrderDetails = await userApi.getUserOrderDetails(userAuthToken, formData);
-    if (getUserOrderDetails.data.success) {
-      // console.log(getUserOrderDetails.data)
-      setTotalPages(getUserOrderDetails.data.totalPages);
-      setTotalRecord(getUserOrderDetails.data.totalRecord);
-      setOrderList(getUserOrderDetails.data.data);
+  const [isFetching, setIsFetching] = useState(true);
+
+  //TODO:
+  //const [historyFilter, setHistoryFilter] = useState(HISTORY_FILTER_OPTIONS[0]);
+
+
+  //console.log('UserHistory:', {data});
+
+  //const getUserOrders = async (page, field, type) => {
+    //setLoading(true);
+    //let formData = {};
+    //formData.organizationId = data._id;
+    //formData.pageNo = page;
+    //formData.sortField = field;
+    //formData.sortType = type;
+    //formData.filter = true;
+
+    //const getUserOrderDetails = await userApi.getUserOrderDetails(userAuthToken, formData);
+    //if (getUserOrderDetails.data.success) {
+      //// console.log(getUserOrderDetails.data)
+      //setTotalPages(getUserOrderDetails.data.totalPages);
+      //setTotalRecord(getUserOrderDetails.data.totalRecord);
+      //setOrderList(getUserOrderDetails.data.data);
+    //}
+    //setLoading(false);
+  //};
+
+  const getAllUserOrders = async () => {
+    const formData = {
+      userId: data._id,
+    };
+    const getAllUserOrderDetails = await userApi.getAllUserOrderDetails(userAuthToken, formData);
+    if (getAllUserOrderDetails.data.success) {
+      setAllUserOrderDetails(getAllUserOrderDetails.data.data);
+      return getAllUserOrderDetails.data.data;
     }
-    setLoading(false);
-  };
+
+    console.error({getAllUserOrderDetails});
+    return [];
+  }
+
+  const getUserDonations = async () => {
+    const formData = {userId: data._id};
+    const userDonations = await organizationApi.getDonationsByUserId(userAuthToken, formData);
+    if (userDonations.data.success) {
+      setUserDonations(userDonations.data.data);
+      return userDonations.data.data;
+    }
+
+    console.error({userDonations});
+    return [];
+  }
+
+  // should run once to fetch all data and sort it
+  const fetchAndCombineOrdersAndDonations = async () => {
+
+    // fetch list and save counts
+    const [orders, donations] = await Promise.all([getAllUserOrders(), getUserDonations()]);
+    const list = orders.concat(donations);
+    setTotalPages(Math.ceil(list.length / 10));
+    setTotalRecord(list.length);
+
+    // sort it based on sortingOrder
+    const sortedList = sortList(list, sortingOrder);
+    //console.log({unsorted: list, sorted: sortedList});
+
+    // set into masterList
+    setMasterList(sortedList);
+
+    // get 10 items for this page
+    getThisPageList(sortedList, pageNo);
+
+    return true;
+  }
+
+  // when changing sorting order, need to first change master list sorting order
+  // then need to pluck the correct page from the master list
+
+  const sortList = (_list, _sortingOrder) => {
+    return _list.sort((a, b) => {
+      if (a.created_at < b.created_at) {
+        return _sortingOrder === 'asc' ? 1 : -1;
+      }
+      if (a.created_at > b.created_at) {
+        return _sortingOrder === 'asc' ? -1 : 1;
+      }
+      return 0;
+    });
+  }
+
+  const getThisPageList = (list, pageNo) => {
+    const start = (pageNo - 1) * 10;
+    const end = pageNo * 10;
+    setThisPageList(list.slice(start, end));
+  }
 
   useEffect(() => {
     (async () => {
-      await getUserOrders(pageNo, sortField, order);
+      if (data._id) {
+        setIsFetching(true);
+        await fetchAndCombineOrdersAndDonations();
+        setIsFetching(false);
+      }
     })();
   }, [data._id]);
 
-  const handleClick = async (e, v) => {
-    // setLoading(false)
-    setActiveList([]);
-    setIschecked(false);
-    setPageNo(Number(v));
-    await getUserOrders(Number(v), sortField, order);
+  //console.log('fetched userDonations:', {allUserOrderDetails, userDonations, masterList, thisPageList });
 
-    // setLoading(false)
+
+  const handleChangePage = async (e, v) => {
+    setActiveList([]);
+    setIsChecked(false);
+    const nextPage = Number(v);
+    setPageNo(nextPage);
+
+    getThisPageList(masterList, nextPage);
   };
 
   const handleSortingChange = async (accessor) => {
-    const sortOrder = accessor === sortField && order === 'asc' ? 'desc' : 'asc';
+    const newSortOrder = accessor === sortField && sortingOrder === 'asc' ? 'desc' : 'asc';
     setSortField(accessor);
-    setOrder(sortOrder);
-    await getUserOrders(pageNo, accessor, sortOrder);
+    setSortingOrder(newSortOrder);
+
+
+    // sort the masterList based on sortingOrder
+    // set thisPageList to the correct pagination of the masterList
+    const sortedList = sortList(masterList, newSortOrder);
+    setMasterList(sortedList);
+    getThisPageList(sortedList, pageNo);
+
   };
 
   const onClickFilter = (e) => {
     // console.log(e.target.checked)
-    if (e.target.checked) {
-      if (orderList.length > 0) {
-        let temp = [];
-        orderList.map((list, i) => {
-          temp.push(list._id);
-        });
-        setActiveList(temp);
-      } else {
-        setActiveList([]);
-      }
-    } else {
-      setActiveList([]);
+    let newActiveList = [];
+    if (e.target.checked && thisPageList.length > 0) {
+       newActiveList = thisPageList.map((list) => list._id);
     }
-
-    setIschecked(e.target.checked);
+    setActiveList(newActiveList);
+    setIsChecked(e.target.checked);
   };
 
   return (
@@ -101,25 +203,26 @@ const UserHistory = () => {
           className="text-info ms-2 d-none d-sm-block"
           icon={<FontAwesomeIcon icon={regular('maximize')} />}
           checkedIcon={<FontAwesomeIcon icon={regular('minimize')} />}
-          ischecked={ischecked}
+          ischecked={isChecked}
           onClickFilter={onClickFilter}
           name="expand"
         />
       </header>
 
       <HistoryList
-        orderList={orderList}
-        handleClick={handleClick}
+        thisPageList={thisPageList}
+        handleClick={handleChangePage}
         totalPages={totalPages}
         totalRecord={totalRecord}
         pageNo={pageNo}
         handleSortingChange={handleSortingChange}
         activeList={activeList}
         setActiveList={setActiveList}
-        setIschecked={setIschecked}
-        order={order}
+        setIsChecked={setIsChecked}
+        sortingOrder={sortingOrder}
         sortField={sortField}
         data={data}
+        isFetching={isFetching}
       />
     </>
   );
