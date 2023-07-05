@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 import donate from '../../../../../assets/images/donate.svg';
 
 import './style.scss';
+import { Select, InputLabel, MenuItem, FormControl } from '@mui/material';
 //import { head } from 'lodash';
 //
 const MOMENT_DATE_FORMAT = 'MMMM DD, YYYY';
@@ -73,7 +74,7 @@ const HistoryList = (props) => {
     <>
       <div className="list__table mb-2 mb-sm-0">
         <div className="list__table-sort d-flex justify-content-sort border-bottom">
-          <div className="flex__1">
+          <div className="flex__1" style={{display: "flex", justifyContent: "space-between"}}>
             <Button
               variant="link"
               className="btn__sort px-0 text-decoration-none"
@@ -86,6 +87,27 @@ const HistoryList = (props) => {
                 <FontAwesomeIcon icon={solid('angle-down')} className="small ml-6p" />
               )}
             </Button>
+            <FormControl size="small" style={{margin: "1rem"}} id="history-filter-select-form-control">
+              <InputLabel id="demo-simple-select-label" style={{color: "#3a94d4"}}>Type</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={props.historyFilter}
+                label="Age"
+                onChange={props.handleHistoryFilterChange}
+              >
+                {Object.values(props.historyFilterOptions).map(({value, label}) => (
+                  <MenuItem
+                    key={value}
+                    name={value}
+                    value={value}
+                    className="order-history-type-filter-option"
+                  >
+                    {label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </div>
         </div>
         <ul className="list__table-list pt-2 ps-sm-3 ps-0">
