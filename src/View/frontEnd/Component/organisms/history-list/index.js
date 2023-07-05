@@ -14,6 +14,7 @@ import helper, {
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
+import donate from '../../../../../assets/images/donate.svg';
 
 import './style.scss';
 //import { head } from 'lodash';
@@ -164,7 +165,7 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
             <span className="ml-6p text-light fs-8">{order.currency ? order.currency : 'CAD'}</span>
           </span>
           <div className="ms-auto bg-lighter d-flex align-items-center rounded-3">
-            <div className="order__logo me-1">
+            <div className="order__logo mx-1">
               <img src={getCardIcon(CardBrand)} alt="" className="img-fluid" />
             </div>
             <div className="order__card fs-7">
@@ -218,7 +219,7 @@ const DonationListItem = ({ donation, showDetails, activeList }) => {
             </span>
           </span>
           <div className="ms-auto bg-lighter d-flex align-items-center rounded-3">
-            <div className="order__logo me-1">
+            <div className="order__logo mx-1">
               <img src={getCardIcon(CardBrand)} alt="" className="img-fluid" />
             </div>
             <div className="order__card fs-7">
@@ -226,14 +227,15 @@ const DonationListItem = ({ donation, showDetails, activeList }) => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="d-flex">
           <Button
             variant="link"
             className="text-light fw-semibold fs-5 p-0"
             onClick={() => showDetails(donation._id)}
           >
             Donation # {donation.uniqueTransactionId ? donation.uniqueTransactionId : donation._id}
-          </Button>
+          </Button>{' '}
+          <img className="ms-3" style={{ height: '24px' }} src={donate}></img>
         </div>
         <div className="fw-semibold fs-7 text-lighter mt-3p">
           {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
