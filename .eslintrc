@@ -10,11 +10,7 @@
     "plugin:jsx-a11y/recommended",
     "plugin:react-hooks/recommended"
   ],
-  "plugins": [
-    "prettier",
-    "react",
-    "react-hooks"
-  ],
+  "plugins": ["prettier", "react", "react-hooks"],
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaVersion": 6,
@@ -26,11 +22,11 @@
   },
   "rules": {
     "import": 0,
-    "import/order":0,
-    "import/no-unresolve":0, 
-    "prefer-template":0,
-    "react-hooks/rules-of-hooks":0,
-    "object-shorthand":0,
+    "import/order": 0,
+    "import/no-unresolve": 0,
+    "prefer-template": 0,
+    "react-hooks/rules-of-hooks": 0,
+    "object-shorthand": 0,
     "max-len": 0,
     "no-alert": 0,
     "no-shadow": 0,
@@ -59,52 +55,41 @@
     "react/jsx-filename-extension": 0,
     "react/destructuring-assignment": 0,
     "import/no-extraneous-dependencies": 0,
-    "no-lonely-if":0,
+    "no-lonely-if": 0,
     "jsx-a11y/no-onchange": 0,
-    " import/no-unresolved":0,
-    "jsx-a11y/label-has-associated-control":0,
+    " import/no-unresolved": 0,
+    "jsx-a11y/label-has-associated-control": 0,
     "no-nested-ternary": "off",
     "arrow-body-style": "off",
     "react/jsx-key": 1,
-    "react/self-closing-comp":0,
-    "array-callback-return":0,
-    "spaced-comment":0,
-    "no-unneeded-ternary":0,
-    "jsx-a11y/anchor-has-content":0,
-    "no-script-url":0,
-    "prefer-arrow-callback":0,
-    "jsx-a11y/img-redundant-alt":0,
-    "dot-notation":0,
-    "no-plusplus":0,
-    "camelcase":0,
-    "jsx-a11y/no-redundant-roles":0,
-    "no-restricted-globals":0,
-    "jsx-a11y/media-has-caption":0,
+    "react/self-closing-comp": 0,
+    "array-callback-return": 0,
+    "spaced-comment": 0,
+    "no-unneeded-ternary": 0,
+    "jsx-a11y/anchor-has-content": 0,
+    "no-script-url": 0,
+    "prefer-arrow-callback": 0,
+    "jsx-a11y/img-redundant-alt": 0,
+    "dot-notation": 0,
+    "no-plusplus": 0,
+    "camelcase": 0,
+    "jsx-a11y/no-redundant-roles": 0,
+    "no-restricted-globals": 0,
+    "jsx-a11y/media-has-caption": 0,
 
-    "jsx-a11y/no-noninteractive-element-interactions":0,
-    "jsx-a11y/click-events-have-key-events":0,
-    "react/jsx-boolean-value":0,
-    "jsx-a11y/accessible-emoji":0,
-    "jsx-a11y/no-static-element-interactions":0,
-    "no-useless-concat":0,
-    "jsx-a11y/no-autofocus":0,
-    "no-loop-func":0,
-    "no-useless-escape":0,
-    "import/no-webpack-loader-syntax":0,
-    "no-webpack-loader-syntax":0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "react/jsx-boolean-value": 0,
+    "jsx-a11y/accessible-emoji": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "no-useless-concat": 0,
+    "jsx-a11y/no-autofocus": 0,
+    "no-loop-func": 0,
+    "no-useless-escape": 0,
+    "import/no-webpack-loader-syntax": 0,
+    "no-webpack-loader-syntax": 0,
 
-
-
-
-
-
-
-
-
-
-
-
-
+    "no-else-return": [0, { "allowElseIf": true }],
 
     // "react-hooks/rules-of-hooks": 2,
     "prefer-const": [
