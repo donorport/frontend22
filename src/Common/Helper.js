@@ -511,29 +511,68 @@ export function convertAddress(address) {
 
   try {
     const split = address.split(',');
-    const countryName = split[split.length - 1].trim();
-    const stateProvince = split[split.length - 2].trim();
+    const commaCount = split.length - 1;
 
-    const country = Country.getAllCountries().find(
-      (c) => c.name.replace(/\s/g, '') === countryName
-    );
+    if (commaCount === 3) {
+      const city = split[1].trim();
+      const stateWithSpace = split[2].trim();
+      const state = stateWithSpace.split(' ')[0];
 
-    if (!country) {
-      throw new Error(`Country not found for address "${address}"`);
+      const countryName = split[split.length - 1].trim();
+      const country = Country.getAllCountries().find(
+        (c) => c.name.replace(/\s/g, '') === countryName
+      );
+
+      if (!country) {
+        throw new Error(`Country not found for address "${address}"`);
+      }
+
+      const states = State.getStatesOfCountry(country.isoCode).filter(
+        (s) => s.name.includes(state)
+      );
+
+      if (states.length === 0) {
+        throw new Error(`State not found for address "${address}"`);
+      }
+
+      const stateCode = `${states[0].isoCode}`;
+
+      return `${city}, ${stateCode}`;
+    } else if (commaCount === 2) {
+      const city = split[0].trim();
+      const province = split[1].trim();
+
+      const countryName = split[split.length - 1].trim();
+      const country = Country.getAllCountries().find(
+        (c) => c.name.replace(/\s/g, '') === countryName
+      );
+
+      if (!country) {
+        throw new Error(`Country not found for address "${address}"`);
+      }
+
+      const states = State.getStatesOfCountry(country.isoCode).filter(
+        (s) => s.name.includes(province)
+      );
+
+      if (states.length === 0) {
+        throw new Error(`State not found for address "${address}"`);
+      }
+
+      const stateCode = `${states[0].isoCode}`;
+
+      return `${city}, ${stateCode}`;
+    } else {
+      throw new Error('Invalid address format');
     }
-
-    const states = State.getStatesOfCountry(country.isoCode).filter((state) =>
-      state.name.includes(stateProvince)
-    );
-
-    const stateCode = states.length > 0 ? `, ${states[0].isoCode}` : '';
-
-    return `${split[split.length - 3].trim()}${stateCode}`;
   } catch (error) {
     console.error(`convertAddress failed with address "${address}": ${error}`);
     return null; // or return an error message instead of null
   }
 }
+
+
+
 
 
 

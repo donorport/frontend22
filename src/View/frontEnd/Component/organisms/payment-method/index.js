@@ -58,7 +58,7 @@ const Payments = () => {
   //const [value, setValue] = useState(0);
   const [bankloading, setBankloading] = useState(false);
   //const [defaultTypeOfBusiness, setDefaultTypeOfBusiness] = useState([
-    //{ value: 'individual ', label: 'Individual ' }
+  //{ value: 'individual ', label: 'Individual ' }
   //]);
 
   const [state, setstate] = useState({
@@ -126,7 +126,7 @@ const Payments = () => {
     //confirmAccountNumber,
     taxRate,
     paymentLoginId,
-    TransactionKey,
+    TransactionKey
     //currency
   } = state;
 
@@ -235,16 +235,16 @@ const Payments = () => {
   };
 
   //const hideAccForm = () => {
-    //setBankAccount({
-      //...bankAccount,
-      //BusinessType: 'individual',
-      //country: data.iso2,
-      //companyName: '',
-      //fname: '',
-      //lname: '',
-      //accError: []
-    //});
-    //setModalShow(false);
+  //setBankAccount({
+  //...bankAccount,
+  //BusinessType: 'individual',
+  //country: data.iso2,
+  //companyName: '',
+  //fname: '',
+  //lname: '',
+  //accError: []
+  //});
+  //setModalShow(false);
   //};
 
   const getCountryList = async () => {
@@ -287,199 +287,199 @@ const Payments = () => {
   };
 
   //const changevalue = (e) => {
-    //let value = e.target.value;
+  //let value = e.target.value;
 
-    //if (
-      //e.target.name === 'accountNumber' ||
-      //e.target.name === 'phoneNo' ||
-      //e.target.name === 'ssn' ||
-      //e.target.name === 'personalIdNumber' ||
-      //e.target.name === 'mcc'
-    //) {
-      //value = e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, '');
-    //}
-    //if (e.target.name === 'identity') {
-      //setSelectedDoc(e.target.getAttribute('data-label'));
+  //if (
+  //e.target.name === 'accountNumber' ||
+  //e.target.name === 'phoneNo' ||
+  //e.target.name === 'ssn' ||
+  //e.target.name === 'personalIdNumber' ||
+  //e.target.name === 'mcc'
+  //) {
+  //value = e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, '');
+  //}
+  //if (e.target.name === 'identity') {
+  //setSelectedDoc(e.target.getAttribute('data-label'));
 
-      //setstate({
-        //...state,
-        //[e.target.name]: value
-      //});
-    //}
-    //if (e.target.name === 'identityDocumentImage') {
-      //// console.log(e)
-      //let file = e.target.files[0] ? e.target.files[0] : '';
-      //if (file) {
-        //setTempImg(URL.createObjectURL(file));
-        //setTempImgName(file.name);
-        //setstate({
-          //...state,
-          //identityDocumentImage: file
-        //});
-      //} else {
-        //setTempImg('');
-        //setTempImgName('');
-        //setstate({
-          //...state,
-          //identityDocumentImage: ''
-        //});
-      //}
-    //} else {
-      //setstate({
-        //...state,
-        //[e.target.name]: value
-      //});
-    //}
+  //setstate({
+  //...state,
+  //[e.target.name]: value
+  //});
+  //}
+  //if (e.target.name === 'identityDocumentImage') {
+  //// console.log(e)
+  //let file = e.target.files[0] ? e.target.files[0] : '';
+  //if (file) {
+  //setTempImg(URL.createObjectURL(file));
+  //setTempImgName(file.name);
+  //setstate({
+  //...state,
+  //identityDocumentImage: file
+  //});
+  //} else {
+  //setTempImg('');
+  //setTempImgName('');
+  //setstate({
+  //...state,
+  //identityDocumentImage: ''
+  //});
+  //}
+  //} else {
+  //setstate({
+  //...state,
+  //[e.target.name]: value
+  //});
+  //}
   //};
 
   //const resetForm = () => {
-    //setModalShow(false);
-    //setDefaultCountry(countryList.find((x) => x.value === registerdBusinessAddress));
-    //setDefaultTypeOfBusiness({ value: 'individual ', label: 'Individual ' });
-    //setTempImg('');
-    //setTempImgName('');
-    //setSelectedDoc('');
-    //setValue(0);
-    //setstate({
-      //...state,
-      //registerdBusinessAddress: 'US',
-      //typeOfBusiness: 'individual',
-      //firstName: '',
-      //lastName: '',
-      //personalEmail: '',
-      //dob: '',
-      //phoneNo: '',
-      //ssn: '',
-      //homeCountry: 'US',
-      //addLine1: '',
-      //addLine2: '',
-      //city: '',
-      //stateName: '',
-      //zip: '',
-      //personalIdNumber: '',
-      //businessName: '',
-      //businessWebsite: '',
-      //mcc: '',
-      //accountHolderName: '',
-      //accountHolderType: 'individual',
-      //routingNumber: '',
-      //accountNumber: '',
-      //confirmAccountNumber: '',
-      //bankEmail: '',
-      //identity: '',
-      //identityDocumentImage: '',
-      //status: 1,
-      //error: []
-    //});
+  //setModalShow(false);
+  //setDefaultCountry(countryList.find((x) => x.value === registerdBusinessAddress));
+  //setDefaultTypeOfBusiness({ value: 'individual ', label: 'Individual ' });
+  //setTempImg('');
+  //setTempImgName('');
+  //setSelectedDoc('');
+  //setValue(0);
+  //setstate({
+  //...state,
+  //registerdBusinessAddress: 'US',
+  //typeOfBusiness: 'individual',
+  //firstName: '',
+  //lastName: '',
+  //personalEmail: '',
+  //dob: '',
+  //phoneNo: '',
+  //ssn: '',
+  //homeCountry: 'US',
+  //addLine1: '',
+  //addLine2: '',
+  //city: '',
+  //stateName: '',
+  //zip: '',
+  //personalIdNumber: '',
+  //businessName: '',
+  //businessWebsite: '',
+  //mcc: '',
+  //accountHolderName: '',
+  //accountHolderType: 'individual',
+  //routingNumber: '',
+  //accountNumber: '',
+  //confirmAccountNumber: '',
+  //bankEmail: '',
+  //identity: '',
+  //identityDocumentImage: '',
+  //status: 1,
+  //error: []
+  //});
   //};
   //const openModel = () => {
-    //setDefaultCountry(countryList.find((x) => x.value === registerdBusinessAddress));
-    //setDefaultTypeOfBusiness({ value: 'individual ', label: 'Individual ' });
-    //setModalShow(true);
-    //setTempImg('');
-    //setTempImgName('');
-    //setSelectedDoc('');
-    //setValue(0);
-    //setstate({
-      //...state,
-      //registerdBusinessAddress: 'US',
-      //typeOfBusiness: 'individual',
-      //firstName: '',
-      //lastName: '',
-      //personalEmail: '',
-      //dob: '',
-      //phoneNo: '',
-      //ssn: '',
-      //homeCountry: 'US',
-      //addLine1: '',
-      //addLine2: '',
-      //city: '',
-      //stateName: '',
-      //zip: '',
-      //personalIdNumber: '',
-      //businessName: '',
-      //businessWebsite: '',
-      //mcc: '',
-      //accountHolderName: '',
-      //accountHolderType: 'individual',
-      //routingNumber: '',
-      //accountNumber: '',
-      //confirmAccountNumber: '',
-      //bankEmail: '',
-      //identity: '',
-      //identityDocumentImage: '',
-      //status: 1,
-      //error: []
-    //});
+  //setDefaultCountry(countryList.find((x) => x.value === registerdBusinessAddress));
+  //setDefaultTypeOfBusiness({ value: 'individual ', label: 'Individual ' });
+  //setModalShow(true);
+  //setTempImg('');
+  //setTempImgName('');
+  //setSelectedDoc('');
+  //setValue(0);
+  //setstate({
+  //...state,
+  //registerdBusinessAddress: 'US',
+  //typeOfBusiness: 'individual',
+  //firstName: '',
+  //lastName: '',
+  //personalEmail: '',
+  //dob: '',
+  //phoneNo: '',
+  //ssn: '',
+  //homeCountry: 'US',
+  //addLine1: '',
+  //addLine2: '',
+  //city: '',
+  //stateName: '',
+  //zip: '',
+  //personalIdNumber: '',
+  //businessName: '',
+  //businessWebsite: '',
+  //mcc: '',
+  //accountHolderName: '',
+  //accountHolderType: 'individual',
+  //routingNumber: '',
+  //accountNumber: '',
+  //confirmAccountNumber: '',
+  //bankEmail: '',
+  //identity: '',
+  //identityDocumentImage: '',
+  //status: 1,
+  //error: []
+  //});
   //};
 
   //const addBankAccount = (e) => {
-    //// console.log(status)
-    //const rules = {
-      //accountHolderName: 'required',
-      //accountHolderType: 'required',
-      //routingNumber: 'required',
-      //accountNumber: 'required'
-    //};
-    //const message = {
-      //'accountHolderType.required': 'AccountHolder Type is required.',
-      //'accountHolderName.required': 'Category accountHolderName is required.',
-      //'routingNumber.required': 'Routing Number is required.',
-      //'accountNumber.required': 'Account Number is required.'
-    //};
-    //validateAll(state, rules, message)
-      //.then(async () => {
-        //const formaerrror = {};
-        //setstate({
-          //...state,
-          //error: formaerrror
-        //});
+  //// console.log(status)
+  //const rules = {
+  //accountHolderName: 'required',
+  //accountHolderType: 'required',
+  //routingNumber: 'required',
+  //accountNumber: 'required'
+  //};
+  //const message = {
+  //'accountHolderType.required': 'AccountHolder Type is required.',
+  //'accountHolderName.required': 'Category accountHolderName is required.',
+  //'routingNumber.required': 'Routing Number is required.',
+  //'accountNumber.required': 'Account Number is required.'
+  //};
+  //validateAll(state, rules, message)
+  //.then(async () => {
+  //const formaerrror = {};
+  //setstate({
+  //...state,
+  //error: formaerrror
+  //});
 
-        //let data = {};
-        //// data.accountHolderName = encryptData(accountHolderName)
-        //// data.accountHolderType = encryptData(accountHolderType)
-        //// data.status = status
-        //// data.routingNumber = encryptData(routingNumber.toString())
-        //// data.accountNumber = encryptData(accountNumber.toString())
+  //let data = {};
+  //// data.accountHolderName = encryptData(accountHolderName)
+  //// data.accountHolderType = encryptData(accountHolderType)
+  //// data.status = status
+  //// data.routingNumber = encryptData(routingNumber.toString())
+  //// data.accountNumber = encryptData(accountNumber.toString())
 
-        //// Api Call for update Profile
-        //setLoading(true);
-        //const addBank = await adminCampaignApi.addBankAccount(token, data);
+  //// Api Call for update Profile
+  //setLoading(true);
+  //const addBank = await adminCampaignApi.addBankAccount(token, data);
 
-        //if (addBank) {
-          //if (addBank.data.success === false) {
-            //setLoading(false);
-            //ToastAlert({ msg: addBank.data.message, msgType: 'error' });
-          //} else {
-            //if (addBank.data.success === true) {
-              //resetForm();
-              //setLoading(false);
-              //setUpdate(!update);
-              //ToastAlert({ msg: addBank.data.message, msgType: 'success' });
-            //}
-          //}
-        //} else {
-          //setLoading(false);
-          //ToastAlert({ msg: 'Bank Account Not Added', msgType: 'error' });
-        //}
-      //})
-      //.catch((errors) => {
-        //// console.log(errors)
-        //setLoading(false);
-        //const formaerrror = {};
-        //if (errors && errors.length) {
-          //errors.forEach((element) => {
-            //formaerrror[element.field] = element.message;
-          //});
-        //} else {
-          //ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
-        //}
+  //if (addBank) {
+  //if (addBank.data.success === false) {
+  //setLoading(false);
+  //ToastAlert({ msg: addBank.data.message, msgType: 'error' });
+  //} else {
+  //if (addBank.data.success === true) {
+  //resetForm();
+  //setLoading(false);
+  //setUpdate(!update);
+  //ToastAlert({ msg: addBank.data.message, msgType: 'success' });
+  //}
+  //}
+  //} else {
+  //setLoading(false);
+  //ToastAlert({ msg: 'Bank Account Not Added', msgType: 'error' });
+  //}
+  //})
+  //.catch((errors) => {
+  //// console.log(errors)
+  //setLoading(false);
+  //const formaerrror = {};
+  //if (errors && errors.length) {
+  //errors.forEach((element) => {
+  //formaerrror[element.field] = element.message;
+  //});
+  //} else {
+  //ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
+  //}
 
-        //setstate({
-          //...state,
-          //error: formaerrror
-        //});
-      //});
+  //setstate({
+  //...state,
+  //error: formaerrror
+  //});
+  //});
   //};
 
   const removeBank = (id) => {
@@ -560,200 +560,200 @@ const Payments = () => {
     });*/
 
   //const handleChange = (event, newValue) => {
-    //setValue(newValue);
-    //// setTempImg('')
-    //// setTempImgName('')
-    //// setstate({
-    ////   ...state,
-    ////   identityDocumentImage: ''
-    //// })
+  //setValue(newValue);
+  //// setTempImg('')
+  //// setTempImgName('')
+  //// setstate({
+  ////   ...state,
+  ////   identityDocumentImage: ''
+  //// })
   //};
 
   //const goToBack = (key) => {
-    //setValue(key);
+  //setValue(key);
   //};
 
   //const goToNextStep = (key) => {
-    //let rules = {};
-    //let message = {};
+  //let rules = {};
+  //let message = {};
 
-    //switch (key) {
-      //case 1:
-        //rules = {
-          //firstName: 'required',
-          //lastName: 'required',
-          //personalEmail: 'required|email',
-          //dob: 'required',
-          //phoneNo: 'required',
-          //addLine1: 'required',
-          //addLine2: 'required',
-          //stateName: 'required',
-          //zip: 'required',
-          //city: 'required',
-          //ssn: 'required',
-          //personalIdNumber: 'required'
-        //};
+  //switch (key) {
+  //case 1:
+  //rules = {
+  //firstName: 'required',
+  //lastName: 'required',
+  //personalEmail: 'required|email',
+  //dob: 'required',
+  //phoneNo: 'required',
+  //addLine1: 'required',
+  //addLine2: 'required',
+  //stateName: 'required',
+  //zip: 'required',
+  //city: 'required',
+  //ssn: 'required',
+  //personalIdNumber: 'required'
+  //};
 
-        //message = {
-          //'firstName.required': 'First Name is required.',
-          //'lastName.required': 'Last Name is required.',
-          //'personalEmail.required': 'Email is required.',
-          //'personalEmail.email': 'Please Enter valid Email.',
-          //'dob.required': 'Date of birth is required.',
-          //'phoneNo.required': 'Phone Number is required.',
-          //'addLine1.required': 'Address Line 1 is required.',
-          //'addLine2.required': 'Address Line 2 is required.',
-          //'stateName.required': 'State is required.',
-          //'zip.required': 'Zip code is required.',
-          //'personalIdNumber.required': 'personal Id Number is required.',
-          //'ssn.required': 'SSN is required.',
-          //'city.required': 'city is required.'
-        //};
-        //break;
+  //message = {
+  //'firstName.required': 'First Name is required.',
+  //'lastName.required': 'Last Name is required.',
+  //'personalEmail.required': 'Email is required.',
+  //'personalEmail.email': 'Please Enter valid Email.',
+  //'dob.required': 'Date of birth is required.',
+  //'phoneNo.required': 'Phone Number is required.',
+  //'addLine1.required': 'Address Line 1 is required.',
+  //'addLine2.required': 'Address Line 2 is required.',
+  //'stateName.required': 'State is required.',
+  //'zip.required': 'Zip code is required.',
+  //'personalIdNumber.required': 'personal Id Number is required.',
+  //'ssn.required': 'SSN is required.',
+  //'city.required': 'city is required.'
+  //};
+  //break;
 
-      //case 2:
-        //rules = {
-          //businessName: 'required',
-          //businessWebsite: 'required',
-          //mcc: 'required'
-        //};
+  //case 2:
+  //rules = {
+  //businessName: 'required',
+  //businessWebsite: 'required',
+  //mcc: 'required'
+  //};
 
-        //message = {
-          //'businessName.required': 'Business Name is required.',
-          //'businessWebsite.required': 'Business Website is required.',
-          //'mcc.required': 'MCC is required.'
-        //};
+  //message = {
+  //'businessName.required': 'Business Name is required.',
+  //'businessWebsite.required': 'Business Website is required.',
+  //'mcc.required': 'MCC is required.'
+  //};
 
-        //break;
+  //break;
 
-      //case 3:
-        //rules = {
-          //accountHolderName: 'required',
-          //bankEmail: 'required|email',
-          //routingNumber: 'required',
-          //accountNumber: 'required',
-          //confirmAccountNumber: 'required|same:accountNumber'
-        //};
+  //case 3:
+  //rules = {
+  //accountHolderName: 'required',
+  //bankEmail: 'required|email',
+  //routingNumber: 'required',
+  //accountNumber: 'required',
+  //confirmAccountNumber: 'required|same:accountNumber'
+  //};
 
-        //message = {
-          //'accountHolderName.required': 'Accountholder Name is required.',
-          //'bankEmail.required': 'Email is required.',
-          //'bankEmail.email': 'Please Enter valid Email.',
-          //'routingNumber.required': 'Routing number is required.',
-          //'accountNumber.required': 'Account number is required.',
-          //'confirmAccountNumber.required': 'Confirm Account number is required.',
-          //'confirmAccountNumber.same': 'Account number and Confirm Account Number is required.'
-        //};
+  //message = {
+  //'accountHolderName.required': 'Accountholder Name is required.',
+  //'bankEmail.required': 'Email is required.',
+  //'bankEmail.email': 'Please Enter valid Email.',
+  //'routingNumber.required': 'Routing number is required.',
+  //'accountNumber.required': 'Account number is required.',
+  //'confirmAccountNumber.required': 'Confirm Account number is required.',
+  //'confirmAccountNumber.same': 'Account number and Confirm Account Number is required.'
+  //};
 
-        //break;
+  //break;
 
-      //case 4:
-        //rules = {
-          //identity: 'required'
-        //};
+  //case 4:
+  //rules = {
+  //identity: 'required'
+  //};
 
-        //message = {
-          //'identity.required': 'Please select type of Identity document to Upload'
-        //};
+  //message = {
+  //'identity.required': 'Please select type of Identity document to Upload'
+  //};
 
-        //break;
+  //break;
 
-      //case 5:
-        //rules = {
-          //identityDocumentImage: 'required'
-        //};
+  //case 5:
+  //rules = {
+  //identityDocumentImage: 'required'
+  //};
 
-        //message = {
-          //'identityDocumentImage.required': 'Please upload Identity Document'
-        //};
+  //message = {
+  //'identityDocumentImage.required': 'Please upload Identity Document'
+  //};
 
-        //break;
+  //break;
 
-      //default:
-        //break;
-    //}
+  //default:
+  //break;
+  //}
 
-    //validateAll(state, rules, message)
-      //.then(async () => {
-        //const formaerrror = {};
-        //setstate({
-          //...state,
-          //error: formaerrror
-        //});
+  //validateAll(state, rules, message)
+  //.then(async () => {
+  //const formaerrror = {};
+  //setstate({
+  //...state,
+  //error: formaerrror
+  //});
 
-        //setLoading(true);
-        //if (key !== 5) {
-          //setValue(key + 1);
-        //} else {
-          //let fdata = {};
-          //fdata.registerdBusinessAddress = registerdBusinessAddress;
-          //fdata.typeOfBusiness = typeOfBusiness;
-          //fdata.firstName = firstName;
-          //fdata.lastName = lastName;
-          //fdata.personalEmail = personalEmail;
-          //fdata.dob = dob;
-          //fdata.phoneNo = phoneNo;
-          //fdata.ssn = ssn;
-          //fdata.homeCountry = homeCountry;
-          //fdata.addLine1 = addLine1;
-          //fdata.addLine2 = addLine2;
-          //fdata.city = city;
-          //fdata.stateName = stateName;
-          //fdata.zip = zip;
-          //fdata.personalIdNumber = personalIdNumber;
-          //fdata.businessName = businessName;
-          //fdata.businessWebsite = businessWebsite;
-          //fdata.mcc = mcc;
-          //fdata.accountHolderName = accountHolderName;
-          //fdata.accountHolderType = accountHolderType;
-          //fdata.routingNumber = routingNumber;
-          //fdata.accountNumber = accountNumber;
-          //fdata.bankEmail = bankEmail;
-          //fdata.identityDocumentType = identity;
-          //fdata.identityDocumentImage = identityDocumentImage;
-          //fdata.status = status;
-          //fdata.countryId = data.country_id;
-          //fdata.currency = currency;
+  //setLoading(true);
+  //if (key !== 5) {
+  //setValue(key + 1);
+  //} else {
+  //let fdata = {};
+  //fdata.registerdBusinessAddress = registerdBusinessAddress;
+  //fdata.typeOfBusiness = typeOfBusiness;
+  //fdata.firstName = firstName;
+  //fdata.lastName = lastName;
+  //fdata.personalEmail = personalEmail;
+  //fdata.dob = dob;
+  //fdata.phoneNo = phoneNo;
+  //fdata.ssn = ssn;
+  //fdata.homeCountry = homeCountry;
+  //fdata.addLine1 = addLine1;
+  //fdata.addLine2 = addLine2;
+  //fdata.city = city;
+  //fdata.stateName = stateName;
+  //fdata.zip = zip;
+  //fdata.personalIdNumber = personalIdNumber;
+  //fdata.businessName = businessName;
+  //fdata.businessWebsite = businessWebsite;
+  //fdata.mcc = mcc;
+  //fdata.accountHolderName = accountHolderName;
+  //fdata.accountHolderType = accountHolderType;
+  //fdata.routingNumber = routingNumber;
+  //fdata.accountNumber = accountNumber;
+  //fdata.bankEmail = bankEmail;
+  //fdata.identityDocumentType = identity;
+  //fdata.identityDocumentImage = identityDocumentImage;
+  //fdata.status = status;
+  //fdata.countryId = data.country_id;
+  //fdata.currency = currency;
 
-          //const addBank = await adminCampaignApi.addBankAccount(token, fdata);
-          //// console.log(addBank)
+  //const addBank = await adminCampaignApi.addBankAccount(token, fdata);
+  //// console.log(addBank)
 
-          //if (addBank) {
-            //if (addBank.data.success === false) {
-              //setLoading(false);
-              //ToastAlert({ msg: addBank.data.message, msgType: 'error' });
-            //} else {
-              //if (addBank.data.success === true) {
-                //resetForm();
-                //setLoading(false);
-                //setUpdate(!update);
-                //ToastAlert({ msg: addBank.data.message, msgType: 'success' });
-              //}
-            //}
-          //} else {
-            //setLoading(false);
-            //ToastAlert({ msg: 'Bank Account Not Added', msgType: 'error' });
-          //}
-        //}
-        //setLoading(false);
-      //})
-      //.catch((errors) => {
-        //console.log(errors);
-        //setLoading(false);
-        //const formaerrror = {};
-        //if (errors && errors.length) {
-          //errors.forEach((element) => {
-            //formaerrror[element.field] = element.message;
-          //});
-        //} else {
-          //ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
-        //}
+  //if (addBank) {
+  //if (addBank.data.success === false) {
+  //setLoading(false);
+  //ToastAlert({ msg: addBank.data.message, msgType: 'error' });
+  //} else {
+  //if (addBank.data.success === true) {
+  //resetForm();
+  //setLoading(false);
+  //setUpdate(!update);
+  //ToastAlert({ msg: addBank.data.message, msgType: 'success' });
+  //}
+  //}
+  //} else {
+  //setLoading(false);
+  //ToastAlert({ msg: 'Bank Account Not Added', msgType: 'error' });
+  //}
+  //}
+  //setLoading(false);
+  //})
+  //.catch((errors) => {
+  //console.log(errors);
+  //setLoading(false);
+  //const formaerrror = {};
+  //if (errors && errors.length) {
+  //errors.forEach((element) => {
+  //formaerrror[element.field] = element.message;
+  //});
+  //} else {
+  //ToastAlert({ msg: 'Something Went Wrong', msgType: 'error' });
+  //}
 
-        //setstate({
-          //...state,
-          //error: formaerrror
-        //});
-      //});
+  //setstate({
+  //...state,
+  //error: formaerrror
+  //});
+  //});
   //};
 
   const onChangeTaxRate = (e) => {
@@ -834,12 +834,12 @@ const Payments = () => {
   }
 
   //const checkAcc = async (accountId) => {
-    //let data = {};
-    //data.accountId = accountId;
-    //const check = await adminCampaignApi.chekConnectAccount(token, data);
-    //if (check && check.data.success) {
-      //await getBankAccountList();
-    //}
+  //let data = {};
+  //data.accountId = accountId;
+  //const check = await adminCampaignApi.chekConnectAccount(token, data);
+  //if (check && check.data.success) {
+  //await getBankAccountList();
+  //}
   //};
 
   const addExpressAccount = async () => {
@@ -859,7 +859,7 @@ const Payments = () => {
       'accEmail.email': 'Please enter valid email.',
       'lname.required': 'Last Name is required.',
       'fname.required': 'First Name is required.',
-      'companyName.required': 'Company Name is required.'
+      'companyName.required': 'Charity Name is required.'
     };
     validateAll(bankAccount, rules, message)
       .then(async () => {
@@ -998,6 +998,7 @@ const Payments = () => {
           you enough funds to cover the sales tax when you purchase the items.
         </div>
         <Button
+          className="py-2 px-3"
           variant="info"
           onClick={() => {
             if (!saveloading) myFunction('taxRate');

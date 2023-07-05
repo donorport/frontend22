@@ -59,7 +59,10 @@ const Pricing = () => {
     color: '#e6e6e6'
   };
   return (
-    <Page title="Donorport | Pricing" description="Platform Fee: 2.99%; Merchant Fees: 2.9%. + $0.30 per item donated">
+    <Page
+      title="Donorport | Pricing"
+      description="Platform Fee: 2.99%; Merchant Fees: 2.9%. + $0.30 per item donated"
+    >
       <DefaultLayout>
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-5">
@@ -85,8 +88,11 @@ const Pricing = () => {
                     <div className="card-body d-flex flex-column">
                       <div className="mb-4">
                         <h5>Platform Fee</h5>
-                        <span className="display-4">{user?.platformFee}%</span>
-                        {/* <span className="display-4">2%</span> */}
+                        {user.platformFee ? (
+                          <span className="display-4">{user.platformFee}%</span>
+                        ) : (
+                          <span className="display-4">2.79%</span>
+                        )}
                       </div>
 
                       <p>
@@ -107,8 +113,11 @@ const Pricing = () => {
                     <div className="card-body d-flex flex-column">
                       <div className="mb-4">
                         <h5>Merchant Fees</h5>
-                        <span className="display-4">{user?.transactionFee}%</span>
-                        {/* <span className="display-4">3%</span> */}
+                        {user.transactionFee ? (
+                          <span className="display-4">{user.transactionFee}%</span>
+                        ) : (
+                          <span className="display-4">2.2%</span>
+                        )}
                       </div>
 
                       <p>

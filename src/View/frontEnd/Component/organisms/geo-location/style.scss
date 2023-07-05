@@ -37,9 +37,11 @@
   .mapbox-marker-user {
     z-index: 4 !important;
   }
-
+  .geo__badge {
+    padding: 0px 3px;
+    font-family: 'Linotte-Semibold';
+  }
   .mapbox-marker-custom {
-    opacity: 80%;
     p {
       margin-bottom: 0;
     }
@@ -54,7 +56,6 @@
     }
   }
 }
-
 
 .input-group__alpha {
   .input-group-text {
@@ -97,10 +98,9 @@
 .geo_dropdown-top {
   padding: 13px 0;
   // position: absolute;
- 
 }
 
-.dropdown__inner{
+.dropdown__inner {
   overflow: hidden;
 }
 

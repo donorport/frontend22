@@ -10,7 +10,7 @@ import './style.scss';
 
 const ACCOUNT_HOLDER_TYPES = [
   { value: 'individual', label: 'Individual' },
-  { value: 'company', label: 'Company' }
+  { value: 'company', label: 'Charity' }
 ];
 
 const AddBankModal = (props) => {
@@ -156,14 +156,17 @@ const AddBankModal = (props) => {
                       : 'input__span'
                   }
                 >
-                  Company Name
+                  Charity Name
                 </span>
               </label>
             </div>
           )}
-
+          {props.bankAccount.accError && props.bankAccount.accError.companyName && (
+            <p className="error">{props.bankAccount.accError.companyName}</p>
+          )}
           <div className="d-flex align-items-center">
             <Button
+                          className="mt-1 py-2 px-3 d-flex m-0"
               style={{
                 opacity: bankloading ? '0.7' : '1'
               }}
@@ -172,7 +175,6 @@ const AddBankModal = (props) => {
               onClick={() => {
                 if (!bankloading) props.addExpressAccount();
               }}
-              className="d-flex m-0"
             >
               Add Bank
               {bankloading && <CircularProgress className="ms-2" color="inherit" size={12} />}

@@ -154,12 +154,6 @@ const GeoLocation = (props) => {
     setHidden(false);
   };
 
-  const [showModal, setShowModal] = useState(false);
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
   return (
     <>
       <div
@@ -239,40 +233,6 @@ const GeoLocation = (props) => {
                   <Marker coordinates={[user.lng, user.lat]} className="mapbox-marker-user">
                     <div className="mapboxgl-user-location-dot"></div>
                   </Marker>
-                  {/* Add markers for products */}
-                  {/*
-                  {props.productList?.length > 0 &&
-                    props.productList.map((item, index) => {
-                      console.log('map markers:', { item });
-                      const { imageUrl, price } = getCustomMarkerData(item);
-
-                      return (
-                        <Marker
-                          key={index}
-                          coordinates={[item.lng, item.lat]}
-                          className="mapbox-marker-custom"
-                        >
-                          <Link
-                            className="link"
-                            variant="link"
-                            target="_blank"
-                            to={'/item/' + item.slug}
-                          >
-                            {' '}
-                            <img
-                              src={imageUrl}
-                              alt={`Custom Marker ${index}`}
-                              style={{ maxHeight: '62px', maxWidth: '68px' }}
-                            />
-                            <p className="py-1 px-1 rounded-3 fs-4 fw-semibold bg-white text-dark">
-                              ${price}
-                            </p>
-                          </Link>
-                        </Marker>
-                      );
-                    })}
-                  */}
-
                   {listOfGroupedProducts.length > 0 &&
                     listOfGroupedProducts.map(([loc, groupOfItems], index) => {
                       //console.log('map markers:', { loc, groupOfItems });
@@ -285,7 +245,7 @@ const GeoLocation = (props) => {
                             className="mapbox-marker-custom"
                           >
                             <div
-                              className="mapbox-marker-multi-container rounded-3 bg-white py-1 px-1"
+                              className="mapbox-marker-multi-container rounded-3 py-1 px-1"
                               style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}
                             >
                               {groupOfItems.map((item, gi) => {
@@ -312,7 +272,7 @@ const GeoLocation = (props) => {
                                       }}
                                     />
                                     <p
-                                      className="py-1 px-1 rounded-3 fs-4 fw-semibold bg-white text-dark"
+                                      className="geo__badge rounded-3 fs-6 fw-bold bg-primary text-white"
                                       style={{ display: 'inline-block' }}
                                     >
                                       ${price}
@@ -335,7 +295,7 @@ const GeoLocation = (props) => {
                           className="mapbox-marker-custom"
                         >
                           <Link
-                            className="link"
+                            className="link d-flex flex-direction-column align-items-center"
                             variant="link"
                             target="_blank"
                             to={'/item/' + item.slug}
@@ -344,9 +304,9 @@ const GeoLocation = (props) => {
                             <img
                               src={imageUrl}
                               alt={`Custom Marker ${index}`}
-                              style={{ maxHeight: '62px', maxWidth: '68px' }}
+                              style={{ maxHeight: '52px', maxWidth: '38px' }}
                             />
-                            <p className="py-1 px-1 rounded-3 fs-4 fw-semibold bg-white text-dark">
+                            <p className="geo__badge rounded-3 fs-6 fw-bold bg-primary text-white">
                               ${price}
                             </p>
                           </Link>
