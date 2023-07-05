@@ -17,6 +17,24 @@ import helper, { GetCardTypeByNumber, getCardIcon } from '../../Common/Helper';
 import followApi from '../../Api/frontEnd/follow';
 import Page from '../../components/Page';
 
+
+const DONATE_VALIDATION_RULES = {
+  //name: 'required',
+  cardNumber: 'required|number',
+  month: 'required',
+  year: 'required',
+  cvv: 'required|number'
+};
+const DONATE_VALIDATION_MESSAGES = {
+  // 'name.required': 'Card holder name is required.',
+  'cardNumber.required': 'Card number is required.',
+  'cardNumber.number': 'Card number can not be string.',
+  'month.required': 'Month is required.',
+  'year.required': 'Year number is required.',
+  'cvv.required': 'CVV is required.',
+  'cvv.number': 'CVV can not be string.'
+};
+
 export default function ProjectDetailsController() {
   //const [productList, setProductList] = useState([]);
   //const adminAuthToken = localStorage.getItem('adminAuthToken');
@@ -173,97 +191,82 @@ export default function ProjectDetailsController() {
   };
 
   const donate = async () => {
-    if (token) {
-      const rules = {
-        //name: 'required',
-        cardNumber: 'required|number',
-        month: 'required',
-        year: 'required',
-        cvv: 'required|number'
-      };
-      const message = {
-        // 'name.required': 'Card holder name is required.',
-        'cardNumber.required': 'Card number is required.',
-        'cardNumber.number': 'Card number can not be string.',
-        'month.required': 'Month is required.',
-        'year.required': 'Year number is required.',
-        'cvv.required': 'CVV is required.',
-        'cvv.number': 'CVV can not be string.'
-      };
-      validateAll(state, rules, message)
-        .then(async () => {
-          setLoading(true);
-          const formaerrror = {};
-          setstate({
-            ...state,
-            error: formaerrror
-          });
-          let platformCost = (0.0499 * Number(selectedValue) + 0.3).toFixed(2);
-          let grandTotal = (Number(selectedValue) + Number(platformCost)).toFixed(2);
-          let data = {};
-          data.name = userData.name;
-          data.email = userData.email;
-          data.city = user.cityName;
-          data.state = user.stateName;
-          data.line1 = user.area;
-          data.country = user.countryName;
-          data.amount = grandTotal;
-          data.cardNumber = cardNumber;
-          data.cardExpMonth = month;
-          data.cardExpYear = year;
-          data.cardCVC = cvv;
-          data.postalCode = user.zip;
-          data.currency = user.currency;
-          data.currencySymbol = user.currencySymbol;
-          data.projectId = projectDetails._id;
-          data.organizationId = projectDetails?.campaignDetails?._id;
-          data.organizationLogo =
-            helper.CampaignAdminLogoPath + projectDetails?.campaignDetails?.logo;
-          data.projectName = projectDetails?.name;
-          data.serviceCharge = platformCost;
-          data.organizationCountryId = projectDetails?.campaignDetails?.country_id;
-          data.xpToAdd = selectedValue * 10;
-
-          const donateToProject = await projectApi.donate(userAuthToken, data);
-          if (donateToProject) {
-            if (!donateToProject.data.success) {
-              //setLoading(false);
-              ToastAlert({ msg: donateToProject.data.message, msgType: 'error' });
-            } else {
-              // let addXp = Number(selectedValue * 10)
-              let addXp = Number(donateToProject.data.xpToAdd);
-              dispatch(setUserXp(user.xp + addXp));
-              navigate('/donate/' + donateToProject.data.donationId);
-              // await getUserRank()
-              /*ToastAlert({ msg: donateToProject.data.message, msgType: 'success' });*/
-              //setLoading(false);
-              // navigate('/')
-              // navigate('/donate/' + donateToProject.data.donationId)
-            }
-          } else {
-            //setLoading(false);
-            ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
-          }
-        })
-        .catch((errors) => {
-          //setLoading(false);
-          const formaerrror = {};
-          if (errors.length) {
-            errors.forEach((element) => {
-              formaerrror[element.field] = element.message;
-            });
-          } else {
-            ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
-          }
-
-          setstate({
-            ...state,
-            error: formaerrror
-          });
-        });
-    } else {
+    if (!token) {
       navigate('/signin');
+      return;
     }
+
+    validateAll(state, DONATE_VALIDATION_RULES, DONATE_VALIDATION_MESSAGES)
+      .then(async () => {
+        setLoading(true);
+        const formaerrror = {};
+        setstate({
+          ...state,
+          error: formaerrror
+        });
+        let platformCost = (0.0499 * Number(selectedValue) + 0.3).toFixed(2);
+        let grandTotal = (Number(selectedValue) + Number(platformCost)).toFixed(2);
+        let data = {};
+        data.name = userData.name;
+        data.email = userData.email;
+        data.city = user.cityName;
+        data.state = user.stateName;
+        data.line1 = user.area;
+        data.country = user.countryName;
+        data.amount = grandTotal;
+        data.cardNumber = cardNumber;
+        data.cardExpMonth = month;
+        data.cardExpYear = year;
+        data.cardCVC = cvv;
+        data.postalCode = user.zip;
+        data.currency = user.currency;
+        data.currencySymbol = user.currencySymbol;
+        data.projectId = projectDetails._id;
+        data.organizationId = projectDetails?.campaignDetails?._id;
+        data.organizationLogo =
+          helper.CampaignAdminLogoPath + projectDetails?.campaignDetails?.logo;
+        data.projectName = projectDetails?.name;
+        data.serviceCharge = platformCost;
+        data.organizationCountryId = projectDetails?.campaignDetails?.country_id;
+        data.xpToAdd = selectedValue * 10;
+
+        const donateToProject = await projectApi.donate(userAuthToken, data);
+        if (donateToProject) {
+          if (!donateToProject.data.success) {
+            //setLoading(false);
+            ToastAlert({ msg: donateToProject.data.message, msgType: 'error' });
+          } else {
+            // let addXp = Number(selectedValue * 10)
+            let addXp = Number(donateToProject.data.xpToAdd);
+            dispatch(setUserXp(user.xp + addXp));
+            navigate('/donate/' + donateToProject.data.donationId);
+            // await getUserRank()
+            /*ToastAlert({ msg: donateToProject.data.message, msgType: 'success' });*/
+            //setLoading(false);
+            // navigate('/')
+            // navigate('/donate/' + donateToProject.data.donationId)
+          }
+        } else {
+          //setLoading(false);
+          ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+        }
+      })
+      .catch((errors) => {
+        //setLoading(false);
+        const formaerrror = {};
+        if (errors.length) {
+          errors.forEach((element) => {
+            formaerrror[element.field] = element.message;
+          });
+        } else {
+          ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+        }
+
+        setstate({
+          ...state,
+          error: formaerrror
+        });
+      });
   };
 
   const checkUserFollow = async (projectId) => {

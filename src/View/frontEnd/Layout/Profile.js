@@ -1,56 +1,66 @@
 export default function Profile(props) {
-    let stateData = props.stateData
-    return (
-        <>
-            <div className="padding b-b">
-                <div className="row-col">
-                    {/* <div className="col-sm w w-auto-xs m-b">
+  let stateData = props.stateData;
+  return (
+    <>
+      <div className="padding b-b">
+        <div className="row-col">
+          {/* <div className="col-sm w w-auto-xs m-b">
                         <div className="item w rounded">
                             <div className="item-media">
                                 <div className="item-media-content" style={{backgroundImage: "url('images/a3.jpg')"}}></div>
                             </div>
                         </div>
                     </div> */}
-                    <div className="col-sm">
-                        <div className="p-l-md no-padding-xs">
-                            <h1 className="page-title">
-                                <span className="h1 _800" style={{ textTransform: "capitalize" }}>{stateData.name}</span>
-                            </h1>
-                            <p className="item-desc text-ellipsis text-muted" data-ui-toggle-className="text-ellipsis">{stateData.rolename ? stateData.rolename.toUpperCase() : ""}</p>
-                            {/* <div className="item-action m-b">
+          <div className="col-sm">
+            <div className="p-l-md no-padding-xs">
+              <h1 className="page-title">
+                <span className="h1 _800" style={{ textTransform: 'capitalize' }}>
+                  {stateData.name}
+                </span>
+              </h1>
+              <p
+                className="item-desc text-ellipsis text-muted"
+                data-ui-toggle-className="text-ellipsis"
+              >
+                {stateData.rolename ? stateData.rolename.toUpperCase() : ''}
+              </p>
+              {/* <div className="item-action m-b">
                                 <a href="#" className="btn btn-sm rounded primary">Upload</a>
                                 <a href="#" className="btn btn-sm rounded white">Edit Profile</a>
                             </div> */}
-                            <div className="block clearfix m-b">
-                                {/* <span>9</span> <span className="text-muted">Albums</span>, <span>23</span> <span className="text-muted">Tracks</span> */}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <div className="block clearfix m-b">
+                {/* <span>9</span> <span className="text-muted">Albums</span>, <span>23</span> <span className="text-muted">Tracks</span> */}
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div className="row-col">
-                <div className="col-lg-9 b-r no-border-md">
-                    <div className="padding p-y-0 m-b-md">
-                        <div className="nav-active-border b-primary bottom m-b-md m-t">
-                            <ul className="nav l-h-2x" data-ui-jp="taburl">
-                                {/* <li className="nav-item m-r inline">
+      <div className="row-col">
+        <div className="col-lg-9 b-r no-border-md">
+          <div className="padding p-y-0 m-b-md">
+            <div className="nav-active-border b-primary bottom m-b-md m-t">
+              <ul className="nav l-h-2x" data-ui-jp="taburl">
+                {/* <li className="nav-item m-r inline">
                                     <a className="nav-link active" href="#" data-toggle="tab" data-target="#track">Tracks</a>
                                 </li>
                                 <li className="nav-item m-r inline">
                                     <a className="nav-link" href="#" data-toggle="tab" data-target="#playlist">Playlists</a>
                                 </li> */}
-                                <li className="nav-item m-r inline ">
-                                    <a className="nav-link active" href="#" data-toggle="tab" data-target="#profile">Profile</a>
-                                </li>
-                                <li className="nav-item m-r inline">
-                                    <a className="nav-link" href="#" data-toggle="tab" data-target="#like">Change Password</a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <div className="tab-content">
-                            {/* <div className="tab-pane active" id="track">
+                <li className="nav-item m-r inline ">
+                  <a className="nav-link active" href="#" data-toggle="tab" data-target="#profile">
+                    Profile
+                  </a>
+                </li>
+                <li className="nav-item m-r inline">
+                  <a className="nav-link" href="#" data-toggle="tab" data-target="#like">
+                    Change Password
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="tab-content">
+              {/* <div className="tab-pane active" id="track">
                                 <div className="row item-list item-list-by m-b">
                                     <div className="col-xs-12">
                                         <div className="item r" data-id="item-10" data-src="http://api.soundcloud.com/tracks/237514750/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
@@ -584,58 +594,143 @@ export default function Profile(props) {
                                     </div>
                                 </div>
                             </div>*/}
-                            <div className="tab-pane" id="like">
-                                <form>
-                                    <div className="form-group row">
-                                        <div className="col-sm-3 form-control-label text-muted">Current Password</div>
-                                        <div className="col-sm-9"><input className="form-control" type="password" value={stateData.current_password} name="current_password" id="current_password" onChange={(e) => props.changevalue(e)} />
-                                            {stateData.error && stateData.error.current_password && <p className="error">{stateData.error ? stateData.error.current_password ? stateData.error.current_password : "" : ""}</p>}
-
-                                        </div>
-                                    </div>
-                                    <div className="form-group row">
-                                        <div className="col-sm-3 form-control-label text-muted">New Password</div>
-                                        <div className="col-sm-9"><input className="form-control" type="password" value={stateData.new_password} name="new_password" id="new_password" onChange={(e) => props.changevalue(e)} />
-                                        {stateData.error && stateData.error.new_password && <p className="error">{stateData.error ? stateData.error.new_password ? stateData.error.new_password : "" : ""}</p>}
-
-                                        </div>
-                                    </div>
-                                    <div className="form-group row">
-                                        <div className="col-sm-3 form-control-label text-muted">Confirm Password</div>
-                                        <div className="col-sm-9"><input className="form-control" type="password" value={stateData.cpassword} name="cpassword" id="cpassword" onChange={(e) => props.changevalue(e)}/>
-                                        {stateData.error && stateData.error.cpassword && <p className="error">{stateData.error ? stateData.error.cpassword ? stateData.error.cpassword : "" : ""}</p>}
-
-                                        </div>
-                                    </div>
-
-                                </form>
-                                <button type="button" className="btn btn-primary pull-right" onClick={() => props.updatePassword()}>UPDATE</button>
-                            </div>
-                            <div className="tab-pane active" id="profile">
-                                <form>
-                                    <div className="form-group row">
-                                        <div className="col-sm-3 form-control-label text-muted">Name</div>
-                                        <div className="col-sm-9"><input className="form-control" value={stateData.name} name="name" id="name" onChange={(e) => props.changevalue(e)} />
-                                        {stateData.error && stateData.error.name && <p className="error">{stateData.error ? stateData.error.name ? stateData.error.name : "" : ""}</p>}
-
-                                        </div>
-                                    </div>
-                                    <div className="form-group row">
-                                        <div className="col-sm-3 form-control-label text-muted">Username</div>
-                                        <div className="col-sm-9"><input className="form-control" disabled value={stateData.username} name="username" id="username" /></div>
-                                    </div>
-                                    <div className="form-group row">
-                                        <div className="col-sm-3 form-control-label text-muted">Email</div>
-                                        <div className="col-sm-9"><input className="form-control" disabled value={stateData.email} name="email" id="email" /></div>
-                                    </div>
-
-                                </form>
-                                <button type="button" className="btn btn-primary pull-right" onClick={() => props.updateUserProfile()}>SAVE</button>
-                            </div>
-                        </div>
+              <div className="tab-pane" id="like">
+                <form>
+                  <div className="form-group row">
+                    <div className="col-sm-3 form-control-label text-muted">Current Password</div>
+                    <div className="col-sm-9">
+                      <input
+                        className="form-control"
+                        type="password"
+                        value={stateData.current_password}
+                        name="current_password"
+                        id="current_password"
+                        onChange={(e) => props.changevalue(e)}
+                      />
+                      {stateData.error && stateData.error.current_password && (
+                        <p className="error">
+                          {stateData.error
+                            ? stateData.error.current_password
+                              ? stateData.error.current_password
+                              : ''
+                            : ''}
+                        </p>
+                      )}
                     </div>
-                </div>
-                {/* <div className="col-lg-3 w-xxl w-auto-md">
+                  </div>
+                  <div className="form-group row">
+                    <div className="col-sm-3 form-control-label text-muted">New Password</div>
+                    <div className="col-sm-9">
+                      <input
+                        className="form-control"
+                        type="password"
+                        value={stateData.new_password}
+                        name="new_password"
+                        id="new_password"
+                        onChange={(e) => props.changevalue(e)}
+                      />
+                      {stateData.error && stateData.error.new_password && (
+                        <p className="error">
+                          {stateData.error
+                            ? stateData.error.new_password
+                              ? stateData.error.new_password
+                              : ''
+                            : ''}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="form-group row">
+                    <div className="col-sm-3 form-control-label text-muted">Confirm Password</div>
+                    <div className="col-sm-9">
+                      <input
+                        className="form-control"
+                        type="password"
+                        value={stateData.cpassword}
+                        name="cpassword"
+                        id="cpassword"
+                        onChange={(e) => props.changevalue(e)}
+                      />
+                      {stateData.error && stateData.error.cpassword && (
+                        <p className="error">
+                          {stateData.error
+                            ? stateData.error.cpassword
+                              ? stateData.error.cpassword
+                              : ''
+                            : ''}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </form>
+                <button
+                  type="button"
+                  className="btn btn-primary pull-right"
+                  onClick={() => props.updatePassword()}
+                >
+                  UPDATE
+                </button>
+              </div>
+              <div className="tab-pane active" id="profile">
+                <form>
+                  <div className="form-group row">
+                    <div className="col-sm-3 form-control-label text-muted">Name</div>
+                    <div className="col-sm-9">
+                      <input
+                        className="form-control"
+                        value={stateData.name}
+                        name="name"
+                        id="name"
+                        onChange={(e) => props.changevalue(e)}
+                      />
+                      {stateData.error && stateData.error.name && (
+                        <p className="error">
+                          {stateData.error
+                            ? stateData.error.name
+                              ? stateData.error.name
+                              : ''
+                            : ''}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="form-group row">
+                    <div className="col-sm-3 form-control-label text-muted">Username</div>
+                    <div className="col-sm-9">
+                      <input
+                        className="form-control"
+                        disabled
+                        value={stateData.username}
+                        name="username"
+                        id="username"
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group row">
+                    <div className="col-sm-3 form-control-label text-muted">Email</div>
+                    <div className="col-sm-9">
+                      <input
+                        className="form-control"
+                        disabled
+                        value={stateData.email}
+                        name="email"
+                        id="email"
+                      />
+                    </div>
+                  </div>
+                </form>
+                <button
+                  type="button"
+                  className="btn btn-primary pull-right"
+                  onClick={() => props.updateUserProfile()}
+                >
+                  SAVE
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <div className="col-lg-3 w-xxl w-auto-md">
                     <div className="padding" style={{bottom: "60px"}} data-ui-jp="stick_in_parent">
                         <h6 className="text text-muted">5 Likes</h6>
                         <div className="row item-list item-list-sm m-b">
@@ -756,7 +851,7 @@ export default function Profile(props) {
                         <p className="text-muted text-xs p-b-lg">&copy; Copyright 2016</p>
                     </div>
                 </div> */}
-            </div>
-        </>
-    )
+      </div>
+    </>
+  );
 }

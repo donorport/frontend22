@@ -294,6 +294,7 @@ const GeoLocation = (props) => {
 
                                 return (
                                   <Link
+                                    key={gi}
                                     className="link"
                                     variant="link"
                                     target="_blank"
