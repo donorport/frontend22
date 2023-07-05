@@ -13,3 +13,16 @@
   background: unset;
   border: unset;
 }
+
+
+#history-filter-select-form-control {
+  fieldset {
+    border-color: #3a94d4;
+  }
+  svg {
+    color: #3a94d4;
+  }
+  div>div {
+    color: #3a94d4;
+  }
+}
