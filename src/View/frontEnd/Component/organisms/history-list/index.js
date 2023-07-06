@@ -274,7 +274,7 @@ const DonationListItem = ({ donation, showDetails, activeList }) => {
           >
             Donation # {donation.uniqueTransactionId ? donation.uniqueTransactionId : donation._id}
           </Button>{' '}
-          <img className="ms-3" style={{ height: '24px' }} src={donate}></img>
+          <img className="ms-3" style={{ height: '24px' }} src={donate} alt="" />
         </div>
         <div className="fw-semibold fs-7 text-lighter mt-3p">
           {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
