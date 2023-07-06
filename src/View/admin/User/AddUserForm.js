@@ -129,10 +129,11 @@ export default function AddUserForm(props) {
                   Select Country
                 </option>
                 {props.countryList.length > 0 &&
-                  props.countryList.map((country, i) => {
+                  props.countryList.map((country) => {
                     return (
                       // country.status === 1 &&
                       <option
+                        key={country.id}
                         value={country.id}
                         selected={Number(stateData.country) === Number(country.id)}
                       >
@@ -161,10 +162,10 @@ export default function AddUserForm(props) {
                   Select State
                 </option>
                 {props.stateList.length > 0 &&
-                  props.stateList.map((state, i) => {
+                  props.stateList.map((state) => {
                     return (
                       state.status === 1 && (
-                        <option value={state.id} selected={stateData.stateid === state.id}>
+                        <option key={state.id} value={state.id} selected={stateData.stateid === state.id}>
                           {state.state}
                         </option>
                       )
@@ -191,10 +192,10 @@ export default function AddUserForm(props) {
                   Select City
                 </option>
                 {props.cityList.length > 0 &&
-                  props.cityList.map((city, i) => {
+                  props.cityList.map((city) => {
                     return (
                       // city.status === 1 &&
-                      <option value={city._id.id} selected={stateData.city === city._id.id}>
+                      <option key={city._id.id} value={city._id.id} selected={stateData.city === city._id.id}>
                         {city._id.city}
                       </option>
                     );

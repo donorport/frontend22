@@ -204,6 +204,7 @@ function CampaignAdminController() {
       status: 1
     });
   };
+
   const setOpenModal = () => {
     resetForm();
     setModal(true);

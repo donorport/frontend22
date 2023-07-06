@@ -8,16 +8,21 @@ import './style.scss';
 import { makeStyles } from '@material-ui/core/styles';
 
 import moment from 'moment';
-import helper, { getCalculatedPrice, priceFormat } from '../../../../../Common/Helper';
+import helper, { priceFormat } from '../../../../../Common/Helper';
 
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-const ItemsTable = (props) => {
-  const calculatedPrice = getCalculatedPrice();
-  let orderItemList = props.orderItemList;
-
-  const totalPriceArray = props.totalPriceArray;
+const ItemsTable = ({
+  totalPages,
+  pageNo,
+  handleClick,
+  orderItemList,
+  handleSortingChange,
+  order,
+  sortField,
+  onItemClick
+}) => {
   // console.log(orderItemList)
   const useStyles = makeStyles(() => ({
     ul: {
@@ -42,10 +47,10 @@ const ItemsTable = (props) => {
             <Button
               variant="link"
               className="btn__sort px-0 text-decoration-none"
-              onClick={() => props.handleSortingChange('created_at')}
+              onClick={() => handleSortingChange('created_at')}
             >
               Date
-              {props.sortField === 'created_at' && props.order === 'asc' ? (
+              {sortField === 'created_at' && order === 'asc' ? (
                 <FontAwesomeIcon icon={solid('angle-up')} className="small ml-6p" />
               ) : (
                 <FontAwesomeIcon icon={solid('angle-down')} className="small ml-6p" />
@@ -63,7 +68,6 @@ const ItemsTable = (props) => {
               // console.log(item)
               // let price = Math.round(Number(item.productPrice) + (Number(item.appliedTaxPer) / 100) * Number(item.productPrice))
               // let price = priceFormat(Math.round(calculatedPrice.priceWithTax(Number(item.itemDetails.price))))
-              let sold = item.itemDetails.soldout;
               let price =
                 item.itemDetails.displayPrice * item.quantity
                   ? item.itemDetails.displayPrice * item.quantity
@@ -74,7 +78,7 @@ const ItemsTable = (props) => {
                   <div className="d-xl-flex align-items-center flex-grow-1">
                     <Button
                       variant="link"
-                      onClick={() => props.onItemClick(key)}
+                      onClick={() => onItemClick(key)}
                       className="user__left d-flex align-items-center text-dark me-sm-3 p-0 text-decoration-none text-start fw-normal"
                     >
                       <div
@@ -209,12 +213,12 @@ const ItemsTable = (props) => {
           className="py-2 mt-2 d-flex justify-content-center border-top"
           style={{ background: '#f8fafd78' }}
         >
-          {props.totalPages > 1 ? (
+          {totalPages > 1 ? (
             <Stack spacing={2}>
               <Pagination
-                count={props.totalPages}
-                page={props.pageNo}
-                onChange={props.handleClick}
+                count={totalPages}
+                page={pageNo}
+                onChange={handleClick}
                 shape="rounded"
                 classes={{ ul: classes.ul }}
                 showFirstButton

@@ -29,12 +29,23 @@ const getCardInfo = (paymentResponse) => {
   };
 };
 
-const HistoryList = (props) => {
-  const thisPageList = props.thisPageList;
-
-  const activeList = props.activeList;
-  const setActiveList = props.setActiveList;
-  const setIsChecked = props.setIsChecked;
+const HistoryList = ({
+  thisPageList,
+  activeList,
+  setActiveList,
+  setIsChecked,
+  handleSortingChange,
+  sortField,
+  sortingOrder,
+  historyFilter,
+  handleHistoryFilterChange,
+  historyFilterOptions,
+  isFetching,
+  totalPages,
+  pageNo,
+  handleClick
+}) => {
+  console.log('HistoryList rerender');
 
   const showDetails = (e) => {
     let tempArry = [...activeList];
@@ -73,29 +84,35 @@ const HistoryList = (props) => {
     <>
       <div className="list__table mb-2 mb-sm-0">
         <div className="list__table-sort d-flex justify-content-sort border-bottom">
-          <div className="flex__1" style={{display: "flex", justifyContent: "space-between"}}>
+          <div className="flex__1" style={{ display: 'flex', justifyContent: 'space-between' }}>
             <Button
               variant="link"
               className="btn__sort px-0 text-decoration-none"
-              onClick={() => props.handleSortingChange('created_at')}
+              onClick={() => handleSortingChange('created_at')}
             >
               Date
-              {props.sortField === 'created_at' && props.sortingOrder === 'asc' ? (
+              {sortField === 'created_at' && sortingOrder === 'asc' ? (
                 <FontAwesomeIcon icon={solid('angle-up')} className="small ml-6p" />
               ) : (
                 <FontAwesomeIcon icon={solid('angle-down')} className="small ml-6p" />
               )}
             </Button>
-            <FormControl size="small" style={{margin: "1rem"}} id="history-filter-select-form-control">
-              <InputLabel id="demo-simple-select-label" style={{color: "#3a94d4"}}>Type</InputLabel>
+            <FormControl
+              size="small"
+              style={{ margin: '1rem' }}
+              id="history-filter-select-form-control"
+            >
+              <InputLabel id="demo-simple-select-label" style={{ color: '#3a94d4' }}>
+                Type
+              </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={props.historyFilter}
+                value={historyFilter}
                 label="Age"
-                onChange={props.handleHistoryFilterChange}
+                onChange={handleHistoryFilterChange}
               >
-                {Object.values(props.historyFilterOptions).map(({value, label}) => (
+                {Object.values(historyFilterOptions).map(({ value, label }) => (
                   <MenuItem
                     key={value}
                     name={value}
@@ -110,7 +127,7 @@ const HistoryList = (props) => {
           </div>
         </div>
         <ul className="list__table-list pt-2 ps-sm-3 ps-0">
-          {props.isFetching ? (
+          {isFetching ? (
             <li className="history__list-item">Getting history...</li>
           ) : thisPageList.length > 0 ? (
             thisPageList.map((orderOrDonation, i) => {
@@ -141,12 +158,12 @@ const HistoryList = (props) => {
           className="py-2 mt-2 d-flex justify-content-center border-top"
           style={{ background: '#f8fafd78' }}
         >
-          {props.totalPages > 1 && (
+          {totalPages > 1 && (
             <Stack spacing={2}>
               <Pagination
-                count={props.totalPages}
-                page={props.pageNo}
-                onChange={props.handleClick}
+                count={totalPages}
+                page={pageNo}
+                onChange={handleClick}
                 shape="rounded"
                 classes={{ ul: classes.ul }}
                 showFirstButton
@@ -275,7 +292,7 @@ const DonationListItem = ({ donation, showDetails, activeList }) => {
 const DonationListActiveList = ({ donation, CardBrand, last4 }) => {
   return (
     <ul className="history__list list-unstyled ms-1 mt-2">
-      <OrderListTransaction order={donation} CardType={CardBrand} last4={last4} />
+      <OrderListTransaction createdAt={donation.created_at} CardType={CardBrand} last4={last4} />
     </ul>
   );
 };
@@ -294,7 +311,7 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
         <span className="fw-bold text-light fs-6">{order.currencySymbol + platformCost}</span>
       </div>
 
-      <OrderListTransaction order={order} CardType={CardBrand} last4={last4} />
+      <OrderListTransaction createdAt={order.createdAt} CardType={CardBrand} last4={last4} />
     </ul>
   );
 };
@@ -337,7 +354,7 @@ const PurchaseListItem = ({ order, item }) => {
   );
 };
 
-const OrderListTransaction = ({ order, CardType, last4 }) => {
+const OrderListTransaction = ({ createdAt, CardType, last4 }) => {
   return (
     <li className="order__transaction pb-5">
       <div className="bg-lighter d-flex align-items-center pt-20p pb-20p px-2 rounded-3">
@@ -347,7 +364,7 @@ const OrderListTransaction = ({ order, CardType, last4 }) => {
         <div className="order__card fs-7">
           <div className="text-dark fw-semibold mb-6p">XXXX XXXX XXXX {last4}</div>
           <div className="text-light fw-semibold">
-            <div>Transaction: {moment(order.created_at).format(MOMENT_DATE_FORMAT)}</div>
+            <div>Transaction: {moment(createdAt).format(MOMENT_DATE_FORMAT)}</div>
           </div>
         </div>
       </div>
