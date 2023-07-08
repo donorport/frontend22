@@ -20,12 +20,40 @@ import noImg from '../../../../../assets/images/noimg1.png';
 import cartApi from '../../../../../Api/frontEnd/cart';
 import { confirmAlert } from 'react-confirm-alert';
 import './style.scss';
-import ToggleSwitch from '../../atoms/toggle-switch/index';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+//import ToggleSwitch from '../../atoms/toggle-switch/index';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+
+const LANGUAGE_OPTIONS = [
+  { value: 'english', label: 'English' },
+  { value: 'manderin', label: 'Manderin' },
+  { value: 'french', label: 'French' }
+];
+
+const UPDATE_PROFILE_VALIDATION_RULES = {
+  name: 'required',
+  street: 'required',
+  zip: 'required',
+  city: 'required',
+  stateId: 'required',
+  country: 'required'
+  // language: "required",
+  // currency: "required",
+};
+
+const UPDATE_PROFILE_VALIDATION_MESSAGES = {
+  'name.required': 'Name is required.',
+  'street.required': 'Street is required.',
+  'zip.required': 'Zip Code is required.',
+  'stateId.required': 'State is required.',
+  'city.required': 'City is required.',
+  'country.required': 'Country is required.',
+  'language.required': 'Language is required.',
+  'currency.required': 'Currency is required.'
+};
 
 const UserProfile = () => {
-  const [check, setCheck] = useState(false);
+  //const [check, setCheck] = useState(false);
   // const user = useContext(UserContext)
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -340,11 +368,6 @@ const UserProfile = () => {
   // const countrySelect = useRef(null)
 
   useEffect(() => {
-    const options = [
-      { value: 'english', label: 'English' },
-      { value: 'manderin', label: 'Manderin' },
-      { value: 'french', label: 'French' }
-    ];
     // dispatch(setUserCountry(data.country_id))
 
     if (countryList.length > 0) {
@@ -357,7 +380,7 @@ const UserProfile = () => {
       setDefaultCity(cityList.find((x) => x.value === data.city_id));
     }*/
 
-    setDefaultLanguage(options.find((x) => x.value === data.language));
+    setDefaultLanguage(LANGUAGE_OPTIONS.find((x) => x.value === data.language));
     // let tempCurrencyObj = {};
     // let temp = countryCurrency.find(x => x.id === data.country_id)
 
@@ -379,29 +402,7 @@ const UserProfile = () => {
   }, [countryList, data.country_id, data.language, data.state_id, stateList]);
 
   const updateProfile = () => {
-    const rules = {
-      name: 'required',
-      street: 'required',
-      zip: 'required',
-      city: 'required',
-      stateId: 'required',
-      country: 'required'
-      // language: "required",
-      // currency: "required",
-    };
-
-    const message = {
-      'name.required': 'Name is required.',
-      'street.required': 'Street is required.',
-      'zip.required': 'Zip Code is required.',
-      'stateId.required': 'State is required.',
-      'city.required': 'City is required.',
-      'country.required': 'Country is required.',
-      'language.required': 'Language is required.',
-      'currency.required': 'Currency is required.'
-    };
-
-    validateAll(state, rules, message)
+    validateAll(state, UPDATE_PROFILE_VALIDATION_RULES, UPDATE_PROFILE_VALIDATION_MESSAGES)
       .then(async () => {
         const formaerrror = {};
         setState({

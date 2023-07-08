@@ -136,7 +136,7 @@ const AdminPosts = () => {
   const [update, setUpdate] = useState(false);
   const [deletedFile, setDeletedFile] = useState(false);
   const [modelShow, setModelShow] = useState(false);
-  const [seletedProjectList, setSeletedProjectList] = useState([]);
+  const [selectedProjectList, setSelectedProjectList] = useState([]);
 
   const [moreTempImages, setMoreTempImages] = useState([]);
   const [moreImages, setMoreImages] = useState([]);
@@ -204,7 +204,7 @@ const AdminPosts = () => {
   const user = useSelector((state) => state.user);
 
   let videoid = fulfilState.videoUrl ? fulfilState.videoUrl.split('?v=')[1].split('&')[0] : '';
-  let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
+  //let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
 
   const [tags, setTags] = useState([]);
 
@@ -304,13 +304,13 @@ const AdminPosts = () => {
     setTags(newTags);
   };
 
-  const handleTagClick = (index) => {
+  const handleTagClick = useCallback((index) => {
     console.log('The tag at index ' + index + ' was clicked');
-  };
+  }, []);
 
-  const onClearAll = () => {
+  const onClearAll = useCallback(() => {
     setTags([]);
-  };
+  }, []);
 
   const onTagUpdate = (i, newTag) => {
     const updatedTags = tags.slice();
@@ -321,20 +321,20 @@ const AdminPosts = () => {
   const onSelectProject = (e) => {
     let tempRemoveArry = [...removedProjects];
     if (e.target.checked) {
-      setSeletedProjectList([...seletedProjectList, e.target.id]);
+      setSelectedProjectList([...selectedProjectList, e.target.id]);
       const index = tempRemoveArry.indexOf(e.target.id);
       if (index > -1) {
         tempRemoveArry.splice(index, 1);
         setRemovedProjects([...tempRemoveArry]);
       }
     } else {
-      let tempArry = [...seletedProjectList];
+      let tempArry = [...selectedProjectList];
       const index = tempArry.indexOf(e.target.id);
       if (index > -1) {
         setRemovedProjects([...tempRemoveArry, e.target.id]);
         tempArry.splice(index, 1);
       }
-      setSeletedProjectList([...tempArry]);
+      setSelectedProjectList([...tempArry]);
     }
   };
 
@@ -678,7 +678,7 @@ const AdminPosts = () => {
     setMoreImages([]);
     setGallaryTempImages([]);
     setGallaryImages([]);
-    setSeletedProjectList([]);
+    setSelectedProjectList([]);
     // get default sub/category so it can be in state
     const defaultCategory = categoryList.sort((a, b) =>
       a.name.localeCompare(b.name, 'es', { sensitivity: 'base' })
@@ -857,8 +857,8 @@ const AdminPosts = () => {
         if (galleryImg?.length > 0) {
           formData.galleryImg = galleryImg;
         }
-        if (seletedProjectList?.length > 0) {
-          formData.prjects = seletedProjectList;
+        if (selectedProjectList?.length > 0) {
+          formData.prjects = selectedProjectList;
         }
 
         // if (address) {
@@ -1140,7 +1140,7 @@ const AdminPosts = () => {
           tempProjectArray.push(project.projectId);
         });
       }
-      setSeletedProjectList(tempProjectArray);
+      setSelectedProjectList(tempProjectArray);
       // console.log(productData.projectDetails)
 
       let tempMImgArray = [];
@@ -1868,7 +1868,7 @@ const AdminPosts = () => {
             moreImages={moreImages}
             projectList={projectList}
             removedProjects={removedProjects}
-            seletedProjectList={seletedProjectList}
+            seletedProjectList={selectedProjectList}
             gallaryTempImages={gallaryTempImages}
             gallaryImages={gallaryImages}
             setstate={setstate}
@@ -2261,7 +2261,7 @@ const PostDetailsMediaColumn = ({
 const PostDetailsProductImage = ({ handleDelete, imgClass, imgStyle }) => {
   return (
     <div className="img-wrap">
-      <span className="close" onClick={() => handleDelete()} style={{ right: '7px' }}>
+      <span className="close" onClick={handleDelete} style={{ right: '7px' }}>
         &times;
       </span>
       <div className={imgClass} style={imgStyle} alt="lk" data-id="103"></div>

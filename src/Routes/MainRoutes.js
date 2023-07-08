@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, lazy } from 'react';
 import {
   //BrowserRouter as Router,
   Route,
@@ -24,7 +24,6 @@ import ThemeConfig from '../theme';
 import ScrollToTop from '../components/ScrollToTop';
 import GlobalStyles from '../theme/globalStyles';
 import { BaseOptionChartStyle } from '../components/charts/BaseOptionChart';
-//import AdminPrivateRoutes from './AdminPrivateRoutes';
 //import Logo from '../components/Logo';
 //import UserPrivateRoutes from './UserPrivateRoutes';
 import HomeController from '../Controller/frontEnd/HomeController';
@@ -39,16 +38,6 @@ import CartController from '../Controller/frontEnd/CartController';
 import CheckoutController from '../Controller/frontEnd/CheckoutController';
 import ThankYou from '../View/frontEnd/ThankYou';
 //import AdminDashboard from '../View/frontEnd/Component/organisms/admin-dashboard';
-import AdminDetail from '../View/frontEnd/admin-detail';
-import AdminPosts from '../View/frontEnd/Component/organisms/admin-posts';
-import AdminActivity from '../View/frontEnd/Component/organisms/admin-activity';
-import AdminTax from '../View/frontEnd/Component/organisms/admin-tax';
-import AdminProjects from '../View/frontEnd/Component/organisms/admin-projects';
-import AdminSettingsTab from '../View/frontEnd/Component/organisms/admin-settings-tab';
-import ProfileSettings from '../View/frontEnd/Component/organisms/profile-settings';
-import Payments from '../View/frontEnd/Component/organisms/payment-method';
-import AdminAdmin from '../View/frontEnd/Component/organisms/admin-admin';
-import AdminBilling from '../View/frontEnd/Component/organisms/admin-billing';
 //import AdminControl from '../View/frontEnd/Component/organisms/admin-control';
 import UserDetail from '../View/frontEnd/user-detail';
 import UserDashboard from '../View/frontEnd/Component/organisms/user-dashboard';
@@ -89,8 +78,34 @@ import DonationConfirmPage from '../View/frontEnd/donation-confirmation/index';
 import Pricing from '../View/frontEnd/pricing';
 import { CircularProgress } from '@mui/material';
 
+// old imports that are now lazy
+//import AdminPrivateRoutes from './AdminPrivateRoutes';
+import AdminDetail from '../View/frontEnd/admin-detail';
+import Payments from '../View/frontEnd/Component/organisms/payment-method';
+import AdminPosts from '../View/frontEnd/Component/organisms/admin-posts';
+import AdminActivity from '../View/frontEnd/Component/organisms/admin-activity';
+import AdminTax from '../View/frontEnd/Component/organisms/admin-tax';
+import AdminProjects from '../View/frontEnd/Component/organisms/admin-projects';
+import AdminSettingsTab from '../View/frontEnd/Component/organisms/admin-settings-tab';
+import ProfileSettings from '../View/frontEnd/Component/organisms/profile-settings';
+import AdminAdmin from '../View/frontEnd/Component/organisms/admin-admin';
+import AdminBilling from '../View/frontEnd/Component/organisms/admin-billing';
+
 // lazy import for admin routes
-const AdminPrivateRoutes = React.lazy(() => import('./AdminPrivateRoutes'));
+const AdminPrivateRoutes = lazy(() => import('./AdminPrivateRoutes'));
+
+//const AdminDetail = lazy(() => import('../View/frontEnd/admin-detail'));
+//const Payments = lazy(() => import('../View/frontEnd/Component/organisms/payment-method'));
+//const AdminPosts = lazy(() => import('../View/frontEnd/Component/organisms/admin-posts'));
+//const AdminActivity = lazy(() => import('../View/frontEnd/Component/organisms/admin-activity'));
+//const AdminTax = lazy(() => import('../View/frontEnd/Component/organisms/admin-tax'));
+//const AdminProjects = lazy(() => import('../View/frontEnd/Component/organisms/admin-projects'));
+//const AdminSettingsTab = lazy(() =>
+  //import('../View/frontEnd/Component/organisms/admin-settings-tab')
+//);
+//const ProfileSettings = lazy(() => import('../View/frontEnd/Component/organisms/profile-settings'));
+//const AdminAdmin = lazy(() => import('../View/frontEnd/Component/organisms/admin-admin'));
+//const AdminBilling = lazy(() => import('../View/frontEnd/Component/organisms/admin-billing'));
 
 //const HeaderStyle = styled('header')(({ theme }) => ({
 //top: 0,
@@ -115,33 +130,41 @@ export default function MainRoutes() {
 
   const location = useLocation();
 
-  useLayoutEffect(() => {
-    //window.scrollTo(0, 0);
-  }, [location.pathname]);
+  //useLayoutEffect(() => {
+  ////window.scrollTo(0, 0);
+  //}, [location.pathname]);
   return (
     <div id="full-content">
       {token && location.pathname.startsWith('/campaign') && (
-        <Routes>
-          <Route path="/" element={<AdminDetail />}>
-            <Route path="/campaign/:name/dashboard" element={<Payments />} />
-            <Route path="/campaign/:name" element={<Payments />} />
-            {/* <Route path="/campaign/:name/dashboard" element={<AdminDashboard />} />
+        <>
+        {/*
+        <React.Suspense fallback={<LoadingPage />}>
+        */}
+          <Routes>
+            <Route path="/" element={<AdminDetail />}>
+              <Route path="/campaign/:name/dashboard" element={<Payments />} />
+              <Route path="/campaign/:name" element={<Payments />} />
+              {/* <Route path="/campaign/:name/dashboard" element={<AdminDashboard />} />
             <Route path="/campaign/:name" element={<AdminDashboard />} /> */}
-            <Route path="/campaign/:name/posts" element={<AdminPosts />} />
-            <Route path="/campaign/:name/activity" element={<AdminActivity />} />
-            <Route path="/campaign/:name/tax" element={<AdminTax />} />
-            <Route path="/campaign/:name/project" element={<AdminProjects />} />
-            <Route path="/campaign/:name/settings" element={<AdminSettingsTab />}>
-              <Route path="/campaign/:name/settings/profile" element={<ProfileSettings />} />
-              <Route path="/campaign/:name/settings/payments" element={<Payments />} />
-              <Route path="/campaign/:name/settings/payments/:accountId" element={<Payments />} />
-              <Route path="/campaign/:name/settings/administrators" element={<AdminAdmin />} />
-              <Route path="/campaign/:name/settings/billing" element={<AdminBilling />} />
-              {/* <Route path="/campaign/:name/settings/controls" element={<AdminControl />} />*/}
+              <Route path="/campaign/:name/posts" element={<AdminPosts />} />
+              <Route path="/campaign/:name/activity" element={<AdminActivity />} />
+              <Route path="/campaign/:name/tax" element={<AdminTax />} />
+              <Route path="/campaign/:name/project" element={<AdminProjects />} />
+              <Route path="/campaign/:name/settings" element={<AdminSettingsTab />}>
+                <Route path="/campaign/:name/settings/profile" element={<ProfileSettings />} />
+                <Route path="/campaign/:name/settings/payments" element={<Payments />} />
+                <Route path="/campaign/:name/settings/payments/:accountId" element={<Payments />} />
+                <Route path="/campaign/:name/settings/administrators" element={<AdminAdmin />} />
+                <Route path="/campaign/:name/settings/billing" element={<AdminBilling />} />
+                {/* <Route path="/campaign/:name/settings/controls" element={<AdminControl />} />*/}
+              </Route>
+              <Route path="*" element={<Payments />} />
             </Route>
-            <Route path="*" element={<Payments />} />
-          </Route>
-        </Routes>
+          </Routes>
+          {/*
+        </React.Suspense>
+        */}
+          </>
       )}
       {CampaignAdminAuthToken && !location.pathname.startsWith('/campaign') && (
         <Routes>
@@ -246,34 +269,6 @@ export default function MainRoutes() {
         ) : (
           <></>
         )
-
-        // adminAuthToken && !location.pathname.startsWith('/admin') &&
-
-        // <Routes>
-        //     <Route exact path="/" element={<SigninController />} />
-        //     <Route exact path="/signin" element={<SigninController />} />
-        //     <Route exact path="*" element={<SigninController />} />
-        //     <Route exact path="/signup" element={<SignupController />} />
-        //     <Route exact path="/forgot-password" element={<ForgotPasswordController />} />
-        //     <Route exact path="/otp/:email" element={<ResetPasswordController />} />
-        //     <Route exact path="/apply" element={<ApplyOrganizationController />} />
-        //     <Route path="/sponsors" element={<Sponsors />} />
-        //     <Route path="/partnership" element={<Partnership />} />
-        //     <Route path="/about" element={<AboutController />} />
-        //     <Route path="/verified" element={<VerifiedDonors />} />
-        //     <Route path="/terms" element={<Terms />} />
-        //     <Route path="/media" element={<Media />} />
-        //     <Route path="/ranks" element={<Ranks />} />
-        //     <Route path="/trust" element={<Trust />} />
-        //     <Route path="/xp" element={<Xp />} />
-        //     <Route path="/help" element={<Help />} />
-        //     <Route path="/help-category" element={<HelpCategory />} />
-        //     <Route path="/help-article" element={<HelpArticle />} />
-        //     <Route path="/help-contact" element={<HelpContact />} />
-        //     <Route path="/verified" element={<VerifiedDonors />} />
-        //     <Route path="/item-tags" element={<ItemTags />} />
-        //     <Route exact path="*" element={<SigninController />} />
-        // </Routes>
       }
 
       {userAuthToken &&

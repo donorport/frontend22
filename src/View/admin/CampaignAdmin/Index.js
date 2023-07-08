@@ -9,7 +9,7 @@ import {
   //TableBody,
   //TableCell,
   Container,
-  Typography,
+  Typography
   //TableContainer,
   //TablePagination
 } from '@mui/material';
@@ -32,8 +32,8 @@ export default function Index(props) {
     setRowsPerPage(parseInt(event.target.value, 10));
   };
   const columns = [
-    { name: 'Name', selector: 'name', sortable: true },
-    { name: 'Email', selector: 'email', sortable: true },
+    { name: 'Name', selector: (row) => row['name'], sortable: true },
+    { name: 'Email', selector: (row) => row['email'], sortable: true },
     // {
     //     name: "Role",
     //     cell: (row) => <>
@@ -90,7 +90,7 @@ export default function Index(props) {
     {
       id: 'created_at',
       name: 'Date',
-      selector: 'created_at',
+      selector: (row) => row['created_at'],
       cell: (row) => <div>{moment(row.created_at).format('DD MMMM YYYY ')}</div>,
       sortable: true,
       accessor: ''

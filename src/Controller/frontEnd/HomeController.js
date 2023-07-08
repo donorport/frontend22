@@ -1268,6 +1268,7 @@ export default function HomeController() {
       setCartProductList([]);
     }
   };
+
   const onClickAddToCart = async () => {
     if (token) {
       if (cartProductList.length > 0) {

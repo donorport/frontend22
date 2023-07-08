@@ -14,9 +14,9 @@ import Page from '../../../components/Page';
 
 export default function UserList(props) {
   const columns = [
-    { name: 'Name', selector: 'name', sortable: true },
+    { name: 'Name', selector: row => row['name'], sortable: true },
     // { name: "Username", selector: "username", sortable: true },
-    { name: 'Email', selector: 'email', sortable: true },
+    { name: 'Email', selector: row => row['email'], sortable: true },
     // {
     //     name: "Role",
     //     cell: (row) => <>
@@ -48,7 +48,7 @@ export default function UserList(props) {
     {
       id: 'created_at',
       name: 'Date',
-      selector: 'created_at',
+      selector:row => row['created_at'],
       cell: (row) => <div>{moment(row.created_at).format('DD MMMM YYYY ')}</div>,
       sortable: true,
       accessor: ''
@@ -72,13 +72,8 @@ export default function UserList(props) {
       button: true
     }
   ];
-  const data = [];
-  if (props.userList && props.userList.length > 0) {
-    props.userList.map((user) => {
-      data.push(user);
-    });
-  }
-  // console.log(data);
+
+  const data = (props.userList && props.userList.length > 0) ? props.userList : [];
 
   const tableData = {
     columns,
@@ -86,6 +81,7 @@ export default function UserList(props) {
     export: true,
     print: false
   };
+
   return (
     <Page title="Donor | CMS">
       <Container>

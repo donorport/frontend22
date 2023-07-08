@@ -25,6 +25,7 @@ const isReceiptValidImageExtension = (filename) =>
   VALID_IMAGE_EXTENSIONS.includes(filename.split('.')[1]);
 
 const UserItems = () => {
+  console.log('UserItems rerender');
   const [detail, setDetail] = useState({
     key: null,
     show: false
@@ -129,16 +130,17 @@ export default UserItems;
 
 const UserItemsTableView = ({
   totalRecord,
-  totalPriceArray,
-  onItemClick,
-  handleClick,
-  totalPages,
-  pageNo,
-  handleSortingChange,
+  totalPriceArray, // arr
+  onItemClick, // fn
+  handleClick, // fn
+  totalPages,  // num/state
+  pageNo, // num/state
+  handleSortingChange, // fn
   order,
   sortField,
   orderItemList
 }) => {
+  console.log('UserItemsTableView rerender');
   return (
     <div>
       <header className="py-sm-2 pb-2 mb-2 w-100 d-none d-sm-flex align-items-center">
@@ -182,7 +184,6 @@ const UserItemsTableView = ({
         order={order}
         sortField={sortField}
         orderItemList={orderItemList}
-        totalPriceArray={totalPriceArray}
       />
     </div>
   );
