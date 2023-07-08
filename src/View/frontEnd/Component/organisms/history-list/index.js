@@ -193,16 +193,16 @@ const HistoryList = ({
                 // labelId="demo-simple-select-label"
                 // id="demo-simple-select"
 
-                value={props.historyFilter}
+                value={historyFilter}
                 // label="Age"
-                onChange={props.handleHistoryFilterChange}
+                onChange={handleHistoryFilterChange}
                 MenuProps={menuProps}
                 classes={{
                   select: classes.select,
                   icon: classes.selectIcon
                 }}
               >
-                {Object.values(props.historyFilterOptions).map(({ value, label }) => (
+                {Object.values(historyFilterOptions).map(({ value, label }) => (
                   <MenuItem
                     key={value}
                     name={value}
@@ -217,7 +217,7 @@ const HistoryList = ({
           </div>
         </div>
         <ul className="list__table-list pt-2 ps-sm-3 ps-0">
-          {props.isFetching ? (
+          {isFetching ? (
             <li className="history__list-item">
               <CircularProgress className="ms-1" color="inherit" size={12} />
             </li>
@@ -467,7 +467,7 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
   );
 };
 
-const OrderListTransaction = ({ order, CardType, last4 }) => {
+const OrderListTransaction = ({ createdAt, CardType, last4 }) => {
   return (
     <li className="order__transaction pb-2">
       <div className="bg-lighter d-flex align-items-center pt-20p pb-20p px-2 rounded-3">
