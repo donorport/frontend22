@@ -467,6 +467,43 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
   );
 };
 
+const PurchaseListItem = ({ order, item }) => {
+  return (
+    <li className="d-sm-flex align-items-center px-sm-0 py-2 border-bottom">
+      <div className="d-flex align-items-center mb-2 mb-sm-0 flex__1">
+        <ListItemImg
+          size={68}
+          imgSrc={helper.CampaignProductImagePath + item.productImage}
+          style={{ border: 'unset', background: 'unset' }}
+        />
+        <div className="ms-2 order__id">
+          <Button variant="link" className="text-dark fw-bold p-0 mb-3p">
+            {item.quantity} {item.itemDetails?.headline}
+          </Button>
+          <div className="text-light mb-3p">{item.itemDetails?.brand}</div>
+          <div className="fs-5 text-light fw-bold">
+            {order.currencySymbol ? order.currencySymbol : '$'}{' '}
+            {priceFormat(Number(item.productPrice))}
+          </div>
+        </div>
+        <ListItemImg
+          size={42}
+          style={{ maxWidth: 'auto !important' }}
+          className="rounded-circle img--nobg mb-0 mb-sm-auto"
+          imgSrc={helper.CampaignAdminLogoPath + item?.itemDetails?.campaignadminsDetails.logo}
+        />
+      </div>
+      <div className="order__values d-flex align-items-center">
+        <span className="fs- text-info fw-bold flex__1">{item.xp ? item.xp : 0} xp</span>
+        <span className="fs-5 fw-bold text-light ms-2" style={{ width: '80px', textAlign: 'end' }}>
+          {order.currencySymbol ? order.currencySymbol : '$'}
+          {priceFormat(Number(item.productPrice * item.quantity))}
+        </span>
+      </div>
+    </li>
+  );
+};
+
 const OrderListTransaction = ({ createdAt, CardType, last4 }) => {
   return (
     <li className="order__transaction pb-2">
