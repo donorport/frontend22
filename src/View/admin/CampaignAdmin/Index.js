@@ -49,12 +49,38 @@ export default function Index(props) {
     //     allowOverflow: true,
     // },
     {
-      name: 'Status',
+      name: 'Applied?',
       cell: (row) => (
         <>
           {/* <span className={row.status === 1 ? "badge badge-success" : "badge badge-danger"}>{row.status === 1 ? 'Active' : 'Inactive'}</span> */}
           <Label variant="ghost" color={(row.status === 1 && 'success') || 'error'}>
             {row.status === 1 ? 'Active' : 'Inactive'}
+          </Label>
+        </>
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true
+    },
+    {
+      name: 'OTP',
+      cell: (row) => (
+        <>
+          {/* <span className={row.status === 1 ? "badge badge-success" : "badge badge-danger"}>{row.status === 1 ? 'Active' : 'Inactive'}</span> */}
+          <Label variant="ghost" color={(row.otp_status === 1 && 'success') || 'error'}>
+            {row.otp_status === 1 ? 'Active' : 'Inactive'}
+          </Label>
+        </>
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true
+    },
+    {
+      name: 'Applied?',
+      cell: (row) => (
+        <>
+          {/* <span className={row.status === 1 ? "badge badge-success" : "badge badge-danger"}>{row.status === 1 ? 'Active' : 'Inactive'}</span> */}
+          <Label variant="ghost">
+            {row.otp}
           </Label>
         </>
       ),
