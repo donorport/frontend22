@@ -276,7 +276,7 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
   ).toFixed(2);
   let grandTotal = (Number(order.subtotal) + Number(platformCost)).toFixed(2);
 
-  const { last4, CardBrand } = getCardInfo(JSON.parse(order.paymentResponse));
+  const { last4, CardBrand } = getCardInfoOrder(JSON.parse(order.paymentResponse));
 
   //currency symbol
   //total
