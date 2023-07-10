@@ -7,8 +7,12 @@ import helper, { getCookie, setCookie, deleteCookie } from '../../../../../Commo
 import ToastAlert from '../../../../../Common/ToastAlert';
 import { useSelector } from 'react-redux';
 import removeImg from '../../../../../assets/images/remove-link.svg';
+import img from '../../../../../assets/images/remove-link.svg';
+import { CircularProgress } from '@mui/material';
 
 function LinkedOrg(props) {
+  const [isDataLoading, setIsDataLoading] = useState(true);
+
   // const userAuthToken = localStorage.getItem('userAuthToken');
   const user = useSelector((state) => state.user);
   const userAuthToken = localStorage.getItem('userAuthToken');
@@ -52,8 +56,10 @@ function LinkedOrg(props) {
   useEffect(() => {
     (async () => {
       if (token) {
+        setIsDataLoading(true); // Set data loading to true initially
         await list();
         await listTeamMembers();
+        setIsDataLoading(false); // Turn off data loading after fetching data
       }
     })();
   }, [!user.isActiveOrg]);
@@ -166,59 +172,55 @@ function LinkedOrg(props) {
     }
   };
 
+  if (isDataLoading)
+    return (
+      <div className="my-5 d-flex justify-content-center">
+        <CircularProgress size={21} />
+      </div>
+    );
+
   return (
     <>
-     {/*<FrontLoader loading={loading} />*/}
-
-      <div
-        className="modal  common-modal"
-        id="removeModalTwo"
-        tabIndex="-1"
-        aria-labelledby="removeModalTwoLabel"
-        aria-hidden="true"
-        style={{ display: modelShow ? 'block' : 'none' }}
-      >
-        <div className="modal-dialog  modal-dialog-centered">
-          <div className="modal-content border-bottom shadow-none rounded-0">
-            <div className="modal-body text-center">
-              <div className="remove-img-wrap">
-                <img
-                  src={removeImg}
-                  alt="remove link"
-                  style={{ width: '70px', marginBottom: '10px' }}
-                />
-              </div>
-              <h5 className="modal-title mb-3" id="removeModalTwoLabel">
-                Unlink Organization ?
-              </h5>
-              <p>Are you sure you want to remove the item?</p>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-flat btn-link"
-                data-bs-dismiss="modal"
-                onClick={() => setModelShow(false)}
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                className="btn btn-flat btn-danger"
-                data-bs-dismiss="modal"
-                onClick={() => removeTeamMember()}
-              >
-                Remove
-              </button>
-            </div>
+      <div style={{ display: modelShow ? 'block' : 'none' }}>
+        <div className="bg-white py-5 text-center border-bottom">
+          <div className="remove-img-wrap">
+            <img src={removeImg} alt="remove link" style={{ width: '70px', marginBottom: '0px' }} />
           </div>
+          <h5 className="modal-title mb-3" id="removeModalTwoLabel">
+            Unlink Organization ?
+          </h5>
+          <p>Are you sure you want to remove the item?</p>
+        </div>
+        <div className="modal-footer">
+          <button
+            type="button"
+            className="btn btn-flat btn-link"
+            data-bs-dismiss="modal"
+            onClick={() => setModelShow(false)}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="btn btn-flat btn-danger"
+            data-bs-dismiss="modal"
+            onClick={() => removeTeamMember()}
+          >
+            Remove
+          </button>
         </div>
       </div>
 
-      <div className="linked-org">
-        <div className="menu__title">{orgList.length > 0 && <h6 className="mb-0">Linked</h6>}</div>
+      <div style={{ display: modelShow ? 'none' : 'block' }} className="bg-white linked-org">
+        {orgList.length > 0 ? (
+          <div className="menu__title">
+            <h6 className="mb-0">Linked</h6>
+          </div>
+        ) : (
+          ''
+        )}
         <ul className="linked-list list-unstyled mb-0">
-          {orgList.length > 0 &&
+          {orgList.length > 0 ? (
             orgList.map((org, i) => {
               return (
                 <li className="linked__item py-2 d-flex align-items-center" key={i}>
@@ -257,32 +259,21 @@ function LinkedOrg(props) {
                   </Button>
                 </li>
               );
-            })}
-
-          {/* <li className="linked__item py-2 d-flex align-items-center">
-          <Button
-            variant="link"
-            href="/administrator/tree-frog"
-            className="linked__item-link py-0 d-flex align-items-center flex-grow-1 text-decoration-none"
-          >
-            <div className="linked__item-img-wrap">
-              <img
-                className="linked__item-img img-fluid" alt="a"
-                src=""
-              />
+            })
+          ) : (
+            <div className="empty__block pt-5">
+              <div className="empty__cart mb-2">
+                <img src={img} alt="" width="90%" />
+              </div>
+              <div className="no__items-found fw-bold">You have no linked organizations.</div>
+              <span className="mt-1 fs-6" style={{ maxWidth: '225px' }}>
+                In order to link to an organization account, you'll need to be invited by the
+                charity.
+              </span>
             </div>
-            <div className="linked__item-label fs-7 fw-bold pl-12p">
-              Tree Frog
-            </div>
-          </Button>
-          <Button
-            variant="link"
-            className="btn__link-light linked__item-unlink ms-auto fs-7 me-1 fw-normal"
-          >
-            unlink
-          </Button>
-        </li> */}
+          )}
         </ul>
+
         {teamMemberList.length > 0 && (
           <div className="menu__title">
             <h6 className="mb-0">Team</h6>

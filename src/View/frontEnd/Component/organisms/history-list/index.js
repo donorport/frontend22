@@ -6,6 +6,7 @@ import { Button } from 'react-bootstrap';
 import { makeStyles } from '@material-ui/core/styles';
 import ListItemImg from '../../atoms/list-item-img';
 import moment from 'moment';
+import CircularProgress from '@mui/material/CircularProgress';
 import helper, {
   priceFormat,
   //getCalculatedPrice,
@@ -15,7 +16,6 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
 import donate from '../../../../../assets/images/donate.svg';
-
 import './style.scss';
 import { Select, InputLabel, MenuItem, FormControl } from '@mui/material';
 //import { head } from 'lodash';
@@ -23,7 +23,14 @@ import { Select, InputLabel, MenuItem, FormControl } from '@mui/material';
 const MOMENT_DATE_FORMAT = 'MMMM DD, YYYY';
 
 const getCardInfo = (paymentResponse) => {
-  const card = paymentResponse.data?.payment_method_details?.card;
+  const card = paymentResponse?.payment_method_details?.card;
+  return {
+    last4: card?.last4 ?? 'XXXX',
+    CardBrand: card?.brand
+  };
+};
+const getCardInfoOrder = (paymentResponse) => {
+  const card = paymentResponse?.data?.payment_method_details?.card;
   return {
     last4: card?.last4 ?? 'XXXX',
     CardBrand: card?.brand
@@ -67,19 +74,87 @@ const HistoryList = ({
   };
 
   const useStyles = makeStyles(() => ({
-    ul: {
-      '& .MuiPaginationItem-root': {
-        color: '#6f6f91 !important'
+    select: {
+      width: 'auto',
+      fontWeight: 700,
+      fontSize: '14px',
+      fontFamily: 'linotte',
+      '&:focus': {
+        backgroundColor: 'transparent'
       },
-      '& .MuiPaginationItem-root:hover': {
-        background: '#f2f6fc !important'
+      '&::after': {
+        borderBottom: 'none'
       },
-      '& .Mui-selected': {
-        background: '#f2f6fc !important'
+      '& .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'green !important'
+      }
+    },
+    selectIcon: {
+      transition: 'transform 200ms',
+      '&.MuiSelect-iconOpen': {
+        transform: 'rotate(180deg)'
+      }
+    },
+    paper: {
+      marginTop: 8,
+      boxShadow: 'none',
+      border: '1px solid #efefef'
+    },
+    list: {
+      paddingTop: 0,
+      paddingBottom: 0,
+      '& li': {
+        fontWeight: 700,
+        fontSize: '14px',
+        paddingTop: 12,
+        paddingBottom: 12,
+        color: '#3c96d5',
+        fontFamily: 'inherit',
+        borderBottom: '1px solid #efefef'
+      },
+      '& li:last-child': {
+        borderBottom: 'unset'
+      },
+      '& li:hover': {
+        background: '#f8fafd'
+      },
+      '& li.Mui-selected': {
+        background: '#f8fafd'
+      },
+      '& li.Mui-selected:hover': {
+        background: '#f8fafd'
+      },
+      ul: {
+        '& .MuiPaginationItem-root': {
+          color: '#6f6f91 !important'
+        },
+        '& .MuiPaginationItem-root:hover': {
+          background: '#f8fafd !important'
+        },
+        '& .Mui-selected': {
+          background: '#f8fafd !important'
+        }
       }
     }
   }));
   const classes = useStyles();
+  const menuProps = {
+    classes: {
+      select: classes.select,
+      icon: classes.selectIcon,
+      list: classes.list,
+      paper: classes.paper
+    },
+    anchorOrigin: {
+      vertical: 'bottom',
+      horizontal: 'center'
+    },
+    transformOrigin: {
+      vertical: 'top',
+      horizontal: 'center'
+    },
+    getContentAnchorEl: null
+  };
 
   return (
     <>
@@ -103,15 +178,29 @@ const HistoryList = ({
               style={{ margin: '1rem' }}
               id="history-filter-select-form-control"
             >
-              <InputLabel id="demo-simple-select-label" style={{ color: '#3a94d4' }}>
-                Type
-              </InputLabel>
+              {/* <InputLabel id="demo-simple-select-label">Type</InputLabel> */}
               <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                sx={{
+                  boxShadow: 'none',
+                  '.MuiOutlinedInput-notchedOutline': {
+                    border: 0
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    border: 'none' // Remove border on focus
+                  }
+                }}
+                // IconComponent={CustomIcon}
+                // labelId="demo-simple-select-label"
+                // id="demo-simple-select"
+
                 value={historyFilter}
-                label="Age"
+                // label="Age"
                 onChange={handleHistoryFilterChange}
+                MenuProps={menuProps}
+                classes={{
+                  select: classes.select,
+                  icon: classes.selectIcon
+                }}
               >
                 {Object.values(historyFilterOptions).map(({ value, label }) => (
                   <MenuItem
@@ -129,7 +218,9 @@ const HistoryList = ({
         </div>
         <ul className="list__table-list pt-2 ps-sm-3 ps-0">
           {isFetching ? (
-            <li className="history__list-item">Getting history...</li>
+            <li className="history__list-item">
+              <CircularProgress className="ms-1" color="inherit" size={12} />
+            </li>
           ) : thisPageList.length > 0 ? (
             thisPageList.map((orderOrDonation, i) => {
               const isOrder = !!orderOrDonation?.total;
@@ -185,7 +276,7 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
   ).toFixed(2);
   let grandTotal = (Number(order.subtotal) + Number(platformCost)).toFixed(2);
 
-  const { last4, CardBrand } = getCardInfo(JSON.parse(order.paymentResponse));
+  const { last4, CardBrand } = getCardInfoOrder(JSON.parse(order.paymentResponse));
 
   //currency symbol
   //total
@@ -194,7 +285,7 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
   //last4
   return (
     <li className="history__list-item px-2 py-2 me-3 border-bottom">
-      <div className="pb-2">
+      <div className="">
         <div className="d-flex align-items-center">
           <span className="d-flex align-items-center rounded-3">
             <span className="fw-bold fs-4">
@@ -218,7 +309,7 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
             className="text-light fw-semibold fs-5 p-0"
             onClick={() => showDetails(order._id)}
           >
-            Order # {order.uniqueTransactionId ? order.uniqueTransactionId : order._id}
+            Checkout # {order.uniqueTransactionId ? order.uniqueTransactionId : order._id}
           </Button>
         </div>
         <div className="fw-semibold fs-7 text-lighter mt-3p">
@@ -242,52 +333,110 @@ const DonationListItem = ({ donation, showDetails, activeList }) => {
   //console.log('rendering donation list item:', {donation});
   const grandTotal = donation.amount;
 
-  const { last4, CardBrand } = getCardInfo(JSON.parse(donation.paymentResponse));
+  const { last4, CardBrand } = getCardInfo(JSON.parse(donation?.paymentResponse));
+  // let CardBrand = JSON.parse(donation?.paymentResponse || '{}')?.payment_method_details?.card
+  //   ?.brand;
+  // let last4 = JSON.parse(donation?.paymentResponse || '{}')?.payment_method_details
+  //   ?.card?.last4;
 
   return (
-    <li className="history__list-item px-2 py-2 me-3 border-bottom">
-      <div className="pb-2">
-        <div className="d-flex align-items-center">
-          <span className="d-flex align-items-center rounded-3">
-            <span className="fw-bold fs-4">
-              {donation.currencySymbol ? donation.currencySymbol : '$'}
-              {priceFormat(Number(grandTotal))}
-            </span>
-            <span className="ml-6p text-light fs-8">
-              {donation.currency ? donation.currency : 'CAD'}
-            </span>
-          </span>
-          <div className="ms-auto bg-lighter d-flex align-items-center rounded-3">
-            <div className="order__logo mx-1">
-              <img src={getCardIcon(CardBrand)} alt="" className="img-fluid" />
+    <>
+      {donation.type === 'ORGANIZATION' ? (
+        <li className="history__list-item px-2 py-2 me-3 border-bottom">
+          <div className="">
+            <div className="d-flex align-items-center">
+              <span className="d-flex align-items-center rounded-3">
+                <span className="fw-bold fs-4">
+                  {donation.currencySymbol ? donation.currencySymbol : '$'}
+                  {priceFormat(Number(grandTotal))}
+                </span>
+                <span className="ml-6p text-light fs-8">
+                  {donation.currency ? donation.currency : 'CAD'}
+                </span>
+              </span>
+              <div className="ms-auto bg-lighter d-flex align-items-center rounded-3">
+                <div className="order__logo mx-1">
+                  <img src={getCardIcon(CardBrand)} alt="" className="img-fluid" />
+                </div>
+                <div className="order__card fs-7">
+                  <div className="d-flex align-items-center text-dark fw-semibold pe-1">
+                    {last4}
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="order__card fs-7">
-              <div className="d-flex align-items-center text-dark fw-semibold pe-1">{last4}</div>
+            <div className="d-flex">
+              <Button
+                variant="link"
+                className="text-light fw-semibold fs-5 p-0"
+                onClick={() => showDetails(donation._id)}
+              >
+                Org Cash Donation #{' '}
+                {donation.uniqueTransactionId ? donation.uniqueTransactionId : donation._id}
+              </Button>{' '}
+              <img className="ms-3" style={{ height: '24px' }} src={donate}></img>
+            </div>
+            <div className="fw-semibold fs-7 text-lighter mt-3p">
+              {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
             </div>
           </div>
-        </div>
-        <div className="d-flex">
-          <Button
-            variant="link"
-            className="text-light fw-semibold fs-5 p-0"
-            onClick={() => showDetails(donation._id)}
-          >
-            Donation # {donation.uniqueTransactionId ? donation.uniqueTransactionId : donation._id}
-          </Button>{' '}
-          <img className="ms-3" style={{ height: '24px' }} src={donate} alt="" />
-        </div>
-        <div className="fw-semibold fs-7 text-lighter mt-3p">
-          {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
-        </div>
-      </div>
 
-      {
-        // this isn't really necessary, doesn't show any extra info, but it looks nice
-        activeList.includes(donation._id) && (
-          <DonationListActiveList donation={donation} CardBrand={CardBrand} last4={last4} />
-        )
-      }
-    </li>
+          {
+            // this isn't really necessary, doesn't show any extra info, but it looks nice
+            activeList.includes(donation._id) && (
+              <DonationListActiveList donation={donation} CardBrand={CardBrand} last4={last4} />
+            )
+          }
+        </li>
+      ) : (
+        <li className="history__list-item px-2 py-2 me-3 border-bottom">
+          <div className="">
+            <div className="d-flex align-items-center">
+              <span className="d-flex align-items-center rounded-3">
+                <span className="fw-bold fs-4">
+                  {donation.currencySymbol ? donation.currencySymbol : '$'}
+                  {priceFormat(Number(grandTotal))}
+                </span>
+                <span className="ml-6p text-light fs-8">
+                  {donation.currency ? donation.currency : 'CAD'}
+                </span>
+              </span>
+              <div className="ms-auto bg-lighter d-flex align-items-center rounded-3">
+                <div className="order__logo mx-1">
+                  <img src={getCardIcon(CardBrand)} alt="" className="img-fluid" />
+                </div>
+                <div className="order__card fs-7">
+                  <div className="d-flex align-items-center text-dark fw-semibold pe-1">
+                    {last4}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="d-flex">
+              <Button
+                variant="link"
+                className="text-light fw-semibold fs-5 p-0"
+                onClick={() => showDetails(donation._id)}
+              >
+                Project Cash Donation #{' '}
+                {donation.uniqueTransactionId ? donation.uniqueTransactionId : donation._id}
+              </Button>{' '}
+              <img className="ms-3" style={{ height: '24px' }} src={donate}></img>
+            </div>
+            <div className="fw-semibold fs-7 text-lighter mt-3p">
+              {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
+            </div>
+          </div>
+
+          {
+            // this isn't really necessary, doesn't show any extra info, but it looks nice
+            activeList.includes(donation._id) && (
+              <DonationListActiveList donation={donation} CardBrand={CardBrand} last4={last4} />
+            )
+          }
+        </li>
+      )}
+    </>
   );
 };
 
@@ -344,7 +493,6 @@ const PurchaseListItem = ({ order, item }) => {
           imgSrc={helper.CampaignAdminLogoPath + item?.itemDetails?.campaignadminsDetails.logo}
         />
       </div>
-
       <div className="order__values d-flex align-items-center">
         <span className="fs- text-info fw-bold flex__1">{item.xp ? item.xp : 0} xp</span>
         <span className="fs-5 fw-bold text-light ms-2" style={{ width: '80px', textAlign: 'end' }}>
@@ -358,7 +506,7 @@ const PurchaseListItem = ({ order, item }) => {
 
 const OrderListTransaction = ({ createdAt, CardType, last4 }) => {
   return (
-    <li className="order__transaction pb-5">
+    <li className="order__transaction pb-2">
       <div className="bg-lighter d-flex align-items-center pt-20p pb-20p px-2 rounded-3">
         <div className="order__logo me-2">
           <img src={getCardIcon(CardType)} alt="" className="img-fluid" />

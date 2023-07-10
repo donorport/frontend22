@@ -221,7 +221,7 @@ const GeoLocation = (props) => {
                   zoom={[zoomLevel]}
                   center={[user.lng, user.lat]}
                   // This manages the update results and displaying the scale level for zoom in KM:
-                  // onRender={(e) => setObjectVal(e.boxZoom._container.outerText)}
+                  onRender={(e) => setObjectVal(e.boxZoom._container.outerText)}
                   onMove={(event) => {
                     setViewState(event.viewState);
                   }}
