@@ -51,6 +51,7 @@ const sortAndFilterList = (list, sortingOrder, historyFilter) =>
 
 const UserHistory = () => {
   const [data, setData] = useOutletContext();
+  //const data = useSelector((state) => state.user);
   //const [orderList, setOrderList] = useState([]);
   const userAuthToken = localStorage.getItem('userAuthToken');
   //const [loading, setLoading] = useState(false);
@@ -73,9 +74,9 @@ const UserHistory = () => {
 
   const [historyFilter, setHistoryFilter] = useState(HISTORY_FILTER_OPTIONS.ALL.value);
 
-  const getAllUserOrders = useCallback(async () => {
+  const getAllUserOrders = useCallback(async (userId) => {
     const formData = {
-      userId: data._id
+      userId
     };
     const getAllUserOrderDetails = await userApi.getAllUserOrderDetails(userAuthToken, formData);
     if (getAllUserOrderDetails.data.success) {
@@ -84,10 +85,11 @@ const UserHistory = () => {
 
     console.error({ getAllUserOrderDetails });
     return [];
-  }, [data._id, userAuthToken]);
+  }, [userAuthToken]);
 
-  const getUserDonations = useCallback(async () => {
-    const formData = { userId: data._id };
+  const getUserDonations = useCallback(async (userId) => {
+    const formData = { userId };
+    //console.log({data, formData});
     const userDonations = await organizationApi.getDonationsByUserId(userAuthToken, formData);
     if (userDonations.data.success) {
       return userDonations.data.data;
@@ -95,12 +97,12 @@ const UserHistory = () => {
 
     console.error({ userDonations });
     return [];
-  }, [data._id, userAuthToken]);
+  }, [userAuthToken]);
 
   // should run once to fetch all data and sort it
-  const fetchAndCombineOrdersAndDonations = useCallback(async () => {
+  const fetchAndCombineOrdersAndDonations = useCallback(async (userId) => {
     // fetch list
-    const [orders, donations] = await Promise.all([getAllUserOrders(), getUserDonations()]);
+    const [orders, donations] = await Promise.all([getAllUserOrders(userId), getUserDonations(userId)]);
     console.log({orders, donations});
     console.log(donations.map((d) => ({...d, paymentResponse: JSON.parse(d.paymentResponse)})));
     const list = orders.concat(donations);
@@ -136,7 +138,7 @@ const UserHistory = () => {
   const initializeHistoryList = useCallback(async () => {
     setIsFetching(true);
     // fetch and set masterList
-    const list = await fetchAndCombineOrdersAndDonations();
+    const list = await fetchAndCombineOrdersAndDonations(data._id);
 
     const readyList = sortAndFilterList(list, sortingOrder, historyFilter);
 
@@ -147,7 +149,9 @@ const UserHistory = () => {
 
   useEffect(() => {
     (async () => {
-      if (data._id) {
+      console.log({data});
+      if (JSON.stringify(data) !== "{}" && data?._id !== undefined) {
+        console.log({data});
         initializeHistoryList();
       }
     })();
