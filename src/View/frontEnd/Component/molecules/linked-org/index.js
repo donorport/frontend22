@@ -7,7 +7,6 @@ import helper, { getCookie, setCookie, deleteCookie } from '../../../../../Commo
 import ToastAlert from '../../../../../Common/ToastAlert';
 import { useSelector } from 'react-redux';
 import removeImg from '../../../../../assets/images/remove-link.svg';
-import img from '../../../../../assets/images/remove-link.svg';
 import { CircularProgress } from '@mui/material';
 
 function LinkedOrg(props) {
@@ -263,7 +262,7 @@ function LinkedOrg(props) {
           ) : (
             <div className="empty__block pt-5">
               <div className="empty__cart mb-2">
-                <img src={img} alt="" width="90%" />
+                <img src={removeImg} alt="" width="90%" />
               </div>
               <div className="no__items-found fw-bold">You have no linked organizations.</div>
               <span className="mt-1 fs-6" style={{ maxWidth: '225px' }}>

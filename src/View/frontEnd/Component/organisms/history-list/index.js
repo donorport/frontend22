@@ -374,7 +374,7 @@ const DonationListItem = ({ donation, showDetails, activeList }) => {
                 Org Cash Donation #{' '}
                 {donation.uniqueTransactionId ? donation.uniqueTransactionId : donation._id}
               </Button>{' '}
-              <img className="ms-3" style={{ height: '24px' }} src={donate}></img>
+              <img alt="" className="ms-3" style={{ height: '24px' }} src={donate}></img>
             </div>
             <div className="fw-semibold fs-7 text-lighter mt-3p">
               {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
@@ -421,7 +421,7 @@ const DonationListItem = ({ donation, showDetails, activeList }) => {
                 Project Cash Donation #{' '}
                 {donation.uniqueTransactionId ? donation.uniqueTransactionId : donation._id}
               </Button>{' '}
-              <img className="ms-3" style={{ height: '24px' }} src={donate}></img>
+              <img alt="" className="ms-3" style={{ height: '24px' }} src={donate}></img>
             </div>
             <div className="fw-semibold fs-7 text-lighter mt-3p">
               {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
