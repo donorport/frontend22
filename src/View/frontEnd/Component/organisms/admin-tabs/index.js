@@ -28,8 +28,8 @@ function AdminTabs({ activeKey, data, _onClick, ...otherProps }) {
               active={activeKey === 'posts'}
               className={
                 currentOption === 'posts'
-                  ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'
-                  : 'tab__btn d-flex align-items-center text-dark'
+                  ? 'tab__btn d-flex align-items-center text-dark justify-content-center justify-content-lg-start active d-none d-sm-flex'
+                  : 'tab__btn d-flex align-items-center text-dark justify-content-center justify-content-lg-start'
               }
             >
               <span className="tab__icon">
@@ -46,8 +46,8 @@ function AdminTabs({ activeKey, data, _onClick, ...otherProps }) {
               active={activeKey === 'activity'}
               className={
                 currentOption === 'activity'
-                  ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'
-                  : 'tab__btn d-flex align-items-center text-dark '
+                  ? 'tab__btn d-flex align-items-center text-dark justify-content-center justify-content-lg-start active d-none d-sm-flex'
+                  : 'tab__btn d-flex align-items-center text-dark justify-content-center justify-content-lg-start '
               }
             >
               <span className="tab__icon">
@@ -64,8 +64,8 @@ function AdminTabs({ activeKey, data, _onClick, ...otherProps }) {
               active={activeKey === 'tax'}
               className={
                 currentOption === 'tax'
-                  ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'
-                  : 'tab__btn d-flex align-items-center text-dark '
+                  ? 'tab__btn d-flex align-items-center text-dark justify-content-center justify-content-lg-start active d-none d-sm-flex'
+                  : 'tab__btn d-flex align-items-center text-dark justify-content-center justify-content-lg-start '
               }
             >
               <span className="tab__icon">
@@ -82,8 +82,8 @@ function AdminTabs({ activeKey, data, _onClick, ...otherProps }) {
               active={activeKey === 'project'}
               className={
                 currentOption === 'project'
-                  ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'
-                  : 'tab__btn d-flex align-items-center text-dark '
+                  ? 'tab__btn d-flex align-items-center text-dark justify-content-center justify-content-lg-start active d-none d-sm-flex'
+                  : 'tab__btn d-flex align-items-center text-dark justify-content-center justify-content-lg-start '
               }
             >
               <span className="tab__icon">
@@ -100,8 +100,8 @@ function AdminTabs({ activeKey, data, _onClick, ...otherProps }) {
               active={activeKey === 'settings'}
               className={
                 currentOption === 'settings'
-                  ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'
-                  : 'tab__btn d-flex align-items-center text-dark '
+                  ? 'tab__btn d-flex align-items-center text-dark justify-content-center justify-content-lg-start active d-none d-sm-flex'
+                  : 'tab__btn d-flex align-items-center text-dark justify-content-center justify-content-lg-start '
               }
             >
               <span className="tab__icon">
