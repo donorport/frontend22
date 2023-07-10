@@ -53,7 +53,7 @@ function UserTabs({ activeKey, data, _onClick, ...otherProps }) {
               className={
                 activeKey === 'dashboard'
                   ? 'tab__btn d-flex flex-direction-column align-items-center text-dark active d-none d-sm-flex'
-                  : 'tab__btn d-flex align-items-center text-dark'
+                  : 'tab__btn d-flex justify-content-center justify-content-lg-start align-items-center text-dark'
               }
             >
               <span className="tab__icon">
@@ -70,8 +70,8 @@ function UserTabs({ activeKey, data, _onClick, ...otherProps }) {
               eventKey="items"
               className={
                 activeKey === 'items'
-                  ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'
-                  : 'tab__btn d-flex align-items-center text-dark'
+                  ? 'tab__btn d-flex justify-content-center justify-content-lg-start align-items-center text-dark active d-none d-sm-flex'
+                  : 'tab__btn d-flex justify-content-center justify-content-lg-start align-items-center text-dark'
               }
             >
               <span className="tab__icon">
@@ -88,8 +88,8 @@ function UserTabs({ activeKey, data, _onClick, ...otherProps }) {
               eventKey="xp"
               className={
                 activeKey === 'xp'
-                  ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'
-                  : 'tab__btn d-flex align-items-center text-dark'
+                  ? 'tab__btn d-flex justify-content-center justify-content-lg-start align-items-center text-dark active d-none d-sm-flex'
+                  : 'tab__btn d-flex justify-content-center justify-content-lg-start align-items-center text-dark'
               }
             >
               <span className="tab__icon">
@@ -106,8 +106,8 @@ function UserTabs({ activeKey, data, _onClick, ...otherProps }) {
               eventKey="tax"
               className={
                 activeKey === 'tax'
-                  ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'
-                  : 'tab__btn d-flex align-items-center text-dark'
+                  ? 'tab__btn d-flex justify-content-center justify-content-lg-start align-items-center text-dark active d-none d-sm-flex'
+                  : 'tab__btn d-flex justify-content-center justify-content-lg-start align-items-center text-dark'
               }
             >
               <span className="tab__icon">
@@ -124,8 +124,8 @@ function UserTabs({ activeKey, data, _onClick, ...otherProps }) {
               eventKey="history"
               className={
                 activeKey === 'history'
-                  ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'
-                  : 'tab__btn d-flex align-items-center text-dark'
+                  ? 'tab__btn d-flex justify-content-center justify-content-lg-start align-items-center text-dark active d-none d-sm-flex'
+                  : 'tab__btn d-flex justify-content-center justify-content-lg-start align-items-center text-dark'
               }
             >
               <span className="tab__icon">
@@ -142,8 +142,8 @@ function UserTabs({ activeKey, data, _onClick, ...otherProps }) {
               eventKey="settings"
               className={
                 activeKey === 'settings'
-                  ? 'tab__btn d-flex align-items-center text-dark active d-none d-sm-flex'
-                  : 'tab__btn d-flex align-items-center text-dark'
+                  ? 'tab__btn d-flex justify-content-center justify-content-lg-start align-items-center text-dark active d-none d-sm-flex'
+                  : 'tab__btn d-flex justify-content-center justify-content-lg-start align-items-center text-dark'
               }
             >
               <span className="tab__icon">
