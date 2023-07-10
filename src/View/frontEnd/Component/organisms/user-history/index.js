@@ -101,13 +101,15 @@ const UserHistory = () => {
   const fetchAndCombineOrdersAndDonations = useCallback(async () => {
     // fetch list
     const [orders, donations] = await Promise.all([getAllUserOrders(), getUserDonations()]);
+    console.log({orders, donations});
+    console.log(donations.map((d) => ({...d, paymentResponse: JSON.parse(d.paymentResponse)})));
     const list = orders.concat(donations);
 
     // set into masterList
     setMasterList(list);
 
     return list;
-  }, [data._id]);
+  }, []);
 
   const setDisplayAndPageList = useCallback((list) => {
     setTotalPages(Math.ceil(list.length / 10));
@@ -118,11 +120,11 @@ const UserHistory = () => {
     getThisPage10ItemsList(list, pageNo);
   }, [pageNo]);
 
-  const getThisPage10ItemsList = (list, pageNo) => {
+  const getThisPage10ItemsList = useCallback((list, pageNo) => {
     const start = (pageNo - 1) * 10;
     const end = pageNo * 10;
     setThisPageList(list.slice(start, end));
-  };
+  }, []);
 
   // when the component renders, we want to fetch all orders & donations and save them in the masterList
   // We also want to set our displayList to our (default) sorted & filtered list
