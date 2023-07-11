@@ -7,6 +7,7 @@ import helper, { getCalculatedPrice, priceFormat } from '../../../../../Common/H
 import { useSelector } from 'react-redux';
 import { CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { calculatePlatformCost, calculateGrandTotal } from '../../../../../constants/constants';
 
 import './style.scss';
 
@@ -31,10 +32,9 @@ const DonateModal = (props) => {
   const getCalc = getCalculatedPrice();
   let currencySymbol = getCalc.currencySymbol();
 
-  let platformCost = (0.0499 * selectedValue + 0.3).toFixed(2);
-  console.log(platformCost);
-  let grandTotal = (Number(selectedValue) + Number(platformCost)).toFixed(2);
-  console.log(grandTotal);
+  let platformCost = calculatePlatformCost(selectedValue);
+  let grandTotal = calculateGrandTotal(selectedValue, platformCost);
+  console.log({ platformCost , grandTotal});
 
   const onValueChange = (clr, event) => {
     setSelectedValue(Number(event.target.value));
@@ -413,6 +413,7 @@ const DonateModal = (props) => {
           )
         )}
       </Modal.Body>
+
       <Modal.Footer className="border-0 overflow-hidden justify-content-center mb-3">
         {next && !showPaymentForm ? (
           <div className="text-dark fs-7">Your donation goes directly to the Organization ♥</div>

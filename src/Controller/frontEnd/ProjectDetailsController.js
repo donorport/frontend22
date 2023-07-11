@@ -16,6 +16,7 @@ import helper, { GetCardTypeByNumber, getCardIcon } from '../../Common/Helper';
 //import userApi from '../../Api/frontEnd/user';
 import followApi from '../../Api/frontEnd/follow';
 import Page from '../../components/Page';
+import { calculatePlatformCost, calculateGrandTotal } from '../../constants/constants';
 
 
 const DONATE_VALIDATION_RULES = {
@@ -204,8 +205,8 @@ export default function ProjectDetailsController() {
           ...state,
           error: formaerrror
         });
-        let platformCost = (0.0499 * Number(selectedValue) + 0.3).toFixed(2);
-        let grandTotal = (Number(selectedValue) + Number(platformCost)).toFixed(2);
+        const platformCost = calculatePlatformCost(selectedValue);
+        const grandTotal = calculateGrandTotal(selectedValue, platformCost);
         let data = {};
         data.name = userData.name;
         data.email = userData.email;

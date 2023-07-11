@@ -3,8 +3,7 @@ import helper from '../../Common/Helper';
 
 function organization() {
   const details = async (slug) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}organization/details`,
       responseType: 'json',
@@ -19,15 +18,11 @@ function organization() {
       data: {
         slug: slug
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const organizationPurchasedItemHistory = async (authToken, organizationId) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}campaign_admin/purchase_history`,
       responseType: 'json',
@@ -42,15 +37,11 @@ function organization() {
       data: {
         organizationId: organizationId
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const donate = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}campaign_admin/donate`,
       responseType: 'json',
@@ -63,15 +54,11 @@ function organization() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const organizationDonatedItemHistory = async (authToken, organizationId) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}campaign_admin/donate_history`,
       responseType: 'json',
@@ -86,15 +73,11 @@ function organization() {
       data: {
         organizationId: organizationId
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const organizatationTaxlist = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post', // why is this a POST?
       url: `${helper.ApiUrl}organization/tax`,
       responseType: 'json',
@@ -107,10 +90,7 @@ function organization() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const organizatationTaxUpload = async (authToken, cdata) => {
@@ -124,8 +104,7 @@ function organization() {
     data.append('userId', cdata.userId);
     data.append('uploadYear', cdata.uploadYear);
 
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}organization/receipt/upload`,
       responseType: 'json',
@@ -138,15 +117,11 @@ function organization() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const organizatationDeleteTaxReceipt = async (authToken, userId, uploadYear) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'delete',
       url: `${helper.ApiUrl}organization/receipt/delete/${userId}/${uploadYear}`,
       responseType: 'json',
@@ -158,15 +133,11 @@ function organization() {
         withCredentials: true,
         mode: 'no-cors',
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const inviteTeamMember = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}team_member/invite`,
       responseType: 'json',
@@ -179,15 +150,11 @@ function organization() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const listTeamMember = async (authToken) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'get',
       url: `${helper.ApiUrl}team_member/list`,
       responseType: 'json',
@@ -199,15 +166,11 @@ function organization() {
         withCredentials: true,
         mode: 'no-cors'
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const removeTeamMember = async (authToken, id) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'delete',
       url: `${helper.ApiUrl}team_member/remove/` + id,
       responseType: 'json',
@@ -219,15 +182,11 @@ function organization() {
         withCredentials: true,
         mode: 'no-cors'
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const teamMemberOrganizationList = async (authToken) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'get',
       url: `${helper.ApiUrl}team_member/organization/list`,
       responseType: 'json',
@@ -239,15 +198,11 @@ function organization() {
         withCredentials: true,
         mode: 'no-cors'
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const teamMemberActivation = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}team_member/activate`,
       responseType: 'json',
@@ -260,15 +215,11 @@ function organization() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const listUserTeamMember = async (authToken) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'get',
       url: `${helper.ApiUrl}user/team_member/list`,
       responseType: 'json',
@@ -280,15 +231,11 @@ function organization() {
         withCredentials: true,
         mode: 'no-cors'
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const getPaymentHistory = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}campaign_admin/payment_history`,
       responseType: 'json',
@@ -301,15 +248,11 @@ function organization() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const getDonationDetails = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}donationDetails`,
       responseType: 'json',
@@ -322,15 +265,11 @@ function organization() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const updateSalesTax = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}campaign_admin/salesTax`,
       responseType: 'json',
@@ -343,13 +282,11 @@ function organization() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
-  const getDonationsByUserId = async (authToken, data) => axios({
+  const getDonationsByUserId = (authToken, data) => {
+    return axios({
       method: 'get',
       url: `${helper.ApiUrl}donations/${data.userId}`,
       responseType: 'json',
@@ -360,9 +297,9 @@ function organization() {
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         withCredentials: true,
         mode: 'no-cors'
-      },
-  })
-
+      }
+    });
+  };
 
   return {
     details,
@@ -383,6 +320,8 @@ function organization() {
     organizatationDeleteTaxReceipt,
     getDonationsByUserId,
   };
+
 }
+
 const organizationApi = organization();
 export default organizationApi;

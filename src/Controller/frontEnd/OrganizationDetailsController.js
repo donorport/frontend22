@@ -14,6 +14,25 @@ import { setUserXp } from '../../user/user.action';
 import helper, { GetCardTypeByNumber, getCardIcon } from '../../Common/Helper';
 import followApi from '../../Api/frontEnd/follow';
 import Page from '../../components/Page';
+import { calculatePlatformCost, calculateGrandTotal } from '../../constants/constants';
+
+
+const DONATE_VALIDATION_RULES = {
+  //name: 'required',
+  cardNumber: 'required|number',
+  month: 'required',
+  year: 'required',
+  cvv: 'required|number'
+};
+const DONATE_VALIDATION_MESSAGES = {
+  // 'name.required': 'Card holder name is required.',
+  'cardNumber.required': 'Card number is required.',
+  'cardNumber.number': 'Card number must not contain letters.',
+  'month.required': 'Month is required.',
+  'year.required': 'Year number is required.',
+  'cvv.required': 'CVV is required.',
+  'cvv.number': 'CVV must not contain letters.'
+};
 
 export default function OrganizationDetailsController() {
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
@@ -182,23 +201,7 @@ export default function OrganizationDetailsController() {
 
   const donate = async () => {
     if (token) {
-      const rules = {
-        //name: 'required',
-        cardNumber: 'required|number',
-        month: 'required',
-        year: 'required',
-        cvv: 'required|number'
-      };
-      const message = {
-        // 'name.required': 'Card holder name is required.',
-        'cardNumber.required': 'Card number is required.',
-        'cardNumber.number': 'Card number must not contain letters.',
-        'month.required': 'Month is required.',
-        'year.required': 'Year number is required.',
-        'cvv.required': 'CVV is required.',
-        'cvv.number': 'CVV must not contain letters.'
-      };
-      validateAll(state, rules, message)
+      validateAll(state, DONATE_VALIDATION_RULES, DONATE_VALIDATION_MESSAGES)
         .then(async () => {
           setLoading(true);
           const formaerrror = {};
@@ -207,8 +210,8 @@ export default function OrganizationDetailsController() {
             error: formaerrror
           });
           let data = {};
-          let platformCost = (0.0499 * Number(selectedValue) + 0.3).toFixed(2);
-          let grandTotal = (Number(selectedValue) + Number(platformCost)).toFixed(2);
+          let platformCost = calculatePlatformCost(selectedValue);
+          let grandTotal = calculateGrandTotal(selectedValue, platformCost);
           data.name = userData.name;
           data.email = userData.email;
           data.city = user.cityName;
@@ -231,19 +234,21 @@ export default function OrganizationDetailsController() {
           data.xpToAdd = selectedValue * 10;
 
           const donateToOrganization = await organizationApi.donate(userAuthToken, data);
-          if (donateToOrganization) {
-            if (!donateToOrganization.data.success) {
-              ToastAlert({ msg: donateToOrganization.data.message, msgType: 'error' });
-            } else {
-              let addXp = Number(donateToOrganization.data.xpToAdd);
-              dispatch(setUserXp(user.xp + addXp));
-              navigate('/donate/' + donateToOrganization.data.donationId, {
-                state: { xpToAdd: addXp }
-              });
-            }
-          } else {
+
+          if (!donateToOrganization) {
             ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
           }
+
+          if (!donateToOrganization.data.success) {
+            ToastAlert({ msg: donateToOrganization.data.message, msgType: 'error' });
+            return;
+          }
+
+          const addXp = Number(donateToOrganization.data.xpToAdd);
+          dispatch(setUserXp(user.xp + addXp));
+          navigate('/donate/' + donateToOrganization.data.donationId, {
+            state: { xpToAdd: addXp }
+          });
         })
         .catch((errors) => {
           const formaerrror = {};

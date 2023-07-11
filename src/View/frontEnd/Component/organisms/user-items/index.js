@@ -7,7 +7,7 @@ import ShareWidget from '../share-widget';
 import ItemsTable from '../items-table';
 import { useOutletContext } from 'react-router-dom';
 import userApi from '../../../../../Api/frontEnd/user';
-import FrontLoader from '../../../../../Common/FrontLoader';
+//import FrontLoader from '../../../../../Common/FrontLoader';
 import moment from 'moment';
 import helper, {
   priceFormat,
@@ -19,6 +19,7 @@ import { GalleryImg } from '../../atoms';
 import { Button, Card, Col, Row, Dropdown, ProgressBar, Modal } from 'react-bootstrap';
 
 import './style.scss';
+import { PLATFORM_COST } from '../../../../../constants/constants';
 
 const VALID_IMAGE_EXTENSIONS = ['jpeg', 'jpg', 'png', 'svg'];
 const isReceiptValidImageExtension = (filename) =>
@@ -209,8 +210,8 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
 
   // let purchasedPrice = (Math.round(purchasedPriceWithTax(Number(item.productPrice), item.appliedTaxPer)))
   let listPrice = item.productPrice;
-  let purchasedPrice = item.productPrice * 1.0499;
-  let transactionFee = item.productPrice * 0.0499;
+  let purchasedPrice = item.productPrice * (1 + PLATFORM_COST.PERCENT);
+  let transactionFee = item.productPrice * PLATFORM_COST.PERCENT;
 
   let cardType = JSON.parse(item?.paymentResponse)?.data?.payment_method_details?.card?.brand;
   let lastFourDigits = JSON.parse(item.paymentResponse).data?.payment_method_details?.card?.last4;

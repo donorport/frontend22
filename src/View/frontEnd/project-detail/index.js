@@ -20,46 +20,6 @@ import HeaderController from '../../../Controller/frontEnd/HeaderController';
 // style
 import './style.scss';
 
-// class ProjectDetail extends React.Component {
-//   render() {
-//     return (
-//       <>
-//         <Header />
-//         <SuggestionWrapper>
-//           <SuggestedList />
-//         </SuggestionWrapper>
-//         <Container fluid className="py-5">
-//           <Row>
-//             <Col md="7" className="mb-4 mb-0">
-//               <ProjectDetailMain progress={70} />
-//             </Col>
-//             <Col md="5">
-//               <div className="d-none d-sm-block project__detail-img mb-3">
-//                 <img
-//                   className="img-fluid"
-//                   alt=""
-//                   src=""
-//                 />
-//               </div>
-//               <History />
-//             </Col>
-//           </Row>
-//         </Container>
-//         <Container fluid>
-//           <Row className="py-5 border-top">
-//             <Col md="6" className="mb-4 mb-0">
-//               <SimilarItems />
-//             </Col>
-//             <Col md="6"></Col>
-//           </Row>
-//         </Container>
-
-//         <Footer />
-//       </>
-//     );
-//   }
-// }
-
 const ProjectDetail = (props) => {
   const [modalShow, setModalShow] = useState(false);
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');

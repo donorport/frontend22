@@ -14,19 +14,14 @@ function ProjectSuggestionList(props) {
     <ul className="suggested__list d-flex align-items-center p-0 mb-0" style={{listStyle: "none"}}>
       {
         projectList.length > 0 &&
-        projectList.map((project, i) => {
+        projectList.map((project, key) => {
           return (
             project._id !== projectId &&
-            <ProjectSuggestionItem className="me-4" project={project} />
+            <ProjectSuggestionItem key={key} className="me-4" project={project} />
           )
         })
       }
-      {/* <ProjectSuggestionItem className="me-4" />
-      <ProjectSuggestionItem className="me-4" />
-      <ProjectSuggestionItem className="me-4" />
-      <ProjectSuggestionItem className="me-4" /> */}
     </ul>
-
   );
 }
 

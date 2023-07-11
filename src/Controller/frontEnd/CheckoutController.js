@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setUserXp } from '../../user/user.action';
 //import userApi from '../../Api/frontEnd/user';
 import Page from '../../components/Page';
+import { calculatePlatformCost, calculateGrandTotal } from '../../constants/constants';
 
 export default function CheckoutController() {
   const [cartItem, setCartItem] = useState([]);
@@ -155,9 +156,9 @@ export default function CheckoutController() {
           setXp(xpSum * xpForeEachItem);
           setSubTotal(sum);
           // seTotal sent to Stripe. Confirmed in logs.
-          let fees = sum * 0.0499 + 0.3;
+          let fees = Number(calculatePlatformCost(sum));
           setServiceCharge(fees);
-          let grandTotal = sum + fees;
+          let grandTotal = Number(calculateGrandTotal(sum, fees));
           setTotal(grandTotal);
         } else {
           navigate('/');

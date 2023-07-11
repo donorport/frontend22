@@ -10,6 +10,8 @@ import './style.scss';
 import moment from 'moment';
 import Seo from '../../../components/SEO';
 
+import { calculatePlatformCost, calculateSubtotal } from "../../../constants/constants";
+
 const DonationConfirmPage = () => {
   const params = useParams();
   const navigate = useNavigate();
@@ -53,8 +55,8 @@ const DonationConfirmPage = () => {
   let lastFourDigits = JSON.parse(doantionDetails?.paymentResponse || '{}')?.payment_method_details
     ?.card?.last4;
 
-  let subtotal = Number((doantionDetails.amount - 0.3) / 1.0499).toFixed(2);
-  let platformCost = subtotal * 0.0499 + 0.3;
+  let subtotal = calculateSubtotal(doantionDetails.amount);
+  let platformCost = calculatePlatformCost(subtotal);
 
   return (
     <>
