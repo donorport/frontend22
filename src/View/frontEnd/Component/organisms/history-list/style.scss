@@ -13,8 +13,9 @@
   background: unset;
   border: unset;
 }
-
-
+.chevron-rotate {
+  transform: rotate(180deg);
+}
 #history-filter-select-form-control {
   fieldset {
     border-color: #3a94d4;

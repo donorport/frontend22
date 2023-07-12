@@ -15,9 +15,13 @@ import helper, {
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
-import donate from '../../../../../assets/images/donate.svg';
+import coin from '../../../../../assets/images/coin.svg';
+import coin2 from '../../../../../assets/images/coin(2).svg';
+import bag from '../../../../../assets/images/bag.svg';
 import './style.scss';
 import { Select, InputLabel, MenuItem, FormControl } from '@mui/material';
+import { Accordion, AccordionItem as Item } from '@szhsin/react-accordion';
+import chevronDown from '../../../../../assets/images/chevron-down.svg';
 //import { head } from 'lodash';
 //
 const MOMENT_DATE_FORMAT = 'MMMM DD, YYYY';
@@ -100,6 +104,18 @@ const HistoryList = ({
       boxShadow: 'none',
       border: '1px solid #efefef'
     },
+
+    ul: {
+      '& .MuiPaginationItem-root': {
+        color: '#6f6f91 !important'
+      },
+      '& .MuiPaginationItem-root:hover': {
+        background: '#f8fafd !important'
+      },
+      '& .Mui-selected': {
+        background: '#f8fafd !important'
+      }
+    },
     list: {
       paddingTop: 0,
       paddingBottom: 0,
@@ -118,25 +134,18 @@ const HistoryList = ({
       '& li:hover': {
         background: '#f8fafd'
       },
+      '& li:focus': {
+        background: '#f8fafd'
+      },
       '& li.Mui-selected': {
         background: '#f8fafd'
       },
       '& li.Mui-selected:hover': {
         background: '#f8fafd'
-      },
-      ul: {
-        '& .MuiPaginationItem-root': {
-          color: '#6f6f91 !important'
-        },
-        '& .MuiPaginationItem-root:hover': {
-          background: '#f8fafd !important'
-        },
-        '& .Mui-selected': {
-          background: '#f8fafd !important'
-        }
       }
     }
   }));
+  
   const classes = useStyles();
   const menuProps = {
     classes: {
@@ -158,6 +167,23 @@ const HistoryList = ({
 
   return (
     <>
+      <div className="d-flex gap-2 fw-semibold py-3">
+        <span>
+          {' '}
+          <img className="me-1" style={{ height: '16px' }} src={coin}></img>
+          Organization Donation
+        </span>
+        <span>
+          {' '}
+          <img className="me-1" style={{ height: '16px' }} src={coin2}></img>
+          Project Donation
+        </span>
+        <span>
+          {' '}
+          <img className="me-1" style={{ height: '16px' }} src={bag}></img>
+          Product Donation(s)
+        </span>
+      </div>
       <div className="list__table mb-2 mb-sm-0">
         <div className="list__table-sort d-flex justify-content-sort border-bottom">
           <div className="flex__1" style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -216,22 +242,24 @@ const HistoryList = ({
             </FormControl>
           </div>
         </div>
-        <ul className="list__table-list pt-2 ps-sm-3 ps-0">
+        <ul className="list__table-list ps-sm-3 ps-0">
           {isFetching ? (
-            <li className="history__list-item">
-              <CircularProgress className="ms-1" color="inherit" size={12} />
+            <li className="history__list-item d-flex align-items-center justify-content-center p-5">
+              <CircularProgress className="ms-1" color="inherit" size={32} />
             </li>
           ) : thisPageList.length > 0 ? (
             thisPageList.map((orderOrDonation, i) => {
               const isOrder = !!orderOrDonation?.total;
               if (isOrder)
                 return (
-                  <OrderListItem
-                    key={i}
-                    order={orderOrDonation}
-                    showDetails={showDetails}
-                    activeList={activeList}
-                  />
+                  <Accordion allowMultiple>
+                    <OrderListItem
+                      key={i}
+                      order={orderOrDonation}
+                      showDetails={showDetails}
+                      activeList={activeList}
+                    />
+                  </Accordion>
                 );
               return (
                 <DonationListItem
@@ -270,6 +298,27 @@ const HistoryList = ({
 };
 
 const OrderListItem = ({ order, showDetails, activeList }) => {
+  const disableHeader = order.length === 1;
+
+  const AccordionItem = ({ header, hideChevron, disableButton, ...rest }) => (
+    <Item
+      {...rest}
+      disabled={disableButton}
+      header={({ state: { isEnter: expanded } }) => (
+        <>
+          {header}{' '}
+          {!hideChevron && (
+            <img
+              src={chevronDown}
+              alt="Chevron Down"
+              className={expanded ? 'chevron-rotate' : ''}
+            />
+          )}
+        </>
+      )}
+    />
+  );
+
   let platformCost = (
     (order.platformFees / 100 + order.transactionFees / 100) * Number(order.subtotal) +
     0.3
@@ -278,54 +327,64 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
 
   const { last4, CardBrand } = getCardInfoOrder(JSON.parse(order.paymentResponse));
 
-  //currency symbol
-  //total
-  //order number
-  //order date
-  //last4
   return (
-    <li className="history__list-item px-2 py-2 me-3 border-bottom">
-      <div className="">
-        <div className="d-flex align-items-center">
-          <span className="d-flex align-items-center rounded-3">
-            <span className="fw-bold fs-4">
-              {order.currencySymbol ? order.currencySymbol : '$'}
-              {priceFormat(Number(grandTotal))}
-            </span>
-            <span className="ml-6p text-light fs-8">{order.currency ? order.currency : 'CAD'}</span>
-          </span>
-          <div className="ms-auto bg-lighter d-flex align-items-center rounded-3">
-            <div className="order__logo mx-1">
-              <img src={getCardIcon(CardBrand)} alt="" className="img-fluid" />
+    <AccordionItem
+      className="d-flex flex-column"
+      hideChevron={disableHeader}
+      buttonProps={{ disabled: disableHeader }}
+      header={
+        <>
+          <li className="w-100 history__list-item px-2 py-2">
+            <div className="d-flex flex-column">
+              <div className="accordion__head d-flex align-items-center">
+                <span className="flex-grow-1 d-flex align-items-center rounded-3">
+                  <img className="me-1" style={{ height: '16px' }} src={bag} alt="" />
+                  <span className="fw-bold fs-4">
+                    {order.currencySymbol ? order.currencySymbol : '$'}
+                    {priceFormat(Number(grandTotal))}
+                  </span>
+                  <span className="ml-6p text-light fs-8">
+                    {order.currency ? order.currency : 'CAD'}
+                  </span>
+                </span>
+                {/* <div className="chev-wrapper">
+                  <img src={chevronDown} alt="Chevron Down" />
+                </div> */}
+                <div className="bg-lighter d-flex align-items-center rounded-3">
+                  <div className="order__logo mx-1">
+                    <img src={getCardIcon(CardBrand)} alt="" className="img-fluid" />
+                  </div>
+                  <div className="order__card fs-7">
+                    <div className="d-flex align-items-center text-dark fw-semibold pe-1">
+                      {last4}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span
+                variant="link"
+                className="text-light fw-semibold fs-5 p-0"
+                // onClick={() => showDetails(order._id)}
+              >
+                Checkout #{order.uniqueTransactionId ? order.uniqueTransactionId : order._id}
+              </span>
+              <div className="fw-semibold fs-7 text-lighter mt-3p">
+                {moment(order.created_at).format(MOMENT_DATE_FORMAT)}
+              </div>
             </div>
-            <div className="order__card fs-7">
-              <div className="d-flex align-items-center text-dark fw-semibold pe-1">{last4}</div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <Button
-            variant="link"
-            className="text-light fw-semibold fs-5 p-0"
-            onClick={() => showDetails(order._id)}
-          >
-            Checkout # {order.uniqueTransactionId ? order.uniqueTransactionId : order._id}
-          </Button>
-        </div>
-        <div className="fw-semibold fs-7 text-lighter mt-3p">
-          {moment(order.created_at).format(MOMENT_DATE_FORMAT)}
-        </div>
-      </div>
-
-      {activeList.includes(order._id) && (
-        <OrderListActiveList
-          order={order}
-          platformCost={platformCost}
-          CardBrand={CardBrand}
-          last4={last4}
-        />
-      )}
-    </li>
+          </li>
+        </>
+      }
+    >
+      {/* {activeList.includes(order._id) && ( */}
+      <OrderListActiveList
+        order={order}
+        platformCost={platformCost}
+        CardBrand={CardBrand}
+        last4={last4}
+      />
+      {/* )} */}
+    </AccordionItem>
   );
 };
 
@@ -345,15 +404,30 @@ const DonationListItem = ({ donation, showDetails, activeList }) => {
         <li className="history__list-item px-2 py-2 me-3 border-bottom">
           <div className="">
             <div className="d-flex align-items-center">
-              <span className="d-flex align-items-center rounded-3">
-                <span className="fw-bold fs-4">
-                  {donation.currencySymbol ? donation.currencySymbol : '$'}
-                  {priceFormat(Number(grandTotal))}
+              <div className="d-flex flex-grow-1">
+                <span className="d-flex align-items-center rounded-3">
+                  <img className="me-1" style={{ height: '16px' }} src={coin}></img>
+                  <span className="fw-bold fs-4">
+                    {donation.currencySymbol ? donation.currencySymbol : '$'}
+                    {priceFormat(Number(grandTotal))}
+                  </span>
+                  <span className="ml-6p text-light fs-8">
+                    {donation.currency ? donation.currency : 'CAD'}
+                  </span>
+                  {/* <span className="ms-2 text-info fw-bold flex__1">{donation?.xp} XP</span> */}
                 </span>
-                <span className="ml-6p text-light fs-8">
-                  {donation.currency ? donation.currency : 'CAD'}
-                </span>
-              </span>
+                <Link
+                  to={'/organization/' + donation.organizationId?.slug}
+                  className="flex-grow-1 d-flex justify-content-end"
+                >
+                  {' '}
+                  <ListItemImg
+                    size={46}
+                    imgSrc={helper.CampaignAdminLogoFullPath + donation?.organizationId?.logo}
+                    className="me-4 charity_avatar_bg"
+                  />
+                </Link>
+              </div>
               <div className="ms-auto bg-lighter d-flex align-items-center rounded-3">
                 <div className="order__logo mx-1">
                   <img src={getCardIcon(CardBrand)} alt="" className="img-fluid" />
@@ -366,15 +440,13 @@ const DonationListItem = ({ donation, showDetails, activeList }) => {
               </div>
             </div>
             <div className="d-flex">
-              <Button
-                variant="link"
+              <span
                 className="text-light fw-semibold fs-5 p-0"
-                onClick={() => showDetails(donation._id)}
+                // onClick={() => showDetails(donation._id)}
               >
-                Org Cash Donation #{' '}
+                {donation?.organizationId?.name} #
                 {donation.uniqueTransactionId ? donation.uniqueTransactionId : donation._id}
-              </Button>{' '}
-              <img alt="" className="ms-3" style={{ height: '24px' }} src={donate}></img>
+              </span>
             </div>
             <div className="fw-semibold fs-7 text-lighter mt-3p">
               {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
@@ -384,23 +456,40 @@ const DonationListItem = ({ donation, showDetails, activeList }) => {
           {
             // this isn't really necessary, doesn't show any extra info, but it looks nice
             activeList.includes(donation._id) && (
-              <DonationListActiveList donation={donation} CardBrand={CardBrand} last4={last4} />
+              <></>
+              // <DonationListActiveList donation={donation} CardBrand={CardBrand} last4={last4} />
             )
           }
         </li>
       ) : (
+        //PROJECT:
         <li className="history__list-item px-2 py-2 me-3 border-bottom">
-          <div className="">
+          <div className="d-flex flex-column">
             <div className="d-flex align-items-center">
-              <span className="d-flex align-items-center rounded-3">
-                <span className="fw-bold fs-4">
-                  {donation.currencySymbol ? donation.currencySymbol : '$'}
-                  {priceFormat(Number(grandTotal))}
+              <div className="d-flex flex-grow-1">
+                <span className="d-flex align-items-center rounded-3">
+                  <img className="me-1" style={{ height: '16px' }} src={coin2}></img>
+                  <span className="fw-bold fs-4">
+                    {donation.currencySymbol ? donation.currencySymbol : '$'}
+                    {priceFormat(Number(grandTotal))}
+                  </span>
+                  <span className="ml-6p text-light fs-8">
+                    {donation.currency ? donation.currency : 'CAD'}
+                  </span>
+                  {/* <span className="ms-2 text-info fw-bold flex__1">{donation?.xp} XP</span> */}
                 </span>
-                <span className="ml-6p text-light fs-8">
-                  {donation.currency ? donation.currency : 'CAD'}
-                </span>
-              </span>
+                <Link
+                  to={'/organization/' + donation.organizationId?.slug}
+                  className="flex-grow-1 d-flex justify-content-end"
+                >
+                  {' '}
+                  <ListItemImg
+                    size={46}
+                    imgSrc={helper.CampaignAdminLogoFullPath + donation?.organizationId?.logo}
+                    className="me-4 charity_avatar_bg"
+                  />
+                </Link>
+              </div>
               <div className="ms-auto bg-lighter d-flex align-items-center rounded-3">
                 <div className="order__logo mx-1">
                   <img src={getCardIcon(CardBrand)} alt="" className="img-fluid" />
@@ -412,28 +501,34 @@ const DonationListItem = ({ donation, showDetails, activeList }) => {
                 </div>
               </div>
             </div>
-            <div className="d-flex">
-              <Button
-                variant="link"
+            <div className="d-flex mt-1">
+              <span
                 className="text-light fw-semibold fs-5 p-0"
-                onClick={() => showDetails(donation._id)}
+                // onClick={() => showDetails(donation._id)}
               >
-                Project Cash Donation #{' '}
+                {donation?.organizationId?.name} #{' '}
                 {donation.uniqueTransactionId ? donation.uniqueTransactionId : donation._id}
-              </Button>{' '}
-              <img alt="" className="ms-3" style={{ height: '24px' }} src={donate}></img>
+              </span>
             </div>
             <div className="fw-semibold fs-7 text-lighter mt-3p">
               {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
             </div>
+            <div className="d-flex mt-2">
+              {' '}
+              <Link
+                to={'/project/' + donation.projectDetails?.slug}
+                className="fw-semibold bg-lighter px-1 py-1 rounded-3"
+              >
+                Project: {donation.projectDetails?.name}
+              </Link>
+            </div>
           </div>
-
-          {
+          {/* {
             // this isn't really necessary, doesn't show any extra info, but it looks nice
             activeList.includes(donation._id) && (
               <DonationListActiveList donation={donation} CardBrand={CardBrand} last4={last4} />
             )
-          }
+          } */}
         </li>
       )}
     </>
@@ -450,16 +545,26 @@ const DonationListActiveList = ({ donation, CardBrand, last4 }) => {
 
 const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
   return (
-    <ul className="history__list list-unstyled ms-1 mt-2">
+    <ul className="history__list list-unstyled ms-1 mt-2 pe-5">
       {order.orderItems.length > 0 &&
         order.orderItems.map((item, key) => (
           <PurchaseListItem key={key} order={order} item={item} />
         ))}
-      <div className="d-flex align-items-center py-3">
+      <div className="d-flex align-items-center pt-3 pb-1">
         <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
           Service Charge:
         </Link>
-        <span className="fw-bold text-light fs-6">{order.currencySymbol + platformCost}</span>
+        <span className="fw-bold text-lighter fs-6">{order.currencySymbol + platformCost}</span>
+      </div>
+      <div className="d-flex align-items-center mb-3">
+        <div className="fw-semibold fs-7 text-light flex__1">Subtotal:</div>
+        <span className="fw-bold text-light fs-6">{order.currencySymbol + order.subtotal}</span>
+      </div>
+      <div className="d-flex align-items-center mb-3 pt-3 border-top">
+        <div className="fw-semibold fs-7 text-light flex__1">Total Charge:</div>
+        <span className="fw-bold text-light fs-6">
+          {order.currencySymbol + parseFloat(order.total).toFixed(2)}
+        </span>
       </div>
 
       <OrderListTransaction createdAt={order.createdAt} CardType={CardBrand} last4={last4} />

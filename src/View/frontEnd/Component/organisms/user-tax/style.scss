@@ -12,8 +12,8 @@
   align-items: center;
   padding-right: 1rem;
 }
-.szh-accordion:not(:first-child) {
-  border-top: 1px solid #efefef;
+.szh-accordion:not(:last-child) {
+  border-bottom: 1px solid #efefef;
 }
 .table__list--content:first-child {
   margin-top: 0.3rem;
