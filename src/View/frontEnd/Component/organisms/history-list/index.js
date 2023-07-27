@@ -134,9 +134,6 @@ const HistoryList = ({
       '& li:hover': {
         background: '#f8fafd'
       },
-      '& li:focus': {
-        background: '#f8fafd'
-      },
       '& li.Mui-selected': {
         background: '#f8fafd'
       },
@@ -265,7 +262,7 @@ const HistoryList = ({
                 <DonationListItem
                   key={i}
                   donation={orderOrDonation}
-                  showDetails={showDetails}
+                  // showDetails={showDetails}
                   activeList={activeList}
                 />
               );
@@ -388,7 +385,7 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
   );
 };
 
-const DonationListItem = ({ donation, showDetails, activeList }) => {
+const DonationListItem = ({ donation, activeList }) => {
   //console.log('rendering donation list item:', {donation});
   const grandTotal = donation.amount;
 
@@ -418,7 +415,7 @@ const DonationListItem = ({ donation, showDetails, activeList }) => {
                 </span>
                 <Link
                   to={'/organization/' + donation.organizationId?.slug}
-                  className="flex-grow-1 d-flex justify-content-end"
+                  className="ms-auto d-flex justify-content-end"
                 >
                   {' '}
                   <ListItemImg
@@ -480,7 +477,7 @@ const DonationListItem = ({ donation, showDetails, activeList }) => {
                 </span>
                 <Link
                   to={'/organization/' + donation.organizationId?.slug}
-                  className="flex-grow-1 d-flex justify-content-end"
+                  className="ms-auto d-flex justify-content-end"
                 >
                   {' '}
                   <ListItemImg
@@ -550,11 +547,11 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
         order.orderItems.map((item, key) => (
           <PurchaseListItem key={key} order={order} item={item} />
         ))}
-      <div className="d-flex align-items-center pt-3 pb-1">
-        <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
+      <div className="d-flex justify-content-start align-items-center pt-3 pb-1">
+        <Link to="/pricing" className="fw-semibold fs-7 text-light">
           Service Charge:
         </Link>
-        <span className="fw-bold text-lighter fs-6">{order.currencySymbol + platformCost}</span>
+        <span className="ms-auto fw-bold text-lighter fs-6">{order.currencySymbol + platformCost}</span>
       </div>
       <div className="d-flex align-items-center mb-3">
         <div className="fw-semibold fs-7 text-light flex__1">Subtotal:</div>
@@ -582,9 +579,9 @@ const PurchaseListItem = ({ order, item }) => {
           style={{ border: 'unset', background: 'unset' }}
         />
         <div className="ms-2 order__id">
-          <Button variant="link" className="text-dark fw-bold p-0 mb-3p">
+          <Link to={'/item/' + item.itemDetails?.slug} variant="link" className="text-dark fw-bold p-0 mb-3p">
             {item.quantity} {item.itemDetails?.headline}
-          </Button>
+          </Link>
           <div className="text-light mb-3p">{item.itemDetails?.brand}</div>
           <div className="fs-5 text-light fw-bold">
             {order.currencySymbol ? order.currencySymbol : '$'}{' '}

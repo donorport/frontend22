@@ -30,7 +30,9 @@ function Footer() {
       await getCategoryList();
     })();
   }, []);
-
+// Before the problematic span
+console.log('user:', user);
+console.log('userData:', userData);
   return (
     <div className="footer border-top px-1">
       <Container fluid className="footer__top">
@@ -133,7 +135,7 @@ function Footer() {
             <div className="copyright mb-1 mb-sm-0 ms-1">
               <FontAwesomeIcon icon={regular('earth-americas')} />
               <span className="ms-1">
-                {user.countryName ? user.countryName : userData ? userData.country : ''}
+                {user.countrySortName ? user.countrySortName : userData ? userData.country : ''}
               </span>
             </div>
           </div>

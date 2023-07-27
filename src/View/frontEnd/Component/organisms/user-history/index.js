@@ -239,14 +239,14 @@ const UserHistory = () => {
           </p>
           <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
         </div>
-        <IconToggle
+        {/* <IconToggle
           className="text-info ms-2 d-none d-sm-block"
           icon={<FontAwesomeIcon icon={regular('maximize')} />}
           checkedIcon={<FontAwesomeIcon icon={regular('minimize')} />}
           ischecked={isChecked}
           onClickFilter={onClickFilter}
           name="expand"
-        />
+        /> */}
       </header>
 
       <HistoryList

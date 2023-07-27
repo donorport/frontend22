@@ -1618,19 +1618,20 @@ const AdminPosts = () => {
   useEffect(() => {
     const updatedSteps = steps.map((step) => {
       if (step.label === 'Build your profile') {
-        return { ...step, isComplete: data.logo !== null };
+        return { ...step, isComplete: data.logo !== '' };
       }
       if (step.label === 'Add your tax rate') {
-        return { ...step, isComplete: data.taxRate !== null };
+        return { ...step, isComplete: data.taxRate !== null && data.taxRate !== 0 };
       }
       if (step.label === 'Connect your bank') {
         return { ...step, isComplete: user.isAccountAdded };
       }
       return step;
     });
-
+  
     setSteps(updatedSteps);
   }, []);
+  
 
   useEffect(() => {
     console.log({ user, data });

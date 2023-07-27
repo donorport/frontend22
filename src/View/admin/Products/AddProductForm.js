@@ -193,7 +193,7 @@ export default function AddProductForm(props) {
                   query={stateData.address}
                   // defaultValue={stateData.locationName}
                   onSuggestionSelect={sugg}
-                  country={stateData.organizationLocation}
+                  // country={stateData.organizationLocation}
                   resetSearch={false}
                 />
 

@@ -226,9 +226,9 @@ const GeoLocation = (props) => {
                     setViewState(event.viewState);
                   }}
                 >
-                  <div className="radius-container">
+                  {/* <div className="radius-container">
                     <div className="radius-circle"></div>
-                  </div>
+                  </div> */}
                   <ScaleControl style={{ zIndex: '-1' }} />
                   <Marker coordinates={[user.lng, user.lat]} className="mapbox-marker-user">
                     <div className="mapboxgl-user-location-dot"></div>

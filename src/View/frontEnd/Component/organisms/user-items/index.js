@@ -42,9 +42,11 @@ const UserItems = () => {
   const [order, setOrder] = useState('asc');
   const [orderItemList, setOrderItemList] = useState([]);
   const [totalPriceArray, setTotalPriceArray] = useState([]);
+  const [isFetching, setIsFetching] = useState(true);
 
   const getOrderItemList = useCallback(
     async (page, field, type) => {
+      setIsFetching(true);
       setLoading(false);
       let formData = {};
       formData.organizationId = data._id;
@@ -73,6 +75,7 @@ const UserItems = () => {
         // }
       }
       setLoading(false);
+      setIsFetching(false);
     },
     [data._id, userAuthToken]
   );
@@ -100,13 +103,13 @@ const UserItems = () => {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
       {!detail.show ? (
         <UserItemsTableView
           totalRecord={totalRecord}
           totalPriceArray={totalPriceArray}
           onItemClick={onItemClick}
           handleClick={handleClick}
+          isFetching={isFetching}
           totalPages={totalPages}
           pageNo={pageNo}
           handleSortingChange={handleSortingChange}
@@ -139,7 +142,8 @@ const UserItemsTableView = ({
   handleSortingChange, // fn
   order,
   sortField,
-  orderItemList
+  orderItemList,
+  isFetching
 }) => {
   console.log('UserItemsTableView rerender');
   return (
@@ -180,6 +184,7 @@ const UserItemsTableView = ({
         handleClick={handleClick}
         totalPages={totalPages}
         totalRecord={totalRecord}
+        isFetching={isFetching}
         pageNo={pageNo}
         handleSortingChange={handleSortingChange}
         order={order}

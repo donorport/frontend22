@@ -1,7 +1,7 @@
 import { Button, ProgressBar } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-
+import CircularProgress from '@mui/material/CircularProgress';
 // import ListItemImg from "@components/atoms/list-item-img";
 import ListItemImg from '../../atoms/list-item-img';
 import './style.scss';
@@ -21,7 +21,8 @@ const ItemsTable = ({
   handleSortingChange,
   order,
   sortField,
-  onItemClick
+  onItemClick,
+  isFetching
 }) => {
   // console.log(orderItemList)
   const useStyles = makeStyles(() => ({
@@ -63,7 +64,11 @@ const ItemsTable = ({
           </Button>
         </div>
         <ul className="list-unstyled mb-0 list__table-list">
-          {orderItemList.length > 0 ? (
+          {isFetching ? (
+            <li className="history__list-item d-flex align-items-center justify-content-center p-5">
+              <CircularProgress className="ms-1" color="inherit" size={32} />
+            </li>
+          ) : orderItemList.length > 0 ? (
             orderItemList.map((item, key) => {
               // console.log(item)
               // let price = Math.round(Number(item.productPrice) + (Number(item.appliedTaxPer) / 100) * Number(item.productPrice))

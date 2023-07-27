@@ -157,13 +157,14 @@ export default function Index(props) {
   const user = useSelector((state) => state.user);
 
   const products =
-    user.countrySortName !== 'CA' ? (
+    user.countrySortName === 'MX' ? (
       <ProductsUnavailableLocation user={user} />
     ) : props.productList && props.productList.length > 0 ? (
       <ProductList allProps={props} />
     ) : (
       <ProductListEmpty />
     );
+
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -193,23 +194,23 @@ export default function Index(props) {
           fluid
           style={{ minHeight: '90px' }}
         >
-          {user.countrySortName === 'CA' && (
-            <div className="filter__dropdown-wrap mb-2 mb-sm-0 ">
-              <FilterDropdown
-                organizationList={props.organizationList}
-                categoryList={props.categoryList}
-                seletedCategoryList={props.seletedCategoryList}
-                onSelectCategory={props.onSelectCategory}
-                setfilters={props.setfilters}
-                filters={props.filters}
-                onClickFilter={props.onClickFilter}
-                onChangePriceSlider={props.onChangePriceSlider}
-                module={module}
-                categoryDetails={props.categoryDetails}
-                prodctFilterData={props.prodctFilterData}
-              />
-            </div>
-          )}
+          {/* {user.countrySortName === 'CA' && ( */}
+          <div className="filter__dropdown-wrap mb-2 mb-sm-0 ">
+            <FilterDropdown
+              organizationList={props.organizationList}
+              categoryList={props.categoryList}
+              seletedCategoryList={props.seletedCategoryList}
+              onSelectCategory={props.onSelectCategory}
+              setfilters={props.setfilters}
+              filters={props.filters}
+              onClickFilter={props.onClickFilter}
+              onChangePriceSlider={props.onChangePriceSlider}
+              module={module}
+              categoryDetails={props.categoryDetails}
+              prodctFilterData={props.prodctFilterData}
+            />
+          </div>
+          {/* )} */}
           <div className="filter__search-wrap my-1 my-sm-0 order-3 order-sm-2">
             <div className="search__container">
               <ul
@@ -277,7 +278,8 @@ export default function Index(props) {
           </div>
         </Container>
       </div>
-      {!CampaignAdminAuthToken && user.countrySortName === 'CA' && (
+      {/* {!CampaignAdminAuthToken && user.countrySortName === 'CA' && ( */}
+      {!CampaignAdminAuthToken && (
         <Container className="d-flex align-items-center" fluid>
           <div className="donate-section mt-2 p-2 d-sm-flex align-items-center flex-grow-1">
             <div className="d-flex align-items-center d-sm-inline-bock">
@@ -322,26 +324,26 @@ export default function Index(props) {
       )}
 
       <Container fluid>
-        {user.countrySortName === 'CA' && (
-          <div className="d-sm-flex align-items-center py-20p">
-            <div className="mb-1 mb-sm-0">{props.productList.length} items</div>
-            <div className="tag__list d-flex align-items-center flex__1 ms-sm-2 gap-1 mb-2 mb-sm-0 overflow-auto px-sm-0 px-2 mx-sm-0 mx-n2">
-              {props.seletedCategoryList.length > 0 &&
-                props.categoryList.length > 0 &&
-                props.categoryList.map((c) => {
-                  return (
-                    props.seletedCategoryList.includes(c._id) && (
-                      <div
-                        key={c._id}
-                        className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2"
-                      >
-                        <span className="filter__item-icon">
-                          {/* <img
+        {/* {user.countrySortName === 'CA' && ( */}
+        <div className="d-sm-flex align-items-center py-20p">
+          <div className="mb-1 mb-sm-0">{props.productList.length} items</div>
+          <div className="tag__list d-flex align-items-center flex__1 ms-sm-2 gap-1 mb-2 mb-sm-0 overflow-auto px-sm-0 px-2 mx-sm-0 mx-n2">
+            {props.seletedCategoryList.length > 0 &&
+              props.categoryList.length > 0 &&
+              props.categoryList.map((c) => {
+                return (
+                  props.seletedCategoryList.includes(c._id) && (
+                    <div
+                      key={c._id}
+                      className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2"
+                    >
+                      <span className="filter__item-icon">
+                        {/* <img
                         alt=""
                         className="img-fluid"
                         src=""
                       /> */}
-                          {/* <i
+                        {/* <i
                           className={c.iconDetails[0].class}
                           style={{
                             fontFamily: 'fontAwesome',
@@ -350,97 +352,97 @@ export default function Index(props) {
                             marginLeft: '1.5px'
                           }}
                         ></i> */}
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 640 512"
-                          >
-                            <path d={c.icon} fill={c.color}></path>
-                          </svg>
-                        </span>
-                        <span className="flex__1 ms-1 fs-5 fw-semibold text-subtext text-nowrap">
-                          {c.name}
-                        </span>
-                        <Button
-                          variant="link"
-                          className="ms-2 p-0 fs-4 lh-1"
-                          onClick={() => props.removeCatFromFilter(c._id)}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 640 512"
                         >
-                          <FontAwesomeIcon icon={solid('close')} className="text-light" />
-                        </Button>
-                      </div>
-                    )
-                  );
-                })}
+                          <path d={c.icon} fill={c.color}></path>
+                        </svg>
+                      </span>
+                      <span className="flex__1 ms-1 fs-5 fw-semibold text-subtext text-nowrap">
+                        {c.name}
+                      </span>
+                      <Button
+                        variant="link"
+                        className="ms-2 p-0 fs-4 lh-1"
+                        onClick={() => props.removeCatFromFilter(c._id)}
+                      >
+                        <FontAwesomeIcon icon={solid('close')} className="text-light" />
+                      </Button>
+                    </div>
+                  )
+                );
+              })}
 
-              {props.filters.taxEligible ? (
-                <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
-                  <span className="filter__item-icon">
-                    <FontAwesomeIcon icon={solid('paperclip')} color="#3a94d4" />
-                  </span>
-                  <Button
-                    variant="link"
-                    className="ms-2 p-0 fs-4 lh-1"
-                    onClick={() =>
-                      props.setfilters({
-                        ...props.filters,
-                        taxEligible: false
-                      })
-                    }
-                  >
-                    <FontAwesomeIcon icon={solid('close')} className="text-light" />
-                  </Button>
-                </div>
-              ) : (
-                <></>
-              )}
+            {props.filters.taxEligible ? (
+              <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
+                <span className="filter__item-icon">
+                  <FontAwesomeIcon icon={solid('paperclip')} color="#3a94d4" />
+                </span>
+                <Button
+                  variant="link"
+                  className="ms-2 p-0 fs-4 lh-1"
+                  onClick={() =>
+                    props.setfilters({
+                      ...props.filters,
+                      taxEligible: false
+                    })
+                  }
+                >
+                  <FontAwesomeIcon icon={solid('close')} className="text-light" />
+                </Button>
+              </div>
+            ) : (
+              <></>
+            )}
 
-              {props.filters.postTag ? (
-                <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
-                  <span className="filter__item-icon">
-                    <FontAwesomeIcon icon={solid('tag')} color="#947ada" />
-                  </span>
-                  <Button
-                    variant="link"
-                    className="ms-2 p-0 fs-4 lh-1"
-                    onClick={() =>
-                      props.setfilters({
-                        ...props.filters,
-                        postTag: false
-                      })
-                    }
-                  >
-                    <FontAwesomeIcon icon={solid('close')} className="text-light" />
-                  </Button>
-                </div>
-              ) : (
-                <></>
-              )}
+            {props.filters.postTag ? (
+              <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
+                <span className="filter__item-icon">
+                  <FontAwesomeIcon icon={solid('tag')} color="#947ada" />
+                </span>
+                <Button
+                  variant="link"
+                  className="ms-2 p-0 fs-4 lh-1"
+                  onClick={() =>
+                    props.setfilters({
+                      ...props.filters,
+                      postTag: false
+                    })
+                  }
+                >
+                  <FontAwesomeIcon icon={solid('close')} className="text-light" />
+                </Button>
+              </div>
+            ) : (
+              <></>
+            )}
 
-              {props.filters.infinite ? (
-                <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
-                  <span className="filter__item-icon">
-                    <FontAwesomeIcon icon={solid('infinity')} color="#947ada" />
-                  </span>
-                  <Button
-                    variant="link"
-                    className="ms-2 p-0 fs-4 lh-1"
-                    onClick={() =>
-                      props.setfilters({
-                        ...props.filters,
-                        infinite: false
-                      })
-                    }
-                  >
-                    <FontAwesomeIcon icon={solid('close')} className="text-light" />
-                  </Button>
-                </div>
-              ) : (
-                <></>
-              )}
+            {props.filters.infinite ? (
+              <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
+                <span className="filter__item-icon">
+                  <FontAwesomeIcon icon={solid('infinity')} color="#947ada" />
+                </span>
+                <Button
+                  variant="link"
+                  className="ms-2 p-0 fs-4 lh-1"
+                  onClick={() =>
+                    props.setfilters({
+                      ...props.filters,
+                      infinite: false
+                    })
+                  }
+                >
+                  <FontAwesomeIcon icon={solid('close')} className="text-light" />
+                </Button>
+              </div>
+            ) : (
+              <></>
+            )}
 
-              {/* <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
+            {/* <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
               <span className="filter__item-icon">
                 <img
                   alt=""
@@ -458,8 +460,8 @@ export default function Index(props) {
                 />
               </Button>
             </div> */}
-            </div>
-            {/* {props.advertisementList?.length > 0 && (
+          </div>
+          {/* {props.advertisementList?.length > 0 && (
               <div className="mb-3 mb-sm-0">
                 <IconText
                   size="42"
@@ -485,8 +487,8 @@ export default function Index(props) {
                 </IconText>
               </div>
             )} */}
-            <div>
-              {/* <IconText
+          <div>
+            {/* <IconText
               className=""
               icon={
                 // <FontAwesomeIcon icon="fa-solid fa-rectangle-ad" />
@@ -495,15 +497,15 @@ export default function Index(props) {
             >
               These items are tax deductible.
             </IconText> */}
-              <LadderMenu
-                items={items}
-                activeKey={selectedKey}
-                // setSelectedKey={setSelectedKey}
-                onChangeFilterOption={props.onChangeFilterOption}
-              />
-            </div>
+            <LadderMenu
+              items={items}
+              activeKey={selectedKey}
+              // setSelectedKey={setSelectedKey}
+              onChangeFilterOption={props.onChangeFilterOption}
+            />
           </div>
-        )}
+        </div>
+        {/* )} */}
       </Container>
       {loading ? (
         <div className="mt-5 d-flex justify-content-center">
