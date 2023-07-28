@@ -504,6 +504,9 @@ export function countInArray(array, what) {
   return array.filter((item) => item === what).length;
 }
 
+// Assuming Country and State classes have appropriate methods to retrieve data
+
+// Function to convert an address into a standardized format of "city, stateCode"
 export function convertAddress(address) {
   if (!address) {
     throw new Error('Address is undefined');
@@ -514,11 +517,10 @@ export function convertAddress(address) {
     const commaCount = split.length - 1;
 
     if (commaCount === 3) {
-      const city = split[1].trim();
-      const stateWithSpace = split[2].trim();
-      const state = stateWithSpace.split(' ')[0];
-
-      const countryName = split[split.length - 1].trim();
+      // Address format: "city, state, country"
+      const city = split[0].trim();
+      const state = split[1].trim();
+      const countryName = split[2].trim();
       const country = Country.getAllCountries().find(
         (c) => c.name.replace(/\s/g, '') === countryName
       );
@@ -539,10 +541,10 @@ export function convertAddress(address) {
 
       return `${city}, ${stateCode}`;
     } else if (commaCount === 2) {
+      // Address format: "city, province, country"
       const city = split[0].trim();
       const province = split[1].trim();
-
-      const countryName = split[split.length - 1].trim();
+      const countryName = split[2].trim();
       const country = Country.getAllCountries().find(
         (c) => c.name.replace(/\s/g, '') === countryName
       );
@@ -562,6 +564,19 @@ export function convertAddress(address) {
       const stateCode = `${states[0].isoCode}`;
 
       return `${city}, ${stateCode}`;
+    } else if (commaCount === 1) {
+      // Address format: "city, country"
+      const city = split[0].trim();
+      const countryName = split[1].trim();
+      const country = Country.getAllCountries().find(
+        (c) => c.name.replace(/\s/g, '') === countryName
+      );
+
+      if (!country) {
+        throw new Error(`Country not found for address "${address}"`);
+      }
+
+      return `${city}, ${country.isoCode}`;
     } else {
       throw new Error('Invalid address format');
     }
@@ -570,6 +585,7 @@ export function convertAddress(address) {
     return null; // or return an error message instead of null
   }
 }
+
 
 
 

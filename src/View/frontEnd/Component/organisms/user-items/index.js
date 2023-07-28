@@ -56,6 +56,7 @@ const UserItems = () => {
       formData.filter = true;
 
       const getOrderItem = await userApi.userOrderItemslist(userAuthToken, formData);
+      console.log('getOrderItem:', getOrderItem); // Add this line to log the entire object
       if (getOrderItem.data.success === true) {
         setOrderItemList(getOrderItem.data.data);
         setTotalPages(getOrderItem.data.totalPages);
@@ -70,7 +71,7 @@ const UserItems = () => {
         //   })
         //   let sum = tempPriceArray.reduce(function (a, b) { return a + b; }, 0);
         setTotalPriceArray(Object.entries(getOrderItem.data.totalPurchase));
-        // console.log(getOrderItem.data.totalPurchase)
+        console.log('totalPurchase', getOrderItem.data.totalPurchase)
         // setTotalPurchase(priceFormat(Math.round(calculatedPrice.priceWithTax(Number(getOrderItem.data.totalPurchase)))))
         // }
       }

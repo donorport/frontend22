@@ -142,7 +142,7 @@ const HistoryList = ({
       }
     }
   }));
-  
+
   const classes = useStyles();
   const menuProps = {
     classes: {
@@ -551,11 +551,15 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
         <Link to="/pricing" className="fw-semibold fs-7 text-light">
           Service Charge:
         </Link>
-        <span className="ms-auto fw-bold text-lighter fs-6">{order.currencySymbol + platformCost}</span>
+        <span className="ms-auto fw-bold text-lighter fs-6">
+          {order.currencySymbol + platformCost}
+        </span>
       </div>
       <div className="d-flex align-items-center mb-3">
         <div className="fw-semibold fs-7 text-light flex__1">Subtotal:</div>
-        <span className="fw-bold text-light fs-6">{order.currencySymbol + order.subtotal}</span>
+        <span className="fw-bold text-light fs-6">
+          {order.currencySymbol + +parseFloat(order.subtotal).toFixed(2)}
+        </span>
       </div>
       <div className="d-flex align-items-center mb-3 pt-3 border-top">
         <div className="fw-semibold fs-7 text-light flex__1">Total Charge:</div>
@@ -564,7 +568,7 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
         </span>
       </div>
 
-      <OrderListTransaction createdAt={order.createdAt} CardType={CardBrand} last4={last4} />
+      <OrderListTransaction createdAt={order.created_at} CardType={CardBrand} last4={last4} />
     </ul>
   );
 };
@@ -579,7 +583,11 @@ const PurchaseListItem = ({ order, item }) => {
           style={{ border: 'unset', background: 'unset' }}
         />
         <div className="ms-2 order__id">
-          <Link to={'/item/' + item.itemDetails?.slug} variant="link" className="text-dark fw-bold p-0 mb-3p">
+          <Link
+            to={'/item/' + item.itemDetails?.slug}
+            variant="link"
+            className="text-dark fw-bold p-0 mb-3p"
+          >
             {item.quantity} {item.itemDetails?.headline}
           </Link>
           <div className="text-light mb-3p">{item.itemDetails?.brand}</div>

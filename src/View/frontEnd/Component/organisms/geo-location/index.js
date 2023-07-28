@@ -221,7 +221,7 @@ const GeoLocation = (props) => {
                   zoom={[zoomLevel]}
                   center={[user.lng, user.lat]}
                   // This manages the update results and displaying the scale level for zoom in KM:
-                  onRender={(e) => setObjectVal(e.boxZoom._container.outerText)}
+                  // onRender={(e) => setObjectVal(e.boxZoom._container.outerText)}
                   onMove={(event) => {
                     setViewState(event.viewState);
                   }}
@@ -341,12 +341,12 @@ const GeoLocation = (props) => {
               />
             </div>
 
-            <div className="d-grid gap-2 p-2">
+            {/* <div className="d-grid gap-2 p-2">
               <Button className="toggle__btn" variant="success" onClick={onUpdateResults}>
                 Update Results{' '}
                 {user.locationProductCount > 0 ? ' ( ' + user.locationProductCount + ' ) ' : ''}
               </Button>
-            </div>
+            </div> */}
           </div>
         </Dropdown.Menu>
       </Dropdown>

@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Input = ({ value = '', onChange, title, name, maxLength, maxInput, placeholder, error }) => {
-  const [textValue, setTextValue] = useState(value);
-
   return (
     <>
       <div className="input__wrap d-flex flex-column">
@@ -10,13 +8,12 @@ const Input = ({ value = '', onChange, title, name, maxLength, maxInput, placeho
           <input
             className={error && error[name] ? 'inputerror' : ''}
             name={name}
-            value={textValue}
+            value={value}  // Use the 'value' prop directly
             title={title}
             maxLength={maxLength}
             placeholder={placeholder}
             onChange={(e) => {
-              setTextValue(e.target.value);
-              onChange(e);
+              onChange(e.target.value);  // Notify the parent about the change
             }}
           />
           <span className="input__span">{title}</span>
@@ -25,7 +22,7 @@ const Input = ({ value = '', onChange, title, name, maxLength, maxInput, placeho
         {maxLength && (
           <div className="d-flex fs-7 mt-2">
             <span>
-              {textValue.length}/{maxInput}
+              {value.length}/{maxInput}
             </span>
             <span className="ms-1">characters</span>
           </div>
