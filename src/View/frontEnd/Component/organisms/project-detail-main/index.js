@@ -5,7 +5,7 @@ import { ProgressBar } from 'react-bootstrap';
 
 import ShareWidget from '../share-widget';
 import OrganizationWidget from '../organization-widget';
-import ProjectGallery from '../project-gallery';
+import ProjectCrowdfundingGallery from '../project-crowdfunding-gallery';
 import TagTitle from '../../atoms/tag-title';
 import IconToggle from '../../atoms/icon-toggle';
 import moment from 'moment';
@@ -15,12 +15,12 @@ import helper, {
 
 import './style.scss';
 import { Link } from 'react-router-dom';
-import { countryToAlpha2, countryToAlpha3 } from 'country-to-iso';
+// import { countryToAlpha2, countryToAlpha3 } from 'country-to-iso';
 import { useEffect, useState } from 'react';
 
 function ProjectDetailMain(props) {
   let projectDetails = props.projectDetails;
-  let productDetails = props.productDetails;
+  // let productDetails = props.productDetails;
   let video = projectDetails?.video;
 
   let videoid = video ? video.split('?v=')[1].split('&')[0] : '';
@@ -296,7 +296,7 @@ function ProjectDetailMain(props) {
           )}
 
           {projectDetails?.images && projectDetails?.images.length > 0 && (
-            <ProjectGallery title={false} images={projectDetails?.images} tagTitle="Project" />
+            <ProjectCrowdfundingGallery title={false} images={projectDetails?.images} tagTitle="Project" />
           )}
         </div>
         <div>

@@ -4,17 +4,18 @@ import React, { useState } from 'react';
 // third party
 import { Col, Container, Row, Button } from 'react-bootstrap';
 
+
 // app specific
-import Header from '../Component/organisms/header';
+// import Header from '../Component/organisms/header';
 import Footer from '../Component/organisms/footer';
 import ProjectDetailMain from '../Component/organisms/project-detail-main';
-import SimilarItems from '../Component/organisms/similar-items';
+// import SimilarItems from '../Component/organisms/similar-items';
 import History from '../Component/organisms/history';
 import SuggestionWrapper from '../Component/molecules/suggestion-wrapper';
 import DonateModal from '../Component/molecules/donate-modal';
-import SuggestedList from '../Component/organisms/suggested-list';
-import ProjectSuggestionList from '../Component/organisms/project-suggestion-list';
-import GrabDropdown from '../Component/organisms/grab-dropdown';
+// import SuggestedList from '../Component/organisms/suggested-list';
+import ProjectCrowdfundingSuggestionList from '../Component/organisms/project-crowdfunding-suggestion-list';
+// import GrabDropdown from '../Component/organisms/grab-dropdown';
 import HeaderController from '../../../Controller/frontEnd/HeaderController';
 
 // style
@@ -29,7 +30,7 @@ const ProjectDetail = (props) => {
       <HeaderController/>
       <SuggestionWrapper>
         <div className="d-flex container-fluid">
-          <ProjectSuggestionList
+          <ProjectCrowdfundingSuggestionList
             projectList={props.projectList}
             projectId={props.projectDetails?._id}
           />
