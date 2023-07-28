@@ -50,7 +50,7 @@ function UserSettingsList(props) {
           <UserSettingsItem
             icon={<FontAwesomeIcon icon={solid('signature')} />}
             nextIcon={<FontAwesomeIcon icon={solid('chevron-right')} />}
-            label="Linked Organisations"
+            label="Linked Organizations"
             onClick={props.onOrgClick}
           />
           <UserSettingsItem
@@ -71,7 +71,7 @@ function UserSettingsList(props) {
           {/*  <UserSettingsItem
                 icon={<FontAwesomeIcon icon={solid("signature")} />}
                 nextIcon={<FontAwesomeIcon icon={solid("chevron-right")} />}
-                label="Linked Organisations"
+                label="Linked Organizations"
                 onClick={props.onOrgClick}
               />*/}
           <UserSettingsItem
@@ -85,7 +85,7 @@ function UserSettingsList(props) {
           {/* <UserSettingsItem
                 icon={<FontAwesomeIcon icon={solid("signature")} />}
                 nextIcon={<FontAwesomeIcon icon={solid("chevron-right")} />}
-                label="Linked Organisations"
+                label="Linked Organizations"
                 onClick={props.onOrgClick}
               /> */}
           <UserSettingsItem

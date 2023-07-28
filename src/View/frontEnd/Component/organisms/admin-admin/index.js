@@ -1,8 +1,7 @@
 import { Button, FormControl } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-// import OrganisationTeamItem from "@components/molecules/org-team-item";
-import OrganisationTeamItem from '../../molecules/org-team-item';
+import OrganizationTeamItem from '../../molecules/org-team-item';
 import React, { useState, useEffect } from 'react';
 import helper, { isValidEmail } from '../../../../../Common/Helper';
 import organizationApi from '../../../../../Api/frontEnd/organization';
@@ -187,7 +186,7 @@ const AdminAdmin = () => {
               teamMemberList.map((member, i) => {
                 // console.log(member)
                 return (
-                  <OrganisationTeamItem
+                  <OrganizationTeamItem
                     showEmail={true}
                     member={member}
                     isCurrent={member.typeId === currentId}

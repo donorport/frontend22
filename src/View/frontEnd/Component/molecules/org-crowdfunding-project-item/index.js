@@ -5,7 +5,7 @@ import helper from '../../../../../Common/Helper';
 import profile from '../../../../../assets/images/avatar.png';
 import './style.scss';
 
-function OrganisationCrowdfundingProjectItem({item}) {
+function OrganizationCrowdfundingProjectItem({item}) {
   const img =
     item.imageDetails.length > 0
       ? helper.ProjectFullImagePath + item.imageDetails[0].image
@@ -51,4 +51,4 @@ function OrganisationCrowdfundingProjectItem({item}) {
   );
 }
 
-export default OrganisationCrowdfundingProjectItem;
+export default OrganizationCrowdfundingProjectItem;

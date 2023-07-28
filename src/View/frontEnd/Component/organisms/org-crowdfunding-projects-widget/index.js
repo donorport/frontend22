@@ -6,12 +6,12 @@ import WidgetTitle from '../../atoms/widget-title';
 
 import TagTitle from '../../atoms/tag-title';
 
-import OrganisationCrowdfundingProjectItem from '../../molecules/org-crowdfunding-project-item';
+import OrganizationCrowdfundingProjectItem from '../../molecules/org-crowdfunding-project-item';
 
 import './style.scss';
 // import { useState } from 'react';
 
-function OrganisationCrowdfundingProjectsWidget({ list, organizationDetails }) {
+function OrganizationCrowdfundingProjectsWidget({ list, organizationDetails }) {
   //console.log(projectList);
   const [loadMore, setLoadMore] = useState(false);
   return (
@@ -23,7 +23,7 @@ function OrganisationCrowdfundingProjectsWidget({ list, organizationDetails }) {
         {list.length > 0 ? (
           list
             .slice(0, loadMore ? list.length : 3)
-            .map((project, i) => <OrganisationCrowdfundingProjectItem item={project} key={i} />)
+            .map((project, i) => <OrganizationCrowdfundingProjectItem item={project} key={i} />)
         ) : (
           <p>{organizationDetails?.name} hasn't created any Projects.</p>
         )}
@@ -43,4 +43,4 @@ function OrganisationCrowdfundingProjectsWidget({ list, organizationDetails }) {
   );
 }
 
-export default OrganisationCrowdfundingProjectsWidget;
+export default OrganizationCrowdfundingProjectsWidget;

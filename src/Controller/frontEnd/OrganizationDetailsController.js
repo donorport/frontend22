@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { validateAll } from 'indicative/validator';
 
-import OrganisationDetail from '../../View/frontEnd/organisation-detail';
+import OrganizationDetail from '../../View/frontEnd/organization-detail';
 import organizationApi from '../../Api/frontEnd/organization';
 import projectApi from '../../Api/admin/project';
 import adminCampaignApi from '../../Api/admin/adminCampaign';
@@ -360,7 +360,7 @@ export default function OrganizationDetailsController() {
         title={'Donorport | ' + organizationDetails?.name}
         description={organizationDetails?.description}
       >
-        <OrganisationDetail
+        <OrganizationDetail
           organizationDetails={organizationDetails}
           projectList={projectList}
           organizationList={organizationList}

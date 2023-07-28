@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { ProgressBar } from 'react-bootstrap';
+// import { ProgressBar } from 'react-bootstrap';
 
 import ShareWidget from '../share-widget';
-import OrganisationWidget from '../organisation-widget';
+// import OrganizationWidget from '../organization-widget';
 import ProjectCrowdfundingGallery from '../project-crowdfunding-gallery';
 import TagTitle from '../../atoms/tag-title';
 import IconToggle from '../../atoms/icon-toggle';
@@ -16,8 +16,8 @@ import { useEffect, useState } from 'react';
 
 function CrowdfundingDetailMain({
   crowdfundingDetails,
-  addToCart,
-  checkItemInCart,
+  // addToCart,
+  // checkItemInCart,
   followToCrowdfunding,
   isFollow
 }) {
@@ -240,11 +240,11 @@ className="flex-grow-1 me-1"
         </div>
       </div>
       {/* <div className="mb-4">
-        <OrganisationTeamWidget tagTitle="Crowdfunding" showEmail={false} showContact />
+        <OrganizationTeamWidget tagTitle="Crowdfunding" showEmail={false} showContact />
       </div> */}
 {/*
 ** NOT NEEDED FOR CROWDFUNDING ?? **
-<OrganisationWidget
+<OrganizationWidget
 tagTitle="Crowdfunding"
 productDetails={crowdfundingDetails.productDetails}
 addToCart={addToCart}

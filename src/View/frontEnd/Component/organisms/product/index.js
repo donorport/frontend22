@@ -49,7 +49,7 @@ const Product = (props) => {
   let category = props.subCategoryDetails?.name;
   let isFulfiled = props.isFulfiled;
 
-  let organisation =
+  let organization =
     props.campaignDetails?.logo && props.campaignDetails?.logo
       ? helper.CampaignAdminLogoPath + props.campaignDetails?.logo
       : profile;
@@ -101,7 +101,7 @@ const Product = (props) => {
   //   date,
   //   theme_color,
   //   category,
-  //   organisation,
+  //   organization,
   // } = props;
 
   const { added_to_cart } = state;
@@ -212,7 +212,7 @@ const Product = (props) => {
         <div className="product__right position-relative d-flex flex-column align-items-center pt-12p">
           <div className="d-flex me-1 justify-content-end product__org">
             <Link to={'/organization/' + props.campaignDetails?.slug} className="">
-              <img alt="" className="img-fluid org__img charity_avatar_bg" src={organisation} />
+              <img alt="" className="img-fluid org__img charity_avatar_bg" src={organization} />
             </Link>
           </div>
           {address && (
@@ -382,7 +382,7 @@ const Product = (props) => {
     //     <div className="product__right position-relative d-flex flex-column align-items-center pt-12p pb-2">
     //       <div className="product__org">
     //         <Link to={'/organization/' + props.campaignDetails?.slug} className="">
-    //           <img alt="" className="img-fluid org__img charity_avatar_bg" src={organisation} />
+    //           <img alt="" className="img-fluid org__img charity_avatar_bg" src={organization} />
     //         </Link>
     //       </div>
     //       {address && (

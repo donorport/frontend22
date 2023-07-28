@@ -13,21 +13,21 @@ import RoundedIcon from '../../atoms/rounded-icon';
 // import TagTitle from '../../atoms/tag-title';
 //import IconButton from '../../molecules/icon-button';
 import ShareWidget from '../share-widget';
-import OrganisationWidget from '../organisation-widget';
+import OrganizationWidget from '../organization-widget';
 import helper, { convertAddress } from '../../../../../Common/Helper';
 import './style.scss';
 //import { GalleryImg } from '../../atoms';
 import verified from '../../../../../assets/images/verified.png';
 import ProjectCrowdfundingGallery from '../project-crowdfunding-gallery';
 
-function OrganisationDetailMain({
+function OrganizationDetailMain({
   checkItemInCart,
   addToCart,
   organizationDetails,
   isFollow,
   followToOrganization
 }) {
-  console.log('iFrame, OrganisationDetailMain');
+  console.log('iFrame, OrganizationDetailMain');
 
   /*let videoid = organizationDetails.promoVideo
     ? organizationDetails.promoVideo.split('?v=')[1]
@@ -230,7 +230,7 @@ function OrganisationDetailMain({
         </div>
       </div>
 
-      <OrganisationWidget
+      <OrganizationWidget
         tagTitle="Organization"
         productDetails={organizationDetails?.productsDetails}
         addToCart={addToCart}
@@ -241,7 +241,7 @@ function OrganisationDetailMain({
   );
 }
 
-OrganisationDetailMain.propTypes = {
+OrganizationDetailMain.propTypes = {
   organizationDetails: PropTypes.object.isRequired,
   followToOrganization: PropTypes.func.isRequired,
   addToCart: PropTypes.func.isRequired,
@@ -249,8 +249,8 @@ OrganisationDetailMain.propTypes = {
   isFollow: PropTypes.bool
 };
 
-OrganisationDetailMain.defaultProps = {
+OrganizationDetailMain.defaultProps = {
   isFollow: false
 };
 
-export default OrganisationDetailMain;
+export default OrganizationDetailMain;

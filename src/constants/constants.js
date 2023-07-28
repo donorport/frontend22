@@ -11,3 +11,7 @@ export const calculateGrandTotal = (val, platformCost) =>
 
 export const calculateSubtotal = (amount) =>
   Number((amount - PLATFORM_COST.BASE) / (1 + PLATFORM_COST.PERCENT)).toFixed(2);
+
+export const DONATION_XP_PER_DOLLAR = 10;
+
+export const VALID_IMAGE_EXTENSIONS = ['jpg', 'png', 'jpeg'];

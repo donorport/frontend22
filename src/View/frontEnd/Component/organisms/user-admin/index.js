@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import OrganisationTeamItem from '../../molecules/org-team-item';
+import OrganizationTeamItem from '../../molecules/org-team-item';
 import helper, { getCookie, setCookie, deleteCookie } from '../../../../../Common/Helper';
 import React, { useState, useEffect } from 'react';
 import './style.scss';
@@ -220,7 +220,8 @@ const UserAdmin = () => {
                   teamMemberList.map((member, i) => {
                     // console.log(member)
                     return (
-                      <OrganisationTeamItem
+                      <OrganizationTeamItem
+                        key={i}
                         showEmail={true}
                         member={member}
                         isCurrent={member.typeId === currentId}
@@ -234,7 +235,7 @@ const UserAdmin = () => {
                       />
                     );
                   })}
-                {/* <OrganisationTeamItem
+                {/* <OrganizationTeamItem
               showEmail={true}
               rightElement={
                 <FontAwesomeIcon
@@ -243,7 +244,7 @@ const UserAdmin = () => {
                 />
               }
             />
-            <OrganisationTeamItem
+            <OrganizationTeamItem
               showEmail={true}
               rightElement={
                 <div className="d-flex aling-items-center">

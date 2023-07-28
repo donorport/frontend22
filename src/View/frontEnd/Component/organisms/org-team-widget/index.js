@@ -5,32 +5,30 @@ import WidgetTitle from "../../atoms/widget-title"
 
 import TagTitle from "../../atoms/tag-title"
 
-import OrganisationTeamItem from "../../molecules/org-team-item";
-
 import "./style.scss";
 
-function OrganisationTeamWidget(props) {
+function OrganizationTeamWidget(props) {
   return (
     <>
-      {/* <TagTitle>Organisation</TagTitle>
+      {/* <TagTitle>Organization</TagTitle>
       <WidgetTitle>Team</WidgetTitle>
       
       <ul className="list-unstyled mb-0 mt-12p">
-        <OrganisationTeamItem />
-        <OrganisationTeamItem />
+        <OrganizationTeamItem />
+        <OrganizationTeamItem />
       </ul> */}
 
-      <TagTitle>{props.tagTitle ? props.tagTitle : "Organisation"}</TagTitle>
+      <TagTitle>{props.tagTitle ? props.tagTitle : "Organization"}</TagTitle>
       <WidgetTitle href="/log">
         {props.title ? props.title : "Team"}
       </WidgetTitle>
 
       <ul className="list-unstyled mb-0 mt-12p">
-        {/* <OrganisationTeamItem showEmail={props.showEmail} showContact={props.showContact}/>
-        <OrganisationTeamItem showEmail={props.showEmail} showContact={props.showContact} /> */}
+        {/* <OrganizationTeamItem showEmail={props.showEmail} showContact={props.showContact}/>
+        <OrganizationTeamItem showEmail={props.showEmail} showContact={props.showContact} /> */}
       </ul>
     </>
   );
 }
 
-export default OrganisationTeamWidget;
+export default OrganizationTeamWidget;

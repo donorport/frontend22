@@ -5,17 +5,18 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Footer from '../Component/organisms/footer';
-import OrganisationDetailMain from '../Component/organisms/organisation-detail-main';
+import OrganizationDetailMain from '../Component/organisms/organization-detail-main';
 import History from '../Component/organisms/history';
 import SuggestionWrapper from '../Component/molecules/suggestion-wrapper';
 import SuggestedList from '../Component/organisms/suggested-list';
-import OrganisationProjectsWidget from '../Component/organisms/org-projects-widget';
+import OrganizationCrowdfundingProjectsWidget from '../Component/organisms/org-crowdfunding-projects-widget';
 import DonateModal from '../Component/molecules/donate-modal';
 import HeaderController from '../../../Controller/frontEnd/HeaderController';
 
+
 import './style.scss';
 
-const OrganisationDetail = (props) => {
+const OrganizationDetail = (props) => {
   const user = useSelector((state) => state.user);
   let organizationDetails = props.organizationDetails;
   let projectList = props.projectList;
@@ -74,7 +75,7 @@ const OrganisationDetail = (props) => {
       <Container fluid className="pt-3 pt-sm-5">
         <Row>
           <Col md="7">
-            <OrganisationDetailMain
+            <OrganizationDetailMain
               followToOrganization={props.followToOrganization}
               organizationDetails={organizationDetails}
               addToCart={props.addToCart}
@@ -90,7 +91,7 @@ const OrganisationDetail = (props) => {
       <Container fluid>
         <Row className="py-5">
           <Col md="6" className="mb-4 mb-0" style={{ maxWidth: '545px' }}>
-            <OrganisationProjectsWidget
+            <OrganizationCrowdfundingProjectsWidget
               projectList={projectList}
               organizationDetails={organizationDetails}
             />
@@ -103,7 +104,7 @@ const OrganisationDetail = (props) => {
   );
 };
 
-OrganisationDetail.propTypes = {
+OrganizationDetail.propTypes = {
   organizationDetails: PropTypes.object.isRequired,
   stateData: PropTypes.object.isRequired,
   changevalue: PropTypes.func.isRequired,
@@ -122,7 +123,7 @@ OrganisationDetail.propTypes = {
   donationList: PropTypes.arrayOf(PropTypes.object)
 };
 
-OrganisationDetail.defaultProps = {
+OrganizationDetail.defaultProps = {
   cardNumberWithSpace: '',
   dCardIcon: '',
   selectedValue: 25,
@@ -131,4 +132,4 @@ OrganisationDetail.defaultProps = {
   organizationList: []
 };
 
-export default OrganisationDetail;
+export default OrganizationDetail;

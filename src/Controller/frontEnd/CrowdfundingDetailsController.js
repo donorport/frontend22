@@ -1,10 +1,5 @@
-//import Index from '../../View/frontEnd/Layout/Home/Index';
-//import productApi from '../../Api/admin/product';
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-//import FrontLoader from '../../Common/FrontLoader';
-//import OrganisationDetail from '../../View/frontEnd/organisation-detail';
-//import organizationApi from '../../Api/frontEnd/organization';
 import CrowdfundingDetail from '../../View/frontEnd/crowdfunding-detail';
 import crowdfundingApi from '../../Api/frontEnd/crowdfunding';
 import cartApi from '../../Api/frontEnd/cart';
@@ -13,7 +8,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { validateAll } from 'indicative/validator';
 import { setUserXp } from '../../user/user.action';
 import helper, { GetCardTypeByNumber, getCardIcon } from '../../Common/Helper';
-//import userApi from '../../Api/frontEnd/user';
 import followApi from '../../Api/frontEnd/follow';
 import Page from '../../components/Page';
 import {

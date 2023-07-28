@@ -15,7 +15,7 @@ import { setIsUpdateCart } from '../../../../../user/user.action';
 import './style.scss';
 import { Link } from 'react-router-dom';
 
-function OrganisationItem(props) {
+function OrganizationItem(props) {
   let product = props.product;
   let productId = props.tagTitle === 'Project' ? product?.itemDetails?._id : product?._id;
   let productPrice =
@@ -197,4 +197,4 @@ function OrganisationItem(props) {
   );
 }
 
-export default OrganisationItem;
+export default OrganizationItem;

@@ -1,8 +1,5 @@
-//import Index from "../../View/frontEnd/Layout/Home/Index";
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-//import FrontLoader from "../../Common/FrontLoader";
-//import OrganisationDetail from "../../View/frontEnd/organisation-detail";
 import organizationApi from '../../Api/frontEnd/organization';
 import AdminDetail from '../../View/frontEnd/admin-detail/index';
 import productApi from '../../Api/frontEnd/product';

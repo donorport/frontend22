@@ -10,7 +10,7 @@ import TagTitle from '../../atoms/tag-title';
 
 import ToggleSwitch from '../../atoms/toggle-switch';
 
-import OrganisationItem from '../../molecules/org-item';
+import OrganizationItem from '../../molecules/org-item';
 import './style.scss';
 import //helper, 
 { 
@@ -22,7 +22,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setIsUpdateCart } from '../../../../../user/user.action';
 import { useNavigate } from 'react-router-dom';
 
-function OrganisationWidget(props) {
+function OrganizationWidget(props) {
   const [check, setCheck] = useState(false);
   const [loadMore, setLoadMore] = useState(false);
   const [price, setPrice] = useState();
@@ -515,7 +515,7 @@ function OrganisationWidget(props) {
             </div>
             <Button
               variant="outline-primary"
-              className="organisation__cart-btn"
+              className="organization__cart-btn"
               style={{ border: '2px solid' }}
               onClick={() => onClickAddToCart()}
             >
@@ -530,7 +530,7 @@ function OrganisationWidget(props) {
             {allProducts?.length > 0 ? (
               allProducts.slice(0, loadMore ? allProducts.length : 3).map((product, i) => {
                 return (
-                  <OrganisationItem
+                  <OrganizationItem
                     product={product}
                     productPrice={productPrice}
                     setproductPrice={setproductPrice}
@@ -547,8 +547,6 @@ function OrganisationWidget(props) {
                 There are no tax eligible products posted for {organizationName}
               </p>
             )}
-            {/* <OrganisationItem />
-        <OrganisationItem /> */}
           </ul>
           {!loadMore && allProducts?.length > 3 && (
             <div className="more__log">
@@ -569,4 +567,4 @@ function OrganisationWidget(props) {
   );
 }
 
-export default OrganisationWidget;
+export default OrganizationWidget;

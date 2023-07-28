@@ -6,7 +6,7 @@ import moment from 'moment';
 import AvatarImg from '../../../../../assets/images/avatar.png';
 // import ListItemImg from '../../atoms/list-item-img';
 
-function OrganisationTeamItem(props) {
+function OrganizationTeamItem(props) {
   const member = props.member;
 
   let image =
@@ -100,4 +100,4 @@ function OrganisationTeamItem(props) {
   );
 }
 
-export default OrganisationTeamItem;
+export default OrganizationTeamItem;
