@@ -440,6 +440,9 @@ export function countInArray(array, what) {
   return array.filter((item) => item === what).length;
 }
 
+// Assuming Country and State classes have appropriate methods to retrieve data
+
+// Function to convert an address into a standardized format of "city, stateCode"
 export function convertAddress(address) {
   if (!address) {
     throw new Error('Address is undefined');
@@ -489,6 +492,7 @@ export function convertAddress(address) {
   }
 }
 
+// NOT USED ANYMORE
 // export function convertState(e) {
 //   try {
 //     const countryName = Country.getAllCountries().filter((e) => e.name);

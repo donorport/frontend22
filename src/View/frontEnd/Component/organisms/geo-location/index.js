@@ -91,8 +91,7 @@ const GeoLocation = (props) => {
     }
   }, [hidden]);
 
-  const ToggleButton = React.forwardRef(({ children, onClick }, ref) => {
-    return (
+  const ToggleButton = React.forwardRef(({ children, onClick }, ref) => (
       <Button
         ref={ref}
         variant="link"
@@ -104,8 +103,8 @@ const GeoLocation = (props) => {
       >
         {children}
       </Button>
-    );
-  });
+    )
+  );
 
   const toggleState = () => {
     dispatch(setMapLock(!locked));
@@ -113,9 +112,10 @@ const GeoLocation = (props) => {
   };
 
   const sugg = (result, lat, lng) => {
-    let locationData = {};
-    locationData.lat = lat;
-    locationData.lng = lng;
+    const locationData = {
+			lat: lat,
+			lng: lng,
+		};
     dispatch(setLatLong(locationData));
   };
 
@@ -126,7 +126,7 @@ const GeoLocation = (props) => {
     }
   }, [user]);
 
-  useEffect(() => {
+	const updateDistance = () => {
     if (user?.distance === '') {
       if (objectVal?.includes('© Mapbox ')) {
         const after_ = objectVal?.substring(objectVal.indexOf('map') + 3);
@@ -135,24 +135,29 @@ const GeoLocation = (props) => {
         dispatch(setDistance(objectVal));
       }
     }
+	}
 
+	const updateUnlockedDistance = () => {
     if (!user.isMapLocked) {
       dispatch(setLocationFilter('false'));
       if (objectVal?.includes('© Mapbox ')) {
         const after_ = objectVal?.substring(objectVal.indexOf('map') + 3);
         dispatch(setDistance(after_));
-      } else {
-        if (objectVal?.trim() !== '0 m') {
-          dispatch(setDistance(objectVal));
-        }
-      }
+      } else if (objectVal?.trim() !== '0 m') {
+				dispatch(setDistance(objectVal));
+			}
     }
+	}
+
+  useEffect(() => {
+		updateDistance();
+		updateUnlockedDistance();
   }, [dispatch, objectVal, user.distance, user.isMapLocked]);
 
-  const onUpdateResults = () => {
-    dispatch(setLocationFilter('true'));
-    setHidden(false);
-  };
+  // const onUpdateResults = () => {
+  //   dispatch(setLocationFilter('true'));
+  //   setHidden(false);
+  // };
 
   return (
     <>
@@ -221,7 +226,7 @@ const GeoLocation = (props) => {
                   zoom={[zoomLevel]}
                   center={[user.lng, user.lat]}
                   // This manages the update results and displaying the scale level for zoom in KM:
-                  onRender={(e) => setObjectVal(e.boxZoom._container.outerText)}
+                  // onRender={(e) => setObjectVal(e.boxZoom._container.outerText)}
                   onMove={(event) => {
                     setViewState(event.viewState);
                   }}
@@ -341,12 +346,12 @@ const GeoLocation = (props) => {
               />
             </div>
 
-            <div className="d-grid gap-2 p-2">
+            {/* <div className="d-grid gap-2 p-2">
               <Button className="toggle__btn" variant="success" onClick={onUpdateResults}>
                 Update Results{' '}
                 {user.locationProductCount > 0 ? ' ( ' + user.locationProductCount + ' ) ' : ''}
               </Button>
-            </div>
+            </div> */}
           </div>
         </Dropdown.Menu>
       </Dropdown>

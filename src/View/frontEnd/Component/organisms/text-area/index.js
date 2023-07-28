@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function Textarea({
   value = '',
@@ -12,8 +12,6 @@ function Textarea({
   placeholder,
   error
 }) {
-  const [textValue, setTextValue] = useState(value);
-
   return (
     <>
       <div className="input__wrap d-flex flex-column">
@@ -22,23 +20,19 @@ function Textarea({
             className={error && error[name] ? 'inputerror' : ''}
             name={name}
             id={id}
-            value={textValue}
+            value={value} // Use the 'value' prop directly
             title={title}
             rows={rows}
             maxLength={maxLength}
             placeholder={placeholder}
-            onChange={(e) => {
-              setTextValue(e.target.value);
-              onChange(e);
-            }}
+            onChange={onChange} // use the parent's change handler, which takes the Event
           />
-          {/* <span className="input__span">Employer Identification Number (EIN)</span> */}
           <span className="input__span">{title}</span>
         </label>
         {maxLength && (
           <div className="d-flex fs-7 mt-2">
             <span>
-              {textValue.length}/{maxInput}
+              {value.length}/{maxInput}
             </span>
             <span className="ms-1">characters</span>
           </div>
@@ -47,4 +41,5 @@ function Textarea({
     </>
   );
 }
+
 export default Textarea;
