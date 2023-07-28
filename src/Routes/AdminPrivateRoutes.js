@@ -23,6 +23,7 @@ import SettingController from '../Controller/admin/SettingController';
 import Currency from '../View/admin/Setting/Currency';
 // import HomePage from '../View/frontEnd/Layout/Home/HomePage';
 import ProjectController from '../Controller/admin/ProjectController';
+import CrowdfundingController from '../Controller/admin/CrowdfundingController';
 import Rank from '../View/admin/Setting/Rank';
 import Xp from '../View/admin/Setting/Xp';
 import Plans from '../View/admin/Setting/Plans';
@@ -81,6 +82,7 @@ export default function AdminPrivateRoutes() {
           <Route exact path="/admin/category/subcategory/:id" element={<SubCategoryController />} />
           <Route exact path="/admin/products" element={<ProductController />} />
           <Route exact path="/admin/projects" element={<ProjectController />} />
+          <Route exact path="/admin/crowdfundings" element={<CrowdfundingController />} />
           <Route exact path="/admin/profile" element={<ProfileController />} />
           <Route exact path="/admin/setting" element={<SettingController />} />
           <Route exact path="/admin/setting/currency" element={<Currency />} />

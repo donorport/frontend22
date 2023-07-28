@@ -104,8 +104,10 @@ const AdminProjects = () => {
   useEffect(() => {
     (async () => {
       setLoading(true);
-      await getProductList();
-      await getProjectList(pageNo, sortField, order, listBy);
+      await Promise.allSettled([
+        getProductList(),
+        getProjectList(pageNo, sortField, order, listBy)
+      ]);
       setLoading(false);
       // console.log(location?.state?.type)
     })();
@@ -181,7 +183,6 @@ const AdminProjects = () => {
       // setTempImages(tempArry)
     }
   };
-
 
   const onSelectProduct = (e) => {
     if (e.target.checked) {
@@ -276,14 +277,14 @@ const AdminProjects = () => {
           if (!addProject) {
             //setLoading(false);
             ToastAlert({ msg: 'Project not saved', msgType: 'error' });
-            return 
+            return;
           }
 
           if (addProject.data.success === false) {
             //setLoading(false);
             ToastAlert({ msg: addProject.data.message, msgType: 'error' });
             return;
-          } 
+          }
 
           if (addProject.data.success === true) {
             resetForm();
@@ -296,7 +297,7 @@ const AdminProjects = () => {
         }
       })
       .catch((errors) => {
-        console.log('~~ VALIDATION ERRORS!', {errors});
+        console.log('~~ VALIDATION ERRORS!', { errors });
         // console.log(errors)
         // const formaerrror = {};
         if (errors.length) {
@@ -311,8 +312,9 @@ const AdminProjects = () => {
           ...state,
           error: formaerrror
         });
-      }).finally(() => {
-        setLoading( false );
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -350,7 +352,7 @@ const AdminProjects = () => {
               setLoading(false);
               ToastAlert({ msg: deleteProjectApi.data.message, msgType: 'error' });
               return;
-            } 
+            }
 
             if (deleteProjectApi.data.success === true) {
               setLoading(false);
@@ -466,6 +468,7 @@ const AdminProjects = () => {
     setOrder(sortOrder);
     await getProjectList(pageNo, accessor, sortOrder, listBy);
   };
+
   const removeTempImages = async (id) => {
     let imgs = [...tempImages];
     imgs.splice(id, 1);
@@ -492,9 +495,9 @@ const AdminProjects = () => {
     setLoading(false);
   };
 
-  const onChangeDropDown = async (e) => {
+  const onChangeDropDown =  (e) => {
     setListBy(e);
-    await getProjectList(pageNo, sortField, order, e);
+    return getProjectList(pageNo, sortField, order, e);
   };
 
   return (

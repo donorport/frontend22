@@ -98,15 +98,13 @@ function FooterCategoryLinks({ categoryName, list, ...otherProps }) {
       {sharedProps.categoryName === 'Marketplace' && (
         <ul className="list-unstyled footer__links">
           {sharedProps.list.length > 0 &&
-            sharedProps.list.map((l) => {
-              return (
-                <li className="footer__link-item">
-                  <a href={'/categories/' + l.slug} className="footer__link">
-                    {l.name}
-                  </a>
-                </li>
-              );
-            })}
+            sharedProps.list.map((l) => (
+              <li className="footer__link-item" key={l.name}>
+                <a href={'/categories/' + l.slug} className="footer__link">
+                  {l.name}
+                </a>
+              </li>
+            ))}
           {/* <li className="footer__link-item">
             <Link to="/trust" className="footer__link">
               Trust &amp; Safety

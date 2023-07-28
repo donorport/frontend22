@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Input = ({ value = '', onChange, title, name, maxLength, maxInput, placeholder, error }) => {
-  const [textValue, setTextValue] = useState(value);
+  // const [textValue, setTextValue] = useState(value);
 
   return (
     <>
@@ -10,14 +10,16 @@ const Input = ({ value = '', onChange, title, name, maxLength, maxInput, placeho
           <input
             className={error && error[name] ? 'inputerror' : ''}
             name={name}
-            value={textValue}
+            // value={textValue}
+            value={value}
             title={title}
             maxLength={maxLength}
             placeholder={placeholder}
-            onChange={(e) => {
-              setTextValue(e.target.value);
-              onChange(e);
-            }}
+            // onChange={(e) => {
+            //   setTextValue(e.target.value);
+            //   onChange(e);
+            // }}
+            onChange={onChange}
           />
           <span className="input__span">{title}</span>
         </label>
@@ -25,7 +27,7 @@ const Input = ({ value = '', onChange, title, name, maxLength, maxInput, placeho
         {maxLength && (
           <div className="d-flex fs-7 mt-2">
             <span>
-              {textValue.length}/{maxInput}
+              {value.length}/{maxInput}
             </span>
             <span className="ms-1">characters</span>
           </div>

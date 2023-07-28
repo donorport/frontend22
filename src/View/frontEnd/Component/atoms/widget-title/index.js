@@ -1,14 +1,14 @@
 import "./style.scss";
 
-const WidgetTitle = (props) => {
+const WidgetTitle = ({href, children}) => {
   return (
     <div className="project__detail-subtitle fw-bold">
-      {props.href ? (
+      {href ? (
         <div className="text-decoration-none">
-          {props.children}
+          {children}
         </div>
       ) : (
-        props.children
+        children
       )}
     </div>
   );

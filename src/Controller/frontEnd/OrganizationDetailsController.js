@@ -14,7 +14,7 @@ import { setUserXp } from '../../user/user.action';
 import helper, { GetCardTypeByNumber, getCardIcon } from '../../Common/Helper';
 import followApi from '../../Api/frontEnd/follow';
 import Page from '../../components/Page';
-import { calculatePlatformCost, calculateGrandTotal } from '../../constants/constants';
+import { calculatePlatformCost, calculateGrandTotal, DONATION_XP_PER_DOLLAR } from '../../constants/constants';
 
 
 const DONATE_VALIDATION_RULES = {
@@ -231,7 +231,7 @@ export default function OrganizationDetailsController() {
           data.organizationName = organizationDetails.name;
           data.organizationCountryId = organizationDetails.country_id;
           data.serviceCharge = platformCost;
-          data.xpToAdd = selectedValue * 10;
+          data.xpToAdd = selectedValue * DONATION_XP_PER_DOLLAR;
 
           const donateToOrganization = await organizationApi.donate(userAuthToken, data);
 

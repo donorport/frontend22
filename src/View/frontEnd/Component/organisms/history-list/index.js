@@ -167,17 +167,17 @@ const HistoryList = ({
       <div className="d-flex gap-2 fw-semibold py-3">
         <span>
           {' '}
-          <img className="me-1" style={{ height: '16px' }} src={coin}></img>
+          <img alt="" className="me-1" style={{ height: '16px' }} src={coin}></img>
           Organization Donation
         </span>
         <span>
           {' '}
-          <img className="me-1" style={{ height: '16px' }} src={coin2}></img>
+          <img alt="" className="me-1" style={{ height: '16px' }} src={coin2}></img>
           Project Donation
         </span>
         <span>
           {' '}
-          <img className="me-1" style={{ height: '16px' }} src={bag}></img>
+          <img alt="" className="me-1" style={{ height: '16px' }} src={bag}></img>
           Product Donation(s)
         </span>
       </div>
@@ -403,7 +403,7 @@ const DonationListItem = ({ donation, activeList }) => {
             <div className="d-flex align-items-center">
               <div className="d-flex flex-grow-1">
                 <span className="d-flex align-items-center rounded-3">
-                  <img className="me-1" style={{ height: '16px' }} src={coin}></img>
+                  <img alt="" className="me-1" style={{ height: '16px' }} src={coin}></img>
                   <span className="fw-bold fs-4">
                     {donation.currencySymbol ? donation.currencySymbol : '$'}
                     {priceFormat(Number(grandTotal))}
@@ -465,7 +465,7 @@ const DonationListItem = ({ donation, activeList }) => {
             <div className="d-flex align-items-center">
               <div className="d-flex flex-grow-1">
                 <span className="d-flex align-items-center rounded-3">
-                  <img className="me-1" style={{ height: '16px' }} src={coin2}></img>
+                  <img alt="" className="me-1" style={{ height: '16px' }} src={coin2}></img>
                   <span className="fw-bold fs-4">
                     {donation.currencySymbol ? donation.currencySymbol : '$'}
                     {priceFormat(Number(grandTotal))}

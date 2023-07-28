@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { regular, solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { regular, solid, light } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 const DashboardIcon = ({ active }) => {
   const icon = active ? (
@@ -55,4 +55,14 @@ const SettingsIcon = ({ active }) => {
   return icon;
 };
 
-export {DashboardIcon, PostsIcon, ActivityIcon, ProjectIcon, TaxIcon, SettingsIcon};
+//possible icons: people-roof, people-line, people-group, users
+const CrowdfundingIcon = ({ active }) => {
+  const icon = active ? (
+    <FontAwesomeIcon icon={solid("users")} />
+  ) : (
+    <FontAwesomeIcon icon={light("users")} />
+  );
+  return icon;
+};
+
+export {DashboardIcon, PostsIcon, ActivityIcon, ProjectIcon, TaxIcon, SettingsIcon, CrowdfundingIcon};

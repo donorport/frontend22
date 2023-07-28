@@ -5,8 +5,7 @@ function adminCampaign() {
   //---------------LiST CAMPAIGN ADMIN----------------------
 
   const list = async (authToken, data = []) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}campaign_admin/list`,
       responseType: 'json',
@@ -19,10 +18,7 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   //---------------ADD CAMPAIGN ADMIN----------------------
@@ -49,8 +45,7 @@ function adminCampaign() {
     data.append('promoVideo', cdata.promoVideo);
     data.append('ein', cdata.ein);
 
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}campaign_admin`,
       ContentType: 'application/json',
@@ -58,10 +53,7 @@ function adminCampaign() {
         'x-access-token': authToken
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   //---------------UPDATE CAMPAIGN ADMIN----------------------
@@ -97,8 +89,7 @@ function adminCampaign() {
 
     data.append('ein', cdata.ein);
 
-    let res = {};
-    await axios({
+    return axios({
       method: 'put',
       url: `${helper.ApiUrl}campaign_admin/${id}`,
       responseType: 'json',
@@ -111,17 +102,13 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   //---------------DELETE CAMPAIGN ADMIN----------------------
 
   const deleteCampaignAdmin = async (authToken, id) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'delete',
       url: `${helper.ApiUrl}campaign_admin/${id}`,
       responseType: 'json',
@@ -133,17 +120,13 @@ function adminCampaign() {
         withCredentials: true,
         mode: 'no-cors'
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   //---------------APPLY CAMPAIGN ADMIN----------------------
 
   const applyCampaignAdmin = async (data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'Post',
       url: `${helper.ApiUrl}campaign_admin/apply_cmapaign_admin`,
       responseType: 'json',
@@ -155,17 +138,13 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   //---------------VERIFY CAMPAIGN ADMIN----------------------
 
   const VerifyOtpCampaignAdmin = async (data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'Post',
       url: `${helper.ApiUrl}campaign_admin/verifyOtp`,
       responseType: 'json',
@@ -177,17 +156,13 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   //---------------COUNTRY LIST----------------------
 
   const countryList = async (authToken) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'get',
       url: `${helper.ApiUrl}country`,
       responseType: 'json',
@@ -199,17 +174,13 @@ function adminCampaign() {
         withCredentials: true,
         mode: 'no-cors'
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   //---------------STATE LIST BY COUNTRY----------------------
 
   const stateListByCountry = async (authToken, countryId) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}state/list`,
       responseType: 'json',
@@ -224,16 +195,12 @@ function adminCampaign() {
       data: {
         countryId: countryId
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
   //---------------CITY LIST BY STATE----------------------
 
   const cityListByState = async (authToken, stateId) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}city/list`,
       responseType: 'json',
@@ -248,16 +215,12 @@ function adminCampaign() {
       data: {
         stateId: stateId
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   //---------------GET LOGGEDIN CAMPAIGN DETAILS----------------------
   const getCampaignDetails = async (authToken) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'get',
       url: `${helper.ApiUrl}campaign_admin/details`,
       responseType: 'json',
@@ -269,15 +232,11 @@ function adminCampaign() {
         withCredentials: true,
         mode: 'no-cors'
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const getCampaignDetailsBySlug = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}campaign_admin/details/slug`,
       responseType: 'json',
@@ -290,12 +249,10 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
+  // --------------- SAVE CAMPAIGN Profile | CMS ---------------
   const saveCampaignDetails = async (authToken, cdata) => {
     const data = new FormData();
     if (cdata.logo) {
@@ -338,8 +295,7 @@ function adminCampaign() {
     // data.append('address', cdata.address);
     // data.append('category_id', cdata.category_id);
 
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}campaign_admin/details`,
       responseType: 'json',
@@ -353,15 +309,11 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const updatePassword = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}campaign_admin/updatePassword`,
       responseType: 'json',
@@ -374,10 +326,7 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const addBankAccount = async (authToken, fromdata) => {
@@ -411,8 +360,7 @@ function adminCampaign() {
     data.append('countryId', fromdata.countryId);
     data.append('currency', fromdata.currency);
 
-    let res = {};
-    await axios({
+    return axios({
       method: 'Post',
       url: `${helper.ApiUrl}bank_account`,
       responseType: 'json',
@@ -425,20 +373,12 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    })
-      .then((response) => {
-        res = response;
-      })
-      .catch((err) => {
-        res = err;
-      });
-    return res;
+    });
   };
 
   //---------------LIST BANK ACCOUNTS----------------------
   const listBankAccount = async (authToken) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'get',
       url: `${helper.ApiUrl}bank_account`,
       responseType: 'json',
@@ -450,17 +390,13 @@ function adminCampaign() {
         withCredentials: true,
         mode: 'no-cors'
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   //---------------DELETE BANK ACCOUNT----------------------
 
   const deleteBankAccount = async (authToken, id) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'delete',
       url: `${helper.ApiUrl}bank_account/${id}`,
       responseType: 'json',
@@ -472,15 +408,11 @@ function adminCampaign() {
         withCredentials: true,
         mode: 'no-cors'
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const activityList = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}campaign_admin/activity`,
       responseType: 'json',
@@ -493,14 +425,11 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
+
   const payToCampaignAdmin = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'Post',
       url: `${helper.ApiUrl}campaign_admin/payout`,
       responseType: 'json',
@@ -513,14 +442,11 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
+
   const CampaignAdminPayHistory = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'Post',
       url: `${helper.ApiUrl}campaign_admin/payout/list`,
       responseType: 'json',
@@ -533,15 +459,11 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const updateSalesTax = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}campaign_admin/salesTax`,
       responseType: 'json',
@@ -554,15 +476,11 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const chekConnectAccount = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}bank_account/check`,
       responseType: 'json',
@@ -575,14 +493,11 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
+
   const createExpressAccount = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}bank_account/express`,
       responseType: 'json',
@@ -595,15 +510,11 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const makeAccountPrimary = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}bank_account/primary`,
       responseType: 'json',
@@ -616,14 +527,11 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
+
   const getPrimaryBankAccount = async (authToken) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'get',
       url: `${helper.ApiUrl}bank_account/primary`,
       responseType: 'json',
@@ -635,14 +543,11 @@ function adminCampaign() {
         withCredentials: true,
         mode: 'no-cors'
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
+
   const chekOrganizationAccount = async (authToken) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'get',
       url: `${helper.ApiUrl}bank_account/check/organization`,
       responseType: 'json',
@@ -654,15 +559,11 @@ function adminCampaign() {
         withCredentials: true,
         mode: 'no-cors'
       }
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
 
   const addAccountDetails = async (authToken, data) => {
-    let res = {};
-    await axios({
+    return axios({
       method: 'post',
       url: `${helper.ApiUrl}bank_account/details`,
       responseType: 'json',
@@ -675,11 +576,9 @@ function adminCampaign() {
         mode: 'no-cors'
       },
       data: data
-    }).then((response) => {
-      res = response;
     });
-    return res;
   };
+
   return {
     list,
     add,

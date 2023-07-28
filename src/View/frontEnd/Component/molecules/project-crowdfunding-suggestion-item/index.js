@@ -1,17 +1,15 @@
-
 import { Link } from "react-router-dom";
 import "./style.scss";
 import helper from "../../../../../Common/Helper";
 
-function ProjectSuggestionItem(props) {
-  let project = props.project
-  // console.log(project)
-  // console.log(project.imageDetails[0].image)
-  let imgUrl = project.imageDetails.length > 0 ? helper.ProjectImagePath + project.imageDetails[0].image :""
-  // console.log(imgUrl)
+function ProjectCrowdfundingSuggestionItem(props) {
+  const type = props.type ?? 'project'; // 'crowdfunding'
+  const imagePath = helper[`${type[0].toUpperCase() + type.slice(1)}ImagePath`];
+  let item = props.item;
+  let imgUrl = item.imageDetails.length > 0 ? imagePath + item.imageDetails[0].image :""
 
   return (
-    <Link to={"/project/" + project.slug}>
+    <Link to={`/${type}/` + item.slug}>
       <li className={`project__suggestion__item pt-12p pb-12p d-sm-flex align-items-center ${props.className}`}>
         <div className="d-flex align-items-center flex-grow-1">
           <div
@@ -32,8 +30,7 @@ function ProjectSuggestionItem(props) {
         </div>
       </li>
     </Link >
-
   );
 }
 
-export default ProjectSuggestionItem;
+export default ProjectCrowdfundingSuggestionItem;

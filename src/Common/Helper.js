@@ -27,20 +27,23 @@ let helper = {
   ProjectImagePath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/project/resize/',
   ProjectFullImagePath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/project/',
 
+  CrowdfundingImagePath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/crowdfunding/resize/',
+  CrowdfundingFullImagePath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/crowdfunding/',
+
   CampaignProductFullImagePath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/product/',
   DonorImagePath: AWS_S3_BUCKET_BASE_URL + 'images/donor/',
   DonorImageResizePath: AWS_S3_BUCKET_BASE_URL + 'images/donor/resize/',
   GoogleKey: 'AIzaSyD4CXzRpf7L9sFFJDIFzgSeoFOESqXaAuE',
   sponsorLogoPath: AWS_S3_BUCKET_BASE_URL + 'images/sponsor/logo/',
   sponsorLogoResizePath: AWS_S3_BUCKET_BASE_URL + 'images/sponsor/logo/resize/',
-  fullRecieptPath:	AWS_S3_BUCKET_BASE_URL + "images/campaign/product/fulfil/receipt/",
+  fullRecieptPath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/product/fulfil/receipt/',
 
   recieptPath: AWS_S3_BUCKET_BASE_URL + 'images/donor/receipt/',
   websitePath:
     window.location.hostname === 'localhost'
       ? 'http://localhost:3000'
       : 'https://www.donorport.com',
-  apiPath: "https://api.donorport.com",
+  apiPath: 'https://api.donorport.com',
   FulfilRecieptPath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/product/fulfil/receipt/',
 
   MapBoxPrimaryKey:
@@ -55,27 +58,20 @@ let helper = {
 export default helper;
 
 export function hasPermission(ROLE, MODULE) {
-  let RESPONCE;
   if (Permissions[ROLE]) {
-    RESPONCE = Permissions[ROLE].includes(MODULE);
-  } else {
-    RESPONCE = false;
+    return Permissions[ROLE].includes(MODULE);
   }
-  return RESPONCE;
+
+  return false;
 }
 
 export function ImageExist(url) {
-  // let img = new Image();
-  // img.src = url;
-  // return img.height !== 0 ? true : false;
-
   let http = new XMLHttpRequest();
 
   http.open('HEAD', url, false);
   http.send();
 
   return http.status !== 404;
-  // return true
 }
 
 export function priceFormat(m = 0) {
@@ -87,8 +83,8 @@ export function priceFormat(m = 0) {
 }
 
 export function getCookie(cname) {
-  let name = cname + '=';
-  let ca = document.cookie.split(';');
+  const name = cname + '=';
+  const ca = document.cookie.split(';');
   for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
     while (c.charAt(0) === ' ') {
@@ -104,7 +100,7 @@ export function getCookie(cname) {
 export function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-  let expires = 'expires=' + d.toUTCString();
+  const expires = 'expires=' + d.toUTCString();
   document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
 }
 
@@ -112,14 +108,11 @@ export function deleteCookie(name) {
   document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-export function encryptData(val) {
-  let newVal = val;
-  let ciphertext = CryptoJS.AES.encrypt(newVal, 'my-secret-key@123').toString();
-  return ciphertext;
-}
+export const encryptData = (val) => CryptoJS.AES.encrypt(val, 'my-secret-key@123').toString();
+
 export function decryptData(val) {
-  let bytes = CryptoJS.AES.decrypt(val, 'my-secret-key@123');
-  let decryptedData = bytes?.toString(CryptoJS.enc.Utf8);
+  const bytes = CryptoJS.AES.decrypt(val, 'my-secret-key@123');
+  const decryptedData = bytes?.toString(CryptoJS.enc.Utf8);
   // console.log(decryptedData)
   return decryptedData;
 }
@@ -142,190 +135,166 @@ export function decryptData(val) {
 //     return taxPrice;
 // }
 
+const getData_inner = (user, price) => {
+  // Get Fees(%) from Reducer
+  const { transactionFee, platformFee } = user;
+
+  //Calculate total charges (transactionFee + platformFee )
+  const totalCharge = Number(transactionFee) + Number(platformFee);
+
+  // Applying to Price
+  const taxPrice = Math.round(price + (totalCharge / 100) * price);
+  const convertdPrice = Math.round(taxPrice);
+  // if (!CampaignAdminAuthToken) {
+  //     convertdPrice = Math.round(user.pricePerCurrency * taxPrice)
+  // }
+  // console.log(user.pricePerCurrency)
+
+  return convertdPrice;
+};
+
+const priceWithoutTax = (price) => {
+  const taxPrice = Math.round(Number(price));
+  // const convertdPrice = Math.round(taxPrice);
+  // convertdPrice = Math.round(user.pricePerCurrency * taxPrice)
+  return taxPrice;
+};
+
+const priceWithTax_inner = (user, price) => {
+  const { transactionFee, platformFee } = user;
+
+  // Calculate total charges (transactionFee + platformFee )
+
+  let totalCharge = Number(transactionFee) + Number(platformFee);
+
+  // Applying to Price
+  let taxPrice = price + (totalCharge / 100) * price;
+  return taxPrice.toFixed(2);
+};
+
+const currencySymbol_inner = (user) => {
+  return user.currencySymbol || '$';
+};
+
+const calculateSalesTax_inner = (user, amount) => {
+  const salesTax = Number(user.salesTax);
+  // let taxAmount = Math.round((salesTax / 100) * amount)
+  let taxAmount = (salesTax / 100) * amount;
+
+  return taxAmount?.toFixed(2);
+};
+
+const getTaxValueOfPrice_inner = (user, amount) => {
+  const { transactionFee, platformFee } = user;
+
+  let totalCharge = Number(transactionFee) + Number(platformFee);
+
+  const salesTax = Number(totalCharge);
+  // let taxAmount = Math.round((salesTax / 100) * amount)
+  let taxAmount = (salesTax / 100) * amount;
+
+  return taxAmount.toFixed(2);
+};
+
+const getUserRank_inner = (setting, UserXp) => {
+  const CAPTAIN = setting?.captian !== '' ? Number(setting.captian) : 100000;
+  const ADMIRAL = setting?.admiral !== '' ? Number(setting.admiral) : 10000;
+  const PIRATE = setting?.pirate !== '' ? Number(setting.pirate) : 5000;
+  const NARWHAL = setting?.narwhal !== '' ? Number(setting.narwhal) : 2500;
+  const BELUGA = setting?.beluga !== '' ? Number(setting.beluga) : 1000;
+  const FISH = setting?.fish !== '' ? Number(setting.fish) : 500;
+
+  let props = null;
+
+  switch (true) {
+    // case UserXp < fish:
+    //   props = null;
+    //   break;
+
+    case UserXp >= FISH && UserXp < BELUGA:
+      props = {
+        bgColor: 'hsla(0, 96.46%, 76.14%, 1.00)',
+        icon:solid( 'fish'),
+        name: 'Fish'
+      };
+      break;
+
+    case UserXp >= BELUGA && UserXp < NARWHAL:
+      props = {
+        bgColor: '#78bafc',
+        icon:solid( 'whale'),
+        name: 'Beluga'
+      };
+      break;
+
+    case UserXp >= NARWHAL && UserXp < PIRATE:
+      props = {
+        bgColor: '#a278fc',
+        icon:solid( 'narwhal'),
+        name: 'Narwhal'
+      };
+      break;
+
+    case UserXp >= PIRATE && UserXp <= ADMIRAL:
+      props = {
+        bgColor: '#fc8c63',
+        icon:solid( 'swords'),
+        name: 'Pirate'
+      };
+      break;
+
+    case UserXp > ADMIRAL && UserXp < CAPTAIN:
+      props = {
+        bgColor: '#95dbb0',
+        icon:solid('ship'),
+        name: 'Admiral'
+      };
+      break;
+
+    case UserXp >= CAPTAIN:
+      props = {
+        bgColor: '#000',
+        icon: solid('anchor'),
+        name: 'Captain'
+      };
+      break;
+
+    default:
+      props = null;
+      break;
+  }
+
+  return props === null ? (
+    ''
+  ) : (
+    <IconButton
+      bgColor={props.bgColor}
+      className="rounded-pill rounded-pill--xp fs-9 fs-sm-7"
+      icon={<FontAwesomeIcon icon={props.icon} />}
+    >
+      {props.name}
+    </IconButton>
+  );
+};
+
 export function getCalculatedPrice() {
   const user = useSelector((state) => state.user);
   const setting = useSelector((state) => state.setting);
 
-  const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
+  // const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   // console.log('first', user.pricePerCurrency)
 
-  //calculating price
+  const getData = (price) => getData_inner(user, price);
 
-  const getData = (price) => {
-    // Get Fees(%) from Reducer
+  const priceWithTax = (price) => priceWithTax_inner(user, price);
 
-    let transactionFee = user.transactionFee;
-    let platformFee = user.platformFee;
+  const currencySymbol = () => currencySymbol_inner(user);
 
-    //Calculate total charges (transactionFee + platformFee )
+  const calculateSalesTax = (amount) => calculateSalesTax_inner(user, amount);
 
-    let totalCharge = Number(transactionFee) + Number(platformFee);
+  const getTaxValueOfPrice = (amount) => getTaxValueOfPrice_inner(user, amount);
 
-    // Applying to Price
-    let taxPrice = Math.round(price + (totalCharge / 100) * price);
-    let convertdPrice = Math.round(taxPrice);
-    // if (!CampaignAdminAuthToken) {
-    //     convertdPrice = Math.round(user.pricePerCurrency * taxPrice)
-    // }
-    // console.log(user.pricePerCurrency)
-
-    return convertdPrice;
-  };
-
-  const priceWithoutTax = (price) => {
-    let taxPrice = Math.round(price);
-    let convertdPrice = Math.round(taxPrice);
-    // convertdPrice = Math.round(user.pricePerCurrency * taxPrice)
-    return convertdPrice;
-  };
-
-  const priceWithTax = (price) => {
-    let transactionFee = user.transactionFee;
-    let platformFee = user.platformFee;
-
-    // Calculate total charges (transactionFee + platformFee )
-
-    let totalCharge = Number(transactionFee) + Number(platformFee);
-
-    // Applying to Price
-    let taxPrice = price + (totalCharge / 100) * price;
-    return taxPrice.toFixed(2);
-  };
-
-  //get Currency Symbol
-
-  const currencySymbol = () => {
-    let currencySymbol = '$';
-    // if (!CampaignAdminAuthToken) {
-    currencySymbol = user.currencySymbol? user.currencySymbol : "$";
-    // }
-    return currencySymbol;
-  };
-
-  const calculateSalesTax = (amount) => {
-    const salesTax = Number(user.salesTax);
-    // let taxAmount = Math.round((salesTax / 100) * amount)
-    let taxAmount = (salesTax / 100) * amount;
-
-    return taxAmount?.toFixed(2);
-  };
-
-  const getUserRank = (UserXp) => {
-    const captian = setting.captian && setting.captian !== '' ? Number(setting.captian) : 100000;
-    const admiral = setting.admiral && setting.admiral !== '' ? Number(setting.admiral) : 10000;
-    const pirate = setting.pirate && setting.pirate !== '' ? Number(setting.pirate) : 5000;
-    const narwhal = setting.narwhal && setting.narwhal !== '' ? Number(setting.narwhal) : 2500;
-    const beluga = setting.beluga && setting.beluga !== '' ? Number(setting.beluga) : 1000;
-    const fish = setting.fish && setting.fish !== '' ? Number(setting.fish) : 500;
-    let rank;
-    // console.log('pirate', pirate)
-    // console.log('admiral', admiral)
-
-    // console.log(typeof(captian) )
-
-    switch (true) {
-      case UserXp < fish:
-        rank = '';
-        break;
-
-      case UserXp >= fish && UserXp < beluga:
-        rank = (
-          <IconButton
-            bgColor="hsla(0, 96.46%, 76.14%, 1.00)"
-            className="rounded-pill rounded-pill--xp fs-9 fs-sm-7"
-            icon={<FontAwesomeIcon icon={solid('fish')} />}
-          >
-            Fish
-          </IconButton>
-        );
-
-        break;
-
-      case UserXp >= beluga && UserXp < narwhal:
-        rank = (
-          <IconButton
-            bgColor="#78bafc"
-            className="rounded-pill rounded-pill--xp fs-9 fs-sm-7"
-            icon={<FontAwesomeIcon icon={solid('whale')} />}
-          >
-            Beluga
-          </IconButton>
-        );
-
-        break;
-
-      case UserXp >= narwhal && UserXp < pirate:
-        rank = (
-          <IconButton
-            bgColor="#a278fc"
-            className="rounded-pill rounded-pill--xp fs-9 fs-sm-7"
-            icon={<FontAwesomeIcon icon={solid('narwhal')} />}
-          >
-            Narwhal
-          </IconButton>
-        );
-
-        break;
-
-      case UserXp >= pirate && UserXp <= admiral:
-        rank = (
-          <IconButton
-            bgColor="#fc8c63"
-            className="rounded-pill rounded-pill--xp fs-9 fs-sm-7"
-            icon={<FontAwesomeIcon icon={solid('swords')} />}
-          >
-            Pirate
-          </IconButton>
-        );
-
-        break;
-
-      case UserXp > admiral && UserXp < captian:
-        rank = (
-          <IconButton
-            bgColor="#95dbb0"
-            className="rounded-pill rounded-pill--xp fs-9 fs-sm-7"
-            icon={<FontAwesomeIcon icon={solid('ship')} />}
-          >
-            Admiral
-          </IconButton>
-        );
-
-        break;
-
-      case UserXp >= captian:
-        rank = (
-          <IconButton
-            bgColor="#000"
-            className="rounded-pill rounded-pill--xp fs-9 fs-sm-7"
-            icon={<FontAwesomeIcon icon={solid('anchor')} />}
-          >
-            Captain
-          </IconButton>
-        );
-
-        break;
-      default:
-        rank = ' ';
-        break;
-    }
-    return rank;
-  };
-
-  const getTaxValueOfPrice = (amount) => {
-    let transactionFee = user.transactionFee;
-    let platformFee = user.platformFee;
-
-    //Calculate total charges (transactionFee + platformFee )
-
-    let totalCharge = Number(transactionFee) + Number(platformFee);
-
-    const salesTax = Number(totalCharge);
-    // let taxAmount = Math.round((salesTax / 100) * amount)
-    let taxAmount = (salesTax / 100) * amount;
-
-    return taxAmount.toFixed(2);
-  };
+  const getUserRank = (UserXp) => getUserRank_inner(setting, UserXp);
 
   return {
     getData,
@@ -344,9 +313,11 @@ export function purchasedPriceWithTax(price, totalCharge) {
 }
 
 export function arrayUnique(array) {
-  let a = array.concat();
+  let a = [...array]; // make copy
   for (let i = 0; i < a.length; ++i) {
+    // for each item in array
     for (let j = i + 1; j < a.length; ++j) {
+      // grab the second item and compare to the first
       if (a[i].name === a[j].name) a.splice(j--, 1);
     }
   }
@@ -355,61 +326,31 @@ export function arrayUnique(array) {
 }
 
 export function isIframe(url) {
-  let substring = '<iframe';
-  return url.indexOf(substring) === 0;
+  return url.indexOf('<iframe') === 0;
 }
 
+const EMAIL_REGEX_FORMAT = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 export function isValidEmail(email) {
-  let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  let RESPONCE;
-
-  if (email.match(mailformat)) {
-    RESPONCE = true;
-  } else {
-    RESPONCE = false;
-  }
-  return RESPONCE;
+  return email.match(EMAIL_REGEX_FORMAT);
 }
+
+const CARD_TYPE_FROM_CARD = {
+  amex: 'american',
+  diners: 'dinersclub',
+  union: 'unionpay',
+
+  discover: 'discover',
+  jcb: 'jcb',
+  mastercard: 'mastercard',
+  visa: 'visa'
+};
 
 export function getCardIcon(card) {
-  let img;
+  let img = AWS_S3_BUCKET_BASE_URL + `images/campaign/logo/`;
 
-  switch (card) {
-    case 'visa':
-      img = AWS_S3_BUCKET_BASE_URL + 'images/campaign/logo/visa.png';
-      // img = AWS_S3_BUCKET_BASE_URL + 'images/campaign/logo/Visa2.jpg'
+  img += CARD_TYPE_FROM_CARD[card] ?? 'visa';
 
-      break;
-
-    case 'mastercard':
-      img = AWS_S3_BUCKET_BASE_URL + 'images/campaign/logo/mastercard.png';
-      break;
-
-    case 'amex':
-      img = AWS_S3_BUCKET_BASE_URL + 'images/campaign/logo/american.png';
-      break;
-
-    case 'discover':
-      img = AWS_S3_BUCKET_BASE_URL + 'images/campaign/logo/discover.png';
-      break;
-
-    case 'diners':
-      img = AWS_S3_BUCKET_BASE_URL + 'images/campaign/logo/dinersclub.png';
-      break;
-
-    case 'jcb':
-      img = AWS_S3_BUCKET_BASE_URL + 'images/campaign/logo/jcb.png';
-      break;
-
-    case 'union':
-      img = AWS_S3_BUCKET_BASE_URL + 'images/campaign/logo/unionpay.png';
-      break;
-
-    default:
-      img = AWS_S3_BUCKET_BASE_URL + 'images/campaign/logo/visa.png';
-      break;
-  }
-  return img;
+  return img + '.png';
 }
 
 export function priceWithOrganizationTax(price, salesTax) {
@@ -451,9 +392,7 @@ export function GetCardTypeByNumber(number) {
 
   // Diners - Carte Blanche
   re = new RegExp('^30[0-5]');
-  if (number.match(re) != null)
-    // return "Diners - Carte Blanche";
-    return 'diners';
+  if (number.match(re) != null) return 'diners';
 
   // JCB
   re = new RegExp('^35(2[89]|[3-8][0-9])');
@@ -461,15 +400,13 @@ export function GetCardTypeByNumber(number) {
 
   // Visa Electron
   re = new RegExp('^(4026|417500|4508|4844|491(3|7))');
-  if (number.match(re) != null)
-    // return "Visa Electron";
-    return 'visa';
+  if (number.match(re) != null) return 'visa';
 
   return '';
 }
 
-export function hasAlpha(file) {
-  return new Promise((resolve, reject) => {
+export const hasAlpha = (file) =>
+  new Promise((resolve, reject) => {
     const img = new Image();
 
     // create image from file
@@ -498,7 +435,6 @@ export function hasAlpha(file) {
       resolve(hasTransparent);
     };
   });
-}
 
 export function countInArray(array, what) {
   return array.filter((item) => item === what).length;
@@ -513,77 +449,54 @@ export function convertAddress(address) {
     const split = address.split(',');
     const commaCount = split.length - 1;
 
+    const countryName = split[split.length - 1].trim();
+    const country = Country.getAllCountries().find(
+      (c) => c.name.replace(/\s/g, '') === countryName
+    );
+
+    if (!country) {
+      throw new Error(`Country not found for address "${address}"`);
+    }
+
+    let city;
+    let stateOrProvince;
     if (commaCount === 3) {
-      const city = split[1].trim();
+      city = split[1].trim();
       const stateWithSpace = split[2].trim();
-      const state = stateWithSpace.split(' ')[0];
-
-      const countryName = split[split.length - 1].trim();
-      const country = Country.getAllCountries().find(
-        (c) => c.name.replace(/\s/g, '') === countryName
-      );
-
-      if (!country) {
-        throw new Error(`Country not found for address "${address}"`);
-      }
-
-      const states = State.getStatesOfCountry(country.isoCode).filter(
-        (s) => s.name.includes(state)
-      );
-
-      if (states.length === 0) {
-        throw new Error(`State not found for address "${address}"`);
-      }
-
-      const stateCode = `${states[0].isoCode}`;
-
-      return `${city}, ${stateCode}`;
+      stateOrProvince = stateWithSpace.split(' ')[0];
     } else if (commaCount === 2) {
-      const city = split[0].trim();
-      const province = split[1].trim();
-
-      const countryName = split[split.length - 1].trim();
-      const country = Country.getAllCountries().find(
-        (c) => c.name.replace(/\s/g, '') === countryName
-      );
-
-      if (!country) {
-        throw new Error(`Country not found for address "${address}"`);
-      }
-
-      const states = State.getStatesOfCountry(country.isoCode).filter(
-        (s) => s.name.includes(province)
-      );
-
-      if (states.length === 0) {
-        throw new Error(`State not found for address "${address}"`);
-      }
-
-      const stateCode = `${states[0].isoCode}`;
-
-      return `${city}, ${stateCode}`;
+      city = split[0].trim();
+      stateOrProvince = split[1].trim();
     } else {
       throw new Error('Invalid address format');
     }
+
+    const states = State.getStatesOfCountry(country.isoCode).filter((s) =>
+      s.name.includes(stateOrProvince)
+    );
+
+    if (states.length === 0) {
+      throw new Error(`State not found for address "${address}"`);
+    }
+
+    const stateCode = `${states[0].isoCode}`;
+
+    return `${city}, ${stateCode}`;
+
   } catch (error) {
     console.error(`convertAddress failed with address "${address}": ${error}`);
     return null; // or return an error message instead of null
   }
 }
 
-
-
-
-
-
-export function convertState(e) {
-  try {
-    const countryName = Country.getAllCountries().filter((e) => e.name);
-
-    const stateName = State.getStateByCode(stateName[0].id).filter((x) => e.includes(x.name));
-
-    return `${stateName.length > 0 ? `${stateName[0].name}` : ''}`;
-  } catch (e) {
-    console.error('state error');
-  }
-}
+// export function convertState(e) {
+//   try {
+//     const countryName = Country.getAllCountries().filter((e) => e.name);
+//
+//     const stateName = State.getStateByCode(stateName[0].id).filter((x) => e.includes(x.name));
+//
+//     return `${stateName.length > 0 ? `${stateName[0].name}` : ''}`;
+//   } catch (e) {
+//     console.error('state error');
+//   }
+// }

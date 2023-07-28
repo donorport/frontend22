@@ -6,14 +6,12 @@ import WidgetTitle from '../../atoms/widget-title';
 
 import TagTitle from '../../atoms/tag-title';
 
-import OrganisationProjectItem from '../../molecules/org-project-item';
+import OrganisationCrowdfundingProjectItem from '../../molecules/org-crowdfunding-project-item';
 
 import './style.scss';
 // import { useState } from 'react';
 
-function OrganisationProjectsWidget(props) {
-  let projectList = props.projectList;
-  const organizationDetails = props.organizationDetails;
+function OrganisationCrowdfundingProjectsWidget({ list, organizationDetails }) {
   //console.log(projectList);
   const [loadMore, setLoadMore] = useState(false);
   return (
@@ -22,16 +20,15 @@ function OrganisationProjectsWidget(props) {
       <WidgetTitle>Projects</WidgetTitle>
 
       <ul className="list-unstyled mb-0 mt-12p">
-        {projectList.length > 0 ? (
-          projectList.slice(0, loadMore ? projectList.length : 3).map((project, i) => {
-            return <OrganisationProjectItem project={project} key={i} />;
-          })
+        {list.length > 0 ? (
+          list
+            .slice(0, loadMore ? list.length : 3)
+            .map((project, i) => <OrganisationCrowdfundingProjectItem item={project} key={i} />)
         ) : (
           <p>{organizationDetails?.name} hasn't created any Projects.</p>
         )}
-        {/* <OrganisationProjectItem /> */}
       </ul>
-      {!loadMore && projectList.length > 3 && (
+      {!loadMore && list.length > 3 && (
         <div className="more__log">
           <Button
             variant="info"
@@ -46,4 +43,4 @@ function OrganisationProjectsWidget(props) {
   );
 }
 
-export default OrganisationProjectsWidget;
+export default OrganisationCrowdfundingProjectsWidget;

@@ -16,8 +16,7 @@ import helper, { GetCardTypeByNumber, getCardIcon } from '../../Common/Helper';
 //import userApi from '../../Api/frontEnd/user';
 import followApi from '../../Api/frontEnd/follow';
 import Page from '../../components/Page';
-import { calculatePlatformCost, calculateGrandTotal } from '../../constants/constants';
-
+import { calculatePlatformCost, calculateGrandTotal, DONATION_XP_PER_DOLLAR } from '../../constants/constants';
 
 const DONATE_VALIDATION_RULES = {
   //name: 'required',
@@ -34,6 +33,15 @@ const DONATE_VALIDATION_MESSAGES = {
   'year.required': 'Year number is required.',
   'cvv.required': 'CVV is required.',
   'cvv.number': 'CVV can not be string.'
+};
+
+const getCardIconFromNumber = (num) => {
+  if (!num) {
+    return '';
+  }
+
+  let cardType = GetCardTypeByNumber(num);
+  return getCardIcon(cardType);
 };
 
 export default function ProjectDetailsController() {
@@ -85,17 +93,6 @@ export default function ProjectDetailsController() {
   //}
   //};
 
-  const getCardNumber = async (num) => {
-    if (num) {
-      let cardType = GetCardTypeByNumber(num);
-      let cardIcon = getCardIcon(cardType);
-
-      setDCardIcon(cardIcon);
-    } else {
-      setDCardIcon('');
-    }
-  };
-
   const changevalue = async (e) => {
     let value = e.target.value;
     if (e.target.name === 'cardNumber') {
@@ -110,7 +107,7 @@ export default function ProjectDetailsController() {
         ...state,
         [e.target.name]: value
       });
-      await getCardNumber(value);
+      setDCardIcon(getCardIconFromNumber(value));
     } else {
       setstate({
         ...state,
@@ -229,7 +226,7 @@ export default function ProjectDetailsController() {
         data.projectName = projectDetails?.name;
         data.serviceCharge = platformCost;
         data.organizationCountryId = projectDetails?.campaignDetails?.country_id;
-        data.xpToAdd = selectedValue * 10;
+        data.xpToAdd = selectedValue * DONATION_XP_PER_DOLLAR; // selectedValue is $$
 
         const donateToProject = await projectApi.donate(userAuthToken, data);
         if (donateToProject) {

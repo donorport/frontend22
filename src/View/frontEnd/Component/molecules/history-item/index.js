@@ -22,6 +22,16 @@ const defaultProps = {
   categoryColor: '#a278fc' // I think we need to populate category color random
 };
 
+const getAvatarImage = (img) => {
+  let image;
+  if (img && img !== '') {
+    image = helper.DonorImagePath + img;
+  } else {
+    image = AvatarImg;
+  }
+  return image;
+};
+
 function HistoryItem({ active, ...otherProps }) {
   const getC = getCalculatedPrice();
   const location = useLocation();
@@ -31,18 +41,10 @@ function HistoryItem({ active, ...otherProps }) {
     ...otherProps
   };
 
-  const getAvatarImage = (img) => {
-    let image;
-    if (img && img !== '') {
-      image = helper.DonorImagePath + img;
-    } else {
-      image = AvatarImg;
-    }
-    return image;
-  };
   let item = sharedProps.item;
   let type = sharedProps.type;
   let donationAmount = Number((item?.amount - 0.3) / 1.0499).toFixed(2);
+
   let avatar =
     type === 'donation' ? item?.userDetails?.image : item?.orderDetails?.userDetails?.image;
 

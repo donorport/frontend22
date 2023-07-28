@@ -69,7 +69,7 @@ function ProfileController() {
     description,
     logo,
     currentPassword,
-    newPassword,
+    newPassword
     //confirmPassword
   } = state;
 
@@ -156,7 +156,6 @@ function ProfileController() {
   const changevalue = async (e) => {
     let value = e.target.value;
 
-
     if (e.target.name === 'country') {
       setLoading(false);
       const getCountryStateList = await adminCampaignApi.stateListByCountry(adminAuthToken, value);
@@ -170,7 +169,7 @@ function ProfileController() {
       });
       setLoading(false);
       return;
-    } 
+    }
     if (e.target.name === 'stateid') {
       setLoading(false);
       const getStateCityList = await adminCampaignApi.cityListByState(adminAuthToken, value);
@@ -184,16 +183,15 @@ function ProfileController() {
       });
       setLoading(false);
       return;
-    } 
+    }
 
-    if (e.target.name ==='url') {
+    if (e.target.name === 'url') {
       value = formatUrlWithHttp(value);
     }
     setState({
       ...state,
       [e.target.name]: value
     });
-
   };
   const handleOnDiscriptionChangeValue = (e) => {
     setState({
@@ -269,20 +267,20 @@ function ProfileController() {
 
         setLoading(false);
         const addUser = await adminCampaignApi.saveCampaignDetails(adminAuthToken, data);
-        if (addUser) {
-          if (!addUser.data.success) {
-            setLoading(false);
-            ToastAlert({ msg: addUser.data.message, msgType: 'error' });
-          } else {
-            // setUpdate(!update)
-            setLoading(false);
-            ToastAlert({ msg: addUser.data.message, msgType: 'success' });
-            // setModal(false)
-            // resetForm()
-          }
-        } else {
+        if (!addUser) {
           setLoading(false);
           ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+          return;
+        }
+        if (!addUser.data.success) {
+          setLoading(false);
+          ToastAlert({ msg: addUser.data.message, msgType: 'error' });
+        } else {
+          // setUpdate(!update)
+          setLoading(false);
+          ToastAlert({ msg: addUser.data.message, msgType: 'success' });
+          // setModal(false)
+          // resetForm()
         }
       })
       .catch((errors) => {

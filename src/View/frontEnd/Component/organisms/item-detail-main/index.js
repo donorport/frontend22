@@ -6,7 +6,7 @@ import 'rc-slider/assets/index.css';
 import IconToggle from '../../atoms/icon-toggle';
 import ShareWidget from '../share-widget';
 import IconText from '../../molecules/icon-text';
-import ProjectGallery from '../project-gallery';
+import ProjectCrowdfundingGallery from '../project-crowdfunding-gallery';
 import moment from 'moment';
 import helper, {
   getCalculatedPrice,
@@ -365,7 +365,7 @@ const ItemDetailsMain = ({
         productDetails?.productImages.length > 0 &&
         productDetails?.productImages.filter((e) => e.type === 'galleryImage').length > 0 && (
           <div className="mt-2">
-            <ProjectGallery
+            <ProjectCrowdfundingGallery
               className="mb-3"
               title={true}
               tagTitle="Products"

@@ -31,6 +31,7 @@ import FrontEndLayOut from './FrontEndLayOut';
 import OrganizationDetailsController from '../Controller/frontEnd/OrganizationDetailsController';
 import ItemDetailsController from '../Controller/frontEnd/ItemDetailsController';
 import ProjectDetailsController from '../Controller/frontEnd/ProjectDetailsController';
+import CrowdfundingDetailsController from '../Controller/frontEnd/CrowdfundingDetailsController';
 //import FrontEndAuthLayOut from './FrontEndAuthLayout';
 // import OrganizationAdminController from '../Controller/frontEnd/OrganizationAdminController';
 //import CampaignAdminLayout from './CampaignAdminLayout';
@@ -86,6 +87,7 @@ import AdminPosts from '../View/frontEnd/Component/organisms/admin-posts';
 import AdminActivity from '../View/frontEnd/Component/organisms/admin-activity';
 import AdminTax from '../View/frontEnd/Component/organisms/admin-tax';
 import AdminProjects from '../View/frontEnd/Component/organisms/admin-projects';
+import AdminCrowdfundings from '../View/frontEnd/Component/organisms/admin-crowdfundings';
 import AdminSettingsTab from '../View/frontEnd/Component/organisms/admin-settings-tab';
 import ProfileSettings from '../View/frontEnd/Component/organisms/profile-settings';
 import AdminAdmin from '../View/frontEnd/Component/organisms/admin-admin';
@@ -101,7 +103,7 @@ const AdminPrivateRoutes = lazy(() => import('./AdminPrivateRoutes'));
 //const AdminTax = lazy(() => import('../View/frontEnd/Component/organisms/admin-tax'));
 //const AdminProjects = lazy(() => import('../View/frontEnd/Component/organisms/admin-projects'));
 //const AdminSettingsTab = lazy(() =>
-  //import('../View/frontEnd/Component/organisms/admin-settings-tab')
+//import('../View/frontEnd/Component/organisms/admin-settings-tab')
 //);
 //const ProfileSettings = lazy(() => import('../View/frontEnd/Component/organisms/profile-settings'));
 //const AdminAdmin = lazy(() => import('../View/frontEnd/Component/organisms/admin-admin'));
@@ -137,7 +139,7 @@ export default function MainRoutes() {
     <div id="full-content">
       {token && location.pathname.startsWith('/campaign') && (
         <>
-        {/*
+          {/*
         <React.Suspense fallback={<LoadingPage />}>
         */}
           <Routes>
@@ -150,6 +152,7 @@ export default function MainRoutes() {
               <Route path="/campaign/:name/activity" element={<AdminActivity />} />
               <Route path="/campaign/:name/tax" element={<AdminTax />} />
               <Route path="/campaign/:name/project" element={<AdminProjects />} />
+              <Route path="/campaign/:name/crowdfunding" element={<AdminCrowdfundings />} />
               <Route path="/campaign/:name/settings" element={<AdminSettingsTab />}>
                 <Route path="/campaign/:name/settings/profile" element={<ProfileSettings />} />
                 <Route path="/campaign/:name/settings/payments" element={<Payments />} />
@@ -164,8 +167,9 @@ export default function MainRoutes() {
           {/*
         </React.Suspense>
         */}
-          </>
+        </>
       )}
+
       {CampaignAdminAuthToken && !location.pathname.startsWith('/campaign') && (
         <Routes>
           <Route path="/" element={<FrontEndLayOut />}>
@@ -194,6 +198,7 @@ export default function MainRoutes() {
             {/* <Route exact path="/change-password" element={<ChangePassword />} /> */}
             <Route exact path="/item/:name" element={<ItemDetailsController />} />
             <Route exact path="/project/:name" element={<ProjectDetailsController />} />
+            <Route exact path="/crowdfunding/:name" element={<CrowdfundingDetailsController />} />
             {/* <Route path="/cart" element={<CartController />} />
                         <Route path="/checkout" element={<CheckoutController />} />
                         <Route path="/thankyou" element={<ThankYou />} /> */}
@@ -202,22 +207,23 @@ export default function MainRoutes() {
         </Routes>
       )}
 
-      {location.pathname.startsWith('/admin')
-        ? !adminAuthToken &&
-          !userAuthToken &&
-          !CampaignAdminAuthToken && (
-            <ThemeConfig>
-              <ScrollToTop />
-              <GlobalStyles />
-              <BaseOptionChartStyle />
-              <LogoOnlyLayout />
-            </ThemeConfig>
-          )
-        : !location.pathname.startsWith('/admin') &&
-          !location.pathname.startsWith('/campaign') &&
-          !adminAuthToken &&
-          !userAuthToken &&
-          !CampaignAdminAuthToken && (
+      {/*
+        no admin, no user, no campaign token. 
+        If admin path, else if NOT campaign path
+      */}
+
+      {!adminAuthToken &&
+        !userAuthToken &&
+        !CampaignAdminAuthToken &&
+        (location.pathname.startsWith('/admin') ? (
+          <ThemeConfig>
+            <ScrollToTop />
+            <GlobalStyles />
+            <BaseOptionChartStyle />
+            <LogoOnlyLayout />
+          </ThemeConfig>
+        ) : (
+          !location.pathname.startsWith('/campaign') && (
             <>
               <Routes>
                 <Route path="/" element={<HomeController />} />
@@ -229,6 +235,7 @@ export default function MainRoutes() {
                 />
                 <Route exact path="/item/:name" element={<ItemDetailsController />} />
                 <Route exact path="/project/:name" element={<ProjectDetailsController />} />
+                <Route exact path="/crowdfunding/:name" element={<CrowdfundingDetailsController />} />
                 <Route exact path="/signin" element={<SigninController />} />
                 <Route exact path="/signup" element={<SignupController />} />
                 <Route exact path="/forgot-password" element={<ForgotPasswordController />} />
@@ -254,23 +261,27 @@ export default function MainRoutes() {
                 <Route exact path="*" element={<SigninController />} />
               </Routes>
             </>
-          )}
+          )
+        ))}
 
-      {
-        adminAuthToken ? (
-          <ThemeConfig>
-            <ScrollToTop />
-            <GlobalStyles />
-            <BaseOptionChartStyle />
-            <React.Suspense fallback={<LoadingPage />}>
-              <AdminPrivateRoutes />
-            </React.Suspense>
-          </ThemeConfig>
-        ) : (
-          <></>
-        )
-      }
 
+      {/*
+        admin logged in
+      */}
+      {adminAuthToken && (
+        <ThemeConfig>
+          <ScrollToTop />
+          <GlobalStyles />
+          <BaseOptionChartStyle />
+          <React.Suspense fallback={<LoadingPage />}>
+            <AdminPrivateRoutes />
+          </React.Suspense>
+        </ThemeConfig>
+      )}
+
+      {/*
+        user logged in; not viewing admin or campaign routes
+      */}
       {userAuthToken &&
         !location.pathname.startsWith('/admin') &&
         !location.pathname.startsWith('/campaign') && (
@@ -296,6 +307,7 @@ export default function MainRoutes() {
               <Route exact path="/change-password" element={<ChangePassword />} />
               <Route exact path="/item/:name" element={<ItemDetailsController />} />
               <Route exact path="/project/:name" element={<ProjectDetailsController />} />
+              <Route exact path="/crowdfunding/:name" element={<CrowdfundingDetailsController />} />
               <Route path="/cart" element={<CartController />} />
               <Route path="/checkout" element={<CheckoutController />} />
               <Route path="/thankyou" element={<ThankYou />} />

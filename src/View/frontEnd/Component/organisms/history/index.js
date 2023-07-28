@@ -21,7 +21,6 @@ function History(props) {
 
   useEffect(() => {
     let tempOrderList = [];
-    let tempDonationList = [];
     if (list?.length > 0) {
       list.map((v) => {
         v.listType = 'order';
@@ -32,6 +31,7 @@ function History(props) {
       });
     }
 
+    let tempDonationList = [];
     if (donationList?.length > 0) {
       donationList.map((v1) => {
         v1.listType = 'donation';
