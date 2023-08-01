@@ -13,7 +13,6 @@ import OrganizationCrowdfundingProjectsWidget from '../Component/organisms/org-c
 import DonateModal from '../Component/molecules/donate-modal';
 import HeaderController from '../../../Controller/frontEnd/HeaderController';
 
-
 import './style.scss';
 
 const OrganizationDetail = (props) => {
@@ -88,17 +87,20 @@ const OrganizationDetail = (props) => {
           </Col>
         </Row>
       </Container>
-      <Container fluid>
-        <Row className="py-5">
-          <Col md="6" className="mb-4 mb-0" style={{ maxWidth: '545px' }}>
-            <OrganizationCrowdfundingProjectsWidget
-              projectList={projectList}
-              organizationDetails={organizationDetails}
-            />
-          </Col>
-          <Col md="6"></Col>
-        </Row>
-      </Container>
+      {projectList ? (
+        <Container fluid>
+          <Row className="py-5">
+            <Col md="6" className="mb-4 mb-0" style={{ maxWidth: '545px' }}>
+              <OrganizationCrowdfundingProjectsWidget
+                projectList={projectList}
+                organizationDetails={organizationDetails}
+              />
+            </Col>
+            <Col md="6"></Col>
+          </Row>
+        </Container>
+      ) : null}
+
       <Footer />
     </>
   );

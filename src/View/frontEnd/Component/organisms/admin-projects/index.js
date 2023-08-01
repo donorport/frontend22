@@ -12,7 +12,7 @@ import productApi from '../../../../../Api/admin/product';
 import { Link, useOutletContext } from 'react-router-dom';
 import helper from '../../../../../Common/Helper';
 import './style.scss';
-
+import CircularProgress from '@mui/material/CircularProgress';
 const AdminProjects = () => {
   const [data, setData] = useOutletContext();
   const userAuthToken = localStorage.getItem('userAuthToken');
@@ -495,7 +495,7 @@ const AdminProjects = () => {
     setLoading(false);
   };
 
-  const onChangeDropDown =  (e) => {
+  const onChangeDropDown = (e) => {
     setListBy(e);
     return getProjectList(pageNo, sortField, order, e);
   };
@@ -507,8 +507,17 @@ const AdminProjects = () => {
       {!viewProject ? (
         <div>
           <header className="py-sm-2 mb-2 w-100 d-sm-flex align-items-center">
-            <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Projects</h1>
-            <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
+            <div className="me-sm-2 flex-grow-1 mb-3 mb-sm-0">
+              <div className="d-flex align-items-center mb-1">
+                <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Projects</h1>
+                <span className="d-none d-sm-flex text-light fs-5 ml-2 ms-2">({totalRecord})</span>
+              </div>
+              <p className="d-none d-sm-block fs-5 text-light">
+                Create a page for a specific cause or event. A project allows you to group your
+                posted items into one place where donors can choose between your posted items or
+                cash donations.
+              </p>
+            </div>
 
             <div className="d-flex align-items-center ms-sm-auto justify-content-end text-nowrap">
               {hasProduct.length > 0 ? (
@@ -524,29 +533,40 @@ const AdminProjects = () => {
               <LadderMenuItems listBy={listBy} onChangeDropDown={onChangeDropDown} />
             </div>
           </header>
-          {!hasProduct.length > 0 ? (
-            <div className="mb-3 note fs-6 mw-100">
+          {/* {!hasProduct.length > 0 && !loading ? (
+            <div className="test mb-3 note fs-6 mw-100">
               In order to create a project, you'll first need to post some items.{' '}
               <Link to={'/campaign/' + data.slug + '/posts'} className="link">
                 Click here
               </Link>{' '}
               to create your first item.
             </div>
-          ) : null}
-          <ProjectsTable
-            projectList={projectList}
-            editProject={editProject}
-            deleteProject={deleteProject}
-            publishProject={publishProject}
-            handleClick={handleClick}
-            totalPages={totalPages}
-            totalRecord={totalRecord}
-            pageNo={pageNo}
-            handleSortingChange={handleSortingChange}
-            order={order}
-            sortField={sortField}
-            data={data}
-          />
+          ) : null} */}
+          {hasProduct.length < 0 ? (
+            <div className="test mb-3 note fs-6 mw-100">
+              In order to create a project, you'll first need to post some items.{' '}
+              <Link to={'/campaign/' + data.slug + '/posts'} className="link">
+                Click here
+              </Link>{' '}
+              to create your first item.
+            </div>
+          ) : (
+            <ProjectsTable
+              projectList={projectList}
+              editProject={editProject}
+              deleteProject={deleteProject}
+              publishProject={publishProject}
+              handleClick={handleClick}
+              totalPages={totalPages}
+              loading={loading}
+              totalRecord={totalRecord}
+              pageNo={pageNo}
+              handleSortingChange={handleSortingChange}
+              order={order}
+              sortField={sortField}
+              data={data}
+            />
+          )}
         </div>
       ) : (
         <AddProject

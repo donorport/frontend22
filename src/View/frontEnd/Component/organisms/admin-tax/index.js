@@ -227,7 +227,7 @@ const AdminTax = () => {
             <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Tax Receipts</h1>
             <span className="d-none d-sm-flex text-light fs-5 ml-2 ms-2">({totalRecord})</span>
           </div>
-          <p className="d-none d-sm-block fs-6 text-light">
+          <p className="d-none d-sm-block fs-5 text-light">
             Tax receipts uploaded here will be encrypted and sent directly to the donor's profile
             where they will be able to view & download.
           </p>

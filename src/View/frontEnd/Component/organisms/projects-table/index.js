@@ -1,7 +1,7 @@
 import { Button, ProgressBar } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
-
+import CircularProgress from '@mui/material/CircularProgress';
 // import Avatar from "@components/atoms/avatar";
 // import ListItemImg from "@components/atoms/list-item-img";
 
@@ -112,7 +112,11 @@ const ProjectsTable = (props) => {
             minHeight: projectList.length > 1 ? '550px' : ''
           }}
         >
-          {projectList.length > 0 ? (
+          {props.loading ? (
+            <li className="py-2 mt-2 d-flex justify-content-center">
+              <CircularProgress className="ms-1" color="inherit" size={32} />
+            </li>
+          ) : projectList.length > 0 ? (
             projectList.map((project, i) => {
               // console.log(project)
               return (

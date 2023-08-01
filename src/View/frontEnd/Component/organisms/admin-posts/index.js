@@ -1628,10 +1628,9 @@ const AdminPosts = () => {
       }
       return step;
     });
-  
+
     setSteps(updatedSteps);
   }, []);
-  
 
   useEffect(() => {
     console.log({ user, data });
@@ -1666,18 +1665,18 @@ const AdminPosts = () => {
                   <div
                     className={`d-flex flex-grow-1 step__indicator py-1 ${
                       step.isComplete ? 'bg-secondary' : 'bg-lighter'
-                      }`}
+                    }`}
                     style={
                       index === 0
                         ? { borderTopLeftRadius: '9px', borderBottomLeftRadius: '9px' }
                         : index === steps.length - 1
-                          ? { borderTopRightRadius: '9px', borderBottomRightRadius: '9px' }
-                          : {}
+                        ? { borderTopRightRadius: '9px', borderBottomRightRadius: '9px' }
+                        : {}
                     }
                   ></div>
                   <div
                     className={`flex-grow-1 step ${step.isComplete ? 'complete' : ''}`}
-                  // onClick={() => handleStepClick(index)}
+                    // onClick={() => handleStepClick(index)}
                   >
                     <div className="d-flex mt-3">
                       <div className="step-indicator">
@@ -1687,11 +1686,11 @@ const AdminPosts = () => {
                             className="text-secondary fs-4 me-1"
                           />
                         ) : (
-                            <FontAwesomeIcon
-                              icon={regular('circle')}
-                              className="text-light fs-4 me-1"
-                            />
-                          )}
+                          <FontAwesomeIcon
+                            icon={regular('circle')}
+                            className="text-light fs-4 me-1"
+                          />
+                        )}
                       </div>
                       {step.label === 'Build your profile' ? (
                         <Link
@@ -1702,14 +1701,14 @@ const AdminPosts = () => {
                           <span className="step-label fw-semibold">{step.label}</span>
                         </Link>
                       ) : (
-                          <Link
-                            variant="link"
-                            className="text-dark p-0 fs-5"
-                            to={'/campaign/' + data.slug + '/settings/payments'}
-                          >
-                            <span className="step-label fw-semibold">{step.label}</span>
-                          </Link>
-                        )}
+                        <Link
+                          variant="link"
+                          className="text-dark p-0 fs-5"
+                          to={'/campaign/' + data.slug + '/settings/payments'}
+                        >
+                          <span className="step-label fw-semibold">{step.label}</span>
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -1880,68 +1879,68 @@ const AdminPosts = () => {
           />
         </>
       ) : (
-            <>
-              {/* Add photos or fulfil product */}
-              {/*
+        <>
+          {/* Add photos or fulfil product */}
+          {/*
            * details view
            *
            */}
-              <PostDetailsNavigation
-                closeFulfilForm={closeFulfilForm}
-                fulfilProductDetails={fulfilProductDetails}
-              />
+          <PostDetailsNavigation
+            closeFulfilForm={closeFulfilForm}
+            fulfilProductDetails={fulfilProductDetails}
+          />
 
-              <PostDetailsNotificationBanner fulfilProductDetails={fulfilProductDetails} />
+          <PostDetailsNotificationBanner fulfilProductDetails={fulfilProductDetails} />
 
-              <Card className="mt-0 mt-sm-5">
-                <Row className="mw-850 ml-5">
-                  <Col lg="6">
-                    <PostDetailsTransactionSummary
-                      fulfilProductDetails={fulfilProductDetails}
-                      data={data}
-                    />
+          <Card className="mt-0 mt-sm-5">
+            <Row className="mw-850 ml-5">
+              <Col lg="6">
+                <PostDetailsTransactionSummary
+                  fulfilProductDetails={fulfilProductDetails}
+                  data={data}
+                />
 
-                    <PostDetailsReceiptArea
-                      receiptImgName={receiptImgName}
-                      fulfilError={fulfilError}
-                      changefile={changefile}
-                      fulfilProductDetails={fulfilProductDetails}
-                      deletedFile={deletedFile}
-                      setShowReceipt={setShowReceipt}
-                      download={download}
-                      deleteFulfilorder={deleteFulfilorder}
-                      showReceipt={showReceipt}
-                    />
-                  </Col>
+                <PostDetailsReceiptArea
+                  receiptImgName={receiptImgName}
+                  fulfilError={fulfilError}
+                  changefile={changefile}
+                  fulfilProductDetails={fulfilProductDetails}
+                  deletedFile={deletedFile}
+                  setShowReceipt={setShowReceipt}
+                  download={download}
+                  deleteFulfilorder={deleteFulfilorder}
+                  showReceipt={showReceipt}
+                />
+              </Col>
 
-                  <Col lg="6">
-                    <PostDetailsMediaColumn
-                      fulfilState={fulfilState}
-                      fulfilProductDetails={fulfilProductDetails}
-                      videoUrl={videoUrl}
-                      changevalue={changevalue}
-                      changefile={changefile}
-                      fulfilMoreTempImages={fulfilMoreTempImages}
-                      removeFulfilTempImages={removeFulfilTempImages}
-                      fulfilmoreImages={fulfilmoreImages}
-                      deleteProductImage={deleteProductImage}
-                      fulfilError={fulfilError}
-                    />
-                  </Col>
-                </Row>
-              </Card>
+              <Col lg="6">
+                <PostDetailsMediaColumn
+                  fulfilState={fulfilState}
+                  fulfilProductDetails={fulfilProductDetails}
+                  videoUrl={videoUrl}
+                  changevalue={changevalue}
+                  changefile={changefile}
+                  fulfilMoreTempImages={fulfilMoreTempImages}
+                  removeFulfilTempImages={removeFulfilTempImages}
+                  fulfilmoreImages={fulfilmoreImages}
+                  deleteProductImage={deleteProductImage}
+                  fulfilError={fulfilError}
+                />
+              </Col>
+            </Row>
+          </Card>
 
-              <PostDetailsTosAndButtons
-                fulfilPolicy={fulfilPolicy}
-                changevalue={changevalue}
-                fulfilError={fulfilError}
-                fulfilProductDetails={fulfilProductDetails}
-                closeFulfilForm={closeFulfilForm}
-                unPublishProduct={unPublishProduct}
-                fulfilOrder={fulfilOrder}
-              />
-            </>
-          )}
+          <PostDetailsTosAndButtons
+            fulfilPolicy={fulfilPolicy}
+            changevalue={changevalue}
+            fulfilError={fulfilError}
+            fulfilProductDetails={fulfilProductDetails}
+            closeFulfilForm={closeFulfilForm}
+            unPublishProduct={unPublishProduct}
+            fulfilOrder={fulfilOrder}
+          />
+        </>
+      )}
     </>
   );
 };
@@ -1950,42 +1949,53 @@ const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => 
   return (
     <>
       <header className="py-2 mb-sm-3 w-100 d-sm-flex align-items-center">
-        <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Posts</h1>{' '}
-        <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
-        <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
-          <FontAwesomeIcon icon={solid('money-bills-simple')} className="text-dark mr-12p fs-4" />
-          <span>{user.currencySymbol}</span>
-          {productList && productList.length > 0
-            ? productList
-              .reduce(
-                (previousTotal, current) =>
-                  previousTotal + Number(current.displayPrice * current.soldout),
-                0
-              )
-              .toLocaleString('en-US', {
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2
-              })
-            : 0}
-        </span>
-        {/* {!user.isAccountAdded && isOnboardingVisible && (
+        <div className="me-sm-2 flex-grow-1 mb-3 mb-sm-0">
+          <div className="d-flex align-items-center mb-1">
+            <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Posts</h1>
+            <span className="d-none d-sm-flex text-light fs-5 ml-2 ms-2">({totalRecord})</span>
+          </div>
+          <p className="d-none d-sm-block fs-5 text-light">
+            Create posts for items you need to operate your charity. Get creative, post for things
+            you want, not always what you need. Products between $25-$100 are the most appealing to
+            donors.
+          </p>
+        </div>
+        <div className="d-flex gap-2">
+          <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
+            <FontAwesomeIcon icon={solid('money-bills-simple')} className="text-dark mr-12p fs-4" />
+            <span>{user.currencySymbol}</span>
+            {productList && productList.length > 0
+              ? productList
+                  .reduce(
+                    (previousTotal, current) =>
+                      previousTotal + Number(current.displayPrice * current.soldout),
+                    0
+                  )
+                  .toLocaleString('en-US', {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2
+                  })
+              : 0}
+          </span>
+          {/* {!user.isAccountAdded && isOnboardingVisible && (
           <Button className="btn bg-white border-0 text-light" onClick={showOnboarding}>
             Getting Started <FontAwesomeIcon icon={solid('wand-magic-sparkles')} className="ms-1" />
           </Button>
         )} */}
-        <div className="d-flex align-items-center ms-sm-auto justify-content-end">
-          {/* {user.isAccountAdded && data.taxRate && !data.logo && ( */}
-          <Button
-            variant="info"
-            size="lg"
-            className="me-2 fw-bold fs-6"
-            onClick={() => createNewPost()}
-          >
-            Create New
-          </Button>
-          {/* )} */}
+          <div className="d-flex align-items-center ms-sm-auto justify-content-end">
+            {/* {user.isAccountAdded && data.taxRate && !data.logo && ( */}
+            <Button
+              variant="info"
+              size="lg"
+              className="me-2 fw-bold fs-6 text-nowrap"
+              onClick={() => createNewPost()}
+            >
+              Create New
+            </Button>
+            {/* )} */}
 
-          {/* <LadderMenuItems /> */}
+            {/* <LadderMenuItems /> */}
+          </div>
         </div>
       </header>
     </>
@@ -2115,11 +2125,11 @@ const PostDetailsNotificationBanner = ({ fulfilProductDetails }) => {
             time. A copy of the sales receipt will be shared with your donors.
           </span>
         ) : (
-            <span className="fs-6 text-subtext">
-              Congratulations! Your post has been fully funded. Upload the sales receipt to complete
-              your order. A copy of the sales receipt will be shared with your donors.
-            </span>
-          )}
+          <span className="fs-6 text-subtext">
+            Congratulations! Your post has been fully funded. Upload the sales receipt to complete
+            your order. A copy of the sales receipt will be shared with your donors.
+          </span>
+        )}
       </div>
     </div>
   );
@@ -2137,13 +2147,19 @@ const PostDetailsMediaColumn = ({
   deleteProductImage,
   fulfilError
 }) => {
-
   const videoUrl = fulfilState.videoUrl || fulfilProductDetails.fulfilDetails.video;
 
   let videoid = videoUrl ? videoUrl.split('?v=')[1] : '';
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
 
-  console.log(`PostDetailsMediaColumn:`, { fulfilState, fulfilProductDetails, videoUrl: videoUrl, embedlink, fulfilMoreTempImages, fulfilmoreImages });
+  console.log(`PostDetailsMediaColumn:`, {
+    fulfilState,
+    fulfilProductDetails,
+    videoUrl: videoUrl,
+    embedlink,
+    fulfilMoreTempImages,
+    fulfilmoreImages
+  });
   return (
     <>
       <Card.Header className="post__accordion-header pb-3">
@@ -2241,7 +2257,7 @@ const PostDetailsMediaColumn = ({
                             ? helper.CampaignProductFullImagePath + img.img
                             : noimg
                           : noimg
-                        })`
+                      })`
                     }}
                   />
                 ))}
@@ -2292,8 +2308,8 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
               })
                 ? fulfilProductDetails?.soldout
                 : Number(fulfilProductDetails?.quantity).toLocaleString('en-US', {
-                  maximumFractionDigits: 2
-                })}
+                    maximumFractionDigits: 2
+                  })}
             </span>
           </div>
           <div className="d-flex align-items-center pt-1 mb-2">
@@ -2316,9 +2332,9 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
               (fulfilProductDetails?.displayPrice
                 ? fulfilProductDetails?.displayPrice
                 : fulfilProductDetails?.price) *
-              (fulfilProductDetails?.unlimited
-                ? fulfilProductDetails?.soldout
-                : fulfilProductDetails?.quantity)
+                (fulfilProductDetails?.unlimited
+                  ? fulfilProductDetails?.soldout
+                  : fulfilProductDetails?.quantity)
             )}
           </span>
         </div>
@@ -2378,8 +2394,8 @@ const PostDetailsReceiptArea = ({
             {receiptImgName && receiptImgName !== ''
               ? receiptImgName
               : fulfilError.receiptFile
-                ? 'Please Select File'
-                : 'Drag and drop or Select File'}
+              ? 'Please Select File'
+              : 'Drag and drop or Select File'}
           </h3>
         </div>
       </div>
@@ -2423,14 +2439,14 @@ const PostDetailsReceiptArea = ({
                     fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] === 'svg' ||
                     fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] === 'jpeg' ||
                     fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] === 'jpg') && (
-                      <Dropdown.Item
-                        className="d-flex align-items-center p-2"
-                        onClick={() => setShowReceipt(true)}
-                      >
-                        <span className="fw-bold fs-7 flex__1">View</span>
-                        <FontAwesomeIcon icon={solid('magnifying-glass')} className="ms-1" />
-                      </Dropdown.Item>
-                    )}
+                    <Dropdown.Item
+                      className="d-flex align-items-center p-2"
+                      onClick={() => setShowReceipt(true)}
+                    >
+                      <span className="fw-bold fs-7 flex__1">View</span>
+                      <FontAwesomeIcon icon={solid('magnifying-glass')} className="ms-1" />
+                    </Dropdown.Item>
+                  )}
                   <Dropdown.Divider />
                   <Dropdown.Item
                     className="d-flex align-items-center p-2"

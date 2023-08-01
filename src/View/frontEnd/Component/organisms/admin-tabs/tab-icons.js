@@ -58,9 +58,9 @@ const SettingsIcon = ({ active }) => {
 //possible icons: people-roof, people-line, people-group, users
 const CrowdfundingIcon = ({ active }) => {
   const icon = active ? (
-    <FontAwesomeIcon icon={solid("users")} />
+    <FontAwesomeIcon icon={solid("circle-dollar")} />
   ) : (
-    <FontAwesomeIcon icon={light("users")} />
+    <FontAwesomeIcon icon={light("circle-dollar")} />
   );
   return icon;
 };

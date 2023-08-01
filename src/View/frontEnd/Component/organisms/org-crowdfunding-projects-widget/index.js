@@ -11,7 +11,7 @@ import OrganizationCrowdfundingProjectItem from '../../molecules/org-crowdfundin
 import './style.scss';
 // import { useState } from 'react';
 
-function OrganizationCrowdfundingProjectsWidget({ list, organizationDetails }) {
+function OrganizationCrowdfundingProjectsWidget({ projectList, organizationDetails }) {
   //console.log(projectList);
   const [loadMore, setLoadMore] = useState(false);
   return (
@@ -20,15 +20,15 @@ function OrganizationCrowdfundingProjectsWidget({ list, organizationDetails }) {
       <WidgetTitle>Projects</WidgetTitle>
 
       <ul className="list-unstyled mb-0 mt-12p">
-        {list.length > 0 ? (
-          list
-            .slice(0, loadMore ? list.length : 3)
+        {projectList.length > 0 ? (
+          projectList
+            .slice(0, loadMore ? projectList.length : 3)
             .map((project, i) => <OrganizationCrowdfundingProjectItem item={project} key={i} />)
         ) : (
           <p>{organizationDetails?.name} hasn't created any Projects.</p>
         )}
       </ul>
-      {!loadMore && list.length > 3 && (
+      {!loadMore && projectList.length > 3 && (
         <div className="more__log">
           <Button
             variant="info"

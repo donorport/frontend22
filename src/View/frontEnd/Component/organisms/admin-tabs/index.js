@@ -67,7 +67,7 @@ function AdminTabs({ activeKey, data, _onClick, ...otherProps }) {
 
         <TabLink
           name="crowdfunding"
-          title="Crowdfundings"
+          title="Fundraisers"
           Icon={CrowdfundingIcon}
           data={data}
           activeKey={activeKey}
@@ -102,8 +102,8 @@ const TabLink = ({ name, path, title, Icon, data, activeKey, currentOption }) =>
           active={activeKey === name}
           className={
             currentOption === name
-              ? 'tab__btn d-flex align-items-center text-dark justify-content-center justify-content-lg-start active d-none d-sm-flex'
-              : 'tab__btn d-flex align-items-center text-dark justify-content-center justify-content-lg-start'
+              ? 'tab__btn d-flex align-items-center text-dark justify-content-sm-center justify-content-lg-start active d-none d-sm-flex'
+              : 'tab__btn d-flex align-items-center text-dark justify-content-sm-center justify-content-lg-start'
           }
         >
           <span className="tab__icon">
