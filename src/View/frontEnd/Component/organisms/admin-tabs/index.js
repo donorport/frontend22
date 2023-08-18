@@ -65,14 +65,14 @@ function AdminTabs({ activeKey, data, _onClick, ...otherProps }) {
           currentOption={currentOption}
         />
 
-        <TabLink
+        {/* <TabLink
           name="crowdfunding"
           title="Fundraisers"
           Icon={CrowdfundingIcon}
           data={data}
           activeKey={activeKey}
           currentOption={currentOption}
-        />
+        /> */}
 
         <TabLink
           name="settings"
