@@ -134,7 +134,7 @@ console.log('userData:', userData);
             </div>
             <div className="copyright mb-1 mb-sm-0 ms-1">
               <FontAwesomeIcon icon={regular('earth-americas')} />
-              <span className="ms-1">
+              <span className="ms-1 fw-bold">
                 {user.countrySortName ? user.countrySortName : userData ? userData.country : ''}
               </span>
             </div>

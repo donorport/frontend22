@@ -1,30 +1,32 @@
+import React from 'react';
 import ProjectCrowdfundingSuggestionItem from '../../molecules/project-crowdfunding-suggestion-item';
-
 import './style.scss';
 
 function ProjectCrowdfundingSuggestionList({ list, id, type }) {
-  // console.log("projectId",projectId)
+  // Check if 'list' is defined before accessing its length
+  if (!list || list.length === 0) {
+    return null; // or you can return some default content
+  }
 
-  // this one need to be rendered based on device width
-  // can try this solution https://stackoverflow.com/questions/39235506/render-component-in-different-order-depending-on-screen-size-react
   return (
     <ul
       className="suggested__list d-flex align-items-center p-0 mb-0"
       style={{ listStyle: 'none' }}
     >
-      {list.length > 0 &&
-        list.map((each, key) => {
+      {list.map((each, key) => {
+        // Check if 'each' is defined and has an '_id' property
+        if (each && each._id !== id) {
           return (
-            each._id !== id && (
-              <ProjectCrowdfundingSuggestionItem
-                key={key}
-                className="me-4"
-                item={each}
-                type={type}
-              />
-            )
+            <ProjectCrowdfundingSuggestionItem
+              key={key}
+              className="me-4"
+              item={each}
+              type={type}
+            />
           );
-        })}
+        }
+        return null; // Return null for items that don't meet the condition
+      })}
     </ul>
   );
 }

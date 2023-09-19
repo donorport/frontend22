@@ -5,7 +5,8 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v4.0.0 | MIT License | github.com/necolas/normalize.css */
-html {
+/*COMMENTED OUT ON AUGUST 28, 2023 by Kyle U to see if needed*/
+/* html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -2325,9 +2326,9 @@ select.form-control-lg:not([size]):not([multiple]),
   height: 3.166667rem;
 }
 
-/* .form-group {
+ .form-group {
   margin-bottom: 1rem;
-} */
+} 
 
 .form-text {
   display: block;
@@ -7014,6 +7015,6 @@ a.text-danger:hover {
   .hidden-print {
     display: none !important;
   }
-}
+} */
 
 /*# sourceMappingURL=bootstrap.css.map */
