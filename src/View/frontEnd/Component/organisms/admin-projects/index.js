@@ -12,7 +12,7 @@ import productApi from '../../../../../Api/admin/product';
 import { Link, useOutletContext } from 'react-router-dom';
 import helper from '../../../../../Common/Helper';
 import './style.scss';
-import CircularProgress from '@mui/material/CircularProgress';
+
 const AdminProjects = () => {
   const [data, setData] = useOutletContext();
   const userAuthToken = localStorage.getItem('userAuthToken');
