@@ -13,7 +13,7 @@ import Page from '../../components/Page';
 import {
   calculatePlatformCost,
   calculateGrandTotal,
-  DONATION_XP_PER_DOLLAR
+  DONATION_XP_PER_DOLLAR,
 } from '../../constants/constants';
 
 const DONATE_VALIDATION_RULES = {

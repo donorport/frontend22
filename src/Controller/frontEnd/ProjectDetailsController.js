@@ -10,7 +10,7 @@ import { setUserXp } from '../../user/user.action';
 import helper, { GetCardTypeByNumber, getCardIcon } from '../../Common/Helper';
 import followApi from '../../Api/frontEnd/follow';
 import Page from '../../components/Page';
-import { calculatePlatformCost, calculateGrandTotal, DONATION_XP_PER_DOLLAR } from '../../constants/constants';
+import { calculatePlatformCost, calculateGrandTotal, DONATION_XP_PER_DOLLAR  } from '../../constants/constants';
 
 const DONATE_VALIDATION_RULES = {
   //name: 'required',

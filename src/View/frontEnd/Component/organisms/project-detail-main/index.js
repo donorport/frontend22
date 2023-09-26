@@ -2,16 +2,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { ProgressBar } from 'react-bootstrap';
 
-
 import ShareWidget from '../share-widget';
 import OrganizationWidget from '../organization-widget';
 import ProjectCrowdfundingGallery from '../project-crowdfunding-gallery';
 import TagTitle from '../../atoms/tag-title';
 import IconToggle from '../../atoms/icon-toggle';
 import moment from 'moment';
-import helper, {
-  convertAddress,
-} from '../../../../../Common/Helper';
+import helper, { convertAddress } from '../../../../../Common/Helper';
 
 import './style.scss';
 import { Link } from 'react-router-dom';
@@ -105,7 +102,7 @@ function ProjectDetailMain(props) {
     return Math.round(per);
   };
 
-  const setState = projectDetails.campaignDetails?.state_id;
+  // const setState = projectDetails.campaignDetails?.state_id;
 
   useEffect(() => {
     if (projectDetails?.name) {
@@ -120,6 +117,7 @@ function ProjectDetailMain(props) {
       setAddress(newaddress);
     }
   }, [props.projectDetails]);
+
   return (
     <div className="project__detail-main">
       <div className="d-flex flex-column mb-4 gap-2">
@@ -296,7 +294,11 @@ function ProjectDetailMain(props) {
           )}
 
           {projectDetails?.images && projectDetails?.images.length > 0 && (
-            <ProjectCrowdfundingGallery title={false} images={projectDetails?.images} tagTitle="Project" />
+            <ProjectCrowdfundingGallery
+              title={false}
+              images={projectDetails?.images}
+              tagTitle="Project"
+            />
           )}
         </div>
         <div>
