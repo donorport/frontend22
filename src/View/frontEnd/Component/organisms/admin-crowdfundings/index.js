@@ -435,10 +435,16 @@ const AdminCrowdfundings = () => {
       {!isCreateCrowdfunding ? (
         <div>
           <header className="py-sm-2 mb-2 w-100 d-sm-flex align-items-center">
-            <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">
-              Crowdfunding Campaigns
-            </h1>
-            <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
+            <div className="me-sm-2 flex-grow-1 mb-3 mb-sm-0">
+              <div className="d-flex align-items-center mb-1">
+                <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Fundraisers</h1>
+                <span className="d-none d-sm-flex text-light fs-5 ml-2 ms-2">({totalRecord})</span>
+              </div>
+              <p className="d-none d-sm-block fs-5 text-light">
+                Create a traditional crowdfunding campaign for larger items or more complex
+                donations. Donors will donate toward the goal you set.
+              </p>
+            </div>
 
             <div className="d-flex align-items-center ms-sm-auto justify-content-end text-nowrap">
               <Button
@@ -459,6 +465,7 @@ const AdminCrowdfundings = () => {
             deleteCrowdfunding={deleteCrowdfunding}
             publishCrowdfunding={publishCrowdfunding}
             handleClick={handleClick}
+            loading={loading}
             totalPages={totalPages}
             totalRecord={totalRecord}
             pageNo={pageNo}

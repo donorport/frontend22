@@ -449,10 +449,22 @@ export function convertAddress(address) {
   }
 
   try {
-    const split = address.split(',');
-    const commaCount = split.length - 1;
+    const commaCount = address.split(',').length - 1;
 
-    const countryName = split[split.length - 1].trim();
+    if (commaCount === 1) {
+      const [stateOrProvince, country] = address.split(',').map(part => part.trim());
+      const countryISO = Country.getAllCountries().find(
+        (c) => c.name.replace(/\s/g, '') === country
+      )?.isoCode;
+
+      if (!countryISO) {
+        throw new Error(`Country not found for address "${address}"`);
+      }
+
+      return `${stateOrProvince}, ${countryISO}`;
+    }
+
+    const countryName = address.split(',').pop().trim();
     const country = Country.getAllCountries().find(
       (c) => c.name.replace(/\s/g, '') === countryName
     );
@@ -464,12 +476,12 @@ export function convertAddress(address) {
     let city;
     let stateOrProvince;
     if (commaCount === 3) {
-      city = split[1].trim();
-      const stateWithSpace = split[2].trim();
+      city = address.split(',')[1].trim();
+      const stateWithSpace = address.split(',')[2].trim();
       stateOrProvince = stateWithSpace.split(' ')[0];
     } else if (commaCount === 2) {
-      city = split[0].trim();
-      stateOrProvince = split[1].trim();
+      city = address.split(',')[0].trim();
+      stateOrProvince = address.split(',')[1].trim();
     } else {
       throw new Error('Invalid address format');
     }
@@ -491,16 +503,3 @@ export function convertAddress(address) {
     return null; // or return an error message instead of null
   }
 }
-
-// NOT USED ANYMORE
-// export function convertState(e) {
-//   try {
-//     const countryName = Country.getAllCountries().filter((e) => e.name);
-//
-//     const stateName = State.getStateByCode(stateName[0].id).filter((x) => e.includes(x.name));
-//
-//     return `${stateName.length > 0 ? `${stateName[0].name}` : ''}`;
-//   } catch (e) {
-//     console.error('state error');
-//   }
-// }

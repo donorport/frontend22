@@ -73,9 +73,15 @@ const AdminActivity = () => {
   return (
     <>
       <header className="py-sm-2 pb-2 w-100 d-sm-flex align-items-center">
-        <div className="d-none d-sm-flex align-items-center me-sm-2 flex-grow-1 mb-3 mb-sm-0 flex-wrap">
-          <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Activity</h1>
-          <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
+        <div className="me-sm-2 flex-grow-1 mb-3 mb-sm-0">
+          <div className="d-flex align-items-center mb-1">
+            <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Activity</h1>
+            <span className="d-none d-sm-flex text-light fs-5 ml-2 ms-2">({totalRecord})</span>
+          </div>
+          <p className="d-none d-sm-block fs-5 text-light">
+            Check out how donors have been interacting with your charity. Here is where you can see
+            order activity and follows.
+          </p>
         </div>
         <div className="ms-sm-auto">
           <LadderMenuXp onChangeDropdown={onChangeDropdown} listBy={listBy} urlIcon={urlIcon} />
@@ -85,6 +91,7 @@ const AdminActivity = () => {
       <ActivityTable
         handleClick={handleClick}
         activityList={activityList}
+        loading={loading}
         totalPages={totalPages}
         totalRecord={totalRecord}
         pageNo={pageNo}

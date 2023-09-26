@@ -95,7 +95,7 @@ const ProductListEmpty = () => (
           </div>
           <div className="empty__message">
             <div className="title title--small ">
-              <p className="item__title project__title">There are no results in this range</p>
+              <h3 className="item__title project__title">There are no results in this range</h3>
             </div>
             <div className="empty__text">
               <p>Try broadening your search.</p>

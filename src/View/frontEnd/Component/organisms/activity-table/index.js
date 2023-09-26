@@ -12,6 +12,7 @@ import moment from 'moment';
 import wallet from '../../../../../assets/images/wallet.svg';
 import speech from '../../../../../assets/images/speech-bubble.svg';
 import donation from '../../../../../assets/images/donate.svg';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const ActivityTable = (props) => {
   let activityList = props.activityList;
@@ -55,7 +56,11 @@ const ActivityTable = (props) => {
         <ul
           className="list-unstyled mb-0 list__table-list" /*style={{ maxHeight: activityList.length > 0 ? "600px" : "", minHeight: activityList.length > 0 ? "600px" : "" }}*/
         >
-          {activityList.length > 0 ? (
+          {props.loading ? (
+            <li className="py-2 mt-2 d-flex justify-content-center">
+              <CircularProgress className="ms-1" color="inherit" size={32} />
+            </li>
+          ) : activityList.length > 0 ? (
             activityList.map((list, i) => {
               // console.log(list)
               return (

@@ -537,7 +537,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
             </div>
             <div className="d-flex align-items-center pt-3 mb-2">
               <span className="fw-bolder flex__1">Total:</span>
-              <span className="text-light fw-bolder fs-4">
+              <span className="text-light fw-bold fs-5">
                 {item.currencySymbol ? item.currencySymbol : '$'}
                 {priceFormat(Number(purchasedPrice) * Number(item.quantity))}
               </span>

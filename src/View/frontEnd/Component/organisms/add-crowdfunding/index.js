@@ -77,9 +77,9 @@ const AddCrowdfunding = (props) => {
           </Button>
 
           {status !== 1 ? (
-            <span className="fs-3 fw-bolder me-sm-3">Create Crowdfunding Campaign</span>
+            <span className="fs-3 fw-bolder me-sm-3">Create Fundraiser</span>
           ) : (
-            <span className="fs-3 fw-bolder me-sm-3">Edit Crowdfunding Campaign</span>
+            <span className="fs-3 fw-bolder me-sm-3">Edit Fundraiser</span>
           )}
           {/* <Button variant="link" className="text-decoration-none ms-auto ms-sm-0">
             <FontAwesomeIcon icon={solid('circle-question')} className="text-dark fs-4" />
@@ -152,13 +152,13 @@ const AddCrowdfunding = (props) => {
       </div>*/}
 
       <div className="d-flex py-2 border-bottom">
-        <h3 className="mb-0 fw-bolder me-2">Crowdfunding Details</h3>
-        <div className="d-flex align-items-center">
+        <h3 className="mb-0 fw-bolder me-2">Fundraiser Details</h3>
+        {/* <div className="d-flex align-items-center">
           <div className="bg-purple text-nowrap fs-8 fw-semibold rounded-3 p-6p text-white">
             Ongoing Need?
             <FontAwesomeIcon icon={solid('infinity')} className="ml-3p" />
           </div>
-        </div>
+        </div> 
         <div className="ms-2">
           <ToggleSwitch
             id="infinite"
@@ -166,7 +166,7 @@ const AddCrowdfunding = (props) => {
             name="infinite"
             changevalue={props.changevalue}
           />
-        </div>
+        </div>*/}
       </div>
       <Row className="mw-850 py-5">
         <Col lg="6">
