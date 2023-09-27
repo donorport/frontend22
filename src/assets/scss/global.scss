@@ -1,5 +1,3 @@
-[data-theme="light"] {
-// load variables, mixins and functions
 @import "./config";
 
 // load bootstrap styles
@@ -39,7 +37,7 @@
 
 // load utility styles
 @import "./utils";
-}
+
 
 [data-theme="dark"] {
 // load variables, mixins and functions

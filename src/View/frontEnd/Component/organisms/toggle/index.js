@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import './style.scss';
 
+
+
 function ThemeToggle() {
   const toggleTheme = () => {
     const htmlElement = document.querySelector('html');
@@ -21,10 +23,17 @@ function ThemeToggle() {
       document.body.classList.remove('dark-theme');
     }
 
-    themeToggle.addEventListener('click', toggleTheme);
+    themeToggle.addEventListener('click', () => {
+      toggleTheme();
+      if (htmlElement.dataset.theme === 'dark') {
+        document.body.classList.add('dark-theme');
+      } else {
+        document.body.classList.remove('dark-theme');
+      }
+    });
 
     return () => {
-      themeToggle.removeEventListener('click', toggleTheme);
+      themeToggle.removeEventListener('click', () => {});
     };
   }, []);
 
