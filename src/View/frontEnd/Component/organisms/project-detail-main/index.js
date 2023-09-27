@@ -124,7 +124,7 @@ function ProjectDetailMain(props) {
         <div className="d-flex align-items-center mb-1">
           <div>
             <TagTitle>Project</TagTitle>
-            <h1 className="project__detail-title text-dark">{projectDetails.name}</h1>
+            <h1 className="project__detail-title">{projectDetails.name}</h1>
           </div>
           {/* <div className="page__logo page__logo--org ms-auto">
             <img

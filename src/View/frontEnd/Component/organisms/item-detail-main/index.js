@@ -214,7 +214,7 @@ const ItemDetailsMain = ({
     <div className="mb-1">
       {' '}
       <h4 className="project__detail-label mb-3p">Item</h4>
-      <h1 className="project__detail-title text-dark" style={{ textTransform: 'capitalize' }}>
+      <h1 className="project__detail-title" style={{ textTransform: 'capitalize' }}>
         {productDetails?.headline}
       </h1>
       <h5 className="project__detail-sublabel mb-0 fw-bolder">Product</h5>

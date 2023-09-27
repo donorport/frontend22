@@ -70,7 +70,7 @@ function CrowdfundingDetailMain({
         <div className="d-flex align-items-center mb-1">
           <div>
             <TagTitle>Crowdfunding Campaign</TagTitle>
-            <h1 className="project__detail-title text-dark">{crowdfundingDetails.name}</h1>
+            <h1 className="project__detail-title">{crowdfundingDetails.name}</h1>
           </div>
           {/* <div className="page__logo page__logo--org ms-auto">
             <img

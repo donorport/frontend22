@@ -8,21 +8,21 @@ $secondary-3: #f7f6ff;
 $secondary-4: #eff4ff;
 $secondary-5: #f8fafd;
 
-$gray-100: #ffffff;
-$gray-200: #fafafc;
-$gray-300: #f7f7fa;
-$gray-400: #e5e5ea;
-$gray-500: #80809d;
-$gray-600: #6e6d8f;
-$gray-700: #3a395e;
+$neutral-100: #ffffff;
+$neutral-200: #fafafc;
+$neutral-300: #f7f7fa;
+$neutral-400: #e5e5ea;
+$neutral-500: #80809d;
+$neutral-600: #6e6d8f;
+$neutral-700: #3a395e;
 
 $font-family-sans-serif: "Jcfonts linotte", sans-serif;
 
-$body-color: $gray-700;
+$body-color: $neutral-700;
 
 $darkest: #001429;
-$dark: $gray-700;
-$light: $gray-500;
+$dark: $neutral-700;
+$light: $neutral-500;
 $border-color: #e6e6e6;
 $hr-border-color: #e6e6e6;
 
@@ -33,7 +33,7 @@ $font-size-lg: 1.125rem; // 18px / 16px
 $font-size-sm: 0.75rem; // 12px
 
 $small-font-size: 85%;
-$text-muted: $gray-500;
+$text-muted: $neutral-500;
 
 $h1-font-size: $font-size-base * 3.5;
 $h2-font-size: $font-size-base * 2;
@@ -85,8 +85,8 @@ $danger: #f15e5e;
 $info: #3898ec;
 $infinity: #a976f0;
 
-$light: $gray-100 !default;
-$dark: $gray-900 !default;
+$light: $neutral-100 !default;
+$dark: $neutral-700 !default;
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
@@ -167,16 +167,16 @@ $dropdown-item-padding-x: 1rem;
 $dropdown-item-padding-y: 8px;
 $dropdown-link-hover-bg: #c4c4c433;
 $dropdown-link-active-color: #3e4e57;
-$dropdown-link-active-bg: $gray-300;
+$dropdown-link-active-bg: $neutral-300;
 
 $link-decoration: none;
 $link-hover-decoration: underline;
 
 $yiq-contrasted-threshold: 120;
-$yiq-text-dark: $dark;
+$yiq-text-dark: $neutral-700;
 
 $table-cell-padding: 1rem 0.75rem;
-$table-head-color: $gray-700;
+$table-head-color: $neutral-700;
 
 $input-focus-box-shadow: none;
 $input-btn-focus-width: 0;

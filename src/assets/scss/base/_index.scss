@@ -16,15 +16,17 @@ body {
   // font-family: 'Plus Jakarta Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: $neutral-700;
   width: 100%;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  background-color: $body-bg;
   --text-subtext: #6f6f90;
-  --text-color: #{$gray-700};
+  --text-color: #{$neutral-700};
   --text-danger: #{$danger};
   --border-input: #{$border-color};
-  --bkg-shade: #{$gray-100};
+  --bkg-shade: #{$neutral-100};
   --hero: linear-gradient(180deg,#5e5ff3,#5e5ff3);
 }
 

@@ -76,12 +76,12 @@
 }
 
 .group__label {
-  color: $gray-600;
+  color: $neutral-600;
   padding: 2px 12px;
   position: absolute !important;
   left: 50%;
   top: 0;
-  background-color: $gray-100;
+  background-color: $neutral-100;
   transform: translate(-50%, -65%);
   z-index: 1;
 }

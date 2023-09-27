@@ -1,6 +1,7 @@
 .tab__btn {
   cursor: pointer;
   font-size: 16px;
+  color: $neutral-700;
   font-weight: $font-weight-bolder;
   border: 1px solid transparent;
   line-height: 1;
@@ -8,7 +9,7 @@
   justify-content: start;
 
   &.active {
-    background-color: $gray-100;
+    background-color: $neutral-100;
     border-color: var(--border-input);
     border-radius: 25px;
   }

@@ -305,7 +305,7 @@
 } */
 
 /* .setting-nav .nav-link.active {
-  color: $gray-100;
+  color: $neutral-100;
   cursor: default;
   background-color: #00AB55 !important;
 }
@@ -347,7 +347,7 @@
 
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  color: $gray-100;
+  color: $neutral-100;
   background-color: #00ab55 !important;
 }
 
@@ -468,7 +468,7 @@
   font-weight: 600;
   line-height: 1.25;
   color: #585a83;
-  background-color: $gray-100;
+  background-color: $neutral-100;
   background-clip: padding-box;
   border: 1px solid #e6e6e6;
   -webkit-appearance: none;
@@ -597,7 +597,7 @@ button.ReactTags__remove {
 
 .set-price {
   background: #f4f6f8 !important;
-  color: $gray-600;
+  color: $neutral-600;
 }
 
 .starter {
@@ -804,7 +804,7 @@ button.ReactTags__remove {
 }
 
 .invoice table .no {
-  color: $gray-100;
+  color: $neutral-100;
   font-size: 1.6em;
   background: #3773c6;
 }
@@ -815,7 +815,7 @@ button.ReactTags__remove {
 
 .invoice table .total {
   background: #3773c6;
-  color: $gray-100;
+  color: $neutral-100;
 }
 
 .invoice table tbody tr:last-child td {
@@ -1312,7 +1312,7 @@ li.search__tag {
   padding: 0;
   border-radius: 50%;
   background-color: #a976f0;
-  color: $gray-100;
+  color: $neutral-100;
   font-size: 11px;
   font-weight: 600;
 }

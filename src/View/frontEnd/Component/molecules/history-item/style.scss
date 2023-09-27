@@ -20,7 +20,7 @@
   // .similar__item__wrap
   &item__wrap {
     &.active {
-      background-color: $gray-100;
+      background-color: $neutral-100;
       border-radius: 6px;
     }
   }
@@ -57,11 +57,11 @@
 }
 
 .qty__tag {
- // background: $gray-100;
+ // background: $neutral-100;
   display: flex;
   padding: 6px 12px;
   align-items: center;
-  color: $gray-700;
+  color: $neutral-700;
   font-weight: $font-weight-semibold;
   border-radius: 4px;
 }

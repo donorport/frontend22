@@ -61,7 +61,7 @@ function OrganizationDetailMain({
           <h4 className="project__detail-label mb-3p">Organization</h4>
           <div className="d-flex flex-wrap me-3">
             <h1
-              className="flex-grow-1 project__detail-title text-dark text-capitalize mb-0"
+              className="flex-grow-1 project__detail-title text-capitalize mb-0"
               style={{ flex: 0 }}
             >
               <span>{organizationDetails?.name}</span>

@@ -105,26 +105,26 @@
 
 .thead-inverse {
   th {
-    color: $gray-100;
-    background-color: $gray-dark;
+    color: $neutral-100;
+    background-color: $neutral-dark;
   }
 }
 
 .thead-default {
   th {
-    color: $gray;
-    background-color: $gray-lighter;
+    color: $neutral;
+    background-color: $neutral-lighter;
   }
 }
 
 .table-inverse {
-  color: $gray-lighter;
-  background-color: $gray-dark;
+  color: $neutral-lighter;
+  background-color: $neutral-dark;
 
   th,
   td,
   thead th {
-    border-color: $gray;
+    border-color: $neutral;
   }
 
   &.table-bordered {

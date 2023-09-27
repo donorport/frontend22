@@ -7,7 +7,7 @@
 }
 
 .share-dialog {
-  color: $gray-700;
+  color: $neutral-700;
   position: absolute;
   left: 60px;
   top: 0px;
@@ -19,7 +19,7 @@
     font-size: 16px;
   }
   .icon.icon--close {
-    color: $gray-700;
+    color: $neutral-700;
     width: 26px;
     height: 26px;
     margin-top: -12px;
@@ -28,7 +28,7 @@
     font-size: 19px;
   }
   .sh__box {
-    background-color: $gray-100;
+    background-color: $neutral-100;
 
     position: absolute;
     left: 50%;
@@ -59,7 +59,7 @@
   }
 
   .sh__type {
-    background-color: $gray-100;
+    background-color: $neutral-100;
     display: flex;
     width: 54px;
     height: 54px;
@@ -77,7 +77,7 @@
   }
 
   .sh__link {
-    background-color: $gray-100;
+    background-color: $neutral-100;
     display: flex;
     margin-top: 9px;
     padding: 9px 19px;
@@ -101,7 +101,7 @@
   }
 
   .sh__type.sh__type--email {
-    color: $gray-700;
+    color: $neutral-700;
   }
 
   .sh__type.sh__type--twitter {

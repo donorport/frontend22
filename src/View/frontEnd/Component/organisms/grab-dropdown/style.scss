@@ -1,5 +1,5 @@
 .grab__dropdown {
-  background: $gray-100;
+  background: $neutral-100;
   position: absolute !important;
   //inset: 0px 0px auto auto !important;
   transform: translate(1px, 50px) !important
@@ -16,11 +16,11 @@
   }
 
   &-content {
-    color: $gray-700;
+    color: $neutral-700;
   }
 
   &-msg {
-    color: $gray-600;
+    color: $neutral-600;
   }
 }
 

@@ -48,7 +48,7 @@
   &__subtotal {
     margin-top: 3px;
     flex: 0 auto;
-    color: $gray-600;
+    color: $neutral-600;
     font-size: 16px;
     margin-right: 30px;
   }
@@ -72,7 +72,7 @@
     padding-top: 3px;
     border-radius: 50%;
     background-color: $secondary;
-    color: $gray-100;
+    color: $neutral-100;
     font-size: 11px;
   }
   &__info {
@@ -145,7 +145,7 @@
   }
   &__label {
     font-size: 19px;
-    color: $gray-600;
+    color: $neutral-600;
   }
   &__value {
     text-align: right;
@@ -179,7 +179,7 @@
   }
   &__title {
     font-size: 19px;
-    color: $gray-600;
+    color: $neutral-600;
   }
   &__total {
     text-align: right;

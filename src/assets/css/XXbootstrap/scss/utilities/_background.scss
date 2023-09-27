@@ -7,7 +7,7 @@
 }
 
 .bg-faded {
-  background-color: $gray-lightest;
+  background-color: $neutral-lightest;
 }
 
 @include bg-variant('.bg-primary', $brand-primary);

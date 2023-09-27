@@ -18,12 +18,12 @@ p {
   font-size: 18px
 }
 body {
-  --bkg-color: $gray-100;
+  --bkg-color: $neutral-100;
   --text-subtext: #6f6f90;
-  --text-color: #{$gray-700};
+  --text-color: #{$neutral-700};
   --text-danger: #{$danger};
   --border-input: #{$border-color};
-  --bkg-shade: #{$gray-100};
+  --bkg-shade: #{$neutral-100};
   --hero: linear-gradient(180deg,#5e5ff3,#5e5ff3);
 }
 

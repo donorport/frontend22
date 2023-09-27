@@ -26,13 +26,14 @@
   }
 }
 .project__detail-main {
-  // color: $gray-700;
+  // color: $neutral-700;
   max-width: 500px;
   display: flex;
   flex-direction: column;
 }
 .project__detail-title {
   font-size: 52px;
+  color: $neutral-700;
   line-height: 3rem;
   margin: 0.9rem 0;
   font-weight: 900 !important;
@@ -44,7 +45,7 @@
 .project__detail-subtitle {
   font-size: 16px;
   font-weight: $font-weight-semi-bold;
-  color: $gray-600;
+  color: $neutral-600;
   line-height: 2.3rem;
 }
 
@@ -97,7 +98,7 @@
   padding: 20px 28px;
   border-radius: 6px;
   line-height: 30px;
-  color: $gray-700;
+  color: $neutral-700;
   display: flex;
   margin-bottom: 0.9rem;
 }

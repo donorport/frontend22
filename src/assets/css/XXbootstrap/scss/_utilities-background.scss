@@ -5,12 +5,12 @@
 // Inverse
 // TODO: redo this as a proper class
 .bg-inverse {
-  color: $gray-lighter;
-  background-color: $gray-dark;
+  color: $neutral-lighter;
+  background-color: $neutral-dark;
 }
 
 .bg-faded {
-  background-color: $gray-lightest;
+  background-color: $neutral-lightest;
 }
 
 @include bg-variant('.bg-primary', $brand-primary);

@@ -38,7 +38,7 @@
 }
 .item-overlay{
   line-height: 1;
-  color: $gray-100;
+  color: $neutral-100;
   padding: 8px;
   opacity: 0;
   @include transition(all 0.2s);
@@ -161,7 +161,7 @@
     height: 100%;
     top: 0;
     padding: 15px 20px;
-    color: $gray-100;
+    color: $neutral-100;
     .item-overlay{
       bottom: 0;
     }

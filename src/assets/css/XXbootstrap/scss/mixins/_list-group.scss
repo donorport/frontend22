@@ -21,7 +21,7 @@
 
     &.active {
       @include plain-hover-focus {
-        color: $gray-100;
+        color: $neutral-100;
         background-color: $color;
         border-color: $color;
       }
