@@ -16,7 +16,7 @@
     left: 20px !important;
   }
   &.dropdown-menu {
-    background-color: var(--bkg-shade);
+    background-color: $secondary-3;
     width: 475px;
     top: 32px !important;
    // overflow: visible !important;
@@ -28,7 +28,7 @@
   }
 
   &-bd {
-    background-color: #fff;
+    background-color: $gray-100;
   }
 
   .filter__checkboxes {
@@ -108,7 +108,7 @@
   }
 
   .filter__slider {
-    background-color: var(--bkg-shade);
+    background-color: $secondary-3;
     order: 1;
   }
   .filter__dropdown,

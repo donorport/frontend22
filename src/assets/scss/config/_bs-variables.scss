@@ -1,33 +1,41 @@
-// Bootstrap variables
+$body-bg: #562828;
+$primary: #c2de5c;
+$secondary: #33424e;
 
-$body-bg: #fff;
+$secondary-1: #a976f0;
+$secondary-2: #3045c9;
+$secondary-3: #7969f0;
+$secondary-4: #3e9025;
+$secondary-5: #ca1a84;
+
+$gray-100: #2f2020;
+$gray-200: #161655;
+$gray-300: #2e2e54;
+$gray-400: #98119a;
+$gray-500: #80809d;
+$gray-600: #6e6d8f;
+$gray-700: #e9642f;
+
 $font-family-sans-serif: "Jcfonts linotte", sans-serif;
-
-$gray-100: #f8fafd;
-$gray-200: #f4f4f4;
-$gray-300: #dfe3e8;
-$gray-400: #9796b1;
-$gray-500: #6f6f90;
-$gray-600: #6d6d86;
-$gray-700: #56577b;
-$gray-800: #3d4279;
 
 $body-color: $gray-700;
 
 $darkest: #001429;
-$dark: $gray-800;
-$light: $gray-400;
+$dark: $gray-700;
+$light: $gray-500;
 $border-color: #e6e6e6;
 $hr-border-color: #e6e6e6;
 
-$font-size-base: 0.875rem; // 14px
-$font-size-lg: 1rem; // 16px
+$font-size-base: 0.975rem; // 16px
+// $font-size-base: 0.875rem; // 14px
+$font-size-lg: 1.125rem; // 18px / 16px
+// $font-size-lg: 1rem; // 16px
 $font-size-sm: 0.75rem; // 12px
 
 $small-font-size: 85%;
 $text-muted: $gray-500;
 
-$h1-font-size: $font-size-base * 3;
+$h1-font-size: $font-size-base * 3.5;
 $h2-font-size: $font-size-base * 2;
 $h3-font-size: $font-size-base * 1.75;
 $h4-font-size: $font-size-base * 1.4285;
@@ -70,12 +78,12 @@ $input-btn-border-width: 1px;
 $border-radius: 3px;
 $border-radius-lg: 4px;
 
-$primary: #756fe4;
-$secondary: #37cc5e;
-$success: #45bb82;
+$neutral: #6b68f8;
+$success: #4ee36a;
 $warning: #f8b22f;
 $danger: #f15e5e;
 $info: #3898ec;
+$infinity: #a976f0;
 
 $light: $gray-100 !default;
 $dark: $gray-900 !default;
@@ -83,7 +91,7 @@ $dark: $gray-900 !default;
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
-  "primary": $primary,
+  "primary": $neutral,
   "secondary": $secondary,
   "success": $success,
   "info": $info,
@@ -91,6 +99,7 @@ $theme-colors: (
   "danger": $danger,
   "light": $light,
   "dark": $dark,
+  "infinity": $infinity,
   "ldanger": #fd7a7a,
 ) !default;
 
@@ -213,3 +222,6 @@ $modal-xl:                          1140px !default;
 
 $modal-content-border-width:        0;
 $modal-content-border-radius:       8px;
+
+$font-weight-semi-bold: 600;
+$font-weight-semibold: 600;

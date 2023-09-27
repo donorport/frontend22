@@ -115,7 +115,7 @@
   border-color: $light;
 }
 .b-white{
-  border-color: #fff;
+  border-color: $gray-100;
 }
 
 @include border-wariant(primary, $primary);

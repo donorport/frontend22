@@ -1,3 +1,4 @@
+[data-theme="light"] {
 // load variables, mixins and functions
 @import "./config";
 
@@ -38,13 +39,48 @@
 
 // load utility styles
 @import "./utils";
+}
 
-h1,
-h2:not(.project__detail-price),
-h3:not(.szh-accordion__item-heading),
-h4,
-h5,
-h6 {
-	font-family: "Custom", sans-serif;
-	letter-spacing: -0.03em;
+[data-theme="dark"] {
+// load variables, mixins and functions
+@import "./config-dark";
+
+// load bootstrap styles
+//@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/utilities";
+
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/helpers";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/progress";
+@import "~bootstrap/scss/dropdown";
+
+@import "~bootstrap/scss/utilities/api";
+
+// base styles
+@import "./base";
+
+// component styles
+@import "./components/button";
+@import "./components/product";
+@import "./components/title";
+@import "./components/forms";
+
+// layout styles
+@import "./layout/grid";
+
+// load fonts
+@import "./fonts";
+
+// load utility styles
+@import "./utils";
+
 }

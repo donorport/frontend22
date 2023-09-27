@@ -7,7 +7,7 @@ import { Grid, Button, Container, Stack, Typography } from '@mui/material';
 import Page from '../components/Page';
 import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../components/_dashboard/blog';
 //
-import POSTS from '../_mocks_/blog';
+// import POSTS from '../_mocks_/blog';
 
 // ----------------------------------------------------------------------
 

@@ -62,9 +62,9 @@ textarea.md-input{
 .md-input-white{
     &:focus,
     &.focus{
-        border-color: #fff;
+        border-color: $gray-100;
         ~ label{
-            color: #fff;
+            color: $gray-100;
         }
     }
 }

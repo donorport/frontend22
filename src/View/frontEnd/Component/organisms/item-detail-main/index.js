@@ -219,7 +219,7 @@ const ItemDetailsMain = ({
       </h1>
       <h5 className="project__detail-sublabel mb-0 fw-bolder">Product</h5>
       <div className="project__detail-subtitle fw-bold">{productDetails?.brand} ™</div>
-      <h2 className="project__detail-price fs-1 text-price m-0">
+      <h2 className="project__detail-price text-price m-0">
         {currencySymbol}
         {priceFormat(price)}
       </h2>
@@ -292,7 +292,7 @@ const ItemDetailsMain = ({
       </div>
     </div>
 
-    <div className="category__icons d-flex align-items-center order--1 order-sm-0">
+    <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-3">
       <Link
         size="lg"
         variant="link"

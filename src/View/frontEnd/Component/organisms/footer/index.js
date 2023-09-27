@@ -9,7 +9,7 @@ import IconButton from '../../molecules/icon-button';
 import FooterCategoryLinks from '../../molecules/footer-category-links';
 import { useSelector, useDispatch } from 'react-redux';
 import categoryApi from '../../../../../Api/admin/category';
-import logo from '../../../../../assets/images/logo.svg';
+import Logo from '../../../Component/atoms/logo';
 
 import './style.scss';
 
@@ -30,9 +30,9 @@ function Footer() {
       await getCategoryList();
     })();
   }, []);
-// Before the problematic span
-console.log('user:', user);
-console.log('userData:', userData);
+  // Before the problematic span
+  console.log('user:', user);
+  console.log('userData:', userData);
   return (
     <div className="footer border-top px-1">
       <Container fluid className="footer__top">
@@ -99,15 +99,7 @@ console.log('userData:', userData);
       <Container fluid>
         <Row className="footer__middle pb-2">
           <Col sm className="footer__block logo text-center text-sm-start mb-2 mb-sm-0">
-            <a href="/" className="d-inline-flex align-items-center mb-2">
-              <img
-                src={logo}
-                alt=""
-                className="svg__logo"
-              />
-
-              <div className="svg__name ms-1 text-dark">Donorport</div>
-            </a>
+            <Logo/>
             <p>
               The world's first and largest crowd-funding platform for non-profits
               &amp;&nbsp;charities. Donate directly to the needs of the organization and help them
@@ -134,7 +126,7 @@ console.log('userData:', userData);
             </div>
             <div className="copyright mb-1 mb-sm-0 ms-1">
               <FontAwesomeIcon icon={regular('earth-americas')} />
-              <span className="ms-1 fw-bold">
+              <span className="logo-span ms-1">
                 {user.countrySortName ? user.countrySortName : userData ? userData.country : ''}
               </span>
             </div>

@@ -69,7 +69,7 @@
     }
   }
   &.ui-check-color input:checked + i:before {
-    background-color: #fff;
+    background-color: $gray-100;
   }
 }
 

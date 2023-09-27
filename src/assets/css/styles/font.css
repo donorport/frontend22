@@ -1,4 +1,4 @@
-/*custom*/
+/* custom
 @font-face {
 	font-family: 'Poppins';
 	src: url('../fonts/poppins/400.eot');
@@ -85,7 +85,8 @@
 .h4,
 .h5,
 .h6, */
-h1,
+
+/* h1,
 h2,
 h3:not(.szh-accordion__item-heading),
 h4,
@@ -93,9 +94,9 @@ h5,
 h6 {
 	font-family: "Custom", sans-serif;
 	letter-spacing: -0.03em;
-}
+} 
 
 body {
 	font-family: "Linotte", sans-serif;
-	/* font-family: "Segoe UI", "Trebuchet MS", "PT Sans", "Helvetica Neue", "HelveticaNeue-Light", Helvetica, Arial, sans-serif; */
-}
+	font-family: "Segoe UI", "Trebuchet MS", "PT Sans", "Helvetica Neue", "HelveticaNeue-Light", Helvetica, Arial, sans-serif; 
+} */

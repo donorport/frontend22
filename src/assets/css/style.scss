@@ -305,7 +305,7 @@
 } */
 
 /* .setting-nav .nav-link.active {
-  color: #fff;
+  color: $gray-100;
   cursor: default;
   background-color: #00AB55 !important;
 }
@@ -347,14 +347,14 @@
 
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  color: #fff;
+  color: $gray-100;
   background-color: #00ab55 !important;
 }
 
 .desktop__tab .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  color: rgb(44, 75, 255) !important;
-  background-color: rgb(213 219 255 / 36%) !important;
+  color: $primary !important;
+  background-color: $secondary-2 !important;
   border: 1px solid transparent !important;
   border-radius: 4px;
 }
@@ -468,7 +468,7 @@
   font-weight: 600;
   line-height: 1.25;
   color: #585a83;
-  background-color: #fff;
+  background-color: $gray-100;
   background-clip: padding-box;
   border: 1px solid #e6e6e6;
   -webkit-appearance: none;
@@ -597,7 +597,7 @@ button.ReactTags__remove {
 
 .set-price {
   background: #f4f6f8 !important;
-  color: #6f6f90;
+  color: $gray-600;
 }
 
 .starter {
@@ -804,7 +804,7 @@ button.ReactTags__remove {
 }
 
 .invoice table .no {
-  color: #fff;
+  color: $gray-100;
   font-size: 1.6em;
   background: #3773c6;
 }
@@ -815,7 +815,7 @@ button.ReactTags__remove {
 
 .invoice table .total {
   background: #3773c6;
-  color: #fff;
+  color: $gray-100;
 }
 
 .invoice table tbody tr:last-child td {
@@ -1312,7 +1312,7 @@ li.search__tag {
   padding: 0;
   border-radius: 50%;
   background-color: #a976f0;
-  color: #fff;
+  color: $gray-100;
   font-size: 11px;
   font-weight: 600;
 }
@@ -1375,7 +1375,7 @@ li.search__tag {
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   border-radius: 50%;
-  background-image: url(https://d3e54v103j8qbb.cloudfront.net/img/background-image.svg);
+  background-image: url('https://d3e54v103j8qbb.cloudfront.net/img/background-image.svg');
   background-position: 50% 50%;
   background-size: cover;
 }

@@ -20,7 +20,7 @@ module.exports = {
       loaderOptions: {
         // load style variables, mixins and functions globally
         prependData:`
-          @import "@styles/scss/config/_index.scss";`,
+          @import "@assets/scss/config/_index.scss";`,
       },
     },
   },

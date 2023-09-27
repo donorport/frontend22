@@ -1,81 +1,77 @@
-.section__header {
-  padding: 16px 0;
-}
+// .section__header {
+//   padding: 16px 0;
+// }
 
-.page__title {
-  color: $gray-700;
-}
+// .dash__section__title {
+//   color: $gray-700;
+//   font-size: 16px;
+// }
 
-.dash__section__title {
-  color: $gray-700;
-  font-size: 16px;
-}
+// .matrix {
+//   display: flex;
+//   margin-top: 8px;
+//   flex-direction: row;
+//   justify-content: flex-start;
+//   flex-wrap: wrap;
+//   flex: 1;
+//   gap: 12px;
 
-.matrix {
-  display: flex;
-  margin-top: 8px;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  flex: 1;
-  gap: 12px;
+//   &__item {
+//     position: relative;
+//     display: flex;
+//     width: calc(50% - 6px);
+//     height: 50%;
+//     justify-content: center;
+//     align-items: stretch;
+//     flex: 0 0 auto;
+//   }
 
-  &__item {
-    position: relative;
-    display: flex;
-    width: calc(50% - 6px);
-    height: 50%;
-    justify-content: center;
-    align-items: stretch;
-    flex: 0 0 auto;
-  }
+//   &__tag {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     flex: 0 0 auto;
+//     border-radius: 6px;
+//     color: $gray-100;
+//     flex-grow: 1;
+//   }
+// }
 
-  &__tag {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 0 0 auto;
-    border-radius: 6px;
-    color: #fff;
-    flex-grow: 1;
-  }
-}
+// .dash__section {
+//   display: flex;
+//   height: 350px;
+//   max-width: 100%;
+//   margin-bottom: 16px;
+//   flex-direction: column;
+//   flex-wrap: nowrap;
+//   flex: 1;
+//   border-radius: 6px;
+//   box-shadow: none;
+// }
 
-.dash__section {
-  display: flex;
-  height: 350px;
-  max-width: 100%;
-  margin-bottom: 16px;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  flex: 1;
-  border-radius: 6px;
-  box-shadow: none;
-}
+// .dash__section__title {
+//   line-height: 28px;
+//   font-weight: $font-weight-bolder;
+// }
 
-.dash__section__title {
-  line-height: 28px;
-  font-weight: $font-weight-bolder;
-}
+// .matrix__tag.matrix__tag--sales {
+//   background-color: #62d189;
+// }
 
-.matrix__tag.matrix__tag--sales {
-  background-color: #62d189;
-}
+// .matrix__tag.matrix__tag--views {
+//   background-color: #e29a57;
+// }
 
-.matrix__tag.matrix__tag--views {
-  background-color: #e29a57;
-}
+// .matrix__tag.matrix__tag--rank {
+//   background-color: #6aa5e7;
+// }
 
-.matrix__tag.matrix__tag--rank {
-  background-color: #6aa5e7;
-}
+// .matrix__tag.matrix__tag--bounce {
+//   background-color: #f06868;
+// }
 
-.matrix__tag.matrix__tag--bounce {
-  background-color: #f06868;
-}
-
-.dash__chart .pie__chart {
-    min-height: 212px;
-    justify-content: center;
-}
+// .dash__chart .pie__chart {
+//     min-height: 212px;
+//     justify-content: center;
+// }

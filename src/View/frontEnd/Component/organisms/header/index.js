@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap';
 import Logo from '../../atoms/logo';
 import ShoppingCart from '../shopping-cart';
 import Activity from '../activity';
+import Toggle from '../toggle';
 import UserSettings from '../user-settings';
 import GeoLocation from '../geo-location';
 import { useSelector } from 'react-redux';
@@ -43,6 +44,7 @@ const Header = ({
       <Container className="d-flex align-items-center" fluid>
         <Logo />
         <div className="position-relative ms-auto header__right d-flex align-items-center gap-1">
+        <Toggle/>
           {isHeaderGeo && isPathnameNotCategories && (
             <GeoLocation productList={productList} wishListproductList={wishListproductList} />
           )}

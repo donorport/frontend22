@@ -1,33 +1,41 @@
-// Bootstrap variables
-
 $body-bg: #fff;
-$font-family-sans-serif: 'Jcfonts linotte', sans-serif;
+$primary: #2c4bff;
+$secondary: #0e75f9;
 
-$gray-100: #f8fafd;
-$gray-200: #f4f4f4;
-$gray-300: #dfe3e8;
-$gray-400: #9796b1;
-$gray-500: #6f6f90;
-$gray-600: #6d6d86;
-$gray-700: #56577b;
-$gray-800: #3d4279;
+$secondary-1: #a976f0;
+$secondary-2: #F0F2FF;
+$secondary-3: #f7f6ff;
+$secondary-4: #eff4ff;
+$secondary-5: #f8fafd;
+
+$gray-100: #ffffff;
+$gray-200: #fafafc;
+$gray-300: #f7f7fa;
+$gray-400: #e5e5ea;
+$gray-500: #80809d;
+$gray-600: #6e6d8f;
+$gray-700: #3a395e;
+
+$font-family-sans-serif: "Jcfonts linotte", sans-serif;
 
 $body-color: $gray-700;
 
 $darkest: #001429;
 $dark: $gray-700;
-$light: $gray-400;
+$light: $gray-500;
 $border-color: #e6e6e6;
 $hr-border-color: #e6e6e6;
 
-$font-size-base: 0.875rem; // 14px
-$font-size-lg: 1rem; // 16px
+$font-size-base: 0.975rem; // 16px
+// $font-size-base: 0.875rem; // 14px
+$font-size-lg: 1.125rem; // 18px / 16px
+// $font-size-lg: 1rem; // 16px
 $font-size-sm: 0.75rem; // 12px
 
 $small-font-size: 85%;
 $text-muted: $gray-500;
 
-$h1-font-size: $font-size-base * 3;
+$h1-font-size: $font-size-base * 3.5;
 $h2-font-size: $font-size-base * 2;
 $h3-font-size: $font-size-base * 1.75;
 $h4-font-size: $font-size-base * 1.4285;
@@ -70,9 +78,8 @@ $input-btn-border-width: 1px;
 $border-radius: 3px;
 $border-radius-lg: 4px;
 
-$primary: #6b68f8;
-$secondary: #37cc5e;
-$success: #37cc5e;
+$neutral: #6b68f8;
+$success: #4ee36a;
 $warning: #f8b22f;
 $danger: #f15e5e;
 $info: #3898ec;
@@ -84,16 +91,16 @@ $dark: $gray-900 !default;
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
-  'primary': $primary,
-  'secondary': $secondary,
-  'success': $success,
-  'info': $info,
-  'warning': $warning,
-  'danger': $danger,
-  'light': $light,
-  'dark': $dark,
-  'infinity': $infinity,
-  'ldanger': #fd7a7a
+  "primary": $neutral,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+  "infinity": $infinity,
+  "ldanger": #fd7a7a,
 ) !default;
 
 $progress-height: 0.75rem;
@@ -116,7 +123,7 @@ $spacers: map-merge(
     2: $spacer,
     3: $spacer * 1.5,
     4: $spacer * 2,
-    5: $spacer * 2.5
+    5: $spacer * 2.5,
   ),
   $spacers
 );
@@ -127,7 +134,7 @@ $grid-breakpoints: (
   md: 768px,
   lg: 992px,
   xl: 1200px,
-  xxl: 1500px
+  xxl: 1500px,
 ) !default;
 
 $container-max-widths: (
@@ -135,7 +142,7 @@ $container-max-widths: (
   md: 720px,
   lg: 960px,
   xl: 1140px,
-  xxl: 1440px
+  xxl: 1440px,
 ) !default;
 
 $navbar-padding-x: 0;
@@ -208,13 +215,13 @@ $form-check-input-border: 2px solid $info;
 $form-check-input-checked-bg-color: $info;
 $form-check-input-border-radius: 0;
 
-$modal-sm: 300px !default;
-$modal-md: 425px;
-$modal-lg: 800px !default;
-$modal-xl: 1140px !default;
+$modal-sm:                          300px !default;
+$modal-md:                          425px;
+$modal-lg:                          800px !default;
+$modal-xl:                          1140px !default;
 
-$modal-content-border-width: 0;
-$modal-content-border-radius: 8px;
+$modal-content-border-width:        0;
+$modal-content-border-radius:       8px;
 
 $font-weight-semi-bold: 600;
 $font-weight-semibold: 600;

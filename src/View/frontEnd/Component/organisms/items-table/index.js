@@ -106,8 +106,8 @@ const ItemsTable = ({
                         </span>
                       </div>
                       <div className="flex-grow-1 flex-sm-0 ms-2">
-                        <div className="fw-bolder fs-5 mb-3p">{item.itemDetails?.headline}</div>
-                        <div className="fs-7 text-light">{item.itemDetails?.brand}</div>
+                        <h5 className="mb-3p">{item.itemDetails?.headline}</h5>
+                        <div className="fs-6 text-light">{item.itemDetails?.brand}</div>
                       </div>
                     </Button>
                     <div className="d-flex align-items-center flex__1">

@@ -53,7 +53,7 @@
       position: relative;
       &:before {
         content: '';
-        background-color: var(--bkg-shade);
+        background-color: $secondary-3;
         position: absolute;
         left: 0;
         top: 0;
@@ -70,18 +70,18 @@
     }
 
     .item__img-badge {
-      background-color: #0e75f9;
+      background-color: $secondary;
     }
   }
 }
 
 .group__label {
-  color: #6f6f90;
+  color: $gray-600;
   padding: 2px 12px;
   position: absolute !important;
   left: 50%;
   top: 0;
-  background-color: #fff;
+  background-color: $gray-100;
   transform: translate(-50%, -65%);
   z-index: 1;
 }

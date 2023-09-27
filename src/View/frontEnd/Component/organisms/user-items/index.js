@@ -243,7 +243,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
             />
           </div>
           <div className="ms-3">
-            <div className="fw-bolder fs-4 mb-3p">{item.itemDetails?.headline}</div>
+            <h2 className="fw-bolder mb-3p">{item.itemDetails?.headline}</h2>
             <div className="fs-7 text-light">{item.itemDetails?.brand}</div>
           </div>
         </div>
@@ -511,7 +511,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
                 </div>
               </div>
               <div>
-                qty <span className="fw-bold ml-3p">{item.quantity}</span>
+                qty <span className="ml-3p">{item.quantity}</span>
               </div>
             </div>
 

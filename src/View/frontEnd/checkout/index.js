@@ -535,7 +535,7 @@ const Checkout = (props) => {
     //& .MuiSlider-mark {
       //width: 4px;
       //height: 9px;
-      //background-color: #fff;
+      //background-color: $gray-100;
     //}
     //& .MuiSlider-markLabel {
       //font-family: 'Jcfonts linotte';

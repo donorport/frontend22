@@ -106,7 +106,7 @@ h6 {
 }
 
 .bg-lighter {
-  background-color: var(--bkg-shade) !important;
+  background-color: $secondary-3
 }
 
 .text-subtext {
@@ -162,7 +162,7 @@ h6 {
   padding: 20px 28px;
   border-radius: 6px;
   //color: rgba(111, 111, 144, 0.59);
-  font-size: 13px;
+  
   line-height: 1.3rem;
 }
 

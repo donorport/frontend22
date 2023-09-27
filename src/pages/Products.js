@@ -11,7 +11,7 @@ import {
   ProductFilterSidebar
 } from '../components/_dashboard/products';
 //
-import PRODUCTS from '../_mocks_/products';
+// import PRODUCTS from '../_mocks_/products';
 
 // ----------------------------------------------------------------------
 

@@ -10,7 +10,7 @@ import { Button, Box, MenuItem, Typography, Avatar, IconButton } from '@mui/mate
 // components
 import MenuPopover from '../../components/MenuPopover';
 //
-import account from '../../_mocks_/account';
+// import account from '../../_mocks_/account';
 // import { UserContext } from '../../App';
 import { confirmAlert } from 'react-confirm-alert';
 import { useDispatch } from "react-redux";

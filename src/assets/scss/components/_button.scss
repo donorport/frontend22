@@ -10,7 +10,7 @@
   &:hover,
   &:focus,
   &:visited {
-    color: #fff;
+    color: $gray-100;
   }
 }
 
@@ -22,7 +22,7 @@
 }
 
 .btn-outline-primary:hover {
-  color: #fff;
+  color: $gray-100;
   border-color: #6b68f8;
   border-color: #6b68f8 !important;
 }
@@ -32,7 +32,7 @@
   color: #9796b1;
 
   &:hover {
-    color: #6f6f90;
+    color: $gray-600;
   }
 }
 
@@ -47,10 +47,10 @@
 
 .btn__purple {
   background: #a278fc;
-  color: #fff;
+  color: $gray-100;
 
   &:hover {
-    color: #fff;
+    color: $gray-100;
   }
 }
 
@@ -62,7 +62,7 @@
 
 .btn__category {
   align-items: center;
-  background-color: $gray-100;
+  background-color: $secondary-5;
   display: flex;
   justify-content: center;
   padding: 5px 10px;
@@ -83,7 +83,7 @@
 }
 
 .btn__signout {
-  background-color: var(--bkg-shade);
+  background-color: $secondary-3;
 
   &:hover {
     background-color: $gray-200;
@@ -102,5 +102,5 @@
 .btn-primary:active,
 .btn-primary.active,
 .show > .btn-primary.dropdown-toggle {
-  color: #fff;
+  color: $gray-100;
 }

@@ -18,7 +18,7 @@ p {
   font-size: 18px
 }
 body {
-  --bkg-color: #fff;
+  --bkg-color: $gray-100;
   --text-subtext: #6f6f90;
   --text-color: #{$gray-700};
   --text-danger: #{$danger};

@@ -56,7 +56,7 @@
       font-size: 0.8rem;
       &.btn-primary{
         background-color: $info;
-        color: #fff;
+        color: $gray-100;
       }
     }
     .btn:not(:hover){
