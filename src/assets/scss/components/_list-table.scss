@@ -10,7 +10,7 @@
   overflow: hidden;
 }
 .list__table-list {
-  background: white;
+  background: $secondaryx-5;
   list-style: none;
 }
 .history__list-item:last-child {
@@ -22,7 +22,7 @@
   padding-right: 21px;
   padding-left: 21px;
   align-items: center;
-  background: $secondary-5;
+  background: $secondaryx-5;
   
   // border: 1px solid #e6e6e6;
   // border-top-left-radius: 4px;
