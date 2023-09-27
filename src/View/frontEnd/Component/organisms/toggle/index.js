@@ -8,33 +8,52 @@ function ThemeToggle() {
     const htmlElement = document.querySelector('html');
     const themeToggle = document.querySelector('.theme__toggle');
 
-    if (htmlElement.dataset.theme === 'dark') {
-      document.body.classList.add('dark-theme');
-    } else if (htmlElement.dataset.theme === 'light') {
-      document.body.classList.remove('dark-theme');
-    }
+    const saveThemeToLocalStorage = (theme) => {
+      localStorage.setItem('theme', theme);
+    };
 
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlElement.dataset.theme === 'light') {
-      document.body.classList.remove('dark-theme');
-    } else if (mq.matches) {
-      document.body.classList.add('dark-theme');
-    }
+    const loadThemeFromLocalStorage = () => {
+      return localStorage.getItem('theme');
+    };
 
-    const handleToggleClick = () => {
-      if (document.body.classList.contains('dark-theme')) {
-        document.body.classList.remove('dark-theme');
-        htmlElement.dataset.theme = 'light';
-      } else {
+    const applyTheme = (theme) => {
+      htmlElement.dataset.theme = theme;
+      if (theme === 'dark') {
         document.body.classList.add('dark-theme');
-        htmlElement.dataset.theme = 'dark';
+      } else if (theme === 'light') {
+        document.body.classList.remove('dark-theme');
       }
     };
 
-    themeToggle.addEventListener('click', handleToggleClick);
+    const toggleTheme = () => {
+      if (document.body.classList.contains('dark-theme')) {
+        document.body.classList.remove('dark-theme');
+        applyTheme('light');
+        saveThemeToLocalStorage('light');
+      } else {
+        document.body.classList.add('dark-theme');
+        applyTheme('dark');
+        saveThemeToLocalStorage('dark');
+      }
+    };
+
+    themeToggle.addEventListener('click', toggleTheme);
+
+    const savedTheme = loadThemeFromLocalStorage();
+    if (savedTheme) {
+      applyTheme(savedTheme);
+    } else {
+      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      if (htmlElement.dataset.theme === 'light') {
+        document.body.classList.remove('dark-theme');
+      } else if (mq.matches) {
+        applyTheme('dark');
+        saveThemeToLocalStorage('dark');
+      }
+    }
 
     return () => {
-      themeToggle.removeEventListener('click', handleToggleClick);
+      themeToggle.removeEventListener('click', toggleTheme);
     };
   }, []);
 
