@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './style.scss';
+
 function ThemeToggle() {
   const toggleTheme = () => {
     const htmlElement = document.querySelector('html');

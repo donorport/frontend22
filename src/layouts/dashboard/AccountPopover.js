@@ -75,6 +75,7 @@ export default function AccountPopover() {
     });
   }
 
+  const account = undefined;
   return (
     <>
       <IconButton
@@ -97,7 +98,7 @@ export default function AccountPopover() {
           })
         }}
       >
-        <Avatar src={account.photoURL} alt="photoURL" />
+        {account ? <Avatar src={account?.photoURL} alt="photoURL" /> : 'logo'}
       </IconButton>
 
       <MenuPopover
