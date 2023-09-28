@@ -27,14 +27,14 @@ const ProductsUnavailableLocation = ({ user }) => (
           </div>
           <div className="empty__message">
             {user.countrySortName !== '' ? (
-              <p className="fs-3 fw-bold text-dark">
+              <p className="fs-3 fw-bold ">
                 Donorport is currently unavailable in{' '}
                 <a href="#" className="link">
                   {user.countryName}
                 </a>
               </p>
             ) : (
-              <p className="fs-3 fw-bold text-dark">
+              <p className="fs-3 fw-bold ">
                 Donorport is currently unavailable in your location
               </p>
             )}
@@ -108,7 +108,7 @@ const ProductListEmpty = () => (
 );
 
 const items = [
-  <div className="fw-semibold text-dark">
+  <div className="fw-semibold ">
     Price: Low to High
     <span className="ms-2">
       <FontAwesomeIcon icon={solid('dollar-sign')} />
@@ -116,7 +116,7 @@ const items = [
     </span>
   </div>,
 
-  <div className="fw-semibold text-dark">
+  <div className="fw-semibold ">
     Price: High to Low
     <span className="ms-2">
       <FontAwesomeIcon icon={solid('dollar-sign')} />
@@ -124,11 +124,11 @@ const items = [
     </span>
   </div>,
 
-  <div className="fw-semibold text-dark">Oldest</div>,
+  <div className="fw-semibold ">Oldest</div>,
 
-  <div className="fw-semibold text-dark">Recently Listed</div>,
+  <div className="fw-semibold ">Recently Listed</div>,
 
-  <div className="fw-semibold text-dark">
+  <div className="fw-semibold ">
     Least Funded
     <span className="ms-2">
       <FontAwesomeIcon icon={solid('percent')} />
@@ -136,7 +136,7 @@ const items = [
     </span>
   </div>,
 
-  <div className="fw-semibold text-dark">
+  <div className="fw-semibold ">
     Most Funded
     <span className="ms-2">
       <FontAwesomeIcon icon={solid('percent')} />

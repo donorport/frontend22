@@ -1695,7 +1695,7 @@ const AdminPosts = () => {
                       {step.label === 'Build your profile' ? (
                         <Link
                           variant="link"
-                          className="link text-dark p-0 fs-5"
+                          className="link  p-0 fs-5"
                           to={'/campaign/' + data.slug + '/settings/profile'}
                         >
                           <span className="step-label fw-semibold">{step.label}</span>
@@ -1703,7 +1703,7 @@ const AdminPosts = () => {
                       ) : (
                         <Link
                           variant="link"
-                          className="text-dark p-0 fs-5"
+                          className=" p-0 fs-5"
                           to={'/campaign/' + data.slug + '/settings/payments'}
                         >
                           <span className="step-label fw-semibold">{step.label}</span>
@@ -1962,7 +1962,7 @@ const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => 
         </div>
         <div className="d-flex gap-2">
           <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
-            <FontAwesomeIcon icon={solid('money-bills-simple')} className="text-dark mr-12p fs-4" />
+            <FontAwesomeIcon icon={solid('money-bills-simple')} className=" mr-12p fs-4" />
             <span>{user.currencySymbol}</span>
             {productList && productList.length > 0
               ? productList
@@ -2071,7 +2071,7 @@ const PostDetailsNavigation = ({ closeFulfilForm, fulfilProductDetails }) => {
       >
         <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
       </Button>
-      <div className="d-flex align-items-center text-dark me-sm-3 flex__1">
+      <div className="d-flex align-items-center  me-sm-3 flex__1">
         <div className="item__image-wrap">
           <img
             alt=""
@@ -2163,7 +2163,7 @@ const PostDetailsMediaColumn = ({
   return (
     <>
       <Card.Header className="post__accordion-header pb-3">
-        <span className="fs-3 fw-bolder text-dark">Media</span>
+        <span className="fs-3 fw-bolder ">Media</span>
       </Card.Header>
       <form className="video-detail-form mt-3">
         <div className="form-group mb-3">
@@ -2297,7 +2297,7 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
 
       <div className="order__widget">
         <Card.Header className="post__accordion-header pb-3 mb-3">
-          <span className="fs-3 fw-bolder text-dark">Order Summary</span>
+          <span className="fs-3 fw-bolder ">Order Summary</span>
         </Card.Header>
         <div className="border-bottom">
           <div className="d-flex align-items-center fw-bolder mb-20p">
@@ -2326,7 +2326,7 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
         </div>
         <div className="d-flex align-items-center pt-3 mb-2">
           <span className="fw-bolder flex__1">Total:</span>
-          <span className="text-dark fw-bold fs-4">
+          <span className=" fw-bold fs-4">
             {data?.symbol}
             {priceFormat(
               (fulfilProductDetails?.displayPrice
@@ -2408,7 +2408,7 @@ const PostDetailsReceiptArea = ({
       {fulfilProductDetails?.isFulfiled && !deletedFile && (
         <>
           <Card.Header className="post__accordion-header pb-3 mt-5">
-            <span className="fs-3 fw-bolder text-dark">Sales Receipt</span>
+            <span className="fs-3 fw-bolder ">Sales Receipt</span>
           </Card.Header>
           <div className="my-3 pb-5  d-flex align-item-center">
             <div className="nn d-flex position-relative justify-content-center align-items-center me-2">

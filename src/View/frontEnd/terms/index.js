@@ -9,7 +9,7 @@ const Terms = () => {
     <Page title="Donorport | Terms & Conditions" description="Donorport Terms & Conditions">
       <DefaultLayout>
         <Container fluid className="position-relative pb-5 pt-5">
-          <h1 className="text-dark fw-bolder mb-6p pt-2">Terms of Service</h1>
+          <h1 className=" fw-bolder mb-6p pt-2">Terms of Service</h1>
           <div className="terms">
             <div className="mw-900">
               <div className="text-subtext_light fs-5 lh-1.5"></div>

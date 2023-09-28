@@ -15,7 +15,7 @@ const Sponsors = () => {
       <DefaultLayout>
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-5">
-            <h1 className="text-dark fw-bolder mb-6p pt-2">Sponsorships</h1>
+            <h1 className=" fw-bolder mb-6p pt-2">Sponsorships</h1>
             <div className="fs-5 text-light pb-5 mb-3 mw-600">
               Donorport teams up with top brands to promote the platform. Show your customers that
               you care about local communities by sponsoring a category.

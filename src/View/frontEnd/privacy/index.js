@@ -9,7 +9,7 @@ const Privacy = () => {
     <Page title="Donorport | Privacy" description="Donorport Privacy Policy">
       <DefaultLayout>
         <Container fluid className="position-relative pb-5 pt-5">
-          <h1 className="text-dark fw-bolder mb-6p pt-2">Privacy Policy</h1>
+          <h1 className=" fw-bolder mb-6p pt-2">Privacy Policy</h1>
           <div className="privacy">
             <div className="mw-900">
               <div className="text-subtext_light fs-5 lh-1.5">

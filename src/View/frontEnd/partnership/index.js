@@ -121,7 +121,7 @@ const Partnership = () => {
         <DefaultLayout>
           <div className="password-reset position-relative">
             <Container fluid className="position-relative pb-5 pt-5">
-              <h1 className="text-dark fw-bolder mb-6p pt-2">Join Forces</h1>
+              <h1 className=" fw-bolder mb-6p pt-2">Join Forces</h1>
               <div className="fs-5 text-light mb-5">
                 Tell us how you can help Donorport grow.
               </div>
@@ -212,7 +212,7 @@ const Partnership = () => {
                   <p className="error">{error ? (error.reason ? error.reason : '') : ''}</p>
                 )}
 
-                <div className="text-end text-dark mb-2">
+                <div className="text-end  mb-2">
                   <span className="fw-bold mr-6p">{textAreaCount}/250</span> chars remaining
                 </div>
                 <Button variant="info" size="lg" className="fw-bold" onClick={() => apply()}>

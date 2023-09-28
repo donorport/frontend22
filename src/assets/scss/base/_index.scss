@@ -8,6 +8,7 @@ h5,
 h6 {
 	font-family: "Custom", sans-serif;
   // font-family: 'Plus Jakarta Sans', sans-serif;
+  color: $neutral-700;
   font-weight: 800;
   letter-spacing: -0.03em;
 }
@@ -36,6 +37,7 @@ body {
 
 a {
   text-decoration: none;
+  color: $neutral-700;
 }
 
 p {

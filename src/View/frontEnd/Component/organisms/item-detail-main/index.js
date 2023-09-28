@@ -214,7 +214,7 @@ const ItemDetailsMain = ({
     <div className="mb-1">
       {' '}
       <h4 className="project__detail-label mb-3p">Item</h4>
-      <h1 className="project__detail-title" style={{ textTransform: 'capitalize' }}>
+      <h1 className="project__detail-title " style={{ textTransform: 'capitalize' }}>
         {productDetails?.headline}
       </h1>
       <h5 className="project__detail-sublabel mb-0 fw-bolder">Product</h5>
@@ -292,7 +292,7 @@ const ItemDetailsMain = ({
       </div>
     </div>
 
-    <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-3">
+    <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-">
       <Link
         size="lg"
         variant="link"
@@ -314,7 +314,7 @@ const ItemDetailsMain = ({
             ></path>{' '}
           </svg>
         </span>{' '}
-        <span className="fs-6 text-dark fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
+        <span className="fs-6  fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
           {productDetails?.subCategoryDetails?.name}
         </span>
       </Link>
@@ -331,7 +331,7 @@ const ItemDetailsMain = ({
             src={helper.CampaignAdminLogoPath + productDetails?.campaignDetails?.logo}
           />
         </span>
-        <span className="fs-6 text-dark fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
+        <span className="fs-6  fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
           {productDetails?.campaignDetails?.name}
         </span>
       </Link>
@@ -380,7 +380,7 @@ const ItemDetailsMain = ({
 const SubtotalSlider = ({ currencySymbol, price, quantity, maxQuantity, setQuantity }) => (
   <>
     <div className="sub__total mt-2">
-      <div className="text-dark fw-bold me-2">Subtotal:</div>
+      <div className=" fw-bold me-2">Subtotal:</div>
       <div className="price fs-4 fw-bold text-success">
         {currencySymbol}
         {priceFormat(Number(price * quantity))}
@@ -493,7 +493,7 @@ const FollowupMediaSection = ({ productDetails, embedlink2 }) => (
   <>
     <div className="note note-info align-items-center mt-5">
       <Card.Header className="post__accordion-header pb-2 pt-2 mb-2">
-        <h2 className="fs-3 fw-bolder text-dark">Followup</h2>
+        <h2 className="fs-3 fw-bolder ">Followup</h2>
         <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
       </Card.Header>
       <div className="d-flex flex-column gap-2">

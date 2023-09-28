@@ -11,7 +11,7 @@ const VerifiedDonors = () => {
     <DefaultLayout>
       <div className="password-reset position-relative">
         <Container fluid className="position-relative pb-5 pt-5">
-          <h1 className="text-dark fw-bolder mb-6p pt-2">Verified Donors</h1>
+          <h1 className=" fw-bolder mb-6p pt-2">Verified Donors</h1>
           <div className="fs-5 text-light mb-5 mw-600">
             Show your fans / followers your commitment to the community by becoming verified. Apply
             to become a verified donor. Verified accounts are able to leave comments on their
@@ -21,7 +21,7 @@ const VerifiedDonors = () => {
             <Avatar size={46} avatarUrl="" border={0} shadow={false} />
             <div className="ms-3 flex__1">
               <div className="d-flex align-items-center mb-3p">
-                <span className="fw-bold text-dark">David Abbott</span>
+                <span className="fw-bold ">David Abbott</span>
                 <FontAwesomeIcon icon={solid('badge-check')} className="ml-12p fs-5 text-info" />
               </div>
               <div className="d-flex align-items-center text-lighter fs-7 fw-semibold">
@@ -60,7 +60,7 @@ const VerifiedDonors = () => {
                 <span className="input__span">Tell us why you want to be verified</span>
               </label>
             </div>
-            <div className="text-end text-dark mb-2">
+            <div className="text-end  mb-2">
               <span className="fw-bold mr-6p">240</span> chars remaining
             </div>
             <Button variant="primary" size="lg" className="fw-bold px-5">

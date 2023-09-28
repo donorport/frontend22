@@ -279,8 +279,8 @@ export default function Plans(props) {
                             <div className="pricing-plan card-group d-flex">
                                 <div className="card set-price p-1 ">
                                     <div className="card-header text-center pb-4 item" style={{ height: "210.2px", backgroundColor: "#f4f6f8" }}>
-                                        <h5 className="pt-3 text-dark card-title">Plans</h5>
-                                        <span className="h1 text-dark">Price</span>
+                                        <h5 className="pt-3  card-title">Plans</h5>
+                                        <span className="h1 ">Price</span>
                                         {/* <p className="small text-white">No VAT &amp; No Hidden Costs</p> */}
 
                                     </div>

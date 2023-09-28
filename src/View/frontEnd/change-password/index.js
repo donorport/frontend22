@@ -116,7 +116,7 @@ const ChangePassword = () => {
       <DefaultLayout>
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-3">
-            <h1 className="fs-2 text-dark fw-bolder mb-6p">Change Password</h1>
+            <h1 className="fs-2  fw-bolder mb-6p">Change Password</h1>
             <div className="fs-5 text-light mb-4">
               Complate below process to Change your password
             </div>
@@ -197,7 +197,7 @@ const ChangePassword = () => {
                 </p>
               )}
 
-              {/* <div className="note note--more text-dark mb-3">
+              {/* <div className="note note--more  mb-3">
               <FontAwesomeIcon
                 icon={regular("info-circle")}
                 className="text-info mr-3p"

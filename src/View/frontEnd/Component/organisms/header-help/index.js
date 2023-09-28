@@ -13,7 +13,7 @@ import "./style.scss";
 //         <Container className="d-flex align-items-center" fluid>
 //           <Logo />
 //           <div className="ps-2 border-start ms-3">
-//             <Button variant="link" className="text-dark fs-4 fw-semibold p-0 lh-1">
+//             <Button variant="link" className=" fs-4 fw-semibold p-0 lh-1">
 //               Help Center
 //             </Button>
 //           </div>
@@ -35,7 +35,7 @@ const HeaderHelp = () => {
       <Container className="d-flex align-items-center" fluid>
         <Logo />
         <div className="ps-2 border-start ms-3">
-          <Button variant="link" className="text-dark fs-4 fw-semibold p-0 lh-1">
+          <Button variant="link" className=" fs-4 fw-semibold p-0 lh-1">
             Help Center
           </Button>
         </div>

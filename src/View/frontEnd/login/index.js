@@ -63,7 +63,7 @@ const Login = (props) => {
             </div>
 
             <form className="login__form">
-              <div className="login-header text-dark">Sign in</div>
+              <div className="login-header ">Sign in</div>
               <div className="mb-3">
                 <input
                   type="email"

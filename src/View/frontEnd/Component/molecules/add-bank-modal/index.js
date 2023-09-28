@@ -22,7 +22,7 @@ const AddBankModal = (props) => {
     <>
       <div>
         <div>
-          <div className="note text-dark mb-2 fs-6">
+          <div className="note  mb-2 fs-6">
             <p>
               Donorport will store this information for deposits and withdrawals and share it with
               payment processors.
@@ -205,7 +205,7 @@ const AddBankModal = (props) => {
               }
             />
             <div className="bank__title">
-              <h4 className="fw-bolder text-dark mb-0">Add Bank Account</h4>
+              <h4 className="fw-bolder  mb-0">Add Bank Account</h4>
               <div className="settings__description fs-7">
                 Receive direct deposits for donations you receive.
               </div>
@@ -342,7 +342,7 @@ const AddBankModal = (props) => {
               </div>
             )}
 
-            <div className="note text-dark my-2">
+            <div className="note  my-2">
               <p>
                 Donorport will store this information for deposits and withdrawals and share it with
                 payment processors.

@@ -91,14 +91,14 @@ const Cart = (props) => {
               <Link
                 variant="link"
                 to="/checkout"
-                className="p-0 me-1 fw-normal fs-7 text-decoration-none text-dark"
+                className="p-0 me-1 fw-normal fs-7 text-decoration-none "
               >
                 Checkout
                 <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
               </Link>
               <Button
                 variant="link"
-                className="p-0 me-1 fw-normal fs-7 text-decoration-none text-dark"
+                className="p-0 me-1 fw-normal fs-7 text-decoration-none "
               >
                 Order
                 <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
@@ -127,7 +127,7 @@ const Cart = (props) => {
                         <Link
                           variant="link"
                           to={'/item/' + item?.productDetails?.slug}
-                          className="text-dark fw-bolder p-0 mb-3p fs-4"
+                          className=" fw-bolder p-0 mb-3p fs-4"
                         >
                           {item?.productDetails?.headline}
                         </Link>

@@ -61,7 +61,7 @@ const ResetPassword = (props) => {
               </div>
 
               <form className="login__form">
-                <div className="login-header text-dark">Reset Password</div>
+                <div className="login-header ">Reset Password</div>
                 <div className="mb-3">
                   <input
                     type="text"

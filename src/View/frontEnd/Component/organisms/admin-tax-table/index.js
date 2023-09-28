@@ -229,7 +229,7 @@ const AdminTaxTable = (props) => {
                               </div>
                               <div>
                                 <div>
-                                  <Button variant="link" className="text-dark px-0 py-3p">
+                                  <Button variant="link" className=" px-0 py-3p">
                                     Donated
                                   </Button>
                                 </div>
@@ -249,7 +249,7 @@ const AdminTaxTable = (props) => {
                                 //   </div>
                                 //   <div>
                                 //     <div>
-                                //       <Button variant="link" className="text-dark px-0 py-3p">
+                                //       <Button variant="link" className=" px-0 py-3p">
                                 //         {item.orderItemDetails?.productName}
                                 //       </Button>
                                 //     </div>
@@ -282,7 +282,7 @@ const AdminTaxTable = (props) => {
                                       <Button
                                         onClick={(e) => e.stopPropagation()}
                                         variant="link"
-                                        className="text-dark px-0 py-3p"
+                                        className=" px-0 py-3p"
                                       >
                                         {/* {item.orderItemDetails?.productName} */}
                                         {item[0].type === 'Purchased'
@@ -333,7 +333,7 @@ const AdminTaxTable = (props) => {
                                       className="text-success fs-3"
                                     />
                                     <div className="ps-2">
-                                      <div className="file__name text-dark mb-3p fw-normal">
+                                      <div className="file__name  mb-3p fw-normal">
                                         {item[0].receipt}
                                       </div>
                                       <div className="text-light fs-7 fw-normal">
@@ -478,7 +478,7 @@ const AdminTaxTable = (props) => {
                                       </div>
                                       <div>
                                         <div>
-                                          <Button variant="link" className="text-dark px-0 py-3p">
+                                          <Button variant="link" className=" px-0 py-3p">
                                             {/* {i1.orderItemDetails?.productName} */}
                                             {Name}
                                           </Button>

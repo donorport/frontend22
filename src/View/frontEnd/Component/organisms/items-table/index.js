@@ -84,7 +84,7 @@ const ItemsTable = ({
                     <Button
                       variant="link"
                       onClick={() => onItemClick(key)}
-                      className="user__left d-flex align-items-center text-dark me-sm-3 p-0 text-decoration-none text-start fw-normal"
+                      className="user__left d-flex align-items-center  me-sm-3 p-0 text-decoration-none text-start fw-normal"
                     >
                       <div
                         className="me-0 me-sm-2 order-sm-0 order-1 text-sm-start text-end"

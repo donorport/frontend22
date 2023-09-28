@@ -96,7 +96,7 @@ function UserDetail(props) {
                       <Button
                         variant="link"
                         onClick={() => setDropdown(!dropdown)}
-                        className="toggle__btn d-flex align-items-center text-dark"
+                        className="toggle__btn d-flex align-items-center "
                       >
                         <span className="tab__icon">
                           {/* {selectedTabKey === 'dashboard' ? <DashboardIcon active={true} /> : ''}*/}
@@ -116,7 +116,7 @@ function UserDetail(props) {
                                     <span key={key} className="d-none d-sm-flex item__total-wrap d-flex ms-3">
                                       <FontAwesomeIcon
                                         icon={solid('money-bills-simple')}
-                                        className="text-dark mr-12p fs-4"
+                                        className=" mr-12p fs-4"
                                       />
                                       {val[0]} {val[1]}
                                     </span>

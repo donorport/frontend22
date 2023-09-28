@@ -33,7 +33,7 @@ const AdminDashboard = () => {
           <span className="fw-bold fs-5">2</span>
         </div>
         <span className="d-flex item__total-wrap d-flex">
-          <FontAwesomeIcon icon={solid('money-bills-simple')} className="text-dark mr-12p fs-4" />
+          <FontAwesomeIcon icon={solid('money-bills-simple')} className=" mr-12p fs-4" />
           USD $1,309.00
         </span>
         <Button variant="info" className="rounded-pill ms-auto">

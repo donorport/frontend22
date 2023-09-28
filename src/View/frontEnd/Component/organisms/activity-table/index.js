@@ -97,7 +97,7 @@ const ActivityTable = (props) => {
                             <img width={36} alt="" className="img-fluid" src={wallet} />
                           </span>
                           <div className="">
-                            <span className="text-dark fw-bold">Bought</span>
+                            <span className=" fw-bold">Bought</span>
                             <div className="d-flex text-light fs-7">
                               {/* <FontAwesomeIcon
                                     icon={regular("calendar-clock")}
@@ -114,7 +114,7 @@ const ActivityTable = (props) => {
                             <img width={36} alt="" className="img-fluid" src={speech} />
                           </span>
                           <div className="">
-                            <span className="text-dark fw-bold">Followed</span>
+                            <span className=" fw-bold">Followed</span>
                           </div>
                         </>
                       ) : list.type === 'FOLLOWED' ? (
@@ -123,7 +123,7 @@ const ActivityTable = (props) => {
                             <img width={36} alt="" className="img-fluid" src={speech} />
                           </span>
                           <div className="">
-                            <span className="text-dark fw-bold">Followed</span>
+                            <span className=" fw-bold">Followed</span>
                           </div>
                         </>
                       ) : list.type === 'DONATED' ? (
@@ -132,7 +132,7 @@ const ActivityTable = (props) => {
                             <img width={36} alt="" className="img-fluid" src={donation} />
                           </span>
                           <div className="">
-                            <span className="text-dark fw-bold">Donation</span>
+                            <span className=" fw-bold">Donation</span>
                             {/* <div className="d-flex text-light fs-7">
                                     <FontAwesomeIcon
                                       icon={regular("calendar-clock")}
@@ -183,7 +183,7 @@ const ActivityTable = (props) => {
                   />
                 </span>
                 <div className="">
-                  <span className="text-dark fw-bold">Shared</span>
+                  <span className=" fw-bold">Shared</span>
                 </div>
               </div>
             </div>
@@ -215,7 +215,7 @@ const ActivityTable = (props) => {
                   />
                 </span>
                 <div className="">
-                  <span className="text-dark fw-bold">Followed</span>
+                  <span className=" fw-bold">Followed</span>
                 </div>
               </div>
             </div>

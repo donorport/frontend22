@@ -183,7 +183,7 @@ const DonateModal = (props) => {
                 />
               )}
             </div>
-            <div className="donation__review text-dark d-flex flex-column align-items-center justify-content-center">
+            <div className="donation__review  d-flex flex-column align-items-center justify-content-center">
               <span className="fw-bold">
                 {currencySymbol}
                 {selectedValue}
@@ -384,7 +384,7 @@ const DonateModal = (props) => {
 
       <Modal.Footer className="border-0 overflow-hidden justify-content-center mb-3">
         {next && !showPaymentForm ? (
-          <div className="text-dark fs-7">Your donation goes directly to the Organization ♥</div>
+          <div className=" fs-7">Your donation goes directly to the Organization ♥</div>
         ) : !next && !showPaymentForm ? (
           <Button
             variant="primary"

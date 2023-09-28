@@ -67,7 +67,7 @@ const Pricing = () => {
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-5">
             <div className="d-flex flex-column">
-              <h1 className="text-dark fw-bolder mb-6p pt-2">Pricing and Fees</h1>
+              <h1 className=" fw-bolder mb-6p pt-2">Pricing and Fees</h1>
               <div className="fs-5 text-light pb-2 mb-3 mw-600">
                 It is 100% free for organizations to create posts and receive funding on Donorport.
                 Each donation goes directly to the organization so they receive every penny they
@@ -150,7 +150,7 @@ const Pricing = () => {
                 </div>
               </div>
 
-              <h4 className="text-dark fw-bolder mb-6p pt-2">Still have questions?</h4>
+              <h4 className=" fw-bolder mb-6p pt-2">Still have questions?</h4>
 
               <p style={{ color: '#9796b1' }} className="mt-3">
                 Learn more about how Donorport can help you raise money for your non-profit or

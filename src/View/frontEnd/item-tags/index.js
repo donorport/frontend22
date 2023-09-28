@@ -17,7 +17,7 @@ const ItemTags = () => {
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-5">
             <div className="mw-600">
-              <h1 className="text-dark fw-bolder mb-6p pt-2">Post Tags</h1>
+              <h1 className=" fw-bolder mb-6p pt-2">Post Tags</h1>
               <div className="fs-5 text-light pb-5 mb-3 mw-600">
                 Every item posted by an organization is marked with symbols to quickly show the
                 donors the status and type of each item. From the item's eligibility for tax
@@ -35,7 +35,7 @@ const ItemTags = () => {
                     }
                   />
                   <div className="ms-3">
-                    <h3 className="fs-4 mb-0 fw-bolder text-dark">Tax Receipt Eligible</h3>
+                    <h3 className="fs-4 mb-0 fw-bolder ">Tax Receipt Eligible</h3>
                     <div className="text-light fs-5 lh-1.5">
                       Items marked with the calculator symbol are eligible to receive a tax receipt.
                       If you are interested in tax deductible giving, look for the items marked with
@@ -57,7 +57,7 @@ const ItemTags = () => {
                     }
                   />
                   <div className="ms-3">
-                    <h3 className="fs-4 mb-0 fw-bolder text-dark">Tab Item</h3>
+                    <h3 className="fs-4 mb-0 fw-bolder ">Tab Item</h3>
                     <div className="text-light fs-5 lh-1.5">
                       These are items that the organization has already purchased. By donating to
                       Tab items, you are helping the organization recouperate the costs of the
@@ -74,7 +74,7 @@ const ItemTags = () => {
                     }
                   />
                   <div className="ms-3">
-                    <h3 className="fs-4 mb-0 fw-bolder text-dark">Media</h3>
+                    <h3 className="fs-4 mb-0 fw-bolder ">Media</h3>
                     <div className="text-light fs-5 lh-1.5">
                       Items marked with a camera indicate that the charity will upload follow-up
                       media for your donation. You will be able to track this media on your profile
@@ -91,7 +91,7 @@ const ItemTags = () => {
                     }
                   />
                   <div className="ms-3">
-                    <h3 className="fs-4 mb-0 fw-bolder text-dark">Project Item</h3>
+                    <h3 className="fs-4 mb-0 fw-bolder ">Project Item</h3>
                     <div className="text-light fs-5 lh-1.5">
                       Items marked with a lightening bolt belong to a group of items the
                       organization has created for a specific event or cause, like a toy drive or
@@ -112,7 +112,7 @@ const ItemTags = () => {
                     }
                   />
                   <div className="ms-3">
-                    <h3 className="fs-4 fw-bolder mb-0 text-dark">Unlimited Quantity</h3>
+                    <h3 className="fs-4 fw-bolder mb-0 ">Unlimited Quantity</h3>
                     <div className="text-light fs-5 lh-1.5">
                       Items without a set quantity are marked with the infinity symbol and represent
                       an ongoing need of the organization. The are items that are always needed for

@@ -102,7 +102,7 @@ const AddProject = (props) => {
             <span className="fs-3 fw-bolder me-sm-3">Edit Project</span>
           )}
           {/* <Button variant="link" className="text-decoration-none ms-auto ms-sm-0">
-            <FontAwesomeIcon icon={solid('circle-question')} className="text-dark fs-4" />
+            <FontAwesomeIcon icon={solid('circle-question')} className=" fs-4" />
           </Button>*/}
         </div>
         <div className="d-flex gap-2">

@@ -71,7 +71,7 @@ const PostsTable = (props) => {
               return (
                 <li key={product._id} className="table__list-item px-2 py-2 border-bottom">
                   <div className="d-xl-flex align-items-center flex-grow-1">
-                    <div className="progress__wrap d-flex align-items-center text-dark me-sm-3">
+                    <div className="progress__wrap d-flex align-items-center  me-sm-3">
                       <div className="ms-auto ms-sm-0 me-sm-2 post__value">
                         {product.status === 1 && (
                           <div className="text-light fw-bold fs-5">

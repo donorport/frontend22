@@ -18,18 +18,18 @@ const HelpArticle = () => {
 
           <div className="py-1 bg-lighter">
             <div className="mw-960 mx-auto d-flex align-items-center">
-              <a href="/help" className="breadcrumb-link text-dark">
+              <a href="/help" className="breadcrumb-link ">
                 Home
               </a>
-              <div className="breadcrumb-slash text-dark">/</div>
+              <div className="breadcrumb-slash ">/</div>
               <a
                 href="/help-categories/non-profits-charities"
-                className="breadcrumb-link text-dark"
+                className="breadcrumb-link "
               >
                 Non-profits &amp; Charities
               </a>
-              <div className="breadcrumb-slash text-dark">/</div>
-              <a href="/article-link" className="breadcrumb-link text-dark">
+              <div className="breadcrumb-slash ">/</div>
+              <a href="/article-link" className="breadcrumb-link ">
                 How often are payments disbursed to my Bank Account?
               </a>
             </div>
@@ -39,10 +39,10 @@ const HelpArticle = () => {
             <div className="mw-960 mx-auto pt-3">
               <Row>
                 <Col md="8">
-                  <h1 className="text-dark fw-bolder d-flex align-items-center mb-3">
+                  <h1 className=" fw-bolder d-flex align-items-center mb-3">
                     How often are payments disbursed to my Bank Account?
                   </h1>
-                  <p className="text-dark lh-1.5">
+                  <p className=" lh-1.5">
                     <strong>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed diam
                       gravida, venenatis sapien eu, interdum nunc. Quisque et eleifend turpis. Duis
@@ -68,7 +68,7 @@ const HelpArticle = () => {
                     at mattis eleifend.
                   </p>
 
-                  <h3 className="text-dark">Quisque consectetur</h3>
+                  <h3 className="">Quisque consectetur</h3>
                   <p className="text-light fs-5">
                     Quisque consectetur magna in neque placerat porttitor semper at lacus. Phasellus
                     eu enim in elit luctus mattis. Duis volutpat arcu eget pulvinar congue. Maecenas
@@ -82,7 +82,7 @@ const HelpArticle = () => {
                     ante tristique nec.
                   </p>
 
-                  <h3 className="text-dark">Suspendisse ut</h3>
+                  <h3 className="">Suspendisse ut</h3>
                   <p className="text-light fs-5">
                     Donec condimentum massa ut vulputate accumsan. Ut lacinia semper quam sed
                     convallis. Aliquam aliquam, mauris vitae varius viverra, nulla magna dapibus
@@ -143,7 +143,7 @@ const HelpArticle = () => {
                 <Col md="4">
                   <Sticky offsetTop={120} containerSelectorFocus="#containerWrap">
                     <div className="bg-lighter p-20p">
-                      <div className="fw-semibold text-dark fs-6 pb-2 border-bottom mb-2">
+                      <div className="fw-semibold  fs-6 pb-2 border-bottom mb-2">
                         Related Articles
                       </div>
                       <ul className="list-unstyled fs-5">

@@ -99,13 +99,13 @@ const Xp = () => {
               </div>
             )}
             <div className="py-20p">
-              <div className="note text-dark fs-7 mw-600">
+              <div className="note  fs-7 mw-600">
                 <div className="mb-12p">
                   Earn XP by interacting on Donorport even if you aren't donating money. Be rewarded
                   for sharing and following Organizations and Projects. To track the XP you've
                   earned, click here:
                 </div>
-                <Link to={'/user/' + newSlug + '/xp'} className="text-dark fw-bolder">
+                <Link to={'/user/' + newSlug + '/xp'} className=" fw-bolder">
                   My XP
                 </Link>
               </div>

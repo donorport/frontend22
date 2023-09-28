@@ -124,7 +124,7 @@ function ProjectDetailMain(props) {
         <div className="d-flex align-items-center mb-1">
           <div>
             <TagTitle>Project</TagTitle>
-            <h1 className="project__detail-title">{projectDetails.name}</h1>
+            <h1 className="project__detail-title ">{projectDetails.name}</h1>
           </div>
           {/* <div className="page__logo page__logo--org ms-auto">
             <img
@@ -197,7 +197,7 @@ function ProjectDetailMain(props) {
               className="mr-6p"
               icon={<FontAwesomeIcon icon={solid("briefcase-medical")} />}
             />
-            <span className="fs-6 text-dark fw-bold">Shelter</span>
+            <span className="fs-6  fw-bold">Shelter</span>
             </Button>*/}
 
           <Link
@@ -229,7 +229,7 @@ function ProjectDetailMain(props) {
                 ></path>{' '}
               </svg>
             </span>
-            <span className="fs-6 text-dark fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
+            <span className="fs-6  fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
               {projectDetails?.campaignDetails?.categoryDetails?.name}
             </span>
           </Link>
@@ -249,7 +249,7 @@ function ProjectDetailMain(props) {
               />
               {/* </div> */}
             </span>
-            <span className="fs-6 text-dark fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
+            <span className="fs-6  fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
               {projectDetails?.campaignDetails?.name}
             </span>
           </Link>

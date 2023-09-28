@@ -32,7 +32,7 @@ const Logo = () => {
           alt="Donorport Logo Icon"
           className="logo-icon"
         />&nbsp;
-        {/* <span className="logo-name fs-3 ms-1 text-dark">Donorport</span>&nbsp; */}
+        {/* <span className="logo-name fs-3 ms-1 ">Donorport</span>&nbsp; */}
         <span className="logo-span">{user.countrySortName}</span>
       </Link>
     </>

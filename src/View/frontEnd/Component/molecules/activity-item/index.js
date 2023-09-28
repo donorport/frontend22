@@ -161,7 +161,7 @@ function ActivityItem(props) {
             ) : (
               <Link
                 to={'/item/' + notification?.productDetails.slug}
-                className="text-dark fw-bold fs-6 ad__activity__sub-name"
+                className=" fw-bold fs-6 ad__activity__sub-name"
               >
                 {name}
               </Link>

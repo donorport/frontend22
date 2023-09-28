@@ -66,7 +66,7 @@ function FollowingItem(props) {
             {data.type === 'PROJECT' && (
               <Link
                 to={'/project/' + data?.projectDetails?.slug}
-                className="ad__activity__name mb-0 text-decoration-none text-dark fw-bold"
+                className="ad__activity__name mb-0 text-decoration-none  fw-bold"
               >
                 {data?.projectDetails[0]?.name}
               </Link>
@@ -74,7 +74,7 @@ function FollowingItem(props) {
             {data.type === 'PRODUCT' && (
               <Link
                 to={'/item/' + data?.productDetails[0]?.slug}
-                className="ad__activity__name mb-0 text-decoration-none text-dark fw-bold"
+                className="ad__activity__name mb-0 text-decoration-none  fw-bold"
               >
                 {data?.productDetails[0]?.headline}
               </Link>
@@ -82,7 +82,7 @@ function FollowingItem(props) {
             {data.type === 'ORGANIZATION' && (
               <Link
                 to={'/organization/' + data?.CampaignAdminDetails?.slug}
-                className="ad__activity__name mb-0 text-decoration-none text-dark fw-bold"
+                className="ad__activity__name mb-0 text-decoration-none  fw-bold"
               >
                 {data?.CampaignAdminDetails?.name}
               </Link>

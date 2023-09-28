@@ -18,18 +18,18 @@ const HelpContact = () => {
           <HelpBanner shortBanner={true} />
           <div className="py-1 bg-lighter">
             <div className="mw-960 mx-auto d-flex align-items-center">
-              <a href="/help" className="breadcrumb-link text-dark">
+              <a href="/help" className="breadcrumb-link ">
                 Home
               </a>
-              <div className="breadcrumb-slash text-dark">/</div>
+              <div className="breadcrumb-slash ">/</div>
               <a
                 href="/help-categories/non-profits-charities"
-                className="breadcrumb-link text-dark"
+                className="breadcrumb-link "
               >
                 Non-profits &amp; Charities
               </a>
-              <div className="breadcrumb-slash text-dark">/</div>
-              <a href="/article-link" className="breadcrumb-link text-dark">
+              <div className="breadcrumb-slash ">/</div>
+              <a href="/article-link" className="breadcrumb-link ">
                 How often are payments disbursed to my Bank Account?
               </a>
             </div>
@@ -39,16 +39,16 @@ const HelpContact = () => {
             <div className="mw-960 mx-auto pt-3">
               <Row>
                 <Col md="9">
-                  <h1 className="text-dark fw-bolder d-flex align-items-center mb-3">
+                  <h1 className=" fw-bolder d-flex align-items-center mb-3">
                     Submit a request
                   </h1>
                   <Form className="pe-sm-5">
                     <Form.Group className="mb-3 flex__1">
-                      <Form.Label className="fw-semibold text-dark fs-6">Email Address</Form.Label>
+                      <Form.Label className="fw-semibold  fs-6">Email Address</Form.Label>
                       <Form.Control type="email" size="lg" placeholder="Enter email" />
                     </Form.Group>
                     <Form.Group className="mb-3 flex__1">
-                      <Form.Label className="fw-semibold text-dark fs-6">
+                      <Form.Label className="fw-semibold  fs-6">
                         Category (optional)
                       </Form.Label>
                       <Form.Select aria-label="Default select example" size="lg">
@@ -60,11 +60,11 @@ const HelpContact = () => {
                       </Form.Select>
                     </Form.Group>
                     <Form.Group className="mb-3 flex__1">
-                      <Form.Label className="fw-semibold text-dark fs-6">Subject</Form.Label>
+                      <Form.Label className="fw-semibold  fs-6">Subject</Form.Label>
                       <Form.Control type="text" size="lg" placeholder="Enter subject" />
                     </Form.Group>
                     <Form.Group className="mb-3 flex__1">
-                      <Form.Label className="fw-semibold text-dark fs-6">Message</Form.Label>
+                      <Form.Label className="fw-semibold  fs-6">Message</Form.Label>
                       <Form.Control as="textarea" rows={10} placeholder="Enter message" />
                     </Form.Group>
                     <Button variant="info" size="lg" className="fw-bold fs-6">

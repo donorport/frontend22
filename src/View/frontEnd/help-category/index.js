@@ -25,23 +25,23 @@ const HelpCategory = () => {
 
         <div className="py-1 bg-lighter">
           <div className="mw-960 mx-auto d-flex align-items-center">
-            <a href="/help" className="breadcrumb-link text-dark">
+            <a href="/help" className="breadcrumb-link ">
               Home
             </a>
-            <div className="breadcrumb-slash text-dark">/</div>
+            <div className="breadcrumb-slash ">/</div>
             <a
               href="/help-categories/non-profits-charities"
-              className="breadcrumb-link text-dark"
+              className="breadcrumb-link "
             >
               Non-profits &amp; Charities
             </a>
-            <div className="breadcrumb-slash text-dark">/</div>
+            <div className="breadcrumb-slash ">/</div>
           </div>
         </div>
 
         <Container fluid className="py-4">
           <div className="mw-960 mx-auto pt-3">
-            <h1 className="text-dark fw-bolder d-flex align-items-center mb-2 pb-5">
+            <h1 className=" fw-bolder d-flex align-items-center mb-2 pb-5">
               <span className="me-2">Non-profits & Charities</span>
               <FontAwesomeIcon
                 icon={regular("heart-half-stroke")}

@@ -61,7 +61,7 @@ function OrganizationDetailMain({
           <h4 className="project__detail-label mb-3p">Organization</h4>
           <div className="d-flex flex-wrap me-3">
             <h1
-              className="flex-grow-1 project__detail-title text-capitalize mb-0"
+              className="flex-grow-1 project__detail-title  text-capitalize mb-0"
               style={{ flex: 0 }}
             >
               <span>{organizationDetails?.name}</span>
@@ -150,7 +150,7 @@ function OrganizationDetailMain({
                 </svg>
               }
             />
-            <span className="fs-6 text-dark fw-bold" style={{ textTransform: 'capitalize' }}>
+            <span className="fs-6  fw-bold" style={{ textTransform: 'capitalize' }}>
               {organizationDetails?.categoryDetails?.name}
             </span>
           </Button>

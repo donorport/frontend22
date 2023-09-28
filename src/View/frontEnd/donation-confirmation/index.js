@@ -267,7 +267,7 @@ const DonationConfirmPage = () => {
                       <img src={getCardIcon(cardType)} alt="" className="img-fluid" />
                     </div>
                     <div className="order__card fs-7">
-                      <div className="text-dark fw-semibold mb-6p">
+                      <div className=" fw-semibold mb-6p">
                         XXXX XXXX XXXX {lastFourDigits}
                       </div>
                       <div className="text-light fw-semibold">

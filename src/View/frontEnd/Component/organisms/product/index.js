@@ -182,7 +182,7 @@ const Product = (props) => {
         <div className="d-flex product__left d-flex flex-column">
           <div className="d-flex flex-grow-1 flex-column product__order">
             <Link to={'/item/' + props.slug} className="d-inline-block">
-              <h4 className="product__title mt-12p text-dark">{name}</h4>
+              <h4 className="product__title mt-12p ">{name}</h4>
             </Link>
             <div className="mt-1 product__date d-flex align-items-center">
               <FontAwesomeIcon icon={regular('clock')} className="mr-6p" />
@@ -191,7 +191,7 @@ const Product = (props) => {
             </div>
             <div className="d-flex flex-column flex-grow-1 justify-content-end">
               {/* <div className="small">Each:</div> */}
-              <div className="product__price fs-5 fw-bold text-dark">
+              <div className="product__price fs-5 fw-bold ">
                 <span>{currencySymbol}</span>
                 <span className="cost">{priceFormat(props.displayPrice)}</span>
               </div>
@@ -224,7 +224,7 @@ const Product = (props) => {
         </div>
       </div>
       <div className="product__category d-flex align-items-center flex-grow-1 pt-2 pb-1 px-2">
-        <div className="product__subcategory d-flex align-items-center text-dark">
+        <div className="product__subcategory d-flex align-items-center ">
           <div className="product__cat-icon mr-6p">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 640 512">
               <path d={subCatIcon} fill="#6f6f90"></path>{' '}
@@ -233,11 +233,11 @@ const Product = (props) => {
           <span>{category}</span>
         </div>
         {unlimited ? (
-          <div className="product__count d-flex align-items-center ms-auto text-dark">
+          <div className="product__count d-flex align-items-center ms-auto ">
             <span>{sold} sold</span>
           </div>
         ) : (
-          <div className="product__count d-flex align-items-center ms-auto text-dark">
+          <div className="product__count d-flex align-items-center ms-auto ">
             <span>
               {sold}&nbsp;/&nbsp;{total} sold
             </span>
@@ -353,7 +353,7 @@ const Product = (props) => {
     //     <div className="product__left d-flex flex-column">
     //       <div className="product__order">
     //         <Link to={'/item/' + props.slug} className="d-inline-block">
-    //           <h4 className="product__title mt-12p text-dark">{name}</h4>
+    //           <h4 className="product__title mt-12p ">{name}</h4>
     //         </Link>
     //         <div className="small">Price:</div>
     //         <div className="product__price">
@@ -450,7 +450,7 @@ const Product = (props) => {
     //           alt=""
     //         />
     //     </Link> */}
-    //     <div className="product__subcategory d-flex align-items-center text-dark">
+    //     <div className="product__subcategory d-flex align-items-center ">
     //       <div className="product__cat-icon mr-6p">
     //         {/* <i className={subCatIcon} style={{ fontFamily: "fontAwesome", fontStyle: "normal" }}></i> */}
 
@@ -476,11 +476,11 @@ const Product = (props) => {
     //       <span>{category}</span>
     //     </div>
     //     {unlimited ? (
-    //       <div className="product__count d-flex align-items-center ms-auto text-dark">
+    //       <div className="product__count d-flex align-items-center ms-auto ">
     //         <span>{sold} sold</span>
     //       </div>
     //     ) : (
-    //       <div className="product__count d-flex align-items-center ms-auto text-dark">
+    //       <div className="product__count d-flex align-items-center ms-auto ">
     //         <span>
     //           {sold}&nbsp;/&nbsp;{total} sold
     //         </span>

@@ -65,7 +65,7 @@ function NotificationSettings() {
         <ul className="notify-settings-list list-unstyled">
           <li className="notify__settings-item d-flex align-items-center">
             <div>
-              Turn <strong className="text-dark">OFF</strong>&nbsp;all notifications
+              Turn <strong className="">OFF</strong>&nbsp;all notifications
             </div>
             <div className="menu__toggle ms-auto">
               <ToggleSwitch

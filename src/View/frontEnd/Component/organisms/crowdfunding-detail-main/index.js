@@ -70,7 +70,7 @@ function CrowdfundingDetailMain({
         <div className="d-flex align-items-center mb-1">
           <div>
             <TagTitle>Crowdfunding Campaign</TagTitle>
-            <h1 className="project__detail-title">{crowdfundingDetails.name}</h1>
+            <h1 className="project__detail-title ">{crowdfundingDetails.name}</h1>
           </div>
           {/* <div className="page__logo page__logo--org ms-auto">
             <img
@@ -166,7 +166,7 @@ className="flex-grow-1 me-1"
                 ></path>{' '}
               </svg>
             </span>
-            <span className="fs-6 text-dark fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
+            <span className="fs-6  fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
               {crowdfundingDetails?.campaignDetails?.categoryDetails?.name}
             </span>
           </Link>
@@ -186,7 +186,7 @@ className="flex-grow-1 me-1"
               />
               {/* </div> */}
             </span>
-            <span className="fs-6 text-dark fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
+            <span className="fs-6  fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
               {crowdfundingDetails?.campaignDetails?.name}
             </span>
           </Link>

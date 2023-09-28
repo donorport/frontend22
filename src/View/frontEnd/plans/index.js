@@ -18,7 +18,7 @@ const Plans = (props) => {
       <div className="password-reset position-relative">
         <Container fluid className="position-relative pb-5 pt-5">
           <div className="mw-600 pb-2 mb-4">
-            <h1 className="text-dark fw-bolder mb-6p pt-2">Premium Plans</h1>
+            <h1 className=" fw-bolder mb-6p pt-2">Premium Plans</h1>
             <div className="fs-5 text-light mb-4 lh-1.5">
               Upgrade your organization's account to unlock more features including posting more
               items and creating more projects. You can cancel your plan at any time if you no
@@ -26,7 +26,7 @@ const Plans = (props) => {
             </div>
 
             <div className="p-20p bg-lighter rounded d-inline-block">
-              <span className="text-dark fw-bolder me-3">Current Plan:</span>
+              <span className=" fw-bolder me-3">Current Plan:</span>
               <Button variant="info" className="rounded-pill ms-2">
                 Basic
                 <FontAwesomeIcon icon={solid('cloud')} className="ms-1" />
@@ -44,7 +44,7 @@ const Plans = (props) => {
                     >
                       {basicData.price}
                     </div>
-                    <div className="btn btn-info text-dark px-4 rounded-pill mb-3">
+                    <div className="btn btn-info  px-4 rounded-pill mb-3">
                       Basic
                       <FontAwesomeIcon icon={solid('cloud')} className="ms-1" />
                     </div>
@@ -99,7 +99,7 @@ const Plans = (props) => {
                       ${proData.price}
                       <span className="plans__term">/mo</span>
                     </div>
-                    <div className="btn btn-warning text-dark px-4 rounded-pill mb-3">
+                    <div className="btn btn-warning  px-4 rounded-pill mb-3">
                       Pro
                       <FontAwesomeIcon icon={solid('medal')} className="ms-1" />
                     </div>
@@ -150,7 +150,7 @@ const Plans = (props) => {
                       ${enterpriseData.price}
                       <span className="plans__term">/mo</span>
                     </div>
-                    <div className="btn bg-enterprise text-dark px-4 rounded-pill mb-3">
+                    <div className="btn bg-enterprise  px-4 rounded-pill mb-3">
                       Enterprises
                       <FontAwesomeIcon icon={solid('buildings')} className="ms-1" />
                     </div>

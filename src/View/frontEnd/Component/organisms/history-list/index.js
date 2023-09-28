@@ -352,7 +352,7 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
                     <img src={getCardIcon(CardBrand)} alt="" className="img-fluid" />
                   </div>
                   <div className="order__card fs-7">
-                    <div className="d-flex align-items-center text-dark fw-semibold pe-1">
+                    <div className="d-flex align-items-center  fw-semibold pe-1">
                       {last4}
                     </div>
                   </div>
@@ -430,7 +430,7 @@ const DonationListItem = ({ donation, activeList }) => {
                   <img src={getCardIcon(CardBrand)} alt="" className="img-fluid" />
                 </div>
                 <div className="order__card fs-7">
-                  <div className="d-flex align-items-center text-dark fw-semibold pe-1">
+                  <div className="d-flex align-items-center  fw-semibold pe-1">
                     {last4}
                   </div>
                 </div>
@@ -492,7 +492,7 @@ const DonationListItem = ({ donation, activeList }) => {
                   <img src={getCardIcon(CardBrand)} alt="" className="img-fluid" />
                 </div>
                 <div className="order__card fs-7">
-                  <div className="d-flex align-items-center text-dark fw-semibold pe-1">
+                  <div className="d-flex align-items-center  fw-semibold pe-1">
                     {last4}
                   </div>
                 </div>
@@ -586,7 +586,7 @@ const PurchaseListItem = ({ order, item }) => {
           <Link
             to={'/item/' + item.itemDetails?.slug}
             variant="link"
-            className="text-dark fw-bold p-0 mb-3p"
+            className=" fw-bold p-0 mb-3p"
           >
             {item.quantity} {item.itemDetails?.headline}
           </Link>
@@ -622,7 +622,7 @@ const OrderListTransaction = ({ createdAt, CardType, last4 }) => {
           <img src={getCardIcon(CardType)} alt="" className="img-fluid" />
         </div>
         <div className="order__card fs-7">
-          <div className="text-dark fw-semibold mb-6p">XXXX XXXX XXXX {last4}</div>
+          <div className=" fw-semibold mb-6p">XXXX XXXX XXXX {last4}</div>
           <div className="text-light fw-semibold">
             <div>Transaction: {moment(createdAt).format(MOMENT_DATE_FORMAT)}</div>
           </div>

@@ -21,7 +21,7 @@ const XpTable = (props) => {
       case 'DONATED':
         // let Image = data.organizationDetails.logo;
         Res = (
-          <div className="order-1 order-sm-2 d-flex align-items-center text-dark me-sm-3 flex__1">
+          <div className="order-1 order-sm-2 d-flex align-items-center  me-sm-3 flex__1">
             <div className="position-relative">
               <ListItemImg
                 size={68}
@@ -49,7 +49,7 @@ const XpTable = (props) => {
       case 'BOUGHT':
         price = data.quantity * data.amount;
         Res = (
-          <div className="order-1 order-sm-2 d-flex align-items-center text-dark me-sm-3 flex__1">
+          <div className="order-1 order-sm-2 d-flex align-items-center  me-sm-3 flex__1">
             <div className="position-relative">
               <ListItemImg
                 size={68}
@@ -76,7 +76,7 @@ const XpTable = (props) => {
 
       case 'FOLLOWED':
         Res = (
-          <div className="order-1 order-sm-2 d-flex align-items-center text-dark me-sm-3 flex__1">
+          <div className="order-1 order-sm-2 d-flex align-items-center  me-sm-3 flex__1">
             <div className="position-relative">
               <ListItemImg
                 size={68}
@@ -165,7 +165,7 @@ const XpTable = (props) => {
                     </div>
                     {getData(item.type, item.xp, item)}
 
-                    {/* <div className="order-1 order-sm-2 d-flex align-items-center text-dark me-sm-3 flex__1">
+                    {/* <div className="order-1 order-sm-2 d-flex align-items-center  me-sm-3 flex__1">
                         <div className="position-relative">
                           <ListItemImg imgSrc=" />
                         </div>
@@ -194,7 +194,7 @@ const XpTable = (props) => {
             //       <div className="text-info fw-bold fs-5">90 XP</div>
             //       <div className="text-light fs-8">11 months ago</div>
             //     </div>
-            //     <div className="order-1 order-sm-2 d-flex align-items-center text-dark me-sm-3 flex__1">
+            //     <div className="order-1 order-sm-2 d-flex align-items-center  me-sm-3 flex__1">
             //       <div className="position-relative">
             //         <ListItemImg imgSrc="" />
             //       </div>
@@ -219,7 +219,7 @@ const XpTable = (props) => {
             //       <div className="text-info fw-bold fs-5">90 XP</div>
             //       <div className="text-light fs-8">11 months ago</div>
             //     </div>
-            //     <div className="order-1 order-sm-2 d-flex align-items-center text-dark me-sm-3 flex__1">
+            //     <div className="order-1 order-sm-2 d-flex align-items-center  me-sm-3 flex__1">
             //       <div className="position-relative">
             //         <ListItemImg imgSrc="" />
             //       </div>

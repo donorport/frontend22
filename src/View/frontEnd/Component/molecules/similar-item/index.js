@@ -88,7 +88,7 @@ function SimilarItem(props) {
           <div className="similar__item__title pr-12p">
             <Link
               to={'/item/' + product.slug}
-              className="similar__item__name mb-3p text-dark d-inline-block fw-bolder fs-5"
+              className="similar__item__name mb-3p  d-inline-block fw-bolder fs-5"
             >
               {product.headline}
             </Link>

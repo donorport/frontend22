@@ -50,7 +50,7 @@ const About = (props) => {
           <Row>
             <Col md="4" className="mb-4 mb-sm-0">
               <div className="about__content-1">
-                <h1 className="about__title display-6 fw-bolder text-dark">
+                <h1 className="about__title display-6 fw-bolder ">
                   A Crowdfunding Platform for Charities
                 </h1>
                 <p className="text-light fw-regular mb-4 lh-1.5">
@@ -93,7 +93,7 @@ const About = (props) => {
         </Container>
       </div>
       <Container fluid>
-        {/* <h4 className="fs-1 fw-bolder text-center text-dark">Our services</h4> */}
+        {/* <h4 className="fs-1 fw-bolder text-center ">Our services</h4> */}
         <Row className="section--hero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5">
           <Col md="6">
             <div className="d-flex align-items-center  justify-content-sm-center">
@@ -110,7 +110,7 @@ const About = (props) => {
               <div className="d-flex flex-column align-items-start ">
                 Your donations, all in one place
               </div>
-              <h3 className="fs-1 fw-bolder text-dark pt-3">Discover unique opportunities</h3>
+              <h3 className="fs-1 fw-bolder  pt-3">Discover unique opportunities</h3>
               <p className="text-light mb-3 lh-1.5">
                 Browse categories and filter results based on your donation preferences. Our
                 geo-location system shows you posts from charities near you so you can support your
@@ -138,7 +138,7 @@ const About = (props) => {
           <Col md="6" className="pt-5">
             <div className="d-flex flex-column align-items-start">
               <div className="about__label d-flex flex-column align-items-start ">Donations</div>
-              <h3 className="fs-1 fw-bolder text-dark pt-3">Tangible Giving</h3>
+              <h3 className="fs-1 fw-bolder  pt-3">Tangible Giving</h3>
               <p className="text-light mb-3 lh-1.5">
                 Charities are often asked what they need, not how much they need. Donorport allows
                 you to see these needs and provide the funding.
@@ -185,7 +185,7 @@ const About = (props) => {
                 <div className="about__label d-flex flex-column align-items-start ">
                   How it Works
                 </div>
-                <h3 className="fs-1 fw-bolder text-dark pt-3">Transparent</h3>
+                <h3 className="fs-1 fw-bolder  pt-3">Transparent</h3>
                 <p className="text-light mb-3 lh-1.5">
                   A simple solution to the charity fundraising problem. Now you can see where your
                   money goes; hand pick from needs posted by hundreds of organizations.
@@ -201,7 +201,7 @@ const About = (props) => {
               <div className="d-flex justify-content-center mb-2">
                 <img src={box} className="about__step-icon" alt="" />
               </div>
-              <h4 className="mb-1 fw-bolder text-dark text-center">Charity creates a post</h4>
+              <h4 className="mb-1 fw-bolder  text-center">Charity creates a post</h4>
               <p className="text-light text-center fs-5">
                 An organziation creates a post for products they need.
               </p>
@@ -210,7 +210,7 @@ const About = (props) => {
               <div className="d-flex justify-content-center mb-2">
                 <img src={donate} className="about__step-icon" alt="" />
               </div>
-              <h4 className="mb-1 fw-bolder text-dark text-center">Donors provide the funding</h4>
+              <h4 className="mb-1 fw-bolder  text-center">Donors provide the funding</h4>
               <p className="text-light text-center fs-5">
                 Donors send funds to pay for the products posted by the organizations.
               </p>
@@ -219,7 +219,7 @@ const About = (props) => {
               <div className="d-flex justify-content-center mb-2">
                 <img src={bank} className="about__step-icon" alt="" />
               </div>
-              <h4 className="mb-1 fw-bolder text-dark text-center">Charity buys the products</h4>
+              <h4 className="mb-1 fw-bolder  text-center">Charity buys the products</h4>
               <p className="text-light text-center fs-5">
                 The organizations use the funding provided by the donors to purchase the products.
               </p>
@@ -260,7 +260,7 @@ const About = (props) => {
             <Row>
               <Col md="7">
                 <div className="pe-sm-5 me-sm-4">
-                  <h3 className="fs-1 fw-bolder text-dark">Our Standard</h3>
+                  <h3 className="fs-1 fw-bolder ">Our Standard</h3>
                   <p className="text-light mb-3 lh-1.5">
                     Donorport promises to remain a platform for the people which is why we bring you
                     all types of content created by our approved non-profits & charities. We approve
@@ -268,7 +268,7 @@ const About = (props) => {
                   </p>
                   <p className="fs-5 text-light lh-1.5">
                     To learn more check out our&nbsp;
-                    <Link to="/home" className="text-dark">
+                    <Link to="/home" className="">
                       partnerships page.
                     </Link>
                   </p>
@@ -326,7 +326,7 @@ const About = (props) => {
               <div className="about__label d-flex flex-column align-items-start ">
                 Tax Management
               </div>
-              <h3 className="fs-1 fw-bolder text-dark pt-3">Centralized Giving</h3>
+              <h3 className="fs-1 fw-bolder  pt-3">Centralized Giving</h3>
               <p className="text-light mb-3 lh-1.5">
                 When you donate on Donorport, your tax receipts are uploaded directly to the
                 platform so you can view, download, and track all of your receipts for every
@@ -373,7 +373,7 @@ const About = (props) => {
               <div className="about__label d-flex flex-column align-items-start ">
                 Payment Options
               </div>
-              <h3 className="fs-1 fw-bolder text-dark pt-3">Modern Solutions</h3>
+              <h3 className="fs-1 fw-bolder  pt-3">Modern Solutions</h3>
               <p className="text-light mb-3 lh-1.5">
                 As technology advances, so does the neeed for platforms to adopt the latest
                 solutions. Donorport is committed to accepting all major forms of payment making it
@@ -468,7 +468,7 @@ const About = (props) => {
           <Col md="6" className="pt-5">
             <div className="d-flex flex-column align-items-start">
               <div className="about__label d-flex flex-column align-items-start ">Our Partners</div>
-              <h3 className="fs-1 fw-bolder text-dark pt-3">Trusted Charities</h3>
+              <h3 className="fs-1 fw-bolder  pt-3">Trusted Charities</h3>
               <p className="text-light mb-3 lh-1.5">
                 Only registered charities and non-profits in good standing are allowed to post on
                 Donorport so you can be sure your donation is secure.

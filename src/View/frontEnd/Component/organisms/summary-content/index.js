@@ -55,7 +55,7 @@ const SummaryContent = (props) => {
                       <Link
                         variant="link"
                         to={'/item/' + item?.productDetails?.slug}
-                        className="text-dark text-start fw-bolder p-0 mb-3p fs-4"
+                        className=" text-start fw-bolder p-0 mb-3p fs-4"
                       >
                         {item?.productDetails?.headline}
                       </Link>

@@ -45,7 +45,7 @@ const LeaderBoard = () => {
         {/*<FrontLoader loading={loading} />*/}
         <DefaultLayout>
           <Container luid className="position-relative pb-5 pt-5">
-            <h1 className="fs-2 text-dark fw-bolder" style={{ marginTop: '50px' }}>
+            <h1 className="fs-2  fw-bolder" style={{ marginTop: '50px' }}>
               Leaderboard
             </h1>
             <div className="fs-5 text-light" style={{ marginBottom: '56px' }}>
@@ -79,7 +79,7 @@ const LeaderBoard = () => {
                                 />
                                 <div className="ms-2 flex-grow-1">
                                   <div className="ladder__name d-flex align-items-center justify-content-start me-0 me-md-3">
-                                    <div className="text-dark fw-bold">{person.name}</div>
+                                    <div className=" fw-bold">{person.name}</div>
 
                                     {/*<span className="text-info fs-5" style={{ marginLeft: "10px" }}>
                                                                         <FontAwesomeIcon icon={solid("badge-check")} />

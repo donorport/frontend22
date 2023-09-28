@@ -65,12 +65,12 @@ const Apply = (props) => {
               </Button>
             </div>
 
-            <h1 className="mt-5 text-dark fw-bolder pt-2 mb-4">Getting Started</h1>
+            <h1 className="mt-5  fw-bolder pt-2 mb-4">Getting Started</h1>
             {/* <div className="fs-5 text-light mb-4">
                 Activate your account to create your organization's administration page or apply to
                 receive your activation code.
               </div> */}
-            <h4 className="fw-bolder text-dark">Step 1 - Create your account</h4>
+            <h4 className="fw-bolder ">Step 1 - Create your account</h4>
             <div className="text-light mb-4 fs-5 pe-5">
               Fill out the form below and click Submit to apply to post for your charity on
               Donorport. A 4 digit activation code will be sent to the email you provided once your
@@ -402,7 +402,7 @@ const Apply = (props) => {
             className="d-flex flex-column flex-grow-1 bg-lighter"
             style={{ padding: '9% 9% 0% 9%' }}
           >
-            <h2 className="fw-bolder text-dark">Activate</h2>
+            <h2 className="fw-bolder ">Activate</h2>
             <div className="text-light mb-2 fs-5 mw-600">
               Enter your 4 digit activation code in the box below to activate your account.
             </div>
@@ -433,7 +433,7 @@ const Apply = (props) => {
             >
               <img src={apply} className="img-fluid" alt="" />
             </div>
-            {/* <h3 className="fw-bolder text-dark">Why Donorport?</h3>
+            {/* <h3 className="fw-bolder ">Why Donorport?</h3>
             <div className="fee__list d-sm-flex fs-5 text-light">
               <div className="">
                 <div className="d-flex align-items-center my-3">

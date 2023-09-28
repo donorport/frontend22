@@ -164,7 +164,7 @@ const UserItemsTableView = ({
               <span className="d-none d-sm-flex item__total-wrap d-flex ms-3" key={index}>
                 <FontAwesomeIcon
                   icon={solid('money-bills-simple')}
-                  className="text-dark mr-12p fs-4"
+                  className=" mr-12p fs-4"
                 />
                 <span>$</span>
                 {val[1].toLocaleString('en-US', {
@@ -233,7 +233,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
         >
           <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
         </Button>
-        <div className="d-flex align-items-center text-dark me-sm-3 flex__1">
+        <div className="d-flex align-items-center  me-sm-3 flex__1">
           <div className="item__image-wrap">
             <img
               alt=""
@@ -427,7 +427,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
                 (item.fulfilDetails[0].video || item.itemDetails?.fulfil.length > 0) && (
                   <div className="note note-info align-items-center mt-5">
                     <Card.Header className="post__accordion-header pb-2 pt-2">
-                      <h2 className="fs-3 fw-bolder text-dark">Followup</h2>
+                      <h2 className="fs-3 fw-bolder ">Followup</h2>
                       <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
                     </Card.Header>
                     <div className="d-flex flex-column gap-2">
@@ -494,7 +494,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
             />
           </div>
           <div className="order__widget mb-3">
-            <div className="d-flex align-items-start bg-lighter p-12p text-dark flex__1 mb-3 rounded-3">
+            <div className="d-flex align-items-start bg-lighter p-12p  flex__1 mb-3 rounded-3">
               <div className="">
                 <img
                   alt=""
@@ -547,7 +547,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
                 <img src={getCardIcon(cardType)} alt="" className="img-fluid" />
               </div>
               <div className="order__card fs-7">
-                <div className="text-dark fw-semibold mb-6p">XXXX XXXX XXXX {lastFourDigits}</div>
+                <div className=" fw-semibold mb-6p">XXXX XXXX XXXX {lastFourDigits}</div>
                 <div className="text-light fw-semibold">
                   <div>Transaction: {moment(item.created_at).format('MMMM DD, YYYY')}</div>
                 </div>

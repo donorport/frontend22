@@ -5,7 +5,7 @@ import './style.scss';
 const FAQ = () => {
     return (
         <Container fluid className="position-relative py-5">
-        <h1 className="text-dark fw-bolder mb-6p text-center">
+        <h1 className=" fw-bolder mb-6p text-center">
           Frequently Asked Questions
         </h1>
         <div className="fs-5 fw-semibold text-light mb-4 text-center">
@@ -20,7 +20,7 @@ const FAQ = () => {
             eventKey="0"
             className="border-start-0 border-end-0"
           >
-            <Accordion.Header className="py-2 text-dark border-0">
+            <Accordion.Header className="py-2  border-0">
               <span className="fs-5 fw-semibold">
                 Is Donorport a non-profit or charity?
               </span>
@@ -36,7 +36,7 @@ const FAQ = () => {
             eventKey="1"
             className="border-start-0 border-end-0"
           >
-            <Accordion.Header className="py-2 text-dark border-0">
+            <Accordion.Header className="py-2  border-0">
               <span className="fs-5 fw-semibold">
                 Does Donorport charge a fee to use the platform?
               </span>
@@ -52,7 +52,7 @@ const FAQ = () => {
             eventKey="2"
             className="border-start-0 border-end-0"
           >
-            <Accordion.Header className="py-2 text-dark border-0">
+            <Accordion.Header className="py-2  border-0">
               <span className="fs-5 fw-semibold">
                 I made a donation in error, can I get a refund?
               </span>
@@ -69,7 +69,7 @@ const FAQ = () => {
             eventKey="3"
             className="border-start-0 border-end-0"
           >
-            <Accordion.Header className="py-2 text-dark border-0">
+            <Accordion.Header className="py-2  border-0">
               <span className="fs-5 fw-semibold">
                 Will Donorport issue me a tax receipt every year?
               </span>
@@ -87,7 +87,7 @@ const FAQ = () => {
             eventKey="4"
             className="border-start-0 border-end-0"
           >
-            <Accordion.Header className="py-2 text-dark border-0">
+            <Accordion.Header className="py-2  border-0">
               <span className="fs-5 fw-semibold">
                 Can I receive a tax receipt if I donated in cryptocurrency?
               </span>

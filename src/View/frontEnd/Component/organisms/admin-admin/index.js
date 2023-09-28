@@ -132,7 +132,7 @@ const AdminAdmin = () => {
             <FontAwesomeIcon icon={regular('link')} className="text-subtext me-1 ms-2" />
             {data.name}
           </div>
-          <div className="note text-dark mb-2 fs-6">
+          <div className="note  mb-2 fs-6">
             You can invite additional team members to have access to and control this account.
           </div>
           <div className="d-flex align-items-center gap-2 mb-3">
@@ -207,7 +207,7 @@ const AdminAdmin = () => {
             The Organization Administrator controls access for Team Members
           </div> */}
 
-          {/* <div className="note note--info text-dark fs-6">
+          {/* <div className="note note--info  fs-6">
             <FontAwesomeIcon icon={regular('circle-info')} className="text-info me-1" />
             For support with user admin accounts click here.
           </div> */}

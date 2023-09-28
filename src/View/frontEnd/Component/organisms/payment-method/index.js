@@ -993,7 +993,7 @@ const Payments = () => {
           </label>
         </div>
         {state.error && state.error.taxRate && <p className="error">{state.error.taxRate}</p>}
-        <div className="note text-dark mb-2 fs-6">
+        <div className="note  mb-2 fs-6">
           The tax rate will be automatically added to the unit price of items you post to make sure
           you enough funds to cover the sales tax when you purchase the items.
         </div>
@@ -1189,7 +1189,7 @@ const Payments = () => {
               This method will be used for deposits from donations / items you post.
             </div>
           )}
-          <div className="note text-dark fs-6">
+          <div className="note  fs-6">
             Funds will be deposited into this account when items you post are fully funded or marked
             as infinity items, or if you receive cash donations.
           </div>
@@ -1235,7 +1235,7 @@ const Payments = () => {
             This method will be used for deposits from donations / items you post.
           </div>
 
-          <div className="note text-dark">
+          <div className="note ">
             Funds will be deposited into this account when items you post are
             fully funded or you receive donations from users (both one-time &
             recurring).

@@ -60,7 +60,7 @@ const ForgotPassword = (props) => {
               </div>
 
               <form className="login__form">
-                <div className="login-header text-dark">Forgot Password</div>
+                <div className="login-header ">Forgot Password</div>
                 <div className="mb-3">
                   <input
                     type="email"

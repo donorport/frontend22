@@ -16,7 +16,7 @@ const Trust = () => {
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-5">
             <div className="mw-800">
-              <h1 className="text-dark fw-bolder mb-6p pt-2">Trust & Safety</h1>
+              <h1 className=" fw-bolder mb-6p pt-2">Trust & Safety</h1>
               <div className="fs-5 text-light pb-5 mb-3">
                 Feel confident choosing Donorport as your donation platform.
               </div>
@@ -70,7 +70,7 @@ const Trust = () => {
                     <div className="trust__thumb d-flex align-items-center justify-content-center mb-20p">
                       <img src={shake} alt="" className="img-fluid" />
                     </div>
-                    <div className="fs-4 fw-bolder text-dark">Established</div>
+                    <div className="fs-4 fw-bolder ">Established</div>
                   </div>
                   <div className="ms-3">
                     <div className="text-light fs-5 lh-1.5">
@@ -86,7 +86,7 @@ const Trust = () => {
                     <div className="trust__thumb d-flex align-items-center justify-content-center mb-20p">
                       <img src={star} alt="" className="img-fluid" />
                     </div>
-                    <div className="fs-4 fw-bolder text-dark">Top Rated</div>
+                    <div className="fs-4 fw-bolder ">Top Rated</div>
                   </div>
                   <div className="ms-3">
                     <div className="text-light fs-5 lh-1.5">
@@ -98,7 +98,7 @@ const Trust = () => {
                   </div>
                 </li>
                 <li>
-                  <div className="trust__note py-2 px-20p note my-20p text-dark fs-6 w-100">
+                  <div className="trust__note py-2 px-20p note my-20p  fs-6 w-100">
                     Donorport selects only the most trusted organizations to ensure the security of
                     your giving
                   </div>
@@ -108,7 +108,7 @@ const Trust = () => {
                     <div className="trust__thumb d-flex align-items-center justify-content-center mb-20p">
                       <img src={file} alt="" className="img-fluid" />
                     </div>
-                    <div className="fs-4 fw-bolder text-dark">Hand-Selected</div>
+                    <div className="fs-4 fw-bolder ">Hand-Selected</div>
                   </div>
                   <div className="ms-3 mb-4 mb-sm-0">
                     <div className="text-light fs-5 lh-1.5">

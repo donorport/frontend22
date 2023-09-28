@@ -202,7 +202,7 @@ const OrderConfirmPage = () => {
                                 <div className="checkout__info d-flex flex-column flex-wrap align-items-start px-3">
                                   <Link
                                     to={'/item/' + itm.itemDetails.slug}
-                                    className="text-dark text-start fw-bolder p-0 mb-3p fs-4 btn btn-link"
+                                    className=" text-start fw-bolder p-0 mb-3p fs-4 btn btn-link"
                                   >
                                     <div>{itm.itemDetails.headline}</div>
                                   </Link>
@@ -318,7 +318,7 @@ const OrderConfirmPage = () => {
                       <img src={getCardIcon(cardType)} alt="" className="img-fluid" />
                     </div>
                     <div className="order__card fs-7">
-                      <div className="text-dark fw-semibold mb-6p">
+                      <div className=" fw-semibold mb-6p">
                         XXXX XXXX XXXX {lastFourDigits}
                       </div>
                       <div className="text-light fw-semibold">

@@ -77,7 +77,7 @@ function HistoryItem({ active, ...otherProps }) {
         />
         <div className="ms-2 flex-grow-1">
           <div className="d-flex align-items-center justify-content-between">
-            <div className="text-dark fw-bold">{name}</div>
+            <div className=" fw-bold">{name}</div>
 
             {/*<span className="text-info fs-5">
               <FontAwesomeIcon icon={solid("badge-check")} />

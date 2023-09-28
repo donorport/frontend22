@@ -142,7 +142,7 @@ const Checkout = (props) => {
               </span>
               <Button
                 variant="link"
-                className="p-0 me-1 fw-normal fs-7 text-decoration-none text-dark"
+                className="p-0 me-1 fw-normal fs-7 text-decoration-none "
               >
                 Order
                 <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
@@ -249,7 +249,7 @@ const Checkout = (props) => {
               </div>
               <div className="checkout__block-bd">
                 <Form.Group className="mb-3">
-                  <Form.Label for="ccnumber" className="fw-bold text-dark fs-7">
+                  <Form.Label for="ccnumber" className="fw-bold  fs-7">
                     Card Number
                   </Form.Label>
                   <Form.Control
@@ -275,7 +275,7 @@ const Checkout = (props) => {
 
                 <div className="d-sm-flex gap-3 align-items-center">
                   <Form.Group className="mb-3 flex__1">
-                    <Form.Label for="ccmonth" className="fw-bold text-dark fs-7">
+                    <Form.Label for="ccmonth" className="fw-bold  fs-7">
                       Exp Month
                     </Form.Label>
                     <Form.Control
@@ -299,7 +299,7 @@ const Checkout = (props) => {
                     )}
                   </Form.Group>
                   <Form.Group className="mb-3 flex__1">
-                    <Form.Label className="fw-bold text-dark fs-7">Exp Year</Form.Label>
+                    <Form.Label className="fw-bold  fs-7">Exp Year</Form.Label>
                     <Form.Control
                       type="text"
                       size="lg"
@@ -320,7 +320,7 @@ const Checkout = (props) => {
                     )}
                   </Form.Group>
                   <Form.Group className="mb-3 flex__1">
-                    <Form.Label for="cccvv" className="fw-bold text-dark fs-7">
+                    <Form.Label for="cccvv" className="fw-bold  fs-7">
                       CVC/CCV
                     </Form.Label>
                     <Form.Control

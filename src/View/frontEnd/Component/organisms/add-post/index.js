@@ -342,7 +342,7 @@ const AddPost = (props) => {
           <Card>
             <Card.Header className="post__accordion-header">
               <AccordionToggle>
-                <h2 className="fs-3 fw-bolder text-dark">Post Location</h2>
+                <h2 className="fs-3 fw-bolder ">Post Location</h2>
               </AccordionToggle>
             </Card.Header>
             <Accordion.Collapse className="py-5">
@@ -423,7 +423,7 @@ const AddPost = (props) => {
           <Card>
             <Card.Header className="post__accordion-header">
               <AccordionToggle>
-                <h2 className="fs-3 fw-bolder text-dark">Product Details</h2>
+                <h2 className="fs-3 fw-bolder ">Product Details</h2>
               </AccordionToggle>
             </Card.Header>
             <Accordion.Collapse className="py-0 pt-5 py-sm-5">
@@ -569,7 +569,7 @@ const AddPost = (props) => {
                         </div>
                       </div>
                       <div className="note note--info mb-3 fs-6">
-                        <span className="text-dark">
+                        <span className="">
                           Enter the unit price before taxes. Your{' '}
                           <Link
                             to={'/campaign/' + organizationDetails?.slug + '/settings/payments'}
@@ -838,7 +838,7 @@ const AddPost = (props) => {
                               className="text-info icon-method mr-3p fs-4"
                             />
                             Processing uploaded image...
-                            {/* <span className="text-dark">
+                            {/* <span className="">
                           Please upload a transparent image of the product. Click{' '}
                           <a
                             href="https://www.youtube.com/watch?v=G3Y5PcuH23Y"
@@ -859,7 +859,7 @@ const AddPost = (props) => {
                       {!props.loading && (
                         <Box sx={{ width: '100%' }}>
                           <div className="d-flex note note--info mb-3 fs-6">
-                            <span className="text-dark">
+                            <span className="">
                               Upload an image of the product with a transparent background. The
                               image should closesly resemble the product you will purchase but does
                               not need to be exact. Accepted file formats:{' '}
@@ -1105,7 +1105,7 @@ const AddPost = (props) => {
           <Card>
             <Card.Header className="post__accordion-header">
               <AccordionToggle>
-                <h2 className="fs-3 fw-bolder text-dark">Need Headline</h2>
+                <h2 className="fs-3 fw-bolder ">Need Headline</h2>
               </AccordionToggle>
             </Card.Header>
             <Accordion.Collapse className="py-5">

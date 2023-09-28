@@ -173,7 +173,7 @@ const TaxTable = (props) => {
                               </div>
                               <div>
                                 <div>
-                                  <Button variant="link" className="text-dark px-0 py-3p">
+                                  <Button variant="link" className=" px-0 py-3p">
                                     Donated
                                   </Button>
                                 </div>
@@ -193,7 +193,7 @@ const TaxTable = (props) => {
                                 //   </div>
                                 //   <div>
                                 //     <div>
-                                //       <Button variant="link" className="text-dark px-0 py-3p">
+                                //       <Button variant="link" className=" px-0 py-3p">
                                 //         {item[0].orderItemDetails?.productName}
                                 //       </Button>
                                 //     </div>
@@ -224,7 +224,7 @@ const TaxTable = (props) => {
                                   </div>
                                   <div>
                                     <div>
-                                      <Button variant="link" className="text-dark px-0 py-3p">
+                                      <Button variant="link" className=" px-0 py-3p">
                                         {/* {item[0].orderItemDetails?.productName} */}
                                         {item[0].type === 'Purchased'
                                           ? item[0].orderItemDetails?.productName
@@ -270,7 +270,7 @@ const TaxTable = (props) => {
                                     className="text-success fs-3"
                                   />
                                   <div className="ps-2">
-                                    <div className="file__name text-dark mb-3p fw-normal">
+                                    <div className="file__name  mb-3p fw-normal">
                                       {item[0].receipt}
                                     </div>
                             
@@ -359,7 +359,7 @@ const TaxTable = (props) => {
 
                                       <div>
                                         <div>
-                                          <Button variant="link" className="text-dark px-0 py-3p">
+                                          <Button variant="link" className=" px-0 py-3p">
                                             {/* {i1.orderItemDetails?.productName} */}
                                             {Name}
                                           </Button>
@@ -427,7 +427,7 @@ const TaxTable = (props) => {
                   <div className="text-success fw-bold fs-5">$10</div>
                   <div className="text-light fs-8">11 months ago</div>
                 </div>
-                <div className="order-1 order-sm-2 d-flex align-items-center text-dark flex__1">
+                <div className="order-1 order-sm-2 d-flex align-items-center  flex__1">
                   <div className="position-relative">
                     <ListItemImg imgSrc="" />
                   </div>
