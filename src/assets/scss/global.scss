@@ -23,11 +23,16 @@
 // base styles
 @import "./base";
 
+@import "../../View/frontEnd/Component/organisms/header/style.scss";
+@import "../../View/frontEnd/Component/organisms/footer/style.scss";
+
+
 // component styles
 @import "./components/button";
-@import "./components/product";
-@import "./components/title";
 @import "./components/forms";
+@import "./components/ladder-menu";
+@import "./components/list-table";
+@import "./components/dropdown";
 
 // layout styles
 @import "./layout/grid";
@@ -68,10 +73,10 @@
 
 // component styles
 @import "./components/button";
-@import "./components/product";
-@import "./components/title";
 @import "./components/forms";
-
+@import "./components/ladder-menu";
+@import "./components/list-table";
+@import "./components/dropdown";
 // layout styles
 @import "./layout/grid";
 

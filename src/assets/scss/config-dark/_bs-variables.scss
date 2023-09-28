@@ -23,8 +23,8 @@ $body-color: $neutral-700;
 $darkest: #001429;
 $dark: $neutral-700;
 $light: $neutral-500;
-$border-color: #e6e6e6;
-$hr-border-color: #e6e6e6;
+$border-color: #1d2a3e;
+$hr-border-color: #1d2a3e;
 
 $font-size-base: 0.975rem; // 16px
 // $font-size-base: 0.875rem; // 14px
@@ -198,7 +198,7 @@ $tooltip-border-radius: 10px;
 $tooltip-opacity: 1;
 $tooltip-padding-y: 10px;
 $tooltip-padding-x: 1rem;
-$tooltip-color: #ededed;
+$tooltip-color: $secondary-5;
 
 $popover-box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
 $popover-border-width: 0;
