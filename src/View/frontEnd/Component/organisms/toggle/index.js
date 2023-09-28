@@ -1,65 +1,33 @@
 import React, { useEffect } from 'react';
 import './style.scss';
+import themeService from "../../../../../services/themeService";
 
+/* init:
+ * default to: localStorage > matchMedia > 'light'
+ * - set the default theme, and save to storage
+ *
+ * toggle:
+ * detect localStorage current theme
+ * - apply opposite theme
+ * */
 
+/* Avoid defining functions inside other functions (useEffect, components, etc) 
+ * because whenever a function reruns, it re-creates all the functions inside, 
+ * which is extra work that might not be necessary.
+ * 
+ * It's only necessary to nest the function definition if it directly uses
+ * state or component props. Alternately, you could pass these in to allow you
+ * to move the definition outside.
+ * */
 
 function ThemeToggle() {
   useEffect(() => {
-    const htmlElement = document.querySelector('html');
-    const themeToggle = document.querySelector('.theme__toggle');
-
-    const saveThemeToLocalStorage = (theme) => {
-      localStorage.setItem('theme', theme);
-    };
-
-    const loadThemeFromLocalStorage = () => {
-      return localStorage.getItem('theme');
-    };
-
-    const applyTheme = (theme) => {
-      htmlElement.dataset.theme = theme;
-      if (theme === 'dark') {
-        document.body.classList.add('dark-theme');
-      } else if (theme === 'light') {
-        document.body.classList.remove('dark-theme');
-      }
-    };
-
-    const toggleTheme = () => {
-      if (document.body.classList.contains('dark-theme')) {
-        document.body.classList.remove('dark-theme');
-        applyTheme('light');
-        saveThemeToLocalStorage('light');
-      } else {
-        document.body.classList.add('dark-theme');
-        applyTheme('dark');
-        saveThemeToLocalStorage('dark');
-      }
-    };
-
-    themeToggle.addEventListener('click', toggleTheme);
-
-    const savedTheme = loadThemeFromLocalStorage();
-    if (savedTheme) {
-      applyTheme(savedTheme);
-    } else {
-      const mq = window.matchMedia('(prefers-color-scheme: dark)');
-      if (htmlElement.dataset.theme === 'light') {
-        document.body.classList.remove('dark-theme');
-      } else if (mq.matches) {
-        applyTheme('dark');
-        saveThemeToLocalStorage('dark');
-      }
-    }
-
-    return () => {
-      themeToggle.removeEventListener('click', toggleTheme);
-    };
+    themeService.init();
   }, []);
 
   return (
     <div className="theme__toggle-wrap position-relative">
-      <div className="theme__toggle" id="toggleTheme">
+      <div className="theme__toggle" id="toggleTheme" onClick={themeService.toggle}>
         <span className="moon"></span>
         <span className="sun"></span>
         {/* <small className="sun__ray"></small>

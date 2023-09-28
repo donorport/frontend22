@@ -1,27 +1,29 @@
-@import "./config";
+// import our custom variables
+@import './config';
 
 // load bootstrap styles
 //@import "~bootstrap/scss/maps";
-@import "~bootstrap/scss/utilities";
+@import '~bootstrap/scss/utilities';
 
-@import "~bootstrap/scss/root";
-@import "~bootstrap/scss/reboot";
-@import "~bootstrap/scss/transitions";
-@import "~bootstrap/scss/type";
-@import "~bootstrap/scss/images";
-@import "~bootstrap/scss/containers";
-@import "~bootstrap/scss/grid";
-@import "~bootstrap/scss/helpers";
-@import "~bootstrap/scss/buttons";
-@import "~bootstrap/scss/button-group";
-@import "~bootstrap/scss/forms";
-@import "~bootstrap/scss/progress";
-@import "~bootstrap/scss/dropdown";
+@import '~bootstrap/scss/bootstrap';
+// @import "~bootstrap/scss/root";
+// @import "~bootstrap/scss/reboot";
+// @import "~bootstrap/scss/transitions";
+// @import "~bootstrap/scss/type";
+// @import "~bootstrap/scss/images";
+// @import "~bootstrap/scss/containers";
+// @import "~bootstrap/scss/grid";
+// @import "~bootstrap/scss/helpers";
+// @import "~bootstrap/scss/buttons";
+// @import "~bootstrap/scss/button-group";
+// @import "~bootstrap/scss/forms";
+// @import "~bootstrap/scss/progress";
+// @import "~bootstrap/scss/dropdown";
 
-@import "~bootstrap/scss/utilities/api";
+// @import "~bootstrap/scss/utilities/api";
 
 // base styles
-@import "./base";
+@import './base';
 
 @import "../../View/frontEnd/Component/organisms/header/style.scss";
 @import "../../View/frontEnd/Component/organisms/footer/style.scss";
@@ -35,41 +37,53 @@
 @import "./components/dropdown";
 
 // layout styles
-@import "./layout/grid";
+@import './layout/grid';
 
 // load fonts
-@import "./fonts";
+@import './fonts';
 
 // load utility styles
-@import "./utils";
+@import './utils';
 
+[data-theme='dark'] {
+  // load variables, mixins and functions
+  @import './config-dark';
 
-[data-theme="dark"] {
-// load variables, mixins and functions
-@import "./config-dark";
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
 
-// load bootstrap styles
-//@import "~bootstrap/scss/maps";
-@import "~bootstrap/scss/utilities";
+  // // load bootstrap styles
+  // //@import "~bootstrap/scss/maps";
+  // @import '~bootstrap/scss/utilities';
+  //
+  // @import '~bootstrap/scss/root';
+  // @import '~bootstrap/scss/reboot';
+  // @import '~bootstrap/scss/transitions';
+  // @import '~bootstrap/scss/type';
+  // @import '~bootstrap/scss/images';
+  // @import '~bootstrap/scss/containers';
+  // @import '~bootstrap/scss/grid';
+  // @import '~bootstrap/scss/helpers';
+  // @import '~bootstrap/scss/buttons';
+  // @import '~bootstrap/scss/button-group';
+  // @import '~bootstrap/scss/forms';
+  // @import '~bootstrap/scss/progress';
+  // @import '~bootstrap/scss/dropdown';
+  //
+  // @import '~bootstrap/scss/utilities/api';
 
-@import "~bootstrap/scss/root";
-@import "~bootstrap/scss/reboot";
-@import "~bootstrap/scss/transitions";
-@import "~bootstrap/scss/type";
-@import "~bootstrap/scss/images";
-@import "~bootstrap/scss/containers";
-@import "~bootstrap/scss/grid";
-@import "~bootstrap/scss/helpers";
-@import "~bootstrap/scss/buttons";
-@import "~bootstrap/scss/button-group";
-@import "~bootstrap/scss/forms";
-@import "~bootstrap/scss/progress";
-@import "~bootstrap/scss/dropdown";
+  // base styles
+  @import './base';
 
-@import "~bootstrap/scss/utilities/api";
+  // component styles
+  @import './components/button';
+  @import './components/product';
+  @import './components/title';
+  @import './components/forms';
 
-// base styles
-@import "./base";
+  // layout styles
+  @import './layout/grid';
 
 // component styles
 @import "./components/button";
