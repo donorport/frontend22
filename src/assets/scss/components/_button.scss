@@ -1,7 +1,7 @@
 .btn {
   font-weight: $input-font-weight;
 }
-
+.btn,
 .btn-success,
 .btn-primary,
 .btn-info,
@@ -10,7 +10,7 @@
   &:hover,
   &:focus,
   &:visited {
-    color: $neutral-100;
+    color: $neutral-700;
   }
 }
 
@@ -22,7 +22,6 @@
 }
 
 .btn-outline-primary:hover {
-  color: $neutral-100;
   border-color: #6b68f8;
   border-color: #6b68f8 !important;
 }

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="701.26245"
+   height="120.5259"
+   viewBox="0 0 185.54235 31.889145"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   sodipodi:docname="logowhite.svg"
+   inkscape:export-filename="/Users/kyleunderhill/Desktop/Desktop/Donorport/Logo/2023 Logo/logo.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.27110422"
+     inkscape:cx="636.28666"
+     inkscape:cy="-75.616676"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     units="px"
+     inkscape:snap-global="false"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs2">
+    <rect
+       x="203.44327"
+       y="305.16489"
+       width="1043.2988"
+       height="302.55664"
+       id="rect1767" />
+    <rect
+       x="1024.8414"
+       y="242.20238"
+       width="56.031895"
+       height="41.572048"
+       id="rect2823" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-46.045926,136.66748)">
+    <g
+       id="g30556"
+       transform="matrix(0.84446128,0,0,0.84446128,10.658494,-18.343277)">
+      <circle
+         style="fill:#5f5df8;fill-opacity:1;stroke:none;stroke-width:3.44196;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+         id="circle156"
+         cx="57.434235"
+         cy="-124.58907"
+         r="15.528901" />
+      <g
+         id="g6831"
+         transform="translate(-0.4182,-1.016604)"
+         style="fill:#ffffff">
+        <rect
+           style="fill:#ffffff;fill-opacity:1;stroke-width:3.6081;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+           id="rect743"
+           width="2.6185026"
+           height="16.804039"
+           x="52.834274"
+           y="-131.97449"
+           rx="1.2052821"
+           ry="1.2472566" />
+        <g
+           id="g6311"
+           transform="matrix(0.86231347,0,0,0.85329596,9.8287899,-18.029547)"
+           style="fill:#ffffff">
+          <path
+             id="path4490"
+             style="fill:#ffffff;stroke-width:3.30991;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+             d="m 64.296043,-122.19249 -3.05316,-3.44404 h -9.682982 v 2.83191 0.61213 1.03811 h 11.751476 c 0.545505,0 0.984666,-0.463 0.984666,-1.03811 z m 0,-6.88807 -3.05316,3.44403 h -9.682982 v -2.8319 -0.61213 -1.03811 h 11.751476 c 0.545505,0 0.984666,0.46299 0.984666,1.03811 z" />
+        </g>
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.43183694,0,0,0.43183694,-11.506608,-275.3168)"
+       id="text1765"
+       style="font-size:75px;line-height:1.25;font-family:'Plus Jakarta Display';-inkscape-font-specification:'Plus Jakarta Display, Normal';letter-spacing:-2.0035px;word-spacing:-0.790374px;white-space:pre;shape-inside:url(#rect1767);fill:#ffffff"><tspan
+         x="203.44336"
+         y="376.61402"
+         id="tspan954"><tspan
+           style="font-weight:bold;font-family:Svgconvert;-inkscape-font-specification:'Svgconvert Bold'"
+           id="tspan952">Donorport</tspan></tspan></text>
+  </g>
+</svg>

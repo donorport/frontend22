@@ -2,15 +2,15 @@
   position: relative;
   overflow: visible;
   flex: 0 0 auto;
-  border: 1px solid #e6e6e6;
   // border-bottom: 1px solid #e6e6e6;
   // border-left: 1px solid #e6e6e6;
   border-radius: 6px;
   list-style: none;
   overflow: hidden;
+  border: 1px solid $border-color;
 }
 .list__table-list {
-  background: $secondary-5;
+  // background: $secondary-5;
   list-style: none;
 }
 .history__list-item:last-child {
@@ -22,7 +22,7 @@
   padding-right: 21px;
   padding-left: 21px;
   align-items: center;
-  background: $secondary-5;
+  // background: $secondary-5;
   
   // border: 1px solid #e6e6e6;
   // border-top-left-radius: 4px;

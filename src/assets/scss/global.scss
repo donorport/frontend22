@@ -25,16 +25,16 @@
 // base styles
 @import './base';
 
-@import "../../View/frontEnd/Component/organisms/header/style.scss";
-@import "../../View/frontEnd/Component/organisms/footer/style.scss";
-
+// @import '../../View/frontEnd/Component/organisms/header/style.scss';
+// @import '../../View/frontEnd/Component/organisms/footer/style.scss';
+// @import '../../View/frontEnd/Component/atoms/list-item-img/style.scss';
 
 // component styles
-@import "./components/button";
-@import "./components/forms";
-@import "./components/ladder-menu";
-@import "./components/list-table";
-@import "./components/dropdown";
+@import './components/button';
+@import './components/forms';
+@import './components/ladder-menu';
+@import './components/list-table';
+@import './components/dropdown';
 
 // layout styles
 @import './layout/grid';
@@ -49,9 +49,9 @@
   // load variables, mixins and functions
   @import './config-dark';
 
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
-@import '~bootstrap/scss/mixins';
+  @import '~bootstrap/scss/functions';
+  @import '~bootstrap/scss/variables';
+  @import '~bootstrap/scss/mixins';
 
   // // load bootstrap styles
   // //@import "~bootstrap/scss/maps";
@@ -70,28 +70,31 @@
   // @import '~bootstrap/scss/forms';
   // @import '~bootstrap/scss/progress';
   // @import '~bootstrap/scss/dropdown';
-  //
+  //desktop__tab
   // @import '~bootstrap/scss/utilities/api';
 
   // base styles
   @import './base';
 
+  @import '../../View/frontEnd/Component/organisms/header/style.scss';
+  @import '../../View/frontEnd/Component/organisms/footer/style.scss';
+  @import '../../View/frontEnd/Component/atoms/list-item-img/style.scss';
+
   // layout styles
   @import './layout/grid';
 
-// component styles
-@import "./components/button";
-@import "./components/forms";
-@import "./components/ladder-menu";
-@import "./components/list-table";
-@import "./components/dropdown";
-// layout styles
-@import "./layout/grid";
+  // component styles
+  @import './components/button';
+  @import './components/forms';
+  @import './components/ladder-menu';
+  @import './components/list-table';
+  @import './components/dropdown';
+  // layout styles
+  @import './layout/grid';
 
-// load fonts
-@import "./fonts";
+  // load fonts
+  @import './fonts';
 
-// load utility styles
-@import "./utils";
-
+  // load utility styles
+  @import './utils';
 }
