@@ -154,7 +154,7 @@ const XpTable = (props) => {
           {ItemList.length > 0 ? (
             ItemList.map((item, i) => {
               return (
-                <li className="table__list-item px-2 py-2 border-bottom">
+                <li className="table__list-item px-2 py-2">
                   <div className="d-flex align-items-center flex-grow-1">
                     <div
                       className="order-2 order-sm-1 me-2 text-sm-start text-end"

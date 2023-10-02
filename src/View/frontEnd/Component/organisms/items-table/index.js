@@ -79,7 +79,7 @@ const ItemsTable = ({
                   : item.itemDetails.price * item.quantity;
 
               return (
-                <li className="table__list-item px-2 py-2 border-bottom" key={key}>
+                <li className="table__list-item px-2 py-2" key={key}>
                   <div className="d-xl-flex align-items-center flex-grow-1">
                     <Button
                       variant="link"

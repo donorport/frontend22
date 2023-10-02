@@ -76,7 +76,7 @@
     padding: 12px 14px;
     flex: 0 0 auto;
     border-top: 1px solid var(--border-input);
-    background-color: $neutral-100;
+    background-color: $secondary-1;
   }
 
   &cart__value {
@@ -95,7 +95,7 @@
     font-weight: $font-weight-extra-bold;
   }
   &cart__item {
-    background-color: $neutral-100;
+    background-color: $secondary-1;
   }
 }
 .cart__dropdown-header {

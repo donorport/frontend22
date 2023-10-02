@@ -5,6 +5,7 @@ import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import Logo from '../Component/atoms/logo';
+import Toggle from '../Component/organisms/toggle';
 import { GoogleLogin } from 'react-google-login';
 
 import './style.scss';
@@ -60,6 +61,7 @@ const Login = (props) => {
           <div className="login-form-wrapper">
             <div className="login__logo">
               <Logo />
+              <Toggle/>
             </div>
 
             <form className="login__form">

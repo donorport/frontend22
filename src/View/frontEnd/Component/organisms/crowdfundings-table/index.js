@@ -158,7 +158,7 @@ const CrowdfundingListItem = ({
 }) => {
   console.log('CrowdfundingListItem:', { crowdfunding, imageDetails: crowdfunding.imageDetails });
   return (
-    <li className="table__list-item px-2 py-2 border-bottom">
+    <li className="table__list-item px-2 py-2">
       <div className="d-xl-flex align-items-center flex-grow-1">
         <div className="billing__main d-flex align-items-center  me-sm-3 mb-2">
           <div className="ms-auto ms-sm-0 me-sm-2 post__value">
