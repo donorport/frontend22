@@ -58,8 +58,8 @@
   // margin: 16px 0;
   margin: 0 !important;
   padding: 6px 9px;
-  color: #e61b1b !important;
-  background: #ffe2e2;
+  color: $error;
+  background: $error-bg;
   font-weight: 400;
 }
 .input__wrap {
@@ -292,17 +292,17 @@
   animation: unset !important;
 }
 
-/* .modal-content {
-  color: rgba(0, 0, 0, 0.87) !important;
-    position: absolute !important;
-    left: 50% !important;
-    bottom: 0 !important;
-    transform: translate(-35%, 50%) !important;
-    width: 100% !important;
+.modal-content {
+  background-color: $secondary-5;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 0 !important;
+  transform: translate(-35%, 50%) !important;
+  width: 100% !important;
 }
-.modal-lg{
+.modal-lg {
   height: 50%;
-} */
+}
 
 /* .setting-nav .nav-link.active {
   color: $neutral-100;
@@ -348,14 +348,14 @@
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: $neutral-100;
-  background-color: #00ab55 !important;
+  background-color: $primary !important;
 }
 
 .desktop__tab .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: $primary !important;
-  background-color: $secondary-2 !important;
-  border: 1px solid transparent !important;
+  background-color: $secondary-5 !important;
+  // border: 1px solid transparent !important;
   border-radius: 4px;
 }
 
@@ -470,7 +470,7 @@
   color: #585a83;
   background-color: $neutral-100;
   background-clip: padding-box;
-  border: 1px solid #e6e6e6;
+  border: 1px solid $border-color;
   -webkit-appearance: none;
   appearance: none;
   box-shadow: none;
@@ -645,12 +645,12 @@ button.ReactTags__remove {
   position: absolute;
   cursor: pointer;
   display: flex;
+  background-color: $secondary-5;
   align-items: center;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #db3a34;
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 50px;
@@ -677,11 +677,11 @@ button.ReactTags__remove {
 }
 
 .--switch input:checked + .--slider {
-  background-color: #52b69a;
+  background-color: #4bd863;
 }
 
 .--switch input:focus + .--slider {
-  box-shadow: 0 0 1px #52b69a;
+  box-shadow: 0 0 1px #4bd863;
 }
 
 .--switch input:checked + .--slider:before {
@@ -755,7 +755,9 @@ button.ReactTags__remove {
   -webkit-transform: translate(-4px, 30px) !important;
   transform: translate(-4px, 30px) !important;
 }
-
+.activity__dropdown-body {
+  background-color: $body-bg;
+}
 @include media-breakpoint-down(sm) {
   .filter__dropdown,
   .geo__dropdown {
@@ -1250,7 +1252,7 @@ li.search__tag {
 .search__container input:focus {
   outline: none !important;
   text-decoration: none !important;
-  border: none !important
+  border: none !important;
 }
 .search__container li a {
   position: absolute;

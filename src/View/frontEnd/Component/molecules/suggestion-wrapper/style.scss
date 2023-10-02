@@ -1,5 +1,6 @@
 .suggested__list {
   overflow: auto;
+  height: 100%;
   list-style: unset
 }
 .suggested__list::-webkit-scrollbar {
@@ -7,6 +8,6 @@
 }
 .suggested__list-wrap {
   background: $secondary-5;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid $border-color;
   list-style: none;
 }

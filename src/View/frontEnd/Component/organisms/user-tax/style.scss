@@ -1,5 +1,5 @@
 .item__total-wrap {
-  background: $neutral-100;
+  background: $secondary-5;
   color: $success;
   padding: 16px 12px;
   font-weight: $font-weight-bold;
@@ -13,7 +13,7 @@
   padding-right: 1rem;
 }
 .szh-accordion:not(:last-child) {
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid $border-color;
 }
 .table__list--content:first-child {
   margin-top: 0.3rem;

@@ -60,7 +60,7 @@
         bottom: 0;
         width: 300%;
         z-index: 0;
-        border-bottom: 1px solid #e6e6e6;
+        border-bottom: 1px solid $border-color;
       }
     }
 
@@ -142,7 +142,7 @@
   &-bd {
     border-radius: 0 0 6px 6px;
     padding: 20px 16px !important;
-    background: var(--bkg-shade);
+    background: $secondary-5
   }
 
   .form-control::placeholder {

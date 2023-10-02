@@ -52,7 +52,7 @@ const HelpCategory = () => {
               <div className="">
                 <Button
                   variant="outline-white"
-                  className="border text-start p-20p bg-white w-100 h-100 fw-normal fs-5"
+                  className="border text-start p-20p  w-100 h-100 fw-normal fs-5"
                 >
                   <div className="text-info mb-1">
                     How often are payments disbursed to my Bank Account?
@@ -66,7 +66,7 @@ const HelpCategory = () => {
               <div className="">
                 <Button
                   variant="outline-white"
-                  className="border text-start p-20p bg-white w-100 h-100 fw-normal fs-5"
+                  className="border text-start p-20p  w-100 h-100 fw-normal fs-5"
                 >
                   <div className="text-info mb-1">
                     Managing your Admin account
@@ -80,7 +80,7 @@ const HelpCategory = () => {
               <div className="">
                 <Button
                   variant="outline-white"
-                  className="border text-start p-20p bg-white w-100 h-100 fw-normal fs-5"
+                  className="border text-start p-20p  w-100 h-100 fw-normal fs-5"
                 >
                   <div className="text-info mb-1">
                     How to create an Organization account
@@ -94,7 +94,7 @@ const HelpCategory = () => {
               <div className="">
                 <Button
                   variant="outline-white"
-                  className="border text-start p-20p bg-white w-100 h-100 fw-normal fs-5"
+                  className="border text-start p-20p  w-100 h-100 fw-normal fs-5"
                 >
                   <div className="text-info mb-1">
                     How to accept Crypto as a payment method
@@ -108,7 +108,7 @@ const HelpCategory = () => {
               <div className="">
                 <Button
                   variant="outline-white"
-                  className="border text-start p-20p bg-white w-100 h-100 fw-normal fs-5"
+                  className="border text-start p-20p  w-100 h-100 fw-normal fs-5"
                 >
                   <div className="text-info mb-1">
                     How to set up your Bank Account to receive your donations

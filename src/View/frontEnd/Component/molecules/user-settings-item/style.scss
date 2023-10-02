@@ -1,7 +1,7 @@
 .user__settings {
   // .user__settings__item
   &__item {
-      background-color: $secondary-1;
+      background-color: $body-bg;
   }
   // .user__settings__icon
   &__icon {
@@ -11,7 +11,7 @@
     align-items: center;
     flex: 0 0 auto;
     //color: #b4afb9;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: $font-weight-normal;
   }
 }

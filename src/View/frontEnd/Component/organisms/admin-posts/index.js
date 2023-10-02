@@ -1732,7 +1732,7 @@ const AdminPosts = () => {
             </div>
 
             <div className="flex-wrap flex-lg-nowrap my-2 d-flex gap-2 p2 mw-100">
-              <div className="bg-white rounded-3 d-flex flex-grow-1 border p-5">
+              <div className=" rounded-3 d-flex flex-grow-1 border p-5">
                 <div className="d-flex flex-column justify-content-start align-items-start">
                   <div className="d-flex align-items-center">
                     <FontAwesomeIcon
@@ -1778,7 +1778,7 @@ const AdminPosts = () => {
                   </Link>
                 </div>
               </div>
-              <div className="bg-white rounded-3 d-flex flex-grow-1 border p-5">
+              <div className=" rounded-3 d-flex flex-grow-1 border p-5">
                 <div className="d-flex flex-column justify-content-start align-items-start">
                   <div className="d-flex align-items-center">
                     <FontAwesomeIcon
@@ -1978,7 +1978,7 @@ const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => 
               : 0}
           </span>
           {/* {!user.isAccountAdded && isOnboardingVisible && (
-          <Button className="btn bg-white border-0 text-light" onClick={showOnboarding}>
+          <Button className="btn  border-0 text-light" onClick={showOnboarding}>
             Getting Started <FontAwesomeIcon icon={solid('wand-magic-sparkles')} className="ms-1" />
           </Button>
         )} */}

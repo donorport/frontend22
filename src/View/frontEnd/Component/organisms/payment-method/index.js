@@ -933,7 +933,7 @@ const Payments = () => {
               <div className="accounts__icon">
                 <ListItemImg
                   size={45}
-                  className="bg-white border-0"
+                  className=" border-0"
                   imgSrc=""
                 />
               </div>

@@ -2,12 +2,16 @@
   position: relative;
   overflow: visible;
   flex: 0 0 auto;
-  // border-bottom: 1px solid #e6e6e6;
-  // border-left: 1px solid #e6e6e6;
+  // border-bottom: 1px solid $border-color;
+  // border-left: 1px solid $border-color;
   border-radius: 6px;
   list-style: none;
   overflow: hidden;
-  border: 1px solid $border-color;;
+  border: 1px solid $border-color;
+
+  &__footer {
+    background-color: $secondary-5 !important;
+  }
 }
 .list__table-list {
   // background: $secondary-5;
@@ -23,8 +27,8 @@
   padding-left: 21px;
   align-items: center;
   // background: $secondary-5;
-  
-  // border: 1px solid #e6e6e6;
+
+  // border: 1px solid $border-color;
   // border-top-left-radius: 4px;
   // border-top-right-radius: 4px;
 }
@@ -96,7 +100,7 @@
   }*/
 
 .table__list-item + .table__list-item {
-  //border-top: 1px solid #e6e6e6;
+  border-top: 1px solid $border-color !important;
 }
 
 .billing__name {

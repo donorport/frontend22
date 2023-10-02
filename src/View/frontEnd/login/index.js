@@ -87,7 +87,7 @@ const Login = (props) => {
                 <FormControl
                   type={!showPassword ? 'password' : 'text'}
                   placeholder="Password"
-                  className="bg-white pl-12p"
+                  className=" pl-12p"
                   name="password"
                   onChange={(e) => props.changevalue(e)}
                   id="inputPassword"

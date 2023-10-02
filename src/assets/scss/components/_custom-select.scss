@@ -14,7 +14,7 @@
 
 .custom-select [data-select] {
   display: block;
-  border: 1px solid #e0e0e0;
+  border: 1px solid $border-color;
   border-radius: 4px;
   background-color: $neutral-100;
   padding: 15px 30px 15px 15px;
@@ -55,7 +55,7 @@
   top: 100%;
   left: 0;
   right: 0;
-  border: 1px solid #e0e0e0;
+  border: 1px solid $border-color;
   border-bottom: 0;
   background-color: $neutral-100;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -91,7 +91,7 @@
 
 .custom-select ul .custom-select-active a,
 .custom-select ul a:hover {
-  background-color: #f8fafd;
+  background-color: $secondary-5;
   color: #3d4279;
 }
 
@@ -142,7 +142,7 @@
   }
 
   .custom-select [data-select] {
-    background-color: #f8fafd;
+    background-color: $secondary-5;
     display: flex;
     align-items: center;
     justify-content: center;

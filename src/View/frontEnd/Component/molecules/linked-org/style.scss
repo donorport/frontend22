@@ -3,16 +3,16 @@
   padding: 12px;
   flex-direction: row;
   flex: 0 0 auto;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid $border-color;
   color: $neutral-700;
 }
 
 .linked-org {
-  background: #fff;
+  background: $secondary-1;
 }
 
 .linked__item-img-wrap {
-  border: 1px solid #e6e6e6;
+  border: 1px solid $border-color;
   display: flex;
   width: 60px;
   height: 52px;

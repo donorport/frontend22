@@ -180,9 +180,9 @@ textarea,
 .form-control,
 .input__text {
   &::placeholder {
-    color: #00000040;
+    color: $neutral-600;
     font-weight: $font-weight-base;
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 

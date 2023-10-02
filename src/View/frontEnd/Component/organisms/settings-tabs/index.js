@@ -116,8 +116,8 @@ function SettingsTabs({ activeKey, data, _onClick, ...otherProps }) {
               <span className="stab__icon">
                 <AdministratorIcon active={activeKey === 'administrator'} />
               </span>
-              <span className="stab__text">Administrator</span>
-              <div className="tab__active--indicator" style={{ marginLeft: '10px' }}></div>
+              <span className="stab__text">Admin</span>
+              <div className="tab__active--indicator"></div>
             </Nav.Link>
           </Nav.Item>
         </Link>

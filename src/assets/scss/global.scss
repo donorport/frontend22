@@ -76,16 +76,38 @@
   // base styles
   @import './base';
 
+  @import '../../assets/css/style.scss';
+  @import '../../View/frontEnd/reset-password/style.scss';
+  @import '../../View/frontEnd/forgot-password/style.scss';
+  @import '../../View/frontEnd/about/style.scss';
+  @import '../../View/frontEnd/login/style.scss';
+  @import '../../View/frontEnd/register/style.scss';
+  @import '../../View/frontEnd/Layout/Home/style.scss';
   @import '../../View/frontEnd/Component/organisms/header/style.scss';
+  @import '../../View/frontEnd/Component/organisms/header-help/style.scss';
+  @import '../../View/frontEnd/Component/organisms/add-post/style.scss';
+  @import '../../View/frontEnd/Component/organisms/add-project/style.scss';
+  @import '../../View/frontEnd/Component/organisms/add-crowdfunding/style.scss';
+  @import '../../View/frontEnd/Component/organisms/item-detail-main/style.scss';
   @import '../../View/frontEnd/Component/organisms/footer/style.scss';
   @import '../../View/frontEnd/Component/organisms/product/style.scss';
-  @import '../../View/frontEnd/Layout/Home/style.scss';
-  @import '../../View/frontEnd/login/style.scss';
+  @import '../../View/frontEnd/Component/organisms/filter-dropdown/style.scss';
+  @import '../../View/frontEnd/Component/organisms/activity/style.scss';
   @import '../../View/frontEnd/Component/organisms/history/style.scss';
+  @import '../../View/frontEnd/Component/organisms/wishlist/style.scss';
+  @import '../../View/frontEnd/Component/organisms/user-tabs/style.scss';
+  @import '../../View/frontEnd/Component/organisms/user-billing/style.scss';
   @import '../../View/frontEnd/Component/organisms/shopping-cart/style.scss';
   @import '../../View/frontEnd/Component/organisms/suggested-list/style.scss';
+  @import '../../View/frontEnd/Component/organisms/user-items/style.scss';
+  @import '../../View/frontEnd/Component/organisms/tax-table/style.scss';
+  @import '../../View/frontEnd/Component/organisms/user-tax/style.scss';
+  @import '../../View/frontEnd/Component/organisms/settings-tabs/style.scss';
   @import '../../View/frontEnd/Component/molecules/user-settings-item/style.scss';
+  @import '../../View/frontEnd/Component/molecules/marquee-list/style.scss';
+  @import '../../View/frontEnd/Component/molecules/linked-org/style.scss';
   @import '../../View/frontEnd/Component/atoms/list-item-img/style.scss';
+  @import '../../View/frontEnd/Component/atoms/category-checkbox/style.scss';
 
   // layout styles
   @import './layout/grid';

@@ -22,7 +22,7 @@
 .circle,
 .bigcircle,
 .about__label {
-  background: var(--bkg-shade);
+  background: $secondary-5;
 }
 .circle {
   position: absolute;
@@ -103,17 +103,17 @@
   left: 0;
   height: 100%;
   width: 150%;
-  background: var(--bkg-shade);
+  background: $secondary-5;
   transform: rotate(315deg);
   transform-origin: bottom;
 }
 .section--cityscape {
-  background: var(--bkg-shade);
+  background: $secondary-5;
 }
 .about__label {
   margin-left: -0.9rem;
   padding: 9px 16px;
-  background-color: #f8fafd;
+  background-color: $secondary-5;
   color: #6b68f8;
   font-weight: 600;
 }

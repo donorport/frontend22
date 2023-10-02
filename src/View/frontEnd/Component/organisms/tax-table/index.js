@@ -460,7 +460,7 @@ const TaxTable = (props) => {
           </li> */}
         </ul>
         <div
-            className="py-2 mt-2 d-flex justify-content-center border-top"
+            className="list__table__footer py-2 mt-2 d-flex justify-content-center border-top"
             style={{ background: '#f8fafd78' }}
           >
         {props.totalPages > 1 ? (

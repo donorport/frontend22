@@ -21,9 +21,13 @@
   }
 }
 
-.btn-outline-primary:hover {
-  border-color: #6b68f8;
+.btn-outline-primary {
   border-color: #6b68f8 !important;
+  color: #6b68f8 !important
+}
+.btn-outline-primary:hover {
+  border-color: #6b68f8 !important;
+  color: #6b68f8 !important
 }
 
 .btn.btn__link-light {

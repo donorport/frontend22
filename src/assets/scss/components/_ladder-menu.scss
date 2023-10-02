@@ -1,6 +1,6 @@
 .ladder__menu {
   position: relative;
-  border: 1px solid var(--border-input);
+  border: 1px solid $border-color;
   border-radius: 6px;
 }
 .ladder__ul {
@@ -19,7 +19,7 @@
 }
 
 .ladder__ul.active {
-  background: #fff;
+  background: $secondary-5;
   opacity: 1;
   visibility: visible;
   transform: translateY(0%);
@@ -28,7 +28,7 @@
   z-index: 999;
   border-radius: 6px;
   box-shadow: unset !important;
-  border: 1px solid var(--border-input);
+  border: 1px solid $border-color;
   margin-top: -1px;
 }
 

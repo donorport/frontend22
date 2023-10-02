@@ -5,6 +5,7 @@ import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import Logo from '../Component/atoms/logo';
+import Toggle from '../Component/organisms/toggle';
 
 import './style.scss';
 
@@ -57,6 +58,7 @@ const Register = (props) => {
           <div className="login-form-wrapper">
             <div className="login__logo">
               <Logo />
+              <Toggle/>
             </div>
 
             <form className="login__form">
@@ -111,7 +113,7 @@ const Register = (props) => {
                 <FormControl
                   type={!showPassword ? 'password' : 'text'}
                   placeholder="Password"
-                  className="bg-white pl-12p"
+                  className=" pl-12p"
                   name="password"
                   onChange={(e) => props.changevalue(e)}
                   id="inputPassword"
@@ -139,7 +141,7 @@ const Register = (props) => {
                   // type={!showPassword ? "password" : "text"}
                   type={!props.showCPassword ? 'password' : 'text'}
                   placeholder="Confirm Password"
-                  className="bg-white pl-12p"
+                  className=" pl-12p"
                   name="cpassword"
                   onChange={(e) => props.changevalue(e)}
                   id="inputPassword"

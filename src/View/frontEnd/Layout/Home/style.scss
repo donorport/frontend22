@@ -9,7 +9,7 @@
 }
 .donate-section {
   background-color: $secondary-5;
-  border: 1px solid $border-color;;
+  border: 1px solid $border-color;
   border-radius: 8px;
   font-size: 1rem;
 
@@ -19,7 +19,7 @@
     .input-group-text {
       background: #f8fafd;
       padding: 0 12px;
-      border-right: 1px solid #e0e0e0;
+      border-right: 1px solid $border-color;
       margin-right: 1px;
     }
 
@@ -28,12 +28,15 @@
       padding-left: 0;
     }
     .form-control::placeholder,
-    .donate-value-input,
     .donate-value-symbol {
       font-size: 16px;
+      background-color: $secondary-5;
+      border-color: $border-color !important;
     }
+    .donate-value-input,
     .donate-value-input:focus {
-      border-color: #e6e6e6 !important;
+      border-color: $border-color !important;
+      background-color: $secondary-1;
     }
   }
 }

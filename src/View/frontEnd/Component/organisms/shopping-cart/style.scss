@@ -95,7 +95,7 @@
     font-weight: $font-weight-extra-bold;
   }
   &cart__item {
-    background-color: $secondary-1;
+    background-color: $list;
   }
 }
 .cart__dropdown-header {
@@ -104,4 +104,5 @@
   margin-bottom: 0;
   font-size: 18px;
   font-weight: 900;
+  color: $neutral-700
 }

@@ -64,7 +64,7 @@ const ActivityTable = (props) => {
             activityList.map((list, i) => {
               // console.log(list)
               return (
-                <li className="table__list-item px-2 border-bottom">
+                <li className="table__list-item px-2 py-2">
                   <div className="d-sm-flex align-items-center flex-grow-1">
                     <div className="d-flex align-items-center me-sm-2 flex__1">
                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
@@ -222,7 +222,7 @@ const ActivityTable = (props) => {
           </li> */}
         </ul>
         <div
-          className="py-2 mt-2 d-flex justify-content-center border-top"
+          className="list__table__footer py-2 mt-2 d-flex justify-content-center border-top"
           style={{ background: '#f8fafd78' }}
         >
           {props.totalPages > 1 ? (

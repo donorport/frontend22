@@ -85,7 +85,7 @@
     
   }
   &__img {
-    background-color: #f8fafd;
+    background-color: $secondary-5;
     flex: 1;
     border-radius: 6px;
     box-shadow: 1px 1px 3px 0 rgb(0 0 0 / 1%);
@@ -111,7 +111,7 @@
 }
 .avatar__checkout {
   object-fit: contain;
-  background-color: #f8fafd;
+  background-color: $secondary-5;
   width: 80px;
 }
 .email {

@@ -339,12 +339,12 @@ const AddPost = (props) => {
 
       <div>
         <Accordion alwaysOpen>
-          <Card>
-            <Card.Header className="post__accordion-header">
+
+
               <AccordionToggle>
                 <h2 className="fs-3 fw-bolder ">Post Location</h2>
               </AccordionToggle>
-            </Card.Header>
+
             <Accordion.Collapse className="py-5">
               <Row className="mw-850 ml-5">
                 <Col lg="6">
@@ -418,14 +418,13 @@ const AddPost = (props) => {
                 </Col>
               </Row>
             </Accordion.Collapse>
-          </Card>
 
-          <Card>
-            <Card.Header className="post__accordion-header">
+
+
               <AccordionToggle>
                 <h2 className="fs-3 fw-bolder ">Product Details</h2>
               </AccordionToggle>
-            </Card.Header>
+
             <Accordion.Collapse className="py-0 pt-5 py-sm-5">
               <>
                 <Row className="mw-850 ml-5 mb-0 mb-sm-5">
@@ -1100,14 +1099,14 @@ const AddPost = (props) => {
                 </div> */}
               </>
             </Accordion.Collapse>
-          </Card>
 
-          <Card>
-            <Card.Header className="post__accordion-header">
+
+
+
               <AccordionToggle>
                 <h2 className="fs-3 fw-bolder ">Need Headline</h2>
               </AccordionToggle>
-            </Card.Header>
+
             <Accordion.Collapse className="py-5">
               <Row className="mw-850 ml-5">
                 <Col lg="6">
@@ -1379,7 +1378,7 @@ const AddPost = (props) => {
                 </Col>
               </Row>
             </Accordion.Collapse>
-          </Card>
+
         </Accordion>
         <div className="fulfilling-check-wrap pb-4">
           <div className="form-check" style={STYLE_CURSOR_POINTER}>

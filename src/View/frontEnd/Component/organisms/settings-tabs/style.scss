@@ -41,12 +41,13 @@
 }
 
 .stab__text {
-  display: none;
+  display: none;    color: $neutral-700 !important
 }
 
 @media screen and (min-width: 990px) {
   .stab__text {
     display: block;
+    color: $neutral-700 !important
   }
 
   .settings-tabs {

@@ -28,7 +28,6 @@ const Pricing = () => {
     '-webkit-align-items': 'center',
     '-ms-flex-align': 'center',
     /* align-items: center, */
-    border: '1px solid #e6e6e6',
     // fontFamily: 'Font awesome 5 pro solid 900',
     padding: 'unset',
     fontSize: 'xx-large',
@@ -53,10 +52,8 @@ const Pricing = () => {
     '-ms-flex-align': 'center',
     alignItems: 'center',
     borderRadius: '50%',
-    backgroundColor: '#fff',
     fontSize: 'xx-large',
     fontWeight: 700,
-    color: '#e6e6e6'
   };
   return (
     <Page

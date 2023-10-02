@@ -181,7 +181,7 @@ function LinkedOrg(props) {
   return (
     <>
       <div style={{ display: modelShow ? 'block' : 'none' }}>
-        <div className="bg-white py-5 text-center border-bottom">
+        <div className=" py-5 text-center border-bottom">
           <div className="remove-img-wrap">
             <img src={removeImg} alt="remove link" style={{ width: '70px', marginBottom: '0px' }} />
           </div>
@@ -210,7 +210,7 @@ function LinkedOrg(props) {
         </div>
       </div>
 
-      <div style={{ display: modelShow ? 'none' : 'block' }} className="bg-white linked-org">
+      <div style={{ display: modelShow ? 'none' : 'block' }} className=" linked-org">
         {orgList.length > 0 ? (
           <div className="menu__title">
             <h6 className="mb-0">Linked</h6>

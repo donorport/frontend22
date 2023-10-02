@@ -188,7 +188,7 @@ const FilterDropdown = (props) => {
               </div>
             </div>
           </div>
-          <div className="filter__slider bg-white">
+          <div className="filter__slider ">
             <Slider
               range
               min={filters.lowestPrice}

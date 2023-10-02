@@ -130,7 +130,7 @@ function OrganizationDetailMain({
           <Button
             size="lg"
             variant="link"
-            className="btn__category text-decoration-none btn btn-link btn-lg"
+            className="btn__category text-decoration-none"
             onClick={() => navigate('/categories/' + organizationDetails?.categoryDetails?.slug)}
           >
             <RoundedIcon

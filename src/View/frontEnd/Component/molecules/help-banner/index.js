@@ -18,7 +18,7 @@ const HelpBanner = ({shortBanner=false}) => {
         <FormControl placeholder="Search for answers" size="xl" />
         <Button
           variant="link"
-          className="bg-white border-0 text-decoration-none pr-20p fw-normal fs-5"
+          className=" border-0 text-decoration-none pr-20p fw-normal fs-5"
           size="xl"
         >
           Search

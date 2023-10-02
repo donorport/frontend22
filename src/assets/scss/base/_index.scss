@@ -6,7 +6,7 @@ h3:not(.szh-accordion__item-heading),
 h4,
 h5,
 h6 {
-	font-family: "Custom", sans-serif;
+  font-family: 'Custom', sans-serif;
   // font-family: 'Plus Jakarta Sans', sans-serif;
   color: $neutral-700;
   font-weight: 800;
@@ -28,7 +28,7 @@ body {
   --text-danger: #{$danger};
   --border-input: #{$border-color};
   --bkg-shade: #{$neutral-100};
-  --hero: linear-gradient(180deg,#5e5ff3,#5e5ff3);
+  --hero: linear-gradient(180deg, #5e5ff3, #5e5ff3);
 }
 
 * {
@@ -42,13 +42,31 @@ a {
 
 p {
   font-size: 18px;
-  // font-family: 'Plus Jakarta Sans', sans-serif;
 }
+// nav-link for user & admin tab links
 .nav-link {
   padding: 12px 16px;
 }
-// style from other dev
 
 .clear {
   clear: both;
+}
+
+//border BS override.
+.border,
+.border-bottom,
+.border-top,
+.border-left,
+.border-right,
+.form-control {
+  border-color: $border-color !important;
+}
+.form-control,
+.progress,
+.note,
+.deactivate {
+  background-color: $secondary-5;
+}
+.form-control {
+  background-color: $body-bg;
 }

@@ -40,7 +40,7 @@ function Footer() {
           <Col md="5" className="mb-3 mb-sm-0">
             <div className="loop__text pe-sm-5 me-sm-5 text-center text-sm-start">
               <h3 className="heading-4 mb-12p">Stay in the loop</h3>
-              <p>
+              <p className="text-light">
                 Join our mailing list to stay in the loop with our newest feature releases,
                 non-profit partners, and tips and tricks for navigating Donorport.
               </p>
@@ -100,7 +100,7 @@ function Footer() {
         <Row className="footer__middle pb-2">
           <Col sm className="footer__block logo text-center text-sm-start mb-2 mb-sm-0">
             <Logo/>
-            <p>
+            <p className="text-light mt-12p">
               The world's first and largest crowd-funding platform for non-profits
               &amp;&nbsp;charities. Donate directly to the needs of the organization and help them
               fund all of their product needs.

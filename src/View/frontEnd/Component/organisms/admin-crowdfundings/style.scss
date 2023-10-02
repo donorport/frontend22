@@ -1,5 +1,5 @@
 .item__total-wrap {
-  background: $neutral-100;
+  background: $secondary-5;
   color: $success;
   padding: 16px 12px;
   font-weight: $font-weight-bold;
@@ -16,6 +16,6 @@
 
 .order__widget {
   padding: 24px;
-  border: 1px solid var(--border-input);
+  border: 1px solid $border-color;
   border-radius: 8px;
 }

@@ -292,7 +292,7 @@ const ItemDetailsMain = ({
       </div>
     </div>
 
-    <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-">
+    <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-3">
       <Link
         size="lg"
         variant="link"
@@ -321,7 +321,7 @@ const ItemDetailsMain = ({
       <Link
         size="lg"
         variant="link"
-        className="btn__category text-decoration-none btn btn-link btn-lg"
+        className="btn__category text-decoration-none"
         to={'/organization/' + productDetails?.campaignDetails?.slug}
       >
         <span className="d-flex align-items-center icon__category">

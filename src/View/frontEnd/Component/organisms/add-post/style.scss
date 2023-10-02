@@ -102,7 +102,7 @@
 .image__switch-wrap {
   position: relative;
   &:after {
-    background: $neutral-100;
+    background: $secondary-5;
     content: '';
     width: 15px;
     height: 15px;
@@ -157,7 +157,7 @@
 }
 
 .project-video-wrap {
-  border: 1px solid #e6e6e6;
+  border: 1px solid $border-color;
   background-color: #f8fafd;
   border-radius: 6px;
   padding-bottom: 56%;

@@ -64,7 +64,7 @@ import './style.scss';
 //               <div className=" border-bottom">
 //                 <div className="grab_dropdown-top d-flex align-items-center pt-12p pb-12p pl-12p pr-12p">
 //                   <InputGroup className="input-group__alpha w-150">
-//                     <FormControl placeholder="$0" className="bg-white pl-12p" />
+//                     <FormControl placeholder="$0" className=" pl-12p" />
 //                     <Button variant="link">
 //                       <FontAwesomeIcon icon={solid("magnifying-glass")} />
 //                     </Button>
@@ -193,7 +193,7 @@ const GrabDropdown = () => {
             <div className=" border-bottom">
               <div className="grab_dropdown-top d-flex align-items-center pt-12p pb-12p pl-12p pr-12p">
                 <InputGroup className="input-group__alpha w-150">
-                  <FormControl placeholder="$0" className="bg-white pl-12p" />
+                  <FormControl placeholder="$0" className=" pl-12p" />
                   <Button variant="link">
                     <FontAwesomeIcon icon={solid('magnifying-glass')} />
                   </Button>

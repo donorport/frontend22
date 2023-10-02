@@ -18,7 +18,7 @@
   justify-content: center;
 }
 .container-fluid.accordion-sublist > li {
-  border-bottom: 1px solid #efefef;
+  border-bottom: 1px solid $border-color;
 }
 .container-fluid.accordion-sublist > li:first-child {
   margin-top: 1.3rem;
@@ -33,10 +33,10 @@
   }
 }
 li.table__list-item.table__list-item--tax {
-  border-bottom: 1px solid whitesmoke;
+  border-bottom: 1px solid $border-color;
 }
 li.table__list-item--tax:first-child {
-  border-top: 2px dashed #e0e5ed;
+  border-top: 2px dashed $border-color;
   padding-top: 1.3rem !important;
   margin-top: 1.3rem !important;
 }

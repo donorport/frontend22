@@ -156,7 +156,7 @@
     .btn {
       display: flex;
       align-items: center;
-      border: 1px solid #ececec;
+      border: 1px solid $border-color;
 
       &:focus {
         box-shadow: none;
@@ -237,7 +237,7 @@
   }
 
   .input-group {
-    border: 1px solid #e6e6e6;
+    border: 1px solid $border-color;
 
     .form-control {
       border: none;
@@ -260,13 +260,13 @@
     padding: 0px 12px;
     height: 54px;
     font-size: 16px;
-    border: 1px solid #e6e6e6;
+    border: 1px solid $border-color;
     appearance: none;
 
     &:focus {
       box-shadow: none;
       outline: none;
-      border-color: #e6e6e6;
+      border-color: $border-color;
     }
 
     &::placeholder {
@@ -354,7 +354,7 @@
       line-height: 1.3rem;
       padding-right: 24px;
       padding-left: 24px;
-      border-left: 1px solid #e6e6e6;
+      border-left: 1px solid $border-color;
       @include media-breakpoint-up(sm) {
         padding: 4.8rem 4.3rem;
         width: 43%;

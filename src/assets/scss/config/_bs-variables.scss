@@ -1,9 +1,10 @@
 $body-bg: #fff;
+$list: #fff;
 $primary: #2c4bff;
 $secondary: #0e75f9;
 
 $secondary-1: #f8fafd;
-$secondary-2: #F0F2FF;
+$secondary-2: #f0f2ff;
 $secondary-3: #f7f6ff;
 $secondary-4: #eff4ff;
 $secondary-5: #f8fafd;
@@ -16,7 +17,7 @@ $neutral-500: #80809d;
 $neutral-600: #6e6d8f;
 $neutral-700: #3a395e;
 
-$font-family-sans-serif: "Jcfonts linotte", sans-serif;
+$font-family-sans-serif: 'Jcfonts linotte', sans-serif;
 
 $body-color: $neutral-700;
 
@@ -84,6 +85,8 @@ $warning: #f8b22f;
 $danger: #f15e5e;
 $info: #3898ec;
 $infinity: #a976f0;
+$error: #e61b1b;
+$error-bg: #ffe2e2;
 
 $light: $neutral-100 !default;
 $dark: $neutral-700 !default;
@@ -91,16 +94,18 @@ $dark: $neutral-700 !default;
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
-  "primary": $neutral,
-  "secondary": $secondary,
-  "success": $success,
-  "info": $info,
-  "warning": $warning,
-  "danger": $danger,
-  "light": $light,
-  "dark": $dark,
-  "infinity": $infinity,
-  "ldanger": #fd7a7a,
+  'primary': $neutral,
+  'secondary': $secondary,
+  'success': $success,
+  'info': $info,
+  'warning': $warning,
+  'danger': $danger,
+  'light': $light,
+  'dark': $dark,
+  'infinity': $infinity,
+  'ldanger': #fd7a7a,
+  'error': $error,
+  'error-bg': $error-bg
 ) !default;
 
 $progress-height: 0.75rem;
@@ -123,7 +128,7 @@ $spacers: map-merge(
     2: $spacer,
     3: $spacer * 1.5,
     4: $spacer * 2,
-    5: $spacer * 2.5,
+    5: $spacer * 2.5
   ),
   $spacers
 );
@@ -134,7 +139,7 @@ $grid-breakpoints: (
   md: 768px,
   lg: 992px,
   xl: 1200px,
-  xxl: 1500px,
+  xxl: 1500px
 ) !default;
 
 $container-max-widths: (
@@ -142,7 +147,7 @@ $container-max-widths: (
   md: 720px,
   lg: 960px,
   xl: 1140px,
-  xxl: 1440px,
+  xxl: 1440px
 ) !default;
 
 $navbar-padding-x: 0;
@@ -215,13 +220,13 @@ $form-check-input-border: 2px solid $info;
 $form-check-input-checked-bg-color: $info;
 $form-check-input-border-radius: 0;
 
-$modal-sm:                          300px !default;
-$modal-md:                          425px;
-$modal-lg:                          800px !default;
-$modal-xl:                          1140px !default;
+$modal-sm: 300px !default;
+$modal-md: 425px;
+$modal-lg: 800px !default;
+$modal-xl: 1140px !default;
 
-$modal-content-border-width:        0;
-$modal-content-border-radius:       8px;
+$modal-content-border-width: 0;
+$modal-content-border-radius: 8px;
 
 $font-weight-semi-bold: 600;
 $font-weight-semibold: 600;

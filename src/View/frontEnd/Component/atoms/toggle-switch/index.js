@@ -13,7 +13,7 @@ const propTypes = {
 };
 
 const ToggleSwitch = ({ id, checked, name, changevalue }) => {
-  const styles = { backgroundColor: checked ? '#4bd863' : '#efefef' };
+  // const styles = { backgroundColor: checked ? '#4bd863' : '#efefef' };
   return (
     <label className="--switch">
       <input
@@ -23,7 +23,8 @@ const ToggleSwitch = ({ id, checked, name, changevalue }) => {
         name={name}
         onChange={(e) => changevalue(e)}
       />
-      <span className="--slider" style={styles}>
+      {/* <span className="--slider" style={styles}> */}
+      <span className="--slider">
         {/* <i className="fa fa-check"></i>
           <i className="fa fa-times"></i> */}
       </span>

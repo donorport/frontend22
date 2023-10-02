@@ -29,7 +29,7 @@ const Help = () => {
               <Col md="6" className="mb-2 mb-sm-3">
                 <Button
                   variant="outline-white"
-                  className="border text-start py-2 bg-white w-100 fw-normal"
+                  className="border text-start py-2  w-100 fw-normal"
                 >
                   <div className="d-flex align-items-center py-3p">
                     <FontAwesomeIcon
@@ -44,7 +44,7 @@ const Help = () => {
               <Col md="6" className="mb-2 mb-sm-3">
                 <Button
                   variant="outline-white"
-                  className="border text-start py-2 bg-white w-100 fw-normal"
+                  className="border text-start py-2  w-100 fw-normal"
                 >
                   <div className="d-flex align-items-center py-3p">
                     <FontAwesomeIcon
@@ -59,7 +59,7 @@ const Help = () => {
               <Col md="6" className="mb-2 mb-sm-3">
                 <Button
                   variant="outline-white"
-                  className="border text-start py-2 bg-white w-100 fw-normal"
+                  className="border text-start py-2  w-100 fw-normal"
                 >
                   <div className="d-flex align-items-center py-3p">
                     <FontAwesomeIcon
@@ -76,7 +76,7 @@ const Help = () => {
               <Col md="6" className="mb-2 mb-sm-3">
                 <Button
                   variant="outline-white"
-                  className="border text-start py-2 bg-white w-100 fw-normal"
+                  className="border text-start py-2  w-100 fw-normal"
                 >
                   <div className="d-flex align-items-center py-3p">
                     <FontAwesomeIcon
