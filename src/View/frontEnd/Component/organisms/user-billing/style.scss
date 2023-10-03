@@ -3,6 +3,7 @@
 }
 
 .billing__payment {
+  min-width: 90px;
   display: flex;
   padding-top: 4px;
   padding-right: 0.9rem;
@@ -20,10 +21,6 @@
   display: flex;
   justify-content: flex-end;
   order: 1;
-}
-
-.billing__value {
-  text-align: start !important;
 }
 
 .linked__date {

@@ -84,7 +84,7 @@ const Ranks = () => {
             </div>
           )}
           <div className="py-20p">
-            <div className="note  fs-7 mw-600">
+            <div className="note mw-600">
               <div className="mb-12p">
                 Learn how to earn XP through your interactions on Donorport
               </div>

@@ -51,11 +51,6 @@ function CategorySelect({ nameTitle, nameKey, thisCat, thisCatList, onChange, er
           name={nameKey}
           style={STYLE_CURSOR_POINTER}
         >
-          {/*
-          <option disabled selected value="nameTitle">
-            Select {nameTitle}
-          </option>
-          */}
           <optgroup label={nameTitle}>
             {thisCatList.length > 0 &&
               thisCatList
@@ -74,7 +69,7 @@ function CategorySelect({ nameTitle, nameKey, thisCat, thisCatList, onChange, er
                 )}
           </optgroup>
         </select>
-        <p className="error">{error ? (error[nameKey] ? error[nameKey] : '') : ''}</p>
+        {error && error[nameKey] && <p className="error">{error[nameKey]}</p>}
       </div>
     </div>
   );
@@ -201,7 +196,7 @@ const AddPost = (props) => {
     lng: user.lng
   });
 
-  console.log(galleryUrl)
+  console.log(galleryUrl);
   let url = galleryUrl;
   let videoid = url ? url?.split('?v=')[1].split('&')[0] : '';
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
@@ -339,17 +334,15 @@ const AddPost = (props) => {
 
       <div>
         <Accordion alwaysOpen>
+          <AccordionToggle>
+            <h2 className="fs-3 fw-bolder ">Post Location</h2>
+          </AccordionToggle>
 
-
-              <AccordionToggle>
-                <h2 className="fs-3 fw-bolder ">Post Location</h2>
-              </AccordionToggle>
-
-            <Accordion.Collapse className="py-5">
-              <Row className="mw-850 ml-5">
-                <Col lg="6">
-                  {/* <SearchBox accessToken={helper.MapBoxPrimaryKey} /> */}
-                  {/* <SearchBox
+          <Accordion.Collapse className="py-5">
+            <Row className="mw-850 ml-5">
+              <Col lg="6">
+                {/* <SearchBox accessToken={helper.MapBoxPrimaryKey} /> */}
+                {/* <SearchBox
                     accessToken={helper.MapBoxPrimaryKey}
                     options={{
                       language: 'en',
@@ -359,373 +352,364 @@ const AddPost = (props) => {
 
                   </SearchBox> */}
 
-                  <MapboxAutocomplete
-                    publicKey={helper.MapBoxPrimaryKey}
-                    inputClass="form-control search"
-                    query={location.locationName}
-                    defaultValue={location.locationName}
-                    onSuggestionSelect={sugg}
-                    country={location.organizationLocation}
-                    resetSearch={false}
-                  />
+                <MapboxAutocomplete
+                  publicKey={helper.MapBoxPrimaryKey}
+                  inputClass="form-control search"
+                  query={location.locationName}
+                  defaultValue={location.locationName}
+                  onSuggestionSelect={sugg}
+                  country={location.organizationLocation}
+                  resetSearch={false}
+                />
 
-                  <div className="post-location-wrap">
-                    <div className="px-3 py-20p bg-lighter rounded-3 my-20p">
-                      <div className="d-flex align-items-center">
-                        <div className="icon-wrap mr-20p">
-                          <FontAwesomeIcon
-                            icon={solid('location-dot')}
-                            className="fs-3 text-primary"
-                          />
-                        </div>
-                        <div className="info-wrap">
-                          <div className="fs-6 mb-3p">Your post will be posted in</div>
-                          <h3 className="mb-0 fs-4 fw-bolder">{location.locationName}</h3>
-                        </div>
+                <div className="post-location-wrap">
+                  <div className="px-3 py-20p bg-lighter rounded-3 my-20p">
+                    <div className="d-flex align-items-center">
+                      <div className="icon-wrap mr-20p">
+                        <FontAwesomeIcon
+                          icon={solid('location-dot')}
+                          className="fs-3 text-primary"
+                        />
                       </div>
-                    </div>
-                    {error && error.address && (
-                      <p className="error">{error ? (error.address ? error.address : '') : ''}</p>
-                    )}
-                    <div className="note note--clear">
-                      <FontAwesomeIcon icon={regular('circle-info')} className="text-info mr-3p" />
-                      <span>
-                        Not the city you want to post in? Try using the search bar to choose another
-                        location.
-                      </span>
+                      <div className="info-wrap">
+                        <div className="fs-6 mb-3p">Your post will be posted in</div>
+                        <h3 className="mb-0 fs-4 fw-bolder">{location.locationName}</h3>
+                      </div>
                     </div>
                   </div>
-                </Col>
-                <Col lg="6">
-                  <Map
-                    style={STYLES_mapStyles.outdoor}
-                    // onMove={false}
-                    zoom={[12]}
-                    containerStyle={{
-                      height: '300px',
-                      width: '400px'
-                    }}
-                    center={[location.lng, location.lat]}
-                  >
-                    <Layer type="symbol" id="marker" layout={{ 'icon-image': 'custom-marker' }}>
-                      <Feature coordinates={[location.lng, location.lat]} />
-                    </Layer>
+                  {error && error.address && (
+                    <p className="error">{error ? (error.address ? error.address : '') : ''}</p>
+                  )}
+                  <div className="note note--clear">
+                    <FontAwesomeIcon icon={regular('circle-info')} className="text-info mr-3p" />
+                    <span>
+                      Not the city you want to post in? Try using the search bar to choose another
+                      location.
+                    </span>
+                  </div>
+                </div>
+              </Col>
+              <Col lg="6">
+                <Map
+                  style={STYLES_mapStyles.outdoor}
+                  // onMove={false}
+                  zoom={[12]}
+                  containerStyle={{
+                    height: '300px',
+                    width: '400px'
+                  }}
+                  center={[location.lng, location.lat]}
+                >
+                  <Layer type="symbol" id="marker" layout={{ 'icon-image': 'custom-marker' }}>
+                    <Feature coordinates={[location.lng, location.lat]} />
+                  </Layer>
 
-                    {/* <Marker coordinates={[72.6563128, 23.0001899]} anchor="bottom">
+                  {/* <Marker coordinates={[72.6563128, 23.0001899]} anchor="bottom">
                       <h1>marker</h1>
                     </Marker> */}
-                  </Map>
-                </Col>
-              </Row>
-            </Accordion.Collapse>
+                </Map>
+              </Col>
+            </Row>
+          </Accordion.Collapse>
 
+          <AccordionToggle>
+            <h2 className="fs-3 fw-bolder ">Product Details</h2>
+          </AccordionToggle>
 
+          <Accordion.Collapse className="py-0 pt-5 py-sm-5">
+            <>
+              <Row className="mw-850 ml-5 mb-0 mb-sm-5">
+                <div className="col-lg-6 mb-5 mb-sm-0">
+                  <form className="d-flex flex-column profile-detail-form gap-2">
+                    <div>
+                      <Input
+                        id={id1}
+                        name={id1}
+                        value={headline}
+                        maxInput={max20}
+                        maxLength={max20}
+                        title={title1}
+                        placeholder={placeholder1}
+                        onChange={change}
+                        error={error}
+                      />
+                      {error && error.headline && (
+                        <p className="error">
+                          {error ? (error.headline ? error.headline : '') : ''}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <Input
+                        id={id2}
+                        name={id2}
+                        value={brand}
+                        maxInput={max20}
+                        maxLength={max20}
+                        title={title2}
+                        placeholder={placeholder2}
+                        onChange={change}
+                        error={error}
+                      />
+                      {/* <p className="error">Required</p> */}
+                      {error && error.brand && (
+                        <p className="error">{error ? (error.brand ? error.brand : '') : ''}</p>
+                      )}
+                    </div>
 
-              <AccordionToggle>
-                <h2 className="fs-3 fw-bolder ">Product Details</h2>
-              </AccordionToggle>
+                    <div>
+                      <label htmlFor="brandInput" className="form__label">
+                        Slug
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control form-control-lg"
+                        // id="brandInput"
+                        placeholder="Slug"
+                        //disabled={id ? true : false}
+                        disabled={true}
+                        name="slug"
+                        id="slug"
+                        value={slug}
+                        // onChange={(e) => {
+                        //   changevalue(e);
+                        // }}
+                      />
+                      {error && error.slug && (
+                        <p className="error">{error ? (error.slug ? error.slug : '') : ''}</p>
+                      )}
+                    </div>
+                    <div className="d-flex flex-wrap price-group-wrap gap-2 mb-3">
+                      <div className="d-flex gap-3">
+                        <div className="form-group">
+                          <label htmlFor="priceInput" className="form__label">
+                            Unit Price
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="$0"
+                            className="form-control form-control-lg"
+                            // id="priceInput"
+                            name="price"
+                            id="price"
+                            value={price}
+                            onChange={(e) => {
+                              changevalue(e);
+                            }}
+                          />
 
-            <Accordion.Collapse className="py-0 pt-5 py-sm-5">
-              <>
-                <Row className="mw-850 ml-5 mb-0 mb-sm-5">
-                  <div className="col-lg-6 mb-5 mb-sm-0">
-                    <form className="d-flex flex-column profile-detail-form gap-2">
-                      <div>
-                        <Input
-                          id={id1}
-                          name={id1}
-                          value={headline}
-                          maxInput={max20}
-                          maxLength={max20}
-                          title={title1}
-                          placeholder={placeholder1}
-                          onChange={change}
-                          error={error}
-                        />
-                        {error && error.headline && (
-                          <p className="error">
-                            {error ? (error.headline ? error.headline : '') : ''}
-                          </p>
-                        )}
-                      </div>
-                      <div>
-                        <Input
-                          id={id2}
-                          name={id2}
-                          value={brand}
-                          maxInput={max20}
-                          maxLength={max20}
-                          title={title2}
-                          placeholder={placeholder2}
-                          onChange={change}
-                          error={error}
-                        />
-                        {/* <p className="error">Required</p> */}
-                        {error && error.brand && (
-                          <p className="error">{error ? (error.brand ? error.brand : '') : ''}</p>
-                        )}
-                      </div>
-
-                      <div>
-                        <label htmlFor="brandInput" className="form__label">
-                          Slug
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control form-control-lg"
-                          // id="brandInput"
-                          placeholder="Slug"
-                          //disabled={id ? true : false}
-                          disabled={true}
-                          name="slug"
-                          id="slug"
-                          value={slug}
-                          // onChange={(e) => {
-                          //   changevalue(e);
-                          // }}
-                        />
-                        {error && error.slug && (
-                          <p className="error">{error ? (error.slug ? error.slug : '') : ''}</p>
-                        )}
-                      </div>
-                      <div className="d-flex flex-wrap price-group-wrap gap-2 mb-3">
-                        <div className="d-flex gap-3">
-                          <div className="form-group">
-                            <label htmlFor="priceInput" className="form__label">
-                              Unit Price
-                            </label>
-                            <input
-                              type="text"
-                              placeholder="$0"
-                              className="form-control form-control-lg"
-                              // id="priceInput"
-                              name="price"
-                              id="price"
-                              value={price}
-                              onChange={(e) => {
-                                changevalue(e);
-                              }}
-                            />
-
-                            {error && error.price && (
-                              <p className="error">
-                                {error ? (error.price ? error.price : '') : ''}
-                              </p>
-                            )}
-                          </div>
-
-                          <div className="form-group">
-                            <label htmlFor="priceInput" className="form__label">
-                              Display Price
-                            </label>
-                            <input
-                              type="text"
-                              placeholder="$0"
-                              className="form-control form-control-lg"
-                              disabled
-                              // id="priceInput"
-                              name="displayprice"
-                              id="displayprice"
-                              value={priceFormat(Number(displayPrice))}
-                            />
-                          </div>
-                          <div className="form-group quantity-from-group">
-                            <label htmlFor="quantityInput" className="form__label">
-                              Quantity
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control form-control-lg studio__input--quantity"
-                              // id="quantityInput"
-                              placeholder="12"
-                              name="quantity"
-                              id="quantity"
-                              disabled={unlimited}
-                              value={quantity}
-                              onChange={(e) => {
-                                changevalue(e);
-                              }}
-                            />
-                            {error && error.quantity && (
-                              <p className="error">
-                                {error ? (error.quantity ? error.quantity : '') : ''}
-                              </p>
-                            )}
-                          </div>
+                          {error && error.price && (
+                            <p className="error">{error ? (error.price ? error.price : '') : ''}</p>
+                          )}
                         </div>
 
-                        <div className="form-group unlimited-switch-wrap">
-                          <div className="bg-purple text-nowrap fs-8 fw-semibold rounded-3 p-6p mb-2 text-white">
-                            Unlimited
-                            <FontAwesomeIcon icon={solid('infinity')} className="ml-3p" />
-                          </div>
-                          <ToggleSwitch
-                            id="unlimited"
-                            checked={unlimited}
-                            name="unlimited"
-                            changevalue={changevalue}
+                        <div className="form-group">
+                          <label htmlFor="priceInput" className="form__label">
+                            Display Price
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="$0"
+                            className="form-control form-control-lg"
+                            disabled
+                            // id="priceInput"
+                            name="displayprice"
+                            id="displayprice"
+                            value={priceFormat(Number(displayPrice))}
                           />
                         </div>
-                      </div>
-                      <div className="note note--info mb-3 fs-6">
-                        <span className="">
-                          Enter the unit price before taxes. Your{' '}
-                          <Link
-                            to={'/campaign/' + organizationDetails?.slug + '/settings/payments'}
-                            style={{ color: '#3a94d4' }}
-                          >
-                            regional sales tax
-                          </Link>{' '}
-                          will be automatically applied to the price of the item to ensure you
-                          receive enough funds to purchase the item(s).
-                        </span>
-                      </div>
-                      <div className="keyword-tags-wrap my-2">
-                        <div className="form-group">
-                          <label htmlFor="keywordsInput" className="form__label pb-3">
-                            <FontAwesomeIcon
-                              icon={solid('magnifying-glass')}
-                              className="me-2 text-primary"
-                            />
-                            Keywords Tags
-                            <span className="fs-8 ms-1 text-light fw-normal">(up to 3)</span>
+                        <div className="form-group quantity-from-group">
+                          <label htmlFor="quantityInput" className="form__label">
+                            Quantity
                           </label>
-                          {/* <input
+                          <input
+                            type="text"
+                            className="form-control form-control-lg studio__input--quantity"
+                            // id="quantityInput"
+                            placeholder="12"
+                            name="quantity"
+                            id="quantity"
+                            disabled={unlimited}
+                            value={quantity}
+                            onChange={(e) => {
+                              changevalue(e);
+                            }}
+                          />
+                          {error && error.quantity && (
+                            <p className="error">
+                              {error ? (error.quantity ? error.quantity : '') : ''}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="form-group unlimited-switch-wrap">
+                        <div className="bg-purple text-nowrap fs-8 fw-semibold rounded-3 p-6p mb-2 text-white">
+                          Unlimited
+                          <FontAwesomeIcon icon={solid('infinity')} className="ml-3p" />
+                        </div>
+                        <ToggleSwitch
+                          id="unlimited"
+                          checked={unlimited}
+                          name="unlimited"
+                          changevalue={changevalue}
+                        />
+                      </div>
+                    </div>
+                    <div className="note note--info mb-3 fs-6">
+                      <span className="">
+                        Enter the unit price before taxes. Your{' '}
+                        <Link
+                          to={'/campaign/' + organizationDetails?.slug + '/settings/payments'}
+                          style={{ color: '#3a94d4' }}
+                        >
+                          regional sales tax
+                        </Link>{' '}
+                        will be automatically applied to the price of the item to ensure you receive
+                        enough funds to purchase the item(s).
+                      </span>
+                    </div>
+                    <div className="keyword-tags-wrap my-2">
+                      <div className="form-group">
+                        <label htmlFor="keywordsInput" className="form__label pb-3">
+                          <FontAwesomeIcon
+                            icon={solid('magnifying-glass')}
+                            className="me-2 text-primary"
+                          />
+                          Keywords Tags
+                          <span className="fs-8 ms-1 text-light fw-normal">(up to 3)</span>
+                        </label>
+                        {/* <input
                             type="text"
                             className="form-control form-control-lg"
                             id="keywordsInput"
                             placeholder="Keywords..."
                           /> */}
-                          <ReactTags
-                            handleDelete={handleDelete}
-                            handleAddition={handleAddition}
-                            handleDrag={handleDrag}
-                            // delimiters={[188,3]}
-                            handleTagClick={handleTagClick}
-                            onClearAll={onClearAll}
-                            onTagUpdate={onTagUpdate}
-                            placeholder="Enter Tags..."
-                            // minQueryLength={10}
-                            // maxLength={15}
-                            autofocus={false}
-                            allowDeleteFromEmptyInput
-                            autocomplete
-                            readOnly={false}
-                            allowUnique
-                            allowDragDrop
-                            inline
-                            allowAdditionFromPaste
-                            editable
-                            clearAll
-                            tags={tags}
-                          />
+                        <ReactTags
+                          handleDelete={handleDelete}
+                          handleAddition={handleAddition}
+                          handleDrag={handleDrag}
+                          // delimiters={[188,3]}
+                          handleTagClick={handleTagClick}
+                          onClearAll={onClearAll}
+                          onTagUpdate={onTagUpdate}
+                          placeholder="Enter Tags..."
+                          // minQueryLength={10}
+                          // maxLength={15}
+                          autofocus={false}
+                          allowDeleteFromEmptyInput
+                          autocomplete
+                          readOnly={false}
+                          allowUnique
+                          allowDragDrop
+                          inline
+                          allowAdditionFromPaste
+                          editable
+                          clearAll
+                          tags={tags}
+                        />
 
-                          {error && error.tags && (
-                            <p className="error">{error ? (error.tags ? error.tags : '') : ''}</p>
-                          )}
+                        {error && error.tags && (
+                          <p className="error">{error ? (error.tags ? error.tags : '') : ''}</p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="post-type-wrap">
+                      <label className="form__label">
+                        Post Type
+                        <span className="fs-7 text-light ms-1 fw-normal">(optional)</span>
+                      </label>
+                      <div className="d-flex gap-2">
+                        <div className="d-flex align-items-center">
+                          <FontAwesomeIcon className="fs-3 text-info" icon={solid('paperclip')} />
+                          <div className="d-flex py-12p px-18p">
+                            <ToggleSwitch
+                              id="tax"
+                              checked={tax}
+                              name="tax"
+                              changevalue={changevalue}
+                            />
+                          </div>
+                        </div>
+                        <div className="d-flex align-items-center">
+                          <FontAwesomeIcon className="fs-3" color="#947ada" icon={solid('tag')} />
+                          <div className="d-flex py-12p px-18p">
+                            <ToggleSwitch
+                              id="postTag"
+                              checked={postTag}
+                              name="postTag"
+                              changevalue={changevalue}
+                            />
+                          </div>
+                        </div>
+                        <div className="d-flex align-items-center image__switch-wrap">
+                          <FontAwesomeIcon className="fs-3 text-primary" icon={solid('image')} />
+                          <div className="d-flex py-12p px-18p">
+                            <ToggleSwitch checked={media} name="media" changevalue={changevalue} />
+                          </div>
                         </div>
                       </div>
-                      <div className="post-type-wrap">
-                        <label className="form__label">
-                          Post Type
-                          <span className="fs-7 text-light ms-1 fw-normal">(optional)</span>
-                        </label>
-                        <div className="d-flex gap-2">
-                          <div className="d-flex align-items-center">
-                            <FontAwesomeIcon className="fs-3 text-info" icon={solid('paperclip')} />
-                            <div className="d-flex py-12p px-18p">
-                              <ToggleSwitch
-                                id="tax"
-                                checked={tax}
-                                name="tax"
-                                changevalue={changevalue}
-                              />
-                            </div>
-                          </div>
-                          <div className="d-flex align-items-center">
-                            <FontAwesomeIcon className="fs-3" color="#947ada" icon={solid('tag')} />
-                            <div className="d-flex py-12p px-18p">
-                              <ToggleSwitch
-                                id="postTag"
-                                checked={postTag}
-                                name="postTag"
-                                changevalue={changevalue}
-                              />
-                            </div>
-                          </div>
-                          <div className="d-flex align-items-center image__switch-wrap">
-                            <FontAwesomeIcon className="fs-3 text-primary" icon={solid('image')} />
-                            <div className="d-flex py-12p px-18p">
-                              <ToggleSwitch
-                                checked={media}
-                                name="media"
-                                changevalue={changevalue}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="note note--info mb-1 fs-6">
-                          <span>
-                            Will you be uploading media after you have purchased the items? Posts
-                            that upload pictures / videos of the proceeds tend to get funded
-                            quicker.
-                          </span>
-                        </div>
-                        <div className="d-flex note note--info mb-1 fs-6">
-                          <FontAwesomeIcon
-                            className="me-2 fs-3 text-info"
-                            icon={solid('paperclip')}
-                          />
-                          Toggle this if you intend on providing a tax receipt for donations made
-                          toward this post.
-                        </div>
-                        <div className="d-flex note note--info mb-5 fs-6">
-                          <FontAwesomeIcon
-                            className="me-2 fs-3"
-                            color="#947ada"
-                            icon={solid('tag')}
-                          />
-                          Toggle this if you have already purchased these items and are posting to
-                          recouperate the cost.
-                        </div>
+                      <div className="note note--info mb-1 fs-6">
+                        <span>
+                          Will you be uploading media after you have purchased the items? Posts that
+                          upload pictures / videos of the proceeds tend to get funded quicker.
+                        </span>
                       </div>
+                      <div className="d-flex note note--info mb-1 fs-6">
+                        <FontAwesomeIcon
+                          className="me-2 fs-3 text-info"
+                          icon={solid('paperclip')}
+                        />
+                        Toggle this if you intend on providing a tax receipt for donations made
+                        toward this post.
+                      </div>
+                      <div className="d-flex note note--info mb-5 fs-6">
+                        <FontAwesomeIcon
+                          className="me-2 fs-3"
+                          color="#947ada"
+                          icon={solid('tag')}
+                        />
+                        Toggle this if you have already purchased these items and are posting to
+                        recouperate the cost.
+                      </div>
+                    </div>
 
-                      <div className="item-category-select">
-                        <span className="title">Item Category</span>
-                        <div className="d-flex gap-2">
-                          <CategorySelect
-                            nameTitle="Category"
-                            nameKey="category"
-                            thisCat={category}
-                            thisCatList={categoryList}
-                            onChange={changevalue}
-                            error={error}
-                          />
-                          <CategorySelect
-                            nameTitle="SubCategory"
-                            nameKey="subcategory"
-                            thisCat={subcategory}
-                            thisCatList={subcategoryList}
-                            onChange={changevalue}
-                            error={error}
-                          />
-                        </div>
+                    <div className="item-category-select">
+                      <span className="title">Item Category</span>
+                      <div className="d-flex gap-2">
+                        <CategorySelect
+                          nameTitle="Category"
+                          nameKey="category"
+                          thisCat={category}
+                          thisCatList={categoryList}
+                          onChange={changevalue}
+                          error={error}
+                        />
+                        <CategorySelect
+                          nameTitle="SubCategory"
+                          nameKey="subcategory"
+                          thisCat={subcategory}
+                          thisCatList={subcategoryList}
+                          onChange={changevalue}
+                          error={error}
+                        />
                       </div>
-                    </form>
-                  </div>
-                  <div className="col-lg-6">
-                    <form className="video-detail-form">
-                      <div className="main-upload-image-wrap">
-                        <div className="form__label">
-                          Product Image
-                          {props.loading && loadingId && (
-                            // <CircularProgress className="ms-1" color="inherit" size={21} />
-                            <Box sx={{ width: '100%' }}>
-                              <LinearProgress />
-                            </Box>
-                          )}
-                        </div>
-                        {/* <div className="upload-wrap mb-3">
+                    </div>
+                  </form>
+                </div>
+                <div className="col-lg-6">
+                  <form className="video-detail-form">
+                    <div className="main-upload-image-wrap">
+                      <div className="form__label">
+                        Product Image
+                        {props.loading && loadingId && (
+                          // <CircularProgress className="ms-1" color="inherit" size={21} />
+                          <Box sx={{ width: '100%' }}>
+                            <LinearProgress />
+                          </Box>
+                        )}
+                      </div>
+                      {/* <div className="upload-wrap mb-3">
                           {Img || tempImg ? (
                             <img
                               src={
@@ -759,85 +743,87 @@ const AddPost = (props) => {
                             />
                           </label>
                         </div> */}
-                        <div
-                          className="image-upload-wrap fs-2 mb-3"
-                          // style={{
-                          //   ...STYLES_imageUploadWrap,
-                          //   border:
-                          //     !props.tempImgName &&
-                          //     props.tempImgName === '' &&
-                          //     stateData.error.identityDocumentImage
-                          //       ? '4px dashed red'
-                          //       : '4px dashed #3773c6'
-                          // }}
-                          style={{
-                            ...STYLES_imageUploadWrap,
-                            // backgroundColor: '#e5f4ff',
-                            borderRadius: '9px',
-                            border: '2px dashed rgba(62, 170, 255, 0.58)',
-                            fontSize: '60px'
+                      <div
+                        className="image-upload-wrap fs-2 mb-3"
+                        // style={{
+                        //   ...STYLES_imageUploadWrap,
+                        //   border:
+                        //     !props.tempImgName &&
+                        //     props.tempImgName === '' &&
+                        //     stateData.error.identityDocumentImage
+                        //       ? '4px dashed red'
+                        //       : '4px dashed #3773c6'
+                        // }}
+                        style={{
+                          ...STYLES_imageUploadWrap,
+                          // backgroundColor: '#e5f4ff',
+                          borderRadius: '9px',
+                          border: '2px dashed rgba(62, 170, 255, 0.58)',
+                          fontSize: '60px'
+                        }}
+                      >
+                        <input
+                          className="file-upload-input"
+                          type="file"
+                          id="mainImg"
+                          name="mainImg"
+                          onChange={(e) => {
+                            setLoadingId(true);
+                            changefile(e);
                           }}
-                        >
-                          <input
-                            className="file-upload-input"
-                            type="file"
-                            id="mainImg"
-                            name="mainImg"
-                            onChange={(e) => {
-                              setLoadingId(true);
-                              changefile(e);
-                            }}
-                            accept="image/*"
-                            style={STYLES_fileUploadInput}
-                            // title="upload an image"
-                          />
-                          {Img || tempImg ? (
-                            <img
-                              src={
-                                tempImg
-                                  ? tempImg
-                                  : Img
-                                  ? Img !== ''
-                                    ? helper.CampaignProductFullImagePath + Img
-                                    : noimg
+                          accept="image/*"
+                          style={STYLES_fileUploadInput}
+                          // title="upload an image"
+                        />
+                        {Img || tempImg ? (
+                          <img
+                            src={
+                              tempImg
+                                ? tempImg
+                                : Img
+                                ? Img !== ''
+                                  ? helper.CampaignProductFullImagePath + Img
                                   : noimg
-                              }
-                              alt="lk"
-                              className="w-100"
-                              style={{ objectFit: 'contain' }}
-                            />
-                          ) : (
-                            <div
-                              className="drag-text"
-                              style={{ textAlign: 'center', padding: '70px' }}
-                            >
-                              <FontAwesomeIcon
-                                icon={solid('cloud-arrow-up')}
-                                className="icon-cloud"
-                              />
-                              <h3 style={{ fontSize: 'inherit' }}>
-                                {props.tempImgName && props.tempImgName !== ''
-                                  ? props.tempImgName
-                                  : stateData?.error?.identityDocumentImage
-                                  ? 'Please Upload Selected Document'
-                                  : 'Drag and drop or Select File'}
-                              </h3>
-                            </div>
-                          )}
-                        </div>
-                        <p className="error">{error ? (error.image ? error.image : '') : ''}</p>
-                        <canvas id="canvas1" width={300} height={300}></canvas>
-                      </div>
-                      {props.loading && loadingId && (
-                        <Box sx={{ width: '100%' }}>
-                          <div className="d-flex note note--info mb-3 fs-5 gap-2">
-                            <CircularProgress color="secondary" size={21}></CircularProgress>
+                                : noimg
+                            }
+                            alt="lk"
+                            className="w-100"
+                            style={{ objectFit: 'contain' }}
+                          />
+                        ) : (
+                          <div
+                            className="drag-text"
+                            style={{ textAlign: 'center', padding: '70px' }}
+                          >
                             <FontAwesomeIcon
-                              icon={regular('bolt')}
-                              className="text-info icon-method mr-3p fs-4"
+                              icon={solid('cloud-arrow-up')}
+                              className="icon-cloud"
                             />
-                            Processing uploaded image...
-                            {/* <span className="">
+                            <h3 style={{ fontSize: 'inherit' }}>
+                              {props.tempImgName && props.tempImgName !== ''
+                                ? props.tempImgName
+                                : stateData?.error?.identityDocumentImage
+                                ? 'Please Upload Selected Document'
+                                : 'Drag and drop or Select File'}
+                            </h3>
+                          </div>
+                        )}
+                      </div>
+                      {error && error.image && (
+                        <p className="error">{error ? (error.image ? error.image : '') : ''}</p>
+                      )}
+                      <canvas id="canvas1" width={300} height={300}></canvas>
+                    </div>
+                    {props.loading && loadingId && (
+                      <Box sx={{ width: '100%' }}>
+                        <div className="d-flex note note--info mb-3 fs-5 gap-2">
+                          <CircularProgress color="secondary" size={21}></CircularProgress>
+                          <FontAwesomeIcon
+                            icon={regular('bolt')}
+                            className="text-info icon-method mr-3p fs-4"
+                          />
+                          Processing uploaded image...
+                          {/* <span className="">
                           Please upload a transparent image of the product. Click{' '}
                           <a
                             href="https://www.youtube.com/watch?v=G3Y5PcuH23Y"
@@ -852,30 +838,30 @@ const AddPost = (props) => {
                           </a>{' '}
                           to remove a background.
                         </span> */}
-                          </div>
-                        </Box>
-                      )}
-                      {!props.loading && (
-                        <Box sx={{ width: '100%' }}>
-                          <div className="d-flex note note--info mb-3 fs-6">
-                            <span className="">
-                              Upload an image of the product with a transparent background. The
-                              image should closesly resemble the product you will purchase but does
-                              not need to be exact. Accepted file formats:{' '}
-                              <a className="link">png, jpg, svg</a>
-                            </span>
-                          </div>
-                        </Box>
-                      )}
-                      <div>
-                        <div className="project-title-optional">
-                          <div className="form__label">
-                            More of Product
-                            <span className="fs-7 text-light ms-1 fw-normal">(optional)</span>
-                          </div>
                         </div>
-                        <div className="d-flex align-items-center flex-wrap gap-2 mb-3">
-                          {/* <div className="upload-wrap" style={{ width: "100%" }}>
+                      </Box>
+                    )}
+                    {!props.loading && (
+                      <Box sx={{ width: '100%' }}>
+                        <div className="d-flex note note--info mb-3 fs-6">
+                          <span className="">
+                            Upload an image of the product with a transparent background. The image
+                            should closesly resemble the product you will purchase but does not need
+                            to be exact. Accepted file formats:{' '}
+                            <a className="link">png, jpg, svg</a>
+                          </span>
+                        </div>
+                      </Box>
+                    )}
+                    <div>
+                      <div className="project-title-optional">
+                        <div className="form__label">
+                          More of Product
+                          <span className="fs-7 text-light ms-1 fw-normal">(optional)</span>
+                        </div>
+                      </div>
+                      <div className="d-flex align-items-center flex-wrap gap-2 mb-3">
+                        {/* <div className="upload-wrap" style={{ width: "100%" }}>
                             <FontAwesomeIcon
                               icon={solid("cloud-arrow-up")}
                               className="icon-cloud"
@@ -885,103 +871,103 @@ const AddPost = (props) => {
                             </label>
                           </div> */}
 
+                        <div
+                          className="image-upload-wrap fs-2"
+                          style={{
+                            ...STYLES_imageUploadWrap,
+                            // backgroundColor: '#e5f4ff',
+                            borderRadius: '9px',
+                            border: '2px dashed rgba(62, 170, 255, 0.58)',
+                            fontSize: '60px'
+                          }}
+                        >
+                          <input
+                            className="file-upload-input"
+                            type="file"
+                            // name="identityDocumentImage"
+                            // onChange={props.changevalue}
+                            name="moreImg[]"
+                            id="moreImg"
+                            accept=".jpg,.gif,.png, .svg"
+                            multiple
+                            onChange={(e) => changefile(e)}
+                            style={STYLES_fileUploadInput}
+                          />
                           <div
-                            className="image-upload-wrap fs-2"
-                            style={{
-                              ...STYLES_imageUploadWrap,
-                              // backgroundColor: '#e5f4ff',
-                              borderRadius: '9px',
-                              border: '2px dashed rgba(62, 170, 255, 0.58)',
-                              fontSize: '60px'
-                            }}
+                            className="drag-text"
+                            style={{ textAlign: 'center', padding: '70px' }}
                           >
-                            <input
-                              className="file-upload-input"
-                              type="file"
-                              // name="identityDocumentImage"
-                              // onChange={props.changevalue}
-                              name="moreImg[]"
-                              id="moreImg"
-                              accept=".jpg,.gif,.png, .svg"
-                              multiple
-                              onChange={(e) => changefile(e)}
-                              style={STYLES_fileUploadInput}
+                            <FontAwesomeIcon
+                              icon={solid('cloud-arrow-up')}
+                              className="icon-cloud"
                             />
-                            <div
-                              className="drag-text"
-                              style={{ textAlign: 'center', padding: '70px' }}
-                            >
-                              <FontAwesomeIcon
-                                icon={solid('cloud-arrow-up')}
-                                className="icon-cloud"
-                              />
-                              <h3 style={{ fontSize: 'inherit' }}>Drag and drop or Select File</h3>
-                            </div>
+                            <h3 style={{ fontSize: 'inherit' }}>Drag and drop or Select File</h3>
                           </div>
+                        </div>
 
-                          <div className="grid mt-3 mb-3 w-100">
-                            {moreTempImages?.length ? (
-                              moreTempImages.map((img, key) => {
-                                return (
-                                  <div key={key} className="img-wrap">
-                                    <span
-                                      className="close"
-                                      onClick={() => props.removeGallaryempImages(key, 'moreImg')}
-                                    >
-                                      &times;
-                                    </span>
-                                    {/* <img
+                        <div className="grid mt-3 mb-3 w-100">
+                          {moreTempImages?.length ? (
+                            moreTempImages.map((img, key) => {
+                              return (
+                                <div key={key} className="img-wrap">
+                                  <span
+                                    className="close"
+                                    onClick={() => props.removeGallaryempImages(key, 'moreImg')}
+                                  >
+                                    &times;
+                                  </span>
+                                  {/* <img
                                       src={img ? img : noimg}
                                       alt="lk"
                                       style={{ width: '100px', height: '100px' }}
                                     />*/}
-                                    <div
-                                      className="gallery__img"
-                                      style={{
-                                        backgroundImage: `url(${img ? img : noimg})`
-                                        // width: '100px',
-                                        // height: '100px'
-                                      }}
-                                      alt="lk"
-                                      data-id="103"
-                                    ></div>
-                                  </div>
-                                );
-                              })
-                            ) : (
-                              <></>
-                            )}
-                            {moreImages?.length
-                              ? moreImages.map((img, key) => {
-                                  return (
-                                    <React.Fragment key={key}>
-                                      {/* <img src={img ? img !== "" ? helper.CampaignProductImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} />
+                                  <div
+                                    className="gallery__img"
+                                    style={{
+                                      backgroundImage: `url(${img ? img : noimg})`
+                                      // width: '100px',
+                                      // height: '100px'
+                                    }}
+                                    alt="lk"
+                                    data-id="103"
+                                  ></div>
+                                </div>
+                              );
+                            })
+                          ) : (
+                            <></>
+                          )}
+                          {moreImages?.length
+                            ? moreImages.map((img, key) => {
+                                return (
+                                  <React.Fragment key={key}>
+                                    {/* <img src={img ? img !== "" ? helper.CampaignProductImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} />
                                     <span> X</span> */}
-                                      <div className="img-wrap">
-                                        <span
-                                          className="close"
-                                          onClick={() => props.deleteProductImage(img.id, 'More')}
-                                        >
-                                          &times;
-                                        </span>
-                                        <div
-                                          className="gallery__img"
-                                          style={{
-                                            backgroundImage: `url(${
-                                              img.img
-                                                ? img.img !== ''
-                                                  ? helper.CampaignProductImagePath + img.img
-                                                  : noimg
+                                    <div className="img-wrap">
+                                      <span
+                                        className="close"
+                                        onClick={() => props.deleteProductImage(img.id, 'More')}
+                                      >
+                                        &times;
+                                      </span>
+                                      <div
+                                        className="gallery__img"
+                                        style={{
+                                          backgroundImage: `url(${
+                                            img.img
+                                              ? img.img !== ''
+                                                ? helper.CampaignProductImagePath + img.img
                                                 : noimg
-                                            })`
-                                            // width: '100px',
-                                            // height: '100px'
-                                          }}
-                                          alt="lk"
-                                          data-id="103"
-                                        ></div>
-                                      </div>
-                                      {/*  <div className="img-wrap">
+                                              : noimg
+                                          })`
+                                          // width: '100px',
+                                          // height: '100px'
+                                        }}
+                                        alt="lk"
+                                        data-id="103"
+                                      ></div>
+                                    </div>
+                                    {/*  <div className="img-wrap">
                                         <span
                                           className="close"
                                           onClick={() => props.deleteProductImage(img.id, 'More')}
@@ -1001,20 +987,20 @@ const AddPost = (props) => {
                                           data-id="103"
                                         />
                                       </div>*/}
-                                    </React.Fragment>
-                                  );
-                                })
-                              : ''}
-                          </div>
-                          {error && error.moreImg && (
-                            <p className="error">
-                              {error ? (error.moreImg ? error.moreImg : '') : ''}
-                            </p>
-                          )}
+                                  </React.Fragment>
+                                );
+                              })
+                            : ''}
+                        </div>
+                        {error && error.moreImg && (
+                          <p className="error">
+                            {error ? (error.moreImg ? error.moreImg : '') : ''}
+                          </p>
+                        )}
 
-                          {/* <p className='error'>{stateData.error ? stateData.error.moreImg ? stateData.error.moreImg : "" : ""}</p> */}
+                        {/* <p className='error'>{stateData.error ? stateData.error.moreImg ? stateData.error.moreImg : "" : ""}</p> */}
 
-                          {/* <div className="upload-wrap">
+                        {/* <div className="upload-wrap">
                             <img
                               className="img-fluid"
                               src="https://i1.wp.com/lanecdr.org/wp-content/uploads/2019/08/placeholder.png?w=1200&ssl=1"
@@ -1051,9 +1037,9 @@ const AddPost = (props) => {
                               <input id="videoPicture3" type="file" />
                             </label>
                           </div> */}
-                        </div>
+                      </div>
 
-                        {/* <div className="d-grid">
+                      {/* <div className="d-grid">
                           <Button
                             variant="info"
                             className="fs-7 fw-bold"
@@ -1062,11 +1048,11 @@ const AddPost = (props) => {
                             Upload from File
                           </Button>
                         </div> */}
-                      </div>
-                    </form>
-                  </div>
-                </Row>
-                {/* <div className="select-projects-option mb-5">
+                    </div>
+                  </form>
+                </div>
+              </Row>
+              {/* <div className="select-projects-option mb-5">
                   <div className="fw-bold mb-3">
                     Project
                     <FontAwesomeIcon icon={solid('bolt')} className="text-primary ms-1 me-2" />
@@ -1097,71 +1083,68 @@ const AddPost = (props) => {
                     </a>
                   </div>
                 </div> */}
-              </>
-            </Accordion.Collapse>
+            </>
+          </Accordion.Collapse>
 
+          <AccordionToggle>
+            <h2 className="fs-3 fw-bolder ">Need Headline</h2>
+          </AccordionToggle>
 
-
-
-              <AccordionToggle>
-                <h2 className="fs-3 fw-bolder ">Need Headline</h2>
-              </AccordionToggle>
-
-            <Accordion.Collapse className="py-5">
-              <Row className="mw-850 ml-5">
-                <Col lg="6">
-                  <div className="note mb-5 fs-6">
-                    Here is where you tell your donors more about your need for these items. Let
-                    them know how you plan to use the proceeds of their donation.
+          <Accordion.Collapse className="py-5">
+            <Row className="mw-850 ml-5">
+              <Col lg="6">
+                <div className="note mb-5 fs-6">
+                  Here is where you tell your donors more about your need for these items. Let them
+                  know how you plan to use the proceeds of their donation.
+                </div>
+                <form className="d-flex flex-column profile-detail-form gap-2">
+                  <div>
+                    <Input
+                      id={id3}
+                      name={id3}
+                      value={needheadline}
+                      maxInput={max45}
+                      maxLength={max45}
+                      title={title3}
+                      placeholder={placeholder3}
+                      onChange={change}
+                      error={error}
+                    />
+                    {error && error.needheadline && (
+                      <p className="error">
+                        {error ? (error.needheadline ? error.needheadline : '') : ''}
+                      </p>
+                    )}
                   </div>
-                  <form className="d-flex flex-column profile-detail-form gap-2">
-                    <div>
-                      <Input
-                        id={id3}
-                        name={id3}
-                        value={needheadline}
-                        maxInput={max45}
-                        maxLength={max45}
-                        title={title3}
-                        placeholder={placeholder3}
-                        onChange={change}
-                        error={error}
-                      />
-                      {error && error.needheadline && (
-                        <p className="error">
-                          {error ? (error.needheadline ? error.needheadline : '') : ''}
-                        </p>
-                      )}
-                    </div>
-                    <div>
-                      <Textarea
-                        id={id4}
-                        name={id4}
-                        value={description}
-                        maxInput={max250}
-                        maxLength={max250}
-                        rows={rows}
-                        title={title4}
-                        placeholder={placeholder4}
-                        onChange={change}
-                        error={error}
-                      />
-                      {error && error.description && (
-                        <p className="error">
-                          {error ? (error.description ? error.description : '') : ''}
-                        </p>
-                      )}
-                    </div>
-                  </form>
-                </Col>
-                <Col lg="6">
-                  <form className="video-detail-form">
-                    <div className="form-group mb-2">
-                      <label htmlFor="videoInput" className="form__label">
-                        Need Media&nbsp;
-                        <span className="fs-7 text-light ms-1 fw-normal">(optional)</span>
-                      </label>
-                      {/* <input
+                  <div>
+                    <Textarea
+                      id={id4}
+                      name={id4}
+                      value={description}
+                      maxInput={max250}
+                      maxLength={max250}
+                      rows={rows}
+                      title={title4}
+                      placeholder={placeholder4}
+                      onChange={change}
+                      error={error}
+                    />
+                    {error && error.description && (
+                      <p className="error">
+                        {error ? (error.description ? error.description : '') : ''}
+                      </p>
+                    )}
+                  </div>
+                </form>
+              </Col>
+              <Col lg="6">
+                <form className="video-detail-form">
+                  <div className="form-group mb-2">
+                    <label htmlFor="videoInput" className="form__label">
+                      Need Media&nbsp;
+                      <span className="fs-7 text-light ms-1 fw-normal">(optional)</span>
+                    </label>
+                    {/* <input
                         type="text"
                         className="form-control form-control-lg"
                         // id="videoInput"
@@ -1173,34 +1156,34 @@ const AddPost = (props) => {
                           changevalue(e);
                         }}
                       /> */}
-                      <Input
-                        id={id5}
-                        name={id5}
-                        value={galleryUrl}
-                        title={title5}
-                        // placeholder={placeholder1}
-                        onChange={change}
-                        error={error}
-                      />
-                    </div>
+                    <Input
+                      id={id5}
+                      name={id5}
+                      value={galleryUrl}
+                      title={title5}
+                      // placeholder={placeholder1}
+                      onChange={change}
+                      error={error}
+                    />
+                  </div>
 
-                    <div className="project-video-wrap">
-                      <iframe
-                        title="product-video"
-                        key="product-video"
-                        width="498"
-                        height="280"
-                        src={embedlink}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
-                    <div className="">
-                      <div
-                        className="upload-picture-video-block mb-2"
-                        style={{ display: 'contents' }}
-                      >
-                        {/* <div className="upload-wrap" style={{ width: "100%" }}>
+                  <div className="project-video-wrap">
+                    <iframe
+                      title="product-video"
+                      key="product-video"
+                      width="498"
+                      height="280"
+                      src={embedlink}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                  <div className="">
+                    <div
+                      className="upload-picture-video-block mb-2"
+                      style={{ display: 'contents' }}
+                    >
+                      {/* <div className="upload-wrap" style={{ width: "100%" }}>
                           <FontAwesomeIcon
                             icon={solid("cloud-arrow-up")}
                             className="icon-cloud"
@@ -1210,83 +1193,77 @@ const AddPost = (props) => {
                           </label>
                         </div> */}
 
-                        <div
-                          className="image-upload-wrap fs-2"
-                          style={{
-                            ...STYLES_imageUploadWrap,
-                            // backgroundColor: '#e5f4ff',
-                            borderRadius: '9px',
-                            border: '2px dashed rgba(62, 170, 255, 0.58)',
-                            fontSize: '60px'
+                      <div
+                        className="image-upload-wrap fs-2"
+                        style={{
+                          ...STYLES_imageUploadWrap,
+                          // backgroundColor: '#e5f4ff',
+                          borderRadius: '9px',
+                          border: '2px dashed rgba(62, 170, 255, 0.58)',
+                          fontSize: '60px'
+                        }}
+                      >
+                        <input
+                          className="file-upload-input"
+                          type="file"
+                          name="galleryImg[]"
+                          id="galleryImg"
+                          accept=".jpg,.gif,.png"
+                          multiple
+                          onChange={(e) => {
+                            changefile(e);
                           }}
-                        >
-                          <input
-                            className="file-upload-input"
-                            type="file"
-                            name="galleryImg[]"
-                            id="galleryImg"
-                            accept=".jpg,.gif,.png"
-                            multiple
-                            onChange={(e) => {
-                              changefile(e);
-                            }}
-                            style={STYLES_fileUploadInput}
-                            title=" "
-                          />
-                          <div
-                            className="drag-text"
-                            style={{ textAlign: 'center', padding: '70px' }}
-                          >
-                            <FontAwesomeIcon
-                              icon={solid('cloud-arrow-up')}
-                              className="icon-cloud"
-                            />
-                            <h3 style={{ fontSize: 'inherit' }}>Drag and drop or Select File</h3>
-                          </div>
+                          style={STYLES_fileUploadInput}
+                          title=" "
+                        />
+                        <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
+                          <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
+                          <h3 style={{ fontSize: 'inherit' }}>Drag and drop or Select File</h3>
                         </div>
+                      </div>
 
-                        <div className="grid mt-3 mb-3 w-100">
-                          {gallaryTempImages?.length ? (
-                            gallaryTempImages.map((img, key) => {
+                      <div className="grid mt-3 mb-3 w-100">
+                        {gallaryTempImages?.length ? (
+                          gallaryTempImages.map((img, key) => {
+                            return (
+                              <div key={key} className="img-wrap">
+                                <span
+                                  className="close"
+                                  onClick={() => props.removeGallaryempImages(key, 'galleryImg')}
+                                  style={{ right: '7px' }}
+                                >
+                                  &times;
+                                </span>
+                                <div
+                                  className="gallery__img"
+                                  style={{
+                                    backgroundImage: `url(${img ? img : noimg})`
+                                    // width: '100px',
+                                    // height: '100px'
+                                  }}
+                                  alt="lk"
+                                ></div>
+                              </div>
+                            );
+                          })
+                        ) : (
+                          <></>
+                        )}
+                        {gallaryImages?.length
+                          ? gallaryImages.map((img, key) => {
                               return (
-                                <div key={key} className="img-wrap">
-                                  <span
-                                    className="close"
-                                    onClick={() => props.removeGallaryempImages(key, 'galleryImg')}
-                                    style={{ right: '7px' }}
-                                  >
-                                    &times;
-                                  </span>
-                                  <div
-                                    className="gallery__img"
-                                    style={{
-                                      backgroundImage: `url(${img ? img : noimg})`
-                                      // width: '100px',
-                                      // height: '100px'
-                                    }}
-                                    alt="lk"
-                                  ></div>
-                                </div>
-                              );
-                            })
-                          ) : (
-                            <></>
-                          )}
-                          {gallaryImages?.length
-                            ? gallaryImages.map((img, key) => {
-                                return (
-                                  <React.Fragment key={key}>
-                                    {/* <img src={img ? img !== "" ? helper.CampaignProductImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} /> */}
+                                <React.Fragment key={key}>
+                                  {/* <img src={img ? img !== "" ? helper.CampaignProductImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} /> */}
 
-                                    <div className="img-wrap">
-                                      <span
-                                        className="close"
-                                        onClick={() => props.deleteProductImage(img.id, 'Gallary')}
-                                        style={{ right: '7px' }}
-                                      >
-                                        &times;
-                                      </span>
-                                      {/* <img
+                                  <div className="img-wrap">
+                                    <span
+                                      className="close"
+                                      onClick={() => props.deleteProductImage(img.id, 'Gallary')}
+                                      style={{ right: '7px' }}
+                                    >
+                                      &times;
+                                    </span>
+                                    {/* <img
                                         src={
                                           img.img
                                             ? img.img !== ''
@@ -1298,35 +1275,35 @@ const AddPost = (props) => {
                                         style={{ width: '100px', height: '100px' }}
                                         data-id="103"
                                       />*/}
-                                      <div
-                                        className="gallery__img"
-                                        style={{
-                                          backgroundImage: `url(${
-                                            img.img
-                                              ? img.img !== ''
-                                                ? helper.CampaignProductImagePath + img.img
-                                                : noimg
+                                    <div
+                                      className="gallery__img"
+                                      style={{
+                                        backgroundImage: `url(${
+                                          img.img
+                                            ? img.img !== ''
+                                              ? helper.CampaignProductImagePath + img.img
                                               : noimg
-                                          })`
-                                          // width: '100px',
-                                          // height: '100px'
-                                        }}
-                                        alt="lk"
-                                        data-id="103"
-                                      ></div>
-                                    </div>
-                                  </React.Fragment>
-                                );
-                              })
-                            : ''}
-                        </div>
+                                            : noimg
+                                        })`
+                                        // width: '100px',
+                                        // height: '100px'
+                                      }}
+                                      alt="lk"
+                                      data-id="103"
+                                    ></div>
+                                  </div>
+                                </React.Fragment>
+                              );
+                            })
+                          : ''}
+                      </div>
 
-                        {error && error.galleryImg && (
-                          <p className="error">
-                            {error ? (error.galleryImg ? error.galleryImg : '') : ''}
-                          </p>
-                        )}
-                        {/* <div className="upload-wrap">
+                      {error && error.galleryImg && (
+                        <p className="error">
+                          {error ? (error.galleryImg ? error.galleryImg : '') : ''}
+                        </p>
+                      )}
+                      {/* <div className="upload-wrap">
                           <img src="../img/user2.jpeg" alt="img" />
                           <FontAwesomeIcon
                             icon={solid("cloud-arrow-up")}
@@ -1363,8 +1340,8 @@ const AddPost = (props) => {
                             <input id="videoPicture3" type="file" />
                           </label>
                         </div> */}
-                      </div>
-                      {/* <div className="d-grid">
+                    </div>
+                    {/* <div className="d-grid">
                         <Button
                           variant="info"
                           className="fs-7 fw-bold"
@@ -1373,12 +1350,11 @@ const AddPost = (props) => {
                           Upload from File
                         </Button>
                       </div> */}
-                    </div>
-                  </form>
-                </Col>
-              </Row>
-            </Accordion.Collapse>
-
+                  </div>
+                </form>
+              </Col>
+            </Row>
+          </Accordion.Collapse>
         </Accordion>
         <div className="fulfilling-check-wrap pb-4">
           <div className="form-check" style={STYLE_CURSOR_POINTER}>

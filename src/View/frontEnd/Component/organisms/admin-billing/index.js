@@ -187,7 +187,7 @@ const AdminBilling = () => {
                 let avatar = image ? helper.DonorImagePath + image : profile;
 
                 return (
-                  <div className="billing__item p-2 border-bottom border-bottom-sm-none">
+                  <div className="billing__item p-2 py-3 border-bottom">
                     <div className="billing__content d-flex flex-column flex-sm-row justify-content-start align-items-start">
                       <div className="flex__1 w-100 d-flex d-sm-flex-block align-items-center mb-2 mb-sm-0">
                         <Avatar
@@ -203,7 +203,7 @@ const AdminBilling = () => {
                             {priceFormat(Number(amount))}
                           </div>
                           <div className="fw-semibold text-light fs-7">
-                            {moment(date).format('MMMM DD, YYYY')}
+                            {moment(date).format('MMM DD, YYYY')}
                           </div>
                         </div>
                         <div className="admin__billing__details flex__1 d-flex flex-column align-items-start">

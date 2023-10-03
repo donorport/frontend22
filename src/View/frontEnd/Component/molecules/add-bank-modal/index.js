@@ -23,10 +23,8 @@ const AddBankModal = (props) => {
       <div>
         <div className="d-flex flex-column mb-5 pb-5 gap-3 ">
           <div className="note  mb-2 fs-6">
-            <p>
-              Donorport will store this information for deposits and withdrawals and share it with
-              payment processors.
-            </p>
+            Donorport will store this information for deposits and withdrawals and share it with
+            payment processors.
             <a href="/terms">
               <span className="link text-light">Trust &amp; Security</span>
             </a>
@@ -166,7 +164,7 @@ const AddBankModal = (props) => {
           )}
           <div className="d-flex align-items-center">
             <Button
-                          className="mt-1 py-2 px-3 d-flex m-0"
+              className="mt-1 py-2 px-3 d-flex m-0"
               style={{
                 opacity: bankloading ? '0.7' : '1'
               }}

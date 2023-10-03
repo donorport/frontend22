@@ -55,8 +55,8 @@
 // }
 .error {
   font-size: 90%;
-  // margin: 16px 0;
-  margin: 0 !important;
+  margin: 16px 0;
+  // margin: 0 !important;
   padding: 6px 9px;
   color: $error;
   background: $error-bg;
@@ -101,21 +101,29 @@
   -webkit-animation: react-confirm-alert-fadeIn 0.2s 0.2s forwards;
   animation: react-confirm-alert-fadeIn 0.2s 0.2s forwards;
 }
-
+.react-confirm-alert-overlay,
 .react-confirm-alert-overlay-custom {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999999
+}
+.react-confirm-alert {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .react-confirm-alert-body {
-  font-size: 16px;
+  // font-size: 16px;
   color: inherit;
   font-family: inherit;
   padding: 40px 60px;
   text-align: left;
-  background: #fff;
+  background: $secondary-5;
   border-radius: 6px;
   box-shadow: -7px 7px 20px 10px #0000000d;
   max-width: 500px;
@@ -123,13 +131,13 @@
 
 .react-confirm-alert-body > h1 {
   margin-bottom: 1.3rem;
-  text-decoration: underline;
+  // text-decoration: underline;
 }
 
 .react-confirm-alert-button-group {
   margin: 2.3rem auto 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
 }
 
 .react-confirm-alert-button-group > button {
@@ -137,18 +145,21 @@
   font-size: 16px;
   padding: 12px 45px;
   font-weight: 900;
+  border-radius: 4px;
 }
 
 .react-confirm-alert-button-group > button:first-child {
   background-color: unset;
+  border: none;
   color: inherit;
   padding: 12px 21px;
 }
 
 .react-confirm-alert-button-group > button:last-child {
-  background-color: #87c387 !important;
+  border: none;
+  background-color: $secondary;
   padding: 12px 32px !important;
-  color: white;
+  color: $neutral-100;
 }
 
 .react-confirm-alert-button-group .frntlogout {

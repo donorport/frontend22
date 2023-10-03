@@ -126,7 +126,7 @@ const UserBilling = () => {
         {historyList.length > 0 ? (
           <div
             className="billing__list mw-600"
-            style={{ overflowY: loadMore ? 'scroll' : '', height: loadMore ? '500px' : '' }}
+            // style={{ overflowY: loadMore ? 'scroll' : '', height: loadMore ? '500px' : '' }}
           >
             {historyList.length > 0 &&
               historyList.slice(0, loadMore ? historyList.length : 6).map((list, i) => {
@@ -184,12 +184,14 @@ const UserBilling = () => {
                   <div className="billing__item p-2 mb-3 border-bottom">
                     <div className="billing__content d-flex align-items-center">
                       <div className="billing__bottom">
-                        <div className="billing__value">
+                        <div className="billing__value text-start">
                           <div className="text-danger fw-bold fs-5 mb-3p">
                             - {currencySymbole}
                             {amount}
                           </div>
-                          <div className="fw-semibold text-light fs-7">{moment(date).format('MMMM DD, YYYY')}</div>
+                          <div className="fw-semibold text-light fs-7">
+                            {moment(date).format('MMM DD, YYYY')}
+                          </div>
                         </div>
                         <div className="d-sm-none order__link text-subtext mt-6p">
                           #{TransactionId}
@@ -201,6 +203,9 @@ const UserBilling = () => {
                         <div className="text-subtext fs-7">
                           {PurchaseIcon}
                           {PurchaseType}
+                          <div className="d-none d-sm-block order__link text-subtext mt-6p me-3">
+                            #{TransactionId}
+                          </div>
                         </div>
                       </div>
 
@@ -222,10 +227,6 @@ const UserBilling = () => {
                           </div>
                         </div>
                       </div>
-
-                      <div className="d-none d-sm-block order__link text-subtext mt-6p me-3">
-                        #{TransactionId}
-                      </div>
                     </div>
                   </div>
                 ) : (
@@ -236,12 +237,14 @@ const UserBilling = () => {
                         <div className="billing__item p-2 mb-3 border-bottom">
                           <div className="billing__content d-flex align-items-center">
                             <div className="billing__bottom">
-                              <div className="billing__value">
+                              <div className="billing__value text-start">
                                 <div className="text-danger fw-bold fs-5 mb-3p">
                                   - {currencySymbole}
                                   {Number(o_itm.productPrice) * o_itm.quantity}
                                 </div>
-                                <div className="fw-semibold text-light fs-7">{moment(date).format('MMMM DD, YYYY')}</div>
+                                <div className="fw-semibold text-light fs-7">
+                                  {moment(date).format('MMM DD, YYYY')}
+                                </div>
                               </div>
                               <div className="d-sm-none order__link text-subtext mt-6p">
                                 #{TransactionId}
@@ -254,6 +257,9 @@ const UserBilling = () => {
                                 {PurchaseIcon}
                                 {/* {PurchaseType} */}
                                 {o_itm.quantity} {o_itm.productName}
+                                <div className="d-none d-sm-block order__link text-subtext mt-6p me-3">
+                                  #{TransactionId}
+                                </div>
                               </div>
                             </div>
 
@@ -274,10 +280,6 @@ const UserBilling = () => {
                                   <div className="linked__date">{lastFourDigits}</div>
                                 </div>
                               </div>
-                            </div>
-
-                            <div className="d-none d-sm-block order__link text-subtext mt-6p me-3">
-                              #{TransactionId}
                             </div>
                           </div>
                         </div>

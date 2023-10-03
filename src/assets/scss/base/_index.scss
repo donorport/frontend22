@@ -62,6 +62,7 @@ p {
 }
 .select__input-container {
   margin: 0;
+  grid-template-columns: auto !important;
 }
 .select__placeholder {
   color: $neutral-700

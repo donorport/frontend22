@@ -25,6 +25,8 @@
 // base styles
 @import './base';
 
+@import '../../assets/css/style.scss';
+
 // @import '../../View/frontEnd/Component/organisms/header/style.scss';
 // @import '../../View/frontEnd/Component/organisms/footer/style.scss';
 // @import '../../View/frontEnd/Component/atoms/list-item-img/style.scss';
@@ -77,12 +79,14 @@
   @import './base';
 
   @import '../../assets/css/style.scss';
+
   @import '../../View/frontEnd/reset-password/style.scss';
   @import '../../View/frontEnd/forgot-password/style.scss';
   @import '../../View/frontEnd/about/style.scss';
   @import '../../View/frontEnd/admin-detail/style.scss';
   @import '../../View/frontEnd/user-detail/style.scss';
   @import '../../View/frontEnd/apply/style.scss';
+  @import '../../View/frontEnd/trust/style.scss';
   @import '../../View/frontEnd/login/style.scss';
   @import '../../View/frontEnd/checkout/style.scss';
   @import '../../View/frontEnd/register/style.scss';
@@ -107,13 +111,16 @@
   @import '../../View/frontEnd/Component/organisms/user-admin/style.scss';
   @import '../../View/frontEnd/Component/organisms/shopping-cart/style.scss';
   @import '../../View/frontEnd/Component/organisms/suggested-list/style.scss';
+  @import '../../View/frontEnd/Component/molecules/suggestion-wrapper/style.scss';
   @import '../../View/frontEnd/Component/organisms/summary-content/style.scss';
   @import '../../View/frontEnd/Component/organisms/user-items/style.scss';
   @import '../../View/frontEnd/Component/organisms/tax-table/style.scss';
   @import '../../View/frontEnd/Component/organisms/user-tax/style.scss';
   @import '../../View/frontEnd/Component/organisms/settings-tabs/style.scss';
+  @import '../../View/frontEnd/Component/organisms/user-billing/style.scss';
   @import '../../View/frontEnd/Component/molecules/user-settings-item/style.scss';
   @import '../../View/frontEnd/Component/molecules/marquee-list/style.scss';
+  @import '../../View/frontEnd/Component/molecules/history-item/style.scss';
   @import '../../View/frontEnd/Component/molecules/linked-org/style.scss';
   @import '../../View/frontEnd/Component/atoms/list-item-img/style.scss';
   @import '../../View/frontEnd/Component/atoms/category-checkbox/style.scss';

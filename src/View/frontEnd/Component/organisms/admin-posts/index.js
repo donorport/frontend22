@@ -1892,8 +1892,8 @@ const AdminPosts = () => {
 
           <PostDetailsNotificationBanner fulfilProductDetails={fulfilProductDetails} />
 
-          <Card className="mt-0 mt-sm-5">
-            <Row className="mw-850 ml-5">
+
+            <Row className="mw-850 ml-5 pt-5">
               <Col lg="6">
                 <PostDetailsTransactionSummary
                   fulfilProductDetails={fulfilProductDetails}
@@ -1928,7 +1928,7 @@ const AdminPosts = () => {
                 />
               </Col>
             </Row>
-          </Card>
+
 
           <PostDetailsTosAndButtons
             fulfilPolicy={fulfilPolicy}
@@ -2162,9 +2162,9 @@ const PostDetailsMediaColumn = ({
   });
   return (
     <>
-      <Card.Header className="post__accordion-header pb-3">
+
         <span className="fs-3 fw-bolder ">Media</span>
-      </Card.Header>
+
       <form className="video-detail-form mt-3">
         <div className="form-group mb-3">
           <label htmlFor="videoUrl" className="form__label mb-3">
@@ -2205,7 +2205,7 @@ const PostDetailsMediaColumn = ({
         <div>
           <div className="upload-picture-video-block mb-2" style={{ display: 'contents' }}>
             <div
-              className="image-upload-wrap fs-2"
+              className="image-upload-wrap fs-2 mb-5"
               style={{
                 ...Style_ImageUploadWrap,
                 // backgroundColor: '#e5f4ff',
@@ -2295,10 +2295,10 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
         </label>
       )}
 
-      <div className="order__widget">
-        <Card.Header className="post__accordion-header pb-3 mb-3">
-          <span className="fs-3 fw-bolder ">Order Summary</span>
-        </Card.Header>
+      <div className="order__widget d-flex flex-column gap-3">
+
+          <span className="fs-3 fw-bolder mb-3">Order Summary</span>
+
         <div className="border-bottom">
           <div className="d-flex align-items-center fw-bolder mb-20p">
             <span className="flex__1">{fulfilProductDetails?.unlimited ? 'Sold' : 'Qty'} :</span>
@@ -2324,7 +2324,7 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
             </span>
           </div>
         </div>
-        <div className="d-flex align-items-center pt-3 mb-2">
+        <div className="d-flex align-items-center mb-2">
           <span className="fw-bolder flex__1">Total:</span>
           <span className=" fw-bold fs-4">
             {data?.symbol}
@@ -2365,7 +2365,7 @@ const PostDetailsReceiptArea = ({
       </label>
 
       <div
-        className="image-upload-wrap fs-2"
+        className="image-upload-wrap fs-2 mb-5"
         style={{
           ...Style_ImageUploadWrap,
           // backgroundColor: '#e5f4ff',
@@ -2407,9 +2407,9 @@ const PostDetailsReceiptArea = ({
       {/* if file is deleted, or if product is not fulfilled, hide this. */}
       {fulfilProductDetails?.isFulfiled && !deletedFile && (
         <>
-          <Card.Header className="post__accordion-header pb-3 mt-5">
+
             <span className="fs-3 fw-bolder ">Sales Receipt</span>
-          </Card.Header>
+
           <div className="my-3 pb-5  d-flex align-item-center">
             <div className="nn d-flex position-relative justify-content-center align-items-center me-2">
               <span className="post__badge post__badge--sold fs-3">
