@@ -2208,7 +2208,7 @@ const PostDetailsMediaColumn = ({
               className="image-upload-wrap fs-2"
               style={{
                 ...Style_ImageUploadWrap,
-                backgroundColor: '#e5f4ff',
+                // backgroundColor: '#e5f4ff',
                 borderRadius: '9px',
                 fontSize: '60px',
                 border: '2px dashed rgba(62, 170, 255, 0.58)'
@@ -2368,7 +2368,7 @@ const PostDetailsReceiptArea = ({
         className="image-upload-wrap fs-2"
         style={{
           ...Style_ImageUploadWrap,
-          backgroundColor: '#e5f4ff',
+          // backgroundColor: '#e5f4ff',
           borderRadius: '9px',
           fontSize: '60px',
           border:

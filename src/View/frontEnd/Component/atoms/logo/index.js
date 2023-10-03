@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './style.scss';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import logo2 from '../../../../../assets/images/logo2.svg';
-import logowhite from '../../../../../assets/images/logowhite.svg';
+import logo2 from '../../../../../assets/images/logo2.png';
+import logowhite from '../../../../../assets/images/logowhite.png';
 
 const Logo = () => {
   const user = useSelector((state) => state.user);

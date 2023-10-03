@@ -772,7 +772,7 @@ const AddPost = (props) => {
                           // }}
                           style={{
                             ...STYLES_imageUploadWrap,
-                            backgroundColor: '#e5f4ff',
+                            // backgroundColor: '#e5f4ff',
                             borderRadius: '9px',
                             border: '2px dashed rgba(62, 170, 255, 0.58)',
                             fontSize: '60px'
@@ -889,7 +889,7 @@ const AddPost = (props) => {
                             className="image-upload-wrap fs-2"
                             style={{
                               ...STYLES_imageUploadWrap,
-                              backgroundColor: '#e5f4ff',
+                              // backgroundColor: '#e5f4ff',
                               borderRadius: '9px',
                               border: '2px dashed rgba(62, 170, 255, 0.58)',
                               fontSize: '60px'
@@ -1214,7 +1214,7 @@ const AddPost = (props) => {
                           className="image-upload-wrap fs-2"
                           style={{
                             ...STYLES_imageUploadWrap,
-                            backgroundColor: '#e5f4ff',
+                            // backgroundColor: '#e5f4ff',
                             borderRadius: '9px',
                             border: '2px dashed rgba(62, 170, 255, 0.58)',
                             fontSize: '60px'

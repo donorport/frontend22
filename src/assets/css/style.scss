@@ -392,7 +392,7 @@
   height: 52px;
   margin: 0;
   font-size: 12px;
-  border: 1px solid #eee;
+  border: 1px solid $border-color;
   min-width: 150px;
 }
 
@@ -406,7 +406,7 @@
 
 /* Styles for selected tags */
 .ReactTags__selected span.ReactTags__tag {
-  border: 1px solid #ddd;
+  border: 1px solid $border-color;
   background: hsl(0, 0%, 90%);
   color: black;
   font-size: 12px;
@@ -434,12 +434,12 @@
 .ReactTags__suggestions ul {
   list-style-type: none;
   box-shadow: 0.05em 0.01em 0.5em rgba(0, 0, 0, 0.2);
-  background: white;
+  background: $neutral-100;
   width: 200px;
 }
 
 .ReactTags__suggestions li {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid $border-color;
   padding: 5px 10px;
   margin: 0;
 }
@@ -451,7 +451,7 @@
 }
 
 .ReactTags__suggestions ul li.ReactTags__activeSuggestion {
-  background: #b7cfe0;
+  background: $secondary-5;
   cursor: pointer;
 }
 
@@ -467,8 +467,8 @@
   width: 100%;
   font-weight: 600;
   line-height: 1.25;
-  color: #585a83;
-  background-color: $neutral-100;
+  color: $neutral-700;
+  background-color: $secondary-5;
   background-clip: padding-box;
   border: 1px solid $border-color;
   -webkit-appearance: none;
@@ -482,7 +482,7 @@
 }
 
 .ReactTags__tagInputField::placeholder {
-  color: rgba(0, 0, 0, 0.2509803922);
+  color: $neutral-700;
   font-weight: 400;
   font-size: 14px;
 }
@@ -764,11 +764,11 @@ button.ReactTags__remove {
     overflow: hidden !important;
   }
 
-  // .activity__dropdown,
-  // .profile__dropdown,
-  // .cart__dropdown {
-  //   transform: translatey(70px) !important;
-  // }
+  .activity__dropdown,
+  .profile__dropdown,
+  .cart__dropdown {
+    transform: translatey(70px) !important;
+  }
 }
 
 .invoice table {

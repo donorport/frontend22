@@ -708,96 +708,99 @@ const ProfileSettings = () => {
             </div>
           )}
         </div>
-
-        <div className="input__wrap mb-3">
-          <label className="input__label flex__1">
-            <input
-              type="text"
-              name="name"
-              value={name}
-              onChange={(e) => changevalue(e)}
-              className={error && error?.name ? 'inputerror' : ''}
-            />
-            <span className="input__span">Organization Name</span>
-          </label>
-          <div className="my-2">
-            <Link variant="link" className="text-light p-0 fw-normal" to={'/organization/' + slug}>
-              <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" /> Go to Profile
-            </Link>
+        <div className="d-flex flex-column mb-5 pb-5 gap-3 ">
+          {' '}
+          <div className="input__wrap mb-3">
+            <label className="input__label flex__1">
+              <input
+                type="text"
+                name="name"
+                value={name}
+                onChange={(e) => changevalue(e)}
+                className={error && error?.name ? 'inputerror' : ''}
+              />
+              <span className="input__span">Organization Name</span>
+            </label>
+            <div className="my-2">
+              <Link
+                variant="link"
+                className="text-light p-0 fw-normal"
+                to={'/organization/' + slug}
+              >
+                <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" /> Go to Profile
+              </Link>
+            </div>
           </div>
-        </div>
-        {error && error.name && <p className="error">{error.name}</p>}
-        <div className="input__wrap d-flex">
-          <label className="input__label flex__1">
-            <input
-              type="text"
-              name="ein"
-              value={ein}
-              onChange={(e) => changevalue(e)}
-              className={error && error?.ein ? 'inputerror' : ''}
-            />
-            {/* <span className="input__span">Employer Identification Number (EIN)</span> */}
-            <span className="input__span">Charity Registration Number</span>
-          </label>
-        </div>
-        {error && error.ein && <p className="error">{error ? (error.ein ? error.ein : '') : ''}</p>}
-
-        <div className="input__wrap d-flex">
-          <label className="input__label flex__1">
-            <input type="text" name="url" value={url} onChange={(e) => changevalue(e)} />
-            {/* <span className="input__span">Employer Identification Number (EIN)</span> */}
-            <span className="input__span">Website</span>
-          </label>
-        </div>
-
-        <div className="input__wrap d-flex">
-          <label className="input__label flex__1">
-            {/* <input type="text" value='' /> */}
-            {/* {countrySelect.current} */}
-            <Select
-              className="basic-single"
-              classNamePrefix="select"
-              value={defaultCategory}
-              name="country"
-              options={categoryList}
-              onChange={onChangeCategory}
-              components={{
-                IndicatorSeparator: () => null
-              }}
-            />
-            <span className="input__span">Category</span>
-          </label>
-        </div>
-        {error && error.category && <p className="error">{error.category}</p>}
-
-        <div className="input__wrap mb-3">
-          {/* <label className="input__label mb-2">
+          {error && error.name && <p className="error">{error.name}</p>}
+          <div className="input__wrap d-flex">
+            <label className="input__label flex__1">
+              <input
+                type="text"
+                name="ein"
+                value={ein}
+                onChange={(e) => changevalue(e)}
+                className={error && error?.ein ? 'inputerror' : ''}
+              />
+              {/* <span className="input__span">Employer Identification Number (EIN)</span> */}
+              <span className="input__span">Charity Registration Number</span>
+            </label>
+          </div>
+          {error && error.ein && (
+            <p className="error">{error ? (error.ein ? error.ein : '') : ''}</p>
+          )}
+          <div className="input__wrap d-flex">
+            <label className="input__label flex__1">
+              <input type="text" name="url" value={url} onChange={(e) => changevalue(e)} />
+              {/* <span className="input__span">Employer Identification Number (EIN)</span> */}
+              <span className="input__span">Website</span>
+            </label>
+          </div>
+          <div className="input__wrap d-flex">
+            <label className="input__label flex__1">
+              {/* <input type="text" value='' /> */}
+              {/* {countrySelect.current} */}
+              <Select
+                className="basic-single"
+                classNamePrefix="select"
+                value={defaultCategory}
+                name="country"
+                options={categoryList}
+                onChange={onChangeCategory}
+                components={{
+                  IndicatorSeparator: () => null
+                }}
+              />
+              <span className="input__span">Category</span>
+            </label>
+          </div>
+          {error && error.category && <p className="error">{error.category}</p>}
+          <div className="input__wrap mb-3">
+            {/* <label className="input__label mb-2">
             <input type="text" name="headline" value={headline} onChange={(e) => changevalue(e)} />
             <span className="input__span">Headline</span>
           </label>
           <div className="helper__text fs-7 text-end text-subtext">120 characters</div> */}
-          <Input
-            id={id1}
-            name={id1}
-            value={headline}
-            maxInput={max90}
-            maxLength={max90}
-            title={title1}
-            // placeholder={placeholder1}
-            onChange={change}
-            error={error}
-          />
-          {error && error.headline && (
-            <p className="error">{error ? (error.headline ? error.headline : '') : ''}</p>
-          )}
-          <div className="note note--inputs mb-3 fs-6">
-            A headline is the subtitle that appears on your organization's page that describes your
-            cause in 120 characters or less.
+            <Input
+              id={id1}
+              name={id1}
+              value={headline}
+              maxInput={max90}
+              maxLength={max90}
+              title={title1}
+              // placeholder={placeholder1}
+              onChange={change}
+              error={error}
+            />
+            {error && error.headline && (
+              <p className="error">{error ? (error.headline ? error.headline : '') : ''}</p>
+            )}
+            <div className="note note--inputs mb-3 fs-6">
+              A headline is the subtitle that appears on your organization's page that describes
+              your cause in 120 characters or less.
+            </div>
           </div>
-        </div>
-
-        <div className="input__wrap mb-3">
-          {/* <label className="input__label mb-2">
+          <div className="input__wrap mb-3">
+            {/* <label className="input__label mb-2">
             <textarea
               rows="6"
               name="mission"
@@ -808,63 +811,60 @@ const ProfileSettings = () => {
             <span className="input__span">Mission</span>
           </label>
           <div className="helper__text fs-7 text-end text-subtext">250 characters</div> */}
-          <Textarea
-            id={id2}
-            name={id2}
-            value={mission}
-            maxInput={max120}
-            maxLength={max120}
-            rows={rows}
-            title={title2}
-            // placeholder={placeholder2}
-            onChange={change}
-            error={error}
-          />
-          {error && error.mission && <p className="error">{error.mission}</p>}
-        </div>
-
-        <div className="input__wrap d-flex">
-          <label className="input__label flex__1">
-            {/* <input type="text" value='' /> */}
-            {/* {countrySelect.current} */}
-            <Select
-              className="basic-single"
-              classNamePrefix="select"
-              value={defaultCountry}
-              // defaultValue={countrySelect.current}
-              name="country"
-              options={countryList}
-              onChange={onChangeCountry}
-              isDisabled
-              components={{
-                IndicatorSeparator: () => null
-              }}
+            <Textarea
+              id={id2}
+              name={id2}
+              value={mission}
+              maxInput={max120}
+              maxLength={max120}
+              rows={rows}
+              title={title2}
+              // placeholder={placeholder2}
+              onChange={change}
+              error={error}
             />
-            <span className="input__span">Country</span>
-          </label>
-        </div>
-        {error && error.country && <p className="error">{error.country}</p>}
-
-        <div className="input__wrap d-flex">
-          <label className="input__label flex__1">
-            {/* <input type="text" value='' /> */}
-            <Select
-              className="basic-single"
-              classNamePrefix="select"
-              value={defaultState}
-              name="state"
-              options={stateList}
-              onChange={onChangeState}
-              components={{
-                IndicatorSeparator: () => null
-              }}
-            />
-            <span className="input__span">State/Province</span>
-          </label>
-        </div>
-        {error && error.stateId && <p className="error">{error.stateId}</p>}
-
-        {/*   <div className="input__wrap d-flex">
+            {error && error.mission && <p className="error">{error.mission}</p>}
+          </div>
+          <div className="input__wrap d-flex">
+            <label className="input__label flex__1">
+              {/* <input type="text" value='' /> */}
+              {/* {countrySelect.current} */}
+              <Select
+                className="basic-single"
+                classNamePrefix="select"
+                value={defaultCountry}
+                // defaultValue={countrySelect.current}
+                name="country"
+                options={countryList}
+                onChange={onChangeCountry}
+                isDisabled
+                components={{
+                  IndicatorSeparator: () => null
+                }}
+              />
+              <span className="input__span">Country</span>
+            </label>
+          </div>
+          {error && error.country && <p className="error">{error.country}</p>}
+          <div className="input__wrap d-flex">
+            <label className="input__label flex__1">
+              {/* <input type="text" value='' /> */}
+              <Select
+                className="basic-single"
+                classNamePrefix="select"
+                value={defaultState}
+                name="state"
+                options={stateList}
+                onChange={onChangeState}
+                components={{
+                  IndicatorSeparator: () => null
+                }}
+              />
+              <span className="input__span">State/Province</span>
+            </label>
+          </div>
+          {error && error.stateId && <p className="error">{error.stateId}</p>}
+          {/*   <div className="input__wrap d-flex">
           <label className="input__label flex__1">
             <Select
               className="basic-single"
@@ -881,14 +881,15 @@ const ProfileSettings = () => {
           </label>
         </div>
         {error && error.city && <p className="error">{error.city}</p>}*/}
-        {/*USE THESE FOR TEXT ONLY. Getting "Something Went Wrong error" when saving*/}
-        <div className="input__wrap d-flex">
-          <label className="input__label flex__1">
-            <input type="text" name="city" value={city} onChange={(e) => changevalue(e)} />
-            <span className="input__span">City</span>
-          </label>
+          {/*USE THESE FOR TEXT ONLY. Getting "Something Went Wrong error" when saving*/}
+          <div className="input__wrap d-flex">
+            <label className="input__label flex__1">
+              <input type="text" name="city" value={city} onChange={(e) => changevalue(e)} />
+              <span className="input__span">City</span>
+            </label>
+          </div>
+          {error && error.city && <p className="error">{error.city}</p>}
         </div>
-        {error && error.city && <p className="error">{error.city}</p>}
       </div>
 
       <div className="mb-5 mw-400">
@@ -932,7 +933,7 @@ const ProfileSettings = () => {
                 className="image-upload-wrap fs-2"
                 style={{
                   ...IMAGE_UPLOAD_WRAP_STYLES,
-                  backgroundColor: '#e5f4ff',
+                  // backgroundColor: '#e5f4ff',
                   borderRadius: '9px',
                   border: '2px dashed rgba(62, 170, 255, 0.58)',
                   fontSize: '60px'

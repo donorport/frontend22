@@ -52,7 +52,9 @@
     font-size: 32px;
   }
 }
-
+.image-upload-wrap {
+  background-color: $secondary-5;
+}
 .upload-wrap {
   display: flex;
   align-items: center;
@@ -201,5 +203,5 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid $border-color;
 }

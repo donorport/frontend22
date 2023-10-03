@@ -54,10 +54,14 @@ p {
 .clear {
   clear: both;
 }
+.select__input,
 .select__control,
 .select__menu {
   background-color: $secondary-5 !important;
   border-color: $border-color !important;
+}
+.select__input-container {
+  margin: 0;
 }
 .select__placeholder {
   color: $neutral-700

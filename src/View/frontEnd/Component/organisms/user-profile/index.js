@@ -569,20 +569,21 @@ const UserProfile = () => {
             )}
           </div>
         </div>
-
-        <div className="input__wrap d-flex">
-          <label className="input__label flex__1">
-            <input type="text" name="name" value={name} onChange={(e) => changevalue(e)} />
-            <span className="input__span">Name</span>
-          </label>
-        </div>
-        {error && error.name && <p className="error">{error.name}</p>}
-
-        <div className="input__wrap d-flex">
-          <label className="input__label flex__1">
-            <input type="text" value={email} disabled />
-            <span className="input__span">Email</span>
-          </label>
+        <div className="d-flex flex-column mb-5 pb-5 gap-3">
+          {' '}
+          <div className="input__wrap d-flex">
+            <label className="input__label flex__1">
+              <input type="text" name="name" value={name} onChange={(e) => changevalue(e)} />
+              <span className="input__span">Name</span>
+            </label>
+          </div>
+          {error && error.name && <p className="error">{error.name}</p>}
+          <div className="input__wrap d-flex">
+            <label className="input__label flex__1">
+              <input type="text" value={email} disabled />
+              <span className="input__span">Email</span>
+            </label>
+          </div>
         </div>
 
         {/*   <div className="d-flex align-items-center py-3">
@@ -599,67 +600,66 @@ const UserProfile = () => {
         </div>*/}
       </div>
 
-      <div className="mb-5">
+      <div>
         <h4 className="fw-bolder">Address</h4>
         <div className="text-subtext mb-3">For invoices & tax receipts</div>
         <div className="note note--inputs">
           Your personal information is secured and not shared with anyone. We use this information
           to process tax receipts for your donations.
         </div>
-        <div className="input__wrap d-flex">
-          <label className="input__label flex__1">
-            <input type="text" name="street" value={street} onChange={(e) => changevalue(e)} />
-            <span className="input__span">Street Name</span>
-          </label>
-        </div>
-        {error && error.street && <p className="error">{error.street}</p>}
 
-        <div className="input__wrap d-flex">
-          <label className="input__label flex__1">
-            {/* <input type="text" value='' /> */}
-            {/* {countrySelect.current} */}
-            <Select
-              /*styles={colourStyles}*/
-              className="basic-single"
-              classNamePrefix="select"
-              value={defaultCountry}
-              // defaultValue={countrySelect.current}
-              name="country"
-              options={countryList}
-              onChange={onChangeCountry}
-              components={{
-                IndicatorSeparator: () => null
-              }}
-              // isDisabled
-            />
-            <span className="input__span">Country</span>
-          </label>
-        </div>
-        {error && error.country && <p className="error">{error.country}</p>}
-
-        <div className="input__wrap d-flex">
-          <label className="input__label flex__1">
-            {/* <input type="text" value='' /> */}
-            <Select
-              className="basic-single"
-              classNamePrefix="select"
-              value={defaultState}
-              name="state"
-              options={stateList}
-              onChange={onChangeState}
-              components={{
-                IndicatorSeparator: () => null
-              }}
-            />
-            <span className="input__span">State/Province</span>
-          </label>
-        </div>
-        {error && error.stateId && <p className="error">{error.stateId}</p>}
-
-        <div className="input__wrap d-flex">
-          <label className="input__label flex__1">
-            {/*USE THESE FOR CITY SELECT */}
-            {/* <Select
+        <div className="d-flex flex-column gap-3 mb-3">
+          <div className="input__wrap d-flex">
+            <label className="input__label flex__1">
+              <input type="text" name="street" value={street} onChange={(e) => changevalue(e)} />
+              <span className="input__span">Street Name</span>
+            </label>
+          </div>
+          {error && error.street && <p className="error">{error.street}</p>}
+          <div className="input__wrap d-flex">
+            <label className="input__label flex__1">
+              {/* <input type="text" value='' /> */}
+              {/* {countrySelect.current} */}
+              <Select
+                /*styles={colourStyles}*/
+                className="basic-single"
+                classNamePrefix="select"
+                value={defaultCountry}
+                // defaultValue={countrySelect.current}
+                name="country"
+                options={countryList}
+                onChange={onChangeCountry}
+                components={{
+                  IndicatorSeparator: () => null
+                }}
+                // isDisabled
+              />
+              <span className="input__span">Country</span>
+            </label>
+          </div>
+          {error && error.country && <p className="error">{error.country}</p>}
+          <div className="input__wrap d-flex">
+            <label className="input__label flex__1">
+              {/* <input type="text" value='' /> */}
+              <Select
+                className="basic-single"
+                classNamePrefix="select"
+                value={defaultState}
+                name="state"
+                options={stateList}
+                onChange={onChangeState}
+                components={{
+                  IndicatorSeparator: () => null
+                }}
+              />
+              <span className="input__span">State/Province</span>
+            </label>
+          </div>
+          {error && error.stateId && <p className="error">{error.stateId}</p>}
+          <div className="input__wrap d-flex">
+            <label className="input__label flex__1">
+              {/*USE THESE FOR CITY SELECT */}
+              {/* <Select
               className="basic-single"
               classNamePrefix="select"
               value={defaultCity}
@@ -668,20 +668,20 @@ const UserProfile = () => {
               components={{ IndicatorSeparator: () => null }}
             />*/}
 
-            {/*USE THESE FOR TEXT ONLY. Getting "Something Went Wrong error" when saving*/}
-            <input type="text" name="city" value={city} onChange={(e) => changevalue(e)} />
-            <span className="input__span">City</span>
-          </label>
+              {/*USE THESE FOR TEXT ONLY. Getting "Something Went Wrong error" when saving*/}
+              <input type="text" name="city" value={city} onChange={(e) => changevalue(e)} />
+              <span className="input__span">City</span>
+            </label>
+          </div>
+          {error && error.city && <p className="error">{error.city}</p>}
+          <div className="input__wrap d-flex">
+            <label className="input__label flex__1">
+              <input type="text" name="zip" value={zip} onChange={(e) => changevalue(e)} />
+              <span className="input__span">Zipcode</span>
+            </label>
+          </div>
+          {error && error.zip && <p className="error">{error.zip}</p>}
         </div>
-        {error && error.city && <p className="error">{error.city}</p>}
-
-        <div className="input__wrap d-flex">
-          <label className="input__label flex__1">
-            <input type="text" name="zip" value={zip} onChange={(e) => changevalue(e)} />
-            <span className="input__span">Zipcode</span>
-          </label>
-        </div>
-        {error && error.zip && <p className="error">{error.zip}</p>}
       </div>
       {/* <div className="mb-5">
         <h4 className="fw-bolder">Language & Currency</h4>
