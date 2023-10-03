@@ -83,7 +83,7 @@ const Login = (props) => {
                 )}
               </div>
 
-              <InputGroup className="input-group__alpha ">
+              <InputGroup className="input-group__alpha btn-password">
                 <FormControl
                   type={!showPassword ? 'password' : 'text'}
                   placeholder="Password"
@@ -111,12 +111,12 @@ const Login = (props) => {
               )}
 
               <div className="form-check-wrap mt-3 mb-5">
-                <div className="form-check d-flex align-items-center">
+                {/* <div className="form-check d-flex align-items-center">
                   <input type="checkbox" className="form-check-input" id="rememberCheck" />
                   <label className="form-check-label" htmlFor="rememberCheck">
                     Remember me
                   </label>
-                </div>
+                </div> */}
                 <Link className="forget-text" to="/forgot-password">
                   Forgot Password?
                 </Link>

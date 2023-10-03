@@ -8,6 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Page from '../../../components/Page';
 import apply from '../../../assets/images/apply-iso.svg';
 import Logo from '../Component/atoms/logo';
+import Toggle from '../Component/organisms/toggle';
 
 const Apply = (props) => {
   const { error, name, organization, ein, email, confirmEmail, password, cpassword } =
@@ -53,8 +54,10 @@ const Apply = (props) => {
         <div className="container d-flex flex-column flex-sm-row password-reset position-relative p-0">
           <div className="p-5 p-sm-0 col-sm-6 col-md-5 mw-600 border-sm-end border-bottom border-bottom-0-sm">
             <div className="d-flex mt-5">
-              {' '}
-              <Logo />
+              <div className="d-flex gap-1 align-items-center">
+                <Logo />
+                <Toggle />
+              </div>
               <Button
                 className="d-flex d-sm-none ms-auto"
                 id="scrollToBottomButton"
@@ -79,7 +82,7 @@ const Apply = (props) => {
 
             <div>
               {!props.isApplied ? (
-                <Form className="d-flex flex-column mb-5 pb-5 mw-400" autocomplete="off">
+                <Form className="d-flex flex-column mb-5 pb-5 gap-3 mw-400" autocomplete="off">
                   {/*    <div className="py-1 d-flex justify-content-between fs-4 mb-3">
                     <RadioToggle
                       outline={true}
@@ -117,6 +120,7 @@ const Apply = (props) => {
                     name="name"
                     value={name}
                     onChange={changevalue}
+                    // placeholder="Contact Name"
                     label="Contact Name"
                     error={error}
                   />
@@ -142,6 +146,7 @@ const Apply = (props) => {
                     name="country"
                     value={props.defaultCountry}
                     onChange={props.onChangeCountry}
+                    // placeholder="Country"
                     label="Country"
                     options={countryList}
                     error={error}
@@ -172,6 +177,7 @@ const Apply = (props) => {
                     name="category"
                     value={props.defaultCategory}
                     onChange={props.onChangeCategory}
+                    // placeholder="Category"
                     label="Category"
                     options={categoryList}
                     error={error}
@@ -203,6 +209,7 @@ const Apply = (props) => {
                     value={organization}
                     onChange={changevalue}
                     label="Organization Name"
+                    // placeholder="Organization Name"
                     error={error}
                   />
                   {/*
@@ -231,6 +238,7 @@ const Apply = (props) => {
                     value={ein}
                     onChange={changevalue}
                     label="Charity Registration Number"
+                    // placeholder="Charity Registration Number"
                     error={error}
                   />
                   {/*
@@ -258,6 +266,7 @@ const Apply = (props) => {
                     value={email}
                     onChange={changevalue}
                     label="Email"
+                    // placeholder="Email"
                     error={error}
                   />
                   {/*
@@ -285,6 +294,7 @@ const Apply = (props) => {
                     value={confirmEmail}
                     onChange={changevalue}
                     label="Confirm Email"
+                    // placeholder="Confirm Email"
                     error={error}
                   />
                   {/*
@@ -316,6 +326,7 @@ const Apply = (props) => {
                     value={password}
                     onChange={changevalue}
                     label="Password"
+                    // placeholder="Password"
                     error={error}
                   />
                   {/*
@@ -345,6 +356,7 @@ const Apply = (props) => {
                     value={cpassword}
                     onChange={changevalue}
                     label="Confirm Password"
+                    // placeholder="Confirm Password"
                     error={error}
                   />
                   {/*
@@ -487,23 +499,29 @@ const Apply = (props) => {
   );
 };
 
-const InputContainer = ({ type, name, value, autoComplete, onChange, label, error }) => (
+const InputContainer = ({
+  type,
+  name,
+  value,
+  autoComplete,
+  onChange,
+  label,
+  error,
+  placeholder
+}) => (
   <>
     <div className="input__wrap d-flex">
       <label className="input__label flex__1">
-        <input
-          autoComplete={autoComplete}
-          type={type ?? 'text'}
-          name={name}
-          value={value}
-          onChange={onChange}
-          className={
-            error && error?.[name]
-              ? 'inputerror'
-              : ''
-          }
-        />
-        <span className="input__span">{label}</span>
+      <input
+        autoComplete={autoComplete}
+        type={type ?? 'text'}
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        className={(error && error?.[name] ? 'inputerror ' : '') + 'input__wrap form-control'}
+      />
+      <span className="input__span">{label}</span>
       </label>
     </div>
     {error && error?.[name] && <p className="error">{error[name]}</p>}
@@ -522,7 +540,7 @@ const SelectContainer = ({ name, value, options, onChange, label, error }) => (
           autoComplete="nope"
           aria-autocomplete="none"
           value={value}
-          name={name}
+          name={`${name}_select`} // Append "_select" to make it unique
           options={options}
           onChange={onChange}
           components={{

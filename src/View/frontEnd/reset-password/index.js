@@ -90,7 +90,7 @@ const ResetPassword = (props) => {
                   />
                   {stateData.error && stateData.error.password && <p className="error">{stateData.error ? stateData.error.password ? stateData.error.password : "" : ""}</p>}
                 </div> */}
-                <InputGroup className="input-group__alpha ">
+                <InputGroup className="input-group__alpha btn-password">
                   <FormControl
                     type={!showPassword ? 'password' : 'text'}
                     placeholder="Password"

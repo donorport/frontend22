@@ -80,12 +80,17 @@
   @import '../../View/frontEnd/reset-password/style.scss';
   @import '../../View/frontEnd/forgot-password/style.scss';
   @import '../../View/frontEnd/about/style.scss';
+  @import '../../View/frontEnd/admin-detail/style.scss';
+  @import '../../View/frontEnd/user-detail/style.scss';
+  @import '../../View/frontEnd/apply/style.scss';
   @import '../../View/frontEnd/login/style.scss';
+  @import '../../View/frontEnd/checkout/style.scss';
   @import '../../View/frontEnd/register/style.scss';
   @import '../../View/frontEnd/Layout/Home/style.scss';
   @import '../../View/frontEnd/Component/organisms/header/style.scss';
   @import '../../View/frontEnd/Component/organisms/header-help/style.scss';
   @import '../../View/frontEnd/Component/organisms/add-post/style.scss';
+  @import '../../View/frontEnd/Component/organisms/admin-posts/style.scss';
   @import '../../View/frontEnd/Component/organisms/add-project/style.scss';
   @import '../../View/frontEnd/Component/organisms/add-crowdfunding/style.scss';
   @import '../../View/frontEnd/Component/organisms/item-detail-main/style.scss';
@@ -96,9 +101,12 @@
   @import '../../View/frontEnd/Component/organisms/history/style.scss';
   @import '../../View/frontEnd/Component/organisms/wishlist/style.scss';
   @import '../../View/frontEnd/Component/organisms/user-tabs/style.scss';
+  @import '../../View/frontEnd/Component/organisms/share-widget/style.scss';
   @import '../../View/frontEnd/Component/organisms/user-billing/style.scss';
+  @import '../../View/frontEnd/Component/organisms/user-admin/style.scss';
   @import '../../View/frontEnd/Component/organisms/shopping-cart/style.scss';
   @import '../../View/frontEnd/Component/organisms/suggested-list/style.scss';
+  @import '../../View/frontEnd/Component/organisms/summary-content/style.scss';
   @import '../../View/frontEnd/Component/organisms/user-items/style.scss';
   @import '../../View/frontEnd/Component/organisms/tax-table/style.scss';
   @import '../../View/frontEnd/Component/organisms/user-tax/style.scss';
@@ -114,6 +122,7 @@
 
   // component styles
   @import './components/button';
+  @import './components/badge';
   @import './components/forms';
   @import './components/ladder-menu';
   @import './components/list-table';

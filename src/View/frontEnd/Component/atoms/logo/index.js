@@ -10,14 +10,12 @@ const Logo = () => {
   const [theme, setTheme] = useState(document.documentElement.getAttribute('data-theme'));
 
   useEffect(() => {
+    const updateTheme = () => {
+      setTheme(document.documentElement.getAttribute('data-theme'));
+    };
+
     // Create a MutationObserver to watch for changes in the data-theme attribute
-    const observer = new MutationObserver((mutationsList) => {
-      for (const mutation of mutationsList) {
-        if (mutation.attributeName === 'data-theme') {
-          setTheme(mutation.target.getAttribute('data-theme'));
-        }
-      }
-    });
+    const observer = new MutationObserver(updateTheme);
 
     const targetNode = document.documentElement;
 

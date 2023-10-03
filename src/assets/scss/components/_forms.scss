@@ -4,12 +4,12 @@
   // margin: 12px 0;
   
   .input__span {
-    background-color: var(--bkg-color);
+    background-color: $body-bg;
     position: absolute;
     top: 16px;
     padding: 0 6px;
     left: 6px;
-    color: #868ca0;
+    color: $neutral-700;
     transition: transform 0.2s ease;
     pointer-events: none;
   }
@@ -26,9 +26,8 @@
   }
   textarea,
   input {
-    background: var(--bkg-color);
+    background-color: $input;
     border: 1px solid $border-color;
-    background: #ffffff00;
     font-weight: 600;
     appearance: none;
     width: 100%;

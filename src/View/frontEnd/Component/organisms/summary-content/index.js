@@ -48,7 +48,7 @@ const SummaryContent = (props) => {
                         imgSrc={helper.CampaignProductImagePath + item?.productDetails?.image}
                         className="avatar__checkout border"
                       />
-                      <span className="badge item__img-badge fw-bold fs-8">{item.quantity}</span>
+                      <span className="badge item__img-badge fw-bold">{item.quantity}</span>
                     </div>
 
                     <div className="d-flex flex-column ms-2 justify-content-start">

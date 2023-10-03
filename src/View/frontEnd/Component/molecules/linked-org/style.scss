@@ -77,10 +77,11 @@
   width: 36px;
   height: 36px;
   font-weight: 700;
-  color: #323347;
+  color: $neutral-700;
   line-height: normal;
-  border: 0px solid #b9c6d4;
-  border-bottom: 1px solid #b9c6d4;
+  background-color: $secondary-1;
+  border: 0px solid $border-color;
+  border-bottom: 1px solid $border-color;
   padding-top: 0;
   padding-bottom: 0;
   margin-right: 8px;

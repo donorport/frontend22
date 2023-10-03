@@ -426,10 +426,10 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               {item.itemDetails?.isFulfiled &&
                 (item.fulfilDetails[0].video || item.itemDetails?.fulfil.length > 0) && (
                   <div className="note note-info align-items-center mt-5">
-                    <Card.Header className="post__accordion-header pb-2 pt-2">
+
                       <h2 className="fs-3 fw-bolder ">Followup</h2>
-                      <div className="project__detail-subtitle mb-12p fw-bold">Media</div>
-                    </Card.Header>
+                      <div className="project__detail-subtitle fw-bold">Media</div>
+
                     <div className="d-flex flex-column gap-2">
                       {' '}
                       {item.itemDetails?.isFulfiled && item.fulfilDetails[0].video && (

@@ -4,7 +4,8 @@
     font-size: 16px;
   }
   .input__label input, .input__label textarea {
-    color: inherit !important
+    color: inherit !important;
+    background-color: $neutral-100;
   }
   .select__control {
     border-color: $border-color !important;

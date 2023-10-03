@@ -11,9 +11,9 @@ import categoryApi from '../../Api/admin/category';
 //import Page from '../../components/Page';
 //import social from '../../assets/images/emoji.svg';
 
-const STYLES_input = {
-  backgroundColor: '#f8fafd'
-};
+// const STYLES_input = {
+//   backgroundColor: '#f8fafd'
+// };
 
 const APPLY_rules = {
   name: 'required',
@@ -195,7 +195,7 @@ export default function ApplyOrganizationController() {
         // value={val}
         // onChange={(e) => setCode(e, props.index)}
         onKeyUp={(e) => props.autoTab(e, props.index)}
-        style={STYLES_input}
+        // style={STYLES_input}
       />
     );
   };

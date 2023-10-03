@@ -194,7 +194,7 @@ const OrderConfirmPage = () => {
                                     />
                                   </div>
                                   <div className="checkout__qtytag d-flex align-items-center justify-content-center fw-bold">
-                                    <div className="badge item__img-badge fw-bold fs-8">
+                                    <div className="badge item__img-badge fw-bold">
                                       {itm.quantity}
                                     </div>
                                   </div>

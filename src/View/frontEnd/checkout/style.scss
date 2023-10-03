@@ -44,6 +44,7 @@
     }
 
     .summary__section {
+      background-color: $secondary-5;
       padding-top: 5%;
       padding-left: 4%;
       @include media-breakpoint-up(lg) {
@@ -53,7 +54,7 @@
       position: relative;
       &:before {
         content: '';
-        background-color: $secondary-3;
+        background-color: $secondary-5;
         position: absolute;
         left: 0;
         top: 0;
@@ -146,7 +147,7 @@
   }
 
   .form-control::placeholder {
-    color: var(--border-input);
+    color: $neutral-600
   }
 
   .form-check-input {

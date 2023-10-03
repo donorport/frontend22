@@ -58,7 +58,7 @@ const Register = (props) => {
           <div className="login-form-wrapper">
             <div className="login__logo">
               <Logo />
-              <Toggle/>
+              <Toggle />
             </div>
 
             <form className="login__form">
@@ -71,12 +71,12 @@ const Register = (props) => {
                 </Link>
                 &nbsp;to create your account.
               </div>
-              <div className="mb-3"></div>
 
-              <div className="mb-3">
-                {stateData.error && stateData.error.country && (
-                  <p className="error">{stateData.error.country}</p>
-                )}
+              {stateData.error && stateData.error.country && (
+                <p className="error">{stateData.error.country}</p>
+              )}
+              <div className="d-flex flex-column gap-3 mt-3">
+                {' '}
                 <input
                   type="text"
                   className="input__wrap form-control"
@@ -91,8 +91,6 @@ const Register = (props) => {
                     {stateData.error ? (stateData.error.name ? stateData.error.name : '') : ''}
                   </p>
                 )}
-              </div>
-              <div className="mb-3">
                 <input
                   type="email"
                   className="input__wrap form-control"
@@ -107,62 +105,63 @@ const Register = (props) => {
                     {stateData.error ? (stateData.error.email ? stateData.error.email : '') : ''}
                   </p>
                 )}
-              </div>
-
-              <InputGroup className="input-group__alpha ">
-                <FormControl
-                  type={!showPassword ? 'password' : 'text'}
-                  placeholder="Password"
-                  className=" pl-12p"
-                  name="password"
-                  onChange={(e) => props.changevalue(e)}
-                  id="inputPassword"
-                />
-
-                <Button variant="link" onClick={() => togglePassword(!showPassword)}>
-                  <FontAwesomeIcon
-                    icon={solid('eye')}
-                    className={`${showPassword ? 'text-primary' : 'text-light'}`}
+                <InputGroup className="input-group__alpha btn-password">
+                  <FormControl
+                    type={!showPassword ? 'password' : 'text'}
+                    placeholder="Password"
+                    className=" pl-12p"
+                    name="password"
+                    onChange={(e) => props.changevalue(e)}
+                    id="inputPassword"
                   />
-                </Button>
-              </InputGroup>
-              {stateData.error && stateData.error.password && (
-                <p className="error">
-                  {stateData.error
-                    ? stateData.error.password
+
+                  <Button variant="link" onClick={() => togglePassword(!showPassword)}>
+                    <FontAwesomeIcon
+                      icon={solid('eye')}
+                      className={`${showPassword ? 'text-primary' : 'text-light'}`}
+                    />
+                  </Button>
+                </InputGroup>
+                {stateData.error && stateData.error.password && (
+                  <p className="error">
+                    {stateData.error
                       ? stateData.error.password
-                      : ''
-                    : ''}
-                </p>
-              )}
-
-              <InputGroup className="input-group__alpha mt-3 ">
-                <FormControl
-                  // type={!showPassword ? "password" : "text"}
-                  type={!props.showCPassword ? 'password' : 'text'}
-                  placeholder="Confirm Password"
-                  className=" pl-12p"
-                  name="cpassword"
-                  onChange={(e) => props.changevalue(e)}
-                  id="inputPassword"
-                />
-
-                <Button variant="link" onClick={() => props.setShowCPassword(!props.showCPassword)}>
-                  <FontAwesomeIcon
-                    icon={solid('eye')}
-                    className={`${props.showCPassword ? 'text-primary' : 'text-light'}`}
+                        ? stateData.error.password
+                        : ''
+                      : ''}
+                  </p>
+                )}
+                <InputGroup className="input-group__alpha btn-password">
+                  <FormControl
+                    // type={!showPassword ? "password" : "text"}
+                    type={!props.showCPassword ? 'password' : 'text'}
+                    placeholder="Confirm Password"
+                    className=" pl-12p"
+                    name="cpassword"
+                    onChange={(e) => props.changevalue(e)}
+                    id="inputPassword"
                   />
-                </Button>
-              </InputGroup>
-              {stateData.error && stateData.error.cpassword && (
-                <p className="error">
-                  {stateData.error
-                    ? stateData.error.cpassword
+
+                  <Button
+                    variant="link"
+                    onClick={() => props.setShowCPassword(!props.showCPassword)}
+                  >
+                    <FontAwesomeIcon
+                      icon={solid('eye')}
+                      className={`${props.showCPassword ? 'text-primary' : 'text-light'}`}
+                    />
+                  </Button>
+                </InputGroup>
+                {stateData.error && stateData.error.cpassword && (
+                  <p className="error">
+                    {stateData.error
                       ? stateData.error.cpassword
-                      : ''
-                    : ''}
-                </p>
-              )}
+                        ? stateData.error.cpassword
+                        : ''
+                      : ''}
+                  </p>
+                )}
+              </div>
 
               {/* <div className="form-check-wrap mt-3 mb-5">
                   <div className="form-check d-flex align-items-center">

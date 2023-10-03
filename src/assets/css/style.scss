@@ -62,9 +62,9 @@
   background: $error-bg;
   font-weight: 400;
 }
-.input__wrap {
-  margin: 1.6rem 0px 0.6rem;
-}
+// .input__wrap {
+//   margin: 1.6rem 0px 0.6rem;
+// }
 .inputerror {
   border-color: #dc3545 !important;
 }
@@ -910,6 +910,7 @@ a.MuiListItemButton-root.active:focus {
 
 .input__span,
 .input__label textarea:focus + .input__span {
+  color: $neutral-700;
   transform: translatey(-23px) !important;
   outline: none;
 }
