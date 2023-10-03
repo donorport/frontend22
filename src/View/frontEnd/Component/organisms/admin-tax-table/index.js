@@ -79,9 +79,9 @@ const AdminTaxTable = (props) => {
       '& .MuiPaginationItem-root:hover': {
         background: '#f2f6fc !important'
       },
-      '& .Mui-selected': {
-        background: '#f2f6fc !important'
-      }
+      // '& .Mui-selected': {
+      //   background: '#f2f6fc !important'
+      // }
     }
   }));
   const classes = useStyles();

@@ -154,14 +154,6 @@ const Cart = (props) => {
                         className="d-flex align-items-center justify-content-center"
                         to={'/organization/' + item?.productDetails?.organizationDetails.slug}
                       >
-                        {/*  <ListItemImg
-                          size={52}
-                          className="list__item-img ms-0 ms-sm-2 no-bg me-sm-5 me-0"
-                          imgSrc={
-                            helper.CampaignAdminLogoPath +
-                            item.productDetails?.organizationDetails?.logo
-                          }
-                        />*/}
                       </Link>
 
                       <span className="cart_controller d-flex align-items-center fw-bold text-subtext flex-grow-1 flex-sm-grow-0">

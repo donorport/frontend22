@@ -17,6 +17,7 @@ import {
   setLogout
 } from '../../../../../user/user.action';
 import noImg from '../../../../../assets/images/noimg1.png';
+import receipt from '../../../../../assets/images/receipt.svg';
 import cartApi from '../../../../../Api/frontEnd/cart';
 import { confirmAlert } from 'react-confirm-alert';
 import './style.scss';
@@ -540,7 +541,8 @@ const UserProfile = () => {
         <div className="ml-3 mb-5">
           <div className="d-flex gap-2">
             <label className="filelabel col-sm-3">
-              <i className="fa fa-paperclip "></i>
+              {/* <i className="fa fa-paperclip "></i> */}
+              <img src={receipt}></img>
               <span className="title">Logo</span>
               <input
                 className="FileUpload1"

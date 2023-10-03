@@ -16,6 +16,7 @@ import ToggleSwitch from '../../atoms/toggle-switch';
 import { WithContext as ReactTags } from 'react-tag-input';
 import noimg from '../../../../../assets/images/noimg1.png';
 import helper, { priceFormat } from '../../../../../Common/Helper';
+import receipt from '../../../../../assets/images/receipt.svg';
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
 import { useSelector } from 'react-redux';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
@@ -621,7 +622,8 @@ const AddPost = (props) => {
                       </label>
                       <div className="d-flex gap-2">
                         <div className="d-flex align-items-center">
-                          <FontAwesomeIcon className="fs-3 text-info" icon={solid('paperclip')} />
+                          {/* <FontAwesomeIcon className="fs-3 text-info" icon={solid('paperclip')} /> */}
+                          <img src={receipt}></img>
                           <div className="d-flex py-12p px-18p">
                             <ToggleSwitch
                               id="tax"
@@ -656,10 +658,11 @@ const AddPost = (props) => {
                         </span>
                       </div>
                       <div className="d-flex note note--info mb-1 fs-6">
-                        <FontAwesomeIcon
+                        {/* <FontAwesomeIcon
                           className="me-2 fs-3 text-info"
                           icon={solid('paperclip')}
-                        />
+                        /> */}
+                        <img src={receipt}></img>
                         Toggle this if you intend on providing a tax receipt for donations made
                         toward this post.
                       </div>

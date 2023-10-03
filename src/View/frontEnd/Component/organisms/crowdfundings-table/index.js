@@ -59,15 +59,15 @@ const CrowdfundingsTable = (props) => {
 
   const useStyles = makeStyles(() => ({
     ul: {
-      '& .MuiPaginationItem-root': {
-        color: '#6f6f91 !important'
-      },
-      '& .MuiPaginationItem-root:hover': {
-        background: '#f2f6fc !important'
-      },
-      '& .Mui-selected': {
-        background: '#f2f6fc !important'
-      }
+      // '& .MuiPaginationItem-root': {
+      //   color: '#6f6f91 !important'
+      // },
+      // '& .MuiPaginationItem-root:hover': {
+      //   background: '#f2f6fc !important'
+      // },
+      // '& .Mui-selected': {
+      //   background: '#f2f6fc !important'
+      // }
     }
   }));
   const classes = useStyles();

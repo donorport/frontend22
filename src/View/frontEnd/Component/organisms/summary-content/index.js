@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 // import { ListItemImg } from "@components/atoms";
 import ListItemImg from '../../atoms/list-item-img';
 import helper, { priceFormat } from '../../../../../Common/Helper';
+import receipt from '../../../../../assets/images/receipt.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Link } from 'react-router-dom';
@@ -75,8 +76,9 @@ const SummaryContent = (props) => {
                     </div>
                   </div>
                   {item.productDetails?.tax && (
-                    <div className="checkout__tax p-1 d-flex align-items-center justify-content-center">
-                      <FontAwesomeIcon icon={solid('paperclip')} className="text-info fs-4" />
+                    <div className="checkout__tax d-flex align-items-center justify-content-center">
+                      {/* <FontAwesomeIcon icon={solid('paperclip')} className="text-info fs-4" /> */}
+                      <img className="" src={receipt}></img>
                     </div>
                   )}
                   <span className="checkout__subtotal--price text-end mt-6p fs-5 fw-bold text-light ms-3 fs-sm-4 fs-4">
@@ -137,7 +139,8 @@ const SummaryContent = (props) => {
       </div>
       {cartItem.findIndex((p) => p?.productDetails?.tax) !== -1 ? (
         <div className="checkout__legend d-flex my-3 fs-7 p-2">
-          <FontAwesomeIcon icon={solid('paperclip')} className="fs-4 text-info me-1" />
+          {/* <FontAwesomeIcon icon={solid('paperclip')} className="fs-4 text-info me-1" /> */}
+          <img className="me-1" src={receipt}></img>
           <span style={{ lineHeight: '2' }}>
             You'll receive a tax deductabile receipt for this donation.
           </span>

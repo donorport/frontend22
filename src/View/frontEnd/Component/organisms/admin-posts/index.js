@@ -1748,7 +1748,7 @@ const AdminPosts = () => {
                   </p>
                   <Link
                     variant="link"
-                    className="text-light p-0 fw-normal fs-4"
+                    className="text-light p-0 fw-normal fs-5"
                     to={'/campaign/' + data.slug + '/settings/profile'}
                   >
                     <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" />
@@ -1770,7 +1770,7 @@ const AdminPosts = () => {
                   <p className="mt-3 fs-5">Link your bank and set your sales tax rate.</p>
                   <Link
                     variant="link"
-                    className="text-light p-0 fw-normal fs-4"
+                    className="text-light p-0 fw-normal fs-5"
                     to={'/campaign/' + data.slug + '/settings/payments'}
                   >
                     <FontAwesomeIcon icon={regular('circle-plus')} className="me-1" />

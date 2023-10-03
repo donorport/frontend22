@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import moment from 'moment';
 import helper, { priceFormat } from '../../../../../Common/Helper';
+import receipt from '../../../../../assets/images/receipt.svg';
 
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
@@ -27,15 +28,15 @@ const ItemsTable = ({
   // console.log(orderItemList)
   const useStyles = makeStyles(() => ({
     ul: {
-      '& .MuiPaginationItem-root': {
-        color: '#6f6f91 !important'
-      },
-      '& .MuiPaginationItem-root:hover': {
-        background: '#f2f6fc !important'
-      },
-      '& .Mui-selected': {
-        background: '#f2f6fc !important'
-      }
+      // '& .MuiPaginationItem-root': {
+      //   color: '#6f6f91 !important'
+      // },
+      // '& .MuiPaginationItem-root:hover': {
+      //   background: '#f2f6fc !important'
+      // },
+      // '& .Mui-selected': {
+      //   background: '#f2f6fc !important'
+      // }
     }
   }));
   const classes = useStyles();
@@ -156,9 +157,9 @@ const ItemsTable = ({
                         </div>
                         <Button
                           variant="link"
-                          className="category__link ms-auto ms-sm-0 p-0 text-decoration-none"
+                          className="ms-auto ms-sm-0 p-0 text-decoration-none"
                         >
-                          <div className="category__img-wrap d-flex align-items-center justify-content-center">
+                          <div className="d-flex align-items-center justify-content-center">
                             <img
                               className="img-fluid"
                               src={
@@ -166,6 +167,7 @@ const ItemsTable = ({
                                 item.itemDetails?.organizationDetails?.logo
                               }
                               alt=""
+                              style={{maxHeight: '32px', maxWidth: '56px'}}
                             />
                           </div>
                         </Button>
@@ -173,7 +175,8 @@ const ItemsTable = ({
                       <div className="d-none d-sm-flex billing__buttons d-flex align-items-center gap-1">
                         {item.itemDetails?.tax && (
                           <span className="category__link p-1 text-decoration-none">
-                            <FontAwesomeIcon icon={solid('paperclip')} className="fs-3 text-info" />
+                            {/* <FontAwesomeIcon icon={solid('paperclip')} className="fs-3 text-info" /> */}
+                            <img src={receipt}></img>
                           </span>
                         )}
                         {item.fulfilDetails.length > 0 && item.fulfilDetails[0]?.receipt && (

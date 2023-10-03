@@ -106,7 +106,7 @@
     font-size: 21px;
     font-weight: 900;
     line-height: 1.1;
-    margin-bottom: 0
+    margin-bottom: 0;
   }
 
   // .product__price
@@ -131,7 +131,6 @@
   }
   // .product__category
   &__category {
-
     // .product__category-icon
     &-icon {
       background-color: #22908f;
@@ -153,7 +152,7 @@
   // .product__location
   &__location {
     font-weight: 600;
-    
+
     white-space: nowrap;
     bottom: 0px;
     right: 0;
@@ -173,8 +172,9 @@
   }
 
   // .product__type-tax
-  &__type-tax {
+  &__type-tax img {
     color: #3a94d4;
+    height: 21px;
   }
 
   .btn__sold {

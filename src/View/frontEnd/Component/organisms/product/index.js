@@ -16,6 +16,7 @@ import { regular, solid, light } from '@fortawesome/fontawesome-svg-core/import.
 import { Icon } from '@iconify/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setIsUpdateCart } from '../../../../../user/user.action';
+import receipt from '../../../../../assets/images/receipt.svg';
 import profile from '../../../../../assets/images/avatar.png';
 
 import './style.scss';
@@ -286,7 +287,8 @@ const Product = (props) => {
           )}
           {props.tax && (
             <span className="product__type product__type-tax icon icon__solid-900">
-              <FontAwesomeIcon icon={solid('paperclip')} />
+              {/* <FontAwesomeIcon icon={solid('paperclip')} /> */}
+              <img className="" src={receipt}></img>
             </span>
           )}
           {props.media && (

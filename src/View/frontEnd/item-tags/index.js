@@ -4,7 +4,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import ListItemImg from '../Component/atoms/list-item-img';
 import DefaultLayout from '../Component/templates/default-layout';
 import Page from '../../../components/Page';
-
+import receipt from '../../../assets/images/receipt.svg';
 import './style.scss';
 
 const ItemTags = () => {
@@ -27,19 +27,22 @@ const ItemTags = () => {
 
               <ul className="list-unstyled mb-0 mb-sm-5">
                 <li className="d-flex align-items-center py-3">
-                  <ListItemImg
+                  <div className="trust__image list__item-img flex-shrink-0">
+                    <img style={{ height: '32px' }} src={receipt}></img>
+                  </div>
+                  {/* <ListItemImg
                     size={84}
                     className="flex-shrink-0"
                     icon={
                       <FontAwesomeIcon icon={solid('paperclip')} className="fs-2 text-info p-3" />
                     }
-                  />
+                  /> */}
                   <div className="ms-3">
                     <h3 className="fs-4 mb-0 fw-bolder ">Tax Receipt Eligible</h3>
                     <div className="text-light fs-5 lh-1.5">
-                      Items marked with the calculator symbol are eligible to receive a tax receipt.
-                      If you are interested in tax deductible giving, look for the items marked with
-                      the calculator icon.
+                      Items marked with this symbol are eligible to receive a tax receipt. If you
+                      are interested in tax deductible giving, look for the items marked with the
+                      calculator icon.
                     </div>
                   </div>
                 </li>
@@ -47,7 +50,7 @@ const ItemTags = () => {
                 <li className="d-flex align-items-center py-3">
                   <ListItemImg
                     size={84}
-                    className="flex-shrink-0"
+                    className="trust__image flex-shrink-0"
                     icon={
                       <FontAwesomeIcon
                         icon={solid('tag')}
@@ -68,7 +71,7 @@ const ItemTags = () => {
                 <li className="d-flex align-items-center py-3">
                   <ListItemImg
                     size={84}
-                    className="flex-shrink-0"
+                    className="trust__image flex-shrink-0"
                     icon={
                       <FontAwesomeIcon icon={solid('camera')} className="fs-2 text-primary p-3" />
                     }
@@ -85,7 +88,7 @@ const ItemTags = () => {
                 <li className="d-flex align-items-center py-3">
                   <ListItemImg
                     size={84}
-                    className="flex-shrink-0"
+                    className="trust__image flex-shrink-0"
                     icon={
                       <FontAwesomeIcon icon={solid('bolt')} className="fs-2 text-primary p-3" />
                     }
@@ -102,7 +105,7 @@ const ItemTags = () => {
                 <li className="d-flex align-items-center py-3">
                   <ListItemImg
                     size={84}
-                    className="flex-shrink-0"
+                    className="trust__image flex-shrink-0"
                     icon={
                       <FontAwesomeIcon
                         icon={solid('infinity')}

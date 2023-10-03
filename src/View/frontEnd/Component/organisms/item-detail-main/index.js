@@ -21,11 +21,14 @@ import { GalleryImg } from '../../atoms';
 import advertisementApi from '../../../../../Api/admin/advertisement';
 import locationApi from '../../../../../Api/frontEnd/location';
 import { setAllAds } from '../../../../../user/user.action';
+import receipt from '../../../../../assets/images/receipt.svg';
 
 function ProjectDetailMain(props) {
   let productDetails = props.productDetails;
 
-  let videoid = productDetails.galleryUrl ? productDetails.galleryUrl.split('?v=')[1].split('&')[0] : '';
+  let videoid = productDetails.galleryUrl
+    ? productDetails.galleryUrl.split('?v=')[1].split('&')[0]
+    : '';
   let videoid2 = productDetails?.fulfiledproductsDetails?.video
     ? productDetails?.fulfiledproductsDetails?.video.split('?v=')[1].split('&')[0]
     : '';
@@ -433,12 +436,12 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
     )}
 
     {productDetails.tax && (
-      <IconText
-        className="pt-12p pb-12p"
-        icon={<FontAwesomeIcon icon={solid('paperclip')} className="fs-3 text-info" />}
-      >
-        These items are tax deductible.
-      </IconText>
+      <div className="d-flex align-items-center pt-12p pb-12p">
+        <div className="list__item-img list__item-img__tax me-1 p-1 border-0">
+          <img src={receipt}></img>{' '}
+        </div>
+        <div>These items are tax deductible.</div>
+      </div>
     )}
     {productDetails.media && (
       <IconText
@@ -492,9 +495,8 @@ const FullyFundedSection = () => (
 const FollowupMediaSection = ({ productDetails, embedlink2 }) => (
   <>
     <div className="note note-info align-items-center mt-5">
-
-        <h2 className="fs-3 fw-bolder ">Followup</h2>
-        <div className="project__detail-subtitle fw-bold">Media</div>
+      <h2 className="fs-3 fw-bolder ">Followup</h2>
+      <div className="project__detail-subtitle fw-bold">Media</div>
 
       <div className="d-flex flex-column gap-2">
         {productDetails.fulfiledproductsDetails?.video && (

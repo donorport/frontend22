@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import ListItemImg from '../../atoms/list-item-img';
+import receipt from '../../../../../assets/images/receipt.svg';
 import ShareWidget from '../share-widget';
 import ItemsTable from '../items-table';
 import { useOutletContext } from 'react-router-dom';
@@ -298,7 +299,8 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
                   className="product__type product__type-tax icon icon__solid-900"
                   style={{ fontSize: 'x-large' }}
                 >
-                  <FontAwesomeIcon icon={solid('paperclip')} />
+                  {/* <FontAwesomeIcon icon={solid('paperclip')} /> */}
+                  <img src={receipt}></img>
                 </span>
               )}
               {item.itemDetails?.postTag && (

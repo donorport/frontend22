@@ -64,15 +64,15 @@ const TaxTable = (props) => {
 
   const useStyles = makeStyles(() => ({
     ul: {
-      '& .MuiPaginationItem-root': {
-        color: '#6f6f91 !important'
-      },
-      '& .MuiPaginationItem-root:hover': {
-        background: '#f2f6fc !important'
-      },
-      '& .Mui-selected': {
-        background: '#f2f6fc !important'
-      }
+      // '& .MuiPaginationItem-root': {
+      //   color: '#6f6f91 !important'
+      // },
+      // '& .MuiPaginationItem-root:hover': {
+      //   background: '#f2f6fc !important'
+      // },
+      // '& .Mui-selected': {
+      //   background: '#f2f6fc !important'
+      // }
     }
   }));
   const classes = useStyles();
@@ -146,7 +146,7 @@ const TaxTable = (props) => {
                                   {item[0].organizationDetails?.name}
                                 </div>
                                 {item.length === 1 && (
-                                  <div className="fs-7 text-light mb-6p">
+                                  <div className="fs-5 text-light mb-6p">
                                     #{item[0].uniqueTransactionId}
                                   </div>
                                 )}
@@ -224,12 +224,12 @@ const TaxTable = (props) => {
                                   </div>
                                   <div>
                                     <div>
-                                      <Button variant="link" className=" px-0 py-3p">
+                                      <span className="fw-bold px-0 py-3p">
                                         {/* {item[0].orderItemDetails?.productName} */}
                                         {item[0].type === 'Purchased'
                                           ? item[0].orderItemDetails?.productName
                                           : 'Donation'}
-                                      </Button>
+                                      </span>
                                     </div>
                                     <div className="text-light text-start fs-7">
                                       {/* <FontAwesomeIcon
@@ -281,7 +281,7 @@ const TaxTable = (props) => {
                                     href={helper.recieptPath + item[0].receipt}
                                     download
                                     variant="info"
-                                    className="text-white fs-7 rounded-pill flex-grow-1 btn btn-info"
+                                    className="text-white fs-6 rounded-pill flex-grow-1 btn btn-info"
                                   >
                                     Download
                                   </a>
@@ -359,10 +359,10 @@ const TaxTable = (props) => {
 
                                       <div>
                                         <div>
-                                          <Button variant="link" className=" px-0 py-3p">
+                                          <span className="fw-bold px-0 py-3p">
                                             {/* {i1.orderItemDetails?.productName} */}
                                             {Name}
-                                          </Button>
+                                          </span>
                                         </div>
 
                                         <div className="text-light fs-7">
@@ -390,7 +390,7 @@ const TaxTable = (props) => {
                                     </div> */}
                                     </div>
                                     <div className="pe-1 p-sm-2 mr-12p">
-                                      <div className="fs-7 text-light mb-6p">
+                                      <div className="fs-5 text-light mb-6p">
                                         #{i1.uniqueTransactionId}
                                       </div>
                                     </div>
@@ -451,7 +451,7 @@ const TaxTable = (props) => {
               <div className="d-flex align-items-center">
                 <Button
                   variant="info"
-                  className="text-white fs-7 rounded-pill flex-grow-1"
+                  className="text-white fs-6 rounded-pill flex-grow-1"
                 >
                   Download
                 </Button>
