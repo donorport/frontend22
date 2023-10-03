@@ -138,10 +138,10 @@ const SummaryContent = (props) => {
         </span>
       </div>
       {cartItem.findIndex((p) => p?.productDetails?.tax) !== -1 ? (
-        <div className="checkout__legend d-flex my-3 fs-7 p-2">
+        <div className="checkout__legend d-flex align-items-center my-3 fs-6 p-2">
           {/* <FontAwesomeIcon icon={solid('paperclip')} className="fs-4 text-info me-1" /> */}
-          <img className="me-1" src={receipt}></img>
-          <span style={{ lineHeight: '2' }}>
+          <img className="me-2" src={receipt}></img>
+          <span>
             You'll receive a tax deductabile receipt for this donation.
           </span>
         </div>

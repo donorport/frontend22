@@ -17,7 +17,7 @@
     width: 105px;
 
     .input-group-text {
-      background: #f8fafd;
+      background: $secondary-5;
       padding: 0 12px;
       border-right: 1px solid $border-color;
       margin-right: 1px;
@@ -27,9 +27,12 @@
       border-left: 0;
       padding-left: 0;
     }
-    .form-control::placeholder,
+    .form-control::placeholder {
+      background-color: $secondary-1;
+    }
     .donate-value-symbol {
       font-size: 16px;
+      color: $neutral-700;
       background-color: $secondary-5;
       border-color: $border-color !important;
     }

@@ -3,10 +3,16 @@
   border-radius: 4px;
   height: 42px;
   min-width: 42px;
+  img {
+    height: 26px;
+  }
 }
 .checkout__legend {
   background: $secondary-1;
   border-radius: 4px;
+  img {
+    height: 19px;
+  }
 }
 .checkout__subtotal--price {
   width: 85px;

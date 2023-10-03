@@ -23,6 +23,7 @@ import visa from '../../../assets/images/visa.svg';
 import amex from '../../../assets/images/amex.svg';
 import discover from '../../../assets/images/discover.svg';
 import stripe from '../../../assets/images/stripe-badge.svg';
+import Toggle from '../Component/organisms/toggle';
 
 const Checkout = (props) => {
   const user = useSelector((state) => state.user);
@@ -47,10 +48,10 @@ const Checkout = (props) => {
   //const [show, setShow] = useState(false);
 
   //const showInput = () => {
-    //setShow(true);
+  //setShow(true);
   //};
   //const hideInput = () => {
-    //setShow(fa,lse);
+  //setShow(fa,lse);
   //};
 
   //const [value, setValue] = useState('');
@@ -60,21 +61,22 @@ const Checkout = (props) => {
   //const handleChange = (event) => setValue(addCommas(removeNonNumeric(event.target.value)));
   // console.log(summaryElementRef.current?.clientHeight);
   //const marks = [
-    //{ value: 0, label: '0%' },
-    //{ value: 5, label: '' },
-    //{ value: 10, label: '' },
-    //{ value: 15, label: '' },
-    //{ value: 20, label: '' },
-    //{ value: 25, label: '' },
-    //{ value: 30, label: '30%' }
+  //{ value: 0, label: '0%' },
+  //{ value: 5, label: '' },
+  //{ value: 10, label: '' },
+  //{ value: 15, label: '' },
+  //{ value: 20, label: '' },
+  //{ value: 25, label: '' },
+  //{ value: 30, label: '30%' }
   //];
 
   return (
     <div className="checkout__page">
       {isTab ? (
         <>
-          <div className="logo__wrap d-flex pb-lg-3 p-20p border-bottom">
+          <div className="logo__wrap d-flex gap-2 pb-lg-3 p-20p border-bottom">
             <Logo />
+            <Toggle />
           </div>
           <div
             className="order-summary d-flex d-lg-none p-20p border-bottom"
@@ -124,8 +126,9 @@ const Checkout = (props) => {
       <Container fluid className="d-flex flex-column flex-lg-row mw-1280">
         <div className="checkout__section py-lg-5">
           <header className="pt-sm-5">
-            <div className="logo__wrap pb-sm-3 d-none d-lg-block">
+            <div className="logo__wrap pb-sm-3 d-none d-lg-flex gap-2">
               <Logo />
+              <Toggle />
             </div>
             <div className="cart__steps fs-7 pt-3 pt-sm-0">
               <Link
@@ -140,23 +143,20 @@ const Checkout = (props) => {
                 Checkout
                 <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
               </span>
-              <Button
-                variant="link"
-                className="p-0 me-1 fw-normal fs-7 text-decoration-none "
-              >
+              <Button variant="link" className="p-0 me-1 fw-normal fs-7 text-decoration-none ">
                 Order
                 <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
               </Button>
             </div>
           </header>
           <div className="d-flex align-items-center pt-5 mt-1 mb-3">
-            <Button variant="" className="d-flex align-items-center p-1 rounded-pill pe-2">
+            <div className="d-flex align-items-center p-1 pe-2">
               <Avatar size={36} avatarUrl={user.profileImage} border={0} shadow={false} />
-              <span className="ml-12p fs-7 fw-semibold">
+              <span className="ml-12p fs-6 fw-semibold">
                 {userAuthToken ? userData.name : 'USER'}
               </span>
               {/*<span className="ml-12p fs-7 fw-normal pe-1">signout</span>*/}
-            </Button>
+            </div>
             <Link
               variant="link"
               size="lg"
@@ -513,67 +513,67 @@ const Checkout = (props) => {
   );
 };
 //const StyledInput = styled.div`
-  //& .MuiOutlinedInput-input,
-  //& .MuiInputBase-input,
-  //& .MuiInputAdornment-root > p {
-    //font-weight: 700;
-    //font-size: 21px;
-    //font-family: 'Jcfonts linotte', sans-serif;
-    //color: #9896b1;
-  //}
+//& .MuiOutlinedInput-input,
+//& .MuiInputBase-input,
+//& .MuiInputAdornment-root > p {
+//font-weight: 700;
+//font-size: 21px;
+//font-family: 'Jcfonts linotte', sans-serif;
+//color: #9896b1;
+//}
 //`;
 //const StyledSlider = styled.div`
-  //& .tip__label {
-    //font-family: 'Jcfonts linotte', sans-serif;
-  //}
-  //& .tip__slider {
-    //& .MuiSlider-rail {
-      //height: 9px;
-      //background-color: #3898ec;
-      //border-radius: 19px;
-    //}
-    //& .MuiSlider-mark {
-      //width: 4px;
-      //height: 9px;
-      //background-color: $neutral-100;
-    //}
-    //& .MuiSlider-markLabel {
-      //font-family: 'Jcfonts linotte';
-      //font-weight: 600;
-      //top: 9px;
-      //transform: translateX(50%);
-    //}
-    //& .MuiSlider-markLabel[data-index='0'] {
-      //transform: translateX(-150%);
-      //color: rgba(0, 0, 0, 0.54) !important;
-    //}
-    //& .MuiSlider-mark[data-index='6'] {
-      //display: none;
-    //}
-    //& .MuiSlider-markActive {
-      //display: none;
-      //color: rgba(0, 0, 0, 0.54) !important;
-    //}
-    //& .MuiSlider-track {
-      //height: 9px;
-      //display: block;
-      //position: absolute;
-      //background-color: #3898ec;
-      //border-radius: 19px;
-    //}
-    //& .MuiSlider-valueLabel {
-      //color: #ffffff00 !important;
-    //}
-    //& .MuiSlider-thumb {
-      //height: 29px;
-      //width: 29px;
-      //background-color: #3898ec;
-      //border: 4px solid #bedaf8;
-      //margin-top: -10px;
-    //}
-    //&.PrivateValueLabel-circle {
-      //background-color: unset !important;
-    //}
-  //}
+//& .tip__label {
+//font-family: 'Jcfonts linotte', sans-serif;
+//}
+//& .tip__slider {
+//& .MuiSlider-rail {
+//height: 9px;
+//background-color: #3898ec;
+//border-radius: 19px;
+//}
+//& .MuiSlider-mark {
+//width: 4px;
+//height: 9px;
+//background-color: $neutral-100;
+//}
+//& .MuiSlider-markLabel {
+//font-family: 'Jcfonts linotte';
+//font-weight: 600;
+//top: 9px;
+//transform: translateX(50%);
+//}
+//& .MuiSlider-markLabel[data-index='0'] {
+//transform: translateX(-150%);
+//color: rgba(0, 0, 0, 0.54) !important;
+//}
+//& .MuiSlider-mark[data-index='6'] {
+//display: none;
+//}
+//& .MuiSlider-markActive {
+//display: none;
+//color: rgba(0, 0, 0, 0.54) !important;
+//}
+//& .MuiSlider-track {
+//height: 9px;
+//display: block;
+//position: absolute;
+//background-color: #3898ec;
+//border-radius: 19px;
+//}
+//& .MuiSlider-valueLabel {
+//color: #ffffff00 !important;
+//}
+//& .MuiSlider-thumb {
+//height: 29px;
+//width: 29px;
+//background-color: #3898ec;
+//border: 4px solid #bedaf8;
+//margin-top: -10px;
+//}
+//&.PrivateValueLabel-circle {
+//background-color: unset !important;
+//}
+//}
 //`;
 export default Checkout;
