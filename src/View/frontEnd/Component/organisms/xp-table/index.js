@@ -37,7 +37,7 @@ const XpTable = (props) => {
               </span>
             </div>
             <div className="d-flex align-items-center">
-              <span className="text-light fw-bold fs-5 d-none d-sm-flex">
+              <span className="price fw-bold fs-5 d-none d-sm-flex">
                 {data.currencySymbol}
                 {data.amount.toFixed(2)}
               </span>
@@ -65,7 +65,7 @@ const XpTable = (props) => {
               </span>
             </div>
             <div className="d-flex align-items-center">
-              <span className="text-light fw-bold fs-5 d-none d-sm-flex">
+              <span className="price fw-bold fs-5 d-none d-sm-flex">
                 {data.currencySymbol}
                 {price.toFixed(2)}
               </span>

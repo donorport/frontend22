@@ -102,7 +102,7 @@ const SummaryContent = (props) => {
         <div className=" py-3 border-bottom">
           <div className="d-flex align-items-center pb-20p">
             <span className="fw-bolder flex__1">Subtotal:</span>
-            <span className="fw-bold text-light fs-5">
+            <span className="price fw-bold fs-5">
               {props.currencySymbol + priceFormat(subtotal)}
             </span>
           </div>
@@ -110,7 +110,7 @@ const SummaryContent = (props) => {
             <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
               Service Charge:
             </Link>
-            <span className="fw-bold text-light fs-5">
+            <span className="price fw-bold fs-5">
               {props.currencySymbol + priceFormat(platformCost)}
             </span>
           </div>

@@ -277,23 +277,23 @@ const Product = (props) => {
         <div className="product__meta d-flex align-items-center ms-auto">
           {(props.projectDetails?.length > 0 || props.projectProducts.length > 0) && (
             <span className="product__type icon icon__solid-900 text-success">
-              <FontAwesomeIcon icon={solid('bolt')} style={{ color: '#5f5df8' }} />
+              <FontAwesomeIcon icon={solid('bolt')} className="text-secondary"/>
             </span>
           )}
           {props.postTag && (
-            <span className="product__type product__type-tab icon icon__solid-900">
-              <FontAwesomeIcon icon={solid('tag')} color="#947ada" />
+            <span className="d-flex align-items-center product__type product__type-tab">
+              <FontAwesomeIcon icon={solid('clock-rotate-left')} color="#947ada" />
             </span>
           )}
           {props.tax && (
-            <span className="product__type product__type-tax icon icon__solid-900">
+            <span className="d-flex align-items-center product__type product__tax">
               {/* <FontAwesomeIcon icon={solid('paperclip')} /> */}
               <img className="" src={receipt}></img>
             </span>
           )}
           {props.media && (
-            <span className="product__type product__type-media icon icon__solid-900">
-              <FontAwesomeIcon className="text-primary" icon={solid('camera')} />
+            <span className="d-flex align-items-center product__type product__type-media">
+              <FontAwesomeIcon className="text-primary" icon={solid('image')} />
             </span>
           )}
         </div>
@@ -416,7 +416,7 @@ const Product = (props) => {
     //       {props.postTag && (
     //         <span className="product__type product__type-tab icon icon__solid-900">
     //           {/* <Icon icon="bxs:purchase-tag" color="#947ada" /> */}
-    //           <FontAwesomeIcon icon={solid('tag')} color="#947ada" />
+    //           <FontAwesomeIcon icon={solid('clock-rotate-left')} color="#947ada" />
     //         </span>
     //       )}
 

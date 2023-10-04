@@ -163,7 +163,7 @@ const CrowdfundingListItem = ({
         <div className="billing__main d-flex align-items-center  me-sm-3 mb-2">
           <div className="ms-auto ms-sm-0 me-sm-2 post__value">
             {crowdfunding.status === 1 && (
-              <div className="text-light fw-bold fs-5">
+              <div className="price fw-bold fs-5">
                 {data?.symbol}
                 {countCrowdfundingAmount(crowdfunding?.productDetails || [])}
               </div>

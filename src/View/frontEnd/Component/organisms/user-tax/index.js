@@ -200,7 +200,7 @@ const UserTax = () => {
         <span className="fs-7 text-light fw-bolder flex-grow-1">DONATION HISTORY</span>
         <div className="fs-6 text-light fw-semibold d-flex align-items-center gap-1 mb-2 justify-content-end">
           taxable amount:
-          <span className="fw-bold text-light fs-5">
+          <span className="price fw-bold fs-5">
             {userData.symbol}
             {countProjectAmount(all).toLocaleString('en-US', {
               maximumFractionDigits: 2

@@ -3,6 +3,9 @@ $list: #1d2a3e; //light: white, dark: shade
 $input: #15202b; //light: white, dark: white
 $primary: #fff;
 $secondary: #0e75f9;
+$slider: #3a4757;
+$slider-filled: #4a6774;
+$toggle: #34455f;
 
 $secondary-1: #15202b; //bg--dark
 $secondary-2: #3045c9;
@@ -82,6 +85,7 @@ $border-radius-lg: 4px;
 
 $neutral: #6b68f8;
 $success: #62de79;
+$price: #62de79;
 $warning: #f8b22f;
 $danger: #f15e5e;
 $info: #3898ec;
@@ -98,6 +102,7 @@ $theme-colors: (
   'primary': $neutral,
   'secondary': $secondary,
   'success': $success,
+  'price': $price,
   'info': $info,
   'warning': $warning,
   'danger': $danger,

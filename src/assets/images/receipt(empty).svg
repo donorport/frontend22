@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="15.000002"
+   height="17.484581"
+   viewBox="0 0 15.000002 17.484581"
+   fill="none"
+   version="1.1"
+   id="svg826"
+   sodipodi:docname="receipt(empty).svg"
+   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs830" />
+  <sodipodi:namedview
+     id="namedview828"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="25.141085"
+     inkscape:cx="8.213647"
+     inkscape:cy="9.5262395"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg826" />
+  <path
+     fill-rule="evenodd"
+     clip-rule="evenodd"
+     d="m 2.7008145,0.78114003 c -1.0602075,0 -1.91967447,0.85946707 -1.91967447,1.91967457 V 16.138537 l 3.35943037,-1.919675 3.3594305,1.919675 3.3594301,-1.919675 3.359431,1.919675 V 2.7008146 c 0,-1.0602075 -0.859439,-1.91967457 -1.919675,-1.91967457 z M 5.1004077,3.6606519 c -0.795158,0 -1.4397559,0.6445979 -1.4397559,1.4397559 0,0.795158 0.6445979,1.4397559 1.4397559,1.4397559 0.795158,0 1.4397559,-0.6445979 1.4397559,-1.4397559 0,-0.795158 -0.6445979,-1.4397559 -1.4397559,-1.4397559 z m 5.9578073,0.2811267 c -0.374817,-0.3748357 -0.982587,-0.3748357 -1.3574028,0 L 3.9417785,9.7008118 c -0.3748357,0.3748162 -0.3748357,0.9825862 0,1.3574032 0.3748452,0.374815 0.9825758,0.374815 1.357421,0 L 11.058215,5.2991996 c 0.374815,-0.3748452 0.374815,-0.9825758 0,-1.357421 z M 9.8995944,8.4598382 c -0.7951295,0 -1.4397563,0.6446265 -1.4397563,1.4397555 0,0.7951303 0.6446268,1.4397573 1.4397563,1.4397573 0.7951296,0 1.4397566,-0.644627 1.4397566,-1.4397573 0,-0.795129 -0.644627,-1.4397555 -1.4397566,-1.4397555 z"
+     fill="#374151"
+     id="path824"
+     style="fill:none;fill-opacity:1;stroke:#80809d;stroke-width:1.56228;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     inkscape:export-filename="/Users/kyleunderhill/Desktop/receipt(empty).png"
+     inkscape:export-xdpi="300"
+     inkscape:export-ydpi="300" />
+</svg>

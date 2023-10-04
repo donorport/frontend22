@@ -170,11 +170,9 @@
       text-align: center;
     }
   }
-
   // .product__type-tax
-  &__type-tax img {
-    color: #3a94d4;
-    height: 21px;
+  &__tax img {
+    height: 26px !important;
   }
 
   .btn__sold {

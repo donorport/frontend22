@@ -91,7 +91,7 @@ const ItemsTable = ({
                         className="me-0 me-sm-2 order-sm-0 order-1 text-sm-start text-end"
                         style={{ width: '65px', minWidth: '65px' }}
                       >
-                        <div className="text-light fw-bold fs-5">
+                        <div className="price fw-bold fs-5">
                           {item.currencySymbol}
                           {priceFormat(price)}
                         </div>
@@ -190,7 +190,7 @@ const ItemsTable = ({
                         {item.itemDetails.postTag && (
                           <span className="category__link p-1 text-decoration-none">
                             <FontAwesomeIcon
-                              icon={solid('tag')}
+                              icon={solid('clock-rotate-left')}
                               className="fs-3"
                               color="rgb(148, 122, 218)"
                             />

@@ -262,7 +262,7 @@ const OrderConfirmPage = () => {
                     <div className="total__sub d-flex justify-content-between">
                       <div className="total__title fw-bolder">Subtotal:</div>
                       <div className="total__value text-light">
-                        <p className="fw-bold text-light fs-5">
+                        <p className="price fw-bold fs-5">
                           {' '}
                           {orderDetails.currencySymbol}
                           {/* {purchasedPriceWithTax(Number(orderDetails.subtotal), Number(orderDetails.appliedTaxPercentage))} */}

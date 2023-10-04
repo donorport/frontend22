@@ -336,7 +336,7 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
               <div className="accordion__head d-flex align-items-center">
                 <span className="flex-grow-1 d-flex align-items-center rounded-3">
                   <img className="me-1" style={{ height: '16px' }} src={bag} alt="" />
-                  <span className="fw-bold fs-4">
+                  <span className="price fw-bold fs-5">
                     {order.currencySymbol ? order.currencySymbol : '$'}
                     {priceFormat(Number(grandTotal))}
                   </span>
@@ -352,9 +352,7 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
                     <img src={getCardIcon(CardBrand)} alt="" className="img-fluid" />
                   </div>
                   <div className="order__card fs-7">
-                    <div className="d-flex align-items-center  fw-semibold pe-1">
-                      {last4}
-                    </div>
+                    <div className="d-flex align-items-center  fw-semibold pe-1">{last4}</div>
                   </div>
                 </div>
               </div>
@@ -404,7 +402,7 @@ const DonationListItem = ({ donation, activeList }) => {
               <div className="d-flex flex-grow-1">
                 <span className="d-flex align-items-center rounded-3">
                   <img alt="" className="me-1" style={{ height: '16px' }} src={coin}></img>
-                  <span className="fw-bold fs-4">
+                  <span className="price fw-bold fs-5">
                     {donation.currencySymbol ? donation.currencySymbol : '$'}
                     {priceFormat(Number(grandTotal))}
                   </span>
@@ -430,9 +428,7 @@ const DonationListItem = ({ donation, activeList }) => {
                   <img src={getCardIcon(CardBrand)} alt="" className="img-fluid" />
                 </div>
                 <div className="order__card fs-7">
-                  <div className="d-flex align-items-center  fw-semibold pe-1">
-                    {last4}
-                  </div>
+                  <div className="d-flex align-items-center  fw-semibold pe-1">{last4}</div>
                 </div>
               </div>
             </div>
@@ -466,7 +462,7 @@ const DonationListItem = ({ donation, activeList }) => {
               <div className="d-flex flex-grow-1">
                 <span className="d-flex align-items-center rounded-3">
                   <img alt="" className="me-1" style={{ height: '16px' }} src={coin2}></img>
-                  <span className="fw-bold fs-4">
+                  <span className="price fw-bold fs-5">
                     {donation.currencySymbol ? donation.currencySymbol : '$'}
                     {priceFormat(Number(grandTotal))}
                   </span>
@@ -492,9 +488,7 @@ const DonationListItem = ({ donation, activeList }) => {
                   <img src={getCardIcon(CardBrand)} alt="" className="img-fluid" />
                 </div>
                 <div className="order__card fs-7">
-                  <div className="d-flex align-items-center  fw-semibold pe-1">
-                    {last4}
-                  </div>
+                  <div className="d-flex align-items-center  fw-semibold pe-1">{last4}</div>
                 </div>
               </div>
             </div>

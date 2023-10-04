@@ -308,7 +308,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
                   className="product__type product__type-tax icon icon__solid-900"
                   style={{ fontSize: 'x-large' }}
                 >
-                  <FontAwesomeIcon icon={solid('tag')} />
+                  <FontAwesomeIcon icon={solid('clock-rotate-left')} />
                 </span>
               )}
             </div>
@@ -539,7 +539,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
             </div>
             <div className="d-flex align-items-center pt-3 mb-2">
               <span className="fw-bolder flex__1">Total:</span>
-              <span className="text-light fw-bold fs-5">
+              <span className="price fw-bold fs-5">
                 {item.currencySymbol ? item.currencySymbol : '$'}
                 {priceFormat(Number(purchasedPrice) * Number(item.quantity))}
               </span>

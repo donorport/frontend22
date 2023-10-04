@@ -66,6 +66,8 @@
 }
 
 .filter__item-icon {
+  display: flex;
+  align-items: center;
   width: 28px;
   font-size: 21px;
 }

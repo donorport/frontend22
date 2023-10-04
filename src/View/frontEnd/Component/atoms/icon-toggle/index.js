@@ -1,53 +1,59 @@
 import { useState } from "react";
-//import PropTypes from "prop-types";
 import "./style.scss";
-
-//const propTypes = {
-  //checked: PropTypes.bool,
-  //activeColor: PropTypes.string,
-  //icon: PropTypes.element,
-  //checkedIcon: PropTypes.element,
-//};
-
-//const defaultProps = {
-  //checked: false,
-  //activeColor: "",
-//};
 
 function IconToggle(props) {
   const {
     ischecked,
     icon,
     checkedIcon,
+    iconSrc,
+    checkedIconSrc,
     activeColor,
     name,
-    onClickFilter
-  } =props
+    onClickFilter,
+  } = props;
 
   const [_checked, setChecked] = useState(ischecked);
 
-  // const sharedProps = {
-  //   checked,
-  //   icon,
-  //   checkedIcon,
-  //   activeColor,
-  //   ischecked,
-  //   ...otherProps,
-  // };
   return (
-    <label className="icon__toggle-label" >
-      <input type="checkbox"  className="icon__toggle-input" checked={ischecked}  name={name}  onChange={(e) => onClickFilter(e)} />
+    <label className="icon__toggle-label">
+      <input
+        type="checkbox"
+        className="icon__toggle-input"
+        checked={ischecked}
+        name={name}
+        onChange={(e) => onClickFilter(e)}
+      />
       <span
         className="icon__toggle-icon d-flex align-items-center"
-        style={{ color:ischecked ? activeColor :"" }}
+        style={{ color: ischecked ? activeColor : "" }}
       >
-        {ischecked ? checkedIcon : icon}
+        {ischecked ? (
+          checkedIcon ? (
+            checkedIcon
+          ) : (
+            <img
+              src={checkedIconSrc}
+              alt={name}
+              // width={24}
+              height={21}
+            />
+          )
+        ) : (
+          icon ? (
+            icon
+          ) : (
+            <img
+              src={iconSrc}
+              alt={name}
+              // width={21}
+              height={21}
+            />
+          )
+        )}
       </span>
     </label>
   );
 }
-
-// IconToggle.defaultProps = defaultProps;
-// IconToggle.propTypes = propTypes;
 
 export default IconToggle;

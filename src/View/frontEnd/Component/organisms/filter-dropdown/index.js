@@ -8,6 +8,8 @@ import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 // import lottie from 'lottie-web/build/player/lottie_light';
 import Lottie from 'lottie-web';
 import Slider from 'rc-slider';
+import receipt from '../../../../../assets/images/receipt.svg';
+import emptyreceipt from '../../../../../assets/images/receipt(empty).svg';
 
 // app specific
 import { IconToggle, CategoryCheckbox } from '../../atoms';
@@ -146,10 +148,8 @@ const FilterDropdown = (props) => {
                 <div className="filter__label d-flex align-items-center fw-bold">Tax Eligible</div>
                 <div className="filter__toggle fs-4">
                   <IconToggle
-                    iconSize={24}
-                    activeColor="#3a94d4"
-                    icon={<FontAwesomeIcon icon={regular('calculator')} className="tax__icon" />}
-                    checkedIcon={<FontAwesomeIcon icon={solid('paperclip')} />}
+                    iconSrc={emptyreceipt}
+                    checkedIconSrc={receipt}
                     name="taxEligible"
                     onClickFilter={props.onClickFilter}
                     ischecked={props.filters?.taxEligible}
@@ -163,8 +163,8 @@ const FilterDropdown = (props) => {
                   <IconToggle
                     iconSize={24}
                     activeColor="#947ada"
-                    icon={<FontAwesomeIcon icon={regular('tag')} />}
-                    checkedIcon={<FontAwesomeIcon icon={solid('tag')} />}
+                    icon={<FontAwesomeIcon icon={regular('clock-rotate-left')} />}
+                    checkedIcon={<FontAwesomeIcon icon={solid('clock-rotate-left')} />}
                     name="postTag"
                     onClickFilter={props.onClickFilter}
                     ischecked={props.filters?.postTag}

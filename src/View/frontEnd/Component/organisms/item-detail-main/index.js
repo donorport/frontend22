@@ -403,7 +403,7 @@ const SubtotalSlider = ({ currencySymbol, price, quantity, maxQuantity, setQuant
           }}
           min={1}
           max={maxQuantity}
-          railStyle={{ backgroundColor: '#C7E3FB', height: '9px' }}
+          railStyle={{ height: '9px' }}
           onChange={(e) => setQuantity(e)}
         />
       </div>
@@ -419,7 +419,7 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
     {productDetails.postTag && (
       <IconText
         className="pt-12p pb-12p"
-        icon={<FontAwesomeIcon icon={solid('tag')} className="fs-3 text-primary pt-12p pb-12p" />}
+        icon={<FontAwesomeIcon icon={solid('clock-rotate-left')} className="fs-3 text-primary pt-12p pb-12p" />}
       >
         Item was already purchased by the organization. Your purchase will cover those costs.
       </IconText>

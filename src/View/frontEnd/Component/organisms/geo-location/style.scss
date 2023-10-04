@@ -28,7 +28,6 @@
 
 .geo__dropdown {
   .mapboxgl-map {
-    background: #fff;
     height: 300px;
     // right: 15%;
     overflow: visible;
@@ -109,8 +108,12 @@
     height: 9px;
     padding: 0;
   }
+  .rc-slider-rail {
+    background-color: $slider !important;
+  }
   .rc-slider-track {
     height: 9px;
+    background-color: $slider-filled !important;
   }
   .rc-slider-disabled > .rc-slider-rail {
     z-index: -1;

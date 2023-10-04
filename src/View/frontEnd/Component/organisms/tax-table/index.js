@@ -124,7 +124,7 @@ const TaxTable = (props) => {
                           <div className="d-sm-flex align-items-center flex-grow-1">
                             <div className="tax__left d-flex align-items-center me-sm-2 mb-1 mb-sm-0">
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4 text-sm-start text-end">
-                                <div className="text-light fw-bold fs-5">
+                                <div className="price fw-bold fs-5">
                                   {item[0].currencySymbol}
                                   {priceFormat(totalVal(item))}
                                 </div>
@@ -340,7 +340,7 @@ const TaxTable = (props) => {
                                   <div className="d-flex d-sm-flex align-items-center flex-grow-1">
                                     <div className="d-flex align-items-center mb-1 mb-sm-0 order-1 order-sm-0">
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-3 text-sm-start text-end">
-                                        <div className="text-light fw-bold fs-5">
+                                        <div className="price fw-bold fs-5">
                                           {i1.currencySymbol}
                                           {/*{i1.amount}*/}
                                           {i1.type === 'Purchased'

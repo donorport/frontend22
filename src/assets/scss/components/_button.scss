@@ -1,7 +1,7 @@
 .btn {
   font-weight: $input-font-weight;
 }
-.btn,
+.btn:not(.btn__category, .btn-outline-primary),
 .btn-success,
 .btn-primary,
 .btn-info,
@@ -14,6 +14,11 @@
   }
 }
 
+.btn__category,
+.btn-outline-primary, .btn__category:hover {
+  color: $neutral;
+}
+
 .btn {
   font-weight: $font-weight-bold;
   &-lg {
@@ -22,12 +27,12 @@
 }
 
 .btn-outline-primary {
-  border-color: #6b68f8 !important;
-  color: #6b68f8 !important
+  border-color: #6b68f8;
+  color: #6b68f8;
 }
 .btn-outline-primary:hover {
-  border-color: #6b68f8 !important;
-  color: #6b68f8 !important
+  border-color: #6b68f8;
+  color: $neutral-100;
 }
 
 .btn.btn__link-light {

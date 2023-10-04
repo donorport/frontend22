@@ -68,7 +68,7 @@ const ActivityTable = (props) => {
                   <div className="d-sm-flex align-items-center flex-grow-1">
                     <div className="d-flex align-items-center me-sm-2 flex__1">
                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
-                        <div className="text-light fw-bold fs-5">
+                        <div className="price fw-bold fs-5">
                           {list.type === 'BOUGHT' || list.type === 'DONATED'
                             ? data.symbol + priceFormat(list.amount)
                             : ''}

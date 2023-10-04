@@ -368,6 +368,7 @@
   background-color: $secondary-5 !important;
   // border: 1px solid transparent !important;
   border-radius: 4px;
+  transition: none !important;
 }
 
 // .nav-link,
@@ -656,14 +657,14 @@ button.ReactTags__remove {
   position: absolute;
   cursor: pointer;
   display: flex;
-  background-color: $secondary-5;
+  background-color: $toggle;
   align-items: center;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  -webkit-transition: transform 0.4s;
+  transition: transform 0.4s;
   border-radius: 50px;
 }
 

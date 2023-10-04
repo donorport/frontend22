@@ -53,7 +53,7 @@ const ItemTags = () => {
                     className="trust__image flex-shrink-0"
                     icon={
                       <FontAwesomeIcon
-                        icon={solid('tag')}
+                        icon={solid('clock-rotate-left')}
                         color="rgb(148, 122, 218)"
                         className="fs-2 p-3"
                       />

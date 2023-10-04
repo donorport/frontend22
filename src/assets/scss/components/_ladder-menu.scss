@@ -42,6 +42,9 @@
   border-radius: 6px;
   white-space: nowrap;
   height: 48px;
+  @include media-breakpoint-down(sm) {
+    height: 56px;
+  }
 }
 
 .ladder__icon {

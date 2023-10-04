@@ -74,7 +74,7 @@ const PostsTable = (props) => {
                     <div className="progress__wrap d-flex align-items-center  me-sm-3">
                       <div className="ms-auto ms-sm-0 me-sm-2 post__value">
                         {product.status === 1 && (
-                          <div className="text-light fw-bold fs-5">
+                          <div className="price fw-bold fs-5">
                             {organizationDetails.symbol}
                             {priceFormat(
                               product.displayPrice ? product.displayPrice : product.price

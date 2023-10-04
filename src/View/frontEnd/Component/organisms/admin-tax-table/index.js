@@ -170,7 +170,7 @@ const AdminTaxTable = (props) => {
                           <div className="d-sm-flex align-items-center flex-grow-1">
                             <div className="d-flex align-items-center me-sm-2 mb-3 mb-sm-0">
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
-                                <div className="text-light fw-bold fs-5">
+                                <div className="price fw-bold fs-5">
                                   {item[0].currencySymbol}
                                   {/* {totalVal([...item]).toLocaleString('en-US', {
                                     maximumFractionDigits: 2
@@ -461,7 +461,7 @@ const AdminTaxTable = (props) => {
                                   <div className="d-flex d-sm-flex align-items-center flex-grow-1">
                                     <div className="d-flex align-items-center mb-1 mb-sm-0 order-1 order-sm-0">
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
-                                        <div className="text-light fw-bold fs-5">
+                                        <div className="price fw-bold fs-5">
                                           {i1.currencySymbol}
                                           {i1.type === 'Purchased'
                                             ? taxableProduct

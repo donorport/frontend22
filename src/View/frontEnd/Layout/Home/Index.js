@@ -11,6 +11,7 @@ import helper, { getCalculatedPrice } from '../../../../Common/Helper';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import corrupt from '../../../../assets/images/corrupt.png';
+import receipt from '../../../../assets/images/receipt.svg';
 import buoy from '../../../../assets/images/buoy.png';
 import { useSelector } from 'react-redux';
 
@@ -325,7 +326,7 @@ export default function Index(props) {
 
       <Container fluid>
         {/* {user.countrySortName === 'CA' && ( */}
-        <div className="d-sm-flex align-items-center py-20p">
+        <div className="d-sm-flex align-items-center py-sm-20p py-0 pt-20p pt-sm-0">
           <div className="mb-1 mb-sm-0">{props.productList.length} items</div>
           <div className="tag__list d-flex align-items-center flex__1 ms-sm-2 gap-1 mb-2 mb-sm-0 overflow-auto px-sm-0 px-2 mx-sm-0 mx-n2">
             {props.seletedCategoryList.length > 0 &&
@@ -379,7 +380,8 @@ export default function Index(props) {
             {props.filters.taxEligible ? (
               <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
                 <span className="filter__item-icon">
-                  <FontAwesomeIcon icon={solid('paperclip')} color="#3a94d4" />
+                  {/* <FontAwesomeIcon icon={solid('paperclip')} color="#3a94d4" /> */}
+                  <img style={{ height: '21px' }} src={receipt}></img>
                 </span>
                 <Button
                   variant="link"
@@ -401,7 +403,7 @@ export default function Index(props) {
             {props.filters.postTag ? (
               <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
                 <span className="filter__item-icon">
-                  <FontAwesomeIcon icon={solid('tag')} color="#947ada" />
+                  <FontAwesomeIcon icon={solid('clock-rotate-left')} color="#947ada" />
                 </span>
                 <Button
                   variant="link"
