@@ -1,7 +1,8 @@
 .btn {
   font-weight: $input-font-weight;
+  transition: none !important;
 }
-.btn:not(.btn__category, .btn-outline-primary),
+.btn:not(.btn__category, .btn-outline-primary, .toggle__btn),
 .btn-success,
 .btn-primary,
 .btn-info,
@@ -15,7 +16,8 @@
 }
 
 .btn__category,
-.btn-outline-primary, .btn__category:hover {
+.btn-outline-primary,
+.btn__category:hover {
   color: $neutral;
 }
 

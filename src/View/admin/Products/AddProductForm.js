@@ -737,7 +737,7 @@ export default function AddProductForm(props) {
 
               {
                 stateData.galleryUrl && (
-                  <div className="project-video-wrap mt-4">
+                  <div className="project-video-wrap">
                     <iframe
                       title="product-video"
                       key="product-video"

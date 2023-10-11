@@ -14,10 +14,10 @@ function ProjectCrowdfundingSuggestionItem(props) {
         <div className="d-flex align-items-center flex-grow-1">
           <div
             className="circle__progress"
-            style={{
-              background:
-                "linear-gradient(0deg, #fff 50%, transparent 50%), linear-gradient(180deg, #45a3e4 50%, #fff 50%)",
-            }}
+            // style={{
+            //   background:
+            //     "linear-gradient(0deg, #fff 50%, transparent 50%), linear-gradient(180deg, #45a3e4 50%, #fff 50%)",
+            // }}
           >
             <div
               className="circle__progress-img"

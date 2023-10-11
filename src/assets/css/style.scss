@@ -101,16 +101,16 @@
   -webkit-animation: react-confirm-alert-fadeIn 0.2s 0.2s forwards;
   animation: react-confirm-alert-fadeIn 0.2s 0.2s forwards;
 }
-.react-confirm-alert-overlay,
-.react-confirm-alert-overlay-custom {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 999999
-}
+// .react-confirm-alert-overlay,
+// .react-confirm-alert-overlay-custom {
+//   position: fixed;
+//   height: 100%;
+//   width: 100%;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   z-index: 999999
+// }
 .react-confirm-alert {
   position: absolute;
   top: 50%;
@@ -304,11 +304,11 @@
 }
 
 .modal-content {
-  background-color: $secondary-5;
+  background-color: $secondary-5 !important;
   position: absolute !important;
-  left: 50% !important;
-  bottom: 0 !important;
-  transform: translate(-35%, 50%) !important;
+  left: -50% !important;
+  top: 50% !important;
+  transform: translate(50%, -50%) !important;
   width: 100% !important;
 }
 .modal-lg {

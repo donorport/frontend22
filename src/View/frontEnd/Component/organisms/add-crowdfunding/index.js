@@ -168,7 +168,7 @@ const AddCrowdfunding = (props) => {
           />
         </div>*/}
       </div>
-      <Row className="mw-850 py-5">
+      <Row className="mw-850 py-0 py-sm-5">
         <Col lg="6">
           <form className="d-flex flex-column profile-detail-form gap-2">
             <div>

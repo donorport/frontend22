@@ -213,7 +213,7 @@ const DonationConfirmPage = () => {
                               <div className="checkout__tag d-flex justify-content-center"></div>
                             </div>
                           </div>
-                          <h4 className="order__itemtotal text-light fs-5 fw-bold">
+                          <h4 className="order__itemtotal price fs-5 fw-bold">
                             {doantionDetails?.currencySymbol}
                             {subtotal}
                           </h4>
@@ -284,7 +284,7 @@ const DonationConfirmPage = () => {
                       </div>
                       <div className="order__value text-light d-flex align-items-center">
                         {doantionDetails.currency}
-                        <span className="fs-4 fw-bold text-light ms-1">
+                        <span className="fs-4 fw-bold price ms-1">
                           {' '}
                           {doantionDetails?.currencySymbol}
                           {(Number(doantionDetails.amount))}

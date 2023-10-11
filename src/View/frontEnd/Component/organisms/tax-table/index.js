@@ -122,7 +122,7 @@ const TaxTable = (props) => {
                       header={
                         <li className="flex-grow-1 table__list-item px-2 py-2">
                           <div className="d-sm-flex align-items-center flex-grow-1">
-                            <div className="tax__left d-flex align-items-center me-sm-2 mb-1 mb-sm-0">
+                            <div className="tax__left d-flex align-items-center me-sm-2 mb-1 mb-sm-0 pe-2">
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4 text-sm-start text-end">
                                 <div className="price fw-bold fs-5">
                                   {item[0].currencySymbol}
@@ -141,7 +141,7 @@ const TaxTable = (props) => {
                                   className="charity_avatar_bg"
                                 />
                               </div>
-                              <div className="ps-2 text__wrap text-start mw-200 w-100 w-sm-auto">
+                              <div className="text__wrap text-start w-100 w-sm-auto">
                                 <div className="fw-bold fs-5">
                                   {item[0].organizationDetails?.name}
                                 </div>

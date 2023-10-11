@@ -258,7 +258,7 @@ const DonateModal = (props) => {
                 </div>
               </div>
 
-              <div className="container">
+              <div className="d-flex flex-column gap-2 container">
                 {/* <div className="checkout__input">
                   <p>
                     Name on card<span>*</span>
@@ -294,13 +294,15 @@ const DonateModal = (props) => {
                     }}
                     maxLength={16}
                   />
-                  <p className="error">
-                    {stateData.error
-                      ? stateData.error.cardNumber
+                  {stateData.error.cardNumber && (
+                    <p className="error">
+                      {stateData.error
                         ? stateData.error.cardNumber
-                        : ''
-                      : ''}
-                  </p>
+                          ? stateData.error.cardNumber
+                          : ''
+                        : ''}
+                    </p>
+                  )}
                 </div>
                 <div className="d-flex flex-direction-column gap-2">
                   <div className="col-lg-3">
@@ -321,13 +323,15 @@ const DonateModal = (props) => {
                         onChange={(e) => props.changevalue(e)}
                         maxLength={2}
                       />
-                      <p className="error">
-                        {stateData.error
-                          ? stateData.error.month
+                      {stateData.error.month && (
+                        <p className="error">
+                          {stateData.error
                             ? stateData.error.month
-                            : ''
-                          : ''}
-                      </p>
+                              ? stateData.error.month
+                              : ''
+                            : ''}
+                        </p>
+                      )}
                     </div>
                   </div>
                   <div className="col-lg-4">
@@ -348,9 +352,16 @@ const DonateModal = (props) => {
                         onChange={(e) => props.changevalue(e)}
                         maxLength={4}
                       />
-                      <p className="error">
-                        {stateData.error ? (stateData.error.year ? stateData.error.year : '') : ''}
-                      </p>
+
+                      {stateData.error.year && (
+                        <p className="error">
+                          {stateData.error
+                            ? stateData.error.year
+                              ? stateData.error.year
+                              : ''
+                            : ''}
+                        </p>
+                      )}
                     </div>
                   </div>
                   <div className="col-lg-3">
@@ -370,9 +381,11 @@ const DonateModal = (props) => {
                         onChange={(e) => props.changevalue(e)}
                         maxLength={3}
                       />
-                      <p className="error">
-                        {stateData.error ? (stateData.error.cvv ? stateData.error.cvv : '') : ''}
-                      </p>
+                      {stateData.error.cvv && (
+                        <p className="error">
+                          {stateData.error ? (stateData.error.cvv ? stateData.error.cvv : '') : ''}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>

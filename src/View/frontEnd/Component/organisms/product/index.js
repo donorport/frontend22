@@ -192,9 +192,9 @@ const Product = (props) => {
             </div>
             <div className="d-flex flex-column flex-grow-1 justify-content-end">
               {/* <div className="small">Each:</div> */}
-              <div className="product__price fs-5 fw-bold ">
+              <div className="price product__price fs-5 fw-bold ">
                 <span>{currencySymbol}</span>
-                <span className="cost">{priceFormat(props.displayPrice)}</span>
+                <span>{priceFormat(props.displayPrice)}</span>
               </div>
             </div>
           </div>
@@ -281,8 +281,8 @@ const Product = (props) => {
             </span>
           )}
           {props.postTag && (
-            <span className="d-flex align-items-center product__type product__type-tab">
-              <FontAwesomeIcon icon={solid('clock-rotate-left')} color="#947ada" />
+            <span className="text-infinity d-flex align-items-center product__type product__type-tab">
+              <FontAwesomeIcon icon={solid('clock-rotate-left')}/>
             </span>
           )}
           {props.tax && (

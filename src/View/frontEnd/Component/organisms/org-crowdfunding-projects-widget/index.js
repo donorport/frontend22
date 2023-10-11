@@ -25,7 +25,7 @@ function OrganizationCrowdfundingProjectsWidget({ projectList, organizationDetai
             .slice(0, loadMore ? projectList.length : 3)
             .map((project, i) => <OrganizationCrowdfundingProjectItem item={project} key={i} />)
         ) : (
-          <p>{organizationDetails?.name} hasn't created any Projects.</p>
+          <p className="fs-6">{organizationDetails?.name} hasn't created any Projects.</p>
         )}
       </ul>
       {!loadMore && projectList.length > 3 && (

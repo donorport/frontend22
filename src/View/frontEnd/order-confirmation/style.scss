@@ -1,5 +1,5 @@
 .order__itemtotal {
-  background: #f8fafd;
+  background: $secondary-5;
   border-radius: 4px;
   padding: 6px 9px;
 }
@@ -24,6 +24,7 @@
 .checkout {
   &__title {
     padding-right: 0.3rem;
+    color: $neutral-700;
     flex: 0 0 auto;
     font-size: 19px;
     max-width: 100%;
@@ -202,303 +203,302 @@
   background-color: $secondary;
 }
 */
-
-.w-1 {
-  opacity: 0.2;
-  background-image: radial-gradient(circle at 50% 50%, transparent 60%, #0084e3 0),
-    radial-gradient(circle at 50% 50%, #0084e3 40%, transparent 0),
-    linear-gradient(#0084e3, #0084e3),
-    radial-gradient(circle at 50% 50%, transparent 60%, #7dc9ff 0),
-    radial-gradient(circle at 50% 50%, #7dc9ff 40%, transparent 0);
-  background-size: 40px 80px, 80px 80px, 100% 60px, 40px 80px, 80px 80px;
-  background-repeat: repeat-x;
-  background-position: 0 -30px, -20px -1px, 0 40px, 0 -40px, -20px -11px;
-  min-width: 1920px;
-  height: 50px;
-  position: absolute;
-  bottom: 0;
-  animation: w-1 38s linear infinite;
-}
-
-.w-1.r {
-  transform: translateX(100%);
-  animation: w-2 38s linear infinite;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-*,
-*:before,
-*:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
 .boat-container {
+  position: relative;
   top: 0;
   height: 130px;
   width: 300px;
   overflow: hidden;
-}
-
-ul.no-bullet {
-  list-style: none;
-  padding: 0;
-}
-
-.inline-list {
-  list-style: none;
-  overflow: hidden;
-}
-
-.inline-list > li {
-  list-style: none;
-  float: left;
-  display: block;
-}
-
-.inline-list > li > * {
-  display: block;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.relative {
-  position: relative;
-}
-
-.boat {
-  bottom: -6px;
-  left: 35px;
-  z-index: 1;
-  -webkit-animation: boatanimate 30s linear infinite;
-  -moz-animation: boatanimate 30s linear infinite;
-  -o-animation: boatanimate 30s linear infinite;
-  animation: boatanimate 30s linear infinite;
-}
-
-.boat-body {
-  width: 100px;
-  height: 20px;
-  background: #3898ec;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 20px;
-}
-
-.white-body {
-  width: 65px;
-  height: 16px;
-  background: #0e75f9 !important;
-  margin: 0px 13px;
-  border-top-right-radius: 20px;
-}
-
-.windows {
-  margin: 0px 12px !important;
-  height: 100%;
-  display: flex;
-  justify-content: right;
-}
-
-.boat .circle {
-  background: #fff;
-  min-width: 7px;
-  height: 7px;
-  margin: 5px 3px;
-  border-radius: 50%;
-  z-index: 999;
-  position: relative;
-}
-
-.smokestack {
-  width: 10px;
-  height: 17px;
-  background: black;
-  bottom: 30px;
-  margin-left: 35px;
-}
-
-.fume {
-  margin: 0px;
-}
-
-.fume li {
-  background-color: #dbe5f4;
-  border-radius: 50%;
-}
-
-.fume1 {
-  width: 7px;
-  height: 7px;
-  margin-left: 38px;
-  -webkit-animation: smokeup 2s linear infinite;
-  -moz-animation: smokeup 2s linear infinite;
-  -o-animation: smokeup 2s linear infinite;
-  animation: smokeup 2s linear infinite;
-}
-
-.fume2 {
-  width: 9px;
-  height: 9px;
-  margin-left: 28px;
-  -webkit-animation: smokeup 2.1s linear infinite;
-  -moz-animation: smokeup 2.1s linear infinite;
-  -o-animation: smokeup 2.1s linear infinite;
-  animation: smokeup 2.1s linear infinite;
-}
-
-.fume3 {
-  width: 12px;
-  height: 12px;
-  margin-left: 38px;
-  -webkit-animation: smokeup 2.2s linear infinite;
-  -moz-animation: smokeup 2.2s linear infinite;
-  -o-animation: smokeup 2.2s linear infinite;
-  animation: smokeup 2.2s linear infinite;
-}
-
-.fume4 {
-  width: 15px;
-  height: 15px;
-  margin-left: 28px;
-  -webkit-animation: smokeup 2.3s linear infinite;
-  -moz-animation: smokeup 2.3s linear infinite;
-  -o-animation: smokeup 2.3s linear infinite;
-  animation: smokeup 2.3s linear infinite;
-}
-
-@-webkit-keyframes smokeup {
-  0% {
-    margin-bottom: -3px;
-    opacity: 1;
+  .w-1 {
+    opacity: 0.2;
+    background-image: radial-gradient(circle at 50% 50%, transparent 60%, #0084e3 0),
+      radial-gradient(circle at 50% 50%, #0084e3 40%, transparent 0),
+      linear-gradient(#0084e3, #0084e3),
+      radial-gradient(circle at 50% 50%, transparent 60%, #7dc9ff 0),
+      radial-gradient(circle at 50% 50%, #7dc9ff 40%, transparent 0);
+    background-size: 40px 80px, 80px 80px, 100% 60px, 40px 80px, 80px 80px;
+    background-repeat: repeat-x;
+    background-position: 0 -30px, -20px -1px, 0 40px, 0 -40px, -20px -11px;
+    min-width: 1920px;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    animation: w-1 38s linear infinite;
   }
 
-  80% {
-    margin-bottom: 7px;
-    opacity: 0;
-  }
-
-  100% {
-    margin-bottom: 7px;
-    opacity: 0;
-  }
-}
-
-@-moz-keyframes smokeup {
-  0% {
-    margin-bottom: -3px;
-    opacity: 1;
-  }
-
-  80% {
-    margin-bottom: 7px;
-    opacity: 0;
-  }
-
-  100% {
-    margin-bottom: 7px;
-    opacity: 0;
-  }
-}
-
-@-o-keyframes smokeup {
-  0% {
-    margin-bottom: -3px;
-    opacity: 1;
-  }
-
-  80% {
-    margin-bottom: 7px;
-    opacity: 0;
-  }
-
-  100% {
-    margin-bottom: 7px;
-    opacity: 0;
-  }
-}
-
-@keyframes smokeup {
-  0% {
-    margin-bottom: -3px;
-    opacity: 1;
-  }
-
-  80% {
-    margin-bottom: 7px;
-    opacity: 0;
-  }
-
-  100% {
-    margin-bottom: 7px;
-    opacity: 0;
-  }
-}
-
-.boat {
-  -webkit-animation: rock-boat 2500ms ease-in-out infinite;
-}
-
-@-webkit-keyframes rock-boat {
-  10% {
-    -webkit-transform: rotate(-1deg) translateY(-2px);
-  }
-
-  20% {
-    -webkit-transform: translateY(2px);
-  }
-
-  30% {
-    -webkit-transform: translateY(-2px);
-  }
-
-  40% {
-    -webkit-transform: translateY(2px);
-  }
-
-  50% {
-    -webkit-transform: rotate(-1deg) translateY(-2px);
-  }
-
-  100% {
-    -webkit-transform: rotate(1deg) translateY(2px);
-  }
-}
-
-@keyframes w-1 {
-  0% {
-    transform: translateX(0);
-  }
-
-  49.99999% {
-    transform: translateX(-100%);
-  }
-
-  50% {
+  .w-1.r {
     transform: translateX(100%);
+    animation: w-2 38s linear infinite;
   }
 
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes w-2 {
-  0% {
-    transform: translateX(100%);
+  * {
+    margin: 0;
+    padding: 0;
   }
 
-  99.99999% {
-    transform: translateX(-100%);
+  *,
+  *:before,
+  *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
   }
 
-  100% {
-    transform: translateX(100%);
+  ul.no-bullet {
+    list-style: none;
+    padding: 0;
+  }
+
+  .inline-list {
+    list-style: none;
+    overflow: hidden;
+  }
+
+  .inline-list > li {
+    list-style: none;
+    float: left;
+    display: block;
+  }
+
+  .inline-list > li > * {
+    display: block;
+  }
+
+  .absolute {
+    position: absolute;
+  }
+
+  .relative {
+    position: relative;
+  }
+
+  .boat {
+    bottom: -6px;
+    left: 35px;
+    z-index: 1;
+    -webkit-animation: boatanimate 30s linear infinite;
+    -moz-animation: boatanimate 30s linear infinite;
+    -o-animation: boatanimate 30s linear infinite;
+    animation: boatanimate 30s linear infinite;
+  }
+
+  .boat-body {
+    width: 100px;
+    height: 20px;
+    background: #3898ec;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 20px;
+  }
+
+  .white-body {
+    width: 65px;
+    height: 16px;
+    background: #0e75f9 !important;
+    margin: 0px 13px;
+    border-top-right-radius: 20px;
+  }
+
+  .windows {
+    margin: 0px 12px !important;
+    height: 100%;
+    display: flex;
+    justify-content: right;
+  }
+
+  .boat .circle {
+    background: #fff;
+    min-width: 7px;
+    height: 7px;
+    margin: 5px 3px;
+    border-radius: 50%;
+    z-index: 999;
+    position: relative;
+  }
+
+  .smokestack {
+    width: 10px;
+    height: 17px;
+    background: black;
+    bottom: 30px;
+    margin-left: 35px;
+  }
+
+  .fume {
+    margin: 0px;
+  }
+
+  .fume li {
+    background-color: #dbe5f4;
+    border-radius: 50%;
+  }
+
+  .fume1 {
+    width: 7px;
+    height: 7px;
+    margin-left: 38px;
+    -webkit-animation: smokeup 2s linear infinite;
+    -moz-animation: smokeup 2s linear infinite;
+    -o-animation: smokeup 2s linear infinite;
+    animation: smokeup 2s linear infinite;
+  }
+
+  .fume2 {
+    width: 9px;
+    height: 9px;
+    margin-left: 28px;
+    -webkit-animation: smokeup 2.1s linear infinite;
+    -moz-animation: smokeup 2.1s linear infinite;
+    -o-animation: smokeup 2.1s linear infinite;
+    animation: smokeup 2.1s linear infinite;
+  }
+
+  .fume3 {
+    width: 12px;
+    height: 12px;
+    margin-left: 38px;
+    -webkit-animation: smokeup 2.2s linear infinite;
+    -moz-animation: smokeup 2.2s linear infinite;
+    -o-animation: smokeup 2.2s linear infinite;
+    animation: smokeup 2.2s linear infinite;
+  }
+
+  .fume4 {
+    width: 15px;
+    height: 15px;
+    margin-left: 28px;
+    -webkit-animation: smokeup 2.3s linear infinite;
+    -moz-animation: smokeup 2.3s linear infinite;
+    -o-animation: smokeup 2.3s linear infinite;
+    animation: smokeup 2.3s linear infinite;
+  }
+
+  @-webkit-keyframes smokeup {
+    0% {
+      margin-bottom: -3px;
+      opacity: 1;
+    }
+
+    80% {
+      margin-bottom: 7px;
+      opacity: 0;
+    }
+
+    100% {
+      margin-bottom: 7px;
+      opacity: 0;
+    }
+  }
+
+  @-moz-keyframes smokeup {
+    0% {
+      margin-bottom: -3px;
+      opacity: 1;
+    }
+
+    80% {
+      margin-bottom: 7px;
+      opacity: 0;
+    }
+
+    100% {
+      margin-bottom: 7px;
+      opacity: 0;
+    }
+  }
+
+  @-o-keyframes smokeup {
+    0% {
+      margin-bottom: -3px;
+      opacity: 1;
+    }
+
+    80% {
+      margin-bottom: 7px;
+      opacity: 0;
+    }
+
+    100% {
+      margin-bottom: 7px;
+      opacity: 0;
+    }
+  }
+
+  @keyframes smokeup {
+    0% {
+      margin-bottom: -3px;
+      opacity: 1;
+    }
+
+    80% {
+      margin-bottom: 7px;
+      opacity: 0;
+    }
+
+    100% {
+      margin-bottom: 7px;
+      opacity: 0;
+    }
+  }
+
+  @keyframes rock-boat {
+    10% {
+      transform: rotate(-1deg) translateY(-2px);
+    }
+
+    20% {
+      transform: translateY(2px);
+    }
+
+    30% {
+      transform: translateY(-2px);
+    }
+
+    40% {
+      transform: translateY(2px);
+    }
+
+    50% {
+      transform: rotate(-1deg) translateY(-2px);
+    }
+
+    100% {
+      transform: rotate(1deg) translateY(2px);
+    }
+  }
+
+  .boat {
+    animation: rock-boat 2500ms ease-in-out infinite;
+  }
+
+  @keyframes w-1 {
+    0% {
+      transform: translateX(0);
+    }
+
+    49.99999% {
+      transform: translateX(-100%);
+    }
+
+    50% {
+      transform: translateX(100%);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes w-2 {
+    0% {
+      transform: translateX(100%);
+    }
+
+    99.99999% {
+      transform: translateX(-100%);
+    }
+
+    100% {
+      transform: translateX(100%);
+    }
   }
 }

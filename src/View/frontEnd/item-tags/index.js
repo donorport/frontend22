@@ -73,13 +73,13 @@ const ItemTags = () => {
                     size={84}
                     className="trust__image flex-shrink-0"
                     icon={
-                      <FontAwesomeIcon icon={solid('camera')} className="fs-2 text-primary p-3" />
+                      <FontAwesomeIcon icon={solid('image')} className="fs-2 text-primary p-3" />
                     }
                   />
                   <div className="ms-3">
                     <h3 className="fs-4 mb-0 fw-bolder ">Media</h3>
                     <div className="text-light fs-5 lh-1.5">
-                      Items marked with a camera indicate that the charity will upload follow-up
+                      Items marked with a an image indicate that the charity will upload follow-up
                       media for your donation. You will be able to track this media on your profile
                       page inside of the Items tab.
                     </div>

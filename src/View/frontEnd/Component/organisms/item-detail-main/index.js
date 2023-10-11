@@ -222,7 +222,7 @@ const ItemDetailsMain = ({
       </h1>
       <h5 className="project__detail-sublabel mb-0 fw-bolder">Product</h5>
       <div className="project__detail-subtitle fw-bold">{productDetails?.brand} ™</div>
-      <h2 className="project__detail-price text-price m-0">
+      <h2 className="project__detail-price price m-0">
         {currencySymbol}
         {priceFormat(price)}
       </h2>

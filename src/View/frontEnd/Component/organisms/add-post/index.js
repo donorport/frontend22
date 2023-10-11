@@ -274,7 +274,7 @@ const AddPost = (props) => {
           <div className="lh-1 fs-3 fw-bolder me-sm-3 flex__1">Edit Post</div>
         )}
 
-        <div className="d-flex gap-2">
+        <div className="d-flex gap-2 pt-2 pt-sm-0">
           {stateData.status !== 1 && (
             <SaveCreateButtons
               loading={props.loading}
@@ -339,7 +339,7 @@ const AddPost = (props) => {
             <h2 className="fs-3 fw-bolder ">Post Location</h2>
           </AccordionToggle>
 
-          <Accordion.Collapse className="py-5">
+          <Accordion.Collapse className="py-0 py-sm-5">
             <Row className="mw-850 ml-5">
               <Col lg="6">
                 {/* <SearchBox accessToken={helper.MapBoxPrimaryKey} /> */}
@@ -1093,7 +1093,7 @@ const AddPost = (props) => {
             <h2 className="fs-3 fw-bolder ">Need Headline</h2>
           </AccordionToggle>
 
-          <Accordion.Collapse className="py-5">
+          <Accordion.Collapse className="py-0 py-sm-5">
             <Row className="mw-850 ml-5">
               <Col lg="6">
                 <div className="note mb-5 fs-6">

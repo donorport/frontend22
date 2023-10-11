@@ -202,7 +202,7 @@ const OrderConfirmPage = () => {
                                 <div className="checkout__info d-flex flex-column flex-wrap align-items-start px-3">
                                   <Link
                                     to={'/item/' + itm.itemDetails.slug}
-                                    className=" text-start fw-bolder p-0 mb-3p fs-4 btn btn-link"
+                                    className="checkout__title text-start fw-bolder p-0 mb-3p fs-4"
                                   >
                                     <div>{itm.itemDetails.headline}</div>
                                   </Link>
@@ -234,7 +234,7 @@ const OrderConfirmPage = () => {
                                   </div>
                                 </div>*/}
                                 </div>
-                                <h4 className="order__itemtotal text-light fs-5 fw-bold">
+                                <h4 className="order__itemtotal price fs-5 fw-bold">
                                   {orderDetails.currencySymbol}
                                   {priceFormat(Number(itm.totalPrice))}
                                 </h4>
@@ -335,7 +335,7 @@ const OrderConfirmPage = () => {
                       </div>
                       <div className=" d-flex align-items-center order__value text-light">
                         {orderDetails.currency}
-                        <span className="fs-4 fw-bold text-light ms-1">
+                        <span className="fs-4 fw-bold price ms-1">
                           {orderDetails.currencySymbol}
                           {priceFormat(Number(orderDetails.total))}
                         </span>

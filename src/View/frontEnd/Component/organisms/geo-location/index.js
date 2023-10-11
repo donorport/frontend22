@@ -68,6 +68,21 @@ const GeoLocation = (props) => {
   const listOfGroupedProducts = groupProductsByLocation(props.productList);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
+
+  const [mapTheme, setMapTheme] = useState('day'); // Default to 'day' theme
+
+  useEffect(() => {
+    // Use the HTML data-theme attribute to set the map theme
+    const htmlTheme = document.documentElement.getAttribute('data-theme');
+    
+    if (htmlTheme === 'dark') {
+      setMapTheme('night');
+    } else {
+      setMapTheme('day');
+    }
+  }, []);
+  
   const mapStyles = {
     day: 'mapbox://styles/mapbox/navigation-day-v1',
     night: 'mapbox://styles/mapbox/navigation-night-v1'
@@ -230,10 +245,10 @@ const GeoLocation = (props) => {
               </div>
             </div>
             <div className="mapboxgl-map-cust">
-              {user.lat && user.lng ? (
+              {/* {user.lat && user.lng ? ( */}
                 <Map
                   {...viewState}
-                  style={mapStyles.day}
+                  style={mapStyles[mapTheme]} // Use the selected theme
                   zoom={[zoomLevel]}
                   center={[user.lng, user.lat]}
                   // This manages the update results and displaying the scale level for zoom in KM:
@@ -330,9 +345,6 @@ const GeoLocation = (props) => {
                       );
                     })} */}
                 </Map>
-              ) : (
-                <></>
-              )}
             </div>
 
             <div className="geo__slider">

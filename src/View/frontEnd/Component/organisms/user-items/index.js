@@ -305,7 +305,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               )}
               {item.itemDetails?.postTag && (
                 <span
-                  className="product__type product__type-tax icon icon__solid-900"
+                  className="text-infinity product__type product__type-tax icon icon__solid-900"
                   style={{ fontSize: 'x-large' }}
                 >
                   <FontAwesomeIcon icon={solid('clock-rotate-left')} />
@@ -361,7 +361,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               <h1 className="project__detail-title">{item.itemDetails?.headline}</h1>
               <h5 className="project__detail-sublabel mb-0">Product</h5>
               <div className="project__detail-subtitle fw-bold">{item.itemDetails?.brand} ™</div>
-              <div className="project__detail-price fs-2 text-price">
+              <div className="project__detail-price fs-2 price">
                 {item.currencySymbol}
                 {price}
               </div>
@@ -429,13 +429,13 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
                 (item.fulfilDetails[0].video || item.itemDetails?.fulfil.length > 0) && (
                   <div className="note note-info align-items-center mt-5">
 
-                      <h2 className="fs-3 fw-bolder ">Followup</h2>
+                      <h2 className="fs-3 fw-bolder m-0">Followup</h2>
                       <div className="project__detail-subtitle fw-bold">Media</div>
 
                     <div className="d-flex flex-column gap-2">
                       {' '}
                       {item.itemDetails?.isFulfiled && item.fulfilDetails[0].video && (
-                        <div className="project-video-wrap mt-4">
+                        <div className="project-video-wrap">
                           <iframe
                             title="user-item-video"
                             key="user-item-video"
@@ -507,7 +507,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               </div>
               <div className="ms-2 flex__1 fw-bolder">
                 <div className="mb-3p">{item.itemDetails?.headline}</div>
-                <div className="text-light ">
+                <div className="price ">
                   {item.currencySymbol ? item.currencySymbol : '$'}
                   {priceFormat(listPrice)}
                 </div>
@@ -520,7 +520,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
             <div className="py-3 border-top border-bottom">
               <div className="d-flex align-items-center fw-bolder mb-20p">
                 <span className="flex__1">Subtotal:</span>
-                <span className="text-light">
+                <span className="price">
                   {item.currencySymbol ? item.currencySymbol : '$'}
                   {priceFormat(Number(listPrice) * Number(item.quantity))}
                 </span>

@@ -541,9 +541,8 @@ const UserProfile = () => {
         <div className="ml-3 mb-5">
           <div className="d-flex gap-2">
             <label className="filelabel col-sm-3">
-              {/* <i className="fa fa-paperclip "></i> */}
-              <img src={receipt}></img>
-              <span className="title">Logo</span>
+              <i className="fa fa-paperclip "></i>
+              <span className="title">Avatar</span>
               <input
                 className="FileUpload1"
                 id="FileInput"

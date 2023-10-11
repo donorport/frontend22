@@ -32,6 +32,7 @@
 // @import '../../View/frontEnd/Component/atoms/list-item-img/style.scss';
 
 // component styles
+@import './components/badge';
 @import './components/button';
 @import './components/forms';
 @import './components/ladder-menu';
@@ -91,6 +92,8 @@
   @import '../../View/frontEnd/checkout/style.scss';
   @import '../../View/frontEnd/register/style.scss';
   @import '../../View/frontEnd/Layout/Home/style.scss';
+  @import '../../View/frontEnd/order-confirmation/style.scss';
+  @import '../../View/frontEnd/donation-confirmation/style.scss';
   @import '../../View/frontEnd/Component/organisms/header/style.scss';
   @import '../../View/frontEnd/Component/organisms/header-help/style.scss';
   @import '../../View/frontEnd/Component/organisms/add-post/style.scss';
@@ -117,11 +120,14 @@
   @import '../../View/frontEnd/Component/organisms/user-items/style.scss';
   @import '../../View/frontEnd/Component/organisms/tax-table/style.scss';
   @import '../../View/frontEnd/Component/organisms/user-tax/style.scss';
+  @import '../../View/frontEnd/Component/organisms/geo-location/style.scss';
   @import '../../View/frontEnd/Component/organisms/settings-tabs/style.scss';
   @import '../../View/frontEnd/Component/organisms/user-billing/style.scss';
   @import '../../View/frontEnd/Component/molecules/user-settings-item/style.scss';
   @import '../../View/frontEnd/Component/molecules/marquee-list/style.scss';
+  @import '../../View/frontEnd/Component/molecules/donate-modal/style.scss';
   @import '../../View/frontEnd/Component/molecules/history-item/style.scss';
+  @import '../../View/frontEnd/Component/molecules/org-crowdfunding-project-item/style.scss';
   @import '../../View/frontEnd/Component/molecules/linked-org/style.scss';
   @import '../../View/frontEnd/Component/atoms/list-item-img/style.scss';
   @import '../../View/frontEnd/Component/atoms/category-checkbox/style.scss';

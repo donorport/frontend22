@@ -37,6 +37,20 @@ function UserDetail(props) {
   const [profileImg, setProfileImg] = useState('');
   const location = useLocation();
 
+  useEffect(() => {
+    if (dropdown) {
+      // Disable scrolling when the dropdown is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Enable scrolling when the dropdown is closed
+      document.body.style.overflow = 'auto';
+    }
+
+    // Make sure to reset the scroll behavior when the component unmounts
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [dropdown]);
   
   useEffect(() => {
         (async () => {

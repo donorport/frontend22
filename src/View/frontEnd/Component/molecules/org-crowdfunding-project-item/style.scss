@@ -21,6 +21,7 @@
   height: 56px;
   border-radius: 50%;
   position: relative;
+  background-color: $secondary-5;
 }
 
 .circle__progress-img {
@@ -30,7 +31,7 @@
   top: calc(50% - 46px / 2);
   width: 46px;
   height: 46px;
-  background: #fff;
+  background: $secondary-5;
   text-align: center;
   display: table;
   background-size: cover;

@@ -507,7 +507,7 @@ const AdminProjects = () => {
       {!viewProject ? (
         <div>
           <header className="py-sm-2 mb-2 w-100 d-sm-flex align-items-center">
-            <div className="me-sm-2 flex-grow-1 mb-3 mb-sm-0">
+            <div className="me-sm-2 flex-grow-1">
               <div className="d-flex align-items-center mb-1">
                 <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Projects</h1>
                 <span className="d-none d-sm-flex text-light fs-5 ml-2 ms-2">({totalRecord})</span>

@@ -25,7 +25,7 @@ const AccordionItem = ({ header, hideChevron, disableButton, ...rest }) => (
     header={({ state: { isEnter: expanded } }) => (
       <>
         {header}
-        <div className="chev-wrapper">
+        <div className="chev-wrapper d-none d-sm-flex">
           {!hideChevron && (
             <img
               className={`ml-auto transition-transform duration-200 ease-in-out ${
@@ -168,8 +168,8 @@ const AdminTaxTable = (props) => {
                       header={
                         <li className="flex-grow-1 table__list-item px-2 py-2">
                           <div className="d-sm-flex align-items-center flex-grow-1">
-                            <div className="d-flex align-items-center me-sm-2 mb-3 mb-sm-0">
-                              <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
+                            <div className="d-flex align-items-center me-sm-2 mb-3 mb-sm-0 pe-2">
+                              <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4 text-end text-sm-start">
                                 <div className="price fw-bold fs-5">
                                   {item[0].currencySymbol}
                                   {/* {totalVal([...item]).toLocaleString('en-US', {
@@ -195,7 +195,7 @@ const AdminTaxTable = (props) => {
                                 />
                               </div>
                               <div
-                                className="text__wrap ms-2 user-select-auto fs-7"
+                                className="text__wrap ms-0 ms-sm-2 user-select-auto fs-7"
                                 style={{ cursor: 'default' }}
                                 onClick={(e) => e.stopPropagation()}
                               >

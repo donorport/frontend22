@@ -164,7 +164,7 @@ const HistoryList = ({
 
   return (
     <>
-      <div className="d-flex gap-2 fw-semibold py-3">
+      <div className="d-flex flex-wrap gap-2 fw-semibold py-3">
         <span>
           {' '}
           <img alt="" className="me-1" style={{ height: '16px' }} src={coin}></img>
@@ -239,7 +239,7 @@ const HistoryList = ({
             </FormControl>
           </div>
         </div>
-        <ul className="list__table-list ps-sm-3 ps-0">
+        <ul className="list__table-list ps-sm-3 ps-1">
           {isFetching ? (
             <li className="history__list-item d-flex align-items-center justify-content-center p-5">
               <CircularProgress className="ms-1" color="inherit" size={32} />
@@ -297,24 +297,29 @@ const HistoryList = ({
 const OrderListItem = ({ order, showDetails, activeList }) => {
   const disableHeader = order.length === 1;
 
-  const AccordionItem = ({ header, hideChevron, disableButton, ...rest }) => (
-    <Item
-      {...rest}
-      disabled={disableButton}
-      header={({ state: { isEnter: expanded } }) => (
-        <>
-          {header}{' '}
-          {!hideChevron && (
-            <img
-              src={chevronDown}
-              alt="Chevron Down"
-              className={expanded ? 'chevron-rotate' : ''}
-            />
-          )}
-        </>
-      )}
-    />
-  );
+  const AccordionItem = ({ header, hideChevron, disableButton, ...rest }) => {
+    const isMobile = window.innerWidth <= 768; // Adjust the threshold for your mobile breakpoint
+
+    return (
+      <Item
+        {...rest}
+        disabled={disableButton}
+        header={({ state: { isEnter: expanded } }) => (
+          <>
+            {header}{' '}
+            {!hideChevron && !isMobile && (
+              <img
+                style={{ marginBottom: '34px' }}
+                src={chevronDown}
+                alt="Chevron Down"
+                className={expanded ? 'chevron-rotate' : ''}
+              />
+            )}
+          </>
+        )}
+      />
+    );
+  };
 
   let platformCost = (
     (order.platformFees / 100 + order.transactionFees / 100) * Number(order.subtotal) +
@@ -551,13 +556,13 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
       </div>
       <div className="d-flex align-items-center mb-3">
         <div className="fw-semibold fs-7 text-light flex__1">Subtotal:</div>
-        <span className="fw-bold text-light fs-6">
+        <span className="fw-bold price fs-6">
           {order.currencySymbol + +parseFloat(order.subtotal).toFixed(2)}
         </span>
       </div>
       <div className="d-flex align-items-center mb-3 pt-3 border-top">
         <div className="fw-semibold fs-7 text-light flex__1">Total Charge:</div>
-        <span className="fw-bold text-light fs-6">
+        <span className="fw-bold price fs-6">
           {order.currencySymbol + parseFloat(order.total).toFixed(2)}
         </span>
       </div>
@@ -569,7 +574,7 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
 
 const PurchaseListItem = ({ order, item }) => {
   return (
-    <li className="d-sm-flex align-items-center px-sm-0 py-2 border-bottom">
+    <li className="d-sm-flex align-items-center px-sm-0 py-sm-2 py-0 border-bottom">
       <div className="d-flex align-items-center mb-2 mb-sm-0 flex__1">
         <ListItemImg
           size={68}
@@ -597,9 +602,9 @@ const PurchaseListItem = ({ order, item }) => {
           imgSrc={helper.CampaignAdminLogoPath + item?.itemDetails?.campaignadminsDetails.logo}
         />
       </div>
-      <div className="order__values d-flex align-items-center">
+      <div className="order__values d-flex align-items-center py-1">
         <span className="fs- text-info fw-bold flex__1">{item.xp ? item.xp : 0} xp</span>
-        <span className="fs-5 fw-bold text-light ms-2" style={{ width: '80px', textAlign: 'end' }}>
+        <span className="fs-5 fw-bold price ms-2" style={{ width: '80px', textAlign: 'end' }}>
           {order.currencySymbol ? order.currencySymbol : '$'}
           {priceFormat(Number(item.productPrice * item.quantity))}
         </span>

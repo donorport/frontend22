@@ -81,7 +81,7 @@ const SummaryContent = (props) => {
                       <img className="" src={receipt}></img>
                     </div>
                   )}
-                  <span className="checkout__subtotal--price text-end mt-6p fs-5 fw-bold text-light ms-3 fs-sm-4 fs-4">
+                  <span className="checkout__subtotal--price text-end mt-6p fs-5 fw-bold price ms-3 fs-sm-4 fs-4">
                     {props.currencySymbol +
                       // priceFormat(
                       //   props.CalculatedPrice.getData(item.productDetails?.price) * item.quantity
@@ -132,7 +132,7 @@ const SummaryContent = (props) => {
       <div className="d-flex align-items-center pt-1 pb-2">
         <span className="fw-bolder flex__1">Total:</span>
         {/* <span className="text-subtext me-2 fs-7">USD</span> */}
-        <span className="fw-bold text-light fs-4">
+        <span className="fw-bold price fs-4">
           {/* {props.currencySymbol + priceFormat(total ? total : 0)} */}
           {props.currencySymbol + priceFormat(grandTotal)}
         </span>
