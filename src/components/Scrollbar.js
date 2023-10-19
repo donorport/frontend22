@@ -3,6 +3,7 @@ import SimpleBarReact from 'simplebar-react';
 // material
 import { alpha, styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
+import { blue } from '@mui/material/colors';
 
 // ----------------------------------------------------------------------
 
@@ -29,7 +30,8 @@ const SimpleBarStyle = styled(SimpleBarReact)(({ theme }) => ({
     height: 6
   },
   '& .simplebar-mask': {
-    zIndex: 'inherit'
+    zIndex: 'inherit',
+    backgroundColor: blue
   }
 }));
 

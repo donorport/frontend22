@@ -84,8 +84,12 @@
 .category__icons {
   gap: 12px;
 }
-.page__blurb fw-bolder {
+.page__blurb:first-letter {
+  text-transform: capitalize;
+}
+.page__blurb {
   font-weight: 900;
+  text-transform: lowercase;
 }
 .page__paragraph {
   line-height: 1.6;

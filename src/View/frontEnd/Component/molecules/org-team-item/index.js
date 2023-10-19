@@ -49,6 +49,13 @@ function OrganizationTeamItem(props) {
           {moment(member?.created_at).format('MMMM DD, YYYY')}
         </div>
       </div>
+      {props?.isCurrent && (
+        <div>
+          <span className="badge" style={{ background: '#2c4bff' }}>
+            CURRENT
+          </span>
+        </div>
+      )}
       {props.showContact ? (
         <Button variant="outline-info" size="sm" className="ms-auto fw-bold">
           Contact
@@ -74,7 +81,7 @@ function OrganizationTeamItem(props) {
       )}
       {member.campaignadminDetails ? (
         <img
-          alt='campaignLogo'
+          alt="campaignLogo"
           style={{
             objectFit: 'contain',
             background: '#f8fafd',

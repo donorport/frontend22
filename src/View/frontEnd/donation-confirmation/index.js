@@ -61,7 +61,7 @@ const DonationConfirmPage = () => {
   return (
     <>
       <Seo title="Donation" description={`I just Donated $${doantionDetails?.amount} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`} url={`https://www.donorport.com/donate/${doantionDetails?._id}`} />
-      <Page showTags={false} title={'Donation | ' + doantionDetails.uniqueTransactionId}>
+      <Page showTags={true} title={'Donation | ' + doantionDetails.uniqueTransactionId}>
         <DefaultLayout>
           <div className="container-fluid d-flex flex-wrap gap-2">
             <div className="flex__1 d-flex flex-column align-items-sm-center align-items-stretch py-5 text-center pb-0 pb-sm-5">
@@ -129,9 +129,9 @@ const DonationConfirmPage = () => {
             <div className="mx-3 border-end"></div>
             <div className="d-flex col-md-6 col-8 email__container my-5 p-3">
               <div className="col-8 d-flex flex-column">
-                <div className="order__container d-flex align-items-center justify-content-between m-3 mx-0 border-bottom">
+                <div className="order__container d-flex align-items-center justify-content-between pb-2 m-3 mx-0 border-bottom">
                   <div className="order__wrap">
-                    <p className="total__title fs-2 fw-bolder">Donation Details</p>
+                    <h2 className="total__title fs-2 fw-bolder">Donation Details</h2>
                   </div>
                   <div className="order__value text-light">
                     {/* <ShareWidget page="donation" text={`I just Donated $${subtotal} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`} pageTitle="Donation" currUrl={`https://www.donorport.com/donate/${doantionDetails?._id}`}/> */}

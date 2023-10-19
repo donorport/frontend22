@@ -241,7 +241,7 @@ const Cart = (props) => {
           </div>
           <div className="d-flex align-items-center py-1">
             <span className="fw-bolder flex__1">Total:</span>
-            <span className="fw-bold text-light fs-4">
+            <span className="fw-bold price fs-4">
               {' '}
               {currencySymbol +
                 (grandTotal

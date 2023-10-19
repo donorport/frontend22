@@ -97,7 +97,7 @@ const OrderConfirmPage = () => {
   console.log({ orderDetails });
   return (
     <>
-      <Page showTags={false} title={'Order | ' + orderDetails.uniqueTransactionId}>
+      <Page showTags={true} title={'Order | ' + orderDetails.uniqueTransactionId}>
         <DefaultLayout>
           {/*<FrontLoader loading={loading} />*/}
           <div className="container-fluid d-flex flex-wrap gap-2">
@@ -155,9 +155,9 @@ const OrderConfirmPage = () => {
             <div className="mx-3 border-end"></div>
             <div className="d-flex col-md-6 col-8 email__container my-5 p-3">
               <div className="col-8 d-flex flex-column">
-                <div className="order__container d-flex align-items-center justify-content-between pb-3 m-3 mx-0 border-bottom">
+                <div className="order__container d-flex align-items-center justify-content-between pb-2 m-3 mx-0 border-bottom">
                   <div className="order__wrap">
-                    <p className="total__title fs-2 fw-bolder">Order Details</p>
+                    <h2 className="total__title fs-2 fw-bolder">Order Details</h2>
                   </div>
                   <div className="order__value text-light">
                     <ShareWidget

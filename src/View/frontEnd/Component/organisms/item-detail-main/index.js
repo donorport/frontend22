@@ -317,7 +317,7 @@ const ItemDetailsMain = ({
             ></path>{' '}
           </svg>
         </span>{' '}
-        <span className="fs-6  fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
+        <span className="fs-6  fw-bold ms-1">
           {productDetails?.subCategoryDetails?.name}
         </span>
       </Link>
@@ -334,7 +334,7 @@ const ItemDetailsMain = ({
             src={helper.CampaignAdminLogoPath + productDetails?.campaignDetails?.logo}
           />
         </span>
-        <span className="fs-6  fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
+        <span className="fs-6  fw-bold ms-1">
           {productDetails?.campaignDetails?.name}
         </span>
       </Link>

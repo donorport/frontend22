@@ -3,7 +3,7 @@
    viewBox="0 0 500 500"
    version="1.1"
    id="svg1455"
-   sodipodi:docname="Savings-amico.svg"
+   sodipodi:docname="hero.svg"
    inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -21,61 +21,24 @@
      inkscape:pagecheckerboard="0"
      showgrid="false"
      inkscape:zoom="1.438"
-     inkscape:cx="249.65229"
-     inkscape:cy="250"
+     inkscape:cx="208.27538"
+     inkscape:cy="258.34492"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
-     inkscape:window-x="0"
+     inkscape:window-x="1920"
      inkscape:window-y="25"
-     inkscape:window-maximized="1"
+     inkscape:window-maximized="0"
      inkscape:current-layer="svg1455" />
   <g
-     id="freepik--Floor--inject-3"
-     style="opacity:1;fill:#6b68f8;fill-opacity:1">
-    <ellipse
-       id="freepik--floor--inject-3"
-       cx="249.97"
-       cy="338.89"
-       rx="229.13"
-       ry="127.07"
-       style="fill:#6b68f8;fill-opacity:1" />
-  </g>
-  <g
      id="g1935"
-     style="opacity:0.9;fill:#ffffff;fill-opacity:1">
+     style="opacity:0.103;fill:#6b68f8;fill-opacity:1">
     <ellipse
        id="ellipse1933"
        cx="249.97"
        cy="338.89"
        rx="229.13"
        ry="127.07"
-       style="fill:#ffffff;fill-opacity:1" />
-  </g>
-  <g
-     id="freepik--Shadows--inject-3"
-     style="opacity:1;fill:#f4f4f4;fill-opacity:1">
-    <path
-       id="freepik--Shadow--inject-3"
-       d="M391.37,387.86l12-6.93c31.4-18.13,31.4-47.53,0-65.66l-53.92-31.13c-31.41-18.13-82.32-18.13-113.72,0l-12,6.94c-31.4,18.13-31.4,47.52,0,65.65l53.92,31.13C309.05,406,360,406,391.37,387.86Z"
-       style="fill:#f4f4f4;fill-opacity:1" />
-    <ellipse
-       id="freepik--shadow--inject-3"
-       cx="261.46"
-       cy="399.28"
-       rx="27.88"
-       ry="16.09"
-       style="fill:#f4f4f4;fill-opacity:1" />
-    <path
-       id="path828"
-       d="M245,356.71c-10.88-6.29-28.53-6.29-39.42,0s-10.89,16.48,0,22.76,28.54,6.29,39.42,0S255.88,363,245,356.71Z"
-       style="fill:#f4f4f4;fill-opacity:1" />
-    <ellipse
-       id="ellipse830"
-       cx="130.05"
-       cy="344.68"
-       rx="62.13"
-       ry="35.87"
-       style="fill:#f4f4f4;fill-opacity:1" />
+       style="fill:#6b68f8;fill-opacity:1" />
   </g>
   <g
      id="freepik--Plants--inject-3">

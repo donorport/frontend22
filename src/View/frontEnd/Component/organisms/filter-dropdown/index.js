@@ -188,7 +188,7 @@ const FilterDropdown = (props) => {
               </div>
             </div>
           </div>
-          <div className="filter__slider ">
+          <div className="filter__slider border-bottom">
             <Slider
               range
               min={filters.lowestPrice}
@@ -214,7 +214,7 @@ const FilterDropdown = (props) => {
               ))}
             </div>
           </div>
-          <div className="filter__footer p-2"></div>
+          <div className="filter__footer border-top p-2"></div>
         </Dropdown.Menu>
       </Dropdown>
     </>

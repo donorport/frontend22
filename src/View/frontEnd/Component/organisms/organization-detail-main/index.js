@@ -90,25 +90,28 @@ function OrganizationDetailMain({
        
             {moment(organizationDetails?.created_at).format('MMMM DD , Y')}
           </div> */}
+          {address && (
+            <div className="d-flex align-items-center text-nowrap">
+              <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
+              {address}
+            </div>
+          )}
+          {organizationDetails?.url && (
+            <div className="d-flex align-items-center text-nowrap" style={{ maxWidth: '210px' }}>
+              <FontAwesomeIcon icon={regular('link')} className="me-1" />
 
-          <div className="d-flex align-items-center text-nowrap">
-            <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
-            {address}
-          </div>
+              <a
+                href={organizationDetails?.url}
+                className="org__url text-light overflow-hidden text-truncate"
+                // style={{ width: '205px' }}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {organizationDetails?.url}
+              </a>
+            </div>
+          )}
 
-          <div className="d-flex align-items-center text-nowrap" style={{ maxWidth: '210px' }}>
-            <FontAwesomeIcon icon={regular('link')} className="me-1" />
-
-            <a
-              href={organizationDetails?.url}
-              className="org__url text-light overflow-hidden text-truncate"
-              // style={{ width: '205px' }}
-              rel="noreferrer"
-              target="_blank"
-            >
-              {organizationDetails?.url}
-            </a>
-          </div>
           <div className="text-light d-flex align-items-center me-2 text-nowrap">
             <IconToggle
               icon={<FontAwesomeIcon icon={regular('bell')} />}
@@ -222,7 +225,10 @@ function OrganizationDetailMain({
           <div className="page__paragraph">{organizationDetails?.description}</div>
         </div>
         <div className="mt-2">
-          <span variant="link" className="text-light text-decoration-none fw-normal px-0 fs-6">
+          <span
+            variant="link"
+            className="text-light text-uppercase text-decoration-none fw-normal px-0 fs-6"
+          >
             {/* {organizationDetails?.type} RN {organizationDetails?.ein} */}
             <FontAwesomeIcon className="me-1" icon={solid('building')} />
             RN {organizationDetails?.ein}

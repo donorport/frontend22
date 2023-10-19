@@ -166,7 +166,7 @@ className="flex-grow-1 me-1"
                 ></path>{' '}
               </svg>
             </span>
-            <span className="fs-6  fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
+            <span className="fs-6  fw-bold ms-1">
               {crowdfundingDetails?.campaignDetails?.categoryDetails?.name}
             </span>
           </Link>
@@ -186,7 +186,7 @@ className="flex-grow-1 me-1"
               />
               {/* </div> */}
             </span>
-            <span className="fs-6  fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
+            <span className="fs-6  fw-bold ms-1">
               {crowdfundingDetails?.campaignDetails?.name}
             </span>
           </Link>

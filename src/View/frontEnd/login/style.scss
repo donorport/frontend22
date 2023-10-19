@@ -10,9 +10,9 @@
     padding: 4.8rem 4.3rem;
     align-items: center;
 
-    @media (max-width: 991px) {
-      background: #f8fafd;
-    }
+    // @media (max-width: 991px) {
+    //   background: #f8fafd;
+    // }
 
     @media (max-width: 499px) {
       padding: 4.8rem 2rem;
@@ -83,8 +83,8 @@
       position: relative;
       padding: 10px 20px;
       border-radius: 25px;
-      background: #e5e5ea;
-      color: black;
+      background: $secondary-1;
+      color: $neutral-700;
       float: left;
 
       &:before {
@@ -94,7 +94,7 @@
         bottom: -2px;
         left: -7px;
         height: 20px;
-        border-left: 20px solid #e5e5ea;
+        border-left: 20px solid $secondary-1;
         border-bottom-right-radius: 16px 14px;
         transform: translate(0, -2px);
       }
@@ -140,6 +140,7 @@
   .login-form-wrapper {
     padding-bottom: 24px;
     width: 100%;
+    max-width: 100%;
 
     @include media-breakpoint-up(sm) {
       width: 325px;
@@ -149,9 +150,9 @@
   .login__form {
     margin-top: 6.25rem;
 
-    @media (max-width: 991px) {
-      margin-top: 2rem;
-    }
+    // @media (max-width: 991px) {
+    //   margin-top: 2rem;
+    // }
 
     .btn {
       display: flex;
@@ -336,11 +337,11 @@
       position: relative;
       padding-top: 4.8rem;
       padding-bottom: 1.9rem;
-      background: $body-bg;
+      background: $list;
     }
 
     .login__modal {
-      background-color: $secondary-5;
+      background-color: $secondary-1;
       position: relative;
       left: 0;
       top: 0;
@@ -357,7 +358,9 @@
       border-left: 1px solid $border-color;
       @include media-breakpoint-up(sm) {
         padding: 4.8rem 4.3rem;
-        width: 43%;
+      }
+      @include media-breakpoint-down(sm) {
+        position: absolute;
       }
     }
 

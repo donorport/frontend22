@@ -20,7 +20,7 @@ const Login = (props) => {
   return (
     <div className="d-flex flex-column bg-lighter authPage">
       <div className="login">
-        <div className="login__left d-none d-sm-flex align-items-center justify-content-center flex__1">
+        <div className="login__left d-none d-md-flex align-items-center justify-content-center flex__1">
           <div className="login__hero">
             <div className="chart-comment-block">
               <div className="from-me">

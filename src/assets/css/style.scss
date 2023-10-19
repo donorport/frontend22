@@ -62,9 +62,11 @@
   background: $error-bg;
   font-weight: 400;
 }
-// .input__wrap {
-//   margin: 1.6rem 0px 0.6rem;
-// }
+.input__wrap {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  // margin: 1.6rem 0px 0.6rem;
+}
 .inputerror {
   border-color: #dc3545 !important;
 }
@@ -1311,10 +1313,10 @@ li.search__tag {
   -ms-flex-align: center;
   align-items: center;
   padding: 0 18px;
-  font-size: 16px;
+  font-size: 0.875rem;
   color: #d1c7c7;
-  margin-left: 29px;
-  margin-top: 8px;
+  margin-left: 32px;
+  margin-top: 19px;
 }
 
 .tag.tag--ongoing._2 {

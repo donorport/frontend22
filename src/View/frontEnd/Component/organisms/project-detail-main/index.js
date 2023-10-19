@@ -229,7 +229,7 @@ function ProjectDetailMain(props) {
                 ></path>{' '}
               </svg>
             </span>
-            <span className="fs-6  fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
+            <span className="fs-6  fw-bold ms-1">
               {projectDetails?.campaignDetails?.categoryDetails?.name}
             </span>
           </Link>
@@ -249,7 +249,7 @@ function ProjectDetailMain(props) {
               />
               {/* </div> */}
             </span>
-            <span className="fs-6  fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
+            <span className="fs-6  fw-bold ms-1">
               {projectDetails?.campaignDetails?.name}
             </span>
           </Link>

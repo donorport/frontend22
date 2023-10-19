@@ -50,9 +50,9 @@ const About = (props) => {
           <Row>
             <Col md="4" className="mb-4 mb-sm-0">
               <div className="about__content-1">
-                <h1 className="about__title display-6 fw-bolder ">
+                <h3 className="fs-1 fw-bolder pt-3">
                   A Crowdfunding Platform for Charities
-                </h1>
+                </h3>
                 <p className="text-light fw-regular mb-4 lh-1.5">
                   Charities post products they need, donors provide the funding, and the charity
                   purchases the products. The only platform that brings you complete transparency;
@@ -96,7 +96,7 @@ const About = (props) => {
         {/* <h4 className="fs-1 fw-bolder text-center ">Our services</h4> */}
         <Row className="section--hero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5">
           <Col md="6">
-            <div className="d-flex align-items-center  justify-content-sm-center">
+            <div className="d-none d-sm-flex align-items-center justify-content-sm-center">
               <img
                 src={mobile}
                 className="img-fluid"

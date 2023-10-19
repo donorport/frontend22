@@ -702,7 +702,7 @@ const ProfileSettings = () => {
           ) : (
             <div className="d-flex note note--info my-3 fs-6">
               <span className="">
-                Upload an image of the product with a transparent background. Accepted file formats:{' '}
+                Upload an image of your logo with a transparent background. Accepted file formats:{' '}
                 <a className="link">png, jpg, svg</a>
               </span>
             </div>
