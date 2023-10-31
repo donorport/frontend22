@@ -147,7 +147,7 @@ function ProjectDetailMain(props) {
     );
 
   return (
-    <div className="project__detail-main">
+    <div className="project__detail-main d-flex flex-column gap-3">
       <ItemDetailsMain
         productDetails={productDetails}
         currencySymbol={currencySymbol}
@@ -160,25 +160,35 @@ function ProjectDetailMain(props) {
         onClickFilter={onClickFilter}
         per={per}
       />
+      {productDetails.organizationId !== '63fe5d48448eff9f0a6412d8' &&
+      productDetails.organizationId !== '63fe60f1448eff9f0a6412e6' ? (
+        <div className="d-flex flex-column project__calculate">
+          {!(isFinish || (productDetails.isFulfilled && !productDetails.unlimited)) && (
+            <SubtotalSlider
+              currencySymbol={currencySymbol}
+              price={price}
+              quantity={quantity}
+              maxQuantity={maxQuantity}
+              setQuantity={setQuantity}
+            />
+          )}
 
-      <div className="d-flex flex-column project__calculate">
-        {!(isFinish || (productDetails.isFulfiled && !productDetails.unlimited)) && (
-          <SubtotalSlider
-            currencySymbol={currencySymbol}
-            price={price}
-            quantity={quantity}
-            maxQuantity={maxQuantity}
-            setQuantity={setQuantity}
+          {/* <Button size="lg" className="w-100">
+       <span className="fw-bold">Add to cart ( {quantity} )</span>
+     </Button> */}
+
+          {/* {productDetails.quantity !== productDetails.soldout && cart_btn} */}
+          {!CampaignAdminAuthToken && btn}
+        </div>
+      ) : (
+        <div className="d-flex note">
+          <FontAwesomeIcon
+            icon={solid('circle-info')}
+            className="fs-4 text-primary pt-12p pb-12p me-2"
           />
-        )}
-
-        {/* <Button size="lg" className="w-100">
-            <span className="fw-bold">Add to cart ( {quantity} )</span>
-          </Button> */}
-
-        {/* {productDetails.quantity !== productDetails.soldout && cart_btn} */}
-        {!CampaignAdminAuthToken && btn}
-      </div>
+          <span>This is a sample item created by Donorport and is not available for donation.</span>
+        </div>
+      )}
 
       {!isFinish && (
         <UnfinishedSection
@@ -317,7 +327,7 @@ const ItemDetailsMain = ({
             ></path>{' '}
           </svg>
         </span>{' '}
-        <span className="fs-6  fw-bold ms-1">
+        <span className="fs-6  fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
           {productDetails?.subCategoryDetails?.name}
         </span>
       </Link>
@@ -334,7 +344,7 @@ const ItemDetailsMain = ({
             src={helper.CampaignAdminLogoPath + productDetails?.campaignDetails?.logo}
           />
         </span>
-        <span className="fs-6  fw-bold ms-1">
+        <span className="fs-6  fw-bold ms-1" style={{ textTransform: 'capitalize' }}>
           {productDetails?.campaignDetails?.name}
         </span>
       </Link>
@@ -369,7 +379,6 @@ const ItemDetailsMain = ({
         productDetails?.productImages.filter((e) => e.type === 'galleryImage').length > 0 && (
           <div className="mt-2">
             <ProjectCrowdfundingGallery
-              className="mb-3"
               title={true}
               tagTitle="Products"
               images={productDetails?.productImages}
@@ -382,7 +391,7 @@ const ItemDetailsMain = ({
 
 const SubtotalSlider = ({ currencySymbol, price, quantity, maxQuantity, setQuantity }) => (
   <>
-    <div className="sub__total mt-2">
+    <div className="sub__total">
       <div className=" fw-bold me-2">Subtotal:</div>
       <div className="price fs-4 fw-bold text-success">
         {currencySymbol}
@@ -415,11 +424,16 @@ const SubtotalSlider = ({ currencySymbol, price, quantity, maxQuantity, setQuant
 );
 
 const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) => (
-  <div className="product__badge mt-5 fs-5">
+  <div className="product__badge fs-5">
     {productDetails.postTag && (
       <IconText
         className="pt-12p pb-12p"
-        icon={<FontAwesomeIcon icon={solid('clock-rotate-left')} className="fs-3 text-primary pt-12p pb-12p" />}
+        icon={
+          <FontAwesomeIcon
+            icon={solid('clock-rotate-left')}
+            className="fs-3 text-primary pt-12p pb-12p"
+          />
+        }
       >
         Item was already purchased by the organization. Your purchase will cover those costs.
       </IconText>

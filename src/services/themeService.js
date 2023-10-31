@@ -1,15 +1,21 @@
 const getFromStorage = () => localStorage.getItem('theme');
 
 const apply = (theme) => {
-  // document.documentElement returns the HTML element, 
-  // so no need to querySelect for it
   document.documentElement.dataset.theme = theme;
   localStorage.setItem('theme', theme);
 };
 
 const detectPreferences = () => {
-  const mq = window.matchMedia('(prefers-color-scheme: dark)');
-  return mq.matches ? 'dark' : 'light';
+  const storedTheme = getFromStorage();
+
+  // Check if the user has set a theme preference in localStorage
+  if (storedTheme) {
+    return storedTheme;
+  } else {
+    // Use the user's system preference
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    return mq.matches ? 'dark' : 'light';
+  }
 };
 
 const toggle = () => {
@@ -35,4 +41,5 @@ const themeService = {
   toggle,
   init
 };
+
 export default themeService;

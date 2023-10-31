@@ -133,7 +133,7 @@ const Product = (props) => {
 
   const cart_btn = added_to_cart ? (
     <a
-      className="p-1 text-success rounded-3 fw-bold"
+      className="p-1 bg-success rounded-3 fw-bold"
       // variant="success"
       //size="sm"
       // className="icon icon__pro"
@@ -143,7 +143,7 @@ const Product = (props) => {
     </a>
   ) : (
     <a
-      className="btn-outline-primary btn p-1 rounded-3 fw-bold"
+      className="btn-primary btn p-1 rounded-3 fw-bold"
       // variant="primary"
       // style={{ width: '56px', fontSize: '16px' }}
       // className="icon icon__pro"
@@ -272,17 +272,27 @@ const Product = (props) => {
         )}
       </div>
 
-      <div className="product__details d-flex align-items-center py-2 px-2">
-        <div className="d-flex">{btn}</div>
+      <div className="product__details d-flex align-items-center p-2">
+        {props.organizationId !== '63fe5d48448eff9f0a6412d8' &&
+        props.organizationId !== '63fe60f1448eff9f0a6412e6' ? (
+          <div className="d-flex">{btn}</div>
+        ) : (
+          <span className="d-flex gap-1 badge badge--example fs-7 fw-semibold">
+            {' '}
+            <FontAwesomeIcon icon={regular('circle-info')} className="text-primary fs-7" />
+            Sample Product
+          </span>
+        )}
+
         <div className="product__meta d-flex align-items-center ms-auto">
           {(props.projectDetails?.length > 0 || props.projectProducts.length > 0) && (
             <span className="product__type icon icon__solid-900 text-success">
-              <FontAwesomeIcon icon={solid('bolt')} className="text-secondary"/>
+              <FontAwesomeIcon icon={solid('bolt')} className="text-secondary" />
             </span>
           )}
           {props.postTag && (
             <span className="text-infinity d-flex align-items-center product__type product__type-tab">
-              <FontAwesomeIcon icon={solid('clock-rotate-left')}/>
+              <FontAwesomeIcon icon={solid('clock-rotate-left')} />
             </span>
           )}
           {props.tax && (

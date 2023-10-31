@@ -76,7 +76,10 @@ function SimilarItem(props) {
         <span>Funded</span>
       </span>
     ) : (
-      cart_btn
+      props.organizationDetails?.name !== 'Tree Frog' ||
+      (props.organizationDetails?.name !== 'Science Bites' && (
+        <div className="button__wrap d-flex">{cart_btn}</div>
+      ))
     );
   return (
     <li className="similar__item__item pt-12p pb-2 d-flex align-items-center">

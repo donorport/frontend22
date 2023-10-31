@@ -4,8 +4,10 @@ import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Container, Button } from 'react-bootstrap';
 import Logo from '../Component/atoms/logo';
 import ListItemImg from '../Component/atoms/list-item-img';
+import receipt from '../../../assets/images/receipt.svg';
 import helper, { getCalculatedPrice, priceFormat } from '../../../Common/Helper';
 import { Link } from 'react-router-dom';
+import Toggle from '../Component/organisms/toggle';
 
 import './style.scss';
 
@@ -74,39 +76,30 @@ const Cart = (props) => {
 
   return (
     <Container fluid className="cart__page py-sm-5 mw-1280">
-      <header className="pt-sm-5">
-        <div className="d-flex logo__wrap pb-sm-3">
-          <Logo />
-        </div>
-        <div className="cart__steps fs-7 pt-3 pt-sm-0">
-          <span className="active me-1 text-light">
-            Cart
-            {cartItem.length > 0 && (
-              <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
-            )}
-          </span>
-
-          {cartItem.length > 0 && (
-            <>
+          <header className="pt-sm-5">
+            <div className="logo__wrap pb-sm-3 d-none d-lg-flex gap-2">
+              <Logo />
+              <Toggle />
+            </div>
+            <div className="cart__steps fs-7 pt-3 pt-sm-0">
               <Link
+                to="/cart"
                 variant="link"
-                to="/checkout"
-                className="p-0 me-1 fw-normal fs-7 text-decoration-none "
+                className="p-0 me-1 fw-normal text-light fs-7 text-decoration-none"
               >
-                Checkout
+                Cart
                 <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
               </Link>
-              <Button
-                variant="link"
-                className="p-0 me-1 fw-normal fs-7 text-decoration-none "
-              >
+              <span className="active me-1 text-light">
+                Checkout
+                <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
+              </span>
+              <Button variant="link" className="p-0 me-1 fw-normal fs-7 text-decoration-none ">
                 Order
                 <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
               </Button>
-            </>
-          )}
-        </div>
-      </header>
+            </div>
+          </header>
       {cartItem && cartItem.length > 0 ? (
         <div className="pt-20p">
           <div className="pt-20p pb-12p">
@@ -147,7 +140,8 @@ const Cart = (props) => {
                     <div className="d-flex align-items-center flex-grow-sm-0 flex-grow-1 justify-content-start justify-content-sm-end ">
                       {item.productDetails?.tax && (
                         <div className="checkout__tax p-1 d-flex align-items-center justify-content-center order-sm-0 order-1">
-                          <FontAwesomeIcon icon={solid('paperclip')} className="text-primary fs-4" />
+                          {/* <FontAwesomeIcon icon={solid('paperclip')} className="text-primary fs-4" /> */}
+                          <img height="24" src={receipt}></img>
                         </div>
                       )}
                       <Link
@@ -191,7 +185,7 @@ const Cart = (props) => {
                         </Button>
                       </span>
                       <span
-                        className="fs-5 fw-bold text-light text-end order-1"
+                        className="fs-5 fw-bold price text-end order-1"
                         style={{ minWidth: '90px' }}
                       >
                         {currencySymbol +
@@ -218,7 +212,7 @@ const Cart = (props) => {
               <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
                 Service Charge:
               </Link>
-              <span className="price fw-bold fs-5">{currencySymbol + platformCost}</span>
+              <span className="text-light fw-semibold fs-5">{currencySymbol + platformCost}</span>
             </div>
 
             {/*<div className="d-flex align-items-center py-3 border-bottom">

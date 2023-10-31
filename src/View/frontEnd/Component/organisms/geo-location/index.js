@@ -69,20 +69,19 @@ const GeoLocation = (props) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-
   const [mapTheme, setMapTheme] = useState('day'); // Default to 'day' theme
 
   useEffect(() => {
     // Use the HTML data-theme attribute to set the map theme
     const htmlTheme = document.documentElement.getAttribute('data-theme');
-    
+
     if (htmlTheme === 'dark') {
       setMapTheme('night');
     } else {
       setMapTheme('day');
     }
   }, []);
-  
+
   const mapStyles = {
     day: 'mapbox://styles/mapbox/navigation-day-v1',
     night: 'mapbox://styles/mapbox/navigation-night-v1'
@@ -100,7 +99,8 @@ const GeoLocation = (props) => {
 
   useEffect(() => {
     const handleScrolling = () => {
-      if (hidden && window.innerWidth <= 768) { // Change 768 to the desired mobile breakpoint
+      if (hidden && window.innerWidth <= 768) {
+        // Change 768 to the desired mobile breakpoint
         document.body.style.overflow = 'hidden'; // Disable scrolling
       } else {
         document.body.style.overflow = 'auto'; // Enable scrolling
@@ -206,7 +206,7 @@ const GeoLocation = (props) => {
         >
           <div className="dropdown__inner position-relative">
             <div className="geo_dropdown-top d-flex align-items-center">
-              <InputGroup className="input-group__alpha">
+              <InputGroup className="d-flex nowrap input-group__alpha">
                 <InputGroup.Text>
                   <SearchIcon size={2} className="mapbox-searchicon" />
                 </InputGroup.Text>
@@ -228,10 +228,10 @@ const GeoLocation = (props) => {
                 </div>
               </div>
 
-              <div className="geo__lock d-flex align-items-center">
+              <div className="d-flex align-items-center">
                 <Button
                   variant="link"
-                  className="p-0 text-decoration-none mx-auto"
+                  className="geo__lock d-flex justify-content-center p-0 text-decoration-none"
                   onClick={() => toggleState()}
                 >
                   <span className="d-flex align-items-center icon fs-5">
@@ -246,25 +246,25 @@ const GeoLocation = (props) => {
             </div>
             <div className="mapboxgl-map-cust">
               {/* {user.lat && user.lng ? ( */}
-                <Map
-                  {...viewState}
-                  style={mapStyles[mapTheme]} // Use the selected theme
-                  zoom={[zoomLevel]}
-                  center={[user.lng, user.lat]}
-                  // This manages the update results and displaying the scale level for zoom in KM:
-                  onRender={(e) => setObjectVal(e.boxZoom._container.outerText)}
-                  onMove={(event) => {
-                    setViewState(event.viewState);
-                  }}
-                >
-                  <div className="radius-container">
-                    <div className="radius-circle"></div>
-                  </div>
-                  <ScaleControl style={{ zIndex: '-1' }} />
-                  <Marker coordinates={[user.lng, user.lat]} className="mapbox-marker-user">
-                    <div className="mapboxgl-user-location-dot"></div>
-                  </Marker>
-                  {/* {listOfGroupedProducts.length > 0 &&
+              <Map
+                {...viewState}
+                style={mapStyles[mapTheme]} // Use the selected theme
+                zoom={[zoomLevel]}
+                center={[user.lng, user.lat]}
+                // This manages the update results and displaying the scale level for zoom in KM:
+                onRender={(e) => setObjectVal(e.boxZoom._container.outerText)}
+                onMove={(event) => {
+                  setViewState(event.viewState);
+                }}
+              >
+                <div className="radius-container">
+                  <div className="radius-circle"></div>
+                </div>
+                <ScaleControl style={{ zIndex: '-1' }} />
+                <Marker coordinates={[user.lng, user.lat]} className="mapbox-marker-user">
+                  <div className="mapboxgl-user-location-dot"></div>
+                </Marker>
+                {/* {listOfGroupedProducts.length > 0 &&
                     listOfGroupedProducts.map(([loc, groupOfItems], index) => {
                       //console.log('map markers:', { loc, groupOfItems });
                       if (groupOfItems.length > 1) {
@@ -344,7 +344,7 @@ const GeoLocation = (props) => {
                         </Marker>
                       );
                     })} */}
-                </Map>
+              </Map>
             </div>
 
             <div className="geo__slider">

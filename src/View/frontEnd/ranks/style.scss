@@ -3,9 +3,9 @@
 }
 
 .rank__list {
-  .rank__item {
+  .rank__item:last-child {
     @include media-breakpoint-down(sm) {
-      border-bottom: 1px solid $border-color;
+      border-bottom: none !important;
     }
   }
 }

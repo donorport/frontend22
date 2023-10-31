@@ -1,9 +1,5 @@
 .checkout {
   &__page {
-    .container-fluid {
-      width: 95%;
-    }
-
     .logo__wrap {
       @include media-breakpoint-down(sm) {
         border-bottom: 1px solid var(--border-input);

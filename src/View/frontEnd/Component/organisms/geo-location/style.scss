@@ -60,7 +60,7 @@
   .input-group-text {
     background: none;
     border: none;
-    color: #6f6f90ad;
+    // color: #6f6f90ad;
   }
 
   .form-control {
@@ -69,11 +69,10 @@
     padding-left: 10%;
 
     &:focus {
-      //background-color: transparent;
-      background-color: $secondary-5;
-      border-color: #b5b4fc;
+      background-color: transparent !important;
+      // border-color: #b5b4fc;
       outline: 0;
-      border: 2px solid #b5b4fc;
+      // border: 2px solid #b5b4fc;
     }
   }
 }
@@ -91,6 +90,9 @@
 
 .geo__lock {
   width: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .geo_dropdown-top {

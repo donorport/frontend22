@@ -68,7 +68,7 @@ function CartItem(props) {
               {cartItem?.productDetails?.organizationDetails?.name}
             </div>
           </div>
-          <div className="cd__cart__price text-light fw-bold">
+          <div className="cd__cart__price price fw-bold">
             {currencySymbol + priceFormat(price)}
           </div>
         </div>

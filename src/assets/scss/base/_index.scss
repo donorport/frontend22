@@ -90,7 +90,7 @@ p {
   background-color: $secondary-5;
   color: $neutral-700;
 }
-.form-control:not(.donate-value-input) {
+.form-control:not(.donate-value-input,.search) {
   height: 54px;
   background-color: $body-bg;
   color: $neutral-700;
@@ -103,4 +103,8 @@ p {
 }
 .MuiPaginationItem-root {
   color: $neutral-600;
+}
+.react-mapbox-ac-menu {
+  background: $secondary-5;
+  border-color: $secondary-5;
 }

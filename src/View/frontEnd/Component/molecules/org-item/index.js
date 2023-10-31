@@ -90,7 +90,10 @@ function OrganizationItem(props) {
         </span>
       </div>
     ) : (
-      <div className="button__wrap d-flex">{cart_btn}</div>
+      props.organizationDetails?.name !== 'Tree Frog' ||
+      (props.organizationDetails?.name !== 'Science Bites' && (
+        <div className="button__wrap d-flex">{cart_btn}</div>
+      ))
     );
 
   // console.log("product",product)

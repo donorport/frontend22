@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import './style.scss';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -9,7 +9,7 @@ const Logo = () => {
   const user = useSelector((state) => state.user);
   const [theme, setTheme] = useState(document.documentElement.getAttribute('data-theme'));
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const updateTheme = () => {
       setTheme(document.documentElement.getAttribute('data-theme'));
     };

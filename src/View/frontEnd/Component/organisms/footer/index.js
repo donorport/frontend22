@@ -99,7 +99,7 @@ function Footer() {
       <Container fluid>
         <Row className="footer__middle pb-2">
           <Col sm className="footer__block logo text-center text-sm-start mb-2 mb-sm-0">
-            <Logo/>
+            <Logo />
             <p className="text-light mt-12p">
               The world's first and largest crowd-funding platform for non-profits
               &amp;&nbsp;charities. Donate directly to the needs of the organization and help them
