@@ -794,7 +794,7 @@ const ProfileSettings = () => {
             {error && error.headline && (
               <p className="error">{error ? (error.headline ? error.headline : '') : ''}</p>
             )}
-            <div className="note note--inputs mb-3 fs-6">
+            <div className="note note--inputs fs-6">
               A headline is the subtitle that appears on your organization's page that describes
               your cause in 120 characters or less.
             </div>

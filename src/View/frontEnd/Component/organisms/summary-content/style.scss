@@ -1,3 +1,6 @@
+.checkout__list li:last-child {
+  border: none !important;
+}
 .checkout__tax {
   background: $secondary-5;
   border-radius: 4px;

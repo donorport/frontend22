@@ -39,10 +39,18 @@ body {
 a:not(.checkout__title) {
   text-decoration: none;
   color: $neutral-700;
+  cursor: pointer;
 }
 
 p {
   font-size: 18px;
+}
+
+ul {
+  margin: 0;
+}
+.progress {
+  background-color: $progress;
 }
 .link {
   color: #2c4bff !important;
@@ -84,13 +92,12 @@ p {
   transition: none !important;
 }
 .form-control,
-.progress,
 .note,
 .deactivate {
   background-color: $secondary-5;
   color: $neutral-700;
 }
-.form-control:not(.donate-value-input,.search) {
+.form-control:not(.donate-value-input, .search) {
   height: 54px;
   background-color: $body-bg;
   color: $neutral-700;
@@ -100,6 +107,24 @@ p {
 .MuiPaginationItem-root:hover,
 .Mui-selected:focus {
   background-color: $secondary-1 !important;
+}
+.MuiPaper-root {
+  border-color: $border-color !important;
+  background: $secondary-6;
+  overflow: hidden;
+  border-radius: 0;
+  .Mui-selected {
+    background: $secondary-5 !important;
+  }
+  border-color: $border-color !important;
+
+  li {
+    background: $secondary-6 !important;
+    border-color: $border-color !important;
+  }
+  li:hover {
+    background: $secondary-5 !important;
+  }
 }
 .MuiPaginationItem-root {
   color: $neutral-600;

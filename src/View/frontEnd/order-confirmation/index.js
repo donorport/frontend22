@@ -101,7 +101,7 @@ const OrderConfirmPage = () => {
         <DefaultLayout>
           {/*<FrontLoader loading={loading} />*/}
           <div className="container-fluid d-flex flex-wrap gap-2">
-            <div className="flex__1 d-flex flex-column align-items-sm-center align-items-stretch py-5 text-center pb-0 pb-sm-5">
+            <div className="flex__1 d-flex flex-column align-items-sm-center align-items-stretch text-center pb-0 pb-sm-5">
               <div className="d-flex flex-column align-items-center">
                 <div className="boat-container relative mb-3">
                   <div className="absolute boat">
@@ -152,9 +152,9 @@ const OrderConfirmPage = () => {
                 </div>
               </div>
             </div>
-            <div className="mx-3 border-end"></div>
-            <div className="d-flex col-md-6 col-8 email__container my-5 p-3">
-              <div className="col-8 d-flex flex-column">
+            <div className="d-none d-lg-flex mx-3 border-end"></div>
+            <div className="d-flex flex-grow-1 flex-md-grow-0 col-1 col-md-6 col-8 email__container my-5 mt-0 p-3">
+              <div className="flex-grow-1 col-8 d-flex flex-column">
                 <div className="order__container d-flex align-items-center justify-content-between pb-2 m-3 mx-0 border-bottom">
                   <div className="order__wrap">
                     <h2 className="total__title fs-2 fw-bolder">Order Details</h2>

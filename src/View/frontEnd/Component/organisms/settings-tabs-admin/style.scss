@@ -53,7 +53,6 @@
     width: 200px;
   }
 }
-
 @include media-breakpoint-down(md) {
   .settings-tabs {
     width: auto;
@@ -71,6 +70,7 @@
     .stab__btn {
       padding-right: 8px;
       margin: 0;
+      padding: 9px !important;
 
       &.active {
         color: $success;

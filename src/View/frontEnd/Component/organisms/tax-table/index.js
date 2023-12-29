@@ -411,7 +411,7 @@ const TaxTable = (props) => {
             // <div className="d-sm-flex align-items-center justify-content-center flex-grow-1">
             //   <li className="table__list-item p-2">No Records to Display</li>
             // </div>
-            <li className="table__list-item p-2 fw-bold d-flex justify-content-center">
+            <li className="list__table-list p-2 mb-0">
               {props.loading ? (
                 <CircularProgress className="ms-2" color="inherit" size={32} />
               ) : (
@@ -433,7 +433,7 @@ const TaxTable = (props) => {
                   </div>
                   <div className="d-sm-flex align-items-center flex__1 ms-2">
                     <div>
-                      <div className="fw-bold fs-5 billing__name mb-6p">
+                      <div className="fw-bold fs-5 billing__name me-2 mb-6p">
                         Top Donor
                       </div>
                       <div className="text-light">#158329</div>
@@ -460,7 +460,7 @@ const TaxTable = (props) => {
           </li> */}
         </ul>
         <div
-            className="list__table__footer py-2 mt-2 d-flex justify-content-center border-top"
+            className="list__table__footer py-2 d-flex justify-content-center border-top"
             style={{ background: '#f8fafd78' }}
           >
         {props.totalPages > 1 ? (

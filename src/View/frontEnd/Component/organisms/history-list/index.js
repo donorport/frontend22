@@ -164,7 +164,7 @@ const HistoryList = ({
 
   return (
     <>
-      <div className="d-flex flex-wrap gap-2 fw-semibold py-3">
+      <div className="d-flex flex-wrap gap-2 fw-semibold pb-3 pt-1 pt-sm-0">
         <span>
           {' '}
           <img alt="" className="me-1" style={{ height: '16px' }} src={coin}></img>
@@ -239,7 +239,7 @@ const HistoryList = ({
             </FormControl>
           </div>
         </div>
-        <ul className="list__table-list ps-sm-3 ps-1">
+        <ul className="list__table-list p-2 mb-0">
           {isFetching ? (
             <li className="history__list-item d-flex align-items-center justify-content-center p-5">
               <CircularProgress className="ms-1" color="inherit" size={32} />
@@ -272,7 +272,7 @@ const HistoryList = ({
           )}
         </ul>
         <div
-          className="list__table__footer py-2 mt-2 d-flex justify-content-center border-top"
+          className="list__table__footer py-2 d-flex justify-content-center border-top"
           style={{ background: '#f8fafd78' }}
         >
           {totalPages > 1 && (
@@ -336,7 +336,7 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
       buttonProps={{ disabled: disableHeader }}
       header={
         <>
-          <li className="w-100 history__list-item px-2 py-2">
+          <li className="w-100 history__list-item px-1 py-2">
             <div className="d-flex flex-column">
               <div className="accordion__head d-flex align-items-center">
                 <span className="flex-grow-1 d-flex align-items-center rounded-3">
@@ -401,7 +401,7 @@ const DonationListItem = ({ donation, activeList }) => {
   return (
     <>
       {donation.type === 'ORGANIZATION' ? (
-        <li className="history__list-item px-2 py-2 me-3 border-bottom">
+        <li className="history__list-item px-2 py-2 me-0 me-sm-3 border-bottom">
           <div className="">
             <div className="d-flex align-items-center">
               <div className="d-flex flex-grow-1">
@@ -461,7 +461,7 @@ const DonationListItem = ({ donation, activeList }) => {
         </li>
       ) : (
         //PROJECT:
-        <li className="history__list-item px-2 py-2 me-3 border-bottom">
+        <li className="history__list-item px-2 py-2 border-bottom">
           <div className="d-flex flex-column">
             <div className="d-flex align-items-center">
               <div className="d-flex flex-grow-1">
@@ -541,12 +541,12 @@ const DonationListActiveList = ({ donation, CardBrand, last4 }) => {
 
 const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
   return (
-    <ul className="history__list list-unstyled ms-1 mt-2 pe-5">
+    <ul className="history__list list-unstyled d-flex flex-column ms-1 mt-2 pe-1 gap-4">
       {order.orderItems.length > 0 &&
         order.orderItems.map((item, key) => (
           <PurchaseListItem key={key} order={order} item={item} />
         ))}
-      <div className="d-flex justify-content-start align-items-center pt-3 pb-1">
+      <div className="d-flex justify-content-start align-items-center py-1">
         <Link to="/pricing" className="fw-semibold fs-7 text-light">
           Service Charge:
         </Link>
@@ -574,8 +574,8 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
 
 const PurchaseListItem = ({ order, item }) => {
   return (
-    <li className="d-sm-flex align-items-center px-sm-0 py-sm-2 py-0 border-bottom">
-      <div className="d-flex align-items-center mb-2 mb-sm-0 flex__1">
+    <li className="d-sm-flex align-items-center px-sm-0 py-sm-2 pb-2 border-bottom">
+      <div className="d-flex align-items-start mb-2 mb-sm-0 flex__1">
         <ListItemImg
           size={68}
           imgSrc={helper.CampaignProductImagePath + item.productImage}

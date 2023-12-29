@@ -15,6 +15,7 @@ import moment from 'moment';
 import helper, { getCardIcon, priceFormat } from '../../../../../Common/Helper';
 import CSVExportBtn from '../../../CSVExportBtn';
 import profile from '../../../../../assets/images/avatar.png';
+import avatar from '../../../../../assets/images/donate.svg';
 
 const AdminBilling = () => {
   const [historyList, setHistoryList] = useState([]);
@@ -54,33 +55,55 @@ const AdminBilling = () => {
           let tempObj = {};
           tempObj.date = moment(list.created_at).format('MM/DD/YYYY');
           tempObj.amount =
-            list.type === 'ORDER' ? Number(list.totalPrice) * Number(list.quantity) : list.amount;
-          tempObj.name =
-            list.type === 'ORDER' ? list.orderDetails.userDetails.name : list.userDetails.name;
-          tempObj.email =
-            list.type === 'ORDER' ? list.orderDetails.userDetails.email : list.userDetails.email;
+            list.type === 'ORDER'
+              ? Number(list.totalPrice) * Number(list.quantity)
+              : list.amount;
+  
+          let userName = list.userDetails ? list.userDetails.name : 'DELETED USER';
+          let orderUserName = list.orderDetails ? list.orderDetails.userDetails.name : 'DELETED USER';
+          tempObj.name = list.type === 'ORDER' ? orderUserName : userName;
+  
+          let userEmail = list.userDetails ? list.userDetails.email : 'DELETED USER';
+          let orderUserEmail = list.orderDetails ? list.orderDetails.userDetails.email : 'DELETED USER';
+          tempObj.email = list.type === 'ORDER' ? orderUserEmail : userEmail;
+  
           tempObj.description =
             list.type === 'ORDER' ? list.quantity + ' ' + list.productName : 'Donated';
-          tempObj.card =
-            list.type === 'ORDER'
-              ? JSON.parse(list.orderDetails.paymentResponse).data?.payment_method_details?.card
-                  ?.brand
-              : JSON.parse(list.paymentResponse).payment_method_details?.card?.brand;
-          tempObj.lastfour =
-            list.type === 'ORDER'
-              ? JSON.parse(list.orderDetails.paymentResponse).data?.payment_method_details?.card
-                  ?.last4
-              : JSON.parse(list.paymentResponse).payment_method_details?.card?.last4;
-          tempObj.id =
-            list.type === 'ORDER'
-              ? JSON.parse(list.orderDetails.paymentResponse).data?.payment_method_details?.card?.id
-              : JSON.parse(list.paymentResponse).payment_method_details?.card?.id;
+  
+          let cardBrand = '';
+          let cardLastFour = '';
+          let cardId = '';
+          if (list.type === 'ORDER') {
+            if (list.orderDetails) {
+              let orderPaymentResponse = JSON.parse(list.orderDetails.paymentResponse);
+              cardBrand =
+                orderPaymentResponse.data?.payment_method_details?.card?.brand || '';
+              cardLastFour =
+                orderPaymentResponse.data?.payment_method_details?.card?.last4 || '';
+              cardId =
+                orderPaymentResponse.data?.payment_method_details?.card?.id || '';
+            }
+          } else {
+            let paymentResponse = JSON.parse(list.paymentResponse);
+            cardBrand =
+              paymentResponse.payment_method_details?.card?.brand || '';
+            cardLastFour =
+              paymentResponse.payment_method_details?.card?.last4 || '';
+            cardId =
+              paymentResponse.payment_method_details?.card?.id || '';
+          }
+  
+          tempObj.card = cardBrand;
+          tempObj.lastfour = cardLastFour;
+          tempObj.id = cardId;
+  
           tempAr.push(tempObj);
         });
         setCsvData(tempAr);
       }
     }
   };
+  
 
   useEffect(() => {
     (async () => {
@@ -144,47 +167,59 @@ const AdminBilling = () => {
             </Button> */}
           </div>
           <div className="billing__list mb-3">
-            {historyList.length > 0 ? (
-              historyList.slice(0, loadMore ? historyList.length : 6).map((list, i) => {
-                // console.log(list)
-                let amount =
-                  list.type === 'ORDER'
-                    ? Number(list.totalPrice) * Number(list.quantity)
-                    : list.amount;
-                let currencySymbole =
-                  list.type === 'ORDER' ? list.orderDetails.currencySymbol : list.currencySymbol;
-                let date = moment(list.created_at).format('MM/DD/YYYY');
-                let donate =
-                  list.type === 'ORDER' ? list.quantity + ' ' + list.productName : 'Donated';
-                let PurchaseIcon =
-                  list.type === 'ORDER' ? (
-                    <FontAwesomeIcon icon={solid('bag-shopping')} className="mr-3p" />
-                  ) : (
-                    <FontAwesomeIcon icon={solid('heart')} className="mr-3p" />
-                  );
-                let userName =
-                  list.type === 'ORDER'
-                    ? list.orderDetails.userDetails.name
-                    : list.userDetails.name;
-                let CardType =
-                  list.type === 'ORDER'
-                    ? JSON.parse(list.orderDetails.paymentResponse).data?.payment_method_details
-                        ?.card?.brand
-                    : JSON.parse(list.paymentResponse).payment_method_details?.card?.brand;
-                let lastFourDigits =
-                  list.type === 'ORDER'
-                    ? JSON.parse(list.orderDetails.paymentResponse).data?.payment_method_details
-                        ?.card?.last4
-                    : JSON.parse(list.paymentResponse).payment_method_details?.card?.last4;
-                let cardID =
-                  list.type === 'ORDER'
-                    ? JSON.parse(list.orderDetails.paymentResponse).data?.id
-                    : JSON.parse(list.paymentResponse).id;
-                let image =
-                  list.type === 'ORDER'
-                    ? list.orderDetails.userDetails.image
-                    : list.userDetails.image;
-                let avatar = image ? helper.DonorImagePath + image : profile;
+          {historyList.length > 0 ? (
+    historyList.slice(0, loadMore ? historyList.length : 6).map((list, i) => {
+      let amount =
+        list.type === 'ORDER'
+          ? Number(list.totalPrice) * Number(list.quantity)
+          : list.amount;
+      let currencySymbole =
+        list.type === 'ORDER' ? list.orderDetails?.currencySymbol : list.currencySymbol;
+      let date = moment(list.created_at).format('MM/DD/YYYY');
+      let donate =
+        list.type === 'ORDER' ? list.quantity + ' ' + list.productName : 'Donated';
+      let PurchaseIcon =
+        list.type === 'ORDER' ? (
+          <FontAwesomeIcon icon={solid('bag-shopping')} className="mr-3p" />
+        ) : (
+          <FontAwesomeIcon icon={solid('heart')} className="mr-3p" />
+        );
+
+      let userName = list.userDetails ? list.userDetails.name : 'DELETED USER';
+      let orderUserName = list.orderDetails ? list.orderDetails.userDetails.name : 'DELETED USER';
+
+      let cardID = '';
+      let image = '';
+      
+      if (list.type === 'ORDER') {
+        if (list.orderDetails && list.orderDetails.userDetails) {
+          let orderPaymentResponse = JSON.parse(list.orderDetails.paymentResponse);
+          cardID = orderPaymentResponse.data?.id || '';
+          image = list.orderDetails.userDetails.image || '';
+        }
+      } else {
+        let paymentResponse = JSON.parse(list.paymentResponse);
+        cardID = paymentResponse.id || '';
+        image = (list.userDetails && list.userDetails.image) || '';
+      }
+      
+
+      let avatar = image ? helper.DonorImagePath + image : profile;
+      let userNameToDisplay = list.type === 'ORDER' ? orderUserName : userName;
+
+      let CardType = '';
+      let lastFourDigits = '';
+      if (list.type === 'ORDER') {
+        if (list.orderDetails) {
+          let orderPaymentResponse = JSON.parse(list.orderDetails.paymentResponse);
+          CardType = orderPaymentResponse.data?.payment_method_details?.card?.brand || '';
+          lastFourDigits = orderPaymentResponse.data?.payment_method_details?.card?.last4 || '';
+        }
+      } else {
+        let paymentResponse = JSON.parse(list.paymentResponse);
+        CardType = paymentResponse.payment_method_details?.card?.brand || '';
+        lastFourDigits = paymentResponse.payment_method_details?.card?.last4 || '';
+      }
 
                 return (
                   <div className="billing__item p-2 py-3 border-bottom">

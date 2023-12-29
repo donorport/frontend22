@@ -120,7 +120,7 @@ function LinkedOrg(props) {
         // value={val}
         // onChange={(e) => setCode(e, props.index)}
         onKeyUp={(e) => props.autoTab(e, props.index)}
-        style={inputStyle}
+        // style={inputStyle}
       />
     );
   };
@@ -266,7 +266,7 @@ function LinkedOrg(props) {
               </div>
               <div className="no__items-found fw-bold">You have no linked organizations.</div>
               <span className="mt-1 fs-6" style={{ maxWidth: '225px' }}>
-                In order to link to an organization account, you'll need to be invited by the
+                To link to an organization, you'll need to be invited by a
                 charity.
               </span>
             </div>

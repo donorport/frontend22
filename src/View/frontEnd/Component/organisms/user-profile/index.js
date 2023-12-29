@@ -570,7 +570,7 @@ const UserProfile = () => {
             )}
           </div>
         </div>
-        <div className="d-flex flex-column mb-5 pb-5 gap-3">
+        <div className="d-flex flex-column mb-5 pb-2 gap-3">
           {' '}
           <div className="input__wrap d-flex">
             <label className="input__label flex__1">
@@ -602,11 +602,13 @@ const UserProfile = () => {
       </div>
 
       <div>
-        <h4 className="fw-bolder">Address</h4>
-        <div className="text-subtext mb-3">For invoices & tax receipts</div>
-        <div className="note note--inputs">
-          Your personal information is secured and not shared with anyone. We use this information
-          to process tax receipts for your donations.
+        <div className="d-flex flex-column mb-3">
+          <h4 className="fw-bolder">Address</h4>
+          <div className="text-subtext mb-3">For invoices & tax receipts</div>
+          <div className="note note--inputs">
+            Your personal information is secured and not shared with anyone. We use this information
+            to process tax receipts for your donations.
+          </div>
         </div>
 
         <div className="d-flex flex-column gap-3 mb-3">

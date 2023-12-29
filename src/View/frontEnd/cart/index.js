@@ -77,7 +77,7 @@ const Cart = (props) => {
   return (
     <Container fluid className="cart__page py-sm-5 mw-1280">
           <header className="pt-sm-5">
-            <div className="logo__wrap pb-sm-3 d-none d-lg-flex gap-2">
+            <div className="logo__wrap pb-sm-3 d-flex gap-2">
               <Logo />
               <Toggle />
             </div>
@@ -110,7 +110,7 @@ const Cart = (props) => {
 
                 return (
                   <li className="d-flex flex-wrap flex--sm-nowrap align-items-center py-2" key={i}>
-                    <div className="d-flex align-items-center mb-2 mb-sm-0 flex__1">
+                    <div className="d-flex align-items-start mb-2 mb-sm-0 flex__1">
                       <ListItemImg
                         size={75}
                         imgSrc={helper.CampaignProductImagePath + item?.productDetails?.image}

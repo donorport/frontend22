@@ -21,7 +21,7 @@ const AddBankModal = (props) => {
   return (
     <>
       <div>
-        <div className="d-flex flex-column mb-5 pb-5 gap-3 ">
+        <div className="d-flex flex-column pb-5 gap-3 ">
           <div className="note  mb-2 fs-6">
             Donorport will store this information for deposits and withdrawals and share it with
             payment processors.

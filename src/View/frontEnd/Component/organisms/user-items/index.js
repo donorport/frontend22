@@ -212,8 +212,8 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
   // let price = priceFormat(Math.round(calculatedPrice.priceWithTax(Number(item.itemDetails.price))))
 
   let price = item?.itemDetails?.displayPrice
-    ? item?.itemDetails?.displayPrice
-    : item?.itemDetails?.price;
+  ? Number(item.itemDetails.displayPrice).toFixed(2)
+  : Number(item.itemDetails.price).toFixed(2);
 
   // let purchasedPrice = (Math.round(purchasedPriceWithTax(Number(item.productPrice), item.appliedTaxPer)))
   let listPrice = item.productPrice;

@@ -1,6 +1,13 @@
 .history__list > li:nth-last-child(2) {
   border: unset !important;
 }
+#history-filter-select-form-control {
+  margin: 0 !important;
+  padding: 4px 0 !important;
+  text-align: center;
+  vertical-align: center !important;
+}
+
 .order__id {
   width: 250px;
 }
@@ -23,7 +30,7 @@
   svg {
     color: #3a94d4;
   }
-  div>div {
+  div > div {
     color: #3a94d4;
   }
 }

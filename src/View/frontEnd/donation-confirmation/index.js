@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link, useLocation} from 'react-router-dom';
+import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
 import helper, { priceFormat, getCardIcon } from '../../../Common/Helper';
 import DefaultLayout from '../Component/templates/default-layout';
 import ListItemImg from '../Component/atoms/list-item-img';
@@ -10,7 +10,7 @@ import './style.scss';
 import moment from 'moment';
 import Seo from '../../../components/SEO';
 
-import { calculatePlatformCost, calculateSubtotal } from "../../../constants/constants";
+import { calculatePlatformCost, calculateSubtotal } from '../../../constants/constants';
 
 const DonationConfirmPage = () => {
   const params = useParams();
@@ -60,33 +60,39 @@ const DonationConfirmPage = () => {
 
   return (
     <>
-      <Seo title="Donation" description={`I just Donated $${doantionDetails?.amount} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`} url={`https://www.donorport.com/donate/${doantionDetails?._id}`} />
+      <Seo
+        title="Donation"
+        description={`I just Donated $${doantionDetails?.amount} to the ${doantionDetails?.CampaignAdminDetails?.name} Charity`}
+        url={`https://www.donorport.com/donate/${doantionDetails?._id}`}
+      />
       <Page showTags={true} title={'Donation | ' + doantionDetails.uniqueTransactionId}>
         <DefaultLayout>
           <div className="container-fluid d-flex flex-wrap gap-2">
-            <div className="flex__1 d-flex flex-column align-items-sm-center align-items-stretch py-5 text-center pb-0 pb-sm-5">
-              <div className="boat-container relative mb-3">
-                <div className="absolute boat">
-                  <ul className="no-bullet">
-                    <ul className="no-bullet fume">
-                      <li className="fume4"></li>
-                      <li className="fume3"></li>
-                      <li className="fume2"></li>
-                      <li className="fume1"></li>
-                    </ul>
-                    <li className="smokestack"></li>
-                    <li className="white-body">
-                      <ul className="windows inline-list">
-                        <li className="circle"></li>
-                        <li className="circle"></li>
-                        <li className="circle"></li>
+            <div className="flex__1 d-flex flex-column align-items-sm-center align-items-stretch text-center pb-0 pb-sm-5">
+              <div className="d-flex flex-column align-items-center">
+                <div className="boat-container relative mb-3">
+                  <div className="absolute boat">
+                    <ul className="no-bullet">
+                      <ul className="no-bullet fume">
+                        <li className="fume4"></li>
+                        <li className="fume3"></li>
+                        <li className="fume2"></li>
+                        <li className="fume1"></li>
                       </ul>
-                    </li>
-                    <li className="boat-body"></li>
-                  </ul>
+                      <li className="smokestack"></li>
+                      <li className="white-body">
+                        <ul className="windows inline-list">
+                          <li className="circle"></li>
+                          <li className="circle"></li>
+                          <li className="circle"></li>
+                        </ul>
+                      </li>
+                      <li className="boat-body"></li>
+                    </ul>
+                  </div>
+                  <div className="w-1"></div>
+                  <div className="r w-1"></div>
                 </div>
-                <div className="w-1"></div>
-                <div className="r w-1"></div>
               </div>
               <h1 className="fs-1 fw-bolder">Donation Completed</h1>
               <span className="fs-3">Order #{doantionDetails?.uniqueTransactionId}</span>
@@ -126,9 +132,9 @@ const DonationConfirmPage = () => {
                 )}
               </div>
             </div>
-            <div className="mx-3 border-end"></div>
-            <div className="d-flex col-md-6 col-8 email__container my-5 p-3">
-              <div className="col-8 d-flex flex-column">
+            <div className="d-none d-lg-flex mx-3 border-end"></div>
+            <div className="d-flex flex-grow-1 flex-md-grow-0 col-1 col-md-6 col-8 email__container my-5 mt-0 p-3">
+              <div className="flex-grow-1 col-8 d-flex flex-column">
                 <div className="order__container d-flex align-items-center justify-content-between pb-2 m-3 mx-0 border-bottom">
                   <div className="order__wrap">
                     <h2 className="total__title fs-2 fw-bolder">Donation Details</h2>
@@ -250,7 +256,9 @@ const DonationConfirmPage = () => {
                     </div>
                     <div className="total__sub d-flex justify-content-between mt-3">
                       <p className="total__title fw-bolder">XP:</p>
-                      <div className="order__xp text-info fw-bold">{Number(subtotal * 10).toFixed(0)} xp</div>
+                      <div className="order__xp text-info fw-bold">
+                        {Number(subtotal * 10).toFixed(0)} xp
+                      </div>
                     </div>
 
                     {/* <div className="total__sub d-flex justify-content-between">
@@ -267,9 +275,7 @@ const DonationConfirmPage = () => {
                       <img src={getCardIcon(cardType)} alt="" className="img-fluid" />
                     </div>
                     <div className="order__card fs-7">
-                      <div className=" fw-semibold mb-6p">
-                        XXXX XXXX XXXX {lastFourDigits}
-                      </div>
+                      <div className=" fw-semibold mb-6p">XXXX XXXX XXXX {lastFourDigits}</div>
                       <div className="text-light fw-semibold">
                         <div>
                           Transaction: {moment(doantionDetails.created_at).format('MMMM DD, YYYY')}
@@ -287,7 +293,7 @@ const DonationConfirmPage = () => {
                         <span className="fs-4 fw-bold price ms-1">
                           {' '}
                           {doantionDetails?.currencySymbol}
-                          {(Number(doantionDetails.amount))}
+                          {Number(doantionDetails.amount)}
                         </span>
                       </div>
                     </div>

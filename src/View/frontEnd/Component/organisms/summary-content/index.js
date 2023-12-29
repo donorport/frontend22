@@ -33,7 +33,7 @@ const SummaryContent = (props) => {
   return (
     <div className="summary__content">
       <div className="pt-20p pb-12p">
-        <ul className="list-unstyled pb-1 border-bottom mb-0">
+        <ul className="checkout__list list-unstyled pb-1 border-bottom mb-0">
           {cartItem &&
             cartItem.length > 0 &&
             cartItem.map((item, i) => {
@@ -41,8 +41,8 @@ const SummaryContent = (props) => {
               // let price = props.CalculatedPrice(item.productDetails?.price)
 
               return (
-                <li className="d-flex align-items-start py-2" key={i}>
-                  <div className="d-flex align-items-center mb-2 mb-sm-0 flex__1">
+                <li className="d-flex align-items-start py-3 border-bottom" key={i}>
+                  <div className="d-flex align-items-start mb-2 mb-sm-0 flex__1">
                     <div className="position-relative">
                       <ListItemImg
                         size={75}
@@ -81,7 +81,7 @@ const SummaryContent = (props) => {
                       <img className="" src={receipt}></img>
                     </div>
                   )}
-                  <span className="checkout__subtotal--price text-end mt-6p fs-5 fw-bold price ms-3 fs-sm-4 fs-4">
+                  <span className="checkout__subtotal--price text-end mt-6p fw-bold price ms-3 fs-5">
                     {props.currencySymbol +
                       // priceFormat(
                       //   props.CalculatedPrice.getData(item.productDetails?.price) * item.quantity

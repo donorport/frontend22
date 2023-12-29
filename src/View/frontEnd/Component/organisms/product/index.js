@@ -133,29 +133,30 @@ const Product = (props) => {
 
   const cart_btn = added_to_cart ? (
     <a
-      className="p-1 bg-success rounded-3 fw-bold"
+      className="d-flex gap-1 align-items-center justify-content-center fw-bold"
       // variant="success"
       //size="sm"
       // className="icon icon__pro"
       // onClick={removeFromCart}
     >
-      <FontAwesomeIcon icon={solid('circle-check')} /> In Cart
+      <FontAwesomeIcon icon={solid('circle-check')} />
+      In Cart
     </a>
   ) : (
     <a
-      className="btn-primary btn p-1 rounded-3 fw-bold"
+      className="btn btn-primary d-flex gap-1 fw-bold"
       // variant="primary"
       // style={{ width: '56px', fontSize: '16px' }}
       // className="icon icon__pro"
       onClick={() => addToCart()}
     >
-      Add to Cart
+      <FontAwesomeIcon icon={solid('plus')} />Add to Cart
       {/* <FontAwesomeIcon icon={regular('cart-shopping')} /> */}
     </a>
   );
   const btn =
     isFinish || (isFulfiled && !unlimited) ? (
-      <span className="d-flex align-items-center fw-bold rounded-3 p-1 bg-success text-white">
+      <span className="d-flex align-items-center fw-bold p-1 bg-success text-white">
         <FontAwesomeIcon icon={solid('circle-check')} className="sold__icon me-1" />
         <span> Funded</span>
       </span>
@@ -163,8 +164,8 @@ const Product = (props) => {
       cart_btn
     );
   return (
-    <div className="product p-1">
-      <Link
+    <div className="product px-2">
+      {/* <Link
         to={'/categories/' + categorySlug}
         // params={{ testvalue: "hello" }}
         // to={{ pathname: "/categories/" + categorySlug, state: {key:props.categoryDetails?._id} }}
@@ -178,84 +179,87 @@ const Product = (props) => {
         }}
       >
         &nbsp;
-      </Link>
-      <div className="product__columns d-flex align-items-center pt-1 pb-2 px-2">
-        <div className="d-flex product__left d-flex flex-column">
-          <div className="d-flex flex-grow-1 flex-column product__order">
-            <Link to={'/item/' + props.slug} className="d-inline-block">
-              <h4 className="product__title mt-12p ">{name}</h4>
-            </Link>
-            <div className="mt-1 product__date d-flex align-items-center">
+      </Link> */}
+      <div className="product__columns d-flex align-items-center position-relative">
+        <div className="product__mid d-flex align-items-center justify-content-center">
+          <Link
+            className="proudct__img-wrap d-flex align-items-center justify-content-center"
+            to={'/item/' + props.slug}
+          >
+            <img
+              className="product__img img-fluid"
+              alt=""
+              src={helper.CampaignProductImagePath + img}
+            />
+          </Link>
+        </div>
+        <div className="d-flex me-1 justify-content-end product__org">
+          <Link to={'/organization/' + props.campaignDetails?.slug}>
+            <img alt="" className="img-fluid org__img charity_avatar_bg" src={organization} />
+          </Link>
+        </div>
+      </div>
+      <div className="mx-2 mt-2 d-flex flex-grow-1 product__order">
+        <div className="d-flex flex-column flex-grow-1 me-3">
+          <Link to={'/item/' + props.slug} className="d-inline-block">
+            <h5 className="product__title">{name}</h5>
+          </Link>
+          <p className="m-0 fs-7">{props.campaignDetails?.name}</p>
+          {unlimited ? (
+            <div className="product__count d-flex align-items-center">
+              <span>{sold} sold</span>
+            </div>
+          ) : (
+            <div className="product__count d-flex align-items-center">
+              <span>
+                {sold}&nbsp;/&nbsp;{total} sold
+              </span>
+            </div>
+          )}
+          <div className="product__details d-flex align-items-center py-1 mt-auto pb-3">
+            {props.organizationId !== '63fe5d48448eff9f0a6412d8' &&
+            props.organizationId !== '63fe60f1448eff9f0a6412e6' ? (
+              <div className="d-flex">{btn}</div>
+            ) : (
+              <span className="p-0 pt-1 d-flex gap-1 badge badge--example fs-7 fw-semibold">
+                {' '}
+                <FontAwesomeIcon icon={regular('circle-info')} className="text-primary fs-7" />
+                Example Item
+              </span>
+            )}
+          </div>
+
+          {/* <div className="mt-1 product__date d-flex align-items-center">
               <FontAwesomeIcon icon={regular('clock')} className="mr-6p" />
 
               <span className="date__name">{date}</span>
-            </div>
-            <div className="d-flex flex-column flex-grow-1 justify-content-end">
-              {/* <div className="small">Each:</div> */}
-              <div className="price product__price fs-5 fw-bold ">
-                <span>{currencySymbol}</span>
-                <span>{priceFormat(props.displayPrice)}</span>
+            </div> */}
+        </div>
+        {/* 
+      <div className="product__actions d-flex align-items-center p-1 me-1 mt-3">
+        {props.organizationId !== '63fe5d48448eff9f0a6412d8' &&
+        props.organizationId !== '63fe60f1448eff9f0a6412e6' ? (
+          <>
+            <div className="d-flex gap-1 me-2">
+              <div className="wish">
+                <IconToggle
+                  activeColor="rgb(246, 100, 97)"
+                  ischecked={props.wishListproductIds.includes(props._id)}
+                  icon={<FontAwesomeIcon icon={regular('heart')} />}
+                  checkedIcon={<FontAwesomeIcon icon={solid('heart')} />}
+                  name={props._id}
+                  onClickFilter={onClickFilter}
+                />
               </div>
+              <div className="d-flex align-items-center">{btn}</div>
             </div>
-          </div>
-        </div>
-        <div className="product__mid d-flex align-items-center justify-content-center">
-          <div className="margin-auto position-absolute proudct__img-wrap d-flex align-items-center justify-content-center">
-            <Link to={'/item/' + props.slug}>
-              <img
-                className="product__img img-fluid"
-                alt=""
-                src={helper.CampaignProductImagePath + img}
-              />
-            </Link>
-          </div>
-        </div>
-        <div className="product__right position-relative d-flex flex-column align-items-center pt-12p">
-          <div className="d-flex me-1 justify-content-end product__org">
-            <Link to={'/organization/' + props.campaignDetails?.slug} className="">
-              <img alt="" className="img-fluid org__img charity_avatar_bg" src={organization} />
-            </Link>
-          </div>
-          {address && (
-            <div className="product__location position-absolute d-flex align-items-center mt-auto">
-              <FontAwesomeIcon icon={regular('circle-location-arrow')} className="mr-6p" />
-              <span className="date__name">{address}</span>
-            </div>
-          )}
-        </div>
-      </div>
-      <div className="product__category d-flex align-items-center flex-grow-1 pt-2 pb-1 px-2">
-        <div className="product__subcategory d-flex align-items-center ">
-          <div className="product__cat-icon mr-6p">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 640 512">
-              <path d={subCatIcon} fill="#6f6f90"></path>{' '}
-            </svg>
-          </div>
-          <span>{category}</span>
-        </div>
-        {unlimited ? (
-          <div className="product__count d-flex align-items-center ms-auto ">
-            <span>{sold} sold</span>
-          </div>
+          </>
         ) : (
-          <div className="product__count d-flex align-items-center ms-auto ">
-            <span>
-              {sold}&nbsp;/&nbsp;{total} sold
-            </span>
-          </div>
+          <span className="d-flex gap-1 badge badge--example fs-7 fw-semibold me-2">
+            <FontAwesomeIcon icon={regular('circle-info')} className="text-primary fs-7" />
+          </span>
         )}
-      </div>
-      <div className="d-flex align-items-center p-1 me-1">
-        <div className="wish me-1">
-          <IconToggle
-            activeColor="rgb(246, 100, 97)"
-            ischecked={props.wishListproductIds.includes(props._id)}
-            icon={<FontAwesomeIcon icon={regular('heart')} />}
-            checkedIcon={<FontAwesomeIcon icon={solid('heart')} />}
-            name={props._id}
-            onClickFilter={onClickFilter}
-          />
-        </div>
+
         <div className="flex-grow-1">
           <ProgressBar variant={unlimited ? 'infinity' : 'success'} now={progress} />
         </div>
@@ -270,42 +274,65 @@ const Product = (props) => {
             </div>
           </div>
         )}
-      </div>
-
-      <div className="product__details d-flex align-items-center p-2">
-        {props.organizationId !== '63fe5d48448eff9f0a6412d8' &&
-        props.organizationId !== '63fe60f1448eff9f0a6412e6' ? (
-          <div className="d-flex">{btn}</div>
-        ) : (
-          <span className="d-flex gap-1 badge badge--example fs-7 fw-semibold">
-            {' '}
-            <FontAwesomeIcon icon={regular('circle-info')} className="text-primary fs-7" />
-            Sample Product
-          </span>
-        )}
-
-        <div className="product__meta d-flex align-items-center ms-auto">
-          {(props.projectDetails?.length > 0 || props.projectProducts.length > 0) && (
-            <span className="product__type icon icon__solid-900 text-success">
-              <FontAwesomeIcon icon={solid('bolt')} className="text-secondary" />
-            </span>
+        <div className="product__category d-flex align-items-center ps-2">
+          <div className="product__subcategory d-flex align-items-center ">
+          <div className="product__cat-icon mr-6p">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 640 512">
+              <path d={subCatIcon} fill="#6f6f90"></path>{' '}
+            </svg>
+          </div>
+          <span>{category}</span>
+        </div>
+          {unlimited ? (
+            <div className="product__count d-flex align-items-center ms-auto ">
+              <span>{sold} sold</span>
+            </div>
+          ) : (
+            <div className="product__count d-flex align-items-center ms-auto ">
+              <span>
+                {sold}&nbsp;/&nbsp;{total} sold
+              </span>
+            </div>
           )}
-          {props.postTag && (
-            <span className="text-infinity d-flex align-items-center product__type product__type-tab">
-              <FontAwesomeIcon icon={solid('clock-rotate-left')} />
-            </span>
-          )}
-          {props.tax && (
-            <span className="d-flex align-items-center product__type product__tax">
-              {/* <FontAwesomeIcon icon={solid('paperclip')} /> */}
-              <img className="" src={receipt}></img>
-            </span>
-          )}
-          {props.media && (
-            <span className="d-flex align-items-center product__type product__type-media">
-              <FontAwesomeIcon className="text-primary" icon={solid('image')} />
-            </span>
-          )}
+        </div>
+      </div> */}
+        <div className="d-flex flex-column">
+          {' '}
+          <div className="d-flex flex-column justify-content-start align-items-end">
+            {/* <div className="small">Each:</div> */}
+            {address && (
+              <div className="product__location fs-7 d-flex align-items-center">
+                <FontAwesomeIcon icon={regular('circle-location-arrow')} className="mr-6p" />
+                <span className="date__name">{address}</span>
+              </div>
+            )}
+            <div className="price product__price fs-5 fw-bold ">
+              <span>{currencySymbol}</span>
+              <span>{priceFormat(props.displayPrice)}</span>
+            </div>
+          </div>
+          <div className="product__meta d-flex align-items-center justify-content-end mt-2">
+            {(props.projectDetails?.length > 0 || props.projectProducts.length > 0) && (
+              <span className="product__type icon icon__solid-900 text-success">
+                <FontAwesomeIcon icon={solid('bolt')} className="text-secondary" />
+              </span>
+            )}
+            {props.postTag && (
+              <span className="text-infinity d-flex align-items-center product__type product__type-tab">
+                <FontAwesomeIcon icon={solid('clock-rotate-left')} />
+              </span>
+            )}
+            {props.tax && (
+              <span className="d-flex align-items-center product__type product__tax">
+                <img className="" src={receipt}></img>
+              </span>
+            )}
+            {props.media && (
+              <span className="d-flex align-items-center product__type product__type-media">
+                <FontAwesomeIcon className="text-primary" icon={solid('image')} />
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </div>

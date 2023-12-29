@@ -30,7 +30,7 @@ const XpTable = (props) => {
             </div>
 
             <div className="d-sm-flex align-items-center flex__1 ms-2">
-              <div className="fw-bold fs-5 billing__name">{data?.organizationDetails?.name}</div>
+              <div className="fw-bold fs-5 billing__name me-2">{data?.organizationDetails?.name}</div>
               <span className="text-light fw-semibold flex__1">
                 <FontAwesomeIcon icon={regular('heart')} className="small me-1" />
                 Donated
@@ -58,7 +58,7 @@ const XpTable = (props) => {
             </div>
 
             <div className="d-sm-flex align-items-center flex__1 ms-2">
-              <div className="fw-bold fs-5 billing__name">{data?.productDetails?.headline}</div>
+              <div className="fw-bold fs-5 billing__name me-2">{data?.productDetails?.headline}</div>
               <span className="text-light fw-semibold flex__1">
                 <FontAwesomeIcon icon={regular('bag-shopping')} className="small me-1" />
                 Bought {data.quantity}
@@ -85,7 +85,7 @@ const XpTable = (props) => {
             </div>
 
             <div className="d-sm-flex align-items-center flex__1 ms-2">
-              <div className="fw-bold fs-5 billing__name">{data?.organizationDetails?.name}</div>
+              <div className="fw-bold fs-5 billing__name me-2">{data?.organizationDetails?.name}</div>
               <span className="text-light fw-semibold flex__1">
                 <FontAwesomeIcon icon={regular('heart')} className="small me-1" />
                 Followed
@@ -171,7 +171,7 @@ const XpTable = (props) => {
                         </div>
 
                         <div className="d-sm-flex align-items-center flex__1 ms-2">
-                          <div className="fw-bold fs-5 billing__name">Top Donor</div>
+                          <div className="fw-bold fs-5 billing__name me-2">Top Donor</div>
                           <span className="text-light fw-semibold flex__1">
                             <FontAwesomeIcon
                               icon={regular("heart")}
@@ -199,7 +199,7 @@ const XpTable = (props) => {
             //         <ListItemImg imgSrc="" />
             //       </div>
             //       <div className="d-sm-flex align-items-center flex__1 ms-2">
-            //         <div className="fw-bold fs-5 billing__name">Social Chain</div>
+            //         <div className="fw-bold fs-5 billing__name me-2">Social Chain</div>
             //         <span className="text-light fw-semibold flex__1">
             //           <FontAwesomeIcon
             //             icon={regular("shopping-bag")}
@@ -224,7 +224,7 @@ const XpTable = (props) => {
             //         <ListItemImg imgSrc="" />
             //       </div>
             //       <div className="d-sm-flex align-items-center flex__1 ms-2">
-            //         <div className="fw-bold fs-5 billing__name">Top Donor</div>
+            //         <div className="fw-bold fs-5 billing__name me-2">Top Donor</div>
             //         <span className="text-light fw-semibold flex__1">
             //           <FontAwesomeIcon
             //             icon={regular("heart")}
@@ -238,13 +238,13 @@ const XpTable = (props) => {
             //     </div>
             //   </div>
             // </li>
-            <li className="table__list-item p-2 fw-bold d-flex justify-content-center">
+            <li className="list__table-list p-2 mb-0">
               No entries to show
             </li>
           )}
         </ul>
         <div
-          className="list__table__footer py-2 mt-2 d-flex justify-content-center border-top"
+          className="list__table__footer py-2 d-flex justify-content-center border-top"
           style={{ background: '#f8fafd78' }}
         >
           {props.totalPages > 1 ? (

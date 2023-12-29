@@ -118,13 +118,13 @@ const CrowdfundingsTable = (props) => {
             );
           })
         ) : (
-          <li className="table__list-item p-2 fw-bold d-flex justify-content-center">
+          <li className="list__table-list p-2 mb-0">
             No entries to show
           </li>
         )}
       </ul>
       <div
-        className="list__table__footer py-2 mt-2 d-flex justify-content-center border-top"
+        className="list__table__footer py-2 d-flex justify-content-center border-top"
         style={{ background: '#f8fafd78' }}
       >
         {props.totalPages > 1 ? (

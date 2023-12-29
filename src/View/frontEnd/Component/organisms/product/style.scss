@@ -1,8 +1,16 @@
 .badge--example {
   color: $neutral-700 !important;
+  padding: 0;
   // border-radius: 19px !important;
   // padding: 9px 12px !important;
   // background: #605ef8
+}
+.incart--button {
+  height: 34px;
+  width: 34px;
+}
+.progress {
+  background-color: $progress;
 }
 .wish__check {
   opacity: 0;
@@ -35,6 +43,8 @@
   border-radius: 19px;
   color: #9796b1;
   min-width: 245px;
+  background-color: $secondary-5;
+  box-shadow: 3px 3px 4px $product-shadow;
 
   // .product__header
   &__header {
@@ -42,7 +52,12 @@
     height: 36px;
     border-radius: 6px 6px 0 0;
   }
-
+  &__order {
+    height: 156px;
+  }
+  &__actions {
+    height: 60px;
+  }
   // .product__top
   &__top {
     font-size: 16px;
@@ -58,6 +73,9 @@
 
   // .product__org
   &__org {
+    position: absolute;
+    right: 12px;
+    top: 21px;
     width: 90px;
     // height: 32px;
     text-align: center;
@@ -92,8 +110,8 @@
   // .product__columns
   &__columns {
     padding: 0 12px;
-    height: 170px;
-    background: $secondary-5;
+    height: 142px;
+    // background: $secondary-5;
     border-bottom-left-radius: 19px;
     border-bottom-right-radius: 19px;
   }
@@ -111,9 +129,6 @@
 
   // .product__title
   &__title {
-    width: 90px;
-    font-size: 21px;
-    font-weight: 900;
     line-height: 1.1;
     margin-bottom: 0;
   }

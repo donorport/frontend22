@@ -62,7 +62,7 @@ const UserAdmin = () => {
         // value={val}
         // onChange={(e) => setCode(e, props.index)}
         onKeyUp={(e) => props.autoTab(e, props.index)}
-        style={inputStyle}
+        // style={inputStyle}
       />
     );
   };

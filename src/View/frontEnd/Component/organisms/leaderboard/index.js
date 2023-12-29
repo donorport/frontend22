@@ -104,7 +104,6 @@ const LeaderBoard = () => {
                                 </div>
                                 <div
                                   className="d-flex justify-content-end"
-                                  style={{ width: '110px' }}
                                 >
                                   <span className="btn-sm ">
                                     {getC.getUserRank(Number(person.xp))}

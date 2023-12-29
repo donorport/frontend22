@@ -451,7 +451,7 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
 
     {productDetails.tax && (
       <div className="d-flex align-items-center pt-12p pb-12p">
-        <div className="list__item-img list__item-img__tax me-1 p-1 border-0">
+        <div className="list__item-img list__item-img__tax me-2 p-1 border-0">
           <img src={receipt}></img>{' '}
         </div>
         <div>These items are tax deductible.</div>
@@ -509,7 +509,7 @@ const FullyFundedSection = () => (
 const FollowupMediaSection = ({ productDetails, embedlink2 }) => (
   <>
     <div className="note note-info align-items-center mt-5">
-      <h2 className="fs-3 fw-bolder ">Followup</h2>
+      <h2 className="fs-3 fw-bolder m-0">Followup</h2>
       <div className="project__detail-subtitle fw-bold">Media</div>
 
       <div className="d-flex flex-column gap-2">
