@@ -363,12 +363,12 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
               </div>
               <span
                 variant="link"
-                className="text-light fw-semibold fs-5 p-0"
+                className="fw-semibold fs-5 p-0"
                 // onClick={() => showDetails(order._id)}
               >
                 Checkout #{order.uniqueTransactionId ? order.uniqueTransactionId : order._id}
               </span>
-              <div className="fw-semibold fs-7 text-lighter mt-3p">
+              <div className="fw-semibold fs-7 text-light mt-3p">
                 {moment(order.created_at).format(MOMENT_DATE_FORMAT)}
               </div>
             </div>
@@ -446,7 +446,7 @@ const DonationListItem = ({ donation, activeList }) => {
                 {donation.uniqueTransactionId ? donation.uniqueTransactionId : donation._id}
               </span>
             </div>
-            <div className="fw-semibold fs-7 text-lighter mt-3p">
+            <div className="fw-semibold fs-7 text-light mt-3p">
               {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
             </div>
           </div>
@@ -506,7 +506,7 @@ const DonationListItem = ({ donation, activeList }) => {
                 {donation.uniqueTransactionId ? donation.uniqueTransactionId : donation._id}
               </span>
             </div>
-            <div className="fw-semibold fs-7 text-lighter mt-3p">
+            <div className="fw-semibold fs-7 text-light mt-3p">
               {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
             </div>
             <div className="d-flex mt-2">
@@ -546,28 +546,34 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
         order.orderItems.map((item, key) => (
           <PurchaseListItem key={key} order={order} item={item} />
         ))}
-      <div className="d-flex justify-content-start align-items-center py-1">
-        <Link to="/pricing" className="fw-semibold fs-7 text-light">
-          Service Charge:
-        </Link>
-        <span className="ms-auto fw-bold text-lighter fs-6">
-          {order.currencySymbol + platformCost}
-        </span>
-      </div>
-      <div className="d-flex align-items-center mb-3">
-        <div className="fw-semibold fs-7 text-light flex__1">Subtotal:</div>
-        <span className="fw-bold price fs-6">
-          {order.currencySymbol + +parseFloat(order.subtotal).toFixed(2)}
-        </span>
-      </div>
-      <div className="d-flex align-items-center mb-3 pt-3 border-top">
-        <div className="fw-semibold fs-7 text-light flex__1">Total Charge:</div>
-        <span className="fw-bold price fs-6">
-          {order.currencySymbol + parseFloat(order.total).toFixed(2)}
-        </span>
+      <div className="d-flex flex-column">
+        <div className="d-flex justify-content-start align-items-center py-1">
+          <Link to="/pricing" className="fw-semibold fs-7 text-light">
+            Service Charge:
+          </Link>
+          <span className="ms-auto fw-bold text-lighter fs-6">
+            {order.currencySymbol + platformCost}
+          </span>
+        </div>
+        <div className="d-flex align-items-center mb-1">
+          <div className="fw-semibold fs-7 text-light flex__1">Subtotal:</div>
+          <span className="fw-bold price fs-6">
+            {order.currencySymbol + parseFloat(order.subtotal).toFixed(2)}
+          </span>
+        </div>
       </div>
 
-      <OrderListTransaction createdAt={order.created_at} CardType={CardBrand} last4={last4} />
+      <div className="d-flex flex-column gap-2 mb-3 pt-3 border-top">
+        <div className="d-flex justify-content-between">
+          {' '}
+          <div className="fw-semibold fs-7 text-light flex__1">Total Charge:</div>
+          <span className="fw-bold price fs-5">
+            {order.currencySymbol + parseFloat(order.total).toFixed(2)}
+          </span>
+        </div>
+
+        <OrderListTransaction createdAt={order.created_at} CardType={CardBrand} last4={last4} />
+      </div>
     </ul>
   );
 };
@@ -590,7 +596,7 @@ const PurchaseListItem = ({ order, item }) => {
             {item.quantity} {item.itemDetails?.headline}
           </Link>
           <div className="text-light mb-3p">{item.itemDetails?.brand}</div>
-          <div className="fs-5 text-light fw-bold">
+          <div className="price fs-5 fw-bold">
             {order.currencySymbol ? order.currencySymbol : '$'}{' '}
             {priceFormat(Number(item.productPrice))}
           </div>

@@ -149,7 +149,7 @@ const AddPost = (props) => {
     needheadline,
     //galleryImg,
     unlimited,
-    tax,
+    tax: initialTax,
     postTag,
     address,
     lat,
@@ -157,7 +157,9 @@ const AddPost = (props) => {
     media,
     displayPrice
   } = props.stateData;
-
+  console.log('Initial tax from stateData:', initialTax);
+  const [tax, setTax] = useState(true);
+  console.log('Current tax state in component:', tax);
   // console.log(displayPrice)
 
   let submitProductForm = props.submitProductForm;
@@ -1143,7 +1145,7 @@ const AddPost = (props) => {
               <Col lg="6">
                 <form className="video-detail-form">
                   <div className="form-group mb-2">
-                    <label htmlFor="videoInput" className="form__label">
+                    <label htmlFor="videoInput" className="form__label mb-3">
                       Need Media&nbsp;
                       <span className="fs-7 text-light ms-1 fw-normal">(optional)</span>
                     </label>

@@ -1,8 +1,6 @@
-// import React from "react";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import _uniqueId from 'lodash/uniqueId';
 import PropTypes from 'prop-types';
-
 import './style.scss';
 
 const propTypes = {
@@ -13,21 +11,27 @@ const propTypes = {
 };
 
 const ToggleSwitch = ({ id, checked, name, changevalue }) => {
-  // const styles = { backgroundColor: checked ? '#4bd863' : '#efefef' };
+  const [internalChecked, setInternalChecked] = useState(checked);
+
+  useEffect(() => {
+    setInternalChecked(checked);
+  }, [checked]);
+
+  const handleToggleChange = (e) => {
+    setInternalChecked(e.target.checked);
+    changevalue(e);
+  };
+
   return (
     <label className="--switch">
       <input
         type="checkbox"
         id={id}
-        checked={checked}
+        checked={internalChecked}
         name={name}
-        onChange={(e) => changevalue(e)}
+        onChange={handleToggleChange}
       />
-      {/* <span className="--slider" style={styles}> */}
-      <span className="--slider">
-        {/* <i className="fa fa-check"></i>
-          <i className="fa fa-times"></i> */}
-      </span>
+      <span className="--slider"></span>
     </label>
   );
 };

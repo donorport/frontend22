@@ -771,7 +771,7 @@ button.ReactTags__remove {
   transform: translate(-4px, 30px) !important;
 }
 .activity__dropdown-body {
-  background-color: $body-bg;
+  // background-color: $body-bg;
 }
 @include media-breakpoint-down(sm) {
   .filter__dropdown,

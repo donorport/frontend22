@@ -68,16 +68,18 @@ const Apply = (props) => {
               </Button>
             </div>
 
-            <h1 className="mt-5  fw-bolder pt-2 mb-4">Getting Started</h1>
+            <h1 className="mt-5 pt-5 fw-bolder pt-2 mb-4">Getting Started</h1>
             {/* <div className="fs-5 text-light mb-4">
                 Activate your account to create your organization's administration page or apply to
                 receive your activation code.
               </div> */}
-            <h4 className="fw-bolder ">Step 1 - Create your account</h4>
-            <div className="text-light mb-4 fs-5 pe-5">
-              Fill out the form below and click Submit to apply to post for your charity on
-              Donorport. A 4 digit activation code will be sent to the email you provided once your
-              account has been approved.
+            <div className="mb-5">
+              <h4 className="fw-bolder ">Step 1 - Create your account</h4>
+              <div className="text-light mb-4 fs-5 pe-5">
+                Fill out the form below and click Submit to apply to post for your charity on
+                Donorport. A four (4) digit activation code will be sent to the email you provided
+                once your account has been approved.
+              </div>
             </div>
 
             <div>
@@ -512,16 +514,16 @@ const InputContainer = ({
   <>
     <div className="input__wrap d-flex">
       <label className="input__label flex__1">
-      <input
-        autoComplete={autoComplete}
-        type={type ?? 'text'}
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        className={(error && error?.[name] ? 'inputerror ' : '') + 'input__wrap form-control'}
-      />
-      <span className="input__span">{label}</span>
+        <input
+          autoComplete={autoComplete}
+          type={type ?? 'text'}
+          name={name}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          className={(error && error?.[name] ? 'inputerror ' : '') + 'input__wrap form-control'}
+        />
+        <span className="input__span">{label}</span>
       </label>
     </div>
     {error && error?.[name] && <p className="error">{error[name]}</p>}

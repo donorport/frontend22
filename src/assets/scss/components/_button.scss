@@ -1,8 +1,9 @@
 .btn {
   font-weight: $input-font-weight;
   transition: none !important;
+  text-wrap: nowrap !important;
 }
-.btn:not(.btn__category, .btn-outline-primary, .toggle__btn, .geo__lock),
+.btn:not(.btn__category, .btn-outline-primary, .toggle__btn, .geo__lock, .btn__follow),
 .btn-success,
 .btn-primary,
 .btn-info,

@@ -49,6 +49,10 @@ p {
 ul {
   margin: 0;
 }
+
+li:last-child {
+  border: none !important
+}
 .progress {
   background-color: $progress;
 }
@@ -66,6 +70,7 @@ ul {
 }
 .price {
   color: $price;
+  letter-spacing: -.04em;
 }
 .select__input,
 .select__control,

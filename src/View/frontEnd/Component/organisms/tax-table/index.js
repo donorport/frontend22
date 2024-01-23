@@ -158,7 +158,7 @@ const TaxTable = (props) => {
                             </div> */}
                               </div>
                             </div>
-                            <div className="d-flex align-items-center justify-content-end flex__1 mb-1 mt-2 mt-sm-0 mb-sm-0 ms-3 ms-sm-0">
+                            <div className="d-flex align-items-center justify-content-end flex__1 mb-1 mt-2 mt-sm-0 mb-sm-0">
                               {/* {
                             item[0].type === 'Donated' &&
 
@@ -297,7 +297,6 @@ const TaxTable = (props) => {
                                   className="d-flex align-items-center justify-content-end fs-7 px-0 fw-semibold text-reset text-decoration-none"
                                   onClick={(e) => e.stopPropagation()}
                                 >
-                                  Waiting
                                   <FontAwesomeIcon
                                     icon={solid('clock')}
                                     className="fs-3 ms-1 text-warning"
@@ -337,7 +336,7 @@ const TaxTable = (props) => {
                             return (
                               <>
                                 <li className="table__list-item table__list-item--tax py-1">
-                                  <div className="d-flex d-sm-flex align-items-center flex-grow-1">
+                                  <div className="d-flex d-sm-flex align-items-center flex-grow-1 ps-0 ps-sm-1">
                                     <div className="d-flex align-items-center mb-1 mb-sm-0 order-1 order-sm-0">
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-3 text-sm-start text-end">
                                         <div className="price fw-bold fs-5">
@@ -460,10 +459,10 @@ const TaxTable = (props) => {
           </li> */}
         </ul>
         <div
-            className="list__table__footer py-2 d-flex justify-content-center border-top"
-            style={{ background: '#f8fafd78' }}
-          >
-        {props.totalPages > 1 ? (
+          className="list__table__footer py-2 d-flex justify-content-center border-top"
+          style={{ background: '#f8fafd78' }}
+        >
+          {props.totalPages > 1 ? (
             <Stack spacing={2}>
               <Pagination
                 count={props.totalPages}
@@ -475,10 +474,10 @@ const TaxTable = (props) => {
                 showLastButton
               />
             </Stack>
-        ) : (
-          <></>
-        )}
-                  </div>
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
 
       {props.taxList.length > 0 && (

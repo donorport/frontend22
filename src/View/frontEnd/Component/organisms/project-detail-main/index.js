@@ -151,7 +151,7 @@ function ProjectDetailMain(props) {
         </div>
 
         <div className="product__top px-0 mb-1 d-flex align-items-center">
-          <div className="d-flex align-items-center w-310">
+          <div className="d-flex align-items-center w-100">
             <ProgressBar
               variant={projectDetails.infinity ? 'infinity' : 'success'}
               now={countProjectProcess(projectDetails.productDetails)}

@@ -95,7 +95,7 @@ const Ranks = () => {
           </div>
 
           <div className="rank__list mw-800 pb-5 fs-5">
-            <div className="rank__item d-sm-flex align-items-center py-4 border-bottom">
+            <li className="rank__item d-sm-flex align-items-center py-4 border-bottom">
               <div className="xp__btn-wrap mb-2 mb-sm-0">
                 <IconButton
                   bgColor="#000"
@@ -112,9 +112,9 @@ const Ranks = () => {
               <span className="fw-bold text-info">
                 {Number(captian).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
               </span>
-            </div>
+            </li>
 
-            <div className="rank__item d-sm-flex align-items-center py-4 border-bottom">
+            <li className="rank__item d-sm-flex align-items-center py-4 border-bottom">
               <div className="xp__btn-wrap mb-2 mb-sm-0">
                 <IconButton
                   bgColor="#95dbb0"
@@ -131,9 +131,9 @@ const Ranks = () => {
               <span className="fw-bold text-info">
                 {Number(admiral).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
               </span>
-            </div>
+            </li>
 
-            <div className="rank__item d-sm-flex align-items-center py-4 border-bottom">
+            <li className="rank__item d-sm-flex align-items-center py-4 border-bottom">
               <div className="xp__btn-wrap mb-2 mb-sm-0">
                 <IconButton
                   bgColor="#fc8c63"
@@ -149,9 +149,9 @@ const Ranks = () => {
               <span className="fw-bold text-info">
                 {Number(pirate).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
               </span>
-            </div>
+            </li>
 
-            <div className="rank__item d-sm-flex align-items-center py-4 border-bottom">
+            <li className="rank__item d-sm-flex align-items-center py-4 border-bottom">
               <div className="xp__btn-wrap mb-2 mb-sm-0">
                 <IconButton
                   bgColor="#a278fc"
@@ -168,9 +168,9 @@ const Ranks = () => {
               <span className="fw-bold text-info">
                 {Number(narwhal).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
               </span>
-            </div>
+            </li>
 
-            <div className="rank__item d-sm-flex align-items-center py-4 border-bottom">
+            <li className="rank__item d-sm-flex align-items-center py-4 border-bottom">
               <div className="xp__btn-wrap mb-2 mb-sm-0">
                 <IconButton
                   bgColor="#78bafc"
@@ -187,9 +187,9 @@ const Ranks = () => {
               <span className="fw-bold text-info">
                 {Number(beluga).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
               </span>
-            </div>
+            </li>
 
-            <div className="rank__item d-sm-flex align-items-center py-4 border-bottom">
+            <li className="rank__item d-sm-flex align-items-center py-4 border-bottom">
               <div className="xp__btn-wrap mb-2 mb-sm-0">
                 <IconButton
                   bgColor="hsla(0, 96.46%, 76.14%, 1.00)"
@@ -206,7 +206,7 @@ const Ranks = () => {
               <span className="fw-bold text-info">
                 {Number(fish).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
               </span>
-            </div>
+            </li>
           </div>
         </Container>
       </DefaultLayout>

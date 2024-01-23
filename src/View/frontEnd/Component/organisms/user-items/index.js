@@ -6,7 +6,7 @@ import ListItemImg from '../../atoms/list-item-img';
 import receipt from '../../../../../assets/images/receipt.svg';
 import ShareWidget from '../share-widget';
 import ItemsTable from '../items-table';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, Link } from 'react-router-dom';
 import userApi from '../../../../../Api/frontEnd/user';
 //import FrontLoader from '../../../../../Common/FrontLoader';
 import moment from 'moment';
@@ -18,7 +18,6 @@ import helper, {
 } from '../../../../../Common/Helper';
 import { GalleryImg } from '../../atoms';
 import { Button, Card, Col, Row, Dropdown, ProgressBar, Modal } from 'react-bootstrap';
-
 import './style.scss';
 import { PLATFORM_COST } from '../../../../../constants/constants';
 
@@ -72,7 +71,7 @@ const UserItems = () => {
         //   })
         //   let sum = tempPriceArray.reduce(function (a, b) { return a + b; }, 0);
         setTotalPriceArray(Object.entries(getOrderItem.data.totalPurchase));
-        console.log({ totalPurchase: getOrderItem.data.totalPurchase })
+        console.log({ totalPurchase: getOrderItem.data.totalPurchase });
         // setTotalPurchase(priceFormat(Math.round(calculatedPrice.priceWithTax(Number(getOrderItem.data.totalPurchase)))))
         // }
       }
@@ -139,7 +138,7 @@ const UserItemsTableView = ({
   totalPriceArray, // arr
   onItemClick, // fn
   handleClick, // fn
-  totalPages,  // num/state
+  totalPages, // num/state
   pageNo, // num/state
   handleSortingChange, // fn
   order,
@@ -149,51 +148,84 @@ const UserItemsTableView = ({
 }) => {
   console.log('UserItemsTableView rerender');
   return (
-    <div>
-      <header className="py-sm-2 pb-2 mb-2 w-100 d-none d-sm-flex align-items-center">
-        <div className="me-sm-2 flex-grow-1">
-          <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">My Items</h1>
-          <p className="d-sm-block fs-5 text-light">
-            Check in on the items you donated to. Click on the title of the item to view the post
-            details and see follow-up media and view sales and tax receipt file uploads.
-          </p>
-          <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
-        </div>
-        {totalPriceArray.length > 0 &&
-          totalPriceArray.map((val, index) => {
-            return (
-              <span className="d-none d-sm-flex item__total-wrap d-flex ms-3" key={index}>
-                <FontAwesomeIcon
-                  icon={solid('money-bills-simple')}
-                  className=" mr-12p fs-4"
-                />
-                <span>$</span>
-                {val[1].toLocaleString('en-US', {
-                  maximumFractionDigits: 2,
-                  minimumFractionDigits: 2
-                })}
-              </span>
-            );
-          })}
+    <>
+      {/* {city_id !== 'null' && (
+        <div className="onboarding d-flex flex-column mw-100 p-5 border rounded-3">
+          <div className="d-flex align-items-start">
+            <div className="flex-grow-1">
+              <h3>Getting Started</h3>
+              <span className="fs-5">Follow these steps before creating your first post.</span>
+            </div>
+          </div>
 
-        {/* <div className="ms-sm-auto">
+          <div className="flex-wrap flex-lg-nowrap my-2 d-flex gap-2 p2 mw-100">
+            <div className=" rounded-3 d-flex flex-grow-1 border p-5">
+              <div className="d-flex flex-column justify-content-start align-items-start">
+                <div className="d-flex align-items-center">
+                  <FontAwesomeIcon
+                    icon={solid('user')}
+                    className="text-primary onboarding__icon me-2"
+                  />
+                  <div>
+                    <h4 className="m-0">BUILD PROFILE</h4>
+                  </div>
+                </div>
+                <p className="mt-3 fs-5">
+                  Add your profile picture and address. Charities use your address when issuing tax
+                  receipts. This will not be shared with anyone other than Charities you donate to.
+                </p>
+                <div variant="link" className="text-light p-0 fw-normal fs-5">
+                  <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" />
+                  Go to Settings
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )} */}
+      <div>
+        <header className="py-sm-2 pb-2 mb-2 w-100 d-none d-sm-flex align-items-center">
+          <div className="me-sm-2 flex-grow-1">
+            <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">My Items</h1>
+            <p className="d-sm-block fs-5 text-light">
+              Check in on the items you donated to. Click on the title of the item to view the post
+              details and see follow-up media and view sales and tax receipt file uploads.
+            </p>
+            <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
+          </div>
+          {totalPriceArray.length > 0 &&
+            totalPriceArray.map((val, index) => {
+              return (
+                <span className="d-none d-sm-flex item__total-wrap d-flex ms-3" key={index}>
+                  <FontAwesomeIcon icon={solid('money-bills-simple')} className=" mr-12p fs-4" />
+                  <span>$</span>
+                  {val[1].toLocaleString('en-US', {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2
+                  })}
+                </span>
+              );
+            })}
+
+          {/* <div className="ms-sm-auto">
               <LadderMenuItems />
             </div> */}
-      </header>
+        </header>
 
-      <ItemsTable
-        onItemClick={onItemClick}
-        handleClick={handleClick}
-        totalPages={totalPages}
-        totalRecord={totalRecord}
-        isFetching={isFetching}
-        pageNo={pageNo}
-        handleSortingChange={handleSortingChange}
-        order={order}
-        sortField={sortField}
-        orderItemList={orderItemList}
-      />
-    </div>
+        <ItemsTable
+          onItemClick={onItemClick}
+          handleClick={handleClick}
+          totalPages={totalPages}
+          totalRecord={totalRecord}
+          isFetching={isFetching}
+          pageNo={pageNo}
+          handleSortingChange={handleSortingChange}
+          order={order}
+          sortField={sortField}
+          orderItemList={orderItemList}
+        />
+      </div>
+    </>
   );
 };
 
@@ -212,8 +244,8 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
   // let price = priceFormat(Math.round(calculatedPrice.priceWithTax(Number(item.itemDetails.price))))
 
   let price = item?.itemDetails?.displayPrice
-  ? Number(item.itemDetails.displayPrice).toFixed(2)
-  : Number(item.itemDetails.price).toFixed(2);
+    ? Number(item.itemDetails.displayPrice).toFixed(2)
+    : Number(item.itemDetails.price).toFixed(2);
 
   // let purchasedPrice = (Math.round(purchasedPriceWithTax(Number(item.productPrice), item.appliedTaxPer)))
   let listPrice = item.productPrice;
@@ -428,9 +460,8 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               {item.itemDetails?.isFulfiled &&
                 (item.fulfilDetails[0].video || item.itemDetails?.fulfil.length > 0) && (
                   <div className="note note-info align-items-center mt-5">
-
-                      <h2 className="fs-3 fw-bolder m-0">Followup</h2>
-                      <div className="project__detail-subtitle fw-bold">Media</div>
+                    <h2 className="fs-3 fw-bolder m-0">Followup</h2>
+                    <div className="project__detail-subtitle fw-bold">Media</div>
 
                     <div className="d-flex flex-column gap-2">
                       {' '}
@@ -555,6 +586,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
                 </div>
               </div>
             </div>
+            <div className="mt-3 text-light">ID: {item.orderId}</div>
           </div>
 
           <div className="fw-bold mb-2">Order Files</div>
@@ -654,7 +686,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               >
                 <Modal.Header>
                   <Modal.Title id="show-sales-receipt">
-                      {/*
+                    {/*
                     {item.itemDetails.headline} - #{item.orderId}
                     */}
                   </Modal.Title>

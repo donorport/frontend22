@@ -53,7 +53,7 @@ const Pricing = () => {
     alignItems: 'center',
     borderRadius: '50%',
     fontSize: 'xx-large',
-    fontWeight: 700,
+    fontWeight: 700
   };
   return (
     <Page
@@ -71,10 +71,11 @@ const Pricing = () => {
                 need.
               </div>
               <div className="note fs-5 mb-3">
-                Donorport includes sales tax and merchant fees in the display price of each post to
-                ensure the charity has the exact amount required to purchase their items. Donorport
-                adds a 2% service charge at checkout to continue offering our services to the
-                Donorport community. For more information, please visit our{' '}
+                Donorport includes sales tax in the display price of each post to ensure the charity
+                has the exact amount required to purchase their items. Donorport adds a{' '}
+                {user.platformFee ? <span>{user.platformFee}%</span> : <span>2.79%</span>} service
+                charge at checkout to continue offering our services to the Donorport community. For
+                more information, please visit our{' '}
                 <a href="/terms" className="link">
                   Terms of service
                 </a>

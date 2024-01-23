@@ -9,6 +9,8 @@ import moment from 'moment';
 import helper, { priceFormat } from '../../../../../Common/Helper';
 import './style.scss';
 import { validateBBox } from '@turf/turf';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const UserTax = () => {
   const userAuthToken = localStorage.getItem('userAuthToken');
@@ -24,7 +26,7 @@ const UserTax = () => {
   const [activeYear, setActiveYear] = useState('Show All');
   const [all, setAll] = useState([]);
   const userData = JSON.parse(localStorage.getItem('userData'));
-
+  const [currentYear, setCurrentYear] = useState(moment().year().toString());
   const [csvData, setCsvData] = useState([]);
 
   const headers = [
@@ -118,9 +120,9 @@ const UserTax = () => {
 
   useEffect(() => {
     (async () => {
-      await getTaxDataList(pageNo, sortField, order, activeYear);
+      await getTaxDataList(pageNo, sortField, order, currentYear);
     })();
-  }, [data._id]);
+  }, [data._id, currentYear]); 
 
   const handleClick = async (e, v) => {
     setPageNo(Number(v));
@@ -189,10 +191,21 @@ const UserTax = () => {
             the table below represent the amount paid to the charity less any non-deductible service
             charges. Transaction & Platform fees are not tax deductible.
           </p>
+          <div className="d-flex flex-wrap gap-2 fw-semibold pb-3 pt-1 pt-sm-0">
+            <span>
+              {/* <img alt="" className="me-1" style={{ height: '16px' }} src={clock}></img> */}
+              <FontAwesomeIcon icon={solid('clock')} className="fs-5 me-1 text-warning" />
+              The charity has yet to upload your tax document
+            </span>
+          </div>
         </div>
 
         <div className="ms-sm-auto">
-          <LadderMenu loading={loading} activeKey={activeKey} onChangeFilterOption={onChangeFilterOption} />
+          <LadderMenu
+            loading={loading}
+            activeKey={activeKey}
+            onChangeFilterOption={onChangeFilterOption}
+          />
         </div>
       </header>
 

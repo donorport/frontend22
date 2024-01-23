@@ -90,10 +90,12 @@ function OrganizationItem(props) {
         </span>
       </div>
     ) : (
-      props.organizationDetails?.name !== 'Tree Frog' ||
-      (props.organizationDetails?.name !== 'Science Bites' && (
-        <div className="button__wrap d-flex">{cart_btn}</div>
-      ))
+      <div className="button__wrap d-flex">{cart_btn}</div>
+      // ) : (
+      //   props.organizationDetails?.name !== 'Tree Frog' ||
+      //   (props.organizationDetails?.name !== 'Science Bites' && (
+      //     <div className="button__wrap d-flex">{cart_btn}</div>
+      //   ))
     );
 
   // console.log("product",product)
@@ -135,7 +137,7 @@ function OrganizationItem(props) {
           <div className="price__slider d-flex align-items-center mt-2 mt-sm-0">
             <div
               className="d-flex align-items-center flex-grow-1 fs-5 me-2"
-              style={{ minWidth: '150px', maxWidth: '225px' }}
+              style={{ minWidth: '150px', maxWidth: '255px' }}
             >
               <div className="org__item__count mt-3p me-1">1</div>
               <div className="org__item-slider flex-grow-1 mx-2">

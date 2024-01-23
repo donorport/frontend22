@@ -75,7 +75,7 @@ const OrderConfirmPage = () => {
         };
       });
       const title = `I just donated ${amountOfItems} item${
-        amountOfItems > 1 ? "'s" : ""
+        amountOfItems > 1 ? "'s" : ''
       } to charity`;
 
       const description = `I just donated ${Object.keys(items).map((item, idx) => {
@@ -234,10 +234,10 @@ const OrderConfirmPage = () => {
                                   </div>
                                 </div>*/}
                                 </div>
-                                <h4 className="order__itemtotal price fs-5 fw-bold">
+                                <span className="order__itemtotal price fs-5 fw-bold">
                                   {orderDetails.currencySymbol}
                                   {priceFormat(Number(itm.totalPrice))}
-                                </h4>
+                                </span>
                               </div>
                             </div>
                             {/*   {itm.tax === true && (
@@ -318,9 +318,7 @@ const OrderConfirmPage = () => {
                       <img src={getCardIcon(cardType)} alt="" className="img-fluid" />
                     </div>
                     <div className="order__card fs-7">
-                      <div className=" fw-semibold mb-6p">
-                        XXXX XXXX XXXX {lastFourDigits}
-                      </div>
+                      <div className=" fw-semibold mb-6p">XXXX XXXX XXXX {lastFourDigits}</div>
                       <div className="text-light fw-semibold">
                         <div>
                           Transaction: {moment(orderDetails.created_at).format('MMMM DD, YYYY')}
@@ -342,6 +340,7 @@ const OrderConfirmPage = () => {
                       </div>
                     </div>
                   </div>
+                  <div className="mt-3 text-light">ID: {orderDetails._id}</div>
                 </div>
               </div>
             </div>

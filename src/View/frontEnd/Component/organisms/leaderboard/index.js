@@ -42,12 +42,10 @@ const LeaderBoard = () => {
         title="Donorport | Leaderboard"
         description="See where you rank among the top Donors. All Time; Locally; Recent"
       >
-        {/*<FrontLoader loading={loading} />*/}
         <DefaultLayout>
-          <Container luid className="position-relative pb-5 pt-5">
-            <h1 className="fs-2  fw-bolder" style={{ marginTop: '50px' }}>
-              Leaderboard
-            </h1>
+          <Container fluid className="position-relative pb-5 pt-5">
+            <h1 className=" fw-bolder mb-6p pt-2">Leaderboard</h1>
+
             <div className="fs-5 text-light" style={{ marginBottom: '56px' }}>
               See where you rank among the top donors in{' '}
               {user.countryName ? user.countryName : userData ? userData.country : ''}
@@ -60,55 +58,56 @@ const LeaderBoard = () => {
                     list.map((person, i) => {
                       if (person.xp > 0) {
                         return (
-                          <li className="similar__item__wrap  d-flex align-items-center">
+                          <li className="similar__item__wrap  d-flex align-items-center border-bottom">
                             <div
-                              className="d-flex align-items-center w-100 border-bottom"
+                              className="d-flex align-items-center w-100"
                               style={{ height: '90px' }}
                             >
                               <div className="">
                                 <div className="fs-5 fw-bold mb-3p me-2 me-sm-5">{i + 1}</div>
                               </div>
-                              <div className="d-flex align-items-center w-100">
-                                <Avatar
-                                  size={46}
-                                  avatarUrl={
-                                    person.image ? helper.DonorImagePath + person.image : AvatarImg
-                                  }
-                                  border={0}
-                                  shadow={false}
-                                />
-                                <div className="ms-2 flex-grow-1">
-                                  <div className="ladder__name d-flex align-items-center justify-content-start me-0 me-md-3">
-                                    <div className=" fw-bold">{person.name}</div>
+                              <div className="d-flex align-items-center flex-grow-1">
+                                <div className="d-flex align-items-center">
+                                  <Avatar
+                                    size={46}
+                                    avatarUrl={
+                                      person.image
+                                        ? helper.DonorImagePath + person.image
+                                        : AvatarImg
+                                    }
+                                    border={0}
+                                    shadow={false}
+                                  />
+                                  <div className="ms-2">
+                                    <div className="ladder__name d-flex align-items-center justify-content-start me-0 me-md-3">
+                                      <div className=" fw-bold">{person.name}</div>
 
-                                    {/*<span className="text-info fs-5" style={{ marginLeft: "10px" }}>
+                                      {/*<span className="text-info fs-5" style={{ marginLeft: "10px" }}>
                                                                         <FontAwesomeIcon icon={solid("badge-check")} />
                                             </span>*/}
 
-                                    <span className="btn-sm">{/* Rank */}</span>
-                                  </div>
-                                  {/* <div className="text-lighter fs-8">
+                                      <span className="btn-sm">{/* Rank */}</span>
+                                    </div>
+                                    {/* <div className="text-lighter fs-8">
         
         
         
                                                     </div> */}
+                                  </div>
                                 </div>
 
-                                <div className="billing__value">
-                                  <div className="d-flex justify-content-end pe-0 pe-sm-4 s-5 fw-bold text-info mb-3p text-end">
+                                <div className="d-flex billing__value align-items-center ms-auto">
+                                  <span className="btn-sm ">
+                                    {getC.getUserRank(Number(person.xp))}
+                                  </span>
+                                  <div className="d-flex text-nowrap justify-content-end pe-0 pe-sm-0 s-5 fw-bold text-info mb-3p text-end">
                                     {Number(person.xp).toLocaleString('en-US', {
                                       maximumFractionDigits: 2
                                     })}{' '}
                                     XP
                                   </div>
                                 </div>
-                                <div
-                                  className="d-flex justify-content-end"
-                                >
-                                  <span className="btn-sm ">
-                                    {getC.getUserRank(Number(person.xp))}
-                                  </span>
-                                </div>
+                                <div className="d-flex justify-content-end"></div>
                               </div>
                             </div>
                           </li>
@@ -171,7 +170,7 @@ const LeaderBoard = () => {
                           <span className="btn-sm ">{getC.getUserRank(user.xp)}</span>
                         )}
                         <div className="ladder__xp ladder__xp--user w-inline-block">
-                          <div className="tag tag--xp tag--xp_nobg  ms-3 fs-5 text-info">
+                          <div className="tag tag--xp tag--xp_nobg ms-1 fs-5 text-info">
                             {Number(user.xp).toLocaleString('en-US', { maximumFractionDigits: 2 })}
                             &nbsp;XP
                           </div>

@@ -180,7 +180,7 @@ const Product = (props) => {
       >
         &nbsp;
       </Link> */}
-      <div className="product__columns d-flex align-items-center position-relative">
+      <div className="product__columns mb-3 border-bottom d-flex align-items-center position-relative">
         <div className="product__mid d-flex align-items-center justify-content-center">
           <Link
             className="proudct__img-wrap d-flex align-items-center justify-content-center"
@@ -200,7 +200,7 @@ const Product = (props) => {
         </div>
       </div>
       <div className="mx-2 mt-2 d-flex flex-grow-1 product__order">
-        <div className="d-flex flex-column flex-grow-1 me-3">
+        <div className="d-flex flex-column flex-grow-1 me-1 me-sm-3">
           <Link to={'/item/' + props.slug} className="d-inline-block">
             <h5 className="product__title">{name}</h5>
           </Link>

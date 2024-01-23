@@ -219,10 +219,10 @@ const DonationConfirmPage = () => {
                               <div className="checkout__tag d-flex justify-content-center"></div>
                             </div>
                           </div>
-                          <h4 className="order__itemtotal price fs-5 fw-bold">
+                          <span className="order__itemtotal price fs-5 fw-bold">
                             {doantionDetails?.currencySymbol}
                             {subtotal}
-                          </h4>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -298,6 +298,7 @@ const DonationConfirmPage = () => {
                       </div>
                     </div>
                   </div>
+                  <div className="mt-3 text-light">ID: {doantionDetails._id}</div>
                 </div>
               </div>
             </div>

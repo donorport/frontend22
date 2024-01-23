@@ -100,7 +100,7 @@ function CrowdfundingDetailMain({
         <div className="product__top px-0 mb-1 d-flex align-items-center">
 {/*
 ** WHAT IS NEEDED HERE?? **
-<div className="d-flex align-items-center w-310">
+<div className="d-flex align-items-center w-100">
 <ProgressBar
 variant={crowdfundingDetails.infinity ? 'infinity' : 'success'}
 now={countCrowdfundingProcess(crowdfundingDetails.productDetails)}

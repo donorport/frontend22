@@ -97,7 +97,7 @@ function OrganizationDetailMain({
             </div>
           )}
           {organizationDetails?.url && (
-            <div className="d-flex align-items-center text-nowrap" style={{ maxWidth: '210px' }}>
+            <div className="d-flex align-items-center text-nowrap" style={{ maxWidth: '333px' }}>
               <FontAwesomeIcon icon={regular('link')} className="me-1" />
 
               <a

@@ -187,8 +187,9 @@ const UserBilling = () => {
                         <div className="billing__value text-start">
                           <div className="text-danger fw-bold fs-5 mb-3p">
                             - {currencySymbole}
-                            {amount}
+                            {Number(amount).toFixed(2)}
                           </div>
+
                           <div className="fw-semibold text-light fs-7">
                             {moment(date).format('MMM DD, YYYY')}
                           </div>
@@ -240,8 +241,9 @@ const UserBilling = () => {
                               <div className="billing__value text-start">
                                 <div className="text-danger fw-bold fs-5 mb-3p">
                                   - {currencySymbole}
-                                  {Number(o_itm.productPrice) * o_itm.quantity}
+                                  {Number(o_itm.productPrice * o_itm.quantity).toFixed(2)}
                                 </div>
+
                                 <div className="fw-semibold text-light fs-7">
                                   {moment(date).format('MMM DD, YYYY')}
                                 </div>

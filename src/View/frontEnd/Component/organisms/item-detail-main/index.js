@@ -305,7 +305,7 @@ const ItemDetailsMain = ({
       </div>
     </div>
 
-    <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-3">
+    <div className="category__icons d-flex align-items-center order--1 order-sm-0">
       <Link
         size="lg"
         variant="link"

@@ -81,16 +81,13 @@ const ItemsTable = ({
 
               return (
                 <li className="table__list-item px-2 py-2" key={key}>
-                  <div className="d-xl-flex align-items-center flex-grow-1">
+                  <div className="d-xl-flex gap-3 align-items-center flex-grow-1">
                     <Button
                       variant="link"
                       onClick={() => onItemClick(key)}
-                      className="user__left d-flex align-items-center  me-sm-3 p-0 text-decoration-none text-start fw-normal"
+                      className="user__left d-flex gap-3 align-items-center flex-wrap flex-sm-nowrap me-sm-3 p-0 text-decoration-none text-start fw-normal"
                     >
-                      <div
-                        className="me-0 me-sm-2 order-sm-0 order-1 text-sm-start text-end"
-                        style={{ width: '65px', minWidth: '65px' }}
-                      >
+                      <div className="order-sm-0 order-1 text-sm-start text-end">
                         <div className="price fw-bold fs-5">
                           {item.currencySymbol}
                           {priceFormat(price)}
@@ -106,7 +103,7 @@ const ItemsTable = ({
                           {item.quantity}
                         </span>
                       </div>
-                      <div className="flex-grow-1 flex-sm-0 ms-2">
+                      <div className="flex-grow-1 flex-sm-0">
                         <h5 className="mb-3p">{item.itemDetails?.headline}</h5>
                         <div className="fs-6 text-light">{item.itemDetails?.brand}</div>
                       </div>
@@ -155,10 +152,7 @@ const ItemsTable = ({
                             </div>
                           )}
                         </div>
-                        <Button
-                          variant="link"
-                          className="ms-auto ms-sm-0 p-0 text-decoration-none"
-                        >
+                        {/* <Button variant="link" className="ms-auto ms-sm-0 p-0 text-decoration-none">
                           <div className="d-flex align-items-center justify-content-center">
                             <img
                               className="img-fluid"
@@ -167,10 +161,19 @@ const ItemsTable = ({
                                 item.itemDetails?.organizationDetails?.logo
                               }
                               alt=""
-                              style={{maxHeight: '32px', maxWidth: '56px'}}
+                              style={{ maxHeight: '32px', maxWidth: '56px' }}
                             />
                           </div>
-                        </Button>
+                        </Button> */}
+                        <ListItemImg
+                          size={42}
+                          style={{ maxWidth: 'auto !important' }}
+                          className="rounded-circle img--nobg mb-0 mb-sm-auto"
+                          imgSrc={
+                            helper.CampaignAdminLogoPath +
+                            item.itemDetails?.organizationDetails?.logo
+                          }
+                        />
                       </div>
                       <div className="d-none d-sm-flex billing__buttons d-flex align-items-center gap-1">
                         {item.itemDetails?.tax && (
@@ -211,9 +214,7 @@ const ItemsTable = ({
               );
             })
           ) : (
-            <li className="list__table-list p-2 mb-0">
-              No entries to show
-            </li>
+            <li className="list__table-list p-2 mb-0">No entries to show</li>
           )}
         </ul>
 

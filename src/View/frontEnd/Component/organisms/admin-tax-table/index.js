@@ -279,16 +279,14 @@ const AdminTaxTable = (props) => {
                                   </div>
                                   <div>
                                     <div>
-                                      <Button
-                                        onClick={(e) => e.stopPropagation()}
-                                        variant="link"
-                                        className=" px-0 py-3p"
+                                      <div
+                                        className="fw-bold fs-6 px-0 py-3p"
                                       >
                                         {/* {item.orderItemDetails?.productName} */}
                                         {item[0].type === 'Purchased'
                                           ? item[0].orderItemDetails?.productName
                                           : 'Donation'}
-                                      </Button>
+                                      </div>
                                     </div>
                                     <div className="text-light fs-7">
                                       {/* <FontAwesomeIcon
@@ -458,7 +456,7 @@ const AdminTaxTable = (props) => {
                             return (
                               <React.Fragment key={k}>
                                 <li className="table__list-item table__list-item--tax py-1">
-                                  <div className="d-flex d-sm-flex align-items-center flex-grow-1">
+                                  <div className="d-flex d-sm-flex align-items-center flex-grow-1 ps-0 ps-sm-1">
                                     <div className="d-flex align-items-center mb-1 mb-sm-0 order-1 order-sm-0">
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                                         <div className="price fw-bold fs-5">
@@ -478,10 +476,10 @@ const AdminTaxTable = (props) => {
                                       </div>
                                       <div>
                                         <div>
-                                          <Button variant="link" className=" px-0 py-3p">
+                                          <div className="fw-bold px-0 py-3p">
                                             {/* {i1.orderItemDetails?.productName} */}
                                             {Name}
-                                          </Button>
+                                          </div>
                                         </div>
                                         <div className="text-light fs-7">
                                           {i1.type === 'Purchased' ? (

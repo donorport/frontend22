@@ -117,14 +117,15 @@ const Partnership = () => {
 
   return (
     <>
-      <Page title="Donorport | Partnership" description="Partner with Donorport and explore ways to get involved in your local community">
+      <Page
+        title="Donorport | Partnership"
+        description="Partner with Donorport and explore ways to get involved in your local community"
+      >
         <DefaultLayout>
           <div className="password-reset position-relative">
             <Container fluid className="position-relative pb-5 pt-5">
               <h1 className=" fw-bolder mb-6p pt-2">Join Forces</h1>
-              <div className="fs-5 text-light mb-5">
-                Tell us how you can help Donorport grow.
-              </div>
+              <div className="fs-5 text-light mb-5">Tell us how you can help Donorport grow.</div>
 
               <Form className="mw-400">
                 <div
@@ -152,66 +153,72 @@ const Partnership = () => {
                     Other
                   </RadioToggle>
                 </div>
-                <div className="input__wrap d-flex">
-                  <label className="input__label flex__1">
-                    <input type="text" name="name" value={name} onChange={(e) => changevalue(e)} />
-                    <span className="input__span">Name</span>
-                  </label>
-                </div>
-                {error && error.name && (
-                  <p className="error">{error ? (error.name ? error.name : '') : ''}</p>
-                )}
+                <div className="d-flex flex-column gap-3">
+                  <div className="input__wrap d-flex">
+                    <label className="input__label flex__1">
+                      <input
+                        type="text"
+                        name="name"
+                        value={name}
+                        onChange={(e) => changevalue(e)}
+                      />
+                      <span className="input__span">Name</span>
+                    </label>
+                  </div>
+                  {error && error.name && (
+                    <p className="error">{error ? (error.name ? error.name : '') : ''}</p>
+                  )}
 
-                <div className="input__wrap d-flex">
-                  <label className="input__label flex__1">
-                    <input
-                      type="email"
-                      name="email"
-                      value={email}
-                      onChange={(e) => changevalue(e)}
-                    />
-                    <span className="input__span">Email</span>
-                  </label>
-                </div>
-                {error && error.email && (
-                  <p className="error">{error ? (error.email ? error.email : '') : ''}</p>
-                )}
+                  <div className="input__wrap d-flex">
+                    <label className="input__label flex__1">
+                      <input
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={(e) => changevalue(e)}
+                      />
+                      <span className="input__span">Email</span>
+                    </label>
+                  </div>
+                  {error && error.email && (
+                    <p className="error">{error ? (error.email ? error.email : '') : ''}</p>
+                  )}
 
-                <div className="input__wrap d-flex">
-                  <label className="input__label flex__1">
-                    <input
-                      type="text"
-                      name="organization"
-                      value={organization}
-                      onChange={(e) => changevalue(e)}
-                    />
-                    <span className="input__span">Organization (optional)</span>
-                  </label>
-                </div>
-                {error && error.organization && (
-                  <p className="error">
-                    {error ? (error.organization ? error.organization : '') : ''}
-                  </p>
-                )}
+                  <div className="input__wrap d-flex">
+                    <label className="input__label flex__1">
+                      <input
+                        type="text"
+                        name="organization"
+                        value={organization}
+                        onChange={(e) => changevalue(e)}
+                      />
+                      <span className="input__span">Organization (optional)</span>
+                    </label>
+                  </div>
+                  {error && error.organization && (
+                    <p className="error">
+                      {error ? (error.organization ? error.organization : '') : ''}
+                    </p>
+                  )}
 
-                <div className="input__wrap d-flex">
-                  <label className="input__label flex__1">
-                    <textarea
-                      maxLength={250}
-                      rows={5}
-                      name="reason"
-                      value={reason}
-                      onChange={(e) => changevalue(e)}
-                    >
-                      {reason}
-                    </textarea>
-                    <span className="input__span">How can we partner?</span>
-                  </label>
+                  <div className="input__wrap d-flex">
+                    <label className="input__label flex__1">
+                      <textarea
+                        maxLength={250}
+                        rows={5}
+                        name="reason"
+                        value={reason}
+                        onChange={(e) => changevalue(e)}
+                      >
+                        {reason}
+                      </textarea>
+                      <span className="input__span">How can we partner?</span>
+                    </label>
+                  </div>
+                  {error && error.reason && (
+                    <p className="error">{error ? (error.reason ? error.reason : '') : ''}</p>
+                  )}
                 </div>
-                {error && error.reason && (
-                  <p className="error">{error ? (error.reason ? error.reason : '') : ''}</p>
-                )}
-
                 <div className="text-end  mb-2">
                   <span className="fw-bold mr-6p">{textAreaCount}/250</span> chars remaining
                 </div>

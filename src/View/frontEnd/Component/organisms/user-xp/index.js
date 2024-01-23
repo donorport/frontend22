@@ -85,8 +85,8 @@ const UserXp = () => {
           />
 
           <span className="fs-7 text-light mr-2">Your Rank</span>
-          <span className="ms-2">{getC.getUserRank(user.xp)}</span>
-
+          {/* <span className="ms-1">{getC.getUserRank(user.xp)}</span> */}
+          <span className="btn-sm ">{getC.getUserRank(Number(user.xp))}</span>
           {/* <IconButton
             bgColor="#a278fc"
             className="btn__xs rounded-pill ms-2"
@@ -94,6 +94,7 @@ const UserXp = () => {
           >
             Norwhal
           </IconButton> */}
+
           <a href="/" className="text-info fw-bold fs-5 ms-auto me-1">
             {Number(user.xp).toLocaleString('en-US', { maximumFractionDigits: 2 })} xp
           </a>

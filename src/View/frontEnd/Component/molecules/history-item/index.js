@@ -56,7 +56,7 @@ function HistoryItem({ active, ...otherProps }) {
     type === 'donation' ? item?.currencySymbol : item?.orderDetails?.currencySymbol;
   let xp = type === 'donation' ? item?.userDetails?.xp : item?.orderDetails?.userDetails?.xp;
   //let isDeleted =
-    //type === 'donation' ? item?.userDetails?.isDeleted : item?.orderDetails?.userDetails?.isDeleted;
+  //type === 'donation' ? item?.userDetails?.isDeleted : item?.orderDetails?.userDetails?.isDeleted;
   const page = location.pathname.split('/').length > 0 && location.pathname.split('/')[1];
 
   // console.log(location.pathname.split('/')[1])
@@ -67,22 +67,23 @@ function HistoryItem({ active, ...otherProps }) {
         sharedProps.active ? 'active' : ''
       }`}
     >
-      <div className="d-flex align-items-sm-center align-items-start w-100">
-        <Avatar
-          size={46}
-          avatarUrl={getAvatarImage(avatar)}
-          border={0}
-          shadow={false}
-          className="donor_avatar_bg"
-        />
-        <div className="ms-2 flex-grow-1">
-          <div className="d-flex align-items-center justify-content-between">
-            <div className=" fw-bold">{name}</div>
+      <div className="d-flex gap-2 align-items-sm-center align-items-start w-100">
+        <div className="d-flex">
+          <Avatar
+            size={46}
+            avatarUrl={getAvatarImage(avatar)}
+            border={0}
+            shadow={false}
+            className="donor_avatar_bg"
+          />
+          <div className="ms-2 flex-grow-1">
+            <div className="d-flex align-items-center justify-content-between">
+              <div className=" fw-bold">{name}</div>
 
-            {/*<span className="text-info fs-5">
+              {/*<span className="text-info fs-5">
               <FontAwesomeIcon icon={solid("badge-check")} />
       </span> */}
-            {/* <IconButton
+              {/* <IconButton
               bgColor={sharedProps.categoryColor}
               className="btn__xs rounded-pill"
               icon={
@@ -91,34 +92,36 @@ function HistoryItem({ active, ...otherProps }) {
             >
               {sharedProps.categoryName}
             </IconButton> */}
-          </div>
-          <div className="text-light fs-7 fw-semibold">
-            {/*  {
+            </div>
+            <div className="text-light fs-7 fw-semibold">
+              {/*  {
               isDeleted &&
 
               <div className="text-lighter fs-8">Deleted User</div>
             }*/}
-            {type === 'donation' ? (
-              <>
-                <div className="d-flex" style={{ width: 'auto' }}>
-                  <FontAwesomeIcon icon={solid('heart')} className="mr-6p text-lighter" />
-                  Donated
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="d-flex text-wrap me-1">
-                  <FontAwesomeIcon
-                    icon={solid('bag-shopping')}
-                    className="mr-6p text-lighter"
-                    style={{ whiteSpace: 'nowrap' }}
-                  />
-                  Bought {item?.quantity} {page !== 'item' && item?.productName}
-                </div>
-              </>
-            )}
+              {type === 'donation' ? (
+                <>
+                  <div className="d-flex" style={{ width: 'auto' }}>
+                    <FontAwesomeIcon icon={solid('heart')} className="mr-6p text-lighter" />
+                    Donated
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="d-flex text-wrap me-1">
+                    <FontAwesomeIcon
+                      icon={solid('bag-shopping')}
+                      className="mr-6p text-lighter"
+                      style={{ whiteSpace: 'nowrap' }}
+                    />
+                    Bought {item?.quantity} {page !== 'item' && item?.productName}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </div>
+
         <span className="btn-sm ms-auto p-0 me-sm-0 me-2">{getC.getUserRank(xp)}</span>
 
         <div className="billing__value text-end">

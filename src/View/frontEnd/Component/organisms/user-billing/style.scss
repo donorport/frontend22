@@ -1,7 +1,3 @@
-.billing__value {
-  width: 75px;
-}
-
 .billing__payment {
   min-width: 90px;
   display: flex;
@@ -32,10 +28,10 @@
     width: 100%;
   }
 
-  .billing__value {
-    order: 1;
-    flex: 1;
-  }
+  // .billing__value {
+  //   order: 1;
+  //   flex: 1;
+  // }
 
   .billing__details {
     margin-bottom: 3px;
