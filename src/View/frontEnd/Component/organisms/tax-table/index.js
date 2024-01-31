@@ -408,7 +408,7 @@ const TaxTable = (props) => {
             })
           ) : (
             // <div className="d-sm-flex align-items-center justify-content-center flex-grow-1">
-            //   <li className="table__list-item p-2">No Records to Display</li>
+            //   <li className="table__list-item p-2">No records to display</li>
             // </div>
             <li className="list__table-list p-2 mb-0">
               {props.loading ? (

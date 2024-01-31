@@ -679,7 +679,7 @@ const ProfileSettings = () => {
               <div className="d-flex justify-content-center col-sm-6 ml-3 note">
                 <img
                   src={tempImg ? tempImg : logo ? helper.CampaignAdminLogoPath + logo : ''}
-                  alt="Donorport Logo Icon"
+                  alt="Logo"
                   className=""
                   style={{ width: '100px' }}
                 />

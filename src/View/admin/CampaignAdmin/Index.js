@@ -32,18 +32,9 @@ export default function Index(props) {
     setRowsPerPage(parseInt(event.target.value, 10));
   };
   const customStyles = {
-    headRow: {
-      style: { tableLayout: 'fixed', width: '100%' }, // Set table layout to fixed and 100% width
-    },
-    rows: {
-      style: { tableLayout: 'fixed', width: '100%' }, // Set table layout to fixed and 100% width
-    },
-    cells: {
-      style: { tableLayout: 'fixed', width: '100%' }, // Set table layout to fixed and 100% width
-    },
     table: {
-      style: { display: 'table', tableLayout: 'fixed', width: '100%' }, // Set table layout to fixed and 100% width
-    },
+      style: { display: 'table', tableLayout: 'fixed', width: '100%' } // Set table layout to fixed and 100% width
+    }
   };
   const columns = [
     { name: 'Name', selector: (row) => row['name'], sortable: true },

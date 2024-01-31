@@ -74,14 +74,15 @@
 }
 .activate__input {
   outline: none;
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
   font-weight: 700;
   color: $neutral-700;
   line-height: normal;
-  background-color: $secondary-1;
-  border: 0px solid $border-color;
-  border-bottom: 1px solid $border-color;
+  background-color: $secondary-2;
+  border-radius: 4px;
+  border: 1px solid $border-color;
+  // border-bottom: 1px solid $border-color;
   padding-top: 0;
   padding-bottom: 0;
   margin-right: 8px;

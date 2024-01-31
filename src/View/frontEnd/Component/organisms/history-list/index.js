@@ -236,7 +236,7 @@ const HistoryList = ({
             </FormControl>
           </div>
         </div>
-        <ul className="list__table-list p-2 pt-0 mb-0">
+        <ul className="list-unstyled mb-0 list__table-list">
           {isFetching ? (
             <li className="history__list-item d-flex align-items-center justify-content-center p-5">
               <CircularProgress className="ms-1" color="inherit" size={32} />
@@ -265,7 +265,7 @@ const HistoryList = ({
               );
             })
           ) : (
-            <li className="history__list-item">No Records to Display</li>
+            <li className="list__table-list p-2 mb-0">No records to display</li>
           )}
         </ul>
         <div

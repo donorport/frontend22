@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import './style.scss';
 import Select from 'react-select';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -413,72 +413,77 @@ const Apply = (props) => {
             </div>
           </div>
           <div
-            className="d-flex flex-column flex-grow-1 bg-lighter"
+            className="d-flex flex-column flex-grow-1 bg-lighter gap-5"
             style={{ padding: '9% 9% 0% 9%' }}
           >
-            <h2 className="fw-bolder ">Activate</h2>
-            <div className="text-light mb-2 fs-5 mw-600">
-              Enter your 4 digit activation code in the box below to activate your account.
-            </div>
-            <div className="d-flex gap-4 flex-wrap mt-5 activate mb-1 mw-600">
-              <div className="flex-grow-1 d-flex">
-                {' '}
-                <div className="activate__icon">
-                  <FontAwesomeIcon className="fs-1 me-3" icon={regular('key')} />
-                </div>
-                <div className="activate__code d-flex gap-1 flex__1 justify-content-around">
-                  {blocks}
-                </div>
+            <div>
+              <h2 className="fw-bolder ">Activate</h2>
+              <div className="text-light mb-2 fs-5 mw-600">
+                Enter your 4 digit activation code in the box below to activate your account.
               </div>
+              <div className="d-flex gap-5 flex-wrap mt-5 activate mb-1 mw-600">
+                <div className="flex-grow-1 d-flex">
+                  <div className="activate__icon">
+                    <FontAwesomeIcon className="fs-1 me-3" icon={regular('key')} />
+                  </div>
+                  <div className="activate__code d-flex gap-1 flex__1 justify-content-around">
+                    {blocks}
+                  </div>
+                </div>
 
-              <Button
-                variant="primary"
-                size="lg"
-                className="flex-grow-1 activate__button ms-2 fw-bold fs-4 py-2 px-4"
-                style={{ height: 'auto', borderRadius: '36px' }}
-                onClick={() => activateCode()}
-              >
-                Activate
-              </Button>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="flex-grow-1 activate__button ms-2 fw-bold fs-4 py-2 px-4"
+                  style={{ height: 'auto', borderRadius: '36px' }}
+                  onClick={() => activateCode()}
+                >
+                  Activate
+                </Button>
+              </div>
             </div>
-            <div
+
+            {/* <div
               style={{ marginTop: '15%' }}
               className="flex-grow-1 d-flex align-items-start justify-content-sm-center"
             >
               <img src={apply} className="img-fluid" alt="" />
-            </div>
-            {/* <h3 className="fw-bolder ">Why Donorport?</h3>
-            <div className="fee__list d-sm-flex fs-5 text-light">
-              <div className="">
-                <div className="d-flex align-items-center my-3">
-                  <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                  <span>Organization keeps 100% of the proceeds</span>
-                </div>
-                <div className="d-flex align-items-center my-3">
-                  <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                  <span>Manage all of your tax receipts on one place</span>
-                </div>
-                <div className="d-flex align-items-center my-3">
-                  <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                  <span>Scale your donations using the donation amount tool</span>
-                </div>
-              </div>
-
-              <div>
-                <div className="d-flex align-items-center my-3">
-                  <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                  <span>Completely transparent; Sales receipts, need media</span>
-                </div>
-                <div className="d-flex align-items-center my-3">
-                  <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                  <span>Money back guaranteed for unfunded items</span>
-                </div>
-                <div className="d-flex align-items-center my-3">
-                  <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                  <span>24/7 Support for Organizations and Donors</span>
-                </div>
-              </div>
             </div> */}
+            <div className="mt-5">
+              <h3 className="fw-bolder ">Why Donorport?</h3>
+              <div className="d-flex gap-4 fee__list d-sm-flex fs-5 text-light">
+                <div className="">
+                  <div className="d-flex align-items-center my-3">
+                    <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                    <span>Organization keeps 100% of the proceeds</span>
+                  </div>
+                  <div className="d-flex align-items-center my-3">
+                    <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                    <span>Manage all of your tax receipts on one place</span>
+                  </div>
+                  <div className="d-flex align-items-center my-3">
+                    <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                    <span>Scale your donations using the donation amount tool</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="d-flex align-items-center my-3">
+                    <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                    <span>Completely transparent; Sales receipts, need media</span>
+                  </div>
+                  <div className="d-flex align-items-center my-3">
+                    <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                    <span>Money back guaranteed for unfunded items</span>
+                  </div>
+                  <div className="d-flex align-items-center my-3">
+                    <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                    <span>24/7 Support for Organizations and Donors</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <footer className="mt-auto main-footer w-100">
               <div className="container-fluid">
                 <div className="d-flex gap-3 footer-bottom py-5">

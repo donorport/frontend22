@@ -303,7 +303,7 @@ const UserBilling = () => {
             )}
           </div>
         ) : (
-          <span className="history__list-item">No Records to Display</span>
+          <span className="history__list-item">No records to display</span>
         )}
       </div>
     </>
