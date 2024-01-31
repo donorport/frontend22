@@ -93,7 +93,7 @@ export default function Index(props) {
                         Projects
                     </Typography>
                     <Button
-                        variant="contained"
+                        variant="outline"
                         startIcon={<Icon icon={plusFill} />}
                         onClick={() => props.openModel()}
                     >

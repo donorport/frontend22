@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 import IconToggle from '../../atoms/icon-toggle';
 // import { HistoryList } from "@components/organisms"
@@ -62,13 +62,13 @@ const UserHistory = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [sortField, setSortField] = useState('created_at');
   const [sortingOrder, setSortingOrder] = useState('asc');
-
   // masterList holds combined orders + donations (NOT sorted or filtered)
   const [masterList, setMasterList] = useState([]);
   // the list to be pulled from for displaying: is sorted and filtered
   const [displayList, setDisplayList] = useState([]);
   // thisPageList holds the items for this page only (10 items)
   const [thisPageList, setThisPageList] = useState([]);
+  const [totalPriceArray, setTotalPriceArray] = useState([]);
 
   const [isFetching, setIsFetching] = useState(true);
 
@@ -114,13 +114,28 @@ const UserHistory = () => {
     ]);
     console.log({
       orders,
-      donations: donations.map((d) => ({...d, paymentResponse: JSON.parse(d.paymentResponse ?? '{}')})),
+      donations: donations.map((d) => ({
+        ...d,
+        paymentResponse: JSON.parse(d.paymentResponse ?? '{}')
+      }))
     });
     const list = orders.concat(donations);
 
+    // Calculate grand total
+    const grandTotal = list.reduce((accumulator, item) => {
+      if (item.total !== undefined) {
+        accumulator += Number(item.total);
+      } else if (item.amount !== undefined) {
+        // Handle donations or other cases
+        accumulator += Number(item.amount);
+      }
+      return accumulator;
+    }, 0);
+    // Update totalPriceArray state with the grand total
+    setTotalPriceArray([grandTotal]);
     // set into masterList
     setMasterList(list);
-
+    console.log('Combined List:', list);
     return list;
   }, []);
 
@@ -230,7 +245,7 @@ const UserHistory = () => {
   return (
     <>
       {/*<FrontLoader loading={loading} />*/}
-      <header className="py-sm-2 pb-2 mb-2 w-100 d-none d-sm-flex align-items-center">
+      <header className="py-sm-2 pb-2 mb-2 w-100 d-none d-sm-flex align-items-start">
         <div className="me-sm-2 flex-grow-1">
           <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Order History</h1>
           <p className="d-sm-block fs-5 text-light">
@@ -247,6 +262,18 @@ const UserHistory = () => {
           onClickFilter={onClickFilter}
           name="expand"
         /> */}
+        {totalPriceArray !== null && (
+          <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
+            <FontAwesomeIcon icon={solid('square-dollar')} className=" mr-12p fs-4" />
+            <span>$</span>
+            {totalPriceArray
+              .reduce((acc, value) => acc + value, 0)
+              .toLocaleString('en-US', {
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2
+              })}
+          </span>
+        )}
       </header>
 
       <HistoryList

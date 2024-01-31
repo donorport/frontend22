@@ -111,9 +111,6 @@ const HistoryList = ({
       },
       '& .MuiPaginationItem-root:hover': {
         background: '#f8fafd !important'
-      },
-      '& .Mui-selected': {
-        background: '#f8fafd !important'
       }
     },
     list: {
@@ -239,7 +236,7 @@ const HistoryList = ({
             </FormControl>
           </div>
         </div>
-        <ul className="list__table-list p-2 mb-0">
+        <ul className="list__table-list p-2 pt-0 mb-0">
           {isFetching ? (
             <li className="history__list-item d-flex align-items-center justify-content-center p-5">
               <CircularProgress className="ms-1" color="inherit" size={32} />
@@ -439,7 +436,7 @@ const DonationListItem = ({ donation, activeList }) => {
             </div>
             <div className="d-flex">
               <span
-                className="text-light fw-semibold fs-5 p-0"
+                className="fw-semibold fs-5 p-0"
                 // onClick={() => showDetails(donation._id)}
               >
                 {donation?.organizationId?.name} #
@@ -497,9 +494,9 @@ const DonationListItem = ({ donation, activeList }) => {
                 </div>
               </div>
             </div>
-            <div className="d-flex mt-1">
+            <div className="d-flex">
               <span
-                className="text-light fw-semibold fs-5 p-0"
+                className="fw-semibold fs-5 p-0"
                 // onClick={() => showDetails(donation._id)}
               >
                 {donation?.organizationId?.name} #{' '}

@@ -202,7 +202,7 @@ export default function Email(props) {
                         </Button>
                     </Stack>
                     <Card>
-                        <form className="mb-4 p-4">
+                        <form className="mb-4 p-4 d-flex flex-column gap-2 justify-content-start">
                             <label htmlFor="headerLogo">Host</label>
                             <div className="form-group row">
                                 <div className="col-sm-12">

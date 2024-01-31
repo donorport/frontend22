@@ -18,7 +18,7 @@ import {
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import './style.scss';
 
-function ShareWidget({page, text, pageTitle, currUrl }) {
+function ShareWidget({ page, text, pageTitle, currUrl }) {
   const [active, setActive] = useState(0);
   const [copySuccess, setCopySuccess] = useState('Copy Link');
   const location = useLocation();
@@ -107,7 +107,7 @@ function ShareWidget({page, text, pageTitle, currUrl }) {
                   url={currUrl}
                   // hashtags={["hashtag1", "hashtag2"]}
                 >
-                  <TwitterIcon size={38} borderRadius={9}/>
+                  <TwitterIcon size={38} borderRadius={9} />
                 </TwitterShareButton>
 
                 {/* <a
@@ -116,8 +116,8 @@ function ShareWidget({page, text, pageTitle, currUrl }) {
               >
                 <FontAwesomeIcon icon={brands("facebook")} />
               </a> */}
-                 <FacebookShareButton
-                  title={pageTitle + "- " + text}
+                <FacebookShareButton
+                  title={pageTitle + '- ' + text}
                   url={currUrl}
                   quote={text}
                   // className="Demo__some-network__share-button"
@@ -166,6 +166,7 @@ function ShareWidget({page, text, pageTitle, currUrl }) {
                 </a>
                 <div className="sh__url">{currUrl}</div>
                 <Button
+                  className="btn-outline-primary"
                   variant={copySuccess === 'Copied!' ? 'info' : 'outline-info'}
                   onClick={() => copyToClipboard()}
                 >

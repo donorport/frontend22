@@ -72,7 +72,7 @@ const OrganizationDetail = (props) => {
         </div>
       </SuggestionWrapper>
       <Container fluid className="pt-3 pt-sm-5">
-        <Row className="d-flex flex-column gap-3">
+        <Row className="gap-md-0 gap-3">
           <Col md="7">
             <OrganizationDetailMain
               followToOrganization={props.followToOrganization}

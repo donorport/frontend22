@@ -1630,7 +1630,7 @@ const AdminPosts = () => {
     });
 
     setSteps(updatedSteps);
-  }, []);
+  }, [data.logo, data.taxRate, user.isAccountAdded]);
 
   useEffect(() => {
     console.log({ user, data });
@@ -1695,7 +1695,7 @@ const AdminPosts = () => {
                       {step.label === 'Build your profile' ? (
                         <Link
                           variant="link"
-                          className="link  p-0 fs-5"
+                          className="p-0 fs-5"
                           to={'/campaign/' + data.slug + '/settings/profile'}
                         >
                           <span className="step-label fw-semibold">{step.label}</span>

@@ -167,7 +167,7 @@ export default function Rank(props) {
                         </Button>
                     </Stack>
                     <Card>
-                        <form className="mb-4 p-4">
+                        <form className="mb-4 p-4 d-flex flex-column gap-2 justify-content-start">
                             <div className="form-group row">
                                 <div className="col-sm-2">
                                     {/* <span className="badge rounded-pill bg-dark" style={badgeStyle}> <i className="fa fa-anchor" aria-hidden="true"></i> Captain</span> */}

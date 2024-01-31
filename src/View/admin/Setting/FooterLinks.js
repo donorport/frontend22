@@ -223,7 +223,7 @@ export default function FooterLinks(props) {
                         </Button>
                     </Stack>
                     <Card>
-                        <form className="mb-4 p-4">
+                        <form className="mb-4 p-4 d-flex flex-column gap-2 justify-content-start">
                             <div className="form-group row">
                                 <div className="col-sm-1">
                                     {/* <Icon icon='akar-icons:twitter-fill' style={{ ...setting_social_icon, color: "#1d9bf0" }} /> */}

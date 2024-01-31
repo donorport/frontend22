@@ -158,7 +158,7 @@ export default function Payment(props) {
                         </Button>
                     </Stack>
                     <Card>
-                        <form className="mb-4 p-4">
+                        <form className="mb-4 p-4 d-flex flex-column gap-2 justify-content-start">
                             <label htmlFor="headerLogo"> Stripe Secret key</label>
                             <div className="form-group row">
                                 <div className="col-sm-12 mt-1">

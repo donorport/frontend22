@@ -2,8 +2,11 @@
 import React, { useState, useEffect } from 'react';
 
 // third party
-import { Col, Container, Row, 
-  //Button 
+import {
+  Col,
+  Container,
+  Row
+  //Button
 } from 'react-bootstrap';
 
 // app specific
@@ -118,7 +121,7 @@ const ItemDetail = (props) => {
         />
       </SuggestionWrapper>
       <Container fluid className="py-3 py-sm-5">
-        <Row>
+        <Row className="gap-md-0 gap-3">
           <Col md="7">
             <ItemDetailMain
               progress={70}
@@ -152,22 +155,25 @@ const ItemDetail = (props) => {
                 ''
               )}
             </div>
-            <div className="gallery__container pb-5" style={{ maxWidth: '400px' }}>
-              {productDetails?.productImages &&
-                productDetails?.productImages.length > 0 &&
-                productDetails?.productImages.map((img, key) => {
-                  if (img.type === 'moreImage') {
-                    // console.log(img)
-                    return (
-                      <GalleryImg
-                        key={key}
-                        thumbImgSrc={helper.CampaignProductFullImagePath + img.image}
-                        bigImgSrc={helper.CampaignProductFullImagePath + img.image}
-                      />
-                    );
-                  }
-                })}
-            </div>
+            {productDetails?.productImages && productDetails?.productImages.length > 0 && (
+              <div className="gallery__container mb-4" style={{ maxWidth: '400px' }}>
+                {productDetails?.productImages &&
+                  productDetails?.productImages.length > 0 &&
+                  productDetails?.productImages.map((img, key) => {
+                    if (img.type === 'moreImage') {
+                      // console.log(img)
+                      return (
+                        <GalleryImg
+                          key={key}
+                          thumbImgSrc={helper.CampaignProductFullImagePath + img.image}
+                          bigImgSrc={helper.CampaignProductFullImagePath + img.image}
+                        />
+                      );
+                    }
+                    return null; // Ensure to have a return statement for all cases
+                  })}
+              </div>
+            )}
 
             <History list={props.purchasedItemList} />
           </Col>

@@ -522,7 +522,7 @@ function OrganizationWidget(props) {
               Add to cart ({cartProductList.length})
             </Button>
           </div>
-          <div className="note note__info mb-12p mt-1">
+          <div className="note note__info mb-12p mt-1 lh-1 lh-sm-auto align-items-start">
             <FontAwesomeIcon icon={regular('circle-info')} className="text-info mr-6p" />
             Item availability will be confirmed at checkout.
           </div>

@@ -50,8 +50,8 @@ ul {
   margin: 0;
 }
 
-li:last-child {
-  border: none !important
+li:last-child:not(.ad__activity__item, .wishlist__item) {
+  border: none !important;
 }
 .progress {
   background-color: $progress;
@@ -70,7 +70,7 @@ li:last-child {
 }
 .price {
   color: $price;
-  letter-spacing: -.04em;
+  letter-spacing: -0.04em;
 }
 .select__input,
 .select__control,
@@ -102,22 +102,79 @@ li:last-child {
   background-color: $secondary-5;
   color: $neutral-700;
 }
+// CMS STYLES
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.form-group {
+  max-width: 100%;
+}
 .form-control:not(.donate-value-input, .search) {
   height: 54px;
   background-color: $body-bg;
   color: $neutral-700;
   // border-radius: 12px;
 }
+.filter-text {
+  color: $neutral-700;
+}
+.plan-content,
+.plan-details,
+.card,
+.card-body,
+.sw-card__content,
+.sw-card__content > *,
+.rdt_Table,
+.rdt_Table > div,
+.rdt_TableRow,
+.rdt_TableHeader,
+.rdt_TableHeadRow,
+.rdt_Pagination,
+.MuiTabs-root,
+.MuiModal-root span,
+.MuiTabs-scroller {
+  background: $secondary-6 !important;
+  color: $neutral-700 !important;
+  border-color: $border-color !important;
+  outline-color: $border-color !important;
+}
+.rdt_Pagination path:first-child {
+  fill: $neutral-700 !important;
+}
+.sw-settings-item,
+.sw-settings-item__icon.background--enabled {
+  background: $secondary-5 !important;
+}
+.rdt_TableRow {
+  border-color: $border-color !important;
+  outline-color: $border-color !important;
+}
+.rdt_TableRow:hover {
+  background: $list !important;
+}
 .Mui-selected,
 .MuiPaginationItem-root:hover,
 .Mui-selected:focus {
   background-color: $secondary-1 !important;
 }
+.MuiBox-root,
+.card-body {
+  background: $secondary-6;
+}
+.MuiButton-root {
+  color: $neutral-700 !important;
+}
 .MuiPaper-root {
   border-color: $border-color !important;
-  background: $secondary-6;
+  background: $secondary-6 !important;
+  box-shadow: none !important;
   overflow: hidden;
   border-radius: 0;
+  label {
+    color: $neutral-700;
+  }
   .Mui-selected {
     background: $secondary-5 !important;
   }

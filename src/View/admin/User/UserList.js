@@ -90,7 +90,7 @@ export default function UserList(props) {
             Donors
           </Typography>
           <Button
-            variant="contained"
+            variant="outline"
             startIcon={<Icon icon={plusFill} />}
             onClick={() => props.setOpenModal()}
           >

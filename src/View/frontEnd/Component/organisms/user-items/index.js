@@ -77,6 +77,7 @@ const UserItems = () => {
       }
       setLoading(false);
       setIsFetching(false);
+      setInitialLoading(false);
     },
     [data._id, userAuthToken]
   );
@@ -102,8 +103,50 @@ const UserItems = () => {
     setDetail({ ...detail, key: key, show: true });
   };
 
+  const [initialLoading, setInitialLoading] = useState(true);
+
   return (
     <>
+      {!initialLoading && (data.city_id == null && data.country_id == null && data.street == null) && (
+        <div className="onboarding d-flex flex-column mw-100 p-5 border rounded-3">
+          <div className="d-flex align-items-start">
+            <div className="flex-grow-1">
+              <h3>Getting Started</h3>
+              <span className="fs-5">Follow these steps to complete your account setup.</span>
+            </div>
+          </div>
+
+          <div className="flex-wrap flex-lg-nowrap my-2 d-flex gap-2 p2 mw-100">
+            <div className=" rounded-3 d-flex flex-grow-1 border p-5">
+              <div className="d-flex flex-column justify-content-start align-items-start">
+                <div className="d-flex align-items-center">
+                  <FontAwesomeIcon
+                    icon={solid('user')}
+                    className="text-primary onboarding__icon me-2"
+                  />
+
+                  <div>
+                    <h4 className="m-0">BUILD PROFILE</h4>
+                  </div>
+                </div>
+                <p className="mt-3 fs-5">
+                  Add your profile picture and set your address. Charities use your address when
+                  issuing tax receipts and it will not be shared with anyone other than Charities
+                  you donate to.
+                </p>
+                <Link
+                  variant="link"
+                  to={'/user/' + data.name + '/settings/profile'}
+                  className="text-light p-0 fw-normal fs-5"
+                >
+                  <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" />
+                  Go to Settings
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {!detail.show ? (
         <UserItemsTableView
           totalRecord={totalRecord}
@@ -148,84 +191,48 @@ const UserItemsTableView = ({
 }) => {
   console.log('UserItemsTableView rerender');
   return (
-    <>
-      {/* {city_id !== 'null' && (
-        <div className="onboarding d-flex flex-column mw-100 p-5 border rounded-3">
-          <div className="d-flex align-items-start">
-            <div className="flex-grow-1">
-              <h3>Getting Started</h3>
-              <span className="fs-5">Follow these steps before creating your first post.</span>
-            </div>
-          </div>
-
-          <div className="flex-wrap flex-lg-nowrap my-2 d-flex gap-2 p2 mw-100">
-            <div className=" rounded-3 d-flex flex-grow-1 border p-5">
-              <div className="d-flex flex-column justify-content-start align-items-start">
-                <div className="d-flex align-items-center">
-                  <FontAwesomeIcon
-                    icon={solid('user')}
-                    className="text-primary onboarding__icon me-2"
-                  />
-                  <div>
-                    <h4 className="m-0">BUILD PROFILE</h4>
-                  </div>
-                </div>
-                <p className="mt-3 fs-5">
-                  Add your profile picture and address. Charities use your address when issuing tax
-                  receipts. This will not be shared with anyone other than Charities you donate to.
-                </p>
-                <div variant="link" className="text-light p-0 fw-normal fs-5">
-                  <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" />
-                  Go to Settings
-                </div>
-              </div>
-            </div>
-          </div>
+    <div>
+      <header className="py-sm-2 pb-2 mb-2 w-100 d-none d-sm-flex align-items-start">
+        <div className="me-sm-2 flex-grow-1">
+          <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">My Items</h1>
+          <p className="d-sm-block fs-5 text-light">
+            Check in on the items you donated to. Click on the title of the item to view the post
+            details and see follow-up media and view sales and tax receipt file uploads.
+          </p>
+          <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
         </div>
-      )} */}
-      <div>
-        <header className="py-sm-2 pb-2 mb-2 w-100 d-none d-sm-flex align-items-center">
-          <div className="me-sm-2 flex-grow-1">
-            <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">My Items</h1>
-            <p className="d-sm-block fs-5 text-light">
-              Check in on the items you donated to. Click on the title of the item to view the post
-              details and see follow-up media and view sales and tax receipt file uploads.
-            </p>
-            <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
-          </div>
-          {totalPriceArray.length > 0 &&
-            totalPriceArray.map((val, index) => {
-              return (
-                <span className="d-none d-sm-flex item__total-wrap d-flex ms-3" key={index}>
-                  <FontAwesomeIcon icon={solid('money-bills-simple')} className=" mr-12p fs-4" />
-                  <span>$</span>
-                  {val[1].toLocaleString('en-US', {
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2
-                  })}
-                </span>
-              );
-            })}
+        {totalPriceArray.length > 0 &&
+          totalPriceArray.map((val, index) => {
+            return (
+              <span className="d-none d-sm-flex item__total-wrap d-flex ms-3" key={index}>
+                <FontAwesomeIcon icon={solid('square-dollar')} className=" mr-12p fs-4" />
+                <span>$</span>
+                {val[1].toLocaleString('en-US', {
+                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 2
+                })}
+              </span>
+            );
+          })}
 
-          {/* <div className="ms-sm-auto">
+        {/* <div className="ms-sm-auto">
               <LadderMenuItems />
             </div> */}
-        </header>
+      </header>
 
-        <ItemsTable
-          onItemClick={onItemClick}
-          handleClick={handleClick}
-          totalPages={totalPages}
-          totalRecord={totalRecord}
-          isFetching={isFetching}
-          pageNo={pageNo}
-          handleSortingChange={handleSortingChange}
-          order={order}
-          sortField={sortField}
-          orderItemList={orderItemList}
-        />
-      </div>
-    </>
+      <ItemsTable
+        onItemClick={onItemClick}
+        handleClick={handleClick}
+        totalPages={totalPages}
+        totalRecord={totalRecord}
+        isFetching={isFetching}
+        pageNo={pageNo}
+        handleSortingChange={handleSortingChange}
+        order={order}
+        sortField={sortField}
+        orderItemList={orderItemList}
+      />
+    </div>
   );
 };
 

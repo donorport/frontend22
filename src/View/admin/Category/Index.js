@@ -123,7 +123,7 @@ export default function Index(props) {
                                 Category
                             </Typography>
                             <Button
-                                variant="contained"
+                                variant="outline"
                                 startIcon={<Icon icon={plusFill} />}
                                 onClick={() => props.openModel()}
                             >

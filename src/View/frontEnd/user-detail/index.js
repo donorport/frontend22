@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Tab, Button, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import useWindowSize from '../../../hooks/device-check';
 import UserTabs from '../Component/organisms/user-tabs';
@@ -13,9 +14,7 @@ import {
   SettingsIcon
 } from '../Component/organisms/user-tabs/tab-icons';
 import userApi from '../../../Api/frontEnd/user';
-import helper
-//, { ImageExist } 
-  from '../../../Common/Helper';
+import helper from '../../../Common/Helper'; //, { ImageExist }
 import AvatarImg from '../../../assets/images/avatar.png';
 import { useSelector } from 'react-redux';
 import NoFooter from '../Component/templates/no-footer';
@@ -51,10 +50,10 @@ function UserDetail(props) {
       document.body.style.overflow = 'auto';
     };
   }, [dropdown]);
-  
+
   useEffect(() => {
-        (async () => {
-            setLoading(true);
+    (async () => {
+      setLoading(true);
       const getUserDetails = await userApi.getUserDetails(userAuthToken);
       if (getUserDetails) {
         if (getUserDetails.data.success) {
@@ -127,7 +126,10 @@ function UserDetail(props) {
                               {totalPriceArray.length > 0 &&
                                 totalPriceArray.map((val, key) => {
                                   return (
-                                    <span key={key} className="d-none d-sm-flex item__total-wrap d-flex ms-3">
+                                    <span
+                                      key={key}
+                                      className="d-none d-sm-flex item__total-wrap d-flex ms-3"
+                                    >
                                       <FontAwesomeIcon
                                         icon={solid('money-bills-simple')}
                                         className=" mr-12p fs-4"

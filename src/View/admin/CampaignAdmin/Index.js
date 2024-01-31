@@ -31,6 +31,20 @@ export default function Index(props) {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
   };
+  const customStyles = {
+    headRow: {
+      style: { tableLayout: 'fixed', width: '100%' }, // Set table layout to fixed and 100% width
+    },
+    rows: {
+      style: { tableLayout: 'fixed', width: '100%' }, // Set table layout to fixed and 100% width
+    },
+    cells: {
+      style: { tableLayout: 'fixed', width: '100%' }, // Set table layout to fixed and 100% width
+    },
+    table: {
+      style: { display: 'table', tableLayout: 'fixed', width: '100%' }, // Set table layout to fixed and 100% width
+    },
+  };
   const columns = [
     { name: 'Name', selector: (row) => row['name'], sortable: true },
     { name: 'Email', selector: (row) => row['email'], sortable: true },
@@ -79,9 +93,7 @@ export default function Index(props) {
       cell: (row) => (
         <>
           {/* <span className={row.status === 1 ? "badge badge-success" : "badge badge-danger"}>{row.status === 1 ? 'Active' : 'Inactive'}</span> */}
-          <Label variant="ghost">
-            {row.otp}
-          </Label>
+          <Label variant="ghost">{row.otp}</Label>
         </>
       ),
       ignoreRowClick: true,
@@ -139,10 +151,10 @@ export default function Index(props) {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Campaign Admin
+            Charities
           </Typography>
           <Button
-            variant="contained"
+            variant="outline"
             startIcon={<Icon icon={plusFill} />}
             onClick={() => props.setOpenModal()}
           >
@@ -156,6 +168,7 @@ export default function Index(props) {
               data={data}
               noHeader
               defaultSortAsc={false}
+              customStyles={customStyles} // Apply custom styles
               pagination
               highlightOnHover
               defaultSortFieldId="created_at"

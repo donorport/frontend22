@@ -2,6 +2,14 @@
   padding: 20px 60px;
   max-width: 600px;
 }
+.note--attention {
+  display: flex;
+  max-width: 100%;
+  padding: 12px;
+  background: $attention;
+  color: $darkest;
+  border-radius: 4px;
+}
 
 @media screen and (min-width: 768px) and (max-width: 990px) {
   .user__settings-content {

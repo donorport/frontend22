@@ -19,18 +19,7 @@ const AdminSettingsTab = () => {
         </div>
       </header>
       {!user.isAccountAdded && (
-        <div
-          id="error_bank"
-          className="note note--attention"
-          style={{
-            display: 'flex',
-            maxWidth: '100%',
-            paddingTop: '9px',
-            paddingBottom: '9px',
-            background: '#fffbdf',
-            color: '#3d4279'
-          }}
-        >
+        <div id="error_bank" className="note--attention">
           <div>
             Your account is active and may be receiving donations. Please add a{' '}
             <Link

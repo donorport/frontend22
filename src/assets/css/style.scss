@@ -306,6 +306,7 @@
 }
 
 .modal-content {
+  height: 90%;
   background-color: $secondary-5 !important;
   overflow: auto;
   position: absolute !important;
@@ -707,10 +708,9 @@ button.ReactTags__remove {
 
 .sw-card__content {
   padding: 30px;
-  background: #fff !important;
   background-clip: padding-box;
   border-radius: 4px;
-  border: 1px solid #d1d9e0 !important;
+  border: 1px solid #d1d9e0;
   position: relative;
 }
 
@@ -1115,7 +1115,6 @@ a.MuiListItemButton-root.active:focus {
   display: block;
   font-size: 20px;
   line-height: 24px;
-  color: #252f42;
 }
 
 .container .title {
@@ -1123,12 +1122,10 @@ a.MuiListItemButton-root.active:focus {
   font-weight: 500;
   -ms-flex-preferred-size: 100%;
   flex-basis: 100%;
-  color: #252f42;
   margin-bottom: 20px;
 }
 
 .plans .plan .plan-details p {
-  color: #646a79;
   font-size: 14px;
   line-height: 18px;
 }

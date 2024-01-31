@@ -26,7 +26,54 @@ export default function CampaignAdminForm(props) {
             {stateData?.id ? 'Update Campaign Admin' : 'Add Campaign Admin'}
           </Modal.Title>
         </Modal.Header>
+        <Modal.Footer>
+          <Button variant="btnWarning" className="btnDanger" onClick={() => props.setModal(false)}>
+            Close
+          </Button>
+          &nbsp;
+          {stateData?.id ? (
+            <Button variant="contained" onClick={() => props.updateCampaignAdmin()}>
+              Update
+            </Button>
+          ) : (
+            <Button variant="contained" onClick={() => props.addCampaignAdmin()}>
+              Save
+            </Button>
+          )}
+        </Modal.Footer>
         <Modal.Body>
+          <div className="form-group row">
+            <label className="col-form-label col-sm-2 ">Status</label>
+            <div className="col-sm-10">
+              <select
+                className="form-control"
+                onChange={(e) => {
+                  props.changevalue(e);
+                }}
+                id="status"
+                name="status"
+              >
+                <option
+                  selected={stateData ? (stateData.status === 1 ? 'selected' : '') : ''}
+                  value="1"
+                >
+                  Active
+                </option>
+                <option
+                  selected={stateData ? (stateData.status === 0 ? 'selected' : '') : ''}
+                  value="0"
+                >
+                  Inactive
+                </option>
+              </select>
+
+              {stateData.error && stateData.error.status && (
+                <p className="error">
+                  {stateData.error ? (stateData.error.status ? stateData.error.status : '') : ''}
+                </p>
+              )}
+            </div>
+          </div>
           <div className="form-group row">
             <label className="col-form-label col-sm-2" htmlFor="inputstock">
               Logo
@@ -548,55 +595,7 @@ export default function CampaignAdminForm(props) {
               </p>
             </div>
           </div>
-
-          <div className="form-group row">
-            <label className="col-form-label col-sm-2 ">Status</label>
-            <div className="col-sm-10">
-              <select
-                className="form-control"
-                onChange={(e) => {
-                  props.changevalue(e);
-                }}
-                id="status"
-                name="status"
-              >
-                <option
-                  selected={stateData ? (stateData.status === 1 ? 'selected' : '') : ''}
-                  value="1"
-                >
-                  Active
-                </option>
-                <option
-                  selected={stateData ? (stateData.status === 0 ? 'selected' : '') : ''}
-                  value="0"
-                >
-                  Inactive
-                </option>
-              </select>
-
-              {stateData.error && stateData.error.status && (
-                <p className="error">
-                  {stateData.error ? (stateData.error.status ? stateData.error.status : '') : ''}
-                </p>
-              )}
-            </div>
-          </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="btnWarning" className="btnDanger" onClick={() => props.setModal(false)}>
-            Close
-          </Button>
-          &nbsp;
-          {stateData?.id ? (
-            <Button variant="contained" onClick={() => props.updateCampaignAdmin()}>
-              Update
-            </Button>
-          ) : (
-            <Button variant="contained" onClick={() => props.addCampaignAdmin()}>
-              Save
-            </Button>
-          )}
-        </Modal.Footer>
       </Modal>
     </>
   );

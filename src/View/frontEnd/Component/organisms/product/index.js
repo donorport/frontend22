@@ -150,7 +150,8 @@ const Product = (props) => {
       // className="icon icon__pro"
       onClick={() => addToCart()}
     >
-      <FontAwesomeIcon icon={solid('plus')} />Add to Cart
+      <FontAwesomeIcon icon={solid('plus')} />
+      Add to Cart
       {/* <FontAwesomeIcon icon={regular('cart-shopping')} /> */}
     </a>
   );
@@ -217,7 +218,7 @@ const Product = (props) => {
             </div>
           )}
           <div className="product__details d-flex align-items-center py-1 mt-auto pb-3">
-            {props.organizationId !== '63fe5d48448eff9f0a6412d8' &&
+            {/* {props.organizationId !== '63fe5d48448eff9f0a6412d8' &&
             props.organizationId !== '63fe60f1448eff9f0a6412e6' ? (
               <div className="d-flex">{btn}</div>
             ) : (
@@ -226,7 +227,8 @@ const Product = (props) => {
                 <FontAwesomeIcon icon={regular('circle-info')} className="text-primary fs-7" />
                 Example Item
               </span>
-            )}
+            )} */}
+            <div className="d-flex">{btn}</div>
           </div>
 
           {/* <div className="mt-1 product__date d-flex align-items-center">
