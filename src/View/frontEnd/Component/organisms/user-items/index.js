@@ -335,7 +335,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               {' '}
               {item.itemDetails?.tax && (
                 <span
-                  className="product__type product__type-tax icon icon__solid-900"
+                  className="d-flex product__type product__type-tax icon icon__solid-900"
                   style={{ fontSize: 'x-large' }}
                 >
                   {/* <FontAwesomeIcon icon={solid('paperclip')} /> */}
@@ -344,7 +344,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               )}
               {item.itemDetails?.postTag && (
                 <span
-                  className="text-infinity product__type product__type-tax icon icon__solid-900"
+                  className="d-flex text-infinity product__type product__type-tax icon icon__solid-900"
                   style={{ fontSize: 'x-large' }}
                 >
                   <FontAwesomeIcon icon={solid('clock-rotate-left')} />

@@ -485,7 +485,8 @@ const Payments = () => {
   const removeBank = (id) => {
     confirmAlert({
       title: 'Remove Bank',
-      message: 'Are you sure you want to Remove Bank Details',
+      message:
+        'Are you sure you want to remove your linked Bank Account? You will no longer be able to receive donations.',
       buttons: [
         {
           label: 'Cancel'
@@ -998,7 +999,7 @@ const Payments = () => {
           you enough funds to cover the sales tax when you purchase the items.
         </div>
         <Button
-          className="py-2 px-3"
+          size="lg"
           variant="info"
           onClick={() => {
             if (!saveloading) myFunction('taxRate');

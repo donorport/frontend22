@@ -103,7 +103,7 @@ const ItemsTable = ({
                           {item.quantity}
                         </span>
                       </div>
-                      <div className="flex-grow-1 flex-sm-0">
+                      <div className="flex-grow-1 flex-sm-0 whitespace-normal" style={{whiteSpace: 'normal'}}>
                         <h5 className="mb-3p">{item.itemDetails?.headline}</h5>
                         <div className="fs-6 text-light">{item.itemDetails?.brand}</div>
                       </div>

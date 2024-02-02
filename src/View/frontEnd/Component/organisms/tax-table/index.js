@@ -46,8 +46,8 @@ const TaxTable = (props) => {
       header={({ state: { isEnter: expanded } }) => (
         <>
           {header}
-          <div className="chev-wrapper d-none d-sm-flex">
-            {!hideChevron && (
+          {!hideChevron && (
+            <div className="chev-wrapper">
               <img
                 className={`ml-auto transition-transform duration-200 ease-in-out ${
                   expanded && 'rotate-180'
@@ -55,8 +55,8 @@ const TaxTable = (props) => {
                 src={chevronDown}
                 alt="Chevron Down"
               />
-            )}
-          </div>
+            </div>
+          )}
         </>
       )}
     />
@@ -117,7 +117,7 @@ const TaxTable = (props) => {
                 <>
                   <Accordion allowMultiple>
                     <AccordionItem
-                      className="d-flex flex-column px-3"
+                      className="d-flex flex-column"
                       hideChevron={disableHeader}
                       buttonProps={{ disabled: disableHeader }}
                       header={
@@ -159,7 +159,7 @@ const TaxTable = (props) => {
                             </div> */}
                               </div>
                             </div>
-                            <div className="d-flex align-items-center justify-content-end flex__1 mb-1 mt-2 mt-sm-0 mb-sm-0">
+                            <div className="d-flex align-items-center justify-content-end flex__1 me-3 mb-1 mt-2 mt-sm-0 mb-sm-0">
                               {/* {
                             item[0].type === 'Donated' &&
 

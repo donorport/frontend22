@@ -51,8 +51,8 @@ function OrganizationTeamItem(props) {
       </div>
       {props?.isCurrent && (
         <div>
-          <span className="badge" style={{ background: '#2c4bff' }}>
-            CURRENT
+          <span className="badge fw-bold fs-6">
+            You
           </span>
         </div>
       )}
@@ -64,8 +64,8 @@ function OrganizationTeamItem(props) {
         ''
       )}
       {!member.status && (
-        <span className="d-flex align-items-center ms-auto fw-bold me-2" style={{ height: '46px' }}>
-          PENDING
+        <span className="badge btn-success fs-6 d-flex align-items-center ms-auto fw-bold me-2">
+          Sent
         </span>
       )}
       &nbsp;

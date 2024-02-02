@@ -328,14 +328,14 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
 
   return (
     <AccordionItem
-      className="d-flex flex-column px-3"
+      className="d-flex flex-column px-sm-3 px-1"
       hideChevron={disableHeader}
       buttonProps={{ disabled: disableHeader }}
       header={
         <>
           <li className="w-100 history__list-item px-1 py-2">
             <div className="pb-2 d-flex flex-column">
-              <div className="accordion__head d-flex align-items-center">
+              <div className="accordion__head d-flex align-items-center" style={{ height: '32px' }}>
                 <span className="flex-grow-1 d-flex align-items-center rounded-3">
                   <img className="me-1" style={{ height: '16px' }} src={bag} alt="" />
                   <span className="price fw-bold fs-5">
@@ -398,10 +398,10 @@ const DonationListItem = ({ donation, activeList }) => {
   return (
     <>
       {donation.type === 'ORGANIZATION' ? (
-        <li className="history__list-item px-5 py-2 me-0 me-sm-3 border-bottom">
+        <li className="history__list-item px-sm-5 px-3 py-2 border-bottom">
           <div className="pb-2">
             <div className="d-flex align-items-center">
-              <div className="d-flex flex-grow-1">
+              <div className="d-flex flex-grow-1" style={{ height: '32px' }}>
                 <span className="d-flex align-items-center rounded-3">
                   <img alt="" className="me-1" style={{ height: '16px' }} src={coin}></img>
                   <span className="price fw-bold fs-5">
@@ -419,9 +419,9 @@ const DonationListItem = ({ donation, activeList }) => {
                 >
                   {' '}
                   <ListItemImg
-                    size={46}
+                    size={32}
                     imgSrc={helper.CampaignAdminLogoFullPath + donation?.organizationId?.logo}
-                    className="me-4 charity_avatar_bg"
+                    className="history__avatar me-4 charity_avatar_bg"
                   />
                 </Link>
               </div>
@@ -458,10 +458,10 @@ const DonationListItem = ({ donation, activeList }) => {
         </li>
       ) : (
         //PROJECT:
-        <li className="history__list-item px-5 py-2 border-bottom">
+        <li className="history__list-item px-sm-5 px-3 py-2 border-bottom">
           <div className="pb-2 d-flex flex-column">
             <div className="d-flex align-items-center">
-              <div className="d-flex flex-grow-1">
+              <div className="d-flex flex-grow-1" style={{ height: '32px' }}>
                 <span className="d-flex align-items-center rounded-3">
                   <img alt="" className="me-1" style={{ height: '16px' }} src={coin2}></img>
                   <span className="price fw-bold fs-5">
@@ -479,9 +479,9 @@ const DonationListItem = ({ donation, activeList }) => {
                 >
                   {' '}
                   <ListItemImg
-                    size={46}
+                    size={32}
                     imgSrc={helper.CampaignAdminLogoFullPath + donation?.organizationId?.logo}
-                    className="me-4 charity_avatar_bg"
+                    className="history__avatar me-4 charity_avatar_bg"
                   />
                 </Link>
               </div>
@@ -599,7 +599,7 @@ const PurchaseListItem = ({ order, item }) => {
           </div>
         </div>
         <ListItemImg
-          size={42}
+          size={54}
           style={{ maxWidth: 'auto !important' }}
           className="rounded-circle img--nobg mb-0 mb-sm-auto"
           imgSrc={helper.CampaignAdminLogoPath + item?.itemDetails?.campaignadminsDetails.logo}

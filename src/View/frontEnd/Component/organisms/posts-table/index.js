@@ -192,7 +192,7 @@ const PostsTable = (props) => {
                       </div>
                     </div>
                     <div className="billing__buttons d-flex align-items-center">
-                      <div className="ms-auto">
+                      <div className="d-flex ms-auto">
                         {product.isFulfiled ? (
                           product.unlimited ? (
                             <ButtonShowFulfillOrder

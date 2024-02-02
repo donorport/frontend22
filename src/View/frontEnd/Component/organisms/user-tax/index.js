@@ -136,9 +136,11 @@ const UserTax = () => {
     await getTaxDataList(pageNo, accessor, sortOrder, activeYear);
   };
   const onChangeFilterOption = async (e, v) => {
+    setLoading(true);
     await getTaxDataList(pageNo, sortField, order, v);
     setActiveYear(v);
     setActiveKey(e);
+    setLoading(false);
   };
 
   //let platformCost = ((orderDetails.platformFees / 100) * Number(all)).toFixed(2);

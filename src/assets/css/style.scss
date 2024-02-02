@@ -99,6 +99,12 @@
 }
 
 .react-confirm-alert-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999999;
   background: hsl(0deg 0% 100% / 45%) !important;
   -webkit-animation: react-confirm-alert-fadeIn 0.2s 0.2s forwards;
   animation: react-confirm-alert-fadeIn 0.2s 0.2s forwards;

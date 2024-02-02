@@ -50,7 +50,7 @@ ul {
   margin: 0;
 }
 
-li:last-child:not(.ad__activity__item, .wishlist__item) {
+li:last-child:not(.ad__activity__item, .wishlist__item, .table__list-item, .cd__cart__item) {
   border: none !important;
 }
 .progress {

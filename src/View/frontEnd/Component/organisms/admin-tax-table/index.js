@@ -25,17 +25,17 @@ const AccordionItem = ({ header, hideChevron, disableButton, ...rest }) => (
     header={({ state: { isEnter: expanded } }) => (
       <>
         {header}
-        <div className="chev-wrapper d-none d-sm-flex">
-          {!hideChevron && (
+        {!hideChevron && (
+          <div className="chev-wrapper">
             <img
               className={`ml-auto transition-transform duration-200 ease-in-out ${
                 expanded && 'rotate-180'
               }`}
               src={chevronDown}
               alt="Chevron Down"
-            />
-          )}
-        </div>
+            />{' '}
+          </div>
+        )}
       </>
     )}
   />
@@ -78,7 +78,7 @@ const AdminTaxTable = (props) => {
       },
       '& .MuiPaginationItem-root:hover': {
         background: '#f2f6fc !important'
-      },
+      }
       // '& .Mui-selected': {
       //   background: '#f2f6fc !important'
       // }
@@ -155,14 +155,14 @@ const AdminTaxTable = (props) => {
         <ul className="list-unstyled mb-0 list__table-list">
           {taxList.length > 0 ? (
             taxList.map((item, i) => {
-              console.log({ item });
               // const yearList = item.created_at.split("-")
               const disableHeader = item.length === 1 || props.loading;
+
               return (
                 <>
                   <Accordion allowMultiple>
                     <AccordionItem
-                      className="d-flex flex-column px-3"
+                      className="d-flex flex-column px-sm-3 px-1"
                       hideChevron={disableHeader}
                       buttonProps={{ disabled: disableHeader }}
                       header={
@@ -279,9 +279,7 @@ const AdminTaxTable = (props) => {
                                   </div>
                                   <div>
                                     <div>
-                                      <div
-                                        className="fw-bold fs-6 px-0 py-3p"
-                                      >
+                                      <div className="fw-bold fs-6 px-0 py-3p">
                                         {/* {item.orderItemDetails?.productName} */}
                                         {item[0].type === 'Purchased'
                                           ? item[0].orderItemDetails?.productName
@@ -324,7 +322,7 @@ const AdminTaxTable = (props) => {
                                   <Button
                                     size="lg"
                                     variant="link"
-                                    className="d-flex align-items-center p-0 text-decoration-none me-2"
+                                    className="d-flex align-items-center p-0 text-decoration-none me-2 fs-7"
                                   >
                                     <FontAwesomeIcon
                                       icon={solid('file-arrow-up')}
@@ -526,30 +524,29 @@ const AdminTaxTable = (props) => {
               </li>
             </>
           )}
-          <>
-            <div
-              className="list__table__footer py-2 d-flex justify-content-center border-top"
-              style={{ background: '#f8fafd78' }}
-            >
-              {props.totalPages > 1 ? (
-                <Stack spacing={2}>
-                  <Pagination
-                    pageSize={PageSize}
-                    count={props.totalPages}
-                    page={props.pageNo}
-                    onChange={props.handleClick}
-                    shape="rounded"
-                    classes={{ ul: classes.ul }}
-                    showFirstButton
-                    showLastButton
-                  />
-                </Stack>
-              ) : (
-                <></>
-              )}
-            </div>
-          </>
+          <></>
         </ul>
+        <div
+          className="list__table__footer py-2 d-flex justify-content-center border-top"
+          style={{ background: '#f8fafd78' }}
+        >
+          {props.totalPages > 1 ? (
+            <Stack spacing={2}>
+              <Pagination
+                pageSize={PageSize}
+                count={props.totalPages}
+                page={props.pageNo}
+                onChange={props.handleClick}
+                shape="rounded"
+                classes={{ ul: classes.ul }}
+                showFirstButton
+                showLastButton
+              />
+            </Stack>
+          ) : (
+            <></>
+          )}
+        </div>
         <Modal size="lg" show={showModal && currentItem != null} onHide={onModalClose}>
           <Modal.Header>
             <Modal.Title>Tax Receipt</Modal.Title>

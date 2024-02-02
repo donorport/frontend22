@@ -1,3 +1,7 @@
+.badge {
+  background: $secondary;
+  border-radius: 4px !important
+}
 .org__team__ {
   // .similar__item__main
   &item__main {
@@ -20,6 +24,5 @@
   &item__location {
     color: #aaa9c2;
     font-weight: $font-weight-bold;
-    
   }
 }

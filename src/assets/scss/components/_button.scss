@@ -1,8 +1,8 @@
-.btn:not(.btn__link-light) {
+.btn:not(.btn__link-light, .linked__item-link) {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: $input-font-weight;
+  // font-weight: $input-font-weight;
   transition: none !important;
   text-wrap: nowrap !important;
 }
@@ -100,7 +100,8 @@
 
 .btn-lg {
   height: 46px;
-  font-weight: 600;
+  font-size: .98rem;
+  font-weight: 700;
 }
 
 .btn__signout {

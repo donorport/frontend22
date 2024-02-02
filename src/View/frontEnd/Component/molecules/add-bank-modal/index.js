@@ -48,123 +48,134 @@ const AddBankModal = (props) => {
               <span className="input__span">Business Type</span>
             </label>
           </div>
-          <div className="input__wrap d-flex">
-            <label className="input__label flex__1">
-              <input
-                type="email"
-                id="accEmail"
-                name="accEmail"
-                className={
-                  props.bankAccount.accError && props.bankAccount.accError.accEmail
-                    ? 'inputerror'
-                    : ''
-                }
-                onChange={(e) => props.changevaluebankAc(e)}
-              />
-              <span className="input__span inputerrorLable">Email</span>
-              <span
-                className={
-                  props.bankAccount.accError && props.bankAccount.accError.accEmail
-                    ? 'input__span inputerrorLable'
-                    : 'input__span'
-                }
-              >
-                Email
-              </span>
-            </label>
-          </div>
-          {props.bankAccount.accError && props.bankAccount.accError.accEmail && (
-            <p className="error">{props.bankAccount.accError.accEmail}</p>
-          )}
-          {props.bankAccount.BusinessType === 'individual' ? (
-            <>
-              <div className="input__wrap d-flex">
-                <label className="input__label flex__1">
-                  <input
-                    type="text"
-                    id="fname"
-                    name="fname"
-                    className={
-                      props.bankAccount.accError && props.bankAccount.accError.fname
-                        ? 'inputerror'
-                        : ''
-                    }
-                    onChange={(e) => props.changevaluebankAc(e)}
-                  />
-                  <span
-                    className={
-                      props.bankAccount.accError && props.bankAccount.accError.fname
-                        ? 'input__span inputerrorLable'
-                        : 'input__span'
-                    }
-                  >
-                    First Name
-                  </span>
-                </label>
-              </div>
-              {props.bankAccount.accError && props.bankAccount.accError.fname && (
-                <p className="error">{props.bankAccount.accError.fname}</p>
-              )}
-              <div className="input__wrap d-flex">
-                <label className="input__label flex__1">
-                  <input
-                    type="text"
-                    id="lname"
-                    name="lname"
-                    className={
-                      props.bankAccount.accError && props.bankAccount.accError.lname
-                        ? 'inputerror'
-                        : ''
-                    }
-                    onChange={(e) => props.changevaluebankAc(e)}
-                  />
-                  <span
-                    className={
-                      props.bankAccount.accError && props.bankAccount.accError.lname
-                        ? 'input__span inputerrorLable'
-                        : 'input__span'
-                    }
-                  >
-                    Last Name
-                  </span>
-                </label>
-              </div>
-              {props.bankAccount.accError && props.bankAccount.accError.lname && (
-                <p className="error">{props.bankAccount.accError.lname}</p>
-              )}
-            </>
-          ) : (
+          <div>
+            {' '}
             <div className="input__wrap d-flex">
               <label className="input__label flex__1">
                 <input
-                  type="text"
-                  id="companyName"
-                  name="companyName"
+                  type="email"
+                  id="accEmail"
+                  name="accEmail"
                   className={
-                    props.bankAccount.accError && props.bankAccount.accError.companyName
+                    props.bankAccount.accError && props.bankAccount.accError.accEmail
                       ? 'inputerror'
                       : ''
                   }
                   onChange={(e) => props.changevaluebankAc(e)}
                 />
+                <span className="input__span inputerrorLable">Email</span>
                 <span
                   className={
-                    props.bankAccount.accError && props.bankAccount.accError.companyName
+                    props.bankAccount.accError && props.bankAccount.accError.accEmail
                       ? 'input__span inputerrorLable'
                       : 'input__span'
                   }
                 >
-                  Charity Name
+                  Email
                 </span>
               </label>
             </div>
-          )}
-          {props.bankAccount.accError && props.bankAccount.accError.companyName && (
-            <p className="error">{props.bankAccount.accError.companyName}</p>
-          )}
+            {props.bankAccount.accError && props.bankAccount.accError.accEmail && (
+              <p className="error">{props.bankAccount.accError.accEmail}</p>
+            )}
+          </div>
+         
+            {props.bankAccount.BusinessType === 'individual' ? (
+              <>
+              <div>               
+                 <div className="input__wrap d-flex">
+                  <label className="input__label flex__1">
+                    <input
+                      type="text"
+                      id="fname"
+                      name="fname"
+                      className={
+                        props.bankAccount.accError && props.bankAccount.accError.fname
+                          ? 'inputerror'
+                          : ''
+                      }
+                      onChange={(e) => props.changevaluebankAc(e)}
+                    />
+                    <span
+                      className={
+                        props.bankAccount.accError && props.bankAccount.accError.fname
+                          ? 'input__span inputerrorLable'
+                          : 'input__span'
+                      }
+                    >
+                      First Name
+                    </span>
+                  </label>
+                </div>
+                {props.bankAccount.accError && props.bankAccount.accError.fname && (
+                  <p className="error">{props.bankAccount.accError.fname}</p>
+                )}</div>
+
+                <div>
+                  <div className="input__wrap d-flex">
+                    <label className="input__label flex__1">
+                      <input
+                        type="text"
+                        id="lname"
+                        name="lname"
+                        className={
+                          props.bankAccount.accError && props.bankAccount.accError.lname
+                            ? 'inputerror'
+                            : ''
+                        }
+                        onChange={(e) => props.changevaluebankAc(e)}
+                      />
+                      <span
+                        className={
+                          props.bankAccount.accError && props.bankAccount.accError.lname
+                            ? 'input__span inputerrorLable'
+                            : 'input__span'
+                        }
+                      >
+                        Last Name
+                      </span>
+                    </label>
+                  </div>
+                  {props.bankAccount.accError && props.bankAccount.accError.lname && (
+                    <p className="error">{props.bankAccount.accError.lname}</p>
+                  )}
+                </div>
+              </>
+            ) : (
+              <div className="input__wrap d-flex">
+                <label className="input__label flex__1">
+                  <input
+                    type="text"
+                    id="companyName"
+                    name="companyName"
+                    className={
+                      props.bankAccount.accError && props.bankAccount.accError.companyName
+                        ? 'inputerror'
+                        : ''
+                    }
+                    onChange={(e) => props.changevaluebankAc(e)}
+                  />
+                  <span
+                    className={
+                      props.bankAccount.accError && props.bankAccount.accError.companyName
+                        ? 'input__span inputerrorLable'
+                        : 'input__span'
+                    }
+                  >
+                    Charity Name
+                  </span>
+                </label>
+              </div>
+            )}
+            {props.bankAccount.accError && props.bankAccount.accError.companyName && (
+              <p className="error">{props.bankAccount.accError.companyName}</p>
+            )}
+         
+
           <div className="d-flex align-items-center">
             <Button
-              className="mt-1 py-2 px-3 d-flex m-0"
+              size="lg"
+              className="d-flex"
               style={{
                 opacity: bankloading ? '0.7' : '1'
               }}
