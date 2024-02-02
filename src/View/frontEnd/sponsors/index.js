@@ -7,7 +7,7 @@ import DefaultLayout from '../Component/templates/default-layout';
 import './style.scss';
 import { Link } from 'react-router-dom';
 import Page from '../../../components/Page';
-import full from '../../../assets/images/full-logo-noborder.svg';
+import full from '../../../assets/images/mocklogo.png';
 
 const Sponsors = () => {
   return (
@@ -21,7 +21,7 @@ const Sponsors = () => {
               you care about local communities by sponsoring a category.
             </div>
 
-            <div className="">
+            <div className="d-flex flex-column align-items-start">
               <div className="d-flex align-items-center mb-5">
                 <div className="p-12p rounded bg-lighter me-2">
                   <FontAwesomeIcon icon={solid('rectangle-ad')} className="text-info fs-3" />
@@ -29,7 +29,7 @@ const Sponsors = () => {
                 <div className="sponsor__list d-flex flex-wrap align-items-center flex__1">
                   <div className="sponsor__item mb-2 mb-sm-0">
                     <a href="#" className="sponsor__link">
-                      <img style={{ width: '155px' }} src={full} alt="" className="sponsor__logo" />
+                      <img src={full} alt="" className="sponsor__logo" />
                     </a>
                   </div>
                 </div>
@@ -37,7 +37,7 @@ const Sponsors = () => {
 
               <p className="fs-5 text-light pt-3 mb-5">
                 By partnering with different suppliers, Donorport is able to expand its reach to
-                serve more communities across the world! Interesting in becoming a sponsor on
+                serve more communities across the world! Interested in becoming a sponsor on
                 Donorport?
               </p>
 

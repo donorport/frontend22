@@ -117,6 +117,7 @@ const TaxTable = (props) => {
                 <>
                   <Accordion allowMultiple>
                     <AccordionItem
+                      className="d-flex flex-column px-3"
                       hideChevron={disableHeader}
                       buttonProps={{ disabled: disableHeader }}
                       header={
@@ -481,7 +482,7 @@ const TaxTable = (props) => {
       </div>
 
       {props.taxList.length > 0 && (
-        <div className="mt-5 mb-5">
+        <div className="d-flex mt-5 mb-5">
           <CSVExportBtn
             headers={props.headers}
             csvData={props.csvData}

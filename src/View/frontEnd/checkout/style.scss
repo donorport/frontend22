@@ -8,6 +8,7 @@
     }
 
     .btn__remove {
+      min-height: 6px !important;
       color: var(--text-subtext);
       &:hover {
         color: var(--text-danger);

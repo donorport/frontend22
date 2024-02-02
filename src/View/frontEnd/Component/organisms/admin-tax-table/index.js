@@ -162,7 +162,7 @@ const AdminTaxTable = (props) => {
                 <>
                   <Accordion allowMultiple>
                     <AccordionItem
-                      className="d-flex flex-column"
+                      className="d-flex flex-column px-3"
                       hideChevron={disableHeader}
                       buttonProps={{ disabled: disableHeader }}
                       header={
@@ -322,7 +322,7 @@ const AdminTaxTable = (props) => {
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   <Button
-                                    size="large"
+                                    size="lg"
                                     variant="link"
                                     className="d-flex align-items-center p-0 text-decoration-none me-2"
                                   >

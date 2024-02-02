@@ -386,7 +386,7 @@ const Apply = (props) => {
                   <Button
                     variant="info"
                     size="lg"
-                    className="fw-bold px-4 py-2 mt-2"
+                    className="fw-bold px-4 py-2"
                     style={{ height: 'auto', width: '100%', opacity: props.loading ? '0.7' : '1' }}
                     onClick={() => !props.loading && applyOrganization()}
                   >
@@ -455,30 +455,30 @@ const Apply = (props) => {
                 <div className="">
                   <div className="d-flex align-items-center my-3">
                     <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                    <span>Organization keeps 100% of the proceeds</span>
+                    <span>Charities keep 100% of the proceeds</span>
                   </div>
                   <div className="d-flex align-items-center my-3">
                     <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                    <span>Manage all of your tax receipts on one place</span>
+                    <span>Manage all of your tax receipts in one place</span>
                   </div>
                   <div className="d-flex align-items-center my-3">
                     <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                    <span>Scale your donations using the donation amount tool</span>
+                    <span>Reach new donors from different markets</span>
                   </div>
                 </div>
 
                 <div>
                   <div className="d-flex align-items-center my-3">
                     <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                    <span>Completely transparent; Sales receipts, need media</span>
+                    <span>Completely transparent; sales receipts, media, etc.</span>
                   </div>
                   <div className="d-flex align-items-center my-3">
                     <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                    <span>Money back guaranteed for unfunded items</span>
+                    <span>No fees or costs, completely free to receive donations</span>
                   </div>
                   <div className="d-flex align-items-center my-3">
                     <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                    <span>24/7 Support for Organizations and Donors</span>
+                    <span>24/7 Support for charities and donors</span>
                   </div>
                 </div>
               </div>

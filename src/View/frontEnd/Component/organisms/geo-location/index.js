@@ -69,30 +69,40 @@ const GeoLocation = (props) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const [mapTheme, setMapTheme] = useState('day'); // Default to 'day' theme
+  const [mapTheme, setMapTheme] = useState(() => {
+    // Set initial map theme based on the HTML data-theme attribute
+    const htmlTheme = document.documentElement.getAttribute('data-theme');
+    return htmlTheme === 'dark' ? 'night' : 'day';
+  });
 
   useEffect(() => {
-    // Use the HTML data-theme attribute to set the map theme
-    const htmlTheme = document.documentElement.getAttribute('data-theme');
+    // Function to handle changes in HTML data-theme attribute
+    const handleThemeChange = () => {
+      const htmlTheme = document.documentElement.getAttribute('data-theme');
+      setMapTheme(htmlTheme === 'dark' ? 'night' : 'day');
+    };
 
-    if (htmlTheme === 'dark') {
-      setMapTheme('night');
-    } else {
-      setMapTheme('day');
-    }
+    // Use the HTML data-theme attribute to set the initial map theme
+    handleThemeChange();
+
+    // Create a MutationObserver to watch for changes in data-theme attribute
+    const observer = new MutationObserver(handleThemeChange);
+
+    // Observe changes in the attributes of the HTML element
+    observer.observe(document.documentElement, { attributes: true });
+
+    // Cleanup the observer on component unmount
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
-  const mapStyles = {
-    day: 'mapbox://styles/mapbox/navigation-day-v1',
-    night: 'mapbox://styles/mapbox/navigation-night-v1'
-  };
-
   const [locked, setLocked] = useState(false);
-  const [zoomLevel, setZoom] = useState(7);
+  const [zoomLevel, setZoom] = useState(1);
   const [hidden, setHidden] = useState(false);
   const [objectVal, setObjectVal] = useState();
   const [viewState, setViewState] = useState({
-    zoom: 10
+    zoom: 1
   });
 
   const onDropdownToggle = (isOpen) => setHidden(isOpen);
@@ -206,7 +216,7 @@ const GeoLocation = (props) => {
         >
           <div className="dropdown__inner position-relative">
             <div className="geo_dropdown-top d-flex align-items-center">
-              <InputGroup className="d-flex nowrap input-group__alpha">
+              <InputGroup className="d-flex flex-nowrap input-group__alpha">
                 <InputGroup.Text>
                   <SearchIcon size={2} className="mapbox-searchicon" />
                 </InputGroup.Text>
@@ -224,7 +234,7 @@ const GeoLocation = (props) => {
               <div className="geo__distance" id="">
                 <div className="me-1 fs-5">
                   {/* {objectVal} */}
-                  {user.distance === '0 m' ? '50 km' : user.distance}
+                  {user.distance === '0 m' ? '50 km' : `${parseInt(user.distance)} km`}
                 </div>
               </div>
 
@@ -248,7 +258,7 @@ const GeoLocation = (props) => {
               {/* {user.lat && user.lng ? ( */}
               <Map
                 {...viewState}
-                style={mapStyles[mapTheme]} // Use the selected theme
+                style={`mapbox://styles/mapbox/navigation-${mapTheme}-v1`} // Use the selected theme
                 zoom={[zoomLevel]}
                 center={[user.lng, user.lat]}
                 // This manages the update results and displaying the scale level for zoom in KM:
@@ -264,86 +274,102 @@ const GeoLocation = (props) => {
                 <Marker coordinates={[user.lng, user.lat]} className="mapbox-marker-user">
                   <div className="mapboxgl-user-location-dot"></div>
                 </Marker>
-                {/* {listOfGroupedProducts.length > 0 &&
-                    listOfGroupedProducts.map(([loc, groupOfItems], index) => {
-                      //console.log('map markers:', { loc, groupOfItems });
-                      if (groupOfItems.length > 1) {
-                        const [lat, lng] = loc.split(',');
-                        return (
-                          <Marker
-                            key={index}
-                            coordinates={[lng, lat]}
-                            className="mapbox-marker-custom"
-                          >
-                            <div
-                              className="mapbox-marker-multi-container rounded-3 py-1 px-1"
-                              style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}
-                            >
-                              {groupOfItems.map((item, gi) => {
-                                const customIndex = `${index}-${gi}`;
-                                const { imageUrl, price } = getCustomMarkerData(item);
 
-                                return (
-                                  <Link
-                                    key={gi}
-                                    className="link"
-                                    variant="link"
-                                    target="_blank"
-                                    to={'/item/' + item.slug}
-                                    style={{ display: 'flex', alignItems: 'center' }}
-                                  >
-                                    {' '}
-                                    <img
-                                      src={imageUrl}
-                                      alt={`Custom Marker ${customIndex}`}
-                                      style={{
-                                        maxHeight: '31px',
-                                        maxWidth: '34px',
-                                        display: 'inline-block'
-                                      }}
-                                    />
-                                    <p
-                                      className="geo__badge rounded-3 fs-6 fw-bold bg-primary text-white"
-                                      style={{ display: 'inline-block' }}
-                                    >
-                                      ${price}
-                                    </p>
-                                  </Link>
-                                );
-                              })}
-                            </div>
-                          </Marker>
-                        );
-                      }
-
-                      const item = groupOfItems[0];
-                      const { imageUrl, price } = getCustomMarkerData(item);
-
+                {listOfGroupedProducts.length > 0 &&
+                  listOfGroupedProducts.map(([loc, groupOfItems], index) => {
+                    //console.log('map markers:', { loc, groupOfItems });
+                    if (groupOfItems.length > 0) {
+                      const [lat, lng] = loc.split(',');
+                      console.log('groupOfItems:', groupOfItems); // Add this line to log groupOfItems
                       return (
                         <Marker
                           key={index}
-                          coordinates={[item.lng, item.lat]}
+                          coordinates={[lng, lat]}
                           className="mapbox-marker-custom"
                         >
-                          <Link
-                            className="link d-flex flex-direction-column align-items-center"
-                            variant="link"
-                            target="_blank"
-                            to={'/item/' + item.slug}
-                          >
-                            {' '}
-                            <img
-                              src={imageUrl}
-                              alt={`Custom Marker ${index}`}
-                              style={{ maxHeight: '52px', maxWidth: '38px' }}
-                            />
-                            <p className="geo__badge rounded-3 fs-6 fw-bold bg-primary text-white">
-                              ${price}
-                            </p>
-                          </Link>
+                          <div className="d-flex align-items-center justify-content-center mapbox-dot-marker">
+                            <span style={{ color: '#fff' }} className="fw-bolder fs-7">
+                              {groupOfItems.length}
+                            </span>
+                          </div>
                         </Marker>
                       );
-                    })} */}
+                      //   return (
+                      //     <Marker
+                      //       key={index}
+                      //       coordinates={[lng, lat]}
+                      //       className="mapbox-marker-custom"
+                      //     >
+                      //       <div
+                      //         className="mapbox-marker-multi-container rounded-3 py-1 px-1"
+                      //         style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}
+                      //       >
+                      //         {groupOfItems.map((item, gi) => {
+                      //           const customIndex = `${index}-${gi}`;
+                      //           const { imageUrl, price } = getCustomMarkerData(item);
+
+                      //           return (
+                      //             <Link
+                      //               key={gi}
+                      //               className="link"
+                      //               variant="link"
+                      //               target="_blank"
+                      //               to={'/item/' + item.slug}
+                      //               style={{ display: 'flex', alignItems: 'center' }}
+                      //             >
+                      //               {' '}
+                      //               <img
+                      //                 src={imageUrl}
+                      //                 alt={`Custom Marker ${customIndex}`}
+                      //                 style={{
+                      //                   maxHeight: '31px',
+                      //                   maxWidth: '34px',
+                      //                   display: 'inline-block'
+                      //                 }}
+                      //               />
+                      //               <p
+                      //                 className="geo__badge rounded-3 fs-6 fw-bold bg-primary text-white"
+                      //                 style={{ display: 'inline-block' }}
+                      //               >
+                      //                 ${price}
+                      //               </p>
+                      //             </Link>
+                      //           );
+                      //         })}
+                      //       </div>
+                      //     </Marker>
+                      //   );
+                      // }
+
+                      // const item = groupOfItems[0];
+                      // const { imageUrl, price } = getCustomMarkerData(item);
+
+                      // return (
+                      //   <Marker
+                      //     key={index}
+                      //     coordinates={[item.lng, item.lat]}
+                      //     className="mapbox-marker-custom"
+                      //   >
+                      //     <Link
+                      //       className="link d-flex flex-direction-column align-items-center"
+                      //       variant="link"
+                      //       target="_blank"
+                      //       to={'/item/' + item.slug}
+                      //     >
+                      //       {' '}
+                      //       <img
+                      //         src={imageUrl}
+                      //         alt={`Custom Marker ${index}`}
+                      //         style={{ maxHeight: '52px', maxWidth: '38px' }}
+                      //       />
+                      //       <p className="geo__badge rounded-3 fs-6 fw-bold bg-primary text-white">
+                      //         ${price}
+                      //       </p>
+                      //     </Link>
+                      //   </Marker>
+                      // );
+                    }
+                  })}
               </Map>
             </div>
 
@@ -359,12 +385,12 @@ const GeoLocation = (props) => {
                 }}
                 min={0}
                 max={220}
-                value={zoomLevel * 10}
+                value={zoomLevel * 20}
                 railStyle={{ backgroundColor: '#C7E3FB', height: '9px' }}
                 disabled={locked}
                 onChange={(e) => {
-                  setZoom(e / 10);
-                  dispatch(setZoomLevel(e / 10));
+                  setZoom(e / 20);
+                  dispatch(setZoomLevel(e / 20));
                 }}
               />
             </div>

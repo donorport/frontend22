@@ -2,7 +2,7 @@
 @import '../../../../../assets/scss/components/custom-select';
 
 .react-mapbox-ac-suggestion:hover {
-  background-color: #e6f3fc;
+  background-color: $body-bg;
 }
 .mapboxgl-map {
   max-width: 100% !important;

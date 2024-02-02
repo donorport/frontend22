@@ -328,13 +328,13 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
 
   return (
     <AccordionItem
-      className="d-flex flex-column"
+      className="d-flex flex-column px-3"
       hideChevron={disableHeader}
       buttonProps={{ disabled: disableHeader }}
       header={
         <>
           <li className="w-100 history__list-item px-1 py-2">
-            <div className="d-flex flex-column">
+            <div className="pb-2 d-flex flex-column">
               <div className="accordion__head d-flex align-items-center">
                 <span className="flex-grow-1 d-flex align-items-center rounded-3">
                   <img className="me-1" style={{ height: '16px' }} src={bag} alt="" />
@@ -398,8 +398,8 @@ const DonationListItem = ({ donation, activeList }) => {
   return (
     <>
       {donation.type === 'ORGANIZATION' ? (
-        <li className="history__list-item px-2 py-2 me-0 me-sm-3 border-bottom">
-          <div className="">
+        <li className="history__list-item px-5 py-2 me-0 me-sm-3 border-bottom">
+          <div className="pb-2">
             <div className="d-flex align-items-center">
               <div className="d-flex flex-grow-1">
                 <span className="d-flex align-items-center rounded-3">
@@ -458,8 +458,8 @@ const DonationListItem = ({ donation, activeList }) => {
         </li>
       ) : (
         //PROJECT:
-        <li className="history__list-item px-2 py-2 border-bottom">
-          <div className="d-flex flex-column">
+        <li className="history__list-item px-5 py-2 border-bottom">
+          <div className="pb-2 d-flex flex-column">
             <div className="d-flex align-items-center">
               <div className="d-flex flex-grow-1">
                 <span className="d-flex align-items-center rounded-3">
@@ -538,7 +538,7 @@ const DonationListActiveList = ({ donation, CardBrand, last4 }) => {
 
 const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
   return (
-    <ul className="history__list list-unstyled d-flex flex-column ms-1 mt-2 pe-1 gap-4">
+    <ul className="history__list list-unstyled d-flex flex-column ms-1 pe-1 gap-4">
       {order.orderItems.length > 0 &&
         order.orderItems.map((item, key) => (
           <PurchaseListItem key={key} order={order} item={item} />

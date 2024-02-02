@@ -76,30 +76,30 @@ const Cart = (props) => {
 
   return (
     <Container fluid className="cart__page py-sm-5 mw-1280">
-          <header className="pt-sm-5">
-            <div className="logo__wrap pb-sm-3 d-flex gap-2">
-              <Logo />
-              <Toggle />
-            </div>
-            <div className="cart__steps fs-7 pt-3 pt-sm-0">
-              <Link
-                to="/cart"
-                variant="link"
-                className="p-0 me-1 fw-normal text-light fs-7 text-decoration-none"
-              >
-                Cart
-                <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
-              </Link>
-              <span className="active me-1 text-light">
-                Checkout
-                <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
-              </span>
-              <Button variant="link" className="p-0 me-1 fw-normal fs-7 text-decoration-none ">
-                Order
-                <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
-              </Button>
-            </div>
-          </header>
+      <header className="pt-sm-5">
+        <div className="logo__wrap pb-sm-3 d-flex gap-2">
+          <Logo />
+          <Toggle />
+        </div>
+        <div className="cart__steps d-flex fs-7 pt-3 pt-sm-0">
+          <Link
+            to="/cart"
+            variant="link"
+            className="p-0 me-1 fw-normal text-dark fs-7 text-decoration-none"
+          >
+            Cart
+            <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
+          </Link>
+          <Link to="/checkout" variant="link" className="me-1 text-light">
+            Checkout
+            <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
+          </Link>
+          <span className="p-0 me-1 fw-normal text-light fs-7">
+            Order
+            <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
+          </span>
+        </div>
+      </header>
       {cartItem && cartItem.length > 0 ? (
         <div className="pt-20p">
           <div className="pt-20p pb-12p">
@@ -147,8 +147,7 @@ const Cart = (props) => {
                       <Link
                         className="d-flex align-items-center justify-content-center"
                         to={'/organization/' + item?.productDetails?.organizationDetails.slug}
-                      >
-                      </Link>
+                      ></Link>
 
                       <span className="cart_controller d-flex align-items-center fw-bold text-subtext flex-grow-1 flex-sm-grow-0">
                         {/*<span className="mr-6p d-none d-sm-block">Qty:</span>{' '}*/}
@@ -204,9 +203,7 @@ const Cart = (props) => {
 
             <div className="d-flex align-items-center pt-3">
               <span className="fw-bolder flex__1">Subtotal:</span>
-              <span className="price fw-bold fs-5">
-                {currencySymbol + priceFormat(subTotal)}
-              </span>
+              <span className="price fw-bold fs-5">{currencySymbol + priceFormat(subTotal)}</span>
             </div>
             <div className="d-flex align-items-center py-3 border-bottom">
               <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
@@ -239,13 +236,13 @@ const Cart = (props) => {
               {' '}
               {currencySymbol +
                 (grandTotal
-                  ? Number(grandTotal).toLocaleString('en-US', {
+                  ? Number(grandTotal).toFixed(2).toLocaleString('en-US', {
                       maximumFractionDigits: 2
                     })
                   : 0)}
             </span>
           </div>
-          <div className="py-4 border-bottom d-grid d-sm-block">
+          <div className="d-flex py-4 border-bottom d-grid d-sm-flex">
             <Button
               variant="danger"
               size="lg"

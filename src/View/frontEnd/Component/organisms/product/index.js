@@ -133,7 +133,7 @@ const Product = (props) => {
 
   const cart_btn = added_to_cart ? (
     <a
-      className="d-flex gap-1 align-items-center justify-content-center fw-bold"
+      className="cart__button btn btn-primary d-flex gap-1 align-items-center justify-content-center fw-bold"
       // variant="success"
       //size="sm"
       // className="icon icon__pro"
@@ -144,15 +144,14 @@ const Product = (props) => {
     </a>
   ) : (
     <a
-      className="btn btn-primary d-flex gap-1 fw-bold"
+      className="btn btn-secondary d-flex gap-1 fw-bold cart__button"
       // variant="primary"
       // style={{ width: '56px', fontSize: '16px' }}
       // className="icon icon__pro"
       onClick={() => addToCart()}
     >
       <FontAwesomeIcon icon={solid('plus')} />
-      Add to Cart
-      {/* <FontAwesomeIcon icon={regular('cart-shopping')} /> */}
+      Donate {/* <FontAwesomeIcon icon={regular('cart-shopping')} /> */}
     </a>
   );
   const btn =
@@ -205,18 +204,21 @@ const Product = (props) => {
           <Link to={'/item/' + props.slug} className="d-inline-block">
             <h5 className="product__title">{name}</h5>
           </Link>
-          <p className="m-0 fs-7">{props.campaignDetails?.name}</p>
-          {unlimited ? (
-            <div className="product__count d-flex align-items-center">
-              <span>{sold} sold</span>
-            </div>
-          ) : (
-            <div className="product__count d-flex align-items-center">
-              <span>
-                {sold}&nbsp;/&nbsp;{total} sold
-              </span>
-            </div>
-          )}
+          <div className="mt-1">
+            <p className="m-0 fs-7">{props.campaignDetails?.name}</p>
+            {unlimited ? (
+              <div className="product__count d-flex align-items-center">
+                <span>{sold} sold</span>
+              </div>
+            ) : (
+              <div className="product__count d-flex align-items-center">
+                <span>
+                  {sold}&nbsp;/&nbsp;{total} sold
+                </span>
+              </div>
+            )}
+          </div>
+
           <div className="product__details d-flex align-items-center py-1 mt-auto pb-3">
             {/* {props.organizationId !== '63fe5d48448eff9f0a6412d8' &&
             props.organizationId !== '63fe60f1448eff9f0a6412e6' ? (
@@ -300,7 +302,7 @@ const Product = (props) => {
       </div> */}
         <div className="d-flex flex-column">
           {' '}
-          <div className="d-flex flex-column justify-content-start align-items-end">
+          <div className="d-flex flex-column gap-1 justify-content-start align-items-end">
             {/* <div className="small">Each:</div> */}
             {address && (
               <div className="product__location fs-7 d-flex align-items-center">

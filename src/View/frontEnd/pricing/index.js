@@ -11,7 +11,8 @@ import Page from '../../../components/Page';
 
 const Pricing = () => {
   const user = useSelector((state) => state.user);
-
+  console.log('transaction fee:', user.transactionFee);
+  console.log('platform fee:', user.platformFee);
   const lineStyle = {
     // display:" -webkit-box",
     // display: "-webkit-flex",
@@ -66,9 +67,8 @@ const Pricing = () => {
             <div className="d-flex flex-column">
               <h1 className=" fw-bolder mb-6p pt-2">Pricing and Fees</h1>
               <div className="fs-5 text-light pb-2 mb-3 mw-600">
-                It is 100% free for organizations to create posts and receive funding on Donorport.
-                Each donation goes directly to the organization so they receive every penny they
-                need.
+                It is 100% free for charities to create posts and receive funding on Donorport. Each
+                donation goes directly to the organization so they receive every penny they need.
               </div>
               <div className="note fs-5 mb-3">
                 Donorport includes sales tax in the display price of each post to ensure the charity
@@ -94,8 +94,9 @@ const Pricing = () => {
                       </div>
 
                       <p>
-                        Donorport adds 2.09% at checkout to continue offering our services to donors
-                        like you.
+                        Donorport adds{' '}
+                        {user.platformFee ? <span>{user.platformFee}%</span> : <span>2.79%</span>}{' '}
+                        at checkout to continue offering our services to donors like you.
                       </p>
                     </div>
                   </div>
@@ -114,7 +115,7 @@ const Pricing = () => {
                         {user.transactionFee ? (
                           <span className="display-4">{user.transactionFee}%</span>
                         ) : (
-                          <span className="display-4">2.2%</span>
+                          <span className="display-4">2.20%</span>
                         )}
                       </div>
 
@@ -138,7 +139,11 @@ const Pricing = () => {
                         {/* <span className="display-4">{isNaN(totalFees) ? 0 : totalFees.toFixed(1)}%</span> */}
                         {/* <span className="display-4">5%</span> */}
                         <span className="display-4">
-                          {(Number(user?.platformFee) + Number(user?.transactionFee)).toFixed(2)}%
+                          {(
+                            (Number(user?.platformFee) || 4.99) +
+                            (Number(user?.transactionFee) || 4.99)
+                          ).toFixed(2)}
+                          %
                         </span>
                       </div>
 

@@ -463,7 +463,7 @@ export default function Index(props) {
               </Button>
             </div> */}
           </div>
-          {/* {props.advertisementList?.length > 0 && (
+          {props.advertisementList?.length > 0 && (
               <div className="mb-3 mb-sm-0">
                 <IconText
                   size="42"
@@ -480,7 +480,7 @@ export default function Index(props) {
                           <img
                             src={helper.sponsorLogoResizePath + ad.logo}
                             alt="sponsor"
-                            className="px-2"
+                            className="pe-2"
                             style={{ maxHeight: '55px' }}
                           />
                         </a>
@@ -488,17 +488,8 @@ export default function Index(props) {
                   })}
                 </IconText>
               </div>
-            )} */}
+            )}
           <div>
-            {/* <IconText
-              className=""
-              icon={
-                // <FontAwesomeIcon icon="fa-solid fa-rectangle-ad" />
-                <FontAwesomeIcon icon={solid("rectangle-ad")} className="fs-4 text-info" />
-              }
-            >
-              These items are tax deductible.
-            </IconText> */}
             <LadderMenu
               items={items}
               activeKey={selectedKey}

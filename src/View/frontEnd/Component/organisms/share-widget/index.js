@@ -60,14 +60,14 @@ function ShareWidget({ page, text, pageTitle, currUrl }) {
       {/*FOR DESKTOP: launches modal with react-share*/}
       <Button
         onClick={() => setActive(!active)}
-        className="ms-1 d-none d-sm-flex btn__share px-2 py-1 text-white fw-semibold fs-5"
+        className="btn btn-lg btn-primary ms-1 d-none d-sm-flex btn__share px-2 py-1 text-white fw-semibold fs-5"
       >
         <FontAwesomeIcon className="me-0 me-sm-1" icon={regular('share')} /> Share
       </Button>
       {/*FOR MOBILE: launches Navigator on mobile devices*/}
       <Button
         onClick={() => onClickShare()}
-        className="ms-1 d-flex d-sm-none btn__share px-2 py-1 text-white fw-semibold fs-6"
+        className="btn btn-lg btn-primary ms-1 d-flex d-sm-none btn__share px-2 py-1 text-white fw-semibold fs-6"
       >
         <FontAwesomeIcon className="ms-0 ms-sm-1" icon={regular('share')} />
       </Button>

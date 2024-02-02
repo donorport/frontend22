@@ -96,7 +96,7 @@ const FilterDropdown = (props) => {
         {module === 'HOME' ? (
           <Dropdown.Toggle
             variant="primary"
-            className="toggle__btn toggle__btn--filters no-caret w-100"
+            className="d-flex justify-content-center toggle__btn toggle__btn--filters no-caret w-100"
             style={{ minWidth: '136px' }}
           >
             <div className="d-flex align-items-center justify-content-center">

@@ -192,7 +192,7 @@ const UserAdmin = () => {
             <div className="activate__code">
               {blocks}
             </div>
-            <Button variant="info" className="ms-auto" onClick={() => activateCode()}>
+            <Button variant="info" size="lg" className="ms-auto" onClick={() => activateCode()}>
               Activate
             </Button>
           </div>

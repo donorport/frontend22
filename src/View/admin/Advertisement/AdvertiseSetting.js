@@ -127,7 +127,7 @@ const AdvertiseSetting = (props) => {
                             <TabList onChange={handleChange} aria-label="lab API tabs example">
                                 <Tab label="Products" value="1" />
                                 <Tab label="HomePage" value="2" />
-                                <Tab label="Category Page" value="3" />
+                                <Tab label="All Categories" value="3" />
 
 
 

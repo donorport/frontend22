@@ -68,10 +68,6 @@
     color: #aaa9c2;
     font-size: 10px;
   }
-  .rc-slider-rail {
-  }
-  .rc-slider-disabled {
-  }
   .rc-slider-rail,
   .rc-slider-track {
     position: absolute;
@@ -95,6 +91,8 @@
 }
 
 .toggle__btn {
+  display: flex;
+  justify-content: center;
   height: 46px;
 }
 

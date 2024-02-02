@@ -132,7 +132,7 @@ export default function AddProductForm(props) {
           </Toolbar>
         </AppBar>
 
-        <div className="container mt-5" style={{ overflow: 'auto' }}>
+        <div className="container d-flex flex-column gap-2" style={{ overflow: 'auto' }}>
           <div className="form-group row">
             <label className="col-form-label col-sm-2 ">Organization</label>
             <div className="col-sm-10">
@@ -186,7 +186,7 @@ export default function AddProductForm(props) {
           {stateData.organization && (
             <div className="form-group row">
               <label className="col-form-label col-sm-2 ">Product Post In</label>
-              <div className="col-sm-4">
+              <div className="">
                 <MapboxAutocomplete
                   publicKey={helper.MapBoxPrimaryKey}
                   inputClass="form-control search"
@@ -212,13 +212,6 @@ export default function AddProductForm(props) {
                       </div>
                     </div>
                   </div>
-                  <div className="note note--clear">
-                    <FontAwesomeIcon icon={regular('circle-info')} className="text-info mr-3p" />
-                    <span>
-                      Not the city you want to post in? Try using the search bar to choose another
-                      location.
-                    </span>
-                  </div>
                   {stateData.error && stateData.error.address && (
                     <p className="error">
                       {stateData.error
@@ -230,9 +223,9 @@ export default function AddProductForm(props) {
                   )}
                 </div>
               </div>
-              <div className="col-sm-1"></div>
+              {/* <div className="col-sm-1"></div> */}
 
-              <div className="col-sm-4">
+              {/* <div className="col-sm-4">
                 <Map
                   style={MAP_STYLES.outdoor}
                   // onMove={false}
@@ -247,7 +240,7 @@ export default function AddProductForm(props) {
                     <Feature coordinates={[stateData.lng, stateData.lat]} />
                   </Layer>
                 </Map>
-              </div>
+              </div> */}
             </div>
           )}
 
@@ -394,7 +387,7 @@ export default function AddProductForm(props) {
                   ? props.moreTempImages.map((img, key) => {
                       return (
                         <div
-                        key={key}
+                          key={key}
                           className="gallery__img"
                           style={{
                             backgroundImage: `url(${img ? img : noimg})`
@@ -433,7 +426,7 @@ export default function AddProductForm(props) {
 
           <div className="form-group row">
             <label htmlFor="name" className="col-sm-2 col-form-label">
-              Unlimited
+              Post Types
             </label>
             <div className="col-sm-10">
               <label className="--switch mt-1">
@@ -449,6 +442,7 @@ export default function AddProductForm(props) {
                   <i className="fa fa-times"></i>
                 </span>
               </label>
+              Unlimited
             </div>
           </div>
 
@@ -470,6 +464,7 @@ export default function AddProductForm(props) {
                   <i className="fa fa-times"></i>
                 </span>
               </label>
+              Tax
             </div>
           </div>
 
@@ -491,6 +486,7 @@ export default function AddProductForm(props) {
                   <i className="fa fa-times"></i>
                 </span>
               </label>
+              Tag
             </div>
           </div>
 
@@ -566,7 +562,11 @@ export default function AddProductForm(props) {
                   props.categoryList.map((cat) => {
                     return (
                       cat.status === 1 && (
-                        <option value={cat._id} key={cat._id} selected={stateData.category === cat._id}>
+                        <option
+                          value={cat._id}
+                          key={cat._id}
+                          selected={stateData.category === cat._id}
+                        >
                           {cat.name}
                         </option>
                       )
@@ -599,7 +599,11 @@ export default function AddProductForm(props) {
                   props.subcategoryList.map((cat) => {
                     return (
                       cat.status === 1 && (
-                        <option value={cat._id} key={cat._id} selected={stateData.subcategory === cat._id}>
+                        <option
+                          value={cat._id}
+                          key={cat._id}
+                          selected={stateData.subcategory === cat._id}
+                        >
                           {cat.name}
                         </option>
                       )
@@ -659,29 +663,27 @@ export default function AddProductForm(props) {
                 props.projectList.length > 0 &&
                 props.projectList.map((project, i) => {
                   return (
-                      <p
-                        style={{
-                          ...PRODUCT_V_P_WRAPPER_VARIANT_STYLES,
-                          position: 'relative',
-                          backgroundColor: props.seletedProjectList.includes(project._id)
-                            ? '#00ab55'
-                            : 'white',
-                          color: props.seletedProjectList.includes(project._id)
-                            ? 'white'
-                            : '#00ab55'
-                        }}
-                        key={project._id}
-                      >
-                        <input
-                          type="checkbox"
-                          id={project._id}
-                          checked={props.seletedProjectList.includes(project._id)}
-                          style={PRODUCT_V_CHECKBOX_STYLES}
-                          name={'project_' + i}
-                          onClick={(e) => props.onSelectProject(e)}
-                        />
-                        {project.name}
-                      </p>
+                    <p
+                      style={{
+                        ...PRODUCT_V_P_WRAPPER_VARIANT_STYLES,
+                        position: 'relative',
+                        backgroundColor: props.seletedProjectList.includes(project._id)
+                          ? '#00ab55'
+                          : 'white',
+                        color: props.seletedProjectList.includes(project._id) ? 'white' : '#00ab55'
+                      }}
+                      key={project._id}
+                    >
+                      <input
+                        type="checkbox"
+                        id={project._id}
+                        checked={props.seletedProjectList.includes(project._id)}
+                        style={PRODUCT_V_CHECKBOX_STYLES}
+                        name={'project_' + i}
+                        onClick={(e) => props.onSelectProject(e)}
+                      />
+                      {project.name}
+                    </p>
                   );
                 })}
             </div>

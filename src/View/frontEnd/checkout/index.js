@@ -130,7 +130,7 @@ const Checkout = (props) => {
               <Logo />
               <Toggle />
             </div>
-            <div className="cart__steps fs-7 pt-3 pt-sm-0">
+            <div className="cart__steps d-flex fs-7 pt-3 pt-sm-0">
               <Link
                 to="/cart"
                 variant="link"
@@ -139,14 +139,14 @@ const Checkout = (props) => {
                 Cart
                 <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
               </Link>
-              <span className="active me-1 text-light">
+              <span className="me-1 text-dark">
                 Checkout
                 <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
               </span>
-              <Button variant="link" className="p-0 me-1 fw-normal fs-7 text-decoration-none ">
+              <span className="p-0 me-1 fw-normal text-light fs-7">
                 Order
                 <FontAwesomeIcon icon={regular('chevron-right')} className="ms-1" />
-              </Button>
+              </span>
             </div>
           </header>
           <div className="d-flex align-items-center pt-5 mt-1 mb-3">
@@ -469,7 +469,7 @@ const Checkout = (props) => {
               alt=""
               style={{ width: '146px' }}
             />
-            <ul className="mt-3 d-flex align-items-center justify-content-center justify-content-sm-center list-unstyled fs-7">
+            <ul className="d-flex align-items-center justify-content-center justify-content-sm-center list-unstyled fs-7">
               <li className="me-3">
                 <a href="/donorport-refund-policy" className="text-subtext">
                   Refund policy

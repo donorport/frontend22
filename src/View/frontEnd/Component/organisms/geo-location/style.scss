@@ -25,7 +25,15 @@
     }
   }
 }
-
+.mapbox-dot-marker {
+  height: 19px;
+  width: 19px;
+  background: $secondary;
+  border-radius: 4px;
+}
+.mapbox-dot-marker * {
+  color: #fff !important;
+}
 .geo__dropdown {
   .mapboxgl-map {
     height: 300px;
@@ -36,6 +44,7 @@
   .mapbox-marker-user {
     z-index: 4 !important;
   }
+
   .geo__badge {
     padding: 0px 3px;
     font-family: 'Linotte-Semibold';

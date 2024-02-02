@@ -770,9 +770,7 @@ button.ReactTags__remove {
   -webkit-transform: translate(-4px, 30px) !important;
   transform: translate(-4px, 30px) !important;
 }
-.activity__dropdown-body {
-  // background-color: $body-bg;
-}
+
 @include media-breakpoint-down(sm) {
   .filter__dropdown,
   .geo__dropdown {
@@ -963,8 +961,8 @@ a.MuiListItemButton-root.active:focus {
   top: 50%;
   position: absolute !important;
   right: 50% !important;
-  -webkit-transform: translate(50%, -50%) !important;
-  -ms-transform: translate(50%, -50%) !important;
+  // -webkit-transform: translate(50%, -50%) !important;
+  // -ms-transform: translate(50%, -50%) !important;
   width: 90% !important;
 }
 
@@ -1354,7 +1352,6 @@ li.search__tag {
   font-size: 9px;
   font-weight: 700;
 }
-
 .mapboxgl-user-location-dot:after {
   border-radius: 50%;
   border: 2px solid #fff;
@@ -1463,10 +1460,10 @@ li.search__tag {
   background-size: cover !important;
 }
 
-canvas {
-  position: absolute;
-  top: -2000px;
-}
+// canvas {
+//   position: absolute;
+//   top: -2000px;
+// }
 
 .saleReceipt {
   position: relative;

@@ -154,7 +154,7 @@ export default function RegisterForm() {
 
             <LoadingButton
               fullWidth
-              size="large"
+              size="lg"
               type="submit"
               variant="contained"
               loading={isSubmitting}

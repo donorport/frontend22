@@ -110,6 +110,7 @@ li:last-child:not(.ad__activity__item, .wishlist__item) {
 }
 .form-group {
   max-width: 100%;
+  color: $neutral-700 !important
 }
 .form-control:not(.donate-value-input, .search) {
   height: 54px;
@@ -133,7 +134,7 @@ li:last-child:not(.ad__activity__item, .wishlist__item) {
 .rdt_TableHeadRow,
 .rdt_Pagination,
 .MuiTabs-root,
-.MuiModal-root span,
+// .MuiModal-root span,
 .MuiTabs-scroller {
   background: $secondary-6 !important;
   color: $neutral-700 !important;

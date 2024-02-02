@@ -63,7 +63,7 @@ function HistoryItem({ active, ...otherProps }) {
 
   return (
     <li
-      className={`similar__item__wrap p-2 d-flex align-items-center mb-1 ${
+      className={`similar__item__wrap p-2 d-flex align-items-center${
         sharedProps.active ? 'active' : ''
       }`}
     >
@@ -76,7 +76,7 @@ function HistoryItem({ active, ...otherProps }) {
             shadow={false}
             className="donor_avatar_bg"
           />
-          <div className="ms-2 flex-grow-1">
+          <div className="d-flex flex-column gap-1 ms-2 flex-grow-1">
             <div className="d-flex align-items-center justify-content-between">
               <div className=" fw-bold">{name}</div>
 

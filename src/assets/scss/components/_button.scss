@@ -1,7 +1,13 @@
-.btn {
+.btn:not(.btn__link-light) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: $input-font-weight;
   transition: none !important;
   text-wrap: nowrap !important;
+}
+.rounded-pill {
+  min-height: auto !important;
 }
 .btn:not(.btn__category, .btn-outline-primary, .btn__link-light, .toggle__btn, .geo__lock, .btn__follow, .MuiButton-root),
 .btn-success,
@@ -17,8 +23,9 @@
 }
 
 .btn__category,
-.btn-outline-primary,
-.btn__category:hover {
+.btn-outline-primary
+// .btn__category:hover
+{
   color: $neutral;
 }
 
@@ -93,6 +100,7 @@
 
 .btn-lg {
   height: 46px;
+  font-weight: 600;
 }
 
 .btn__signout {

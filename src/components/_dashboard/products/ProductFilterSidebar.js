@@ -210,7 +210,7 @@ export default function ShopFilterSidebar({
             <Box sx={{ p: 3 }}>
               <Button
                 fullWidth
-                size="large"
+                size="lg"
                 type="submit"
                 color="inherit"
                 variant="outlined"
