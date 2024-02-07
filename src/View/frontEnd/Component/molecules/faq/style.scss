@@ -1,11 +1,14 @@
-@import "~bootstrap/scss/accordion";
-
+@import '~bootstrap/scss/accordion';
 
 .accordion-button:not(.collapsed) {
   box-shadow: none;
 }
-
+.faq__accordion * {
+  transition: none !important;
+}
 .faq__accordion {
+  border-radius: 24px;
+  overflow: hidden;
   .accordion-button {
     padding-left: 0;
     padding-right: 0;

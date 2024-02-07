@@ -11,6 +11,7 @@
     }
     @include media-breakpoint-down(sm) {
       // top: 40px !important;
+      border-radius: 19px 19px 0px 0px;
     }
     width: 420px;
   }

@@ -1,2 +1,12 @@
 // @import '@styles/scss/components/breadcrumb';
 @import '../../../assets/scss/components/breadcrumb';
+.accordion-item,
+.accordion-item *:not(.link) {
+  background: $secondary-1 !important;
+  border-color: $border-color !important;
+  color: $neutral-700 !important;
+}
+.help__button,
+.accordion-button::after {
+  color: $neutral-700 !important;
+}

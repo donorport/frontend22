@@ -1400,6 +1400,8 @@ li.search__tag {
 
 .react-mapbox-ac-input {
   margin-bottom: unset !important;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 @media only screen and (max-width: 600px) {

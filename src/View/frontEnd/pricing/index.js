@@ -140,8 +140,8 @@ const Pricing = () => {
                         {/* <span className="display-4">5%</span> */}
                         <span className="display-4">
                           {(
-                            (Number(user?.platformFee) || 4.99) +
-                            (Number(user?.transactionFee) || 4.99)
+                            (Number(user?.platformFee) || 2.79) +
+                            (Number(user?.transactionFee) || 2.20)
                           ).toFixed(2)}
                           %
                         </span>

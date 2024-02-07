@@ -73,12 +73,18 @@ const Apply = (props) => {
                 Activate your account to create your organization's administration page or apply to
                 receive your activation code.
               </div> */}
+                              <div className="note mb-5 me-0 me-sm-5">
+                  <a href="/help" className="link" target="_blank">
+                    Click here
+                  </a>{' '}
+                  to find answers on questions we typically receive from our partner charities.
+                </div>
             <div className="mb-5">
               <h4 className="fw-bolder ">Step 1 - Create your account</h4>
               <div className="text-light mb-4 fs-5 pe-5">
                 Fill out the form below and click Submit to apply to post for your charity on
                 Donorport. A four (4) digit activation code will be sent to the email you provided
-                once your account has been approved.
+                once your account has been approved.{' '}
               </div>
             </div>
 

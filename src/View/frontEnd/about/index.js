@@ -37,7 +37,7 @@ import './style.scss';
 const About = (props) => {
   // console.log(props.campaignAdminList)
   const navigate = useNavigate();
-  let video = "https://www.youtube.com/watch?v=YCgPe_iwHl8"
+  let video = "https://www.youtube.com/watch?v=tKBEgyJWYjo"
 
   let videoid = video ? video.split('?v=')[1].split('&')[0] : '';
   let embedlink = video ? 'https://www.youtube.com/embed/' + videoid : '';

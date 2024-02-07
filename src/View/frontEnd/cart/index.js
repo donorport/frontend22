@@ -242,7 +242,7 @@ const Cart = (props) => {
                   : 0)}
             </span>
           </div>
-          <div className="d-flex py-4 border-bottom d-grid d-sm-flex">
+          <div className="d-flex py-4 border-bottom d-grid flex-column flex-sm-row">
             <Button
               variant="danger"
               size="lg"

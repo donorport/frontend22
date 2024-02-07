@@ -7,7 +7,7 @@ import "./style.scss";
 
 const HelpBanner = ({shortBanner=false}) => {
   return (
-    <div style={{padding: shortBanner ? '115px 0 45px': '175px 0'}} className="help__banner d-flex flex-column align-items-center justify-content-center px-3 px-sm-0">
+    <div style={{padding: shortBanner ? '115px 0 45px': '75px 0'}} className="help__banner d-flex flex-column align-items-center justify-content-center px-3 px-sm-0">
       <InputGroup className="help__search-wrap">
         <InputGroup.Text>
           <FontAwesomeIcon

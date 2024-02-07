@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Button, Dropdown, InputGroup, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -75,22 +75,21 @@ const GeoLocation = (props) => {
     return htmlTheme === 'dark' ? 'night' : 'day';
   });
 
-  useEffect(() => {
-    // Function to handle changes in HTML data-theme attribute
+  useLayoutEffect(() => {
     const handleThemeChange = () => {
       const htmlTheme = document.documentElement.getAttribute('data-theme');
       setMapTheme(htmlTheme === 'dark' ? 'night' : 'day');
     };
-
-    // Use the HTML data-theme attribute to set the initial map theme
-    handleThemeChange();
-
+  
     // Create a MutationObserver to watch for changes in data-theme attribute
     const observer = new MutationObserver(handleThemeChange);
-
+  
     // Observe changes in the attributes of the HTML element
     observer.observe(document.documentElement, { attributes: true });
-
+  
+    // Use the HTML data-theme attribute to set the initial map theme
+    handleThemeChange();
+  
     // Cleanup the observer on component unmount
     return () => {
       observer.disconnect();

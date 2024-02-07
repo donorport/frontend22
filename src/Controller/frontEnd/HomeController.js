@@ -457,11 +457,11 @@ export default function HomeController() {
           p.tags.forEach((value) => {
             let tempObj = {
               color: p.categoryDetails.color ? p.categoryDetails.color : 'red',
-              tag: value,
+              tag: value
             };
             productTagsArray.push(tempObj);
-          })
-        })
+          });
+        });
         productTagsArray = productTagsArray.filter(
           (value, index, self) => index === self.findIndex((t) => t.tag === value.tag)
         );
@@ -827,46 +827,69 @@ export default function HomeController() {
         console.log('~~ non-existent countryId, checking if location can be obtained:');
 
         if (navigator && navigator.geolocation) {
-          // If geolocation API is available, attempt to get current position
           console.log('~~ YES geolocation API exists, getting current position...');
           console.time('getCurrentPosition');
 
-          try {
-            const position = await new Promise((resolve, reject) => {
-              navigator.geolocation.getCurrentPosition(resolve, reject, {
-                maximumAge: 1000 * 60 * 60 * 24, // DON'T fetch again if last location is under one day old
-                timeout: 10000 // force escape the geo attempt if longer than this ms
-              });
-            });
+          navigator.geolocation.getCurrentPosition(
+            async (position) => {
+              console.log('** success callback wrapper');
+              console.timeEnd('getCurrentPosition');
+              showPosition(position);
 
-            console.log('** success callback wrapper');
-            console.timeEnd('getCurrentPosition');
-            showPosition(position);
-          } catch (error) {
-            console.log('** error callback wrapper, attempting ipinfo.io lookup');
-            console.timeEnd('getCurrentPosition');
+              try {
+                const res = await fetch('https://ipinfo.io/geo');
+                if (res.status !== 200)
+                  throw new Error('Error fetching geo location from ipinfo.io/geo');
 
-            try {
-              const res = await fetch('https://ipinfo.io/geo');
-              if (res.status !== 200)
-                throw new Error('Error fetching geo location from ipinfo.io/geo');
+                const json = await res.json();
+                console.log('~~ ~~ ~~ ipinfo.io response:', { res, json });
 
-              const json = await res.json();
-              console.log('~~ ~~ ~~ ipinfo.io response:', { res, json });
+                const [latitude, longitude] = json.loc.split(',');
+                const backupPosition = {
+                  coords: {
+                    latitude,
+                    longitude
+                  }
+                };
+                showPosition(backupPosition);
+              } catch (error) {
+                // Changed from backupError to error
+                console.log('~~ ~~ ~~ ipinfo.io ERROR:', { error });
+                showError(error);
+              }
+            },
+            async (error) => {
+              // Changed from backupError to error
+              console.log('** error callback wrapper, attempting ipinfo.io lookup');
+              console.timeEnd('getCurrentPosition');
 
-              const [latitude, longitude] = json.loc.split(',');
-              const backupPosition = {
-                coords: {
-                  latitude,
-                  longitude
-                }
-              };
-              showPosition(backupPosition);
-            } catch (backupError) {
-              console.log('~~ ~~ ~~ ipinfo.io ERROR:', { backupError });
-              showError(error);
+              try {
+                const res = await fetch('https://ipinfo.io/geo');
+                if (res.status !== 200)
+                  throw new Error('Error fetching geo location from ipinfo.io/geo');
+
+                const json = await res.json();
+                console.log('~~ ~~ ~~ ipinfo.io response:', { res, json });
+
+                const [latitude, longitude] = json.loc.split(',');
+                const backupPosition = {
+                  coords: {
+                    latitude,
+                    longitude
+                  }
+                };
+                showPosition(backupPosition);
+              } catch (error) {
+                // Changed from backupError to error
+                console.log('~~ ~~ ~~ ipinfo.io ERROR:', { error });
+                showError(error);
+              }
+            },
+            {
+              maximumAge: 1000 * 60 * 60 * 24,
+              timeout: 10000
             }
-          }
+          );
         } else {
           console.log('~~ NO geolocation API is NOT available, setting a default position:');
           // fallback; if no geolocation available, set it to a default
@@ -918,12 +941,13 @@ export default function HomeController() {
     homeadvertisementList
   ]);
 
-
   const filterProduct = async (
     low_price = lowPrice,
     high_price = HighPrice,
     search_product = resultTags,
-    userCountry = user.countryId
+    // userCountry = user.countryId
+    // Set to null so that filters don't automatically apply for location on load:
+    userCountry = null
   ) => {
     // console.log('first')
     try {
@@ -942,7 +966,11 @@ export default function HomeController() {
       data.oldEst = oldEst;
       data.newEst = newEst;
 
-      data.userCountry = userCountry;
+      // Don't include userCountry if it's not explicitly passed or set to null
+      if (userCountry) {
+        data.userCountry = userCountry;
+      }
+
       // console.log(userCountry)
 
       // data.leastFunded = leastFunded
