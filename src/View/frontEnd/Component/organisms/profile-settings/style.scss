@@ -10,7 +10,7 @@
   max-width: 600px;
   padding: 20px 28px;
   border-radius: 6px;
-  
+
   line-height: 1.3rem;
 
   &.note--inputs {
@@ -18,7 +18,9 @@
     margin-bottom: 12px;
   }
 }
-
+.list-group {
+  color: $neutral-700 !important;
+}
 .deactivate {
   display: flex;
   max-width: 400px;

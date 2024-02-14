@@ -9,12 +9,12 @@ const getIcon = (name) => <Icon icon={name} width={22} height={22} />;
 
 const sidebarConfig = [
 
-  {
-    title: 'dashboard',
-    path: '/admin/dashboard/',
-    icon: getIcon(pieChart2Fill),
-    name: 'DASHBOARD'
-  },
+  // {
+  //   title: 'dashboard',
+  //   path: '/admin/dashboard/',
+  //   icon: getIcon(pieChart2Fill),
+  //   name: 'DASHBOARD'
+  // },
   {
     title: 'donors',
     path: '/admin/donors/',

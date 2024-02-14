@@ -35,9 +35,7 @@ const ProductsUnavailableLocation = ({ user }) => (
                 </a>
               </p>
             ) : (
-              <p className="fs-3 fw-bold ">
-                Donorport is currently unavailable in your location
-              </p>
+              <p className="fs-3 fw-bold ">Donorport is currently unavailable in your location</p>
             )}
 
             <div className="fs-5 text-light">
@@ -165,7 +163,6 @@ export default function Index(props) {
     ) : (
       <ProductListEmpty />
     );
-
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -298,7 +295,7 @@ export default function Index(props) {
                   onChange={(e) => props.onChangeDonatePrice(e)}
                 />
               </InputGroup>
-              <span className="d-none d-sm-inline-block mx-1">to these items:</span>
+              <span className="d-none d-sm-inline-block mx-1 me-0">to these items:</span>
             </div>
             <Button
               variant="outline-primary"
@@ -314,11 +311,15 @@ export default function Index(props) {
               <Link to="/about" className="link d-inline-block">
                 learn more.
               </Link>
-              &nbsp; Charities&nbsp;
+              &nbsp; Charities,&nbsp;
               <Link to="/apply" className="link d-inline-block">
                 click here
               </Link>
-              &nbsp;to create your account.
+              &nbsp;to create your account or check our&nbsp;
+              <Link to="/help" className="link d-inline-block">
+                FAQ
+              </Link>
+              &nbsp;page.
             </div>
           </div>
         </Container>
@@ -464,31 +465,31 @@ export default function Index(props) {
             </div> */}
           </div>
           {props.advertisementList?.length > 0 && (
-              <div className="mb-3 mb-sm-0">
-                <IconText
-                  size="42"
-                  icon={
-                    // <FontAwesomeIcon icon="fa-solid fa-rectangle-ad" />
-                    <FontAwesomeIcon icon={solid('rectangle-ad')} className="fs-4 text-info" />
-                  }
-                >
-                  {props.advertisementList?.map((ad, i) => {
-                    console.log('map over advertisementList:', { ad });
-                    if (ad?.website && ad?.logo)
-                      return (
-                        <a href={ad.website} target="_blank" rel="noreferrer" key={i}>
-                          <img
-                            src={helper.sponsorLogoResizePath + ad.logo}
-                            alt="sponsor"
-                            className="pe-2"
-                            style={{ maxHeight: '55px' }}
-                          />
-                        </a>
-                      );
-                  })}
-                </IconText>
-              </div>
-            )}
+            <div className="mb-3 mb-sm-0">
+              <IconText
+                size="42"
+                icon={
+                  // <FontAwesomeIcon icon="fa-solid fa-rectangle-ad" />
+                  <FontAwesomeIcon icon={solid('rectangle-ad')} className="fs-4 text-info" />
+                }
+              >
+                {props.advertisementList?.map((ad, i) => {
+                  console.log('map over advertisementList:', { ad });
+                  if (ad?.website && ad?.logo)
+                    return (
+                      <a href={ad.website} target="_blank" rel="noreferrer" key={i}>
+                        <img
+                          src={helper.sponsorLogoResizePath + ad.logo}
+                          alt="sponsor"
+                          className="pe-2"
+                          style={{ maxHeight: '55px' }}
+                        />
+                      </a>
+                    );
+                })}
+              </IconText>
+            </div>
+          )}
           <div>
             <LadderMenu
               items={items}

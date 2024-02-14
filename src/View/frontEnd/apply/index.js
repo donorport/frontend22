@@ -68,6 +68,10 @@ const Apply = (props) => {
               </Button>
             </div>
 
+
+            <div>
+              {!props.isApplied ? (
+<>
             <h1 className="mt-5 pt-5 fw-bolder pt-2 mb-4">Getting Started</h1>
             {/* <div className="fs-5 text-light mb-4">
                 Activate your account to create your organization's administration page or apply to
@@ -87,9 +91,6 @@ const Apply = (props) => {
                 once your account has been approved.{' '}
               </div>
             </div>
-
-            <div>
-              {!props.isApplied ? (
                 <Form className="d-flex flex-column mb-5 pb-5 gap-3 mw-400" autocomplete="off">
                   {/*    <div className="py-1 d-flex justify-content-between fs-4 mb-3">
                     <RadioToggle
@@ -401,7 +402,7 @@ const Apply = (props) => {
                       <CircularProgress className="ms-1" color="inherit" size={12} />
                     )}
                   </Button>
-                </Form>
+                </Form> </>
               ) : (
                 <div className="fs-5 mt-5 mb-5 me-5 mw-600">
                   <div className="note mw-600 fs-5">

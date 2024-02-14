@@ -921,8 +921,7 @@ const Payments = () => {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
-      <div className="mw-600">
+      <div className="d-flex flex-column gap-5 mw-600">
         {/* <div className="mb-5">
           <h4 className="fw-bolder">Saved Payment Methods</h4>
           <div className="text-subtext mb-3">
@@ -975,49 +974,49 @@ const Payments = () => {
             </div>
           </div>
         </div>*/}
-
-        <h4 className="fw-bolder">Tax Rate</h4>
-        <div className="text-subtext mb-3">What is your regional sales tax?</div>
-
-        <div className="input__wrap mb-3">
-          <label className="input__label flex__1">
-            <input
-              type="text"
-              name="taxRate"
-              value={taxRate}
-              className={state.error && state.error.taxRate ? 'inputerror' : ''}
-              onChange={(e) => onChangeTaxRate(e)}
-              // onFocu={()=>alert('okk')}
-              // onBlur={() => myFunction('taxRate')}
-            />
-            <span className="input__span">Ex: HST/ON 13%</span>
-          </label>
+        <div>
+          <h4 className="fw-bolder">Tax Rate</h4>
+          <div className="text-subtext mb-3">What is your regional sales tax?</div>
+          <div className="input__wrap mb-3">
+            <label className="input__label flex__1">
+              <input
+                type="text"
+                name="taxRate"
+                value={taxRate}
+                className={state.error && state.error.taxRate ? 'inputerror' : ''}
+                onChange={(e) => onChangeTaxRate(e)}
+                // onFocu={()=>alert('okk')}
+                // onBlur={() => myFunction('taxRate')}
+              />
+              <span className="input__span">Ex: HST/ON 13%</span>
+            </label>
+          </div>
+          {state.error && state.error.taxRate && <p className="error">{state.error.taxRate}</p>}
+          <div className="note  mb-2 fs-6">
+            The tax rate will be automatically added to the unit price of items you post to make
+            sure you enough funds to cover the sales tax when you purchase the items.
+          </div>
+          <Button
+            size="lg"
+            variant="info"
+            onClick={() => {
+              if (!saveloading) myFunction('taxRate');
+            }}
+            style={{
+              opacity: saveloading ? '0.7' : '1'
+            }}
+          >
+            Save {saveloading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+          </Button>
         </div>
-        {state.error && state.error.taxRate && <p className="error">{state.error.taxRate}</p>}
-        <div className="note  mb-2 fs-6">
-          The tax rate will be automatically added to the unit price of items you post to make sure
-          you enough funds to cover the sales tax when you purchase the items.
-        </div>
-        <Button
-          size="lg"
-          variant="info"
-          onClick={() => {
-            if (!saveloading) myFunction('taxRate');
-          }}
-          style={{
-            opacity: saveloading ? '0.7' : '1'
-          }}
-        >
-          Save {saveloading && <CircularProgress className="ms-2" color="inherit" size={12} />}
-        </Button>
 
-        <div className="mb-5 mt-5">
+        <div>
           <h4 className="fw-bolder">Connect your Bank</h4>
           <div className="text-subtext mb-3">
             Link the bank account that {CampaignAdmin?.name || 'your Charity'} will use to receive
             direct deposits from our donors.
           </div>
-          <div className="d-flex align-items-center mb-5">
+          <div className="d-flex align-items-center">
             {/*     <span className="text-subtext flex__1">
               Direct Deposit information for contributions from your donors
             </span>
@@ -1062,6 +1061,9 @@ const Payments = () => {
 
             /> */}
           </div>
+        </div>
+
+        <div>
           {bankAccountList.length > 0 && (
             <>
               <h4 className="fw-bolder">Connected Accounts</h4>
@@ -1070,11 +1072,22 @@ const Payments = () => {
               </div>
             </>
           )}
-
           {bankAccountList.length > 0 &&
             bankAccountList.map((list, i) => {
+              // Convert the created_at date string to a Date object
+              const createdDate = new Date(list.created_at);
+              // Format the date to a readable format
+              const formattedDate = createdDate.toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                timeZoneName: 'short'
+              });
               return (
-                <div className="linked__list--bank d-flex flex-column mb-2" key={i}>
+                <div className="linked__list--bank d-flex gap-2 flex-column mb-2" key={i}>
                   <div className="linked__item--bank d-flex align-items-center p-2 border">
                     <div className="accounts__icon p-1 border">
                       <FontAwesomeIcon
@@ -1181,16 +1194,20 @@ const Payments = () => {
                       <FontAwesomeIcon icon={solid('trash')} className="fs-4 text-danger" />
                     </Button>
                   </div>
+                  <div className="d-flex gap-1">
+                    <FontAwesomeIcon icon={regular('clock')} className="fs-5 text-primary" />
+                    <span>{formattedDate}</span>
+                  </div>
                 </div>
               );
             })}
           {bankAccountList.length > 0 && (
-            <div className="px-1 py-20p mt-1 mb-20p text-subtext">
+            <div className="note mt-5 text-subtext">
               <FontAwesomeIcon icon={solid('shield-halved')} className="fs-5 text-primary me-2" />
               This method will be used for deposits from donations / items you post.
             </div>
           )}
-          <div className="note  fs-6">
+          <div className="note mt-3 fs-6">
             Funds will be deposited into this account when items you post are fully funded or marked
             as infinity items, or if you receive cash donations.
           </div>

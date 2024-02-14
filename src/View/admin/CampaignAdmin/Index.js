@@ -39,6 +39,11 @@ export default function Index(props) {
   const columns = [
     { name: 'Name', selector: (row) => row['name'], sortable: true },
     { name: 'Email', selector: (row) => row['email'], sortable: true },
+    {
+      name: 'Country',
+      selector: (row) => (row.countryDetails ? row.countryDetails.currency : ''),
+      sortable: true
+    },
     // {
     //     name: "Role",
     //     cell: (row) => <>

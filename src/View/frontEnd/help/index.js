@@ -11,14 +11,14 @@ import HelpBanner from '../Component/molecules/help-banner';
 import HelpContentFooter from '../Component/molecules/help-content-footer';
 import FAQ from '../Component/molecules/faq';
 import Footer from '../Component/organisms/footer';
-import HeaderHelp from '../Component/organisms/header-help';
+import Header from '../Component/organisms/header';
 import Page from '../../../components/Page';
 import './style.scss';
 
 const Help = () => {
   return (
     <Page title="Donorport | Help" description="Find answers to your questions about Donorport">
-      <HeaderHelp />
+      <Header />
       <div className="position-relative">
         <HelpBanner />
         <FAQ />
