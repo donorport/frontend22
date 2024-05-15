@@ -1651,7 +1651,7 @@ const AdminPosts = () => {
   return (
     <>
       <div>
-        <DismissibleBanner message="We have updated our payment provider information. Please " />
+        {/* <DismissibleBanner message="We have updated our payment provider information. Please " /> */}
         {/* Other dashboard content */}
       </div>
       {(!user.isAccountAdded || !data.taxRate || !data.logo) && isOnboardingVisible && (
