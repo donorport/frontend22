@@ -18,49 +18,62 @@ import { useSelector } from 'react-redux';
 //const title = {
 //color: '#6b68f8'
 //};
-const ProductsUnavailableLocation = ({ user }) => (
-  <div className="container">
-    <div className="empty__modal">
-      <div className="empty__block">
-        <div className="empty__container">
-          <div className="empty__circle empty--small mb-5 mt-5">
-            <img src={buoy} alt="" />
-          </div>
-          <div className="empty__message">
-            {user.countrySortName !== '' ? (
-              <p className="fs-3 fw-bold ">
-                Donorport is currently unavailable in{' '}
-                <a href="#" className="link">
-                  {user.countryName}
-                </a>
-              </p>
-            ) : (
-              <p className="fs-3 fw-bold ">Donorport is currently unavailable in your location</p>
-            )}
+const ProductsUnavailableLocation = ({ user }) => {
+  return (
+    <div className="container">
+      <div className="empty__modal">
+        <div className="empty__block">
+          <div className="mt-5 empty__container">
+            <div className="empty__message">
+              {user && user.countrySortName !== '' ? (
+                <p className="fs-3 fw-bold ">
+                  Donorport is coming to{' '}
+                  <p className="fs-2 link">
+                    {user.countryName}
+                  </p>
+                </p>
+              ) : (
+                <p className="fs-3 fw-bold ">
+                  Donorport is coming to your location! Click{' '}
+                  <a
+                    className="link"
+                    target="_blank"
+                    href="https://www.donorport.com/apply"
+                    rel="noreferrer"
+                  >
+                    here
+                  </a>{' '}
+                </p>
+              )}
 
-            <div className="fs-5 text-light">
-              <p>
-                Check back later or{' '}
-                <a
-                  className="link"
-                  target="_blank"
-                  href="https://www.twitter.com/donorporthq"
-                  rel="noreferrer"
-                >
-                  tweet us
-                </a>{' '}
-                and let use know where we should set sails for next or learn more{' '}
-                <a className="link" href="/about">
-                  about us
-                </a>
-              </p>
+              <div className="fs-5 text-light">
+                <p>
+                  Click{' '}
+                  <a
+                    className="link"
+                    target="_blank"
+                    href="https://www.donorport.com/apply"
+                    rel="noreferrer"
+                  >
+                    here
+                  </a>{' '}
+                  to create your charity account or learn more{' '}
+                  <a className="link" href="/about">
+                    about us
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div className="empty__circle empty--small mb-5 mt-5">
+              <img src={buoy} alt="" />
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
+
 
 const ProductList = ({ allProps }) =>
   allProps.productList.map(
@@ -156,7 +169,7 @@ export default function Index(props) {
   const user = useSelector((state) => state.user);
 
   const products =
-    user.countrySortName === 'MX' ? (
+    user.countrySortName !== 'CA' ? (
       <ProductsUnavailableLocation user={user} />
     ) : props.productList && props.productList.length > 0 ? (
       <ProductList allProps={props} />

@@ -425,7 +425,7 @@ export default function HeaderController({ productList, isHeaderGeo = false }) {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
+
       <Header
         cartItem={cartItem}
         removeCartItem={removeCartItem}

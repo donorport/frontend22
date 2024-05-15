@@ -644,7 +644,7 @@ function CampaignAdminController() {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
+
       <CampaignAdminForm
         modal={modal}
         setModal={setModal}

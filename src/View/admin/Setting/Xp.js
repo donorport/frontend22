@@ -143,7 +143,7 @@ export default function Xp(props) {
 
     return (
         <>
-           {/*<FrontLoader loading={loading} />*/}
+     
             <Page title="XP | CMS">
 
                 <Container>

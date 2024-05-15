@@ -654,7 +654,7 @@ const ProfileSettings = () => {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
+
       <div className="d-flex flex-column gap-5 mw-400">
         <div>
           <h4 className="fw-bolder">About</h4>

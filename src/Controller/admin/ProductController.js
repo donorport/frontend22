@@ -832,7 +832,7 @@ function ProductController() {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
+
       <Index
         openModel={openModel}
         productList={productList}

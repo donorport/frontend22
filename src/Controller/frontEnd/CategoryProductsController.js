@@ -902,7 +902,7 @@ export function CategoryProductsController() {
   };
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
+
       <Page
         title={'Donorport | ' + categoryDetails?.name}
         description={`Browse ${categoryDetails?.name} to find your next donation`}

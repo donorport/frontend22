@@ -24,6 +24,7 @@ import _ from 'lodash';
 import pencil from '../../../../../assets/images/pencil.svg';
 import trophy from '../../../../../assets/images/trophy.svg';
 import { CircularProgress } from '@mui/material';
+import DismissibleBanner from '../../molecules/dismissible-banner';
 
 const VALID_IMAGE_FILE_EXTENSIONS = ['jpg', 'png', 'jpeg', 'svg'];
 const DEFAULT_EMPTY_STATE = {
@@ -1649,6 +1650,10 @@ const AdminPosts = () => {
 
   return (
     <>
+      <div>
+        <DismissibleBanner message="We have updated our payment provider information. Please " />
+        {/* Other dashboard content */}
+      </div>
       {(!user.isAccountAdded || !data.taxRate || !data.logo) && isOnboardingVisible && (
         <div>
           <div className="onboarding--stepper">
@@ -1892,43 +1897,41 @@ const AdminPosts = () => {
 
           <PostDetailsNotificationBanner fulfilProductDetails={fulfilProductDetails} />
 
+          <Row className="mw-850 ml-5 pt-5">
+            <Col lg="6">
+              <PostDetailsTransactionSummary
+                fulfilProductDetails={fulfilProductDetails}
+                data={data}
+              />
 
-            <Row className="mw-850 ml-5 pt-5">
-              <Col lg="6">
-                <PostDetailsTransactionSummary
-                  fulfilProductDetails={fulfilProductDetails}
-                  data={data}
-                />
+              <PostDetailsReceiptArea
+                receiptImgName={receiptImgName}
+                fulfilError={fulfilError}
+                changefile={changefile}
+                fulfilProductDetails={fulfilProductDetails}
+                deletedFile={deletedFile}
+                setShowReceipt={setShowReceipt}
+                download={download}
+                deleteFulfilorder={deleteFulfilorder}
+                showReceipt={showReceipt}
+              />
+            </Col>
 
-                <PostDetailsReceiptArea
-                  receiptImgName={receiptImgName}
-                  fulfilError={fulfilError}
-                  changefile={changefile}
-                  fulfilProductDetails={fulfilProductDetails}
-                  deletedFile={deletedFile}
-                  setShowReceipt={setShowReceipt}
-                  download={download}
-                  deleteFulfilorder={deleteFulfilorder}
-                  showReceipt={showReceipt}
-                />
-              </Col>
-
-              <Col lg="6">
-                <PostDetailsMediaColumn
-                  fulfilState={fulfilState}
-                  fulfilProductDetails={fulfilProductDetails}
-                  videoUrl={videoUrl}
-                  changevalue={changevalue}
-                  changefile={changefile}
-                  fulfilMoreTempImages={fulfilMoreTempImages}
-                  removeFulfilTempImages={removeFulfilTempImages}
-                  fulfilmoreImages={fulfilmoreImages}
-                  deleteProductImage={deleteProductImage}
-                  fulfilError={fulfilError}
-                />
-              </Col>
-            </Row>
-
+            <Col lg="6">
+              <PostDetailsMediaColumn
+                fulfilState={fulfilState}
+                fulfilProductDetails={fulfilProductDetails}
+                videoUrl={videoUrl}
+                changevalue={changevalue}
+                changefile={changefile}
+                fulfilMoreTempImages={fulfilMoreTempImages}
+                removeFulfilTempImages={removeFulfilTempImages}
+                fulfilmoreImages={fulfilmoreImages}
+                deleteProductImage={deleteProductImage}
+                fulfilError={fulfilError}
+              />
+            </Col>
+          </Row>
 
           <PostDetailsTosAndButtons
             fulfilPolicy={fulfilPolicy}
@@ -2162,8 +2165,7 @@ const PostDetailsMediaColumn = ({
   });
   return (
     <>
-
-        <span className="fs-3 fw-bolder ">Media</span>
+      <span className="fs-3 fw-bolder ">Media</span>
 
       <form className="video-detail-form mt-3">
         <div className="form-group mb-3">
@@ -2296,8 +2298,7 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
       )}
 
       <div className="order__widget d-flex flex-column gap-3">
-
-          <span className="fs-3 fw-bolder mb-3">Order Summary</span>
+        <span className="fs-3 fw-bolder mb-3">Order Summary</span>
 
         <div className="border-bottom">
           <div className="d-flex align-items-center fw-bolder mb-20p">
@@ -2407,8 +2408,7 @@ const PostDetailsReceiptArea = ({
       {/* if file is deleted, or if product is not fulfilled, hide this. */}
       {fulfilProductDetails?.isFulfiled && !deletedFile && (
         <>
-
-            <span className="fs-3 fw-bolder ">Sales Receipt</span>
+          <span className="fs-3 fw-bolder ">Sales Receipt</span>
 
           <div className="my-3 pb-5  d-flex align-item-center">
             <div className="nn d-flex position-relative justify-content-center align-items-center me-2">

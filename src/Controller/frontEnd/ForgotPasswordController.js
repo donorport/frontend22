@@ -93,7 +93,7 @@ export default function ForgotPasswordController() {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
+
       <Page
         title="Donorport | Forgot Password "
         description="Change your password for your Donorport account"

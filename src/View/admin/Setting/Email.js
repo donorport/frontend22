@@ -185,7 +185,7 @@ export default function Email(props) {
 
     return (
         <>
-           {/*<FrontLoader loading={loading} />*/}
+     
             <Page title="Email | Setting">
 
                 <Container>

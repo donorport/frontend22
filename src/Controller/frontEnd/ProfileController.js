@@ -173,7 +173,7 @@ export default function ProfileController() {
   return (
     <>
       {/* {console.log(state.error)} */}
-      {/*<FrontLoader loading={loading} />*/}
+
       <Profile
         stateData={state}
         changevalue={changevalue}

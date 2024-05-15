@@ -399,7 +399,7 @@ export default function CheckoutController() {
   return (
     <>
       {/* {console.log(cartItem)} */}
-      {/*<FrontLoader loading={loading} />*/}
+
       <Page title="Donorport | Checkout ">
         <Checkout
           cartItem={cartItem}

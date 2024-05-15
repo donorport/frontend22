@@ -244,7 +244,7 @@ const UserHistory = () => {
   console.log('user-history rerender');
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
+
       <header className="py-sm-2 pb-2 mb-2 w-100 d-none d-sm-flex align-items-start">
         <div className="me-sm-2 flex-grow-1">
           <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Order History</h1>

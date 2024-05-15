@@ -206,7 +206,7 @@ export default function FooterLinks(props) {
 
     return (
         <>
-           {/*<FrontLoader loading={loading} />*/}
+     
             <Page title="Social | Setting">
 
                 <Container>

@@ -53,7 +53,7 @@ export default function OrderController() {
     return (
         <>
 
-                {/*<FrontLoader loading={loading} />*/}
+          
             <Index
             orderList={orderList}
             viewOrderDetails={viewOrderDetails}

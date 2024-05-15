@@ -57,7 +57,7 @@ export default function DonationController() {
   return (
     <>
 
-      {/*<FrontLoader loading={loading} />*/}
+
       <Index
         orderList={orderList}
         handleChange={handleChange}

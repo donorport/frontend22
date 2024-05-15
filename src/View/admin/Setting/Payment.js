@@ -141,7 +141,7 @@ export default function Payment(props) {
 
     return (
         <>
-           {/*<FrontLoader loading={loading} />*/}
+     
             <Page title="Payment | CMS">
 
                 <Container>

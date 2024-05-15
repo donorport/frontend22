@@ -70,7 +70,7 @@ const Xp = () => {
   return (
     <>
       <Page title="Donorport | XP" description="Learn how to build your XP to advance on the Donorport leaderboard">
-        {/*<FrontLoader loading={loading} />*/}
+  
         <DefaultLayout>
           <Container fluid className="pt-5">
             {userAuthToken && (

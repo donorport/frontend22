@@ -502,7 +502,7 @@ const AdminProjects = () => {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
+
 
       {!viewProject ? (
         <div>

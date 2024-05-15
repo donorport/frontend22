@@ -71,7 +71,7 @@ export default function PlansController() {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
+
       <Page
         title="Donorport | Plan"
         description="Choose your site plan on Donorport and take advantage of our great features"

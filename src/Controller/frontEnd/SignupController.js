@@ -163,7 +163,7 @@ function SignupController() {
           onChangeCountry={onChangeCountry}
           loading={loading}
         />
-        {/*<FrontLoader loading={loading} />*/}
+  
       </Page>
     </>
   );

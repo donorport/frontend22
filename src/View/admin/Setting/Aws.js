@@ -142,7 +142,7 @@ export default function Aws(props) {
 
     return (
         <>
-           {/*<FrontLoader loading={loading} />*/}
+     
             <Page title="Payment | CMS">
 
                 <Container>

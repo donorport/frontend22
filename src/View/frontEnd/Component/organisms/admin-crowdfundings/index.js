@@ -430,7 +430,7 @@ const AdminCrowdfundings = () => {
   console.log({ isCreateCrowdfunding });
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
+
 
       {!isCreateCrowdfunding ? (
         <div>

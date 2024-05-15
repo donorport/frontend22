@@ -306,7 +306,7 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
             {header}{' '}
             {!hideChevron && !isMobile && (
               <img
-                style={{ marginBottom: '34px' }}
+                style={{ marginTop: '-50px' }}
                 src={chevronDown}
                 alt="Chevron Down"
                 className={expanded ? 'chevron-rotate' : ''}
@@ -360,12 +360,12 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
               </div>
               <span
                 variant="link"
-                className="fw-semibold fs-5 p-0"
+                className="fw-bold fs-5 p-0"
                 // onClick={() => showDetails(order._id)}
               >
                 Checkout #{order.uniqueTransactionId ? order.uniqueTransactionId : order._id}
               </span>
-              <div className="fw-semibold fs-7 text-light mt-3p">
+              <div className="fw-regular fs-6 text-light mt-3p">
                 {moment(order.created_at).format(MOMENT_DATE_FORMAT)}
               </div>
             </div>
@@ -436,14 +436,14 @@ const DonationListItem = ({ donation, activeList }) => {
             </div>
             <div className="d-flex">
               <span
-                className="fw-semibold fs-5 p-0"
+                className="fw-bold fs-5 p-0"
                 // onClick={() => showDetails(donation._id)}
               >
                 {donation?.organizationId?.name} #
                 {donation.uniqueTransactionId ? donation.uniqueTransactionId : donation._id}
               </span>
             </div>
-            <div className="fw-semibold fs-7 text-light mt-3p">
+            <div className="fw-regular fs-6 text-light mt-3p">
               {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
             </div>
           </div>
@@ -496,14 +496,14 @@ const DonationListItem = ({ donation, activeList }) => {
             </div>
             <div className="d-flex">
               <span
-                className="fw-semibold fs-5 p-0"
+                className="fw-bold fs-5 p-0"
                 // onClick={() => showDetails(donation._id)}
               >
                 {donation?.organizationId?.name} #{' '}
                 {donation.uniqueTransactionId ? donation.uniqueTransactionId : donation._id}
               </span>
             </div>
-            <div className="fw-semibold fs-7 text-light mt-3p">
+            <div className="fw-regular fs-6 text-light mt-3p">
               {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
             </div>
             <div className="d-flex mt-2">

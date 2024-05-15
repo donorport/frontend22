@@ -183,7 +183,7 @@ const UserTax = () => {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
+
       <header className="py-sm-2 pb-2 w-100 d-sm-flex align-items-center">
         <div className="me-sm-2 flex-grow-1">
           <h1 className="d-sm-flex page__title fs-3 fw-bolder">Annual Tax Receipts</h1>

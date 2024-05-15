@@ -637,7 +637,7 @@ export default function AdvertisementController() {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
+
       <Index
         advertiseList={advertiseList}
         openModel={openModel}

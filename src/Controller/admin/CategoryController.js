@@ -232,7 +232,7 @@ function CategoryController() {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
+
 
       <Index
         category={category}

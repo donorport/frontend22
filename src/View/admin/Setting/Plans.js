@@ -256,7 +256,7 @@ export default function Plans(props) {
 
     return (
         <>
-           {/*<FrontLoader loading={loading} />*/}
+     
             <Page title="Plans | CMS">
 
                 <Container>

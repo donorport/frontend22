@@ -65,7 +65,7 @@ export default function VerificationInquiryController() {
     return (
         <>
 
-                 {/*<FrontLoader loading={loading} />*/}
+           
             <Index inquiryList={inquiryList} viewDetails={viewDetails}/>
             <Details stateData={state}  modal={modal} setModal={setModal}/>
          

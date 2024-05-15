@@ -99,7 +99,7 @@ const OrderConfirmPage = () => {
     <>
       <Page showTags={true} title={'Order | ' + orderDetails.uniqueTransactionId}>
         <DefaultLayout>
-          {/*<FrontLoader loading={loading} />*/}
+    
           <div className="container-fluid d-flex flex-wrap gap-2">
             <div className="flex__1 d-flex flex-column align-items-sm-center align-items-stretch text-center pb-0 pb-sm-5">
               <div className="d-flex flex-column align-items-center">

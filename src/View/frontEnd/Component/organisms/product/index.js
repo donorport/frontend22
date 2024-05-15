@@ -164,7 +164,7 @@ const Product = (props) => {
       cart_btn
     );
   return (
-    <div className="product px-2">
+    <div className="product px-2 border">
       {/* <Link
         to={'/categories/' + categorySlug}
         // params={{ testvalue: "hello" }}

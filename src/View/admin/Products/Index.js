@@ -3,6 +3,7 @@ import plusFill from '@iconify/icons-eva/plus-fill';
 import editfill from '@iconify/icons-eva/edit-fill';
 import Label from '../../../components/Label';
 import { Icon } from '@iconify/react';
+import { useState } from 'react';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
@@ -11,6 +12,10 @@ import moment from 'moment';
 import Page from '../../../components/Page';
 
 export default function Index(props) {
+  const [rowsPerPage, setRowsPerPage] = useState(100);
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+  };
   const columns = [
     { name: 'Name', selector: 'headline', sortable: true },
     {
@@ -156,7 +161,8 @@ export default function Index(props) {
               noHeader
               defaultSortFieldId="created_at"
               defaultSortAsc={false}
-              pagination
+              paginationPerPage={rowsPerPage}
+              paginationRowsPerPageOptions={[10, 20, 50, 100]} // Customize the available options
               highlightOnHover
             />
           </DataTableExtensions>

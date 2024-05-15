@@ -27,7 +27,7 @@ import moment from 'moment';
 import Page from '../../../components/Page';
 
 export default function Index(props) {
-  const [rowsPerPage, setRowsPerPage] = useState(50);
+  const [rowsPerPage, setRowsPerPage] = useState(100);
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
   };
@@ -72,7 +72,7 @@ export default function Index(props) {
       allowOverflow: true
     },
     {
-      name: 'OTP',
+      name: 'Status',
       cell: (row) => (
         <>
           {/* <span className={row.status === 1 ? "badge badge-success" : "badge badge-danger"}>{row.status === 1 ? 'Active' : 'Inactive'}</span> */}
@@ -82,10 +82,27 @@ export default function Index(props) {
         </>
       ),
       ignoreRowClick: true,
-      allowOverflow: true
+      allowOverflow: true,
+      sortable: true
     },
     {
-      name: 'Applied?',
+      name: 'Bank?',
+      cell: (row) => (
+        <>
+          <Label
+            variant="ghost"
+            color={row.bankaccounts && row.bankaccounts.length > 0 ? 'success' : 'error'}
+          >
+            {row.bankaccounts && row.bankaccounts.length > 0 ? 'Active' : 'Inactive'}
+          </Label>
+        </>
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      sortable: true
+    },
+    {
+      name: 'OTP',
       cell: (row) => (
         <>
           {/* <span className={row.status === 1 ? "badge badge-success" : "badge badge-danger"}>{row.status === 1 ? 'Active' : 'Inactive'}</span> */}

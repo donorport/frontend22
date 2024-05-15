@@ -12,6 +12,7 @@
     width: auto;
 
     &.active {
+      color: $primary !important;
       .tab__active--indicator {
         display: block;
       }

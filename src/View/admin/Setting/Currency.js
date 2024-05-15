@@ -89,7 +89,7 @@ export default function Currency(props) {
 
     return (
         <>
-           {/*<FrontLoader loading={loading} />*/}
+     
             <Page title="Setting |Currency">
 
                 <Container>

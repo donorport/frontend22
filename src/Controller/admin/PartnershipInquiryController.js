@@ -67,7 +67,7 @@ export default function PartnershipInquiryController() {
     return (
         <>
 
-                 {/*<FrontLoader loading={loading} />*/}
+           
             <Index inquiryList={inquiryList} viewDetails={viewDetails} />
             <Details stateData={state}  modal={modal} setModal={setModal} />
 

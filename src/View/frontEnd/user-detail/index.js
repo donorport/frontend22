@@ -82,7 +82,7 @@ function UserDetail(props) {
   return (
     <Page title={'Donorport | ' + data?.name}>
       <NoFooter>
-        {/*<FrontLoader loading={loading} />*/}
+  
         <Container fluid>
           <Tab.Container
             defaultActiveKey={selectedTabKey}

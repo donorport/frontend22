@@ -123,7 +123,7 @@ const AdminAdmin = () => {
 
   return (
     <>
-      {/*<FrontLoader loading={loading} />*/}
+
       <div className="mw-600">
         <div className="mb-5">
           <h4 className="fw-bolder">Administrators</h4>
