@@ -18,9 +18,9 @@ function CategoryCheckbox(props) {
   // console.log(categoryColor)
   const [_checked, setChecked] = useState(checked);
   return (
-    <div className="category__item">
+    <div className="category__item d-flex">
       <label
-        className={`category__label fw-semibold m-1 d-flex flex-column rounded align-items-center justify-content-center ${_checked ? 'active' : ''}`}
+        className={`category__label fw-semibold m-1 d-flex rounded align-items-center justify-content-start gap-1 ${_checked ? 'active' : ''}`}
         htmlFor={name.toLowerCase()}
         style={{
           backgroundColor: checked && categoryColor ? categoryColor : "",

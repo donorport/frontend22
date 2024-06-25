@@ -73,6 +73,7 @@ const Header = ({
             </Link>
           </div>
         )} */}
+        
         <div className="position-relative ms-auto header__right d-flex align-items-center gap-1">
           <Toggle />
           {isHeaderGeo && isPathnameNotCategories && (

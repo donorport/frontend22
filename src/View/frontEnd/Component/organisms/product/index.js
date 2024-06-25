@@ -164,7 +164,7 @@ const Product = (props) => {
       cart_btn
     );
   return (
-    <div className="product px-2 border">
+    <div className="product px-2">
       {/* <Link
         to={'/categories/' + categorySlug}
         // params={{ testvalue: "hello" }}
@@ -180,7 +180,7 @@ const Product = (props) => {
       >
         &nbsp;
       </Link> */}
-      <div className="product__columns mb-3 border-bottom d-flex align-items-center position-relative">
+      <div className="product__columns mb-3 d-flex align-items-center position-relative">
         <div className="product__mid d-flex align-items-center justify-content-center">
           <Link
             className="proudct__img-wrap d-flex align-items-center justify-content-center"
@@ -193,45 +193,17 @@ const Product = (props) => {
             />
           </Link>
         </div>
-        <div className="d-flex me-1 justify-content-end product__org">
-          <Link to={'/organization/' + props.campaignDetails?.slug}>
-            <img alt="" className="img-fluid org__img charity_avatar_bg" src={organization} />
-          </Link>
-        </div>
       </div>
+      <div className="mt-1">
+            <p className="m-0 fs-7">{props.campaignDetails?.name}</p>
+          </div>
       <div className="mx-2 mt-2 d-flex flex-grow-1 product__order">
         <div className="d-flex flex-column flex-grow-1 me-1 me-sm-3">
           <Link to={'/item/' + props.slug} className="d-inline-block">
             <h5 className="product__title">{name}</h5>
           </Link>
-          <div className="mt-1">
-            <p className="m-0 fs-7">{props.campaignDetails?.name}</p>
-            {unlimited ? (
-              <div className="product__count d-flex align-items-center">
-                <span>{sold} sold</span>
-              </div>
-            ) : (
-              <div className="product__count d-flex align-items-center">
-                <span>
-                  {sold}&nbsp;/&nbsp;{total} sold
-                </span>
-              </div>
-            )}
-          </div>
 
-          <div className="product__details d-flex align-items-center py-1 mt-auto pb-3">
-            {/* {props.organizationId !== '63fe5d48448eff9f0a6412d8' &&
-            props.organizationId !== '63fe60f1448eff9f0a6412e6' ? (
-              <div className="d-flex">{btn}</div>
-            ) : (
-              <span className="p-0 pt-1 d-flex gap-1 badge badge--example fs-7 fw-semibold">
-                {' '}
-                <FontAwesomeIcon icon={regular('circle-info')} className="text-primary fs-7" />
-                Example Item
-              </span>
-            )} */}
-            <div className="d-flex">{btn}</div>
-          </div>
+
 
           {/* <div className="mt-1 product__date d-flex align-items-center">
               <FontAwesomeIcon icon={regular('clock')} className="mr-6p" />
@@ -314,6 +286,17 @@ const Product = (props) => {
               <span>{currencySymbol}</span>
               <span>{priceFormat(props.displayPrice)}</span>
             </div>
+            {unlimited ? (
+              <div className="product__count d-flex align-items-center">
+                <span>{sold} sold</span>
+              </div>
+            ) : (
+              <div className="product__count d-flex align-items-center">
+                <span>
+                  {sold}&nbsp;/&nbsp;{total} sold
+                </span>
+              </div>
+            )}
           </div>
           <div className="product__meta d-flex align-items-center justify-content-end mt-2">
             {(props.projectDetails?.length > 0 || props.projectProducts.length > 0) && (
@@ -339,6 +322,24 @@ const Product = (props) => {
           </div>
         </div>
       </div>
+      <div className="product__details d-flex align-items-center py-1 mt-auto pb-3">
+          <div className="d-flex product__org">
+          <Link to={'/organization/' + props.campaignDetails?.slug}>
+            <img alt="" className="img-fluid org__img charity_avatar_bg" src={organization} />
+          </Link>
+        </div>
+            {/* {props.organizationId !== '63fe5d48448eff9f0a6412d8' &&
+            props.organizationId !== '63fe60f1448eff9f0a6412e6' ? (
+              <div className="d-flex">{btn}</div>
+            ) : (
+              <span className="p-0 pt-1 d-flex gap-1 badge badge--example fs-7 fw-semibold">
+                {' '}
+                <FontAwesomeIcon icon={regular('circle-info')} className="text-primary fs-7" />
+                Example Item
+              </span>
+            )} */}
+            <div className="d-flex">{btn}</div>
+          </div>
     </div>
     // <div className="product">
     //   <Link

@@ -86,137 +86,81 @@ const FilterDropdown = (props) => {
 
   return (
     <>
-      {/* this enables back drop on mobile kind of buggy need to fix */}
-      <div
-        className={`selected__overlay ${!hidden ? 'hidden' : ''}`}
-        onClick={() => setHidden(true)}
-      ></div>
-
-      <Dropdown className="d-flex w-100" onToggle={onDropdownToggle}>
-        {module === 'HOME' ? (
-          <Dropdown.Toggle
-            variant="primary"
-            className="d-flex justify-content-center toggle__btn toggle__btn--filters no-caret w-100"
-            style={{ minWidth: '136px' }}
-          >
-            <div className="d-flex align-items-center justify-content-center">
-              <span className="fw-bold fs-5">Filters</span>
-              <span
-                id="filter__icon"
-                className="lottie__icon ms-1 d-flex align-items-center fs-4"
-                ref={sliderAnim}
-              />
-            </div>
-          </Dropdown.Toggle>
-        ) : (
-          <Dropdown.Toggle
-            variant="primary"
-            className="toggle__btn toggle__btn--filters no-caret w-100"
-            style={{ backgroundColor: categoryDetails?.color, borderColor: categoryDetails?.color }}
-          >
-            <div className="d-flex align-items-center justify-content-center">
-              {/* <div className="avatar__small avatar__small--main"style={{width:"29px",height:"29px"}}>
-                  <img src="" alt="" />
-                  </div> */}
-              <span className="fw-bold">{categoryDetails?.name}</span>
-              <span
-                id="filter__icon"
-                className="lottie__icon ms-1 d-flex align-items-center fs-4"
-                ref={sliderAnim}
-              />
-            </div>
-          </Dropdown.Toggle>
-        )}
-        {/* <Dropdown.Toggle variant="primary" size="lg" className="no-caret rounded-pill w-100">
-          <div className="d-flex align-items-center justify-content-center">
-            
-            <span className="fw-bold">Filters</span>
-            <span
-              id="filter__icon"
-              className="lottie__icon ms-1 d-flex align-items-center fs-4"
-              ref={sliderAnim}
-            />
-          </div>
-        </Dropdown.Toggle> */}
-        <Dropdown.Menu
-          renderOnMount
-          className="filter__dropdown mobile__dropdown dropdown-top-arrow"
-        >
-          <div className="filter__dropdown-hd border-bottom">
-            <div className="filter__checkboxes d-flex align-items-center">
-              <div className="filter__item d-flex justify-content-center text-center text-light flex__1">
-                <div className="filter__label d-flex align-items-center fw-bold">Tax Eligible</div>
-                <div className="filter__toggle fs-4">
-                  <IconToggle
-                    iconSrc={emptyreceipt}
-                    checkedIconSrc={receipt}
-                    name="taxEligible"
-                    onClickFilter={props.onClickFilter}
-                    ischecked={props.filters?.taxEligible}
-                  />
-                </div>
-              </div>
-
-              <div className="filter__item d-flex justify-content-center text-center text-light flex__1">
-                <div className="filter__label d-flex align-items-center fw-bold">Tab</div>
-                <div className="filter__toggle fs-4">
-                  <IconToggle
-                    iconSize={24}
-                    activeColor="#947ada"
-                    icon={<FontAwesomeIcon icon={regular('clock-rotate-left')} />}
-                    checkedIcon={<FontAwesomeIcon icon={solid('clock-rotate-left')} />}
-                    name="postTag"
-                    onClickFilter={props.onClickFilter}
-                    ischecked={props.filters?.postTag}
-                  />
-                </div>
-              </div>
-
-              <div className="filter__item d-flex justify-content-center text-center text-light flex__1">
-                <div className="filter__label d-flex align-items-center fw-bold">Ongoing</div>
-                <div className="filter__toggle fs-4">
-                  <IconToggle
-                    iconSize={24}
-                    activeColor="#947ada"
-                    icon={<FontAwesomeIcon icon={regular('infinity')} />}
-                    checkedIcon={<FontAwesomeIcon icon={solid('infinity')} />}
-                    name="infinite"
-                    onClickFilter={props.onClickFilter}
-                    ischecked={props.filters?.infinite}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="filter__slider border-bottom">
-            <Slider
-              range
-              min={filters.lowestPrice}
-              max={filters.highestPrice}
-              defaultValue={[filters.lowestPrice, filters.highestPrice]}
-              marks={marks}
-              onChange={(e) => props.onChangePriceSlider(e)}
-            />
-          </div>
-          <div className="filter__dropdown-bd">
-            <div className="category__list flex-wrap d-flex align-items-center">
-              {categories.map((item, idx) => (
-                <CategoryCheckbox
-                  key={`category_${idx}`}
-                  ind={`category_${idx}`}
-                  id={item.id}
-                  name={item.name}
-                  imgUrl={item.imgUrl}
-                  categoryColor={item.categoryColor}
-                  checked={item.checked}
-                  onSelectCategory={item.onSelectCategory}
+      <div renderOnMount className="filter__dropdown mobile__dropdown dropdown-top-arrow">
+        <div className="filter__dropdown-hd border-bottom">
+          <div className="filter__checkboxes d-flex align-items-center">
+            <div className="filter__item d-flex justify-content-center text-center text-light flex__1">
+              <div className="filter__label d-flex align-items-center fw-bold">Tax Eligible</div>
+              <div className="filter__toggle fs-4">
+                <IconToggle
+                  iconSrc={emptyreceipt}
+                  checkedIconSrc={receipt}
+                  name="taxEligible"
+                  onClickFilter={props.onClickFilter}
+                  ischecked={props.filters?.taxEligible}
                 />
-              ))}
+              </div>
+            </div>
+
+            <div className="filter__item d-flex justify-content-center text-center text-light flex__1">
+              <div className="filter__label d-flex align-items-center fw-bold">Tab</div>
+              <div className="filter__toggle fs-4">
+                <IconToggle
+                  iconSize={24}
+                  activeColor="#947ada"
+                  icon={<FontAwesomeIcon icon={regular('clock-rotate-left')} />}
+                  checkedIcon={<FontAwesomeIcon icon={solid('clock-rotate-left')} />}
+                  name="postTag"
+                  onClickFilter={props.onClickFilter}
+                  ischecked={props.filters?.postTag}
+                />
+              </div>
+            </div>
+
+            <div className="filter__item d-flex justify-content-center text-center text-light flex__1">
+              <div className="filter__label d-flex align-items-center fw-bold">Ongoing</div>
+              <div className="filter__toggle fs-4">
+                <IconToggle
+                  iconSize={24}
+                  activeColor="#947ada"
+                  icon={<FontAwesomeIcon icon={regular('infinity')} />}
+                  checkedIcon={<FontAwesomeIcon icon={solid('infinity')} />}
+                  name="infinite"
+                  onClickFilter={props.onClickFilter}
+                  ischecked={props.filters?.infinite}
+                />
+              </div>
             </div>
           </div>
-          <div className="filter__footer border-top p-2"></div>
-        </Dropdown.Menu>
-      </Dropdown>
+        </div>
+        <div className="filter__slider border-bottom">
+          <Slider
+            range
+            min={filters.lowestPrice}
+            max={filters.highestPrice}
+            defaultValue={[filters.lowestPrice, filters.highestPrice]}
+            marks={marks}
+            onChange={(e) => props.onChangePriceSlider(e)}
+          />
+        </div>
+        <div className="filter__dropdown-bd">
+          <div className="category__list flex-wrap d-flex flex-column">
+            {categories.map((item, idx) => (
+              <CategoryCheckbox
+                key={`category_${idx}`}
+                ind={`category_${idx}`}
+                id={item.id}
+                name={item.name}
+                imgUrl={item.imgUrl}
+                categoryColor={item.categoryColor}
+                checked={item.checked}
+                onSelectCategory={item.onSelectCategory}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="filter__footer border-top p-2"></div>
+      </div>
     </>
   );
 };

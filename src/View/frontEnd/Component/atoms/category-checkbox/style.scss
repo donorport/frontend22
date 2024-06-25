@@ -1,18 +1,6 @@
 .category__item {
   position: relative;
-  display: flex;
-  width: 25%;
-  min-width: 25%;
-  margin-top: -1px;
-  margin-bottom: 0;
-  padding: 12px;
-  justify-content: center;
-  align-items: center;
-  flex: 0 0 auto;
-  border-top: 1px solid $border-color;
-  border-right: 1px solid $border-color;
-  border-left: 1px $border-color;
-  text-align: center;
+  padding: 0px 12px;
 
   input {
     visibility: hidden;

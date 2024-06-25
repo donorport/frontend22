@@ -58,6 +58,7 @@ import ChangePassword from '../View/frontEnd/change-password';
 import ApplyOrganizationController from '../Controller/frontEnd/ApplyOrganizationController';
 import AboutController from '../Controller/frontEnd/AboutController';
 import Media from '../View/frontEnd/media';
+import Landing from '../View/frontEnd/landing';
 import Xp from '../View/frontEnd/xp';
 import Ranks from '../View/frontEnd/ranks';
 import Partnership from '../View/frontEnd/partnership';
@@ -248,6 +249,7 @@ export default function MainRoutes() {
                 <Route path="/terms" element={<Terms />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/media" element={<Media />} />
+                <Route path="/landing" element={<Landing />} />
                 <Route path="/ranks" element={<Ranks />} />
                 <Route path="/trust" element={<Trust />} />
                 <Route path="/xp" element={<Xp />} />
@@ -302,6 +304,7 @@ export default function MainRoutes() {
               <Route path="/help-contact" element={<HelpContact />} />
               <Route path="/item-tags" element={<ItemTags />} />
               <Route path="/media" element={<Media />} />
+              <Route path="/landing" element={<Landing />} />
               <Route path="/ranks" element={<Ranks />} />
               <Route exact path="/organization/:name" element={<OrganizationDetailsController />} />
               <Route exact path="/change-password" element={<ChangePassword />} />

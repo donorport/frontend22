@@ -48,8 +48,6 @@
   border-radius: 9px;
   color: #9796b1;
   min-width: 245px;
-  background-color: $secondary-5;
-  box-shadow: 3px 3px 4px $product-shadow;
 
   // .product__header
   &__header {
@@ -58,7 +56,7 @@
     border-radius: 6px 6px 0 0;
   }
   &__order {
-    height: 156px;
+    height: 106px;
   }
   &__actions {
     height: 60px;
@@ -68,7 +66,10 @@
     font-size: 16px;
     font-weight: 600;
   }
-
+&__mid {
+  background: #ededff;
+  border-radius: 12px
+}
   // .product__footer
   &__footer {
     border-radius: 0 0 6px 6px;
@@ -78,10 +79,12 @@
 
   // .product__org
   &__org {
-    position: absolute;
     right: 12px;
     top: 21px;
-    width: 90px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgb(215, 215, 241);
     // height: 32px;
     text-align: center;
 
@@ -105,7 +108,7 @@
   &__mid {
     position: relative;
     width: 100%;
-    height: 60%;
+    height: 90%;
     // max-width: 35%;
     margin: auto;
     flex-direction: column;
@@ -149,6 +152,7 @@
   &__details {
     // height: 40px;
     // background: $secondary-5;
+    position: relative;
     border-radius: 9px;
     // padding: 12px;
   }
