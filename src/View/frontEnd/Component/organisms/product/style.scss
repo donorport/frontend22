@@ -42,7 +42,23 @@
     width: 1em;
   }
 }
-
+.div-block-32 {
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-left: 6px;
+  padding-right: 6px;
+  display: flex;
+  position: relative;
+}
+.div-block-36 {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  color: var(--neutral-500);
+  flex-flow: column;
+  padding-right: 9px;
+  line-height: 1.15em;
+  display: flex;
+}
 .product {
   // box-shadow: 1px 1px 3px 0 rgb(0 0 0 / 12%);
   border-radius: 9px;

@@ -39,6 +39,7 @@ const UserSettings = (props) => {
   const UserButton = React.forwardRef(({ children, onClick }, ref) => {
     return (
       <Button
+      size={46}
         ref={ref}
         variant="link"
         onClick={(e) => {

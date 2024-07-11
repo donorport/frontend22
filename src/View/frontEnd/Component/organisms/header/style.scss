@@ -1,45 +1,47 @@
-.header__links{
-  padding: .63rem;
+.header__links {
+  padding: 0.63rem;
   background: $secondary-6;
   border-radius: 46px;
 }
 .frontend_pages {
   z-index: 999999;
-  .badge--active {
-    border-radius: 19px;
-    height: 21px;
-    cursor: pointer;
-    padding: 12px 0px;
-  }
-  .active__text {
-    margin-left: 3px;
-  }
-  .main-header {
-    min-height: 80px;
-    max-height: 80px;
-    background: $secondary-1 !important;
-    border-bottom: 1px solid $border-color;
-    padding: 20px 0;
-    font-size: 24px;
-    position: sticky;
-    top: 0;
-    z-index: 99;
+}
+.header {
+  padding-top: 54px;
+  padding-bottom: 42px;
+  // min-height: 80px;
+  // max-height: 80px;
+  // background: $secondary-1 !important;
+  // border-bottom: 1px solid $border-color;
+  // padding: 20px 0;
+  // font-size: 24px;
+  // position: sticky;
+  // top: 0;
+  // z-index: 99;
 
-    .icon__btn {
-      align-items: center;
-      display: flex;
-      width: 30px;
+  .icon__btn {
+    align-items: center;
+    display: flex;
+    width: 30px;
 
-      .icon {
-        color: $neutral-600;
-        font-size: 24px;
-      }
+    .icon {
+      color: $neutral-600;
+      font-size: 24px;
+    }
 
-      .activity-icon {
-        color: rgba(146, 157, 175, 0.6);
-      }
+    .activity-icon {
+      color: rgba(146, 157, 175, 0.6);
     }
   }
+}
+.badge--active {
+  border-radius: 19px;
+  height: 21px;
+  cursor: pointer;
+  padding: 12px 0px;
+}
+.active__text {
+  margin-left: 3px;
 }
 .ms-auto.header__right.d-flex.gap-1 > .dropdown {
   position: static;

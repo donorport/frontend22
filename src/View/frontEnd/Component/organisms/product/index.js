@@ -18,10 +18,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setIsUpdateCart } from '../../../../../user/user.action';
 import receipt from '../../../../../assets/images/receipt.svg';
 import profile from '../../../../../assets/images/avatar.png';
+import ColorThief from 'colorthief';
 
 import './style.scss';
 
 const Product = (props) => {
+  const generateRepeatedText = (text, repeatCount) => {
+    let repeatedText = props.categoryDetails?.slug;
+    for (let i = 0; i < repeatCount; i++) {
+      repeatedText += `${text} `;
+    }
+    return repeatedText.trim();
+  };
+  const repeatedText = generateRepeatedText(props.categoryDetails?.slug || 'Default Text', 50); // Adjust repeat count as needed
+
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
 
   // console.log(props)
@@ -164,185 +174,8 @@ const Product = (props) => {
       cart_btn
     );
   return (
-    <div className="product px-2">
-      {/* <Link
-        to={'/categories/' + categorySlug}
-        // params={{ testvalue: "hello" }}
-        // to={{ pathname: "/categories/" + categorySlug, state: {key:props.categoryDetails?._id} }}
-        className="product__header d-block text-decoration-none"
-        style={{ backgroundColor: theme_color }}
-        state={{
-          id: props.categoryDetails?._id,
-          catIcon: catIcon,
-          theme_color: theme_color,
-          catName: props.categoryDetails?.name
-        }}
-      >
-        &nbsp;
-      </Link> */}
-      <div className="product__columns mb-3 d-flex align-items-center position-relative">
-        <div className="product__mid d-flex align-items-center justify-content-center">
-          <Link
-            className="proudct__img-wrap d-flex align-items-center justify-content-center"
-            to={'/item/' + props.slug}
-          >
-            <img
-              className="product__img img-fluid"
-              alt=""
-              src={helper.CampaignProductImagePath + img}
-            />
-          </Link>
-        </div>
-      </div>
-      <div className="mt-1">
-            <p className="m-0 fs-7">{props.campaignDetails?.name}</p>
-          </div>
-      <div className="mx-2 mt-2 d-flex flex-grow-1 product__order">
-        <div className="d-flex flex-column flex-grow-1 me-1 me-sm-3">
-          <Link to={'/item/' + props.slug} className="d-inline-block">
-            <h5 className="product__title">{name}</h5>
-          </Link>
-
-
-
-          {/* <div className="mt-1 product__date d-flex align-items-center">
-              <FontAwesomeIcon icon={regular('clock')} className="mr-6p" />
-
-              <span className="date__name">{date}</span>
-            </div> */}
-        </div>
-        {/* 
-      <div className="product__actions d-flex align-items-center p-1 me-1 mt-3">
-        {props.organizationId !== '63fe5d48448eff9f0a6412d8' &&
-        props.organizationId !== '63fe60f1448eff9f0a6412e6' ? (
-          <>
-            <div className="d-flex gap-1 me-2">
-              <div className="wish">
-                <IconToggle
-                  activeColor="rgb(246, 100, 97)"
-                  ischecked={props.wishListproductIds.includes(props._id)}
-                  icon={<FontAwesomeIcon icon={regular('heart')} />}
-                  checkedIcon={<FontAwesomeIcon icon={solid('heart')} />}
-                  name={props._id}
-                  onClickFilter={onClickFilter}
-                />
-              </div>
-              <div className="d-flex align-items-center">{btn}</div>
-            </div>
-          </>
-        ) : (
-          <span className="d-flex gap-1 badge badge--example fs-7 fw-semibold me-2">
-            <FontAwesomeIcon icon={regular('circle-info')} className="text-primary fs-7" />
-          </span>
-        )}
-
-        <div className="flex-grow-1">
-          <ProgressBar variant={unlimited ? 'infinity' : 'success'} now={progress} />
-        </div>
-        {!unlimited ? (
-          <span className="ms-1">{progress}%</span>
-        ) : (
-          <div className="unlimited unlimited--home" style={{ marginLeft: '10px' }}>
-            <div className="tag tag--ongoing _2">
-              <div className="d-flex icon icon--unlimited">
-                <FontAwesomeIcon icon={solid('infinity')} className="" />
-              </div>
-            </div>
-          </div>
-        )}
-        <div className="product__category d-flex align-items-center ps-2">
-          <div className="product__subcategory d-flex align-items-center ">
-          <div className="product__cat-icon mr-6p">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 640 512">
-              <path d={subCatIcon} fill="#6f6f90"></path>{' '}
-            </svg>
-          </div>
-          <span>{category}</span>
-        </div>
-          {unlimited ? (
-            <div className="product__count d-flex align-items-center ms-auto ">
-              <span>{sold} sold</span>
-            </div>
-          ) : (
-            <div className="product__count d-flex align-items-center ms-auto ">
-              <span>
-                {sold}&nbsp;/&nbsp;{total} sold
-              </span>
-            </div>
-          )}
-        </div>
-      </div> */}
-        <div className="d-flex flex-column">
-          {' '}
-          <div className="d-flex flex-column gap-1 justify-content-start align-items-end">
-            {/* <div className="small">Each:</div> */}
-            {address && (
-              <div className="product__location fs-7 d-flex align-items-center">
-                <FontAwesomeIcon icon={regular('circle-location-arrow')} className="mr-6p" />
-                <span className="date__name">{address}</span>
-              </div>
-            )}
-            <div className="price product__price fs-5 fw-bold ">
-              <span>{currencySymbol}</span>
-              <span>{priceFormat(props.displayPrice)}</span>
-            </div>
-            {unlimited ? (
-              <div className="product__count d-flex align-items-center">
-                <span>{sold} sold</span>
-              </div>
-            ) : (
-              <div className="product__count d-flex align-items-center">
-                <span>
-                  {sold}&nbsp;/&nbsp;{total} sold
-                </span>
-              </div>
-            )}
-          </div>
-          <div className="product__meta d-flex align-items-center justify-content-end mt-2">
-            {(props.projectDetails?.length > 0 || props.projectProducts.length > 0) && (
-              <span className="product__type icon icon__solid-900 text-success">
-                <FontAwesomeIcon icon={solid('bolt')} className="text-secondary" />
-              </span>
-            )}
-            {props.postTag && (
-              <span className="text-infinity d-flex align-items-center product__type product__type-tab">
-                <FontAwesomeIcon icon={solid('clock-rotate-left')} />
-              </span>
-            )}
-            {props.tax && (
-              <span className="d-flex align-items-center product__type product__tax">
-                <img className="" src={receipt}></img>
-              </span>
-            )}
-            {props.media && (
-              <span className="d-flex align-items-center product__type product__type-media">
-                <FontAwesomeIcon className="text-primary" icon={solid('image')} />
-              </span>
-            )}
-          </div>
-        </div>
-      </div>
-      <div className="product__details d-flex align-items-center py-1 mt-auto pb-3">
-          <div className="d-flex product__org">
-          <Link to={'/organization/' + props.campaignDetails?.slug}>
-            <img alt="" className="img-fluid org__img charity_avatar_bg" src={organization} />
-          </Link>
-        </div>
-            {/* {props.organizationId !== '63fe5d48448eff9f0a6412d8' &&
-            props.organizationId !== '63fe60f1448eff9f0a6412e6' ? (
-              <div className="d-flex">{btn}</div>
-            ) : (
-              <span className="p-0 pt-1 d-flex gap-1 badge badge--example fs-7 fw-semibold">
-                {' '}
-                <FontAwesomeIcon icon={regular('circle-info')} className="text-primary fs-7" />
-                Example Item
-              </span>
-            )} */}
-            <div className="d-flex">{btn}</div>
-          </div>
-    </div>
-    // <div className="product">
-    //   <Link
+    // <div className="product px-2">
+    //   {/* <Link
     //     to={'/categories/' + categorySlug}
     //     // params={{ testvalue: "hello" }}
     //     // to={{ pathname: "/categories/" + categorySlug, state: {key:props.categoryDetails?._id} }}
@@ -356,27 +189,61 @@ const Product = (props) => {
     //     }}
     //   >
     //     &nbsp;
-    //   </Link>
-    //   {/* <button
-    //     className="product__header d-block"
-    //     style={{ backgroundColor: theme_color }}
-    //     onClick={()=>alert('k')}
-    //     variant='link'
-    //   >
-    //     &nbsp;
-    //   </button> */}
-
-    //   <div className="border-bottom d-flex align-items-center p-1 me-1">
-    //     <div className="wish me-1">
-    //       <IconToggle
-    //         activeColor="rgb(246, 100, 97)"
-    //         ischecked={props.wishListproductIds.includes(props._id)}
-    //         icon={<FontAwesomeIcon icon={regular('heart')} />}
-    //         checkedIcon={<FontAwesomeIcon icon={solid('heart')} />}
-    //         name={props._id}
-    //         onClickFilter={onClickFilter}
-    //       />
+    //   </Link> */}
+    //   <div className="product__columns mb-3 d-flex align-items-center position-relative">
+    //     <div className="product__mid d-flex align-items-center justify-content-center">
+    //       <Link
+    //         className="proudct__img-wrap d-flex align-items-center justify-content-center"
+    //         to={'/item/' + props.slug}
+    //       >
+    //         <img
+    //           className="product__img img-fluid"
+    //           alt=""
+    //           src={helper.CampaignProductImagePath + img}
+    //         />
+    //       </Link>
     //     </div>
+    //   </div>
+    //   <div className="mt-1">
+    //         <p className="m-0 fs-7">{props.campaignDetails?.name}</p>
+    //       </div>
+    //   <div className="mx-2 mt-2 d-flex flex-grow-1 product__order">
+    //     <div className="d-flex flex-column flex-grow-1 me-1 me-sm-3">
+    //       <Link to={'/item/' + props.slug} className="d-inline-block">
+    //         <h5 className="product__title">{name}</h5>
+    //       </Link>
+
+    //       {/* <div className="mt-1 product__date d-flex align-items-center">
+    //           <FontAwesomeIcon icon={regular('clock')} className="mr-6p" />
+
+    //           <span className="date__name">{date}</span>
+    //         </div> */}
+    //     </div>
+    //     {/*
+    //   <div className="product__actions d-flex align-items-center p-1 me-1 mt-3">
+    //     {props.organizationId !== '63fe5d48448eff9f0a6412d8' &&
+    //     props.organizationId !== '63fe60f1448eff9f0a6412e6' ? (
+    //       <>
+    //         <div className="d-flex gap-1 me-2">
+    //           <div className="wish">
+    //             <IconToggle
+    //               activeColor="rgb(246, 100, 97)"
+    //               ischecked={props.wishListproductIds.includes(props._id)}
+    //               icon={<FontAwesomeIcon icon={regular('heart')} />}
+    //               checkedIcon={<FontAwesomeIcon icon={solid('heart')} />}
+    //               name={props._id}
+    //               onClickFilter={onClickFilter}
+    //             />
+    //           </div>
+    //           <div className="d-flex align-items-center">{btn}</div>
+    //         </div>
+    //       </>
+    //     ) : (
+    //       <span className="d-flex gap-1 badge badge--example fs-7 fw-semibold me-2">
+    //         <FontAwesomeIcon icon={regular('circle-info')} className="text-primary fs-7" />
+    //       </span>
+    //     )}
+
     //     <div className="flex-grow-1">
     //       <ProgressBar variant={unlimited ? 'infinity' : 'success'} now={progress} />
     //     </div>
@@ -391,149 +258,119 @@ const Product = (props) => {
     //         </div>
     //       </div>
     //     )}
-    //   </div>
-
-    //   <div className="product__columns border-bottom d-flex align-items-center">
-    //     <div className="product__left d-flex flex-column">
-    //       <div className="product__order">
-    //         <Link to={'/item/' + props.slug} className="d-inline-block">
-    //           <h4 className="product__title mt-12p ">{name}</h4>
-    //         </Link>
-    //         <div className="small">Price:</div>
-    //         <div className="product__price">
-    //           <span>{currencySymbol}</span>
-    //           <span className="cost">{priceFormat(props.displayPrice)}</span>
-    //           {/* <span className="cost">{(price)}</span> */}
-    //         </div>
-    //       </div>
-    //       {
-    //         // !CampaignAdminAuthToken &&
-    //         // <div className="mt-auto mb-12p"> {!unlimited ? btn : cart_btn}</div>
-    //         <div className="d-flex mt-auto mb-12p"> {btn}</div>
-    //       }
-    //     </div>
-    //     <div className="product__mid d-flex align-items-center justify-content-center">
-    //       <div className="proudct__img-wrap d-flex align-items-center justify-content-center">
-    //         <Link to={'/item/' + props.slug}>
-    //           <img
-    //             className="product__img img-fluid"
-    //             alt=""
-    //             src={helper.CampaignProductImagePath + img}
-    //           />
-    //         </Link>
-    //       </div>
-    //     </div>
-    //     <div className="product__right position-relative d-flex flex-column align-items-center pt-12p pb-2">
-    //       <div className="product__org">
-    //         <Link to={'/organization/' + props.campaignDetails?.slug} className="">
-    //           <img alt="" className="img-fluid org__img charity_avatar_bg" src={organization} />
-    //         </Link>
-    //       </div>
-    //       {address && (
-    //         <div className="product__location position-absolute d-flex align-items-center mt-auto">
-    //           {/* <span className="icon icon__pro"></span> */}
-    //           {/* <FontAwesomeIcon icon="fa-light fa-circle-location-arrow" /> */}
-    //           <FontAwesomeIcon icon={regular('circle-location-arrow')} className="mr-6p" />
-
-    //           <span className="date__name">{address}</span>
-    //         </div>
-    //       )}
-    //     </div>
-    //   </div>
-
-    //   <div className="product__details border-bottom d-flex align-items-center">
-    //     <div className="product__date d-flex align-items-center">
-    //       {/* <span className="icon icon__pro-400 date__icon mr-6p"></span> */}
-    //       <FontAwesomeIcon icon={regular('clock')} className="mr-6p" />
-
-    //       <span className="date__name">{date}</span>
-    //     </div>
-    //     <div className="product__meta d-flex align-items-center ms-auto">
-    //       {(props.projectDetails?.length > 0 || props.projectProducts.length > 0) && (
-    //         <span className="product__type icon icon__solid-900 text-success">
-    //           <FontAwesomeIcon icon={solid('bolt')} style={{ color: '#5f5df8' }} />
-    //         </span>
-    //       )}
-
-    //       {props.postTag && (
-    //         <span className="product__type product__type-tab icon icon__solid-900">
-    //           {/* <Icon icon="bxs:purchase-tag" color="#947ada" /> */}
-    //           <FontAwesomeIcon icon={solid('clock-rotate-left')} color="#947ada" />
-    //         </span>
-    //       )}
-
-    //       {props.tax && (
-    //         <span className="product__type product__type-tax icon icon__solid-900">
-    //           {/*  */}
-    //           {/* <FontAwesomeIcon icon="fa-solid fa-calculator" /> */}
-    //           <FontAwesomeIcon icon={solid('paperclip')} />
-    //         </span>
-    //       )}
-
-    //       {props.media && (
-    //         <span className="product__type product__type-tab icon icon__solid-900">
-    //           {/* <Icon icon="bxs:purchase-tag" color="#947ada" /> */}
-    //           {/* <FontAwesomeIcon icon={solid("tag")} color="#947ada" /> */}
-    //           <FontAwesomeIcon className="fs-3 text-primary" icon={solid('camera')} />
-    //         </span>
-    //       )}
-    //     </div>
-    //   </div>
-
-    //   <div className="product__category d-flex align-items-center flex-grow-1">
-    //     {/*  <Link
-    //       to={"/categories/" + categorySlug}
-    //       className="product__category-icon me-1"
-    //       style={{ backgroundColor: theme_color }}
-    //       state={{ id: props.categoryDetails?._id, catIcon: catIcon, theme_color: theme_color, catName: props.categoryDetails?.name }}
-    //     >
-    //       <i className={catIcon} style={{ fontFamily: "fontAwesome", color: "white", fontStyle: "normal", marginLeft: "1.5px" }}></i>
-    //       {/* <img
-    //           src=""
-    //           className="img-fluid"
-    //           alt=""
-    //         />
-    //     </Link> */}
-    //     <div className="product__subcategory d-flex align-items-center ">
+    //     <div className="product__category d-flex align-items-center ps-2">
+    //       <div className="product__subcategory d-flex align-items-center ">
     //       <div className="product__cat-icon mr-6p">
-    //         {/* <i className={subCatIcon} style={{ fontFamily: "fontAwesome", fontStyle: "normal" }}></i> */}
-
     //         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 640 512">
     //           <path d={subCatIcon} fill="#6f6f90"></path>{' '}
     //         </svg>
-
-    //         {/* <svg
-    //             viewBox="0 0 25 25"
-    //             height="20"
-    //             xmlns="http://www.w3.org/2000/svg"
-    //           >
-    //             <path
-    //               fill="#6f6f90"
-    //               d="M17.738 17.264H16.445v.955h1.294c.245 0 .453-.219.453-.477 0-.26-.208-.478-.454-.478zM17.697 15.947a.47.47 0 0 0-.454-.472h-.798v.835h1.08a.46.46 0 0 0 .172-.363z"
-    //             ></path>
-    //             <path
-    //               fill="#6f6f90"
-    //               d="M19.371 12.79H16.33c1.128 0 2.025-.933 2.025-2.06V6.11c0-1.127-.897-2.029-2.025-2.029h-4.62c-1.127 0-2.064.902-2.064 2.03v4.619c0 .419.136.808.353 1.133l-.082-.087a2.025 2.025 0 0 0-1.443-.597c-.548 0-1.06.212-1.445.597L4.2 14.603a2.047 2.047 0 0 0 0 2.892l2.828 2.827c.385.385.899.597 1.446.597a2.03 2.03 0 0 0 1.446-.597l2.817-2.827c.293-.293.486-.653.546-1.03v2.378c0 1.127.937 2.06 2.064 2.06h4.023c1.128 0 2.025-.933 2.025-2.06V14.82c0-1.128-.897-2.03-2.025-2.03zm-5.096-7.008c.69 0 1.342.267 1.833.752a.477.477 0 1 1-.67.68 1.658 1.658 0 0 0-2.818 1.179 1.658 1.658 0 0 0 2.913 1.076.477.477 0 1 1 .724.622c-.497.58-1.219.911-1.982.911-1.439 0-2.61-1.17-2.61-2.61s1.171-2.61 2.61-2.61zm-2.752 10.432a.477.477 0 0 1-.606.296l-.704-.243-1.511 1.511.236.719a.477.477 0 1 1-.907.298l-1.29-3.923a.477.477 0 0 1 .609-.6l3.878 1.335c.249.086.381.358.295.607zm1.76-1.394v.813a1.89 1.89 0 0 0-.545-1.03l-2.166-2.164c.324.217.719.352 1.138.352h3.638c-1.127 0-2.064.901-2.064 2.029zm4.455 4.353h-1.75a.508.508 0 0 1-.497-.492v-3.699c0-.264.233-.462.497-.462h1.255a1.413 1.413 0 0 1 1.273 2.017c.38.257.63.702.63 1.199 0 .79-.631 1.437-1.408 1.437z"
-    //             ></path>
-    //           </svg> */}
     //       </div>
     //       <span>{category}</span>
     //     </div>
-    //     {unlimited ? (
-    //       <div className="product__count d-flex align-items-center ms-auto ">
-    //         <span>{sold} sold</span>
+    //       {unlimited ? (
+    //         <div className="product__count d-flex align-items-center ms-auto ">
+    //           <span>{sold} sold</span>
+    //         </div>
+    //       ) : (
+    //         <div className="product__count d-flex align-items-center ms-auto ">
+    //           <span>
+    //             {sold}&nbsp;/&nbsp;{total} sold
+    //           </span>
+    //         </div>
+    //       )}
+    //     </div>
+    //   </div> */}
+    //     <div className="d-flex flex-column">
+    //       {' '}
+    //       <div className="d-flex flex-column gap-1 justify-content-start align-items-end">
+    //         {/* <div className="small">Each:</div> */}
+    //         {address && (
+    //           <div className="product__location fs-7 d-flex align-items-center">
+    //             <FontAwesomeIcon icon={regular('circle-location-arrow')} className="mr-6p" />
+    //             <span className="date__name">{address}</span>
+    //           </div>
+    //         )}
+    //         <div className="price product__price fs-5 fw-bold ">
+    //           <span>{currencySymbol}</span>
+    //           <span>{priceFormat(props.displayPrice)}</span>
+    //         </div>
+    //         {unlimited ? (
+    //           <div className="product__count d-flex align-items-center">
+    //             <span>{sold} sold</span>
+    //           </div>
+    //         ) : (
+    //           <div className="product__count d-flex align-items-center">
+    //             <span>
+    //               {sold}&nbsp;/&nbsp;{total} sold
+    //             </span>
+    //           </div>
+    //         )}
     //       </div>
-    //     ) : (
-    //       <div className="product__count d-flex align-items-center ms-auto ">
-    //         <span>
-    //           {sold}&nbsp;/&nbsp;{total} sold
-    //         </span>
+    //       <div className="product__meta d-flex align-items-center justify-content-end mt-2">
+    //         {(props.projectDetails?.length > 0 || props.projectProducts.length > 0) && (
+    //           <span className="product__type icon icon__solid-900 text-success">
+    //             <FontAwesomeIcon icon={solid('bolt')} className="text-secondary" />
+    //           </span>
+    //         )}
+    //         {props.postTag && (
+    //           <span className="text-infinity d-flex align-items-center product__type product__type-tab">
+    //             <FontAwesomeIcon icon={solid('clock-rotate-left')} />
+    //           </span>
+    //         )}
+    //         {props.tax && (
+    //           <span className="d-flex align-items-center product__type product__tax">
+    //             <img className="" src={receipt}></img>
+    //           </span>
+    //         )}
+    //         {props.media && (
+    //           <span className="d-flex align-items-center product__type product__type-media">
+    //             <FontAwesomeIcon className="text-primary" icon={solid('image')} />
+    //           </span>
+    //         )}
     //       </div>
-    //     )}
+    //     </div>
     //   </div>
-
-    //   <div style={{ backgroundColor: theme_color }} className="product__footer"></div>
+    //   <div className="product__details d-flex align-items-center py-1 mt-auto pb-3">
+    //       <div className="d-flex product__org">
+    //       <Link to={'/organization/' + props.campaignDetails?.slug}>
+    //         <img alt="" className="img-fluid org__img charity_avatar_bg" src={organization} />
+    //       </Link>
+    //     </div>
+    //         {/* {props.organizationId !== '63fe5d48448eff9f0a6412d8' &&
+    //         props.organizationId !== '63fe60f1448eff9f0a6412e6' ? (
+    //           <div className="d-flex">{btn}</div>
+    //         ) : (
+    //           <span className="p-0 pt-1 d-flex gap-1 badge badge--example fs-7 fw-semibold">
+    //             {' '}
+    //             <FontAwesomeIcon icon={regular('circle-info')} className="text-primary fs-7" />
+    //             Example Item
+    //           </span>
+    //         )} */}
+    //         <div className="d-flex">{btn}</div>
+    //       </div>
     // </div>
+    <div class="item">
+      <div class="item__bg">
+        <div class="item__imgwrap">
+          <img src={helper.CampaignProductImagePath + img} class="item__img"></img>
+        </div>
+        <div class="item__words">
+          <div class="text-block">{repeatedText}</div>
+        </div>
+      </div>
+      <div class="div-block-32">
+        <div class="div-block-36">
+          <Link to={'/item/' + props.slug} className="d-inline-block">
+            <h4 className="heading-7">{name}</h4>
+          </Link>
+          <div>{props.campaignDetails?.name}</div>
+        </div>
+        <Button size="sm" variant="info">
+          <span>{currencySymbol}</span>
+          <span>{priceFormat(props.displayPrice)}</span>
+        </Button>
+      </div>
+    </div>
   );
 };
 

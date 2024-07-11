@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
 h1,
 h2:not(.project__detail-price),
@@ -6,16 +6,12 @@ h3:not(.szh-accordion__item-heading),
 h4:not(.modal-title),
 h5,
 h6 {
-  font-family: 'Custom', sans-serif;
-  // font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   color: $neutral-700;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.113em;
 }
 
 body {
-  // font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $neutral-700;
@@ -23,7 +19,7 @@ body {
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: $body-bg;
+  // background-color: $body-bg;
   --text-subtext: #6f6f90;
   --text-color: #{$neutral-700};
   --text-danger: #{$danger};
@@ -37,13 +33,16 @@ body {
 }
 
 a:not(.checkout__title) {
+  font-size: 18px;
+  font-weight: 500;
   text-decoration: none;
   color: $neutral-700;
   cursor: pointer;
 }
 
 p {
-  font-size: 18px;
+  font-size: 18px !important;
+  line-height: 1.778em;
 }
 
 ul {
@@ -110,7 +109,7 @@ li:last-child:not(.ad__activity__item, .wishlist__item, .table__list-item, .cd__
 }
 .form-group {
   max-width: 100%;
-  color: $neutral-700 !important
+  color: $neutral-700 !important;
 }
 .form-control:not(.donate-value-input, .search) {
   height: 54px;
@@ -159,10 +158,6 @@ li:last-child:not(.ad__activity__item, .wishlist__item, .table__list-item, .cd__
 .MuiPaginationItem-root:hover,
 .Mui-selected:focus {
   background-color: $secondary-1 !important;
-}
-.MuiBox-root,
-.card-body {
-  background: $secondary-6;
 }
 .MuiButton-root {
   color: $neutral-700 !important;

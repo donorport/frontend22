@@ -1,128 +1,128 @@
-.btn:not(.btn__link-light, .linked__item-link) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // font-weight: $input-font-weight;
-  transition: none !important;
-  text-wrap: nowrap !important;
-}
-.rounded-pill {
-  min-height: auto !important;
-}
-.btn:not(.btn__category, .btn-outline-primary, .btn__link-light, .toggle__btn, .geo__lock, .btn__follow, .MuiButton-root, .help__button),
-.btn-success,
-.btn-primary,
-.btn-info,
-.btn-danger {
-  &,
-  &:hover,
-  &:focus,
-  &:visited {
-    color: $neutral-100; //always white
-  }
-}
+// .btn:not(.btn__link-light, .linked__item-link) {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   // font-weight: $input-font-weight;
+//   transition: none !important;
+//   text-wrap: nowrap !important;
+// }
+// .rounded-pill {
+//   min-height: auto !important;
+// }
+// .btn:not(.btn__category, .btn-outline-primary, .btn__link-light, .toggle__btn, .geo__lock, .btn__follow, .MuiButton-root, .help__button),
+// .btn-success,
+// .btn-primary,
+// .btn-info,
+// .btn-danger {
+//   &,
+//   &:hover,
+//   &:focus,
+//   &:visited {
+//     color: $neutral-100; //always white
+//   }
+// }
 
-.btn__category,
-.btn-outline-primary
-// .btn__category:hover
-{
-  color: $neutral;
-}
+// .btn__category,
+// .btn-outline-primary
+// // .btn__category:hover
+// {
+//   color: $neutral;
+// }
 
-.btn {
-  font-weight: $font-weight-bold;
-  &-lg {
-    font-weight: $font-weight-normal;
-  }
-}
+// .btn {
+//   font-weight: $font-weight-bold;
+//   &-lg {
+//     font-weight: $font-weight-normal;
+//   }
+// }
 
-.btn-outline-primary {
-  border-color: #6b68f8;
-  color: #6b68f8;
-}
-.btn-outline-primary:hover {
-  border-color: #6b68f8;
-  color: $neutral-100;
-}
+// .btn-outline-primary {
+//   border-color: #6b68f8;
+//   color: #6b68f8;
+// }
+// .btn-outline-primary:hover {
+//   border-color: #6b68f8;
+//   color: $neutral-100;
+// }
 
-.btn.btn__link-light {
-  border: none;
-  color: #9796b1;
+// .btn.btn__link-light {
+//   border: none;
+//   color: #9796b1;
 
-  &:hover {
-    color: $neutral-600;
-  }
-}
+//   &:hover {
+//     color: $neutral-600;
+//   }
+// }
 
-.btn.btn__link-dark {
-  border: none;
-  color: $neutral-700;
+// .btn.btn__link-dark {
+//   border: none;
+//   color: $neutral-700;
 
-  &:hover {
-    color: $neutral-700;
-  }
-}
+//   &:hover {
+//     color: $neutral-700;
+//   }
+// }
 
-.btn__purple {
-  background: #a278fc;
-  color: $neutral-100;
+// .btn__purple {
+//   background: #a278fc;
+//   color: $neutral-100;
 
-  &:hover {
-    color: $neutral-100;
-  }
-}
+//   &:hover {
+//     color: $neutral-100;
+//   }
+// }
 
-.btn__xs {
-  font-size: 11px;
-  line-height: 16px;
-  padding: 4px 8px;
-}
+// .btn__xs {
+//   font-size: 11px;
+//   line-height: 16px;
+//   padding: 4px 8px;
+// }
 
-.btn__category {
-  align-items: center;
-  background-color: $secondary-5;
-  color: $neutral-700;
-  display: flex;
-  justify-content: center;
-  padding: 5px 10px;
-  border-radius: 6px;
+// .btn__category {
+//   align-items: center;
+//   background-color: $secondary-5;
+//   color: $neutral-700;
+//   display: flex;
+//   justify-content: center;
+//   padding: 5px 10px;
+//   border-radius: 6px;
 
-  .icon__category {
-    font-size: 36px;
-    height: 1em;
-    width: 1em;
-    svg {
-      height: 1em;
-      width: 1em;
-    }
-  }
-}
+//   .icon__category {
+//     font-size: 36px;
+//     height: 1em;
+//     width: 1em;
+//     svg {
+//       height: 1em;
+//       width: 1em;
+//     }
+//   }
+// }
 
-.btn-lg {
-  height: 46px;
-  font-size: .98rem;
-  font-weight: 700;
-}
+// .btn-lg {
+//   height: 46px;
+//   font-size: .98rem;
+//   font-weight: 700;
+// }
 
-.btn__signout {
-  background-color: $secondary-3;
+// .btn__signout {
+//   background-color: $secondary-3;
 
-  &:hover {
-    background-color: $neutral-200;
-  }
-}
+//   &:hover {
+//     background-color: $neutral-200;
+//   }
+// }
 
-.btn__checkout {
-  padding: 12px 18px;
-  img {
-    height: 18px;
-  }
-}
+// .btn__checkout {
+//   padding: 12px 18px;
+//   img {
+//     height: 18px;
+//   }
+// }
 
-.btn-check:checked + .btn-primary,
-.btn-check:active + .btn-primary,
-.btn-primary:active,
-.btn-primary.active,
-.show > .btn-primary.dropdown-toggle {
-  color: $neutral-100;
-}
+// .btn-check:checked + .btn-primary,
+// .btn-check:active + .btn-primary,
+// .btn-primary:active,
+// .btn-primary.active,
+// .show > .btn-primary.dropdown-toggle {
+//   color: $neutral-100;
+// }

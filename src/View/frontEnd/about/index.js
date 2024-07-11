@@ -48,7 +48,7 @@ const About = (props) => {
       description="Donate directly to the needs of the organization and help them fund all of their material needs."
     >
       <DefaultLayout className="about">
-        <div className="section--hero section--design">
+        <div className="section--abouthero section--design">
           <Container fluid>
             <Row>
               <Col md="4" className="mb-4 mb-sm-0">
@@ -94,7 +94,7 @@ const About = (props) => {
         </div>
         <Container fluid>
           {/* <h4 className="fs-1 fw-bolder text-center ">Our services</h4> */}
-          <Row className="section--hero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5">
+          <Row className="section--abouthero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5">
             <Col md="6">
               <div className="d-none d-sm-flex align-items-center justify-content-sm-center">
                 <img src={mobile} className="img-fluid" alt="" />
@@ -130,7 +130,7 @@ const About = (props) => {
           </Row>
         </Container>
         <Container fluid>
-          <Row className="section--hero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5">
+          <Row className="section--abouthero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5">
             <Col md="6" className="pt-5">
               <div className="d-flex flex-column align-items-start">
                 <div className="about__label d-flex flex-column align-items-start ">Donations</div>
@@ -156,7 +156,7 @@ const About = (props) => {
             </Col>
           </Row>
         </Container>
-        <div className="section--hero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5 row row section--cityscape">
+        <div className="section--abouthero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5 row row section--cityscape">
           <img src={city} className="cityscape" alt="" />
           <Container fluid>
             <Row>
@@ -209,7 +209,7 @@ const About = (props) => {
         </div>
 
         <Container fluid>
-          <Row className="section--hero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5 row row d-flex justify-content-between">
+          <Row className="section--abouthero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5 row row d-flex justify-content-between">
             <div className="ourbrand__item d-flex align-items-center justify-content-cente gap-1">
               <img src={ad1} className="img-fluid ourbrand__img" alt="" />
             </div>
@@ -234,7 +234,7 @@ const About = (props) => {
           </Row>
         </Container>
 
-        <section className="section--hero pb-0 pt-0 row">
+        <section className="section--abouthero pb-0 pt-0 row">
           <Container fluid>
             <div className="p-5 rounded-5 bg-lighter">
               <Row>
@@ -291,7 +291,7 @@ const About = (props) => {
         </section>
 
         <Container fluid>
-          <Row className="section--hero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5">
+          <Row className="section--abouthero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5">
             <Col md="6">
               <div className="d-flex align-items-center justify-content-center pe-sm-5 mb-5">
                 <img src={list} className="mw-600 w-100 img-fluid" alt="" />
@@ -343,7 +343,7 @@ const About = (props) => {
         </Container>
 
         <Container fluid>
-          <Row className="section--hero pb-0 pt-0">
+          <Row className="section--abouthero pb-0 pt-0">
             <Col md="6">
               <div className="d-flex flex-column align-items-start">
                 <div className="about__label d-flex flex-column align-items-start ">
@@ -363,7 +363,7 @@ const About = (props) => {
           </Row>
         </Container>
         <Container fluid>
-          <Row className="section--hero pt-0 pb-0">
+          <Row className="section--abouthero pt-0 pb-0">
             <Col md="6">
               <div className="d-flex gap-3 mb-3 py-6p flex-wrap">
                 <div className="d-flex align-items-center text-success">
@@ -424,7 +424,7 @@ const About = (props) => {
         </section>
 
         <Container fluid>
-          <Row className="section--hero pb-0 pt-0 row">
+          <Row className="section--abouthero pb-0 pt-0 row">
             <Col md="6" className="pt-5">
               <div className="d-flex flex-column align-items-start">
                 <div className="about__label d-flex flex-column align-items-start ">

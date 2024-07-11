@@ -57,7 +57,7 @@ const Header = ({
   //console.log(`Header${isHeaderGeo ? "GEO" : ''} component render:`, { isHeaderGeo, location, pathname: location.pathname, pathWords, isPathnameNotCategories });
 
   return (
-    <header className="d-flex frontend_pages main-header">
+    <header className="frontend_pages header">
       <Container className="d-flex align-items-center" fluid>
         <Logo />
         {/* {!isMobile && (
