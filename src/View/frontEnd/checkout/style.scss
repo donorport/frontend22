@@ -1,3 +1,8 @@
+.note--user {
+  border-radius: 56px;
+  padding: 12px 24px;
+  max-width: 480px;
+}
 .checkout {
   &__page {
     .logo__wrap {
@@ -41,7 +46,7 @@
     }
 
     .summary__section {
-      background-color: $secondary-5;
+      background-color: $secondary-3;
       padding-top: 5%;
       padding-left: 4%;
       @include media-breakpoint-up(lg) {
@@ -51,7 +56,7 @@
       position: relative;
       &:before {
         content: '';
-        background-color: $secondary-5;
+        background-color: $secondary-3;
         position: absolute;
         left: 0;
         top: 0;
@@ -140,11 +145,11 @@
   &-bd {
     border-radius: 0 0 6px 6px;
     padding: 20px 16px !important;
-    background: $secondary-5
+    background: $secondary-5;
   }
 
   .form-control::placeholder {
-    color: $neutral-600
+    color: $neutral-600;
   }
 
   .form-check-input {

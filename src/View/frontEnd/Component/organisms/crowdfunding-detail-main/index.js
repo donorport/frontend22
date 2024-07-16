@@ -236,7 +236,7 @@ className="flex-grow-1 me-1"
         </div>
         <div>
           <h4 className="page__blurb fw-bolder">{crowdfundingDetails.headline}</h4>
-          <div className="page__paragraph">{crowdfundingDetails.description}</div>
+          <p className="page__paragraph">{crowdfundingDetails.description}</p>
         </div>
       </div>
       {/* <div className="mb-4">

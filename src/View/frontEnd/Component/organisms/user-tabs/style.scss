@@ -1,3 +1,6 @@
+.tab__nav {
+  flex-wrap: nowrap !important;
+}
 .tab__btn {
   cursor: pointer;
   color: $neutral-700 !important;
@@ -5,13 +8,12 @@
   font-weight: $font-weight-bolder;
   // border: 1px solid transparent;
   // line-height: 1;
-  padding: 12px 16px;
+  padding: 21px 52px !important;
   justify-content: start;
 
   &.active {
-    background-color: $secondary-5;
+    background-color: $secondary-3;
     // border-color: var(--border-input);
-
   }
 
   &:hover {

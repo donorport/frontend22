@@ -38,7 +38,7 @@ function OrganizationTeamItem(props) {
         </div>
 
         {/* {member.campaignadminDetails ? (
-          <div className="fw-semibold org__team__item__price fs-6 text-light mb-1">
+          <div className="fw-semibold org__team__item__price fs-6 text-light mb-1 fs-6">
             {member?.campaignadminDetails?.name}
           </div>
         ) : (

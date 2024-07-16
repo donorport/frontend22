@@ -168,7 +168,7 @@ const DonationConfirmPage = () => {
                               <div className="checkout__img d-flex align-items-center justify-content-center">
                                 <ListItemImg
                                   size={76}
-                                  className="avatar__checkout border"
+                                  className="list__item-img avatar__checkout"
                                   imgSrc={
                                     helper.CampaignAdminLogoPath +
                                     doantionDetails?.CampaignAdminDetails?.logo

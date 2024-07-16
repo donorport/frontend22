@@ -303,7 +303,7 @@ function ProjectDetailMain(props) {
         </div>
         <div>
           <h4 className="page__blurb fw-bolder">{projectDetails.headline}</h4>
-          <div className="page__paragraph">{projectDetails.description}</div>
+          <p className="page__paragraph">{projectDetails.description}</p>
         </div>
       </div>
       {/* <div className="mb-4">

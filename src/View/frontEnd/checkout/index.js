@@ -90,9 +90,7 @@ const Checkout = (props) => {
               </span>
             </div>
 
-            <span className="fw-bold fs-4">
-              {props.currencySymbol + priceFormat(total)}
-            </span>
+            <span className="fw-bold fs-4">{props.currencySymbol + priceFormat(total)}</span>
           </div>
 
           <div
@@ -149,18 +147,16 @@ const Checkout = (props) => {
               </span>
             </div>
           </header>
-          <div className="d-flex align-items-center pt-5 mt-1 mb-3">
-            <div className="d-flex align-items-center p-1 pe-2">
-              <Avatar size={36} avatarUrl={user.profileImage} border={0} shadow={false} />
-              <span className="ml-12p fs-6 fw-semibold">
-                {userAuthToken ? userData.name : 'USER'}
-              </span>
+          <div className="note note--user d-flex align-items-center justify-content-between mt-5 mb-3">
+            <div className="d-flex align-items-center gap-1 p-1 pe-2">
+              <Avatar size={49} avatarUrl={user.profileImage} border={0} shadow={false} />
+              <h6>{userAuthToken ? userData.name : 'USER'}</h6>
               {/*<span className="ml-12p fs-7 fw-normal pe-1">signout</span>*/}
             </div>
             <Link
               variant="link"
               size="lg"
-              className="fs-6 text-light fw-normal px-0 ms-3"
+              className="fs-7 text-light fw-normal px-0 ms-3"
               to="/cart"
             >
               Return to cart
@@ -446,7 +442,7 @@ const Checkout = (props) => {
                 style={{ width: '100%', opacity: props.isLoading ? '0.7' : '1' }}
                 variant="primary"
                 size="lg"
-                className="d-flex align-items-center justify-content-center fs-6"
+                className="d-flex align-items-center justify-content-center"
                 onClick={() => !props.isLoading && props.pay()}
               >
                 Pay {props.currencySymbol + priceFormat(grandTotal)}

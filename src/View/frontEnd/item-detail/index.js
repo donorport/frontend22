@@ -256,8 +256,7 @@ const ItemDetail = (props) => {
 
                       <Link
                         to={'/project/' + project.projectDetails?.slug}
-                        variant="link"
-                        style={{maxWidth: '120px'}}
+                        size="lg"
                         className=" btn btn-info text-white mt-2"
                       >
                         <span className="fs-6">Go to Project</span>

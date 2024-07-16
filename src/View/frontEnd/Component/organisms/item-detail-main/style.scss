@@ -14,11 +14,11 @@
 }
 .product__badge {
   .list__item-img {
-    height: 46px !important;
-    min-width: 46px !important;
-    max-width: 46px !important;
-    width: 46px !important;
-    min-height: 46px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    max-width: 56px !important;
+    width: 56px !important;
+    min-height: 56px !important;
     border: none !important;
   }
 }
@@ -43,7 +43,7 @@
   font-size: 16px;
   font-weight: $font-weight-semi-bold;
   color: $neutral-600;
-  margin-bottom: .9rem
+  margin-bottom: .9rem;
   // line-height: 2.3rem;
 }
 
@@ -64,7 +64,7 @@
 }
 
 .project-video-wrap {
-  background-color: $secondary-5;
+  background-color: $secondary-3;
   border-radius: 6px;
   padding-bottom: 56%;
   position: relative;
@@ -90,13 +90,11 @@
   text-transform: lowercase;
 }
 .page__paragraph {
-  line-height: 1.6;
-  font-size: 16px;
   margin: 0;
 }
 
 .sub__total {
-  background-color: $secondary-5;
+  background-color: $secondary-3;
   padding: 20px 28px;
   border-radius: 6px;
   line-height: 30px;

@@ -222,7 +222,7 @@ function OrganizationDetailMain({
         </div>
         <div>
           <h4 className="page__blurb fw-bolder">{organizationDetails?.headline}</h4>
-          <div className="page__paragraph">{organizationDetails?.description}</div>
+          <p className="page__paragraph">{organizationDetails?.description}</p>
         </div>
         <div className="mt-2">
           <span

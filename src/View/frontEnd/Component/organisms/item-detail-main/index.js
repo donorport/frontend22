@@ -107,12 +107,7 @@ function ProjectDetailMain(props) {
     props.addProductToWishlist(productDetails._id);
   };
   const cart_btn = addedToCard ? (
-    <Button
-      variant="success"
-      size="lg"
-      className="icon icon__pro fw-semibold"
-      style={{ minWidth: '250px' }}
-    >
+    <Button variant="success" size="lg" className="icon icon__pro" style={{ minWidth: '250px' }}>
       Added In cart &nbsp;
       <FontAwesomeIcon icon={solid('circle-check')} />
     </Button>
@@ -120,7 +115,7 @@ function ProjectDetailMain(props) {
     <Button
       variant="primary"
       size="lg"
-      className="btn--addtocart fw-semibold"
+      className="btn--addtocart"
       style={{ minWidth: '250px' }}
       onClick={() => {
         props.addToCart(productDetails._id, quantity);
@@ -371,9 +366,9 @@ const ItemDetailsMain = ({
         </div>
       )}
       <h4 className="page__blurb fw-bolder">{productDetails.needheadline}</h4>
-      <div className="page__paragraph">
+      <p className="page__paragraph">
         {productDetails?.description?.replace(/<\/?[^>]+(>|$)/g, '')}
-      </div>
+      </p>
       {productDetails?.productImages &&
         productDetails?.productImages.length > 0 &&
         productDetails?.productImages.filter((e) => e.type === 'galleryImage').length > 0 && (
@@ -454,7 +449,7 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
         <div className="list__item-img list__item-img__tax me-2 p-1 border-0">
           <img src={receipt}></img>{' '}
         </div>
-        <div>These items are tax deductible.</div>
+        <p>These items are tax deductible.</p>
       </div>
     )}
     {productDetails.media && (
@@ -462,7 +457,7 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
         className="pt-12p pb-12p"
         icon={<FontAwesomeIcon icon={solid('image')} className="fs-3 text-primary" />}
       >
-        The organization has indicated that they will upload Media from their purchase.
+        <p> The organization has indicated that they will upload Media from their purchase.</p>
       </IconText>
     )}
     {allStateAds?.length > 0 &&

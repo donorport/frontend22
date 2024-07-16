@@ -415,7 +415,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               </div>
             </div>
             <div className="d-flex flex-column gap-2">
-              <div className="page__paragraph">{item.itemDetails?.descriptions}</div>
+              <p className="page__paragraph">{item.itemDetails?.descriptions}</p>
               <a
                 href={helper.websitePath + '/item/' + item.itemDetails?.slug}
                 className="text-subtext"

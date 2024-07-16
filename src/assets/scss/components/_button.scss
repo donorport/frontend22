@@ -2,8 +2,23 @@
 
 .btn {
   color: $neutral-700;
-  border-radius: 46px
+  border-radius: 46px;
+  font-weight: 700;
 }
+
+.btn-lg {
+  padding: 21px 56px;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+.btn-md {
+  padding: 16px 42px;
+  font-size: 14px;
+}
+.btn-sm {
+  font-size: 14px;
+}
+
 .btn:not(.btn__link-light, .linked__item-link) {
   display: flex;
   align-items: center;
@@ -86,7 +101,7 @@
 
 .btn__category {
   align-items: center;
-  background-color: $secondary-5;
+  background-color: $secondary-3;
   color: $neutral-700;
   display: flex;
   justify-content: center;
@@ -102,15 +117,6 @@
       width: 1em;
     }
   }
-}
-
-.btn-lg {
-  height: 46px;
-  font-size: 0.98rem;
-  font-weight: 700;
-}
-.btn-sm {
-  font-size: 14px
 }
 .btn__signout {
   background-color: $secondary-3;

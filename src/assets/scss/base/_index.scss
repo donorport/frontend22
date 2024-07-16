@@ -84,6 +84,7 @@ li:last-child:not(.ad__activity__item, .wishlist__item, .table__list-item, .cd__
 }
 .price {
   color: $price;
+  font-weight: $font-weight-bold;
   letter-spacing: -0.04em;
 }
 .select__input,
@@ -116,7 +117,7 @@ input {
 .form-control,
 .note,
 .deactivate {
-  background-color: $secondary-5;
+  background-color: $secondary-3;
   color: $neutral-700;
 }
 // CMS STYLES

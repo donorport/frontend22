@@ -107,6 +107,7 @@ function FollowingItem(props) {
       <div className="ad__activity__remove ms-auto">
         <Button
           variant="danger"
+          size="md"
           className="btn__remove-follow text-decoration-none"
           onClick={() => removeOrg()}
         >

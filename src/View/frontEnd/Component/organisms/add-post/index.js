@@ -301,7 +301,7 @@ const AddPost = (props) => {
               style={{ opacity: props.loading ? '0.7' : '1' }}
               variant="success"
               size="lg"
-              className="d-flex align-items-center justify-content-center fs-6"
+              className="d-flex align-items-center justify-content-center"
               onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
             >
               Save Changes
@@ -1405,7 +1405,7 @@ const AddPost = (props) => {
                 style={{ opacity: props.loading ? '0.7' : '1' }}
                 variant="success"
                 size="lg"
-                className="d-flex align-items-center justify-content-center fs-6"
+                className="d-flex align-items-center justify-content-center"
                 onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
               >
                 Save Changes
@@ -1444,7 +1444,7 @@ const SaveCreateButtons = (props) => {
         style={{ opacity: props.loading ? '0.7' : '1' }}
         variant="info"
         size="lg"
-        className="d-flex align-items-center justify-content-center fs-6"
+        className="d-flex align-items-center justify-content-center"
         onClick={() => !props.loading && props.submitProductForm(1, props.selectedProjectList)}
       >
         Create Post

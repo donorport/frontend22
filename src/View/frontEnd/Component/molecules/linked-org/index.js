@@ -264,8 +264,8 @@ function LinkedOrg(props) {
               <div className="empty__cart mb-2">
                 <img src={removeImg} alt="" width="90%" />
               </div>
-              <div className="no__items-found fw-bold">You have no linked organizations.</div>
-              <span className="mt-1 fs-7" style={{ maxWidth: '225px' }}>
+              <h6 className="no__items-found">You have no linked organizations.</h6>
+              <span className="mt-1" style={{ maxWidth: '225px' }}>
                 To link to an organization, you'll need to be invited by a
                 charity.
               </span>

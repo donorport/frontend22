@@ -200,7 +200,7 @@ const AdminTaxTable = (props) => {
                                 onClick={(e) => e.stopPropagation()}
                               >
                                 <div>{item[0].userDetails?.name}</div>
-                                <div className="text-light mb-1">{item[0].userDetails?.email}</div>
+                                <div className="text-light mb-1 fs-6">{item[0].userDetails?.email}</div>
                                 <div className="text-light">
                                   {item[0].userDetails?.street +
                                     ', ' +

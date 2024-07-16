@@ -47,7 +47,7 @@ const SummaryContent = (props) => {
                       <ListItemImg
                         size={75}
                         imgSrc={helper.CampaignProductImagePath + item?.productDetails?.image}
-                        className="avatar__checkout border"
+                        className="list__item-img avatar__checkout"
                       />
                       <span className="badge item__img-badge fw-bold">{item.quantity}</span>
                     </div>
@@ -56,19 +56,19 @@ const SummaryContent = (props) => {
                       <Link
                         variant="link"
                         to={'/item/' + item?.productDetails?.slug}
-                        className=" text-start fw-bolder p-0 mb-3p fs-4"
+                        className=" text-start fw-bolder p-0 mb-3p fs-5"
                       >
                         {item?.productDetails?.headline}
                       </Link>
                       <a
                         href={'/organization/' + item?.productDetails?.organizationDetails?.slug}
-                        className="text-light mb-1"
+                        className="text-light mb-1 fs-6"
                       >
                         {item?.productDetails?.organizationDetails?.name}
                       </a>
                       <Button
                         variant="link"
-                        className="btn__remove p-0 fs-7 text-decoration-none text-start"
+                        className="btn__remove p-0 fs-7 justify-content-start text-decoration-none text-start"
                         onClick={() => props.removeCartItem(item._id)}
                       >
                         remove

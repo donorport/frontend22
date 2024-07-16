@@ -14,7 +14,7 @@
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   border-radius: 50%;
-  background-color: $secondary-5;
+  background-color: $secondary-3;
 }
 .similar__item__wrap:last-child {
   border: none !important;
@@ -23,7 +23,7 @@
   // .similar__item__wrap
   &item__wrap {
     &.active {
-      background-color: $secondary-5;
+      background-color: $secondary-3;
       border-radius: 6px;
     }
   }

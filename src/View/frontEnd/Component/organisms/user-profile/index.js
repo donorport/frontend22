@@ -733,7 +733,7 @@ const UserProfile = () => {
 
       </div> */}
 
-      <Button variant="info" size="lg" className="mb-3" onClick={updateProfile}>
+      <Button variant="info" size="md" className="mb-3" onClick={updateProfile}>
         Save Details
       </Button>
 

@@ -24,9 +24,9 @@ const ShoppingCart = (props) => {
   let currencySymbol = CalculatePrice.currencySymbol();
 
   const updateChildCart = () => {
-    let upd = update
-    setUpdate(upd += 1)
-  }
+    let upd = update;
+    setUpdate((upd += 1));
+  };
   // eslint-disable-next-line react/prop-types
   const CartButton = React.forwardRef(({ children, onClick }, ref) => {
     return (
@@ -96,7 +96,7 @@ const ShoppingCart = (props) => {
           </span>
         </Dropdown.Toggle>
 
-        <Dropdown.Menu 
+        <Dropdown.Menu
           className="cart__dropdown w-350 dropdown-top-arrow"
           style={{ transform: 'translate(45px, 30px) !important' }}
         >
@@ -129,14 +129,11 @@ const ShoppingCart = (props) => {
               )}
               {!state.empty && (
                 <div className="cd__cart__controls d-flex align-items-center flex-column">
-                  <div className="cd__cart__value fs-5 fw-semibold">
-                    <span>Total:</span>
-                    <span className="price ml-6p fs-5 fw-bold">
+                  <Link to="/checkout" className="w-100 btn btn-md btn-info ms-auto">
+                    Checkout{' '}
+                    <span className="me-1">
                       {currencySymbol + priceFormat(Number(state?.subTotal))}
                     </span>
-                  </div>
-                  <Link to="/checkout" className="w-100 btn btn-info ms-auto">
-                    Checkout
                   </Link>
                 </div>
               )}

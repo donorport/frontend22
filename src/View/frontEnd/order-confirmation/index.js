@@ -187,7 +187,7 @@ const OrderConfirmPage = () => {
                                   <div className="checkout__img d-flex align-items-center justify-content-center">
                                     <ListItemImg
                                       size={76}
-                                      className="avatar__checkout border"
+                                      className="list__item-img avatar__checkout"
                                       imgSrc={
                                         helper.CampaignProductImagePath + itm.itemDetails.image
                                       }
@@ -202,11 +202,11 @@ const OrderConfirmPage = () => {
                                 <div className="checkout__info d-flex flex-column flex-wrap align-items-start px-3">
                                   <Link
                                     to={'/item/' + itm.itemDetails.slug}
-                                    className="checkout__title text-start fw-bolder p-0 mb-3p fs-4"
+                                    className="checkout__title text-start fw-bolder p-0 mb-3p fs-5"
                                   >
                                     <div>{itm.itemDetails.headline}</div>
                                   </Link>
-                                  <div className="text-light mb-1">
+                                  <div className="text-light mb-1 fs-6">
                                     <div>{itm.itemDetails.brand}</div>
                                   </div>
                                   <div className="checkout__price flex-row fs-5 fw-bold text-light">

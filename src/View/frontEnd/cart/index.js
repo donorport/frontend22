@@ -114,7 +114,7 @@ const Cart = (props) => {
                       <ListItemImg
                         size={75}
                         imgSrc={helper.CampaignProductImagePath + item?.productDetails?.image}
-                        className="avatar__checkout border"
+                        className="list__item-img avatar__checkout"
                       />
                       <div className="ms-2">
                         <Link
@@ -124,7 +124,7 @@ const Cart = (props) => {
                         >
                           {item?.productDetails?.headline}
                         </Link>
-                        <div className="text-light mb-1">
+                        <div className="text-light mb-1 fs-6">
                           {item?.productDetails?.organizationDetails.name}
                         </div>
                         <Button
