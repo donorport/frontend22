@@ -91,13 +91,12 @@ function UserDetail(props) {
             <div className="user__detail-wrap d-sm-flex">
               <div className="user__detail d-sm-flex px-sm-1">
                 <div className="tab__menu d-sm-flex flex-column align-items-center">
-                  <div className="user__img-wrap mb-4 py-3 border-bottom w-100 d-none d-sm-block">
+                  <div className="user__img-wrap mb-4 py-3 w-100 d-none d-sm-block">
                     <div className="user__img-content">
                       <div
                         className="user__img donor_avatar_bg"
                         style={{
-                          backgroundImage: 'url(' + profileImg + ')',
-                          width: '120px'
+                          backgroundImage: 'url(' + profileImg + ')'
                         }}
                       ></div>
                     </div>

@@ -75,7 +75,7 @@ const UserXp = () => {
     <>
       <header className="py-sm-2 pb-2 mb-3 w-100 d-sm-flex align-items-center d-none">
         <div className="d-flex align-items-center me-sm-2 flex-grow-1 flex-wrap">
-          <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">My XP</h1>
+          <h4 className="d-none d-sm-flex page__title mb-0fw-bolder me-2">My XP</h4>
           <Avatar
             size={46}
             avatarUrl={user.profileImage}
@@ -95,7 +95,7 @@ const UserXp = () => {
             Norwhal
           </IconButton> */}
 
-          <a href="/" className="text-info fw-bold fs-5 ms-auto me-1">
+          <a href="/" className=" ms-auto me-1">
             {Number(user.xp).toLocaleString('en-US', { maximumFractionDigits: 2 })} xp
           </a>
           <ShareWidget

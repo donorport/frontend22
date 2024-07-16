@@ -164,17 +164,17 @@ const HistoryList = ({
       <div className="d-flex flex-wrap gap-2 fw-semibold pb-3 pt-1 pt-sm-0">
         <span>
           {' '}
-          <img alt="" className="me-1" style={{ height: '16px' }} src={coin}></img>
+          <img alt="" className="me-1" style={{ height: '21px' }} src={coin}></img>
           Organization Donation
         </span>
         <span>
           {' '}
-          <img alt="" className="me-1" style={{ height: '16px' }} src={coin2}></img>
+          <img alt="" className="me-1" style={{ height: '21px' }} src={coin2}></img>
           Project Donation
         </span>
         <span>
           {' '}
-          <img alt="" className="me-1" style={{ height: '16px' }} src={bag}></img>
+          <img alt="" className="me-1" style={{ height: '21px' }} src={bag}></img>
           Product Donation(s)
         </span>
       </div>
@@ -337,12 +337,12 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
             <div className="pb-2 d-flex flex-column">
               <div className="accordion__head d-flex align-items-center" style={{ height: '32px' }}>
                 <span className="flex-grow-1 d-flex align-items-center rounded-3">
-                  <img className="me-1" style={{ height: '16px' }} src={bag} alt="" />
-                  <span className="price fw-bold fs-5">
+                  <img className="me-1" style={{ height: '21px' }} src={bag} alt="" />
+                  <h6 className="price">
                     {order.currencySymbol ? order.currencySymbol : '$'}
                     {priceFormat(Number(grandTotal))}
-                  </span>
-                  <span className="ml-6p text-light fs-8">
+                  </h6>
+                  <span className="ml-6p text-light fs-7">
                     {order.currency ? order.currency : 'CAD'}
                   </span>
                 </span>
@@ -358,16 +358,16 @@ const OrderListItem = ({ order, showDetails, activeList }) => {
                   </div>
                 </div>
               </div>
-              <span
+              <p
+                className="fw-semibold"
                 variant="link"
-                className="fw-bold fs-5 p-0"
                 // onClick={() => showDetails(order._id)}
               >
                 Checkout #{order.uniqueTransactionId ? order.uniqueTransactionId : order._id}
-              </span>
-              <div className="fw-regular fs-6 text-light mt-3p">
+              </p>
+              <span className="fs-6 fw-regular text-light mt-3p">
                 {moment(order.created_at).format(MOMENT_DATE_FORMAT)}
-              </div>
+              </span>
             </div>
           </li>
         </>
@@ -403,12 +403,12 @@ const DonationListItem = ({ donation, activeList }) => {
             <div className="d-flex align-items-center">
               <div className="d-flex flex-grow-1" style={{ height: '32px' }}>
                 <span className="d-flex align-items-center rounded-3">
-                  <img alt="" className="me-1" style={{ height: '16px' }} src={coin}></img>
-                  <span className="price fw-bold fs-5">
+                  <img alt="" className="me-1" style={{ height: '21px' }} src={coin}></img>
+                  <h6 className="price">
                     {donation.currencySymbol ? donation.currencySymbol : '$'}
                     {priceFormat(Number(grandTotal))}
-                  </span>
-                  <span className="ml-6p text-light fs-8">
+                  </h6>
+                  <span className="ml-6p text-light fs-7">
                     {donation.currency ? donation.currency : 'CAD'}
                   </span>
                   {/* <span className="ms-2 text-info fw-bold flex__1">{donation?.xp} XP</span> */}
@@ -418,11 +418,11 @@ const DonationListItem = ({ donation, activeList }) => {
                   className="ms-auto d-flex justify-content-end"
                 >
                   {' '}
-                  <ListItemImg
-                    size={32}
+                  {/* <ListItemImg
+                    size={64}
                     imgSrc={helper.CampaignAdminLogoFullPath + donation?.organizationId?.logo}
                     className="history__avatar me-4 charity_avatar_bg"
-                  />
+                  /> */}
                 </Link>
               </div>
               <div className="ms-auto bg-lighter d-flex align-items-center rounded-3">
@@ -435,13 +435,13 @@ const DonationListItem = ({ donation, activeList }) => {
               </div>
             </div>
             <div className="d-flex">
-              <span
-                className="fw-bold fs-5 p-0"
+              <p className="fw-semibold"
+               
                 // onClick={() => showDetails(donation._id)}
               >
                 {donation?.organizationId?.name} #
                 {donation.uniqueTransactionId ? donation.uniqueTransactionId : donation._id}
-              </span>
+              </p>
             </div>
             <div className="fw-regular fs-6 text-light mt-3p">
               {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
@@ -463,12 +463,12 @@ const DonationListItem = ({ donation, activeList }) => {
             <div className="d-flex align-items-center">
               <div className="d-flex flex-grow-1" style={{ height: '32px' }}>
                 <span className="d-flex align-items-center rounded-3">
-                  <img alt="" className="me-1" style={{ height: '16px' }} src={coin2}></img>
-                  <span className="price fw-bold fs-5">
+                  <img alt="" className="me-1" style={{ height: '21px' }} src={coin2}></img>
+                  <h6 className="price ">
                     {donation.currencySymbol ? donation.currencySymbol : '$'}
                     {priceFormat(Number(grandTotal))}
-                  </span>
-                  <span className="ml-6p text-light fs-8">
+                  </h6>
+                  <span className="ml-6p text-light fs-7">
                     {donation.currency ? donation.currency : 'CAD'}
                   </span>
                   {/* <span className="ms-2 text-info fw-bold flex__1">{donation?.xp} XP</span> */}
@@ -479,7 +479,7 @@ const DonationListItem = ({ donation, activeList }) => {
                 >
                   {' '}
                   <ListItemImg
-                    size={32}
+                    size={64}
                     imgSrc={helper.CampaignAdminLogoFullPath + donation?.organizationId?.logo}
                     className="history__avatar me-4 charity_avatar_bg"
                   />
@@ -495,13 +495,13 @@ const DonationListItem = ({ donation, activeList }) => {
               </div>
             </div>
             <div className="d-flex">
-              <span
-                className="fw-bold fs-5 p-0"
+              <p
+                className="fw-semibold"
                 // onClick={() => showDetails(donation._id)}
               >
                 {donation?.organizationId?.name} #{' '}
                 {donation.uniqueTransactionId ? donation.uniqueTransactionId : donation._id}
-              </span>
+              </p>
             </div>
             <div className="fw-regular fs-6 text-light mt-3p">
               {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
@@ -554,7 +554,7 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
         </div>
         <div className="d-flex align-items-center mb-1">
           <div className="fw-semibold fs-7 text-light flex__1">Subtotal:</div>
-          <span className="fw-bold price fs-6">
+          <span className="fw-bold fs-6">
             {order.currencySymbol + parseFloat(order.subtotal).toFixed(2)}
           </span>
         </div>
@@ -563,10 +563,8 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
       <div className="d-flex flex-column gap-2 mb-3 pt-3 border-top">
         <div className="d-flex justify-content-between">
           {' '}
-          <div className="fw-semibold fs-7 text-light flex__1">Total Charge:</div>
-          <span className="fw-bold price fs-5">
-            {order.currencySymbol + parseFloat(order.total).toFixed(2)}
-          </span>
+          <div className="fw-bold fs-6 text-light flex__1">Total Charge:</div>
+          <h6>{order.currencySymbol + parseFloat(order.total).toFixed(2)}</h6>
         </div>
 
         <OrderListTransaction createdAt={order.created_at} CardType={CardBrand} last4={last4} />
@@ -592,22 +590,22 @@ const PurchaseListItem = ({ order, item }) => {
           >
             {item.quantity} {item.itemDetails?.headline}
           </Link>
-          <div className="text-light mb-3p">{item.itemDetails?.brand}</div>
-          <div className="price fs-5 fw-bold">
+          <div className="fs-6 text-light mb-3p">{item.itemDetails?.brand}</div>
+          <h6 className="price">
             {order.currencySymbol ? order.currencySymbol : '$'}{' '}
             {priceFormat(Number(item.productPrice))}
-          </div>
+          </h6>
         </div>
-        <ListItemImg
+      </div>
+      <ListItemImg
           size={54}
           style={{ maxWidth: 'auto !important' }}
-          className="rounded-circle img--nobg mb-0 mb-sm-auto"
+          className="me-3 rounded-circle img--nobg mb-0 mb-sm-auto"
           imgSrc={helper.CampaignAdminLogoPath + item?.itemDetails?.campaignadminsDetails.logo}
         />
-      </div>
       <div className="order__values d-flex align-items-center py-1">
         <span className="fs- text-info fw-bold flex__1">{item.xp ? item.xp : 0} xp</span>
-        <span className="fs-5 fw-bold price ms-2" style={{ width: '80px', textAlign: 'end' }}>
+        <span className="fs-5 fw-bold ms-2" style={{ width: '80px', textAlign: 'end' }}>
           {order.currencySymbol ? order.currencySymbol : '$'}
           {priceFormat(Number(item.productPrice * item.quantity))}
         </span>
@@ -620,11 +618,11 @@ const OrderListTransaction = ({ createdAt, CardType, last4 }) => {
   return (
     <li className="order__transaction pb-2">
       <div className="bg-lighter d-flex align-items-center pt-20p pb-20p px-2 rounded-3">
-        <div className="order__logo me-2">
+        <div className="order__logo mx-1 me-2">
           <img src={getCardIcon(CardType)} alt="" className="img-fluid" />
         </div>
         <div className="order__card fs-7">
-          <div className=" fw-semibold mb-6p">XXXX XXXX XXXX {last4}</div>
+          <div className="fs-6 fw-semibold mb-6p">XXXX XXXX XXXX {last4}</div>
           <div className="text-light fw-semibold">
             <div>Transaction: {moment(createdAt).format(MOMENT_DATE_FORMAT)}</div>
           </div>

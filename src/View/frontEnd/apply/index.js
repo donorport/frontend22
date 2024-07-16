@@ -91,7 +91,7 @@ const Apply = (props) => {
                 once your account has been approved.{' '}
               </div>
             </div>
-                <Form className="d-flex flex-column mb-5 pb-5 gap-3 mw-400" autocomplete="off">
+                <Form className="d-flex flex-column mb-5 pb-5 gap-3 mw-350" autocomplete="off">
                   {/*    <div className="py-1 d-flex justify-content-between fs-4 mb-3">
                     <RadioToggle
                       outline={true}
@@ -459,7 +459,7 @@ const Apply = (props) => {
             <div className="mt-5">
               <h3 className="fw-bolder ">Why Donorport?</h3>
               <div className="d-flex gap-4 fee__list d-sm-flex fs-5 text-light">
-                <div className="">
+                <div>
                   <div className="d-flex align-items-center my-3">
                     <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
                     <span>Charities keep 100% of the proceeds</span>

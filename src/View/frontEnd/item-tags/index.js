@@ -109,7 +109,6 @@ const ItemTags = () => {
                     icon={
                       <FontAwesomeIcon
                         icon={solid('infinity')}
-                        color="#756fe4"
                         className="fs-2 p-3"
                       />
                     }

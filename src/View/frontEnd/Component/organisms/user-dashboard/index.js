@@ -36,7 +36,7 @@ const UserDashboard = () => {
         >
           Norwhal
         </IconButton> */}
-        <span className="text-info fw-bold fs-5">
+        <span>
           {Number(user.xp).toLocaleString('en-US', { maximumFractionDigits: 2 })} xp
         </span>
       </header>

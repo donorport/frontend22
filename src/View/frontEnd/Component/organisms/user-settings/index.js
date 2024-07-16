@@ -76,7 +76,7 @@ const UserSettings = (props) => {
           />
         </Dropdown.Toggle>
 
-        <Dropdown.Menu className="profile__dropdown w-310 dropdown-top-arrow">
+        <Dropdown.Menu className="profile__dropdown w-350 dropdown-top-arrow">
           <div className="dropdown__inner">
             <div className="d-flex activity__dropdown-header">
               {state.wishlist || state.linked_org ? (

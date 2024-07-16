@@ -23,19 +23,19 @@ const FeedTag = (props) => {
         id={data._id}
         type="checkbox"
         name="checkbox"
-        className=""
+       
         checked={checked}
         // onChange={() => setActive(!active)}
         onClick={(e) => props.onSelect(e)} 
       />
       <label htmlFor={data._id}>
         <div className={`icon icon--feedtag ${!checked ? "on" : "off"}`}>
-          <FontAwesomeIcon icon={regular("circle-plus")} className="" />
+          <FontAwesomeIcon icon={regular("circle-plus")} />
         </div>
         {props.icon ? <div className="icon__wrap">{props.icon}</div> : ''}
         <div className="feed__tagtext fs-7 fw-bold">{props.name}</div>
         <div className={`icon icon--feedremove ${checked ? "on" : "off"}`}>
-          <FontAwesomeIcon icon={regular("close")} className="" />
+          <FontAwesomeIcon icon={regular("close")} />
         </div>
       </label>
     </div>

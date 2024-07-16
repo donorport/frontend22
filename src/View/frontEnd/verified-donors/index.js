@@ -17,7 +17,7 @@ const VerifiedDonors = () => {
             to become a verified donor. Verified accounts are able to leave comments on their
             donations.
           </div>
-          <div className="d-flex align-items-center bg-lighter p-2 rounded-4 mw-400">
+          <div className="d-flex align-items-center bg-lighter p-2 rounded-4 mw-350">
             <Avatar size={46} avatarUrl="" border={0} shadow={false} />
             <div className="ms-3 flex__1">
               <div className="d-flex align-items-center mb-3p">
@@ -34,7 +34,7 @@ const VerifiedDonors = () => {
               <div className="text-lighter fw-bold fs-8">1 hr ago</div>
             </div>
           </div>
-          <Form className="mw-400">
+          <Form className="mw-350">
             <div className="input__wrap d-flex">
               <label className="input__label flex__1">
                 <input type="text" />

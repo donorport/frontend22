@@ -49,7 +49,7 @@ const HelpCategory = () => {
               />
             </h1>
             <div className="grid__list">
-              <div className="">
+              <div>
                 <Button
                   variant="outline-white"
                   className="border text-start p-20p  w-100 h-100 fw-normal fs-5"
@@ -63,7 +63,7 @@ const HelpCategory = () => {
                   </div>
                 </Button>
               </div>
-              <div className="">
+              <div>
                 <Button
                   variant="outline-white"
                   className="border text-start p-20p  w-100 h-100 fw-normal fs-5"
@@ -77,7 +77,7 @@ const HelpCategory = () => {
                   </div>
                 </Button>
               </div>
-              <div className="">
+              <div>
                 <Button
                   variant="outline-white"
                   className="border text-start p-20p  w-100 h-100 fw-normal fs-5"
@@ -91,7 +91,7 @@ const HelpCategory = () => {
                   </div>
                 </Button>
               </div>
-              <div className="">
+              <div>
                 <Button
                   variant="outline-white"
                   className="border text-start p-20p  w-100 h-100 fw-normal fs-5"
@@ -105,7 +105,7 @@ const HelpCategory = () => {
                   </div>
                 </Button>
               </div>
-              <div className="">
+              <div>
                 <Button
                   variant="outline-white"
                   className="border text-start p-20p  w-100 h-100 fw-normal fs-5"

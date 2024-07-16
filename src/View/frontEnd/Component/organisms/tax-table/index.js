@@ -121,15 +121,15 @@ const TaxTable = (props) => {
                       hideChevron={disableHeader}
                       buttonProps={{ disabled: disableHeader }}
                       header={
-                        <li className="flex-grow-1 table__list-item px-2 py-2">
+                        <li className="flex-grow-1 table__list-item px-2 py-3">
                           <div className="d-sm-flex align-items-center flex-grow-1">
                             <div className="tax__left d-flex align-items-center me-sm-2 mb-1 mb-sm-0 pe-2">
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4 text-sm-start text-end">
-                                <div className="price fw-bold fs-5">
+                                <h6 className="price ">
                                   {item[0].currencySymbol}
                                   {priceFormat(totalVal(item))}
-                                </div>
-                                <div className="text-light fs-8">
+                                </h6>
+                                <div className="text-light fs-7">
                                   {moment(item[0].created_at).fromNow()}
                                 </div>
                               </div>
@@ -143,13 +143,11 @@ const TaxTable = (props) => {
                                 />
                               </div>
                               <div className="text__wrap text-start w-100 w-sm-auto">
-                                <div className="fw-bold fs-5">
-                                  {item[0].organizationDetails?.name}
-                                </div>
+                                <h6>{item[0].organizationDetails?.name}</h6>
                                 {item.length === 1 && (
-                                  <div className="fs-5 text-light mb-6p">
+                                  <p className="text-light mb-6p">
                                     #{item[0].uniqueTransactionId}
-                                  </div>
+                                  </p>
                                 )}
                                 {/* <div className="fs-7 text-light">
                               {item[0].userDetails.street + ' , ' + item[0].userDetails.cityDetails[0]?.city}
@@ -340,14 +338,14 @@ const TaxTable = (props) => {
                                   <div className="d-flex d-sm-flex align-items-center flex-grow-1 ps-0 ps-sm-1">
                                     <div className="d-flex align-items-center mb-1 mb-sm-0 order-1 order-sm-0">
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-3 text-sm-start text-end">
-                                        <div className="price fw-bold fs-5">
+                                        <div className="price ">
                                           {i1.currencySymbol}
                                           {/*{i1.amount}*/}
                                           {i1.type === 'Purchased'
                                             ? taxableProduct
                                             : taxableDonation}
                                         </div>
-                                        <div className="text-light fs-8">
+                                        <div className="text-light fs-7">
                                           {moment(i1.created_at).fromNow()}
                                         </div>
                                       </div>
@@ -390,9 +388,9 @@ const TaxTable = (props) => {
                                     </div> */}
                                     </div>
                                     <div className="pe-1 p-sm-2 mr-12p">
-                                      <div className="fs-5 text-light mb-6p">
+                                      <p className="text-light mb-6p">
                                         #{i1.uniqueTransactionId}
-                                      </div>
+                                      </p>
                                     </div>
                                   </div>
                                 </li>
@@ -424,16 +422,16 @@ const TaxTable = (props) => {
             <div className="d-sm-flex align-items-center flex-grow-1">
               <div className="d-flex align-items-center flex__1 mb-2">
                 <div className="order-2 order-sm-1 ms-2 ms-sm-0 me-sm-2">
-                  <div className="text-success fw-bold fs-5">$10</div>
-                  <div className="text-light fs-8">11 months ago</div>
+                  <div className="text-success ">$10</div>
+                  <div className="text-light fs-7">11 months ago</div>
                 </div>
                 <div className="order-1 order-sm-2 d-flex align-items-center  flex__1">
                   <div className="position-relative">
                     <ListItemImg imgSrc="" />
                   </div>
-                  <div className="d-sm-flex align-items-center flex__1 ms-2">
+                  <div className="d-sm-flex align-items-center flex__1 ms-2 gap-2">
                     <div>
-                      <div className="fw-bold fs-5 billing__name me-2 mb-6p">
+                      <div className="billing__name me-2 mb-6p">
                         Top Donor
                       </div>
                       <div className="text-light">#158329</div>

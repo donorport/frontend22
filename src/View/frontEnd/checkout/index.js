@@ -90,7 +90,7 @@ const Checkout = (props) => {
               </span>
             </div>
 
-            <span className="fw-bold price fs-4">
+            <span className="fw-bold fs-4">
               {props.currencySymbol + priceFormat(total)}
             </span>
           </div>
@@ -360,7 +360,7 @@ const Checkout = (props) => {
                 <FontAwesomeIcon icon={regular('heart')} className="fs-6 ms-1" />
               </div>
 
-              <div className="">
+              <div>
                 Donorport is run by a small group of volunteers and relies on the genorosity of
                 donors like you to stay up and running. Tips are not tax deductible but are used to
                 cover site maitenance costs.
@@ -446,7 +446,7 @@ const Checkout = (props) => {
                 style={{ width: '100%', opacity: props.isLoading ? '0.7' : '1' }}
                 variant="primary"
                 size="lg"
-                className="d-flex align-items-center justify-content-center fs-6 fw-bold"
+                className="d-flex align-items-center justify-content-center fs-6"
                 onClick={() => !props.isLoading && props.pay()}
               >
                 Pay {props.currencySymbol + priceFormat(grandTotal)}
@@ -480,7 +480,7 @@ const Checkout = (props) => {
                   Privacy policy
                 </a>
               </li>
-              <li className="">
+              <li>
                 <a href="/terms" className="text-subtext">
                   Terms of service
                 </a>

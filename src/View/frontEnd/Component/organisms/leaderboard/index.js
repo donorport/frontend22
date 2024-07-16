@@ -63,7 +63,7 @@ const LeaderBoard = () => {
                               className="d-flex align-items-center w-100"
                               style={{ height: '90px' }}
                             >
-                              <div className="">
+                              <div>
                                 <div className="fs-5 fw-bold mb-3p me-2 me-sm-5">{i + 1}</div>
                               </div>
                               <div className="d-flex align-items-center flex-grow-1">

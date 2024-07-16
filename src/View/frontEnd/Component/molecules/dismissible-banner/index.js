@@ -22,7 +22,7 @@ const DismissibleBanner = ({ message, storageKey }) => {
         <div className="note d-flex gap-2">
           <FontAwesomeIcon className="text-primary fs-5" icon={solid('circle-info')} />
           <p>{message}</p>
-          <button className="" onClick={handleDismiss}>
+          <button onClick={handleDismiss}>
             &times;
           </button>
         </div>

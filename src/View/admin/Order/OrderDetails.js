@@ -135,7 +135,7 @@ const OrderDetails = (props) => {
                                             <tr>
                                                 <td className="no">{i + 1}</td>
                                                 <td className="price"><img style={{ width: "50px" }} src={helper.CampaignProductImagePath + item.productImage} alt="product" /></td>
-                                                <td className=""><h3>{item.productName}</h3></td>
+                                                <td><h3>{item.productName}</h3></td>
                                                 <td className="unit">{(orderDetails.currencySymbol ? orderDetails.currencySymbol : "$") + priceFormat(item.productPrice)}</td>
                                                 <td className="qty">{item.quantity}</td>
                                                 <td className="total">{(orderDetails.currencySymbol ? orderDetails.currencySymbol : "$") + priceFormat(item.totalPrice)}</td>

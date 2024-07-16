@@ -95,7 +95,7 @@ function SimilarItem(props) {
             >
               {product.headline}
             </Link>
-            <div className="similar__item__price fw-bold fs-5">
+            <div className="similar__item__price ">
               {currencySymbol}
               {product.displayPrice ? product.displayPrice : product.price}
             </div>

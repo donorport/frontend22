@@ -31,7 +31,9 @@
   border-radius: 8px;
 
   .list--deactivate {
-    color: var(--text-subtext);
+    display: flex;
+    flex-direction: column;
+    gap: .9rem;
     padding-top: 1.6rem;
     padding-bottom: 0.9rem;
     padding-left: 1.3rem;
@@ -40,7 +42,6 @@
   .list__item {
     padding-top: 0.3rem;
     padding-bottom: 0.6rem;
-    color: rgba(111, 111, 144, 0.59);
     font-size: 14px;
     font-weight: 400;
   }

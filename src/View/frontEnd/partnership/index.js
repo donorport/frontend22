@@ -127,7 +127,7 @@ const Partnership = () => {
               <h1 className=" fw-bolder mb-6p pt-2">Join Forces</h1>
               <div className="fs-5 text-light mb-5">Tell us how you can help Donorport grow.</div>
 
-              <Form className="mw-400">
+              <Form className="mw-350">
                 <div
                   className="py-1 d-flex align-items-center fs-4 mb-3"
                   style={{ height: '60px' }}

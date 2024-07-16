@@ -29,18 +29,18 @@ const XpTable = (props) => {
               />
             </div>
 
-            <div className="d-sm-flex align-items-center flex__1 ms-2">
-              <div className="fw-bold fs-5 billing__name me-2">{data?.organizationDetails?.name}</div>
+            <div className="d-sm-flex align-items-center flex__1 ms-2 gap-2">
+              <h6 className="billing__name me-2">{data?.organizationDetails?.name}</h6>
               <span className="text-light fw-semibold flex__1">
                 <FontAwesomeIcon icon={regular('heart')} className="small me-1" />
                 Donated
               </span>
             </div>
             <div className="d-flex align-items-center">
-              <span className="price fw-bold fs-5 d-none d-sm-flex">
+              <h6 className="price  d-none d-sm-flex">
                 {data.currencySymbol}
                 {data.amount.toFixed(2)}
-              </span>
+              </h6>
             </div>
           </div>
         );
@@ -57,18 +57,18 @@ const XpTable = (props) => {
               />
             </div>
 
-            <div className="d-sm-flex align-items-center flex__1 ms-2">
-              <div className="fw-bold fs-5 billing__name me-2">{data?.productDetails?.headline}</div>
+            <div className="d-sm-flex align-items-center flex__1 ms-2 gap-2">
+              <h6 className="billing__name me-2">{data?.productDetails?.headline}</h6>
               <span className="text-light fw-semibold flex__1">
                 <FontAwesomeIcon icon={regular('bag-shopping')} className="small me-1" />
                 Bought {data.quantity}
               </span>
             </div>
             <div className="d-flex align-items-center">
-              <span className="price fw-bold fs-5 d-none d-sm-flex">
+              <h6 className="price  d-none d-sm-flex">
                 {data.currencySymbol}
                 {price.toFixed(2)}
-              </span>
+              </h6>
             </div>
           </div>
         );
@@ -84,8 +84,8 @@ const XpTable = (props) => {
               />
             </div>
 
-            <div className="d-sm-flex align-items-center flex__1 ms-2">
-              <div className="fw-bold fs-5 billing__name me-2">{data?.organizationDetails?.name}</div>
+            <div className="d-sm-flex align-items-center flex__1 ms-2 gap-2">
+              <h6 className="billing__name me-2">{data?.organizationDetails?.name}</h6>
               <span className="text-light fw-semibold flex__1">
                 <FontAwesomeIcon icon={regular('heart')} className="small me-1" />
                 Followed
@@ -93,7 +93,7 @@ const XpTable = (props) => {
               </span>
             </div>
             <div className="d-flex align-items-center">
-              {/* <span className="text-success fw-bold fs-5">{data.currencySymbol}{data.amount}</span> */}
+              {/* <span className="text-success ">{data.currencySymbol}{data.amount}</span> */}
             </div>
           </div>
         );
@@ -154,14 +154,14 @@ const XpTable = (props) => {
           {ItemList.length > 0 ? (
             ItemList.map((item, i) => {
               return (
-                <li className="table__list-item px-2 py-2">
+                <li className="table__list-item px-2 py-3">
                   <div className="d-flex align-items-center flex-grow-1">
                     <div
                       className="order-2 order-sm-1 me-2 text-sm-start text-end"
                       style={{ width: '65px' }}
                     >
-                      <div className="text-info fw-bold fs-5">{item.xp}XP</div>
-                      <div className="text-light fs-8">{moment(item.created_at).fromNow()}</div>
+                      <h6 className="text-info">{item.xp}XP</h6>
+                      <div className="text-light fs-7">{moment(item.created_at).fromNow()}</div>
                     </div>
                     {getData(item.type, item.xp, item)}
 
@@ -170,8 +170,8 @@ const XpTable = (props) => {
                           <ListItemImg imgSrc=" />
                         </div>
 
-                        <div className="d-sm-flex align-items-center flex__1 ms-2">
-                          <div className="fw-bold fs-5 billing__name me-2">Top Donor</div>
+                        <div className="d-sm-flex align-items-center flex__1 ms-2 gap-2">
+                          <div className="billing__name me-2">Top Donor</div>
                           <span className="text-light fw-semibold flex__1">
                             <FontAwesomeIcon
                               icon={regular("heart")}
@@ -180,7 +180,7 @@ const XpTable = (props) => {
                           </span>
                         </div>
                         <div className="d-flex align-items-center">
-                          <span className="text-success fw-bold fs-5">$400</span>
+                          <span className="text-success ">$400</span>
                         </div>
                       </div> */}
                   </div>
@@ -191,15 +191,15 @@ const XpTable = (props) => {
             // <li className="table__list-item p-2">
             //   <div className="d-flex align-items-center flex-grow-1">
             //     <div className="order-2 order-sm-1 ms-2 ms-sm-0 me-sm-2">
-            //       <div className="text-info fw-bold fs-5">90 XP</div>
-            //       <div className="text-light fs-8">11 months ago</div>
+            //       <div>90 XP</div>
+            //       <div className="text-light fs-7">11 months ago</div>
             //     </div>
             //     <div className="order-1 order-sm-2 d-flex align-items-center  me-sm-3 flex__1">
             //       <div className="position-relative">
             //         <ListItemImg imgSrc="" />
             //       </div>
-            //       <div className="d-sm-flex align-items-center flex__1 ms-2">
-            //         <div className="fw-bold fs-5 billing__name me-2">Social Chain</div>
+            //       <div className="d-sm-flex align-items-center flex__1 ms-2 gap-2">
+            //         <div className="billing__name me-2">Social Chain</div>
             //         <span className="text-light fw-semibold flex__1">
             //           <FontAwesomeIcon
             //             icon={regular("shopping-bag")}
@@ -208,7 +208,7 @@ const XpTable = (props) => {
             //         </span>
             //       </div>
             //       <div className="d-flex align-items-center">
-            //         <span className="text-success fw-bold fs-5">$400</span>
+            //         <span className="text-success ">$400</span>
             //       </div>
             //     </div>
             //   </div>
@@ -216,15 +216,15 @@ const XpTable = (props) => {
             // <li className="table__list-item p-2">
             //   <div className="d-flex align-items-center flex-grow-1">
             //     <div className="order-2 order-sm-1 ms-2 ms-sm-0 me-sm-2">
-            //       <div className="text-info fw-bold fs-5">90 XP</div>
-            //       <div className="text-light fs-8">11 months ago</div>
+            //       <div>90 XP</div>
+            //       <div className="text-light fs-7">11 months ago</div>
             //     </div>
             //     <div className="order-1 order-sm-2 d-flex align-items-center  me-sm-3 flex__1">
             //       <div className="position-relative">
             //         <ListItemImg imgSrc="" />
             //       </div>
-            //       <div className="d-sm-flex align-items-center flex__1 ms-2">
-            //         <div className="fw-bold fs-5 billing__name me-2">Top Donor</div>
+            //       <div className="d-sm-flex align-items-center flex__1 ms-2 gap-2">
+            //         <div className="billing__name me-2">Top Donor</div>
             //         <span className="text-light fw-semibold flex__1">
             //           <FontAwesomeIcon
             //             icon={regular("heart")}
@@ -233,7 +233,7 @@ const XpTable = (props) => {
             //         </span>
             //       </div>
             //       <div className="d-flex align-items-center">
-            //         <span className="text-success fw-bold fs-5">$400</span>
+            //         <span className="text-success ">$400</span>
             //       </div>
             //     </div>
             //   </div>

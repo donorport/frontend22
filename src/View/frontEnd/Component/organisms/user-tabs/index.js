@@ -137,7 +137,7 @@ function UserTabs({ activeKey, data, _onClick, ...otherProps }) {
         </Link>
 
         <Link to={'/user/' + newSlug + '/settings/profile'}>
-          <Nav.Item className="">
+          <Nav.Item>
             <Nav.Link
               eventKey="settings"
               className={

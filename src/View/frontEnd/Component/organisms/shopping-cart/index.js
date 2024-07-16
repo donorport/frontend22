@@ -97,7 +97,7 @@ const ShoppingCart = (props) => {
         </Dropdown.Toggle>
 
         <Dropdown.Menu 
-          className="cart__dropdown w-310 dropdown-top-arrow"
+          className="cart__dropdown w-350 dropdown-top-arrow"
           style={{ transform: 'translate(45px, 30px) !important' }}
         >
           <div className="dropdown__inner">
@@ -128,14 +128,14 @@ const ShoppingCart = (props) => {
                 />
               )}
               {!state.empty && (
-                <div className="cd__cart__controls d-flex align-items-center">
+                <div className="cd__cart__controls d-flex align-items-center flex-column">
                   <div className="cd__cart__value fs-5 fw-semibold">
                     <span>Total:</span>
                     <span className="price ml-6p fs-5 fw-bold">
                       {currencySymbol + priceFormat(Number(state?.subTotal))}
                     </span>
                   </div>
-                  <Link to="/checkout" className=" btn btn-info ms-auto">
+                  <Link to="/checkout" className="w-100 btn btn-info ms-auto">
                     Checkout
                   </Link>
                 </div>

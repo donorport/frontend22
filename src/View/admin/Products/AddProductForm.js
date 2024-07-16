@@ -186,7 +186,7 @@ export default function AddProductForm(props) {
           {stateData.organization && (
             <div className="form-group row">
               <label className="col-form-label col-sm-2 ">Product Post In</label>
-              <div className="">
+              <div>
                 <MapboxAutocomplete
                   publicKey={helper.MapBoxPrimaryKey}
                   inputClass="form-control search"

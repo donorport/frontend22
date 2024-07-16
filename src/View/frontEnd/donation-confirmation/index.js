@@ -231,7 +231,7 @@ const DonationConfirmPage = () => {
                     <div className="total__sub d-flex justify-content-between">
                       <div className="total__title fw-bolder">Subtotal:</div>
                       <div className="total__value text-light">
-                        <p className="price fw-bold fs-5">
+                        <p className="price ">
                           {' '}
                           {doantionDetails.currencySymbol}
                           {/* {purchasedPriceWithTax(Number(orderDetails.subtotal), Number(orderDetails.appliedTaxPercentage))} */}
@@ -271,7 +271,7 @@ const DonationConfirmPage = () => {
                           </div>*/}
                   </div>
                   <div className="bg-lighter d-flex align-items-center p-20p rounded-3">
-                    <div className="order__logo me-2">
+                    <div className="order__logo mx-1 me-2">
                       <img src={getCardIcon(cardType)} alt="" className="img-fluid" />
                     </div>
                     <div className="order__card fs-7">
@@ -290,7 +290,7 @@ const DonationConfirmPage = () => {
                       </div>
                       <div className="order__value text-light d-flex align-items-center">
                         {doantionDetails.currency}
-                        <span className="fs-4 fw-bold price ms-1">
+                        <span className="fs-4 fw-bold ms-1">
                           {' '}
                           {doantionDetails?.currencySymbol}
                           {Number(doantionDetails.amount)}

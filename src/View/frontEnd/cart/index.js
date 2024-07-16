@@ -184,7 +184,7 @@ const Cart = (props) => {
                         </Button>
                       </span>
                       <span
-                        className="fs-5 fw-bold price text-end order-1"
+                        className="fs-5 fw-bold text-end order-1"
                         style={{ minWidth: '90px' }}
                       >
                         {currencySymbol +
@@ -203,7 +203,7 @@ const Cart = (props) => {
 
             <div className="d-flex align-items-center pt-3">
               <span className="fw-bolder flex__1">Subtotal:</span>
-              <span className="price fw-bold fs-5">{currencySymbol + priceFormat(subTotal)}</span>
+              <span className="price ">{currencySymbol + priceFormat(subTotal)}</span>
             </div>
             <div className="d-flex align-items-center py-3 border-bottom">
               <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
@@ -221,7 +221,7 @@ const Cart = (props) => {
                   style={{ width: '44px' }}
                 />
               </span>
-              <span className="price fw-bold fs-5">{currencySymbol + salesTax}</span>
+              <span className="price ">{currencySymbol + salesTax}</span>
             </div>*/}
             {/* <div className="d-flex align-items-center py-3 border-bottom">
               <span className="fw-bolder flex__1">Sales Tax:</span>
@@ -232,7 +232,7 @@ const Cart = (props) => {
           </div>
           <div className="d-flex align-items-center py-1">
             <span className="fw-bolder flex__1">Total:</span>
-            <span className="fw-bold price fs-4">
+            <span className="fw-bold fs-4">
               {' '}
               {currencySymbol +
                 (grandTotal
@@ -282,7 +282,7 @@ const Cart = (props) => {
               Privacy policy
             </a>
           </li>
-          <li className="">
+          <li>
             <a href="/terms" className="text-subtext">
               Terms of service
             </a>

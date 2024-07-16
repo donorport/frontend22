@@ -178,7 +178,7 @@ const UserAdmin = () => {
           <div className="d-flex align-items-start">
             <div className="flex__1">
               <h4 className="fw-bolder">Administrator Status</h4>
-              <div className="text-subtext mb-3">
+              <div className="text-subtext mb-3 pt-1">
                 Enter the code you received to manage an Organization account
               </div>
             </div>
@@ -201,7 +201,7 @@ const UserAdmin = () => {
           <div className="mb-5">
             <h4 className="fw-bolder">Team Members</h4>
 
-            <div className="text-subtext mb-3">
+            <div className="text-subtext mb-3 pt-1">
               Yourself and others have access to these organization accounts:
             </div>
 
@@ -248,7 +248,7 @@ const UserAdmin = () => {
               showEmail={true}
               rightElement={
                 <div className="d-flex aling-items-center">
-                  <Button variant="link" className="">
+                  <Button variant="link">
                     <FontAwesomeIcon
                       icon={regular("shield")}
                       className="text-subtext fs-4 ms-auto"

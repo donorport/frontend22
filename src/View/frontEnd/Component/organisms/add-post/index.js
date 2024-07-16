@@ -42,7 +42,7 @@ const STYLE_CURSOR_POINTER = {
 function CategorySelect({ nameTitle, nameKey, thisCat, thisCatList, onChange, error }) {
   return (
     <div className="form-group ">
-      <div className="">
+      <div>
         <select
           className="form-control"
           onChange={(e) => {
@@ -301,7 +301,7 @@ const AddPost = (props) => {
               style={{ opacity: props.loading ? '0.7' : '1' }}
               variant="success"
               size="lg"
-              className="d-flex align-items-center justify-content-center fs-6 fw-bold"
+              className="d-flex align-items-center justify-content-center fs-6"
               onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
             >
               Save Changes
@@ -560,7 +560,7 @@ const AddPost = (props) => {
                       </div>
                     </div>
                     <div className="note note--info mb-3 fs-6">
-                      <span className="">
+                      <span>
                         Enter the unit price before taxes. Your{' '}
                         <Link
                           to={'/campaign/' + organizationDetails?.slug + '/settings/payments'}
@@ -727,7 +727,7 @@ const AddPost = (props) => {
                                   : noimg
                               }
                               alt="lk"
-                              className=""
+                             
                               style={{ objectFit: 'contain' }}
                             />
                           ) : (
@@ -828,7 +828,7 @@ const AddPost = (props) => {
                             className="text-info icon-method mr-3p fs-4"
                           />
                           Processing uploaded image...
-                          {/* <span className="">
+                          {/* <span>
                           Please upload a transparent image of the product. Click{' '}
                           <a
                             href="https://www.youtube.com/watch?v=G3Y5PcuH23Y"
@@ -849,7 +849,7 @@ const AddPost = (props) => {
                     {!props.loading && (
                       <Box sx={{ width: '100%' }}>
                         <div className="d-flex note note--info mb-3 fs-6">
-                          <span className="">
+                          <span>
                             Upload an image of the product with a transparent background. The image
                             should closesly resemble the product you will purchase but does not need
                             to be exact. Accepted file formats:{' '}
@@ -1183,7 +1183,7 @@ const AddPost = (props) => {
                       allowFullScreen
                     ></iframe>
                   </div>
-                  <div className="">
+                  <div>
                     <div
                       className="upload-picture-video-block mb-2"
                       style={{ display: 'contents' }}
@@ -1384,11 +1384,11 @@ const AddPost = (props) => {
         {error && error.policy && (
           <p className="error">{error ? (error.policy ? error.policy : '') : ''}</p>
         )}
-        <div className="note fs-6 mb-5" style={{ maxWidth: '100%' }}>
+        <p className="note mb-5" style={{ maxWidth: '100%' }}>
           When your post has been fully funded, you will be asked to upload an image of the sales
           receipt to complete the order. A fuflfill button will appear on funded posts. Click this
           button to upload your sales receipt and complete the order.
-        </div>
+        </p>
         <div className="products-detial-footer d-flex py-3 py-sm-5 gap-2">
           {stateData.status === 1 ? (
             <>
@@ -1405,7 +1405,7 @@ const AddPost = (props) => {
                 style={{ opacity: props.loading ? '0.7' : '1' }}
                 variant="success"
                 size="lg"
-                className="d-flex align-items-center justify-content-center fs-6 fw-bold"
+                className="d-flex align-items-center justify-content-center fs-6"
                 onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
               >
                 Save Changes
@@ -1444,7 +1444,7 @@ const SaveCreateButtons = (props) => {
         style={{ opacity: props.loading ? '0.7' : '1' }}
         variant="info"
         size="lg"
-        className="d-flex align-items-center justify-content-center fs-6 fw-bold"
+        className="d-flex align-items-center justify-content-center fs-6"
         onClick={() => !props.loading && props.submitProductForm(1, props.selectedProjectList)}
       >
         Create Post

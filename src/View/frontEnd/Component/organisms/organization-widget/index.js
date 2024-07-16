@@ -483,7 +483,7 @@ function OrganizationWidget(props) {
               <span className="fw-6 me-2">Donate:</span>
 
               {/*<InputGroup className="donate__control">
-            <InputGroup.Text className="">{currencySymbol}</InputGroup.Text>
+            <InputGroup.Text>{currencySymbol}</InputGroup.Text>
             <FormControl
               type="text"
               maxLength={6}

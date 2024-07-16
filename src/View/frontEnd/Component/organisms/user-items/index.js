@@ -107,7 +107,7 @@ const UserItems = () => {
 
   return (
     <>
-      {!initialLoading && (data.city_id == null && data.country_id == null && data.street == null) && (
+      {!initialLoading && data.city_id == null && data.country_id == null && data.street == null && (
         <div className="onboarding d-flex flex-column mw-100 p-5 border rounded-3">
           <div className="d-flex align-items-start">
             <div className="flex-grow-1">
@@ -192,14 +192,24 @@ const UserItemsTableView = ({
   console.log('UserItemsTableView rerender');
   return (
     <div>
-      <header className="py-sm-2 pb-2 mb-2 w-100 d-none d-sm-flex align-items-start">
+      <header className=" w-100 d-none d-sm-flex align-items-start">
         <div className="me-sm-2 flex-grow-1">
-          <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">My Items</h1>
-          <p className="d-sm-block fs-5 text-light">
+          <div className="d-flex align-items-center">
+            {' '}
+            <h4 className="d-none d-sm-flex page__title mb-0 fw-bolder me-2">Items</h4>{' '}
+            <span className="d-none d-sm-flex ml-2">({totalRecord})</span>
+          </div>
+          <p className="d-sm-block">
             Check in on the items you donated to. Click on the title of the item to view the post
             details and see follow-up media and view sales and tax receipt file uploads.
           </p>
-          <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
+          <div className="d-flex flex-wrap gap-2 fw-semibold mt-5 pb-3 pt-sm-0">
+            <span>
+              {/* <img alt="" className="me-1" style={{ height: '21px' }} src={clock}></img> */}
+              <FontAwesomeIcon icon={solid('infinity')} className="fs-5 me-1 text-secondary" />
+              These items have no fixed quantity
+            </span>
+          </div>
         </div>
         {totalPriceArray.length > 0 &&
           totalPriceArray.map((val, index) => {
@@ -268,7 +278,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
       <div className="d-flex align-items-center flex-grow-1 pb-20p border-bottom">
         <Button
           variant="link"
-          className="me-sm-2 me-1"
+          className="p-0 me-sm-2 me-1"
           onClick={() => setDetail({ ...detail, show: false })}
         >
           <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
@@ -284,53 +294,41 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
           </div>
           <div className="ms-3">
             <h2 className="fw-bolder mb-3p">{item.itemDetails?.headline}</h2>
-            <div className="fs-7 text-light">{item.itemDetails?.brand}</div>
+            <div className="fs-6 text-light">{item.itemDetails?.brand}</div>
           </div>
         </div>
 
-        <div className="d-none d-sm-flex align-items-center flex__1">
-          <div className="d-flex align-items-center flex__1 me-2">
-            <div className="d-flex align-items-center progress__wrap flex__1 me-2">
-              {!item.itemDetails?.unlimited ? (
-                <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-1 fw-bold text-light ">
+        <div className="d-none d-sm-flex align-items-center">
+          <div className="d-flex align-items-center me-2">
+            <div className="d-flex align-items-center progress__wrap me-2">
+              {!item.itemDetails?.unlimited && (
+                <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-1 fw-semibold">
                   {item.itemDetails?.soldout}/{item.itemDetails?.quantity}
                 </span>
-              ) : (
-                <></>
               )}
-              <ProgressBar
-                variant={!item.itemDetails?.unlimited ? 'success' : 'infinity'}
-                now={
-                  !item.itemDetails?.unlimited
-                    ? Math.round((item.itemDetails?.soldout / item.itemDetails?.quantity) * 100)
-                    : 100
-                }
-                className="flex-grow-1"
-              />
               {!item.itemDetails?.unlimited ? (
-                <span className="text-light ms-1 fw-bold">
-                  {Math.round((item.itemDetails?.soldout / item.itemDetails?.quantity) * 100)}%
-                </span>
+                <ProgressBar
+                  variant="success"
+                  style={{width: '100px'}}
+                  now={Math.round((item.itemDetails?.soldout / item.itemDetails?.quantity) * 100)}
+                  className="flex-grow-1"
+                />
               ) : (
                 <div className="unlimited unlimited--home" style={{ marginLeft: '10px' }}>
                   <div className="tag tag--ongoing _2">
                     <div className="d-flex icon icon--unlimited">
-                      <FontAwesomeIcon icon={solid('infinity')} className="" />
+                      <FontAwesomeIcon icon={solid('infinity')} />
                     </div>
                   </div>
                 </div>
               )}
-
-              {/* <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-1 fw-bold text-light">
-                        {item.itemDetails?.soldout}/{item.itemDetails?.quantity}
-                      </span>
-                      <ProgressBar
-                        variant="success"
-                        now={Math.round(item.itemDetails?.soldout / item.itemDetails?.quantity * 100)}
-                        className="flex-grow-1"
-                      />
-                      <span className="text-light ms-1 fw-bold">{Math.round(item.itemDetails?.soldout / item.itemDetails?.quantity * 100)}%</span> */}
+              {!item.itemDetails?.unlimited && (
+                <span className="ms-1 fw-semibold">
+                  {Math.round((item.itemDetails?.soldout / item.itemDetails?.quantity) * 100)}%
+                </span>
+              )}
             </div>
+
             <div className="d-flex gap-2">
               {' '}
               {item.itemDetails?.tax && (
@@ -355,7 +353,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
         </div>
 
         <ListItemImg
-          size={46}
+          size={56}
           imgSrc={helper.CampaignAdminLogoPath + item.itemDetails?.organizationDetails?.logo}
           className="charity_avatar_bg"
         />
@@ -363,7 +361,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
 
       <div className="d-sm-none pt-20p pb-20p">
         <div className="d-flex align-items-center">
-          <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-1 fw-bold text-light ms-3 ms-sm-0">
+          <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-1 fw-semibold ms-3 ms-sm-0">
             {item.itemDetails?.soldout}/
             {item.itemDetails?.unlimited ? '∞' : item.itemDetails?.quantity}
           </span>
@@ -377,14 +375,14 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
             className="flex-grow-1"
           />
           {!item.itemDetails?.unlimited ? (
-            <span className="text-light ms-1 fw-bold">
+            <span className="ms-1 fw-semibold">
               {Math.round((item.itemDetails?.soldout / item.itemDetails?.quantity) * 100)}%
             </span>
           ) : (
             <div className="unlimited unlimited--home" style={{ marginLeft: '10px' }}>
               <div className="tag tag--ongoing _2">
                 <div className="d-flex icon icon--unlimited">
-                  <FontAwesomeIcon icon={solid('infinity')} className="" />
+                  <FontAwesomeIcon icon={solid('infinity')} />
                 </div>
               </div>
             </div>
@@ -535,7 +533,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
           </div>
           <div className="order__widget mb-3">
             <div className="d-flex align-items-start bg-lighter p-12p  flex__1 mb-3 rounded-3">
-              <div className="">
+              <div>
                 <img
                   alt=""
                   width="32"
@@ -545,12 +543,12 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               </div>
               <div className="ms-2 flex__1 fw-bolder">
                 <div className="mb-3p">{item.itemDetails?.headline}</div>
-                <div className="price ">
+                <div className="price">
                   {item.currencySymbol ? item.currencySymbol : '$'}
                   {priceFormat(listPrice)}
                 </div>
               </div>
-              <div>
+              <div className="fw-semibold">
                 qty <span className="ml-3p">{item.quantity}</span>
               </div>
             </div>
@@ -577,13 +575,13 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
             </div>
             <div className="d-flex align-items-center pt-3 mb-2">
               <span className="fw-bolder flex__1">Total:</span>
-              <span className="price fw-bold fs-5">
+              <h6 className="price">
                 {item.currencySymbol ? item.currencySymbol : '$'}
                 {priceFormat(Number(purchasedPrice) * Number(item.quantity))}
-              </span>
+              </h6>
             </div>
             <div className="bg-lighter d-flex align-items-center p-20p rounded-3">
-              <div className="order__logo me-2">
+              <div className="order__logo mx-1 me-2">
                 <img src={getCardIcon(cardType)} alt="" className="img-fluid" />
               </div>
               <div className="order__card fs-7">
@@ -632,7 +630,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
                       />
                     </Dropdown.Toggle>
 
-                    <Dropdown.Menu className="">
+                    <Dropdown.Menu>
                       {isReceiptValidImageExtension(item.fulfilDetails[0].receipt) && (
                         <Dropdown.Item
                           className="d-flex align-items-center p-2"

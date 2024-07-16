@@ -58,7 +58,7 @@ import './style.scss';
 
 //           <Dropdown.Menu
 //             show
-//             className="grab__dropdown dropdown-top-arrow w-310"
+//             className="grab__dropdown dropdown-top-arrow w-350"
 //           >
 //             <div className="dropdown__inner pb-12p positin-relative">
 //               <div className=" border-bottom">

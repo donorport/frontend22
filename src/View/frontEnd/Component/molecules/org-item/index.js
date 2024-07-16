@@ -111,14 +111,14 @@ function OrganizationItem(props) {
               <div className="org__item__title pr-12p">
                 <Link
                   to={'/item/' + slug}
-                  className="org__item__name mb-3p  d-inline-block fw-bold fs-5"
+                  className="org__item__name mb-3p  d-inline-block "
                 >
                   {headline}
                 </Link>
                 <div className="fw-semibold org__item__location mb-3p fs-7">
                   {moment(created_at).fromNow()}
                 </div>
-                <div className="org__item__price fw-bold fs-5 price">
+                <div className="org__item__price  price">
                   {props.currencySymbol +
                     (productPrice
                       ? Number(productPrice).toLocaleString('en-US', {

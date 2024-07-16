@@ -50,7 +50,7 @@ function CartItem(props) {
   console.log({ quantity });
 
   return (
-    <li className="d-flex cd__cart__item ps-1 py-2 d-flex align-items-center border-bottom">
+    <li className="d-flex cd__cart__item px-2 py-3 d-flex align-items-center border-bottom">
       <div className="flex-grow-1 d-flex align-items-center">
         <ListItemImg
           size={62}
@@ -60,7 +60,7 @@ function CartItem(props) {
           <div className="cd__cart__title pr-12p">
             <Link
               to={'/item/' + cartItem?.productDetails.slug}
-              className="cd__cart__name text-decoration-none  fs-5"
+              className="cd__cart__name text-decoration-none"
             >
               {cartItem?.productDetails?.headline}
             </Link>
@@ -72,7 +72,7 @@ function CartItem(props) {
             {currencySymbol + priceFormat(price)}
           </div>
         </div>
-        <div className="cd__cart__right d-flex align-items-center">
+        {/* <div className="cd__cart__right d-flex align-items-center">
           <Button variant="link" className="text-decoration-none btn__link-light p-0">
             <FontAwesomeIcon
               icon={regular('angle-down')}
@@ -84,7 +84,6 @@ function CartItem(props) {
               }}
             />
           </Button>
-          {/* <div className="cd__cart__count text-light">{quantity}</div> */}
           <input
             type="text"
             className="qty__input"
@@ -143,13 +142,13 @@ function CartItem(props) {
               }}
             />
           </Button>
-        </div>
+        </div> */}
       </div>
       <div className="cd__cart__remove ms-auto">
         <Button
           variant="link"
           className="btn__link-light text-decoration-none"
-          style={{ fontSize: '18px' }}
+          style={{ fontSize: '18px', padding: '30px 21px' }}
           onClick={() => props.removeCartItem(cartItem._id)}
         >
           <FontAwesomeIcon icon={solid('trash')} />

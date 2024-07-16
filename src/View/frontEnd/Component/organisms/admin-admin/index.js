@@ -127,7 +127,7 @@ const AdminAdmin = () => {
       <div className="mw-600">
         <div className="mb-5">
           <h4 className="fw-bolder">Administrators</h4>
-          <div className="text-subtext mb-3">
+          <div className="text-subtext mb-3 pt-1">
             These users have full access to the account for
             <FontAwesomeIcon icon={regular('link')} className="text-subtext me-1 ms-2" />
             {data.name}

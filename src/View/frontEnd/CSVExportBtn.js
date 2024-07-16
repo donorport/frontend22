@@ -7,7 +7,7 @@ const CSVExportBtn = (props) => {
     const label = props.label
 
     return (
-        <CSVLink data={csvData} headers={headers} className="btn btn-info text-nowrap" filename={fileName}>
+        <CSVLink data={csvData} headers={headers} className="btn btn-info btn-sm text-nowrap" filename={fileName}>
             {label}
         </CSVLink>
     )

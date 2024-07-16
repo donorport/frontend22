@@ -2,7 +2,7 @@ $body-bg: #fff;
 $list: #fff;
 $input: #fff;
 $primary: #2448e4;
-$secondary: #0e75f9;
+$secondary: #BE50E2;
 $slider: #96dbfa;
 $progress: #f8fafd;
 $slider-filled: #abe2fb;
@@ -29,6 +29,7 @@ $product-shadow: #f1f1f100;
 $font-family-sans-serif: 'Jcfonts linotte', sans-serif;
 
 $body-color: $neutral-700;
+$body-bg: #fbfcfe;
 
 $darkest: #001429;
 $dark: $neutral-700;
@@ -83,12 +84,13 @@ $btn-padding-y: 21px;
 $btn-padding-x: 56px;
 
 $btn-padding-y-sm: 9px;
-$btn-padding-x-sm: 37px;
+$btn-padding-x-sm: 26px;
 
 $btn-padding-y-lg: 10px;
 $btn-padding-x-lg: 20px;
 
-$btn-font-size-sm: 14px; 
+$btn-font-size-sm: 18px; // Font size
+
 $btn-font-size: 20px; // Font size
 $btn-font-weight: 700; // Font weight
 
@@ -104,7 +106,7 @@ $border-radius-lg: 4px;
 
 $neutral: #6b68f8;
 $success: #62de79;
-$price: #3a395e;
+$price: #333;
 $warning: #f8b22f;
 $danger: #f15e5e;
 $info: #2448e4;
@@ -118,7 +120,7 @@ $dark: $neutral-700 !default;
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
-  'primary': $neutral,
+  'primary': $primary,
   'secondary': $secondary,
   'success': $success,
   'price': $price,
@@ -136,10 +138,10 @@ $theme-colors: (
 $progress-height: 0.75rem;
 $progress-border-radius: 35px;
 
-$font-weight-normal: 400;
-$font-weight-medium: 500;
-$font-weight-semibold: 600;
-$font-weight-bold: 700;
+$font-weight-normal: 500;
+$font-weight-medium: 600;
+$font-weight-semibold: 700;
+$font-weight-bold: 900;
 
 $grid-gutter-width: 2.5rem;
 

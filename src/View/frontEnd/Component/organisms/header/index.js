@@ -74,7 +74,7 @@ const Header = ({
           </div>
         )} */}
         
-        <div className="position-relative ms-auto header__right d-flex align-items-center gap-1">
+        <div className="position-relative ms-auto header__right d-flex align-items-center gap-2">
           <Toggle />
           {isHeaderGeo && isPathnameNotCategories && (
             <GeoLocation productList={productList} wishListproductList={wishListproductList} />

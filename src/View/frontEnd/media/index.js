@@ -89,7 +89,7 @@ const Media = () => {
 
             <Row className="mb-5">
               <Col md="6">
-                <div className="media__box media__box--lg position-relative d-flex mt-1 p-3 justify-content-center align-items-center rounded border bg-lighter border-2 mw-400 mb-2 mb-sm-0">
+                <div className="media__box media__box--lg position-relative d-flex mt-1 p-3 justify-content-center align-items-center rounded border bg-lighter border-2 mw-350 mb-2 mb-sm-0">
                   <img src={spacing} alt="" className="img-fluid" />
                 </div>
               </Col>
@@ -104,13 +104,13 @@ const Media = () => {
                     </div>
                     <div className="d-flex">
                       <div className="media__icon flex-shrink-0 me-2">&nbsp;</div>
-                      <div className="">
+                      <div>
                         The amount of clear space around our logo should be equal to or greater than
                         the height of the circle logo.
                       </div>
                     </div>
                   </div>
-                  <div className="">
+                  <div>
                     <div className="d-flex align-items-center">
                       <div className="media__icon flex-shrink-0 d-flex align-items-center justify-content-center me-2">
                         <FontAwesomeIcon icon={solid('close')} className="text-danger me-0" />
@@ -119,7 +119,7 @@ const Media = () => {
                     </div>
                     <div className="d-flex">
                       <div className="media__icon flex-shrink-0 me-2">&nbsp;</div>
-                      <div className="">
+                      <div>
                         Don’t crowd the logo with images, text, or other graphics that compromise
                         its impact.
                       </div>

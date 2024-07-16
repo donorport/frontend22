@@ -154,10 +154,10 @@ const AdminBilling = () => {
         </div>*/}
 
         <div className="mb-5">
-          <div className="d-sm-flex align-items-center mb-5 mb-sm-3">
+          <div className="d-sm-flex align-items-start mb-5 mb-sm-3">
             <div className="flex__1 mb-2">
               <h4 className="fw-bolder">Payment History</h4>
-              <div className="text-subtext">All transactions related to your Admin account</div>
+              <div className="text-subtext mb-3 pt-1">All transactions related to your Admin account</div>
             </div>
             {historyList.length > 0 && (
               <CSVExportBtn headers={headers} csvData={csvData} label="Export" prifix="_billing" />
@@ -233,7 +233,7 @@ const AdminBilling = () => {
                           className="admin__avatar mr-12p donor_avatar_bg"
                         />
                         <div className="admin__billing__value order-1 me-0 me-sm-4 text-end">
-                          <div className="text-success fw-bold fs-5 mb-3p">
+                          <div className="text-success  mb-3p">
                             + {currencySymbole}
                             {priceFormat(Number(amount))}
                           </div>

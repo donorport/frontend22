@@ -78,10 +78,10 @@ const SummaryContent = (props) => {
                   {item.productDetails?.tax && (
                     <div className="checkout__tax d-flex align-items-center justify-content-center">
                       {/* <FontAwesomeIcon icon={solid('paperclip')} className="text-info fs-4" /> */}
-                      <img className="" src={receipt}></img>
+                      <img src={receipt}></img>
                     </div>
                   )}
-                  <span className="checkout__subtotal--price text-end mt-6p fw-bold price ms-3 fs-5">
+                  <span className="checkout__subtotal--price text-end mt-6p fw-bold ms-3 fs-5">
                     {props.currencySymbol +
                       // priceFormat(
                       //   props.CalculatedPrice.getData(item.productDetails?.price) * item.quantity
@@ -102,7 +102,7 @@ const SummaryContent = (props) => {
         <div className=" py-3 border-bottom">
           <div className="d-flex align-items-center pb-20p">
             <span className="fw-bolder flex__1">Subtotal:</span>
-            <span className="price fw-bold fs-5">
+            <span className="price ">
               {props.currencySymbol + priceFormat(subtotal)}
             </span>
           </div>
@@ -116,7 +116,7 @@ const SummaryContent = (props) => {
           </div>
           {/*    <div className="d-flex align-items-center pb-20p">
             <span className="fw-bolder flex__1">Merchant Fee</span>
-            <span className="fw-bold fs-5 text-light">{props.currencySymbol + props.salesTax}</span>
+            <span className=" text-light">{props.currencySymbol + props.salesTax}</span>
           </div>*/}
           <div className="d-flex align-items-center">
             <span className="fw-bolder flex__1">XP</span>
@@ -132,7 +132,7 @@ const SummaryContent = (props) => {
       <div className="d-flex align-items-center pt-1 pb-2">
         <span className="fw-bolder flex__1">Total:</span>
         {/* <span className="text-subtext me-2 fs-7">USD</span> */}
-        <span className="fw-bold price fs-4">
+        <span className="fw-bold fs-4">
           {/* {props.currencySymbol + priceFormat(total ? total : 0)} */}
           {props.currencySymbol + priceFormat(grandTotal)}
         </span>

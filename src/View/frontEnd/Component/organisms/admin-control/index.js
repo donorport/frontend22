@@ -96,7 +96,7 @@ const AdminControl = () => {
      {/*<FrontLoader loading={loading} />*/}
       <div className="mb-5">
         <h4 className="fw-bolder">Notifications </h4>
-        <div className="text-subtext mb-3">Turn off / on notifications</div>
+        <div className="text-subtext mb-3 pt-1">Turn off / on notifications</div>
         <div>
           <div className="d-flex align-items-center mb-2">
             <span className="d-flex pe-2 py-1">
@@ -115,7 +115,7 @@ const AdminControl = () => {
 
       <div className="mb-5">
         <h4 className="fw-bolder">Alerts</h4>
-        <div className="text-subtext mb-3">
+        <div className="text-subtext mb-3 pt-1">
           Notify you when there is activity on your organization account
         </div>
         <div>
@@ -144,7 +144,7 @@ const AdminControl = () => {
 
       <div className="mb-5">
         <h4 className="fw-bolder">Orders</h4>
-        <div className="text-subtext mb-3">
+        <div className="text-subtext mb-3 pt-1">
           Notify you when there is activity on items you post
         </div>
         <div>
@@ -173,7 +173,7 @@ const AdminControl = () => {
 
       <div className="mb-5">
         <h4 className="fw-bolder">Billing</h4>
-        <div className="text-subtext mb-3">Notify you when there are issues with your payments / saved cards</div>
+        <div className="text-subtext mb-3 pt-1">Notify you when there are issues with your payments / saved cards</div>
         <div>
           <div className="d-flex align-items-center mb-2">
             <span className="d-flex pe-2 py-1">
@@ -186,7 +186,7 @@ const AdminControl = () => {
 
       <div className="mb-5">
         <h4 className="fw-bolder">Other</h4>
-        <div className="text-subtext mb-3">Site functionality and more</div>
+        <div className="text-subtext mb-3 pt-1">Site functionality and more</div>
         <div>
           <div className="d-flex align-items-center mb-2">
             <span className="d-flex pe-2 py-1">

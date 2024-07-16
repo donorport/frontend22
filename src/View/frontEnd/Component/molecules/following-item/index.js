@@ -51,7 +51,7 @@ function FollowingItem(props) {
   }
 
   return (
-    <li className="ad__activity__item p-1 d-flex align-items-center border-bottom ">
+    <li className="ad__activity__item px-2 py-4 d-flex align-items-center border-bottom ">
       <div className="d-flex align-items-center flex-grow-1">
         {data.type === 'PROJECT' && (
           <div className="charity_avatar_cover">

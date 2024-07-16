@@ -534,7 +534,7 @@ const UserProfile = () => {
     <>
       <div className="mb-5">
         <h4 className="fw-bolder">Personal</h4>
-        <div className="text-subtext mb-3">
+        <div className="text-subtext mb-3 pt-1 pt-1">
           This info is only shared with the Organizations you donate to
         </div>
 
@@ -556,7 +556,7 @@ const UserProfile = () => {
                 <img
                   src={tempImg ? tempImg : image ? helper.DonorImagePath + image : noImg}
                   alt="user profile"
-                  className=""
+                 
                   style={{
                     width: '120px',
                     borderRadius: '9px',
@@ -604,7 +604,7 @@ const UserProfile = () => {
       <div>
         <div className="d-flex flex-column mb-3">
           <h4 className="fw-bolder">Address</h4>
-          <div className="text-subtext mb-3">For invoices & tax receipts</div>
+          <div className="text-subtext mb-3 pt-1">For invoices & tax receipts</div>
           <div className="note note--inputs">
             Your personal information is secured and not shared with anyone. We use this information
             to process tax receipts for your donations.
@@ -688,10 +688,10 @@ const UserProfile = () => {
       </div>
       {/* <div className="mb-5">
         <h4 className="fw-bolder">Language & Currency</h4>
-        <div className="text-subtext mb-3">
+        <div className="text-subtext mb-3 pt-1">
           Set and change your default location, language and currency
         </div>
-        <div className="w-400">
+        <div className="w-350">
           <div className="mb-2">
 
             <Select
@@ -718,7 +718,7 @@ const UserProfile = () => {
             getOptionLabel={e => (
               <div style={{ display: '', alignItems: 'center' }}>
 
-                <span className="" style={{ float: "right" }}>{e.icon}</span>
+                <span style={{ float: "right" }}>{e.icon}</span>
                 <span >{e.label}</span>
 
               </div>
@@ -739,8 +739,8 @@ const UserProfile = () => {
 
       <div className="mb-5 mt-5">
         <h4 className="fw-bolder">Account Deactivation</h4>
-        <div className="text-subtext mb-3">Permanently delete your Donorport account</div>
-        <div className="w-400 mw-100">
+        <div className="text-subtext mb-3 pt-1">Permanently delete your Donorport account</div>
+        <div className="w-350 mw-100">
           <div className="deactivate">
             <h5>Do you really want to leave us?</h5>
             <ul className="list list--deactivate">

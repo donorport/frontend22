@@ -120,17 +120,17 @@ const ProjectsTable = (props) => {
             projectList.map((project, i) => {
               // console.log(project)
               return (
-                <li className="table__list-item px-2 py-2" key={i}>
+                <li className="table__list-item px-2 py-3" key={i}>
                   <div className="d-xl-flex align-items-center flex-grow-1">
                     <div className="billing__main d-flex align-items-center  me-sm-3 mb-2">
                       <div className="ms-auto ms-sm-0 me-sm-2 post__value">
                         {project.status === 1 && (
-                          <div className="price fw-bold fs-5">
+                          <div className="price ">
                             {props.data?.symbol}
                             {countProjectAmount(project.productDetails)}
                           </div>
                         )}
-                        <div className="text-light fs-8">
+                        <div className="text-light fs-7">
                           {moment(project.created_at).fromNow()}
                         </div>
                       </div>
@@ -165,14 +165,14 @@ const ProjectsTable = (props) => {
                         <div className="d-flex align-items-center flex__1 mb-2 mb-sm-0">
                           <div className="d-flex align-items-center flex__1 mw-200">
                             <ProgressBar variant="infinity" now={100} className="flex__1" />
-                            {/* <span className="text-light ms-1 fw-bold">Infinite</span> */}
+                            {/* <span className="ms-1 fw-semibold">Infinite</span> */}
                             <div
                               className="unlimited unlimited--home"
                               style={{ marginLeft: '10px' }}
                             >
                               <div className="tag tag--ongoing _2">
                                 <div className="d-flex icon icon--unlimited">
-                                  <FontAwesomeIcon icon={solid('infinity')} className="" />
+                                  <FontAwesomeIcon icon={solid('infinity')} />
                                 </div>
                               </div>
                             </div>
@@ -186,7 +186,7 @@ const ProjectsTable = (props) => {
                               now={countProjectProcess(project.productDetails)}
                               className="flex__1"
                             />
-                            <span className="text-light ms-1 fw-bold">
+                            <span className="ms-1 fw-semibold">
                               {countProjectProcess(project.productDetails)}%
                             </span>
                           </div>

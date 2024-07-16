@@ -78,7 +78,7 @@ const Ranks = () => {
             >
               Norwhal
             </IconButton> */}
-              <a href="/" className="text-info fw-bold fs-5 ms-auto me-1">
+              <a href="/" className=" ms-auto me-1">
                 {Number(user.xp).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
               </a>
             </div>

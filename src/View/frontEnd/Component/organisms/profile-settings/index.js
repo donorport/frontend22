@@ -655,10 +655,10 @@ const ProfileSettings = () => {
   return (
     <>
 
-      <div className="d-flex flex-column gap-5 mw-400">
+      <div className="d-flex flex-column gap-5 mw-350">
         <div>
-          <h4 className="fw-bolder">About</h4>
-          <div className="text-subtext mb-3">This info appears on your organization's page:</div>
+          <h4 className="fw-bolder mb-2">About</h4>
+          <div className="text-subtext mb-3 pt-1">This info appears on your organization's page:</div>
           <div className="ml-3 mb-5">
             <div className="d-flex gap-2">
               <label className="filelabel col-sm-3 py-5">
@@ -680,7 +680,7 @@ const ProfileSettings = () => {
                   <img
                     src={tempImg ? tempImg : logo ? helper.CampaignAdminLogoPath + logo : ''}
                     alt="Logo"
-                    className=""
+                   
                     style={{ width: '100px' }}
                   />
                 </div>
@@ -701,7 +701,7 @@ const ProfileSettings = () => {
               </Box>
             ) : (
               <div className="d-flex note note--info my-3 fs-6">
-                <span className="">
+                <span>
                   Upload an image of your logo with a transparent background. Accepted file formats:{' '}
                   <a className="link">png, jpg, svg</a>
                 </span>
@@ -894,7 +894,7 @@ const ProfileSettings = () => {
         </div>
         <div>
           <h4 className="fw-bolder">Promo Video</h4>
-          <div className="text-subtext mb-3">This video appears on your organization's page:</div>
+          <div className="text-subtext mb-3 pt-1">This video appears on your organization's page:</div>
           <div className="input__wrap mb-3">
             <Input
               id={id3}

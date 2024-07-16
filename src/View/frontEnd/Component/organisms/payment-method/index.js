@@ -924,7 +924,7 @@ const Payments = () => {
       <div className="d-flex flex-column gap-5 mw-600">
         {/* <div className="mb-5">
           <h4 className="fw-bolder">Saved Payment Methods</h4>
-          <div className="text-subtext mb-3">
+          <div className="text-subtext mb-3 pt-1">
             Credit Cards you saved when donating
           </div>
 
@@ -976,7 +976,7 @@ const Payments = () => {
         </div>*/}
         <div>
           <h4 className="fw-bolder">Tax Rate</h4>
-          <div className="text-subtext mb-3">What is your regional sales tax?</div>
+          <div className="text-subtext mb-3 pt-1">What is your regional sales tax?</div>
           <div className="input__wrap mb-3">
             <label className="input__label flex__1">
               <input
@@ -1012,7 +1012,7 @@ const Payments = () => {
 
         <div>
           <h4 className="fw-bolder">Connect your Bank</h4>
-          <div className="text-subtext mb-3">
+          <div className="text-subtext mb-3 pt-1">
             Link the bank account that {CampaignAdmin?.name || 'your Charity'} will use to receive
             direct deposits from our donors.
           </div>
@@ -1067,7 +1067,7 @@ const Payments = () => {
           {bankAccountList.length > 0 && (
             <>
               <h4 className="fw-bolder">Connected Accounts</h4>
-              <div className="text-subtext mb-3">
+              <div className="text-subtext mb-3 pt-1">
                 Below are the bank accounts you have connect through the Stripe API.
               </div>
             </>
@@ -1124,10 +1124,10 @@ const Payments = () => {
                       />
                       <div className="d-flex linked__account mt-3p">
                         <span className="linked__transit me-1">⑆</span>
-                        <span className="">{list.routingNumber}</span>
+                        <span>{list.routingNumber}</span>
                         <span className="linked__transit mx-1">⑆</span>
                         <span className="linked__space me-1">••••</span>
-                        {list.accountNumber && <span className="">{list.accountNumber}</span>}
+                        {list.accountNumber && <span>{list.accountNumber}</span>}
                       </div>
                     </div>
 

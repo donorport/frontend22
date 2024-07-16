@@ -80,7 +80,7 @@ const ItemsTable = ({
                   : item.itemDetails.price * item.quantity;
 
               return (
-                <li className="table__list-item px-2 py-2" key={key}>
+                <li className="table__list-item px-2 py-3" key={key}>
                   <div className="d-xl-flex gap-3 align-items-center flex-grow-1">
                     <Button
                       variant="link"
@@ -88,57 +88,48 @@ const ItemsTable = ({
                       className="user__left d-flex gap-3 align-items-center flex-wrap flex-sm-nowrap me-sm-3 p-0 text-decoration-none text-start fw-normal"
                     >
                       <div className="order-sm-0 order-1 text-sm-start text-end">
-                        <div className="price fw-bold fs-5">
+                        <h6 className="price">
                           {item.currencySymbol}
                           {priceFormat(price)}
-                        </div>
-                        <div className="text-light fs-8">{moment(item.created_at).fromNow()}</div>
+                        </h6>
+                        <div className="text-light fs-7">{moment(item.created_at).fromNow()}</div>
                       </div>
                       <div className="position-relative">
                         <ListItemImg
                           size={68}
                           imgSrc={helper.CampaignProductImagePath + item.itemDetails?.image}
                         />
-                        <span className="badge list__img-badge" style={{ position: 'absolute' }}>
-                          {item.quantity}
-                        </span>
                       </div>
-                      <div className="flex-grow-1 flex-sm-0 whitespace-normal" style={{whiteSpace: 'normal'}}>
-                        <h5 className="mb-3p">{item.itemDetails?.headline}</h5>
+                      <div
+                        className="flex-grow-1 flex-sm-0 whitespace-normal"
+                        style={{ whiteSpace: 'normal' }}
+                      >
+                        <h6 className="d-flex gap-1 mb-3p">
+                          {/* <span>{item.quantity}</span> */}
+                          {item.itemDetails?.headline}
+                        </h6>
                         <div className="fs-6 text-light">{item.itemDetails?.brand}</div>
                       </div>
                     </Button>
                     <div className="d-flex align-items-center flex__1">
-                      <div className="d-flex align-items-center flex__1 ms-sm-3 ms-0 mt-2 mt-sm-0">
+                      <div className="d-flex align-items-center justify-content-around flex__1 ms-sm-3 ms-0 mt-2 mt-sm-0">
                         <div
-                          className="d-flex align-items-center progress__wrap me-2 flex__1 gap-2"
+                          className="d-flex align-items-center progress__wrap me-2 flex-grow-1 gap-2"
                           style={{ maxWidth: '250px' }}
                         >
-                          {!item.itemDetails?.unlimited ? (
-                            <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-1 fw-bold text-light">
+                          {!item.itemDetails?.unlimited && (
+                            <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-1 fw-semibold">
                               {item.itemDetails?.soldout}/{item.itemDetails?.quantity}
                             </span>
-                          ) : (
-                            <></>
                           )}
-                          <ProgressBar
-                            variant={!item.itemDetails?.unlimited ? 'success' : 'infinity'}
-                            now={
-                              !item.itemDetails?.unlimited
-                                ? Math.round(
-                                    (item.itemDetails?.soldout / item.itemDetails?.quantity) * 100
-                                  )
-                                : 100
-                            }
-                            className="flex-grow-1"
-                          />
                           {!item.itemDetails?.unlimited ? (
-                            <span className="text-light ms-1 fw-bold">
-                              {Math.round(
+                            <ProgressBar
+                              variant="success"
+                              now={Math.round(
                                 (item.itemDetails?.soldout / item.itemDetails?.quantity) * 100
                               )}
-                              %
-                            </span>
+                              className="flex-grow-1"
+                            />
                           ) : (
                             <div
                               className="unlimited unlimited--home"
@@ -146,12 +137,21 @@ const ItemsTable = ({
                             >
                               <div className="tag tag--ongoing _2">
                                 <div className="d-flex icon icon--unlimited">
-                                  <FontAwesomeIcon icon={solid('infinity')} className="" />
+                                  <FontAwesomeIcon icon={solid('infinity')} />
                                 </div>
                               </div>
                             </div>
                           )}
+                          {!item.itemDetails?.unlimited && (
+                            <span className="ms-1 fw-semibold">
+                              {Math.round(
+                                (item.itemDetails?.soldout / item.itemDetails?.quantity) * 100
+                              )}
+                              %
+                            </span>
+                          )}
                         </div>
+
                         {/* <Button variant="link" className="ms-auto ms-sm-0 p-0 text-decoration-none">
                           <div className="d-flex align-items-center justify-content-center">
                             <img
@@ -166,7 +166,7 @@ const ItemsTable = ({
                           </div>
                         </Button> */}
                         <ListItemImg
-                          size={42}
+                          size={68}
                           style={{ maxWidth: 'auto !important' }}
                           className="rounded-circle img--nobg mb-0 mb-sm-auto"
                           imgSrc={
@@ -175,10 +175,9 @@ const ItemsTable = ({
                           }
                         />
                       </div>
-                      <div className="d-none d-sm-flex billing__buttons d-flex align-items-center gap-1">
+                      {/* <div className="d-none d-sm-flex billing__buttons d-flex align-items-center gap-1">
                         {item.itemDetails?.tax && (
                           <span className="category__link p-1 text-decoration-none">
-                            {/* <FontAwesomeIcon icon={solid('paperclip')} className="fs-3 text-info" /> */}
                             <img src={receipt}></img>
                           </span>
                         )}
@@ -207,7 +206,7 @@ const ItemsTable = ({
                             />
                           </span>
                         )}
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </li>

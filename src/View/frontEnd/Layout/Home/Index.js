@@ -78,10 +78,10 @@ const ProductList = ({ allProps }) =>
   allProps.productList.map(
     (item, index) =>
       item.status === 1 && (
-        // <Col sm="6" md="4" lg="3" className="mb-2" key={index}>
-        <div key={index}>
+        <div className="d-flex flex-column" key={index}>
           <Product
             {...item}
+            isFirst={index === 0}
             addToCart={allProps.addToCart}
             removeCartItem={allProps.removeCartItem}
             checkItemInCart={allProps.checkItemInCart}
@@ -273,7 +273,7 @@ export default function Index(props) {
         )}
         <div className="d-flex">Categories</div>
         <Container
-          className="d-flex flex-column flex-sm-row align-items-center mw-400"
+          className="d-flex flex-column flex-sm-row align-items-center mw-350"
           fluid
           style={{ minHeight: '90px' }}
         >

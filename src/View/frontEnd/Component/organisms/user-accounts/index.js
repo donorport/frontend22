@@ -15,7 +15,7 @@ const UserAccounts = () => {
     <>
       <div className="mb-5">
         <h4 className="fw-bolder">Login Information</h4>
-        <div className="text-subtext mb-3">
+        <div className="text-subtext mb-3 pt-1">
           Your account is logged in using:
         </div>
 
@@ -66,7 +66,7 @@ const UserAccounts = () => {
 
      {/* <div className="mb-5">
         <h4 className="fw-bolder">Crypto Wallets</h4>
-        <div className="text-subtext mb-3">
+        <div className="text-subtext mb-3 pt-1">
           You have linked the following wallets:
         </div>
 

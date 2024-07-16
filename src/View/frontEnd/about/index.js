@@ -101,7 +101,7 @@ const About = (props) => {
               </div>
             </Col>
             <Col md="6">
-              <div className="">
+              <div>
                 <div className="circle"></div>
                 <div className="d-flex flex-column align-items-start ">
                   Your donations, all in one place
@@ -248,7 +248,7 @@ const About = (props) => {
                     </p>
                     <p className="fs-5 text-light lh-1.5">
                       To learn more check out our&nbsp;
-                      <Link to="/home" className="">
+                      <Link to="/home">
                         partnerships page.
                       </Link>
                     </p>

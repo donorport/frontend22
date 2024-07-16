@@ -64,16 +64,16 @@ const ActivityTable = (props) => {
             activityList.map((list, i) => {
               // console.log(list)
               return (
-                <li className="table__list-item px-2 py-2">
+                <li className="table__list-item px-2 py-3">
                   <div className="d-sm-flex align-items-center flex-grow-1">
                     <div className="d-flex align-items-center me-sm-2 flex__1">
                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
-                        <div className="price fw-bold fs-5">
+                        <div className="price ">
                           {list.type === 'BOUGHT' || list.type === 'DONATED'
                             ? data.symbol + priceFormat(list.amount)
                             : ''}
                         </div>
-                        <div className="text-light fs-8">{moment(list.created_at).fromNow()}</div>
+                        <div className="text-light fs-7">{moment(list.created_at).fromNow()}</div>
                       </div>
                       <div className="position-relative d-flex">
                         <Avatar
@@ -96,7 +96,7 @@ const ActivityTable = (props) => {
                           <span className="p-2 mr-12p">
                             <img width={36} alt="" className="img-fluid" src={wallet} />
                           </span>
-                          <div className="">
+                          <div>
                             <span className=" fw-bold">Bought</span>
                             <div className="d-flex text-light fs-7">
                               {/* <FontAwesomeIcon
@@ -113,7 +113,7 @@ const ActivityTable = (props) => {
                           <span className="p-2 mr-12p">
                             <img width={36} alt="" className="img-fluid" src={speech} />
                           </span>
-                          <div className="">
+                          <div>
                             <span className=" fw-bold">Followed</span>
                           </div>
                         </>
@@ -122,7 +122,7 @@ const ActivityTable = (props) => {
                           <span className="p-2 mr-12p">
                             <img width={36} alt="" className="img-fluid" src={speech} />
                           </span>
-                          <div className="">
+                          <div>
                             <span className=" fw-bold">Followed</span>
                           </div>
                         </>
@@ -131,7 +131,7 @@ const ActivityTable = (props) => {
                           <span className="p-2 mr-12p">
                             <img width={36} alt="" className="img-fluid" src={donation} />
                           </span>
-                          <div className="">
+                          <div>
                             <span className=" fw-bold">Donation</span>
                             {/* <div className="d-flex text-light fs-7">
                                     <FontAwesomeIcon
@@ -160,7 +160,7 @@ const ActivityTable = (props) => {
             <div className="d-sm-flex align-items-center flex-grow-1">
               <div className="d-flex align-items-center me-sm-2 flex__1">
                 <div className="admin__billing-value ms-2 ms-sm-0 me-sm-2">
-                  <div className="text-light fs-8">about a year ago</div>
+                  <div className="text-light fs-7">about a year ago</div>
                 </div>
                 <div className="position-relative d-flex">
                   <Avatar
@@ -182,7 +182,7 @@ const ActivityTable = (props) => {
                     src=""
                   />
                 </span>
-                <div className="">
+                <div>
                   <span className=" fw-bold">Shared</span>
                 </div>
               </div>
@@ -192,7 +192,7 @@ const ActivityTable = (props) => {
             <div className="d-sm-flex align-items-center flex-grow-1">
               <div className="d-flex align-items-center me-sm-2 flex__1">
                 <div className="admin__billing-value ms-2 ms-sm-0 me-sm-2">
-                  <div className="text-light fs-8">about a year ago</div>
+                  <div className="text-light fs-7">about a year ago</div>
                 </div>
                 <div className="position-relative d-flex">
                   <Avatar
@@ -214,7 +214,7 @@ const ActivityTable = (props) => {
                     src=""
                   />
                 </span>
-                <div className="">
+                <div>
                   <span className=" fw-bold">Followed</span>
                 </div>
               </div>

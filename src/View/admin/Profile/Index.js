@@ -40,7 +40,7 @@ export default function Index(props) {
             </Typography>
           </Stack>
           <section className="content">
-            <div className="">
+            <div>
               <div className="row">
                 <div className="col-md-3">
                   <div className="card  card-outline">

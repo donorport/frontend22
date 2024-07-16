@@ -1955,9 +1955,9 @@ const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => 
         <div className="me-sm-2 flex-grow-1">
           <div className="d-flex align-items-center mb-1">
             <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Posts</h1>
-            <span className="d-none d-sm-flex text-light fs-5 ml-2 ms-2">({totalRecord})</span>
+            <span className="d-none d-sm-flex ml-2 ms-2">({totalRecord})</span>
           </div>
-          <p className="d-none d-sm-block fs-5 text-light">
+          <p className="d-none d-sm-block">
             Create posts for items you need to operate your charity. Get creative, post for things
             you want, not always what you need. Products between $25-$100 are the most appealing to
             donors.
@@ -2303,7 +2303,7 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
         <div className="border-bottom">
           <div className="d-flex align-items-center fw-bolder mb-20p">
             <span className="flex__1">{fulfilProductDetails?.unlimited ? 'Sold' : 'Qty'} :</span>
-            <span className="fs-4 fw-bold text-light">
+            <h6>
               {Number(fulfilProductDetails?.unlimited).toLocaleString('en-US', {
                 maximumFractionDigits: 2
               })
@@ -2311,23 +2311,23 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
                 : Number(fulfilProductDetails?.quantity).toLocaleString('en-US', {
                     maximumFractionDigits: 2
                   })}
-            </span>
+            </h6>
           </div>
           <div className="d-flex align-items-center pt-1 mb-2">
             <span className="fw-bolder flex__1">Each:</span>
-            <span className="fs-4 fw-bold text-light">
+            <h6>
               {data?.symbol}
               {priceFormat(
                 fulfilProductDetails?.displayPrice
                   ? fulfilProductDetails?.displayPrice
                   : fulfilProductDetails?.price
               )}
-            </span>
+            </h6>
           </div>
         </div>
         <div className="d-flex align-items-center mb-2">
           <span className="fw-bolder flex__1">Total:</span>
-          <span className=" fw-bold fs-4">
+          <h5>
             {data?.symbol}
             {priceFormat(
               (fulfilProductDetails?.displayPrice
@@ -2337,7 +2337,7 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
                   ? fulfilProductDetails?.soldout
                   : fulfilProductDetails?.quantity)
             )}
-          </span>
+          </h5>
         </div>
       </div>
     </>
@@ -2434,7 +2434,7 @@ const PostDetailsReceiptArea = ({
                     className="text-light fs-3"
                   />
                 </Dropdown.Toggle>
-                <Dropdown.Menu className="">
+                <Dropdown.Menu>
                   {(fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] === 'png' ||
                     fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] === 'svg' ||
                     fulfilProductDetails?.fulfilDetails?.receipt.split('.')[1] === 'jpeg' ||

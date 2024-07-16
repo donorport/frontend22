@@ -3,7 +3,7 @@ html {
   --color-primary-light: #152640;
   --color-secondary: #eec413;
   --text-color: #222;
-  --bkg-color: #fff;
+  --bkg-color: #FBFCFE;
 }
 html[data-theme="dark"] {
   --color-primary: #15202b;
@@ -21,7 +21,7 @@ html[data-theme="dark"] {
   }
   html[data-theme="light"] {
     --text-color: #222;
-    --bkg-color: #fff;
+    --bkg-color: #FBFCFE;
   }
 }
 

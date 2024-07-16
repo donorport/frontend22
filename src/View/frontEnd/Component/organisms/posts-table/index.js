@@ -69,12 +69,12 @@ const PostsTable = (props) => {
               });
               if (product._id === '631f84a614725993eb90cd39') console.log('Product Map: ', product);
               return (
-                <li key={product._id} className="table__list-item px-2 py-2">
+                <li key={product._id} className="table__list-item px-2 py-3">
                   <div className="d-xl-flex align-items-center flex-grow-1">
                     <div className="progress__wrap d-flex align-items-center  me-sm-3">
                       <div className="ms-auto ms-sm-0 me-sm-2 post__value">
                         {product.status === 1 && (
-                          <div className="price fw-bold fs-5">
+                          <div className="price ">
                             {organizationDetails.symbol}
                             {priceFormat(
                               product.displayPrice ? product.displayPrice : product.price
@@ -166,7 +166,7 @@ const PostsTable = (props) => {
                                 style={{ maxWidth: '200px' }}
                               />
                               {!product.unlimited ? (
-                                <span className="text-light ms-1 fw-bold">
+                                <span className="ms-1 fw-semibold">
                                   {Math.round((product.soldout / product.quantity) * 100)}%
                                 </span>
                               ) : (
@@ -176,7 +176,7 @@ const PostsTable = (props) => {
                                 >
                                   <div className="tag tag--ongoing _2">
                                     <div className="d-flex icon icon--unlimited">
-                                      <FontAwesomeIcon icon={solid('infinity')} className="" />
+                                      <FontAwesomeIcon icon={solid('infinity')} />
                                     </div>
                                   </div>
                                 </div>
@@ -192,7 +192,7 @@ const PostsTable = (props) => {
                       </div>
                     </div>
                     <div className="billing__buttons d-flex align-items-center">
-                      <div className="d-flex ms-auto">
+                      <div className="d-flex ms-auto align-items-center">
                         {product.isFulfiled ? (
                           product.unlimited ? (
                             <ButtonShowFulfillOrder
@@ -273,7 +273,7 @@ const PostsTable = (props) => {
 };
 
 const ButtonPublishProduct = ({ onClick }) => (
-  <Button variant="info" className=" mr-2" onClick={onClick}>
+  <Button size="sm" variant="info" className=" mr-2" onClick={onClick}>
     Publish
   </Button>
 );

@@ -109,10 +109,10 @@ const UserBilling = () => {
   return (
     <>
       <div className="mb-5">
-        <div className="d-sm-flex align-items-center mb-5 mb-sm-3">
+        <div className="d-sm-flex align-items-start mb-5 mb-sm-3">
           <div className="flex__1 mb-2">
             <h4 className="fw-bolder">Payment History</h4>
-            <div className="text-subtext">All transactions related to your Admin account</div>
+            <div className="text-subtext mb-3 pt-1">All transactions related to your Admin account</div>
           </div>
           {historyList.length > 0 && (
             <CSVExportBtn
@@ -185,10 +185,10 @@ const UserBilling = () => {
                     <div className="billing__content d-flex align-items-center">
                       <div className="billing__bottom">
                         <div className="billing__value text-start">
-                          <div className="text-danger fw-bold fs-5 mb-3p">
+                          <h6 className="text-danger  mb-3p">
                             - {currencySymbole}
                             {Number(amount).toFixed(2)}
-                          </div>
+                          </h6>
 
                           <div className="fw-semibold text-light fs-7">
                             {moment(date).format('MMM DD, YYYY')}
@@ -239,10 +239,10 @@ const UserBilling = () => {
                           <div className="billing__content d-flex align-items-center">
                             <div className="billing__bottom">
                               <div className="billing__value text-start">
-                                <div className="text-danger fw-bold fs-5 mb-3p">
+                                <h6 className="text-danger  mb-3p">
                                   - {currencySymbole}
                                   {Number(o_itm.productPrice * o_itm.quantity).toFixed(2)}
-                                </div>
+                                </h6>
 
                                 <div className="fw-semibold text-light fs-7">
                                   {moment(date).format('MMM DD, YYYY')}

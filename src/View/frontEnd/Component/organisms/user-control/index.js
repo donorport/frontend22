@@ -85,7 +85,7 @@ const UserControl = () => {
      {/*<FrontLoader loading={loading} />*/}
       <div className="mb-5">
         <h4 className="fw-bolder">Notifciations</h4>
-        <div className="text-subtext mb-3">Turn off / on notifications</div>
+        <div className="text-subtext mb-3 pt-1">Turn off / on notifications</div>
         <div>
           <div className="d-flex align-items-center mb-2">
             <span className="d-flex p-2">
@@ -126,7 +126,7 @@ const UserControl = () => {
 
       <div className="mb-5">
         <h4 className="fw-bolder">Account</h4>
-        <div className="text-subtext mb-3">
+        <div className="text-subtext mb-3 pt-1">
           Customize your account to suite your needs
         </div>
         <div>
@@ -140,9 +140,9 @@ const UserControl = () => {
         </div>
       </div>
 
-      <div className="">
+      <div>
         <h4 className="fw-bolder">Orders</h4>
-        <div className="text-subtext mb-3">Settings related to your orders</div>
+        <div className="text-subtext mb-3 pt-1">Settings related to your orders</div>
         <div>
           <div className="d-flex align-items-center mb-2">
             <span className="d-flex p-2">

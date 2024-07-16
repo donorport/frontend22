@@ -158,17 +158,17 @@ const CrowdfundingListItem = ({
 }) => {
   console.log('CrowdfundingListItem:', { crowdfunding, imageDetails: crowdfunding.imageDetails });
   return (
-    <li className="table__list-item px-2 py-2">
+    <li className="table__list-item px-2 py-3">
       <div className="d-xl-flex align-items-center flex-grow-1">
         <div className="billing__main d-flex align-items-center  me-sm-3 mb-2">
           <div className="ms-auto ms-sm-0 me-sm-2 post__value">
             {crowdfunding.status === 1 && (
-              <div className="price fw-bold fs-5">
+              <div className="price ">
                 {data?.symbol}
                 {countCrowdfundingAmount(crowdfunding?.productDetails || [])}
               </div>
             )}
-            <div className="text-light fs-8">{moment(crowdfunding.created_at).fromNow()}</div>
+            <div className="text-light fs-7">{moment(crowdfunding.created_at).fromNow()}</div>
           </div>
           <Avatar
             size={62}
@@ -201,11 +201,11 @@ const CrowdfundingListItem = ({
             <div className="d-flex align-items-center flex__1 mb-2 mb-sm-0">
               <div className="d-flex align-items-center flex__1 mw-200">
                 <ProgressBar variant="infinity" now={100} className="flex__1" />
-                {/* <span className="text-light ms-1 fw-bold">Infinite</span> */}
+                {/* <span className="ms-1 fw-semibold">Infinite</span> */}
                 <div className="unlimited unlimited--home" style={{ marginLeft: '10px' }}>
                   <div className="tag tag--ongoing _2">
                     <div className="d-flex icon icon--unlimited">
-                      <FontAwesomeIcon icon={solid('infinity')} className="" />
+                      <FontAwesomeIcon icon={solid('infinity')} />
                     </div>
                   </div>
                 </div>
@@ -219,7 +219,7 @@ const CrowdfundingListItem = ({
                   now={countCrowdfundingProgress(crowdfunding?.productDetails || [])}
                   className="flex__1"
                 />
-                <span className="text-light ms-1 fw-bold">
+                <span className="ms-1 fw-semibold">
                   {countCrowdfundingProgress(crowdfunding?.productDetails || [])}%
                 </span>
               </div>

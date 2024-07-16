@@ -184,18 +184,18 @@ const UserTax = () => {
   return (
     <>
 
-      <header className="py-sm-2 pb-2 w-100 d-sm-flex align-items-center">
+      <header className="py-sm-2 pb-2 w-100 d-sm-flex align-items-start gap-2">
         <div className="me-sm-2 flex-grow-1">
           <h1 className="d-sm-flex page__title fs-3 fw-bolder">Annual Tax Receipts</h1>
-          <p className="d-sm-block fs-5 text-light">
+          <p className="d-sm-block">
             View your order history and download your tax receipts here. Your files will be
             available for download once they have been uploaded by the charity. The values listed in
             the table below represent the amount paid to the charity less any non-deductible service
             charges. Transaction & Platform fees are not tax deductible.
           </p>
-          <div className="d-flex flex-wrap gap-2 fw-semibold pb-3 pt-1 pt-sm-0">
+          <div className="d-flex flex-wrap gap-2 fw-semibold mt-5 pb-3 pt-sm-0">
             <span>
-              {/* <img alt="" className="me-1" style={{ height: '16px' }} src={clock}></img> */}
+              {/* <img alt="" className="me-1" style={{ height: '21px' }} src={clock}></img> */}
               <FontAwesomeIcon icon={solid('clock')} className="fs-5 me-1 text-warning" />
               The charity has yet to upload your tax document
             </span>
@@ -215,12 +215,12 @@ const UserTax = () => {
         <span className="fs-7 text-light fw-bolder flex-grow-1">DONATION HISTORY</span>
         <div className="fs-6 text-light fw-semibold d-flex align-items-center gap-1 mb-2 justify-content-end">
           taxable amount:
-          <span className="price fw-bold fs-5">
+          <h5 className="price ">
             {userData.symbol}
             {countProjectAmount(all).toLocaleString('en-US', {
               maximumFractionDigits: 2
             })}
-          </span>
+          </h5>
           <small className="fs-5 text-light">{userData.currency} </small>{' '}
         </div>
         {/* Total:

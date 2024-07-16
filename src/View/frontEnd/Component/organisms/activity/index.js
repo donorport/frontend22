@@ -121,7 +121,7 @@ const Activity = (props) => {
         </Dropdown.Toggle>
 
         <Dropdown.Menu
-          className="activity__dropdown w-310 dropdown-top-arrow"
+          className="activity__dropdown w-350 dropdown-top-arrow"
           style={{ transform: 'translate(45px, 30px) !important' }}
         >
           <div className="dropdown__inner">

@@ -6,12 +6,14 @@
   .input__span {
     background-color: $body-bg;
     position: absolute;
-    top: 16px;
+    top: 14px;
     padding: 0 6px;
     left: 6px;
     color: $neutral-700;
     transition: transform 0.2s ease;
     pointer-events: none;
+    font-size: 18px;
+    font-weight: 700;
   }
 
   input, textarea {
@@ -28,14 +30,14 @@
   input {
     background-color: $input;
     border: 1px solid $border-color;
-    font-weight: 600;
+    font-weight: 500;
     appearance: none;
     width: 100%;
     font-family: inherit;
-    border-radius: 3px;
+    border-radius: 6px;
     padding: 12px;
-    height: 54px;
-    font-size: 16px;
+    height: 84px;
+    font-size: 18px;
     transition: transform 0.2s ease;
   }
 

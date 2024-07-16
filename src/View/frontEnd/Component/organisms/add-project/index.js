@@ -276,7 +276,7 @@ const AddProject = (props) => {
                 allowFullScreen
               ></iframe>
             </div>
-            {/* <div className="">
+            {/* <div>
               <div className="upload-picture-video-block mb-2">
                 <FileUpload />
                 <FileUpload />

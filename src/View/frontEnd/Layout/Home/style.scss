@@ -102,8 +102,7 @@
   flex-flow: column;
   display: flex;
   position: relative;
-  img {
-    width: 100%;
+  img:not(.feature__img) {
     max-width: 85%;
     display: inline-block;
   }

@@ -217,7 +217,7 @@ const DonateModal = (props) => {
             <>
               <div className="sleeve">
                 <div className="credit-card selected" style={{ background: '#555' }}>
-                  <div className="">
+                  <div>
                     <div className="card-company"></div>
 
                     {props.dCardIcon && (

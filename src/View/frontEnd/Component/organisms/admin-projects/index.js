@@ -510,9 +510,9 @@ const AdminProjects = () => {
             <div className="me-sm-2 flex-grow-1">
               <div className="d-flex align-items-center mb-1">
                 <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Projects</h1>
-                <span className="d-none d-sm-flex text-light fs-5 ml-2 ms-2">({totalRecord})</span>
+                <span className="d-none d-sm-flex ml-2 ms-2">({totalRecord})</span>
               </div>
-              <p className="d-none d-sm-block fs-5 text-light">
+              <p className="d-none d-sm-block">
                 Create a page for a specific cause or event. A project allows you to group your
                 posted items into one place where donors can choose between your posted items or
                 cash donations.

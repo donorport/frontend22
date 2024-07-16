@@ -8,6 +8,8 @@ h5,
 h6 {
   font-family: 'Plus Jakarta Sans', sans-serif;
   color: $neutral-700;
+  font-weight: 800;
+  margin: 0;
 }
 
 body {
@@ -19,7 +21,7 @@ body {
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  // background-color: $body-bg;
+  background-color: $body-bg;
   --text-subtext: #6f6f90;
   --text-color: #{$neutral-700};
   --text-danger: #{$danger};
@@ -31,10 +33,20 @@ body {
 * {
   -webkit-overflow-scrolling: touch;
 }
-
+// button {
+//   color: $neutral-100;
+//   text-align: center;
+//   background-color: $primary;
+//   border-radius: 46px;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 21px 52px;
+//   font-size: 20px;
+//   font-weight: 700;
+// }
 a:not(.checkout__title) {
-  font-size: 18px;
-  font-weight: 500;
+  // font-size: 18px;
+  // font-weight: 500;
   text-decoration: none;
   color: $neutral-700;
   cursor: pointer;
@@ -43,12 +55,15 @@ a:not(.checkout__title) {
 p {
   font-size: 18px !important;
   line-height: 1.778em;
+  margin: 0;
 }
 
 ul {
   margin: 0;
 }
-
+.fs-6 {
+  font-size: 14px !important;
+}
 li:last-child:not(.ad__activity__item, .wishlist__item, .table__list-item, .cd__cart__item) {
   border: none !important;
 }
@@ -83,6 +98,9 @@ li:last-child:not(.ad__activity__item, .wishlist__item, .table__list-item, .cd__
 }
 .select__placeholder {
   color: $neutral-700;
+}
+input {
+  padding: 21px;
 }
 //border BS override.
 .border,

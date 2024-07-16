@@ -190,9 +190,9 @@ const Register = (props) => {
                   <span className="fw-bold">Sign Up with Google</span>
               </Button>*/}
               <Button
-                size="lg"
+                variant="info"
                 style={{ width: '100%', opacity: props.loading ? '0.7' : '1' }}
-                className="fw-bold w-100 mb-4 mt-4"
+                className="w-100 mb-4 mt-4"
                 onClick={() => !props.loading && props.signUp()}
               >
                 Register

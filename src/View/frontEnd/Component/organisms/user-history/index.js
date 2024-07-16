@@ -244,15 +244,16 @@ const UserHistory = () => {
   console.log('user-history rerender');
   return (
     <>
-
-      <header className="py-sm-2 pb-2 mb-2 w-100 d-none d-sm-flex align-items-start">
+      <header className=" w-100 d-none d-sm-flex align-items-start">
         <div className="me-sm-2 flex-grow-1">
-          <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Order History</h1>
-          <p className="d-sm-block fs-5 text-light">
+          <div className="d-flex align-items-center">
+            <h4 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Order History</h4>{' '}
+            <span className="d-none d-sm-flex ml-2">({totalRecord})</span>
+          </div>
+          <p className="d-sm-block">
             View your order history by transaction. See the transaction details for all of the items
             you donated to.
           </p>
-          <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
         </div>
         {/* <IconToggle
           className="text-info ms-2 d-none d-sm-block"

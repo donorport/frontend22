@@ -211,7 +211,7 @@ const GeoLocation = (props) => {
 
         <Dropdown.Menu
           renderOnMount
-          className="geo__dropdown mobile__dropdown dropdown-top-arrow w-310"
+          className="geo__dropdown mobile__dropdown dropdown-top-arrow w-350"
         >
           <div className="dropdown__inner position-relative">
             <div className="geo_dropdown-top d-flex align-items-center">

@@ -68,7 +68,7 @@ const HelpArticle = () => {
                     at mattis eleifend.
                   </p>
 
-                  <h3 className="">Quisque consectetur</h3>
+                  <h3>Quisque consectetur</h3>
                   <p className="text-light fs-5">
                     Quisque consectetur magna in neque placerat porttitor semper at lacus. Phasellus
                     eu enim in elit luctus mattis. Duis volutpat arcu eget pulvinar congue. Maecenas
@@ -82,7 +82,7 @@ const HelpArticle = () => {
                     ante tristique nec.
                   </p>
 
-                  <h3 className="">Suspendisse ut</h3>
+                  <h3>Suspendisse ut</h3>
                   <p className="text-light fs-5">
                     Donec condimentum massa ut vulputate accumsan. Ut lacinia semper quam sed
                     convallis. Aliquam aliquam, mauris vitae varius viverra, nulla magna dapibus

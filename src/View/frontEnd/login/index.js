@@ -61,11 +61,11 @@ const Login = (props) => {
           <div className="login-form-wrapper">
             <div className="login__logo">
               <Logo />
-              <Toggle/>
+              <Toggle />
             </div>
 
             <form className="login__form">
-              <div className="login-header ">Sign in</div>
+              <h5 className="login-header ">Sign in</h5>
               <div className="mb-3">
                 <input
                   type="email"
@@ -142,8 +142,8 @@ const Login = (props) => {
               /> */}
 
               <Button
-                size="lg"
-                className="fw-bold w-100 mb-4"
+                variant="info"
+                className="w-100 mb-4"
                 style={{ width: '100%', opacity: props.loading ? '0.7' : '1' }}
                 onClick={() => !props.loading && props.signIn()}
               >

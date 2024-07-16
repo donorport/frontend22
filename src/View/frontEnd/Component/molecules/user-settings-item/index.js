@@ -12,10 +12,10 @@ function ActivityItem(props) {
         href={props.href}
         variant="link"
         onClick={props.onClick}
-        className="btn__link-light d-flex align-items-center px-0 py-3 w-100 text-decoration-none"
+        className="fs-6 fw-semibold btn__link-light d-flex align-items-center px-0 py-3 w-100 text-decoration-none"
       >
         <div className="user__settings__icon">{props.icon}</div>
-        <span className="">{props.label}</span>
+        <span>{props.label}</span>
         {props.nextIcon ? (
           <span className="ms-auto me-3">{props.nextIcon}</span>
         ) : (
