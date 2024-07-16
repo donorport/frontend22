@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-// import { UserContext } from '../../../../../App';
 import { ProgressBar, Button } from 'react-bootstrap';
-// import { ReactComponent as HeartSvg } from "@assets/svg/heart-o.svg";
-import { ReactComponent as HeartSvg } from '../../../../../assets/svg/heart-o.svg';
 import helper, {
   getCalculatedPrice,
   priceFormat,
@@ -10,15 +7,11 @@ import helper, {
 } from '../../../../../Common/Helper';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-import IconToggle from '../../atoms/icon-toggle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid, light } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { Icon } from '@iconify/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setIsUpdateCart } from '../../../../../user/user.action';
-import receipt from '../../../../../assets/images/receipt.svg';
 import profile from '../../../../../assets/images/avatar.png';
-import axios from 'axios';
 
 import './style.scss';
 

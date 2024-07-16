@@ -214,7 +214,7 @@ const getUserRank_inner = (setting, UserXp) => {
     case UserXp >= FISH && UserXp < BELUGA:
       props = {
         bgColor: 'hsla(0, 96.46%, 76.14%, 1.00)',
-        icon:solid( 'fish'),
+        icon: solid('fish'),
         name: 'Fish'
       };
       break;
@@ -222,7 +222,7 @@ const getUserRank_inner = (setting, UserXp) => {
     case UserXp >= BELUGA && UserXp < NARWHAL:
       props = {
         bgColor: '#78bafc',
-        icon:solid( 'whale'),
+        icon: solid('whale'),
         name: 'Beluga'
       };
       break;
@@ -230,7 +230,7 @@ const getUserRank_inner = (setting, UserXp) => {
     case UserXp >= NARWHAL && UserXp < PIRATE:
       props = {
         bgColor: '#a278fc',
-        icon:solid( 'narwhal'),
+        icon: solid('narwhal'),
         name: 'Narwhal'
       };
       break;
@@ -238,7 +238,7 @@ const getUserRank_inner = (setting, UserXp) => {
     case UserXp >= PIRATE && UserXp <= ADMIRAL:
       props = {
         bgColor: '#fc8c63',
-        icon:solid( 'swords'),
+        icon: solid('swords'),
         name: 'Pirate'
       };
       break;
@@ -246,7 +246,7 @@ const getUserRank_inner = (setting, UserXp) => {
     case UserXp > ADMIRAL && UserXp < CAPTAIN:
       props = {
         bgColor: '#95dbb0',
-        icon:solid('ship'),
+        icon: solid('ship'),
         name: 'Admiral'
       };
       break;
@@ -269,8 +269,8 @@ const getUserRank_inner = (setting, UserXp) => {
   ) : (
     <IconButton
       bgColor={props.bgColor}
-      className="rounded-pill rounded-pill--xp fs-9 fs-sm-7"
-      icon={<FontAwesomeIcon icon={props.icon} />}
+      className="rounded-pill rounded-pill--xp fs-6 fs-sm-7"
+      icon={<FontAwesomeIcon size={24} icon={props.icon} />}
     >
       {props.name}
     </IconButton>
@@ -452,7 +452,7 @@ export function convertAddress(address) {
     const commaCount = address.split(',').length - 1;
 
     if (commaCount === 1) {
-      const [stateOrProvince, country] = address.split(',').map(part => part.trim());
+      const [stateOrProvince, country] = address.split(',').map((part) => part.trim());
       const countryISO = Country.getAllCountries().find(
         (c) => c.name.replace(/\s/g, '') === country
       )?.isoCode;
@@ -497,7 +497,6 @@ export function convertAddress(address) {
     const stateCode = `${states[0].isoCode}`;
 
     return `${city}, ${stateCode}`;
-
   } catch (error) {
     console.error(`convertAddress failed with address "${address}": ${error}`);
     return null; // or return an error message instead of null

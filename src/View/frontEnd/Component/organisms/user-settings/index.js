@@ -108,27 +108,23 @@ const UserSettings = (props) => {
                       onClick={() => onClickOrg()}
                       // to={'/campaign/' + CampaignAdmin?.slug + '/dashboard'}
                       variant="link"
-                      className="p-0 ms-2 btn__link-dark text-decoration-none"
+                      className="p-0 ms-2 text-decoration-none"
                       // state={{ type: "main" }}
                     >
                       {CampaignAdmin?.name}
                     </Button>
                   ) : userData ? (
-                    <Button
-                      href="#"
-                      variant="link"
-                      className="p-0 ms-2 btn__link-dark text-decoration-none"
+                    <h6
+                      className="p-0 ms-2 text-decoration-none"
                     >
                       {userData?.name ? userData.name : CampaignAdmin?.name}
-                    </Button>
+                    </h6>
                   ) : (
-                    <Button
-                      href="#"
-                      variant="link"
-                      className="p-0 ms-2 btn__link-dark text-decoration-none"
+                    <h6
+                      className="p-0 ms-2 text-decoration-none"
                     >
                       Welcome User
-                    </Button>
+                    </h6>
                   )}
 
                   {userData && (

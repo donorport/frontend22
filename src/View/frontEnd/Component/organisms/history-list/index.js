@@ -161,23 +161,6 @@ const HistoryList = ({
 
   return (
     <>
-      <div className="d-flex flex-wrap gap-2 fw-semibold pb-3 pt-1 pt-sm-0">
-        <span>
-          {' '}
-          <img alt="" className="me-1" style={{ height: '21px' }} src={coin}></img>
-          Organization Donation
-        </span>
-        <span>
-          {' '}
-          <img alt="" className="me-1" style={{ height: '21px' }} src={coin2}></img>
-          Project Donation
-        </span>
-        <span>
-          {' '}
-          <img alt="" className="me-1" style={{ height: '21px' }} src={bag}></img>
-          Product Donation(s)
-        </span>
-      </div>
       <div className="list__table mb-2 mb-sm-0">
         <div className="list__table-sort d-flex justify-content-sort border-bottom">
           <div className="flex__1" style={{ display: 'flex', justifyContent: 'space-between' }}>

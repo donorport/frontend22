@@ -5,6 +5,9 @@ import IconToggle from '../../atoms/icon-toggle';
 // import { HistoryList } from "@components/organisms"
 import HistoryList from '../history-list';
 import React, { useState, useEffect, useCallback } from 'react';
+import coin from '../../../../../assets/images/coin.svg';
+import coin2 from '../../../../../assets/images/coin(2).svg';
+import bag from '../../../../../assets/images/bag.svg';
 import {
   //Outlet,
   //Link,
@@ -254,6 +257,23 @@ const UserHistory = () => {
             View your order history by transaction. See the transaction details for all of the items
             you donated to.
           </p>
+          <div className="d-flex flex-wrap gap-2 fw-semibold mt-5 pb-3 pt-sm-0">
+        <span>
+          {' '}
+          <img alt="" className="me-1" style={{ height: '21px' }} src={coin}></img>
+          Organization Donation
+        </span>
+        <span>
+          {' '}
+          <img alt="" className="me-1" style={{ height: '21px' }} src={coin2}></img>
+          Project Donation
+        </span>
+        <span>
+          {' '}
+          <img alt="" className="me-1" style={{ height: '21px' }} src={bag}></img>
+          Product Donation(s)
+        </span>
+      </div>
         </div>
         {/* <IconToggle
           className="text-info ms-2 d-none d-sm-block"
