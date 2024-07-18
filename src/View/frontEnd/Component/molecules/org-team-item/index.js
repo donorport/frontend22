@@ -29,7 +29,7 @@ function OrganizationTeamItem(props) {
       />
       <div className="org__team__item__main pl-20p flex-grow-1">
         <div className="org__team__item__title pr-12p">
-          <div className="org__team__item__name mb-3p  ">{name}</div>
+          <h6 className="org__team__item__name mb-3p  ">{name}</h6>
           {props.showEmail ? (
             <div className="org__team__item__location text-light fw-light mb-6p fs-6">{email}</div>
           ) : (
@@ -51,9 +51,7 @@ function OrganizationTeamItem(props) {
       </div>
       {props?.isCurrent && (
         <div>
-          <span className="badge fw-bold fs-6">
-            You
-          </span>
+          <span className="badge fw-bold fs-6">You</span>
         </div>
       )}
       {props.showContact ? (
@@ -72,8 +70,8 @@ function OrganizationTeamItem(props) {
       {!props.isCurrent && (
         <Button
           variant="danger"
-          size="lg"
-          className="ms-auto fw-bold"
+          size="sm"
+          className="ms-auto"
           onClick={() => props.removeTeamMember(member._id)}
         >
           Remove

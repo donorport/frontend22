@@ -2067,7 +2067,7 @@ const PostDetailsNavigation = ({ closeFulfilForm, fulfilProductDetails }) => {
     <div className="d-flex align-items-center flex-grow-1 pb-20p border-bottom">
       <Button
         variant="link"
-        className="me-sm-2 me-1"
+        className="ps-0 me-sm-2 me-1"
         onClick={() => {
           closeFulfilForm();
         }}
@@ -2090,10 +2090,6 @@ const PostDetailsNavigation = ({ closeFulfilForm, fulfilProductDetails }) => {
             {/* April 20th */}
           </div>
         </div>
-      </div>
-
-      <div className="d-none d-sm-flex align-items-center flex__1">
-        <div className="d-flex align-items-center flex__1"></div>
       </div>
 
       {/* <ListItemImg
@@ -2297,7 +2293,7 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
         </label>
       )}
 
-      <div className="order__widget d-flex flex-column gap-3">
+      <div className="order__widget d-flex flex-column gap-5">
         <span className="fs-3 fw-bolder mb-3">Order Summary</span>
 
         <div className="border-bottom">
@@ -2420,7 +2416,7 @@ const PostDetailsReceiptArea = ({
               <span className="post__title fw-semibold">
                 {fulfilProductDetails?.fulfilDetails?.receipt}
               </span>
-              <div className="date__name fw-semibold">
+              <div className="date fw-semibold">
                 Added &nbsp;
                 {moment(fulfilProductDetails?.fulfilDetails.created_at).fromNow()}
               </div>

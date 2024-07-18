@@ -161,7 +161,7 @@ const XpTable = (props) => {
                       style={{ width: '65px' }}
                     >
                       <h6 className="text-info">{item.xp}XP</h6>
-                      <div className="text-light fs-7">{moment(item.created_at).fromNow()}</div>
+                      <div className="date text-light fs-7">{moment(item.created_at).fromNow()}</div>
                     </div>
                     {getData(item.type, item.xp, item)}
 

@@ -170,14 +170,14 @@ const AdminTaxTable = (props) => {
                           <div className="d-sm-flex align-items-center flex-grow-1">
                             <div className="d-flex align-items-center me-sm-2 mb-3 mb-sm-0 pe-2">
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4 text-end text-sm-start">
-                                <div className="price ">
+                                <h6 className="price ">
                                   {item[0].currencySymbol}
                                   {/* {totalVal([...item]).toLocaleString('en-US', {
                                     maximumFractionDigits: 2
                                   })} */}
                                   {priceFormat(totalVal([...item]))}
-                                </div>
-                                <div className="text-light fs-7">
+                                </h6>
+                                <div className="date text-light fs-7">
                                   {moment(item[0].created_at).fromNow()}
                                 </div>
                               </div>
@@ -199,9 +199,11 @@ const AdminTaxTable = (props) => {
                                 style={{ cursor: 'default' }}
                                 onClick={(e) => e.stopPropagation()}
                               >
-                                <div>{item[0].userDetails?.name}</div>
-                                <div className="text-light mb-1 fs-6">{item[0].userDetails?.email}</div>
-                                <div className="text-light">
+                                <h6>{item[0].userDetails?.name}</h6>
+                                <div className="text-light mb-1 fs-6">
+                                  {item[0].userDetails?.email}
+                                </div>
+                                <div className="text-light fs-7">
                                   {item[0].userDetails?.street +
                                     ', ' +
                                     item[0].userDetails?.city_id}
@@ -329,10 +331,10 @@ const AdminTaxTable = (props) => {
                                       className="text-success fs-3"
                                     />
                                     <div className="ps-2">
-                                      <div className="file__name  mb-3p fw-normal">
+                                      <div className="file__name mb-3p">
                                         {item[0].receipt}
                                       </div>
-                                      <div className="text-light fs-7 fw-normal">
+                                      <div className="date text-light fs-7">
                                         {/* 3 days ago - 1.3 Mb */}
                                         {moment(item[0].updated_at).fromNow()}
                                       </div>
@@ -386,6 +388,7 @@ const AdminTaxTable = (props) => {
                                 </div>
                               ) : (
                                 <Button
+                                  size="sm"
                                   onClick={(e) => !props.loading && e.stopPropagation()}
                                   style={{ opacity: props.loading ? '0.7' : '1' }}
                                   variant="warning"
@@ -457,13 +460,13 @@ const AdminTaxTable = (props) => {
                                   <div className="d-flex d-sm-flex align-items-center flex-grow-1 ps-0 ps-sm-1">
                                     <div className="d-flex align-items-center mb-1 mb-sm-0 order-1 order-sm-0">
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
-                                        <div className="price ">
+                                        <h6 className="price ">
                                           {i1.currencySymbol}
                                           {i1.type === 'Purchased'
                                             ? taxableProduct
                                             : taxableDonation}
-                                        </div>
-                                        <div className="text-light fs-7">
+                                        </h6>
+                                        <div className="date text-light fs-7">
                                           {moment(i1.created_at).fromNow()}
                                         </div>
                                       </div>

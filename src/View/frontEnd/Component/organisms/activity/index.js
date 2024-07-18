@@ -125,7 +125,7 @@ const Activity = (props) => {
           style={{ transform: 'translate(45px, 30px) !important' }}
         >
           <div className="dropdown__inner">
-            <div className="d-flex activity__dropdown-header">
+            <div className="d-flex activity__dropdown-header border-bottom">
               {state.following || state.settings ? (
                 <Button
                   variant="link"
@@ -202,7 +202,7 @@ const Activity = (props) => {
               )}
             </div>
 
-            <div className="activity__dropdown-footer"></div>
+            <div className="activity__dropdown-footer border-top"></div>
           </div>
         </Dropdown.Menu>
       </Dropdown>

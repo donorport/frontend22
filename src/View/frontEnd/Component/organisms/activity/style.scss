@@ -2,8 +2,9 @@
   font-size: 20px;
 }
 .activity__dropdown-header {
-  font-size: 18px;
-  font-weight: 900
+  font-size: $font-size-base;
+  font-weight: 900;
+  background-color: $secondary-3;
 }
 .btn.mark__feed {
   font-size: 10px;

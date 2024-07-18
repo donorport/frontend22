@@ -163,12 +163,12 @@ const CrowdfundingListItem = ({
         <div className="billing__main d-flex align-items-center  me-sm-3 mb-2">
           <div className="ms-auto ms-sm-0 me-sm-2 post__value">
             {crowdfunding.status === 1 && (
-              <div className="price ">
+              <h6 className="price ">
                 {data?.symbol}
                 {countCrowdfundingAmount(crowdfunding?.productDetails || [])}
-              </div>
+              </h6>
             )}
-            <div className="text-light fs-7">{moment(crowdfunding.created_at).fromNow()}</div>
+            <div className="date text-light fs-7">{moment(crowdfunding.created_at).fromNow()}</div>
           </div>
           <Avatar
             size={62}

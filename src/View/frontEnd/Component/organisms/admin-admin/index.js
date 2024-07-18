@@ -146,8 +146,8 @@ const AdminAdmin = () => {
             <Button
               variant="info"
               disabled={!isValid}
-              size="lg"
-              className="d-flex rounded fw-bold text-white"
+              size="md"
+              className="d-flex fw-bold text-white"
               onClick={() => !loading && inviteTeamMember()}
               style={{
                 opacity: loading ? '0.7' : '1'

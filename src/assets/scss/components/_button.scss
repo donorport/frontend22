@@ -9,7 +9,7 @@
 .btn-lg {
   padding: 21px 56px;
   font-size: 0.98rem;
-  font-weight: 700;
+  font-weight: 700 !important;
 }
 .btn-md {
   padding: 16px 42px;
@@ -18,7 +18,9 @@
 .btn-sm {
   font-size: 14px;
 }
-
+.btn-link {
+  color: $neutral-700 !important
+}
 .btn:not(.btn__link-light, .linked__item-link) {
   display: flex;
   align-items: center;

@@ -74,15 +74,15 @@ const PostsTable = (props) => {
                     <div className="progress__wrap d-flex align-items-center  me-sm-3">
                       <div className="ms-auto ms-sm-0 me-sm-2 post__value">
                         {product.status === 1 && (
-                          <div className="price ">
+                          <h6 className="price ">
                             {organizationDetails.symbol}
                             {priceFormat(
                               product.displayPrice ? product.displayPrice : product.price
                             )}
                             {/* {product.displayPrice ? product.displayPrice : product.price} */}
-                          </div>
+                          </h6>
                         )}
-                        <div className="text-light fw-light fs-8">
+                        <div className="date text-light fs-7">
                           {moment(product.created_at).fromNow()}
                         </div>
                       </div>
@@ -128,7 +128,7 @@ const PostsTable = (props) => {
                       </div>
                       <div className="ms-2">
                         <div className="fw-bolder fs-5 mb-3p">{product.headline}</div>
-                        <div className="fs-7 text-light mb-6p">{product.brand}</div>
+                        <div className="date fs-7 text-light mb-6p">{product.brand}</div>
                         {product.status === 1 && (
                           <Link
                             variant="link"
@@ -141,55 +141,53 @@ const PostsTable = (props) => {
                         )}
                       </div>
                     </div>
-                    <div className="d-flex align-items-center flex__1 mb-2 mb-sm-0">
-                      <div className="d-flex align-items-center flex__1">
-                        {product.status === 1 && (
-                          // }
-                          <div className="d-flex align-items-center progress__wrap me-2 flex__1">
-                            <div
-                              className="d-flex flex__1 align-items-center"
+                    <div className="d-flex align-items-center flex__1">
+                      {product.status === 1 && (
+                        // }
+                        <div className="d-flex align-items-center progress__wrap me-2 flex__1">
+                          <div
+                            className="d-flex flex__1 align-items-center"
+                            style={{ maxWidth: '200px' }}
+                          >
+                            {!product.unlimited && (
+                              <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-sm-1 fw-bold text-light">
+                                {product.soldout}/{product.quantity}
+                              </span>
+                            )}
+                            <ProgressBar
+                              variant={!product.unlimited ? 'success' : 'infinity'}
+                              now={
+                                !product.unlimited
+                                  ? Math.round((product.soldout / product.quantity) * 100)
+                                  : 100
+                              }
+                              className="flex__1"
                               style={{ maxWidth: '200px' }}
-                            >
-                              {!product.unlimited && (
-                                <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-sm-1 fw-bold text-light">
-                                  {product.soldout}/{product.quantity}
-                                </span>
-                              )}
-                              <ProgressBar
-                                variant={!product.unlimited ? 'success' : 'infinity'}
-                                now={
-                                  !product.unlimited
-                                    ? Math.round((product.soldout / product.quantity) * 100)
-                                    : 100
-                                }
-                                className="flex__1"
-                                style={{ maxWidth: '200px' }}
-                              />
-                              {!product.unlimited ? (
-                                <span className="ms-1 fw-semibold">
-                                  {Math.round((product.soldout / product.quantity) * 100)}%
-                                </span>
-                              ) : (
-                                <div
-                                  className="unlimited unlimited--home"
-                                  style={{ marginLeft: '10px' }}
-                                >
-                                  <div className="tag tag--ongoing _2">
-                                    <div className="d-flex icon icon--unlimited">
-                                      <FontAwesomeIcon icon={solid('infinity')} />
-                                    </div>
+                            />
+                            {!product.unlimited ? (
+                              <span className="ms-1 fw-semibold">
+                                {Math.round((product.soldout / product.quantity) * 100)}%
+                              </span>
+                            ) : (
+                              <div
+                                className="unlimited unlimited--home"
+                                style={{ marginLeft: '10px' }}
+                              >
+                                <div className="tag tag--ongoing _2">
+                                  <div className="d-flex icon icon--unlimited">
+                                    <FontAwesomeIcon icon={solid('infinity')} />
                                   </div>
                                 </div>
-                              )}
-                            </div>
-                            <div className="qty__tag ms-3 p-2 fw-bold text-light ms-auto">
-                              <FontAwesomeIcon icon={solid('up')} className="text-success me-1" />{' '}
-                              {organizationDetails.symbol}
-                              {revenue}
-                            </div>
+                              </div>
+                            )}
                           </div>
-                        )}
-                      </div>
+                          <div className="qty__tag ms-3 p-2 fw-bold ms-auto">
+                            <FontAwesomeIcon icon={solid('up')} className="text-success me-1" />{' '}
+                            {organizationDetails.symbol}
+                            {revenue}
+                          </div>
+                        </div>
+                      )}
                     </div>
                     <div className="billing__buttons d-flex align-items-center">
                       <div className="d-flex ms-auto align-items-center">
@@ -242,9 +240,7 @@ const PostsTable = (props) => {
               );
             })
           ) : (
-            <li className="list__table-list p-2 mb-0">
-              No entries to show
-            </li>
+            <li className="list__table-list p-2 mb-0">No entries to show</li>
           )}
         </ul>
         <div
@@ -280,13 +276,13 @@ const ButtonPublishProduct = ({ onClick }) => (
 
 const ButtonDeleteProduct = ({ onClick }) => (
   <Button variant="link" className="p-0  mr-2" onClick={onClick}>
-    <FontAwesomeIcon icon={solid('trash')} className="text-danger fs-2 me-2" />
+    <FontAwesomeIcon icon={solid('trash')} className="text-danger fs-4 me-2" />
   </Button>
 );
 
 const ButtonEditProduct = ({ onClick }) => (
   <Button variant="link" className="p-0 mr-2" onClick={onClick}>
-    <FontAwesomeIcon icon={solid('edit')} className="text-warning fs-2 me-2" />
+    <FontAwesomeIcon icon={solid('edit')} className="text-warning fs-4 me-2" />
   </Button>
 );
 

@@ -267,7 +267,11 @@ const AddPost = (props) => {
     <div className="add-post">
       {/* {console.log(location)} */}
       <div className="d-flex align-items-center flex-grow-1 pb-20p mb-3 border-bottom flex-wrap">
-        <Button variant="link" className="me-sm-2 me-1" onClick={() => props.createPost(false)}>
+        <Button
+          variant="link"
+          className="ps-0 me-sm-2 me-1"
+          onClick={() => props.createPost(false)}
+        >
           <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
         </Button>
         {stateData.status !== 1 ? (
@@ -419,11 +423,11 @@ const AddPost = (props) => {
             <h2 className="fs-3 fw-bolder ">Product Details</h2>
           </AccordionToggle>
 
-          <Accordion.Collapse className="py-0 pt-5 py-sm-5">
+          <Accordion.Collapse className="py-0 py-sm-5">
             <>
               <Row className="mw-850 ml-5 mb-0 mb-sm-5">
                 <div className="col-lg-6 mb-5 mb-sm-0">
-                  <form className="d-flex flex-column profile-detail-form gap-2">
+                  <form className="d-flex flex-column profile-detail-form gap-5">
                     <div>
                       <Input
                         id={id1}
@@ -461,9 +465,9 @@ const AddPost = (props) => {
                     </div>
 
                     <div>
-                      <label htmlFor="brandInput" className="form__label">
+                      {/* <label htmlFor="brandInput" className="form__label">
                         Slug
-                      </label>
+                      </label> */}
                       <input
                         type="text"
                         className="form-control form-control-lg"
@@ -547,10 +551,10 @@ const AddPost = (props) => {
                       </div>
 
                       <div className="form-group unlimited-switch-wrap">
-                        <div className="bg-purple text-nowrap fs-8 fw-semibold rounded-3 p-6p mb-2 text-white">
-                          Unlimited
-                          <FontAwesomeIcon icon={solid('infinity')} className="ml-3p" />
-                        </div>
+                        <p className="text-nowrap fw-semibold rounded-3 p-6p mb-2">
+                          Toggle if no fixed quantity (
+                          <FontAwesomeIcon icon={solid('infinity')} className="ml-3p" /> )
+                        </p>
                         <ToggleSwitch
                           id="unlimited"
                           checked={unlimited}
@@ -636,7 +640,11 @@ const AddPost = (props) => {
                           </div>
                         </div>
                         <div className="d-flex align-items-center">
-                          <FontAwesomeIcon className="fs-3" color="#947ada" icon={solid('clock-rotate-left')} />
+                          <FontAwesomeIcon
+                            className="fs-3"
+                            color="#947ada"
+                            icon={solid('clock-rotate-left')}
+                          />
                           <div className="d-flex py-12p px-18p">
                             <ToggleSwitch
                               id="postTag"
@@ -714,51 +722,8 @@ const AddPost = (props) => {
                           </Box>
                         )}
                       </div>
-                      {/* <div className="upload-wrap mb-3">
-                          {Img || tempImg ? (
-                            <img
-                              src={
-                                tempImg
-                                  ? tempImg
-                                  : Img
-                                  ? Img !== ''
-                                    ? helper.CampaignProductFullImagePath + Img
-                                    : noimg
-                                  : noimg
-                              }
-                              alt="lk"
-                             
-                              style={{ objectFit: 'contain' }}
-                            />
-                          ) : (
-                            <FontAwesomeIcon
-                              icon={solid('cloud-arrow-up')}
-                              className="icon-cloud"
-                            />
-                          )}
-                          <label>
-                            <input
-                              type="file"
-                              id="mainImg"
-                              name="mainImg"
-                              onChange={(e) => {
-                                setLoadingId(true);
-                                changefile(e);
-                              }}
-                            />
-                          </label>
-                        </div> */}
                       <div
                         className="image-upload-wrap fs-2 mb-3"
-                        // style={{
-                        //   ...STYLES_imageUploadWrap,
-                        //   border:
-                        //     !props.tempImgName &&
-                        //     props.tempImgName === '' &&
-                        //     stateData.error.identityDocumentImage
-                        //       ? '4px dashed red'
-                        //       : '4px dashed #3773c6'
-                        // }}
                         style={{
                           ...STYLES_imageUploadWrap,
                           // backgroundColor: '#e5f4ff',
@@ -1094,15 +1059,14 @@ const AddPost = (props) => {
           <AccordionToggle>
             <h2 className="fs-3 fw-bolder ">Need Headline</h2>
           </AccordionToggle>
-
+          <div className="note mw-100 mt-4 mb-5">
+            Here is where you tell your donors more about your need for these items. Let them know
+            how you plan to use the proceeds of their donation.
+          </div>
           <Accordion.Collapse className="py-0 py-sm-5">
             <Row className="mw-850 ml-5">
               <Col lg="6">
-                <div className="note mb-5 fs-6">
-                  Here is where you tell your donors more about your need for these items. Let them
-                  know how you plan to use the proceeds of their donation.
-                </div>
-                <form className="d-flex flex-column profile-detail-form gap-2">
+                <form className="d-flex flex-column profile-detail-form gap-5">
                   <div>
                     <Input
                       id={id3}
@@ -1145,10 +1109,10 @@ const AddPost = (props) => {
               <Col lg="6">
                 <form className="video-detail-form">
                   <div className="form-group mb-2">
-                    <label htmlFor="videoInput" className="form__label mb-3">
+                    {/* <label htmlFor="videoInput" className="form__label mb-3">
                       Need Media&nbsp;
                       <span className="fs-7 text-light ms-1 fw-normal">(optional)</span>
-                    </label>
+                    </label> */}
                     {/* <input
                         type="text"
                         className="form-control form-control-lg"

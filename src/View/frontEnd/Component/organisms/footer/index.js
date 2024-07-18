@@ -44,6 +44,11 @@ function Footer() {
               The world's first and largest crowd-funding platform for non-profits
               &amp;&nbsp;charities.
             </p>
+            <div className="mt-3 d-flex gap-2 fs-4">
+              <FontAwesomeIcon icon={brands('facebook')} />
+              <FontAwesomeIcon icon={brands('twitter')} />
+              <FontAwesomeIcon icon={brands('square-instagram')} />
+            </div>
           </div>
           <div>
             {' '}

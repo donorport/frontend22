@@ -142,7 +142,7 @@ function ProjectDetailMain(props) {
     );
 
   return (
-    <div className="project__detail-main d-flex flex-column gap-3">
+    <div className="project__detail-main d-flex flex-column gap-5">
       <ItemDetailsMain
         productDetails={productDetails}
         currencySymbol={currencySymbol}
@@ -300,7 +300,7 @@ const ItemDetailsMain = ({
       </div>
     </div>
 
-    <div className="category__icons d-flex align-items-center order--1 order-sm-0">
+    <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-2">
       <Link
         size="lg"
         variant="link"

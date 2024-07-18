@@ -22,30 +22,20 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   background-color: $body-bg;
-  --text-subtext: #6f6f90;
-  --text-color: #{$neutral-700};
-  --text-danger: #{$danger};
-  --border-input: #{$border-color};
-  --bkg-shade: #{$neutral-100};
-  --hero: linear-gradient(180deg, #5e5ff3, #5e5ff3);
+  line-height: 1.378em;
+  // --text-subtext: #6f6f90;
+  // --text-color: #{$neutral-700};
+  // --text-danger: #{$danger};
+  // --border-input: #{$border-color};
+  // --bkg-shade: #{$neutral-100};
+  // --hero: linear-gradient(180deg, #5e5ff3, #5e5ff3);
 }
 
 * {
   -webkit-overflow-scrolling: touch;
 }
-// button {
-//   color: $neutral-100;
-//   text-align: center;
-//   background-color: $primary;
-//   border-radius: 46px;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 21px 52px;
-//   font-size: 20px;
-//   font-weight: 700;
-// }
 a:not(.checkout__title) {
-  // font-size: 18px;
+  // font-size: $font-size-base;
   // font-weight: 500;
   text-decoration: none;
   color: $neutral-700;
@@ -53,7 +43,7 @@ a:not(.checkout__title) {
 }
 
 p {
-  font-size: 18px !important;
+  font-size: $font-size-base;
   line-height: 1.778em;
   margin: 0;
 }
@@ -61,8 +51,22 @@ p {
 ul {
   margin: 0;
 }
+input {
+  font-size: $font-size-base !important;
+  padding: 21px;
+}
+label {
+  font-size: $font-size-base;
+}
+iframe,
+canvas {
+  height: 0px
+}
 .fs-6 {
   font-size: 16px !important;
+}
+.date {
+  line-height: 1.03rem;
 }
 li:last-child:not(.ad__activity__item, .wishlist__item, .table__list-item, .cd__cart__item) {
   border: none !important;
@@ -100,9 +104,6 @@ li:last-child:not(.ad__activity__item, .wishlist__item, .table__list-item, .cd__
 .select__placeholder {
   color: $neutral-700;
 }
-input {
-  padding: 21px;
-}
 //border BS override.
 .border,
 .border-bottom,
@@ -131,10 +132,14 @@ input {
   color: $neutral-700 !important;
 }
 .form-control:not(.donate-value-input, .search) {
-  height: 54px;
   background-color: $body-bg;
   color: $neutral-700;
   // border-radius: 12px;
+}
+.form-control:disabled,
+.form-control[readonly] {
+  background: $secondary-4;
+  opacity: 0.7;
 }
 .filter-text {
   color: $neutral-700;

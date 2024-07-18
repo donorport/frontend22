@@ -92,7 +92,7 @@ const ItemsTable = ({
                           {item.currencySymbol}
                           {priceFormat(price)}
                         </h6>
-                        <div className="text-light fs-7">{moment(item.created_at).fromNow()}</div>
+                        <div className="date text-light fs-7">{moment(item.created_at).fromNow()}</div>
                       </div>
                       <div className="position-relative">
                         <ListItemImg

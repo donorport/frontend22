@@ -708,7 +708,7 @@ const ProfileSettings = () => {
               </div>
             )}
           </div>
-          <div className="d-flex flex-column gap-3">
+          <div className="d-flex flex-column gap-5">
             {' '}
             <div className="input__wrap">
               <label className="input__label flex__1">

@@ -997,7 +997,7 @@ const Payments = () => {
             sure you enough funds to cover the sales tax when you purchase the items.
           </div>
           <Button
-            size="lg"
+            size="md"
             variant="info"
             onClick={() => {
               if (!saveloading) myFunction('taxRate');

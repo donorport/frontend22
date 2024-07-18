@@ -53,7 +53,7 @@ const About = (props) => {
             <Row>
               <Col md="4" className="mb-4 mb-sm-0">
                 <div className="about__content-1">
-                  <h3 className="fs-1 fw-bolder pt-3">A Donation Marketplace for Charities</h3>
+                  <h3 className="fs-1 fw-bolder pt-3">A Donation Marketplace</h3>
                   <p className="text-light fw-regular mb-4 lh-1.5">
                     Charities list what they need, donors buy it, and the charity gets it. Our
                     platform gives you full transparency, so you decide where your money goes.

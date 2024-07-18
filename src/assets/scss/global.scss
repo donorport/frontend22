@@ -58,7 +58,7 @@
 
   // // load bootstrap styles
   // //@import "~bootstrap/scss/maps";
-  // @import '~bootstrap/scss/utilities';
+  @import '~bootstrap/scss/utilities';
   //
   // @import '~bootstrap/scss/root';
   // @import '~bootstrap/scss/reboot';
@@ -80,7 +80,6 @@
   @import './base';
 
   @import '../../assets/css/style.scss';
-
   @import '../../View/frontEnd/reset-password/style.scss';
   @import '../../View/frontEnd/forgot-password/style.scss';
   @import '../../View/frontEnd/about/style.scss';

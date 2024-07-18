@@ -129,7 +129,7 @@ const TaxTable = (props) => {
                                   {item[0].currencySymbol}
                                   {priceFormat(totalVal(item))}
                                 </h6>
-                                <div className="text-light fs-7">
+                                <div className="date text-light fs-7">
                                   {moment(item[0].created_at).fromNow()}
                                 </div>
                               </div>
@@ -145,9 +145,7 @@ const TaxTable = (props) => {
                               <div className="text__wrap text-start w-100 w-sm-auto">
                                 <h6>{item[0].organizationDetails?.name}</h6>
                                 {item.length === 1 && (
-                                  <p className="text-light mb-6p">
-                                    #{item[0].uniqueTransactionId}
-                                  </p>
+                                  <p className="text-light mb-6p">#{item[0].uniqueTransactionId}</p>
                                 )}
                                 {/* <div className="fs-7 text-light">
                               {item[0].userDetails.street + ' , ' + item[0].userDetails.cityDetails[0]?.city}
@@ -275,15 +273,20 @@ const TaxTable = (props) => {
                             
                                   </div>
                                 </Button> */}
-                                  <a
-                                    onClick={(e) => e.stopPropagation()}
-                                    href={helper.recieptPath + item[0].receipt}
-                                    download
+                                  <Button
+                                    size="sm"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      const link = document.createElement('a');
+                                      link.href = helper.recieptPath + item[0].receipt;
+                                      link.download = true;
+                                      link.click();
+                                    }}
                                     variant="info"
-                                    className="text-white fs-6 rounded-pill flex-grow-1 btn btn-info"
+                                    className="text-white fs-6 rounded-pill flex-grow-1"
                                   >
                                     Download
-                                  </a>
+                                  </Button>
                                 </div>
                               ) : (
                                 // <Button variant="warning" className="d-flex align-items-center ms-auto text-white" >
@@ -345,7 +348,7 @@ const TaxTable = (props) => {
                                             ? taxableProduct
                                             : taxableDonation}
                                         </div>
-                                        <div className="text-light fs-7">
+                                        <div className="date text-light fs-7">
                                           {moment(i1.created_at).fromNow()}
                                         </div>
                                       </div>
@@ -388,9 +391,7 @@ const TaxTable = (props) => {
                                     </div> */}
                                     </div>
                                     <div className="pe-1 p-sm-2 mr-12p">
-                                      <p className="text-light mb-6p">
-                                        #{i1.uniqueTransactionId}
-                                      </p>
+                                      <p className="text-light mb-6p">#{i1.uniqueTransactionId}</p>
                                     </div>
                                   </div>
                                 </li>

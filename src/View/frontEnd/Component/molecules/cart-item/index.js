@@ -50,7 +50,7 @@ function CartItem(props) {
   console.log({ quantity });
 
   return (
-    <li className="d-flex cd__cart__item px-2 py-3 d-flex align-items-center border-bottom">
+    <li className="d-flex cd__cart__item p-2 d-flex align-items-center border-bottom">
       <div className="flex-grow-1 d-flex align-items-center">
         <ListItemImg
           size={62}

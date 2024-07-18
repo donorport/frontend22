@@ -12,14 +12,14 @@ $attention: #fcec7f;
 $secondary-1: #15202b; //bg--dark
 $secondary-2: #3045c9;
 $secondary-3: #1d2a3e;
-$secondary-4: #3e9025;
+$secondary-4: #1d2a3e;
 $secondary-5: #1d2a3e; //bg--shade
 $secondary-6: #15202b; //bg--dark
 
 $neutral-100: #ffffff; // white stays white
 $neutral-200: #15202b;
-$neutral-300: #2e2e54;
-$neutral-400: #98119a;
+$neutral-300: #1d2a3e;
+$neutral-400: #ffffff;
 $neutral-500: #80809d;
 $neutral-600: #6e6d8f;
 $neutral-700: #ffffff;
@@ -36,7 +36,7 @@ $light: $neutral-500;
 $border-color: #2f3846;
 $hr-border-color: #2f3846;
 
-$font-size-base: 0.975rem; // 16px
+$font-size-base: 1.125rem; // 18px
 // $font-size-base: 0.875rem; // 14px
 $font-size-lg: 1.125rem; // 18px / 16px
 // $font-size-lg: 1rem; // 16px
@@ -76,11 +76,24 @@ $input-btn-padding-x: 1rem;
 $input-btn-padding-y-lg: 0.75rem;
 $input-btn-padding-x-lg: 1.25rem;
 
-$btn-padding-y-sm: 5px;
-$btn-padding-x-sm: 14px;
+//Adjust button padding size globally:
+$btn-padding-y: 21px;
+$btn-padding-x: 56px;
 
-//$btn-padding-y-lg: 10px;
-//$btn-padding-x-lg: 20px;
+$btn-padding-y-sm: 9px;
+$btn-padding-x-sm: 26px;
+
+$btn-padding-y-lg: 10px;
+$btn-padding-x-lg: 20px;
+
+$btn-font-size-sm: 18px; // Font size
+
+$btn-font-size: 20px; // Font size
+$btn-font-weight: 700; // Font weight
+
+// Custom variable for button border radius
+$btn-border-radius: 46px; // Border radius
+$btn-border-radius-sm: 46px; // Border radius
 
 $btn-disabled-opacity: 0.5;
 $input-btn-border-width: 1px;

@@ -1,7 +1,7 @@
 .select__single-value {
     font-weight: 600;
     color: inherit;
-    font-size: 16px;
+    font-size: $font-size-base;
   }
   .input__label input, .input__label textarea {
     color: inherit !important;
@@ -9,4 +9,10 @@
   }
   .select__control {
     border-color: $border-color !important;
+  }
+  .apply__left {
+    min-width: 800px;
+  }
+  .apply__content {
+    max-width: 550px
   }

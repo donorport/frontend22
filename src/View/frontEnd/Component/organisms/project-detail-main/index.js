@@ -185,7 +185,7 @@ function ProjectDetailMain(props) {
           </div>
         </div>
 
-        <div className="category__icons d-flex align-items-center order--1 order-sm-0">
+        <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-2">
           {/*} <Button
             size="lg"
             variant="link"

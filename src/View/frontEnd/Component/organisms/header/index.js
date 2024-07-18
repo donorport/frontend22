@@ -9,11 +9,7 @@ import Toggle from '../toggle';
 import UserSettings from '../user-settings';
 import GeoLocation from '../geo-location';
 import { useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import './style.scss';
-import Tooltip from '@mui/material/Tooltip';
-import { Button } from 'react-bootstrap';
 
 const Header = ({
   cartItem,
@@ -59,27 +55,28 @@ const Header = ({
   return (
     <header className="frontend_pages header">
       <Container className="d-flex align-items-center" fluid>
-        <Logo />
-        {/* {!isMobile && (
-          <div className="header__links ms-4 px-4 d-flex gap-4">
-            <Link className="text-light fw-semibold p-0" to="/about">
-              How it works
-            </Link>
-            <Link className="text-light fw-semibold p-0" to="/help">
-              FAQ
-            </Link>
-            <Link className="text-light fw-semibold p-0" to="/login">
-              Login
-            </Link>
-          </div>
-        )} */}
-        
-        <div className="position-relative ms-auto header__right d-flex align-items-center gap-2">
-          <Toggle />
-          {isHeaderGeo && isPathnameNotCategories && (
-            <GeoLocation productList={productList} wishListproductList={wishListproductList} />
+        <Logo />{' '}
+        <div className="flex-grow-1 d-flex gap-2 justify-content-end align-items-center">
+          {!isMobile && (
+            <>
+              <Link variant="link" to="/about">
+                About Us
+              </Link>
+              <Link variant="link" to="/apply">
+                Charities
+              </Link>
+              <Link variant="link" to="/signup">
+                Signup
+              </Link>
+            </>
           )}
-          {/* {user.isAccountAdded && (
+          <div className="d-flex align-items-center justify-content-end gap-5">
+            <div className="position-relative header__right d-flex align-items-center gap-2">
+              <Toggle />
+              {isHeaderGeo && isPathnameNotCategories && (
+                <GeoLocation productList={productList} wishListproductList={wishListproductList} />
+              )}
+              {/* {user.isAccountAdded && (
             <Tooltip title="Setup complete. You can start receiving donations.">
               <div className="me-2 fw-bold d-flex align-items-center badge--active text-white bg-secondary fs-6 px-1">
                 <FontAwesomeIcon icon={solid('bolt-lightning')} className="fs-6 me-6pt" />
@@ -87,31 +84,33 @@ const Header = ({
               </div>
             </Tooltip>
           )} */}
-          {userAuthToken && (
-            <>
-              <ShoppingCart
-                cartItem={cartItem}
-                removeCartItem={removeCartItem}
-                updateCartItem={updateCartItem}
-              />
+              {userAuthToken && (
+                <>
+                  <ShoppingCart
+                    cartItem={cartItem}
+                    removeCartItem={removeCartItem}
+                    updateCartItem={updateCartItem}
+                  />
 
-              <Activity
-                notificationList={notificationList}
-                setWatchNotification={setWatchNotification}
-                removeNotification={removeNotification}
-                followedOrganizationList={followedOrganizationList}
-                notificationMarkAsRead={notificationMarkAsRead}
-                followToOrganization={followToOrganization}
-                removeFollowedOrganization={removeFollowedOrganization}
-              />
-            </>
-          )}
+                  <Activity
+                    notificationList={notificationList}
+                    setWatchNotification={setWatchNotification}
+                    removeNotification={removeNotification}
+                    followedOrganizationList={followedOrganizationList}
+                    notificationMarkAsRead={notificationMarkAsRead}
+                    followToOrganization={followToOrganization}
+                    removeFollowedOrganization={removeFollowedOrganization}
+                  />
+                </>
+              )}
 
-          <UserSettings
-            wishListproductList={wishListproductList}
-            addProductToWishlist={addProductToWishlist}
-            getAuthToken={getAuthToken}
-          />
+              <UserSettings
+                wishListproductList={wishListproductList}
+                addProductToWishlist={addProductToWishlist}
+                getAuthToken={getAuthToken}
+              />
+            </div>
+          </div>
         </div>
       </Container>
     </header>

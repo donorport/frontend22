@@ -611,7 +611,7 @@ const UserProfile = () => {
           </div>
         </div>
 
-        <div className="d-flex flex-column gap-3 mb-3">
+        <div className="d-flex flex-column gap-5 mb-3">
           <div className="input__wrap d-flex">
             <label className="input__label flex__1">
               <input type="text" name="street" value={street} onChange={(e) => changevalue(e)} />
