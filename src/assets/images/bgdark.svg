@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   width="1440"
+   height="560"
+   preserveAspectRatio="none"
+   viewBox="0 0 1440 560"
+   id="svg145"
+   sodipodi:docname="bg dark.svg"
+   inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview147"
+     pagecolor="#29293c"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="1"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="0.42142857"
+     inkscape:cx="720.16949"
+     inkscape:cy="280"
+     inkscape:window-width="1920"
+     inkscape:window-height="1052"
+     inkscape:window-x="1920"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg145" />
+  <rect
+     width="1440"
+     height="560"
+     x="0"
+     y="0"
+     fill="rgba(233, 237, 252, 1)"
+     id="rect132"
+     style="fill:none"
+     mask="url(#mask443)" />
+  <path
+     d="m 0,437.706 c 79.858,11.835 144.155,-64.512 208.525,-113.234 59.849,-45.299 115.648,-94.171 152.148,-159.758 38.707,-69.554 69.94,-146.295 62.265,-225.523 -7.841,-80.94 -38.667,-167.601 -104.915,-214.76 -64.126,-45.648 -151.807,-15.971 -230.136,-23.748 -61.477,-6.104 -119.152,-21.358 -180.781,-17.051 -76.283,5.331 -158.201,0.305 -220.194,45.076 -67.525,48.766 -121.881,124.702 -129.717,207.626 -7.752,82.037 36.721,161.477 88.803,225.333 45.284,55.521 125.244,62.318 181.743,106.374 64.87,50.584 90.887,157.606 172.259,169.665"
+     fill="#d4dcf9"
+     id="path134"
+     mask="url(#mask437)"
+     style="fill:#373041;fill-opacity:1" />
+  <path
+     d="m 1440,1269.673 c 129.017,19.897 220.975,-126.379 320.797,-210.503 87.515,-73.752 176.148,-146.421 225.349,-249.754 49.704,-104.39 86.534,-224.853 53.369,-335.613 C 2007.528,366.976 1883.652,322.988 1814.337,235.635 1740.555,142.652 1721.106,8.448 1620.399,-54.383 1508.663,-124.096 1363.068,-168.442 1239.44,-123.045 1116.473,-77.89 1053.836,57.623 995.7,175.012 c -48.035,96.993 -38.706,206.295 -58.716,312.665 -21.153,112.444 -113.329,228.089 -62.273,330.482 51.307,102.897 212.507,79.232 302.346,150.989 106.152,84.787 128.673,279.818 262.943,300.525"
+     fill="#feffff"
+     id="path136"
+     mask="url(#mask431)"
+     style="fill:#15202b;fill-opacity:1" />
+  <defs
+     id="defs143">
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask431">
+      <g
+         id="g435">
+        <rect
+           width="1440"
+           height="560"
+           fill="#ffffff"
+           id="rect433"
+           x="0"
+           y="0" />
+      </g>
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask437">
+      <g
+         id="g441">
+        <rect
+           width="1440"
+           height="560"
+           fill="#ffffff"
+           id="rect439"
+           x="0"
+           y="0" />
+      </g>
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask443">
+      <g
+         id="g447">
+        <rect
+           width="1440"
+           height="560"
+           fill="#ffffff"
+           id="rect445"
+           x="0"
+           y="0" />
+      </g>
+    </mask>
+  </defs>
+</svg>

@@ -156,7 +156,8 @@ const Product = (props) => {
   if (props.isFirst) {
     return (
       <div className="flex-grow-1 item item--feature">
-        <div className="item__bg feature">
+        <div className="item__wrap">
+        <div className="item__bg feature"></div>
           <div className="feature__header">
             <h4>Top Pick</h4>
             <div className="feature__price">
@@ -183,9 +184,10 @@ const Product = (props) => {
 
   return (
     <div className="item">
-      <div className="item__bg" style={{backgroundColor: props.dominantColor}}>
+      <div className="item__wrap">
+        <div className="item__bg" style={{ backgroundColor: props.dominantColor }}></div>
         <div className="item__imgwrap">
-          <img alt='' src={helper.CampaignProductFullImagePath + img} className="item__img" />
+          <img alt="" src={helper.CampaignProductFullImagePath + img} className="item__img" />
         </div>
         <div className="item__words">
           <div className="text-block">{repeatedText}</div>

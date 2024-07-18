@@ -6,12 +6,12 @@
   bottom: 0%;
   left: 0%;
   right: 0%;
-  z-index: -99
+  z-index: -99;
 }
 
 .section.section--hero {
   padding-top: 56px;
-  padding-bottom: 24px
+  padding-bottom: 24px;
 }
 .list {
   grid-column-gap: 24px;
@@ -112,7 +112,7 @@
   max-height: 275px;
 }
 .item__words {
-  opacity: .45;
+  opacity: 0.45;
   position: absolute;
   top: 0%;
   bottom: 0%;
@@ -121,7 +121,7 @@
   overflow: hidden;
 }
 .text-block {
-  opacity: .11;
+  opacity: 0.11;
   width: 150%;
   height: 150%;
   font-size: 46px;
@@ -149,10 +149,19 @@
   left: 0%;
   right: 0%;
 }
-.item__bg {
+.item__wrap {
   border-radius: 16px;
   padding-bottom: 75%;
   position: relative;
   overflow: visible;
-  background-color: rgba(90, 174, 224, .2);
+  // background-color: rgba(90, 174, 224, .2);
+}
+.item__bg:not(.feature) {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  opacity: 0.29;
+  border-radius: 16px;
 }

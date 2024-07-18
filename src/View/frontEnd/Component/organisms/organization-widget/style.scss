@@ -9,10 +9,6 @@
 .input-group.donate__control {
   width: 105px;
 
-  .input-group-text {
-    background-color: $secondary-3 !important;
-  }
-
   .form-control {
     border-left: 0;
     background: $neutral-100;
@@ -30,6 +26,6 @@
   }
 }
 .input-group-text {
-  background-color: $secondary-3 !important;
-  border-color: $border-color !important;
+  background: transparent;
+  border: none;
 }

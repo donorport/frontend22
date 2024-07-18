@@ -246,6 +246,12 @@
 .item__bg.feature {
   background: rgb(0 198 255 / 20%);
   flex-grow: inherit;
+  border-radius: 16px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 .feature__header {
   grid-column-gap: 6px;

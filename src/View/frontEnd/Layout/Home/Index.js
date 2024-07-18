@@ -16,12 +16,30 @@ import receipt from '../../../../assets/images/receipt.svg';
 import coats from '../../../../assets/images/coats.png';
 import buoy from '../../../../assets/images/buoy.png';
 import hero from '../../../../assets/images/bg.svg';
+import hero2 from '../../../../assets/images/bgdark.svg';
 import { useSelector } from 'react-redux';
 
 //const title = {
 //color: '#6b68f8'
 //};
 const ProductsUnavailableLocation = ({ user }) => {
+  const [htmlTheme, setHtmlTheme] = useState('light'); // Default theme, assuming 'light'
+
+  useEffect(() => {
+    const htmlElement = document.querySelector('html');
+    const observer = new MutationObserver(() => {
+      setHtmlTheme(htmlElement.getAttribute('data-theme') || 'light');
+    });
+
+    observer.observe(htmlElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   return (
     <div className="container">
       <div className="empty__modal">
@@ -191,13 +209,19 @@ export default function Index(props) {
     }
     setProductsList(products);
   }, [props.productList, props.wishListproductIds.length]);
-
+  const htmlTheme = document.documentElement.getAttribute('data-theme');
+  
   return (
     <>
       {/* {loading && <CircularProgress />} */}
 
       <HeaderController productList={props.productList} isHeaderGeo={true} />
-      <img className="bgimage" style={{ display: 'fixed', top: '0' }} src={hero} alt="" />
+      <img
+        className="bgimage"
+        style={{ position: 'fixed', top: '0' }}
+        src={htmlTheme === 'dark' ? hero2 : hero}
+        alt=""
+      />
 
       <div className="section section--hero">
         <div className="container">
@@ -215,11 +239,13 @@ export default function Index(props) {
                 nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id
                 rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
               </p>
-              <Button className="mt-3" variant="info">Start Donating</Button>
+              <Button className="mt-3" variant="info">
+                Start Donating
+              </Button>
             </div>
           </div>
           <div className="hero__right">
-            <img alt='' src={coats}></img>
+            <img alt="" src={coats}></img>
           </div>
         </div>
       </div>
@@ -405,7 +431,7 @@ export default function Index(props) {
                   <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
                     <span className="filter__item-icon">
                       {/* <FontAwesomeIcon icon={solid('paperclip')} color="#3a94d4" /> */}
-                      <img alt='receipt' style={{ height: '21px' }} src={receipt}></img>
+                      <img alt="receipt" style={{ height: '21px' }} src={receipt}></img>
                     </span>
                     <Button
                       variant="link"
