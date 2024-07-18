@@ -164,7 +164,7 @@ const Product = (props) => {
               <span>{priceFormat(props.displayPrice)}</span>
             </div>
           </div>
-          <img src={helper.CampaignProductFullImagePath + img} className="feature__img" />
+          <img alt='' src={helper.CampaignProductFullImagePath + img} className="feature__img" />
           <Button variant="primary" className="feature__btn">
             <FontAwesomeIcon className="fs-4" icon={solid('arrow-up-right-from-square')} />
           </Button>
@@ -181,9 +181,9 @@ const Product = (props) => {
 
   return (
     <div className="item">
-      <div className="item__bg">
+      <div className="item__bg" style={{backgroundColor: props.dominantColor}}>
         <div className="item__imgwrap">
-          <img src={helper.CampaignProductFullImagePath + img} className="item__img" />
+          <img alt='' src={helper.CampaignProductFullImagePath + img} className="item__img" />
         </div>
         <div className="item__words">
           <div className="text-block">{repeatedText}</div>

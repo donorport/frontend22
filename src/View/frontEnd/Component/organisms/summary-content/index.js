@@ -78,7 +78,7 @@ const SummaryContent = (props) => {
                   {item.productDetails?.tax && (
                     <div className="checkout__tax d-flex align-items-center justify-content-center">
                       {/* <FontAwesomeIcon icon={solid('paperclip')} className="text-info fs-4" /> */}
-                      <img src={receipt}></img>
+                      <img alt='' src={receipt}></img>
                     </div>
                   )}
                   <span className="checkout__subtotal--price text-end mt-6p fw-bold ms-3 fs-5">
@@ -140,7 +140,7 @@ const SummaryContent = (props) => {
       {cartItem.findIndex((p) => p?.productDetails?.tax) !== -1 ? (
         <div className="checkout__legend d-flex align-items-center my-3 fs-6 p-2">
           {/* <FontAwesomeIcon icon={solid('paperclip')} className="fs-4 text-info me-1" /> */}
-          <img className="me-2" src={receipt}></img>
+          <img alt='' className="me-2" src={receipt}></img>
           <span>
             You'll receive a tax deductabile receipt for this donation.
           </span>

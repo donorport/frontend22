@@ -337,7 +337,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
                   style={{ fontSize: 'x-large' }}
                 >
                   {/* <FontAwesomeIcon icon={solid('paperclip')} /> */}
-                  <img src={receipt}></img>
+                  <img alt="" src={receipt}></img>
                 </span>
               )}
               {item.itemDetails?.postTag && (

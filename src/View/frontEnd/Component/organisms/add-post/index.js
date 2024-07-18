@@ -625,7 +625,7 @@ const AddPost = (props) => {
                       <div className="d-flex gap-2">
                         <div className="d-flex align-items-center">
                           {/* <FontAwesomeIcon className="fs-3 text-info" icon={solid('paperclip')} /> */}
-                          <img height="24" src={receipt}></img>
+                          <img height="24" src={receipt} alt=""></img>
                           <div className="d-flex py-12p px-18p">
                             <ToggleSwitch
                               id="tax"
@@ -664,7 +664,7 @@ const AddPost = (props) => {
                           className="me-2 fs-3 text-info"
                           icon={solid('paperclip')}
                         /> */}
-                        <img className="me-3" height="24" src={receipt}></img>
+                        <img alt="" className="me-3" height="24" src={receipt}></img>
                         Toggle this if you intend on providing a tax receipt for donations made
                         toward this post.
                       </div>

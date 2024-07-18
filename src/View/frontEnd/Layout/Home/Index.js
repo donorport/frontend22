@@ -197,7 +197,7 @@ export default function Index(props) {
       {/* {loading && <CircularProgress />} */}
 
       <HeaderController productList={props.productList} isHeaderGeo={true} />
-      <img class="bgimage" style={{ display: 'fixed', top: '0' }} src={hero} alt="" />
+      <img className="bgimage" style={{ display: 'fixed', top: '0' }} src={hero} alt="" />
 
       <div className="section section--hero">
         <div className="container">
@@ -206,7 +206,7 @@ export default function Index(props) {
             <div className="hero__heading">
               <div className="hero__title">
                 <h1 className="hero__header">
-                  A New Way to<span class="header__alt">Donate.</span>
+                  A New Way to<span className="header__alt">Donate.</span>
                 </h1>
               </div>
               <p>
@@ -219,7 +219,7 @@ export default function Index(props) {
             </div>
           </div>
           <div className="hero__right">
-            <img src={coats}></img>
+            <img alt='' src={coats}></img>
           </div>
         </div>
       </div>
@@ -405,7 +405,7 @@ export default function Index(props) {
                   <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
                     <span className="filter__item-icon">
                       {/* <FontAwesomeIcon icon={solid('paperclip')} color="#3a94d4" /> */}
-                      <img style={{ height: '21px' }} src={receipt}></img>
+                      <img alt='receipt' style={{ height: '21px' }} src={receipt}></img>
                     </span>
                     <Button
                       variant="link"

@@ -1,19 +1,14 @@
-import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Logo from '../../atoms/logo';
 import ShoppingCart from '../shopping-cart';
 import Activity from '../activity';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Toggle from '../toggle';
 import UserSettings from '../user-settings';
 import GeoLocation from '../geo-location';
 import { useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import './style.scss';
-import Tooltip from '@mui/material/Tooltip';
-import { Button } from 'react-bootstrap';
 
 const Header = ({
   cartItem,

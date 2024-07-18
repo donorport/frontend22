@@ -1,5 +1,4 @@
 import { Button, Container, Row, Col, FormControl, InputGroup } from 'react-bootstrap';
-import './style.scss';
 import DefaultLayout from '../Component/templates/default-layout';
 import './style.scss';
 import Page from '../../../components/Page';
@@ -48,7 +47,7 @@ const Landing = () => {
                 width: '500px'
               }}
             >
-              <img src={heroasset} className="p-5" style={{ width: '675px' }}></img>
+              <img alt="" src={heroasset} className="p-5" style={{ width: '675px' }}></img>
             </div>
           </div>
         </Container>

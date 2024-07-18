@@ -28,7 +28,7 @@ const ItemTags = () => {
               <ul className="list-unstyled mb-0 mb-sm-5">
                 <li className="d-flex align-items-center py-3">
                   <div className="trust__image list__item-img flex-shrink-0">
-                    <img style={{ height: '32px' }} src={receipt}></img>
+                    <img alt="receipt" style={{ height: '32px' }} src={receipt}></img>
                   </div>
                   {/* <ListItemImg
                     size={84}
