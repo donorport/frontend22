@@ -14,6 +14,7 @@
 .filter__dropdown {
   &.dropdown-top-arrow:after {
     left: 20px !important;
+    background-color: $secondary-3;
   }
   &.dropdown-menu {
     background-color: $body-bg !important;

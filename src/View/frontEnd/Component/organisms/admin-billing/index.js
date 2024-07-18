@@ -233,10 +233,10 @@ const AdminBilling = () => {
                           className="admin__avatar mr-12p donor_avatar_bg"
                         />
                         <div className="admin__billing__value order-1 me-0 me-sm-4 text-end">
-                          <div className="text-success  mb-3p">
+                          <h6 className="price mb-3p">
                             + {currencySymbole}
                             {priceFormat(Number(amount))}
-                          </div>
+                          </h6>
                           <div className="fw-semibold text-light fs-7">
                             {moment(date).format('MMM DD, YYYY')}
                           </div>

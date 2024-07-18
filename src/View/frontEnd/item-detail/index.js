@@ -234,7 +234,7 @@ const ItemDetail = (props) => {
                   <Col md="6" className="mb-4 mb-0">
                     <TagTitle>Projects</TagTitle>
 
-                    <div>
+                    <div className="d-flex flex-column align-items-start justify-content-start">
                       <WidgetTitle>{project.projectDetails.name}</WidgetTitle>
 
                       <div className="gallery__container">

@@ -101,7 +101,7 @@ const ShoppingCart = (props) => {
           style={{ transform: 'translate(45px, 30px) !important' }}
         >
           <div className="dropdown__inner">
-            <div className="d-flex cart__dropdown-header">
+            <div className="d-flex cart__dropdown-header border-bottom">
               <div className="fw-bolder">Cart</div>
               {!state.empty && (
                 <Link
@@ -129,16 +129,16 @@ const ShoppingCart = (props) => {
               )}
               {!state.empty && (
                 <div className="cd__cart__controls d-flex align-items-center flex-column">
-                  <Link to="/checkout" className="w-100 btn btn-md btn-info ms-auto">
-                    Checkout{' '}
-                    <span className="me-1">
+                  <Link to="/checkout" className="d-flex gap-1 w-100 btn btn-md btn-info ms-auto">
+                    Checkout:{' '}
+                    <span>
                       {currencySymbol + priceFormat(Number(state?.subTotal))}
                     </span>
                   </Link>
                 </div>
               )}
             </div>
-            <div className="cart__dropdown-footer"></div>
+            <div className="cart__dropdown-footer border-top"></div>
           </div>
         </Dropdown.Menu>
       </Dropdown>

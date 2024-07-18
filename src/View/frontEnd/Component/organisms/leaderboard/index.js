@@ -163,8 +163,8 @@ const LeaderBoard = () => {
                       href="/user/david"
                       className="rank__avatar w-inline-block"
                     ></a>
-                    <div className="rank__header">
-                      <h3 className="fw-bolder ms-2 mb-0">{userData.name}</h3>
+                    <div className="rank__header ms-3">
+                      <h3 className="fw-bolder mb-0">{userData.name}</h3>
                       <div className="ladder__xp d-flex align-items-center mt-1">
                         {getC.getUserRank(user.xp) !== '' && (
                           <span className="btn-sm ">{getC.getUserRank(user.xp)}</span>

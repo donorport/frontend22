@@ -159,7 +159,6 @@ h6 {
   font-size: 16px;
   //color: rgba(111, 111, 144, 0.59);
   white-space: break-spaces;
-  line-height: 1.68rem;
 }
 
 .note.note--clear {
@@ -181,9 +180,9 @@ textarea,
 .form-control,
 .input__text {
   &::placeholder {
-    color: $neutral-600;
+    color: $neutral-400;
     font-weight: $font-weight-base;
-    font-size: 16px;
+    font-size: $font-size-base;
   }
 }
 

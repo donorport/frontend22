@@ -2,7 +2,7 @@ $body-bg: #fff;
 $list: #fff;
 $input: #fff;
 $primary: #2448e4;
-$secondary: #BE50E2;
+$secondary: #7e58cb;
 $slider: #96dbfa;
 $progress: #f8fafd;
 $slider-filled: #abe2fb;
@@ -77,8 +77,6 @@ $input-btn-padding-x: 1rem;
 $input-btn-padding-y-lg: 0.75rem;
 $input-btn-padding-x-lg: 1.25rem;
 
-$btn-primary-color: #fff; // Text color
-
 //Adjust button padding size globally:
 $btn-padding-y: 21px;
 $btn-padding-x: 56px;
@@ -113,6 +111,7 @@ $info: #2448e4;
 $infinity: #a976f0;
 $error: #e61b1b;
 $error-bg: #ffe2e2;
+$btn-primary-color: #fff; // Text color
 
 $light: $neutral-100 !default;
 $dark: $neutral-700 !default;

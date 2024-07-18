@@ -244,7 +244,7 @@
 }
 
 .item__bg.feature {
-  background: #cdf3fe;
+  background: rgb(0 198 255 / 20%);
   flex-grow: inherit;
 }
 .feature__header {
@@ -263,13 +263,14 @@
   background-position: 0 0;
   background-repeat: no-repeat;
   background-size: contain;
-  height: 300px;
-  margin-top: 90px;
+  // height: 300px;
+  margin-top: auto;
   position: absolute;
   top: 0%;
   bottom: 0%;
   left: 0%;
   right: 0%;
+  max-width: 100%;
 }
 .feature__bg {
   grid-column-gap: 6px;
@@ -302,7 +303,6 @@
   border-radius: 50% !important;
   padding: 0 !important;
   color: $neutral-100 !important;
-  background-color: $primary;
   height: 56px;
   width: 56px;
   font-size: 36px;

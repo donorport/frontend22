@@ -125,12 +125,12 @@ const ProjectsTable = (props) => {
                     <div className="billing__main d-flex align-items-center  me-sm-3 mb-2">
                       <div className="ms-auto ms-sm-0 me-sm-2 post__value">
                         {project.status === 1 && (
-                          <div className="price ">
+                          <h6 className="price ">
                             {props.data?.symbol}
                             {countProjectAmount(project.productDetails)}
-                          </div>
+                          </h6>
                         )}
-                        <div className="text-light fs-7">
+                        <div className="date text-light fs-7">
                           {moment(project.created_at).fromNow()}
                         </div>
                       </div>

@@ -8,7 +8,7 @@ function ActivityList(props) {
   const removeFollowedOrganization = props.removeFollowedOrganization;
 
   return followedOrganizationList.length > 0 ? (
-    <ul className="cd__cart__list list-unstyled mb-0">
+    <ul className="cd__cart__list list-unstyled mb-0 p-0">
       {followedOrganizationList.length > 0 &&
         followedOrganizationList.map((val, k) => {
           return (

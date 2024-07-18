@@ -215,7 +215,7 @@ export default function Index(props) {
                 nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id
                 rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
               </p>
-              <Button variant="info">Start Donating</Button>
+              <Button className="mt-3" variant="info">Start Donating</Button>
             </div>
           </div>
           <div className="hero__right">

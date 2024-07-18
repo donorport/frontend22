@@ -570,7 +570,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               </div>
               <div className="d-flex align-items-center ">
                 <span className="fw-bolder flex__1">XP</span>
-                <span className="text-info fw-semibold">{item.xp} xp</span>
+                <h6 className="text-info">{item.xp} xp</h6>
               </div>
             </div>
             <div className="d-flex align-items-center pt-3 mb-2">
@@ -616,7 +616,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
                 </div>
                 <div className="ms-1">
                   <span className="post__title fw-bold lh-1">{item.fulfilDetails[0].receipt}</span>
-                  <div className="date__name fw-semibold fs-7">
+                  <div className="date text-light fs-7">
                     Updated &nbsp;
                     {moment(item.fulfilDetails[0].updated_at).fromNow()}
                   </div>

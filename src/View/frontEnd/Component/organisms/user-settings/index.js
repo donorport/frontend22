@@ -78,7 +78,7 @@ const UserSettings = (props) => {
 
         <Dropdown.Menu className="profile__dropdown w-350 dropdown-top-arrow">
           <div className="dropdown__inner">
-            <div className="d-flex activity__dropdown-header">
+            <div className="d-flex activity__dropdown-header border-bottom">
               {state.wishlist || state.linked_org ? (
                 <Button
                   variant="link"
@@ -154,7 +154,7 @@ const UserSettings = (props) => {
               )}
             </div>
 
-            <div className="activity__dropdown-footer"></div>
+            <div className="activity__dropdown-footer border-top"></div>
           </div>
         </Dropdown.Menu>
       </Dropdown>

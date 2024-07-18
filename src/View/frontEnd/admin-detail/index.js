@@ -96,7 +96,7 @@ function AdminDetail() {
             <div className="user__detail-wrap d-sm-flex">
               <div className="user__detail d-sm-flex px-sm-1">
                 <div className="tab__menu d-sm-flex flex-column align-items-center">
-                  <div className="user__img-wrap mb-4 w-100 d-none d-sm-block border-bottom">
+                  <div className="user__img-wrap mb-4 w-100 d-none d-sm-block">
                     <div className="user__img-content py-3">
                       <div
                         className="user__img user__img--admin charity_avatar_bg"

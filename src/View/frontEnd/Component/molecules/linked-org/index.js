@@ -232,7 +232,7 @@ function LinkedOrg(props) {
                         org?.organizationDetails?.slug
                       )
                     }
-                    className="linked__item-link py-0 d-flex align-items-center flex-grow-1 text-decoration-none"
+                    className="linked__item-link p-0 ps-2 d-flex align-items-center flex-grow-1 text-decoration-none"
                   >
                     <div className="linked__item-img-wrap">
                       <img

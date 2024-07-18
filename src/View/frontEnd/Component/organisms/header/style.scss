@@ -9,16 +9,6 @@
 .header {
   padding-top: 54px;
   padding-bottom: 42px;
-  // min-height: 80px;
-  // max-height: 80px;
-  // background: $secondary-1 !important;
-  // border-bottom: 1px solid $border-color;
-  // padding: 20px 0;
-  // font-size: 24px;
-  // position: sticky;
-  // top: 0;
-  // z-index: 99;
-
   .icon__btn {
     align-items: center;
     display: flex;
@@ -32,6 +22,11 @@
     .activity-icon {
       color: rgba(146, 157, 175, 0.6);
     }
+  }
+}
+@include media-breakpoint-down(sm) {
+  .header {
+    padding-bottom: 19px;
   }
 }
 .badge--active {

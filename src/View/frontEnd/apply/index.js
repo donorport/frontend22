@@ -52,7 +52,7 @@ const Apply = (props) => {
     >
       <div className="frontend_pages">
         <div className="container d-flex flex-column flex-sm-row password-reset position-relative p-0">
-          <div className="p-5 p-sm-0 col-sm-6 col-md-5 mw-600 border-sm-end border-bottom border-bottom-0-sm">
+          <div className="apply__left p-5 col-sm-6 col-md-5 mw-600 border-sm-end border-bottom border-bottom-0-sm">
             <div className="d-flex mt-5">
               <div className="d-flex gap-1 align-items-center">
                 <Logo />
@@ -69,7 +69,7 @@ const Apply = (props) => {
             </div>
 
 
-            <div>
+            <div className="apply__content">
               {!props.isApplied ? (
 <>
             <h1 className="mt-5 pt-5 fw-bolder pt-2 mb-4">Getting Started</h1>
@@ -85,13 +85,13 @@ const Apply = (props) => {
                 </div>
             <div className="mb-5">
               <h4 className="fw-bolder ">Step 1 - Create your account</h4>
-              <div className="text-light mb-4 fs-5 pe-5">
+              <p className="text-light mb-4 pe-5">
                 Fill out the form below and click Submit to apply to post for your charity on
                 Donorport. A four (4) digit activation code will be sent to the email you provided
                 once your account has been approved.{' '}
-              </div>
+              </p>
             </div>
-                <Form className="d-flex flex-column mb-5 pb-5 gap-3 mw-350" autocomplete="off">
+                <Form className="d-flex flex-column mb-5 pb-5 gap-5 mw-350" autocomplete="off">
                   {/*    <div className="py-1 d-flex justify-content-between fs-4 mb-3">
                     <RadioToggle
                       outline={true}
@@ -393,7 +393,6 @@ const Apply = (props) => {
                   <Button
                     variant="info"
                     size="lg"
-                    className="fw-bold px-4 py-2"
                     style={{ height: 'auto', width: '100%', opacity: props.loading ? '0.7' : '1' }}
                     onClick={() => !props.loading && applyOrganization()}
                   >
@@ -425,9 +424,9 @@ const Apply = (props) => {
           >
             <div>
               <h2 className="fw-bolder ">Activate</h2>
-              <div className="text-light mb-2 fs-5 mw-600">
+              <p className="text-light mb-2 mw-600">
                 Enter your 4 digit activation code in the box below to activate your account.
-              </div>
+              </p>
               <div className="d-flex gap-5 flex-wrap mt-5 activate mb-1 mw-600">
                 <div className="flex-grow-1 d-flex">
                   <div className="activate__icon">
@@ -441,7 +440,7 @@ const Apply = (props) => {
                 <Button
                   variant="primary"
                   size="lg"
-                  className="flex-grow-1 activate__button ms-2 fw-bold fs-4 py-2 px-4"
+                  className="flex-grow-1 activate__button ms-2 fw-bold py-2 px-4"
                   style={{ height: 'auto', borderRadius: '36px' }}
                   onClick={() => activateCode()}
                 >
@@ -458,7 +457,7 @@ const Apply = (props) => {
             </div> */}
             <div className="mt-5">
               <h3 className="fw-bolder ">Why Donorport?</h3>
-              <div className="d-flex gap-4 fee__list d-sm-flex fs-5 text-light">
+              <div className="d-flex gap-4 fee__list d-sm-flex fs-6 text-light">
                 <div>
                   <div className="d-flex align-items-center my-3">
                     <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
@@ -493,7 +492,7 @@ const Apply = (props) => {
 
             <footer className="mt-auto main-footer w-100">
               <div className="container-fluid">
-                <div className="d-flex gap-3 footer-bottom py-5">
+                <div className="d-flex gap-3 footer-bottom py-5 fs-6">
                   <div>&copy; 2023 Donorport, Inc.</div>
                   <div className="ms-auto d-flex footer-bottoms-links gap-2">
                     <a href="/privacy">Privacy Policy</a>

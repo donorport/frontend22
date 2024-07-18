@@ -26,7 +26,7 @@
 }
 
 .no__items-found {
-  color: $neutral-600;
+  // color: $neutral-600;
 }
 
 .cd__ {
@@ -100,7 +100,8 @@
   line-height: 24px;
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 18px;
+  font-size: $font-size-base;
   font-weight: 900;
-  color: $neutral-700
+  color: $neutral-700;
+  background-color: $secondary-3;
 }

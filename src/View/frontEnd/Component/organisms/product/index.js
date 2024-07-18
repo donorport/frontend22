@@ -136,7 +136,7 @@ const Product = (props) => {
 
   const cart_btn = added_to_cart ? (
     <Button size="sm" variant="secondary" className="fw-bolder" onClick={() => addToCart()}>
-        <FontAwesomeIcon icon={solid('circle-check')} className="fs-4" />
+      <FontAwesomeIcon icon={solid('circle-check')} className="fs-6" />
     </Button>
   ) : (
     <Button size="sm" variant="info" className="fw-bolder" onClick={() => addToCart()}>
@@ -147,7 +147,7 @@ const Product = (props) => {
   const btn =
     isFinish || (isFulfiled && !unlimited) ? (
       <span className="d-flex align-items-center fw-bold p-1 bg-success text-white">
-        <FontAwesomeIcon icon={solid('circle-check')} className="sold__icon me-1" />
+        <FontAwesomeIcon size={11} icon={solid('circle-check')} className="sold__icon me-1" />
         <span> Funded</span>
       </span>
     ) : (
@@ -161,13 +161,15 @@ const Product = (props) => {
             <h4>Top Pick</h4>
             <div className="feature__price">
               <span>{currencySymbol}</span>
-              <span>{priceFormat(props.displayPrice)}</span>
+              <span>{Math.round(props.displayPrice)}</span>
             </div>
           </div>
-          <img alt='' src={helper.CampaignProductFullImagePath + img} className="feature__img" />
-          <Button variant="primary" className="feature__btn">
-            <FontAwesomeIcon className="fs-4" icon={solid('arrow-up-right-from-square')} />
-          </Button>
+          <img src={helper.CampaignProductFullImagePath + img} className="feature__img" />
+          <Link to={'/item/' + props.slug}>
+            <Button variant="primary" className="feature__btn">
+              <FontAwesomeIcon className="fs-4" icon={solid('arrow-up-right-from-square')} />
+            </Button>
+          </Link>
           <div className="feature__bg">
             <div className="line"></div>
             <div className="line"></div>

@@ -84,7 +84,7 @@ const UserXp = () => {
             className="mr-12p donor_avatar_bg"
           />
 
-          <span className="fs-7 text-light mr-2">Your Rank</span>
+          <span className="fs-6 text-light mr-2">Your Rank</span>
           {/* <span className="ms-1">{getC.getUserRank(user.xp)}</span> */}
           <span className="btn-sm ">{getC.getUserRank(Number(user.xp))}</span>
           {/* <IconButton

@@ -22,7 +22,7 @@
 
 .plans__term {
   color: #9494af;
-  font-size: 18px;
+  font-size: $font-size-base;
 }
 
 @include media-breakpoint-down(sm) {

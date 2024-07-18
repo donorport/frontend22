@@ -190,7 +190,7 @@ const AddProject = (props) => {
       </div>
       <Row className="mw-850 py-0 py-sm-5">
         <Col lg="6">
-          <form className="d-flex flex-column profile-detail-form gap-2">
+          <form className="d-flex flex-column profile-detail-form gap-5">
             <div>
               <Input
                 id={id1}

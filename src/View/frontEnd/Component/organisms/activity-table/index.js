@@ -68,12 +68,12 @@ const ActivityTable = (props) => {
                   <div className="d-sm-flex align-items-center flex-grow-1">
                     <div className="d-flex align-items-center me-sm-2 flex__1">
                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
-                        <div className="price ">
+                        <h6 className="price ">
                           {list.type === 'BOUGHT' || list.type === 'DONATED'
                             ? data.symbol + priceFormat(list.amount)
                             : ''}
-                        </div>
-                        <div className="text-light fs-7">{moment(list.created_at).fromNow()}</div>
+                        </h6>
+                        <div className="date text-light fs-7">{moment(list.created_at).fromNow()}</div>
                       </div>
                       <div className="position-relative d-flex">
                         <Avatar
