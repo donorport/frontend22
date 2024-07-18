@@ -386,12 +386,12 @@ const ItemDetailsMain = ({
 
 const SubtotalSlider = ({ currencySymbol, price, quantity, maxQuantity, setQuantity }) => (
   <>
-    <div className="sub__total">
+    <div className="note d-flex">
       <div className=" fw-bold me-2">Subtotal:</div>
-      <div className="price fs-4 fw-bold text-success">
+      <h5 className="price">
         {currencySymbol}
         {priceFormat(Number(price * quantity))}
-      </div>
+      </h5>
     </div>
     <div className="d-flex align-items-center fs-5 py-1 mb-3">
       <div className="project__count d-flex align-items-center justify-content-center mt-3p">1</div>

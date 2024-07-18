@@ -12,10 +12,10 @@ import ToggleSwitch from '../../atoms/toggle-switch';
 
 import OrganizationItem from '../../molecules/org-item';
 import './style.scss';
-import //helper, 
-{ 
-  getCalculatedPrice, 
-  //countInArray 
+import {
+  //helper,
+  getCalculatedPrice
+  //countInArray
 } from '../../../../../Common/Helper';
 import cartApi from '../../../../../Api/frontEnd/cart';
 import { useSelector, useDispatch } from 'react-redux';
@@ -42,11 +42,11 @@ function OrganizationWidget(props) {
   const { organizationName } = props;
 
   //function getOccurrence(array, value) {
-    //let count = 0;
-    //// array.forEach((v) => (v === value && count++));
-    //// return count;
-    //count = array.filter((x) => x === value).length;
-    //return count;
+  //let count = 0;
+  //// array.forEach((v) => (v === value && count++));
+  //// return count;
+  //count = array.filter((x) => x === value).length;
+  //return count;
   //}
 
   useEffect(() => {
@@ -504,17 +504,19 @@ function OrganizationWidget(props) {
                   maxLength={6}
                   className="donate-value-input ps-1"
                   value={price}
+                  style={{ height: '36px' }}
                   onChange={(e) => onChangeDonatePrice(e)}
                 />
               </InputGroup>
 
               <div className="d-flex align-items-center ms-auto">
-                <span className="fs-7 me-1">Tax Receipt?</span>
+                <p className="ps-3 fs-7 me-1">Tax?</p>
                 <ToggleSwitch checked={check} changevalue={() => onChangeTax(!check)} />
               </div>
             </div>
             <Button
               variant="outline-primary"
+              size="sm"
               className="organization__cart-btn"
               style={{ border: '2px solid' }}
               onClick={() => onClickAddToCart()}

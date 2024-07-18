@@ -167,6 +167,7 @@ function ShareWidget({ page, text, pageTitle, currUrl }) {
                 </a>
                 <div className="sh__url">{currUrl}</div>
                 <Button
+                  size="sm"
                   className="btn-outline-primary"
                   variant={copySuccess === 'Copied!' ? 'info' : 'outline-info'}
                   onClick={() => copyToClipboard()}

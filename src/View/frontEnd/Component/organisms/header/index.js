@@ -58,7 +58,7 @@ const Header = ({
         <Logo />{' '}
         <div className="flex-grow-1 d-flex gap-2 justify-content-end align-items-center">
           {!isMobile && (
-            <>
+            <div className="d-flex gap-3 me-4">
               <Link variant="link" to="/about">
                 About Us
               </Link>
@@ -68,7 +68,7 @@ const Header = ({
               <Link variant="link" to="/signup">
                 Signup
               </Link>
-            </>
+            </div>
           )}
           <div className="d-flex align-items-center justify-content-end gap-5">
             <div className="position-relative header__right d-flex align-items-center gap-2">

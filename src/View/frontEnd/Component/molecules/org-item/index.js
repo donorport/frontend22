@@ -60,12 +60,13 @@ function OrganizationItem(props) {
   }, [!user.isUpdateCart, productPrice]);
 
   const cart_btn = addedToCard ? (
-    <Button variant="success" className="icon icon__pro">
+    <Button size="sm" variant="success" className="icon icon__pro">
       <FontAwesomeIcon icon={solid('circle-check')} />
     </Button>
   ) : (
     <Button
       variant="primary"
+      size="sm"
       className="icon icon__pro"
       onClick={() => {
         props.addToCart(productId, totalQuantity);
@@ -170,7 +171,6 @@ function OrganizationItem(props) {
                     style={{
                       height: '26px',
                       width: '26px',
-                      backgroundColor: '#a976f0',
                       borderRadius: '50%',
                       display: 'flex',
                       justifyContent: 'center',
