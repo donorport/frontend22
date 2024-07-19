@@ -14,7 +14,7 @@ const defaultProps = {
 
 function RadioToggle(props) {
   let checked = props.checked
-  let color = '#3898ec'
+  let color = '#5F5DF8'
   let children = props.children
   let disabled = false
 // console.log(checked)

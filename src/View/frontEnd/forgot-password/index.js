@@ -53,14 +53,14 @@ const ForgotPassword = (props) => {
           </div>
         </div>
         <div className="login__modal">
-          <div className="login-form-wrapper">
+          <div className="login-form-wrapper mw-400">
             <div className="login__logo">
               <Logo />
             </div>
 
             <form className="login__form">
               <div className="login-header ">Forgot Password</div>
-              <div className="fs-6 d-sm-flex align-items-center flex-grow-1 lh-md-md mb-5">
+              <div className="fs-6 d-sm-flex align-items-center flex-grow-1 lh-md-md mb-5 text-nowrap">
                 <FontAwesomeIcon
                   className="me-1"
                   icon={regular('circle-question')}

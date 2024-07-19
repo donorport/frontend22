@@ -351,6 +351,7 @@ const ItemDetailsMain = ({
           alt=""
           src={helper.CampaignProductFullImagePath + productDetails?.image}
         />
+        <div className="item__bg" style={{ backgroundColor: productDetails?.dominantColor }}></div>
       </div>
       {embedlink && (
         <div className="project-video-wrap mb-2">
@@ -447,7 +448,7 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
     {productDetails.tax && (
       <div className="d-flex align-items-center pt-12p pb-12p">
         <div className="list__item-img list__item-img__tax me-2 p-1 border-0">
-          <img alt='' src={receipt}></img>{' '}
+          <img alt="" src={receipt}></img>{' '}
         </div>
         <p>These items are tax deductible.</p>
       </div>

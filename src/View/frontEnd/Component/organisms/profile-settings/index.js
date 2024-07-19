@@ -655,7 +655,7 @@ const ProfileSettings = () => {
   return (
     <>
 
-      <div className="d-flex flex-column gap-5 mw-350">
+      <div className="d-flex flex-column gap-5 mw-400">
         <div>
           <h4 className="fw-bolder mb-2">About</h4>
           <div className="text-subtext mb-3 pt-1">This info appears on your organization's page:</div>

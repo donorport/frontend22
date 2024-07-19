@@ -395,7 +395,7 @@ const GeoLocation = (props) => {
             </div>
 
             <div className="d-grid gap-2 p-2">
-              <Button className="toggle__btn" variant="success" onClick={onUpdateResults}>
+              <Button size="lg" className="toggle__btn" variant="success" onClick={onUpdateResults}>
                 Update Results{' '}
                 {user.locationProductCount > 0 ? ' ( ' + user.locationProductCount + ' ) ' : ''}
               </Button>

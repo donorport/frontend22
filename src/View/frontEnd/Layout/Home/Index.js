@@ -33,7 +33,7 @@ const ProductsUnavailableLocation = ({ user }) => {
 
     observer.observe(htmlElement, {
       attributes: true,
-      attributeFilter: ['data-theme'],
+      attributeFilter: ['data-theme']
     });
 
     return () => {
@@ -137,41 +137,41 @@ const ProductListEmpty = () => (
 );
 
 const items = [
-  <div className="fw-semibold ">
+  <p>
     Price: Low to High
     <span className="ms-2">
       <FontAwesomeIcon icon={solid('dollar-sign')} />
       <FontAwesomeIcon icon={solid('down')} className="ml-3p" />
     </span>
-  </div>,
+  </p>,
 
-  <div className="fw-semibold ">
+  <p>
     Price: High to Low
     <span className="ms-2">
       <FontAwesomeIcon icon={solid('dollar-sign')} />
       <FontAwesomeIcon icon={solid('up')} className="ml-3p" />
     </span>
-  </div>,
+  </p>,
 
-  <div className="fw-semibold ">Oldest</div>,
+  <p>Oldest</p>,
 
-  <div className="fw-semibold ">Recently Listed</div>,
+  <p>Recently Listed</p>,
 
-  <div className="fw-semibold ">
+  <p>
     Least Funded
     <span className="ms-2">
       <FontAwesomeIcon icon={solid('percent')} />
       <FontAwesomeIcon icon={solid('down')} className="ml-3p" />
     </span>
-  </div>,
+  </p>,
 
-  <div className="fw-semibold ">
+  <p>
     Most Funded
     <span className="ms-2">
       <FontAwesomeIcon icon={solid('percent')} />
       <FontAwesomeIcon icon={solid('up')} className="ml-3p" />
     </span>
-  </div>
+  </p>
 ];
 
 export default function Index(props) {
@@ -210,7 +210,7 @@ export default function Index(props) {
     setProductsList(products);
   }, [props.productList, props.wishListproductIds.length]);
   const htmlTheme = document.documentElement.getAttribute('data-theme');
-  
+
   return (
     <>
       {/* {loading && <CircularProgress />} */}
@@ -239,12 +239,14 @@ export default function Index(props) {
                 nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id
                 rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
               </p>
-              <Button className="mt-3" variant="info">
-                Start Donating
-              </Button>
+              <Link to="/signup">
+                <Button className="mt-3" variant="info">
+                  Start Donating
+                </Button>
+              </Link>
             </div>
           </div>
-          <div className="hero__right">
+          <div className="hero__right d-none d-sm-block">
             <img alt="" src={coats}></img>
           </div>
         </div>
@@ -299,7 +301,7 @@ export default function Index(props) {
         )}
         <div className="d-flex">Categories</div>
         <Container
-          className="d-flex flex-column flex-sm-row align-items-center mw-350"
+          className="d-flex flex-column flex-sm-row align-items-center mw-400"
           fluid
           style={{ minHeight: '90px' }}
         >
@@ -333,7 +335,7 @@ export default function Index(props) {
       <div className="section section--colored">
         <div className="filter__search-wrap my-1 my-sm-0 order-3 order-sm-2"></div>
         <Container fluid>
-          <div className="d-flex pb-5">
+          <div className="d-flex pb-5 flex-column flex-sm-row">
             {' '}
             <div className="search__container">
               <ul
@@ -377,8 +379,10 @@ export default function Index(props) {
             </div>
             {/* {user.countrySortName === 'CA' && ( */}
             <div className="d-sm-flex align-items-center gap-1">
-              <div className="mb-1 mb-sm-0 text-nowrap">{props.productList.length} items</div>
-              <div className="tag__list d-flex align-items-center flex__1 ms-sm-2 gap-1 mb-2 mb-sm-0 overflow-auto px-sm-0 px-2 mx-sm-0 mx-n2">
+              <div className="mb-1 mb-sm-0 text-nowrap text-end text-sm-start">
+                {props.productList.length} items
+              </div>
+              {/* <div className="tag__list d-flex align-items-center flex__1 ms-sm-2 gap-1 mb-2 mb-sm-0 overflow-auto px-sm-0 px-2 mx-sm-0 mx-n2">
                 {props.seletedCategoryList.length > 0 &&
                   props.categoryList.length > 0 &&
                   props.categoryList.map((c) => {
@@ -389,20 +393,6 @@ export default function Index(props) {
                           className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2"
                         >
                           <span className="filter__item-icon">
-                            {/* <img
-                        alt=""
-                        className="img-fluid"
-                        src=""
-                      /> */}
-                            {/* <i
-                          className={c.iconDetails[0].class}
-                          style={{
-                            fontFamily: 'fontAwesome',
-                            color: c.color,
-                            fontStyle: 'normal',
-                            marginLeft: '1.5px'
-                          }}
-                        ></i> */}
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="24"
@@ -430,7 +420,6 @@ export default function Index(props) {
                 {props.filters.taxEligible ? (
                   <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
                     <span className="filter__item-icon">
-                      {/* <FontAwesomeIcon icon={solid('paperclip')} color="#3a94d4" /> */}
                       <img alt="receipt" style={{ height: '21px' }} src={receipt}></img>
                     </span>
                     <Button
@@ -493,52 +482,8 @@ export default function Index(props) {
                 ) : (
                   <></>
                 )}
+              </div> */}
 
-                {/* <div className="filter__item d-flex align-items-center bg-lighter rounded-pill py-1 px-2">
-              <span className="filter__item-icon">
-                <img
-                  alt=""
-                  className="img-fluid"
-                  src=""
-                />
-              </span>
-              <span className="flex__1 ms-1 fs-5 fw-semibold text-subtext">
-                Science
-              </span>
-              <Button variant="link" className="ms-2 p-0 fs-4 lh-1">
-                <FontAwesomeIcon
-                  icon={solid("close")}
-                  className="text-light"
-                />
-              </Button>
-            </div> */}
-              </div>
-              {/* {props.advertisementList?.length > 0 && (
-              <div className="mb-3 mb-sm-0">
-                <IconText
-                  size="42"
-                  icon={
-                    // <FontAwesomeIcon icon="fa-solid fa-rectangle-ad" />
-                    <FontAwesomeIcon icon={solid('rectangle-ad')} className="fs-4 text-info" />
-                  }
-                >
-                  {props.advertisementList?.map((ad, i) => {
-                    console.log('map over advertisementList:', { ad });
-                    if (ad?.website && ad?.logo)
-                      return (
-                        <a href={ad.website} target="_blank" rel="noreferrer" key={i}>
-                          <img
-                            src={helper.sponsorLogoResizePath + ad.logo}
-                            alt="sponsor"
-                            className="pe-2"
-                            style={{ maxHeight: '55px' }}
-                          />
-                        </a>
-                      );
-                  })}
-                </IconText>
-              </div>
-            )} */}
               <div>
                 <LadderMenu
                   items={items}
@@ -548,7 +493,6 @@ export default function Index(props) {
                 />
               </div>
             </div>
-            {/* )} */}
           </div>
         </Container>
         {loading ? (

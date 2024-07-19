@@ -55,7 +55,7 @@ const ResetPassword = (props) => {
             </div>
           </div>
           <div className="login__modal">
-            <div className="login-form-wrapper">
+            <div className="login-form-wrapper mw-400">
               <div className="login__logo">
                 <Logo />
               </div>

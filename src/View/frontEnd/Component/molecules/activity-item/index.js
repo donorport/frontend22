@@ -149,7 +149,7 @@ function ActivityItem(props) {
 
   return (
     <li
-      style={{ background: active ? '#f8fafd' : '#fff' }}
+      style={{ background: active ? '$secondary-3' : '$neutral-300' }}
       className="ad__activity__item px-1 py-2 d-flex align-items-center border-bottom"
     >
       <div className="d-flex align-items-center flex__1">

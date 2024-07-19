@@ -18,7 +18,7 @@ const ItemTags = () => {
           <Container fluid className="position-relative pb-5 pt-5">
             <div className="mw-600">
               <h1 className=" fw-bolder mb-6p pt-2">Post Tags</h1>
-              <div className="fs-5 text-light pb-5 mb-3 mw-600">
+              <div className="fs-5 text-light mw-600">
                 Every item posted by an organization is marked with symbols to quickly show the
                 donors the status and type of each item. From the item's eligibility for tax
                 receipts, whether the item has already been purchased, whether your donation is

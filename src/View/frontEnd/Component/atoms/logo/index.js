@@ -31,12 +31,16 @@ const Logo = () => {
 
   return (
     <>
-      <Link to="/" className="logo-wrap d-flex align-items-center justify-content-center justify-content-sm-start text-decoration-none position-relative">
+      <Link
+        to="/"
+        className="logo-wrap d-flex align-items-center justify-content-start text-decoration-none position-relative"
+      >
         <img
           src={theme === 'dark' ? logowhite : logo2}
           alt="Donorport Logo Icon"
           className="logo-icon"
-        />&nbsp;
+        />
+        &nbsp;
         <span className="logo-span">{user.countrySortName}</span>
       </Link>
     </>

@@ -91,7 +91,7 @@ const Apply = (props) => {
                 once your account has been approved.{' '}
               </p>
             </div>
-                <Form className="d-flex flex-column mb-5 pb-5 gap-5 mw-350" autocomplete="off">
+                <Form className="d-flex flex-column mb-5 pb-5 gap-5 mw-400" autocomplete="off">
                   {/*    <div className="py-1 d-flex justify-content-between fs-4 mb-3">
                     <RadioToggle
                       outline={true}

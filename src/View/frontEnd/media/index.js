@@ -89,7 +89,7 @@ const Media = () => {
 
             <Row className="mb-5">
               <Col md="6">
-                <div className="media__box media__box--lg position-relative d-flex mt-1 p-3 justify-content-center align-items-center rounded border bg-lighter border-2 mw-350 mb-2 mb-sm-0">
+                <div className="media__box media__box--lg position-relative d-flex mt-1 p-3 justify-content-center align-items-center rounded border bg-lighter border-2 mw-400 mb-2 mb-sm-0">
                   <img src={spacing} alt="" className="img-fluid" />
                 </div>
               </Col>

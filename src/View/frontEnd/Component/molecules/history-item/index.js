@@ -76,7 +76,7 @@ function HistoryItem({ active, ...otherProps }) {
             shadow={false}
             className="donor_avatar_bg"
           />
-          <div className="d-flex flex-column gap-1 ms-2 flex-grow-1">
+          <div className="d-flex flex-column ms-2 flex-grow-1">
             <div className="d-flex align-items-center justify-content-between">
               <div className=" fw-bold">{name}</div>
 
@@ -101,14 +101,14 @@ function HistoryItem({ active, ...otherProps }) {
             }*/}
               {type === 'donation' ? (
                 <>
-                  <div className="d-flex" style={{ width: 'auto' }}>
+                  <div className="d-flex align-items-center" style={{ width: 'auto' }}>
                     <FontAwesomeIcon icon={solid('heart')} className="mr-6p text-lighter" />
                     Donated
                   </div>
                 </>
               ) : (
                 <>
-                  <div className="d-flex text-wrap me-1">
+                  <div className="d-flex align-items-center text-wrap me-1">
                     <FontAwesomeIcon
                       icon={solid('bag-shopping')}
                       className="mr-6p text-lighter"

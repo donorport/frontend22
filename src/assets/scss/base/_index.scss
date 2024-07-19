@@ -50,6 +50,7 @@ p {
 
 ul {
   margin: 0;
+  font-size: $font-size-base;
 }
 input {
   font-size: $font-size-base !important;
@@ -60,7 +61,7 @@ label {
 }
 iframe,
 canvas {
-  height: 0px
+  height: 0px;
 }
 .fs-6 {
   font-size: 16px !important;

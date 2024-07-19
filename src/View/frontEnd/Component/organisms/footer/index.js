@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Col, Row } from 'react-bootstrap';
+import { Button, Container, div, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, brands, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 
@@ -36,9 +36,9 @@ function Footer() {
   return (
     <div className="footer">
       <Container className="d-flex flex-column" fluid>
-        <div className="d-flex ">
+        <div className="footer__wrap">
           {' '}
-          <div className="footer__block flex-grow-1 logo text-center text-sm-start mb-2 mb-sm-0">
+          <div className="footer__block flex-grow-1 logo text-start mb-2 mb-sm-0">
             <Logo />
             <p className="mt-12p">
               The world's first and largest crowd-funding platform for non-profits
@@ -50,22 +50,16 @@ function Footer() {
               <FontAwesomeIcon icon={brands('square-instagram')} />
             </div>
           </div>
-          <div>
-            {' '}
-            <Row className="footer__middle pb-2">
-              <Col className="footer__block mb-2 mb-sm-0 text-center text-sm-start">
-                <FooterCategoryLinks categoryName="Home" list={[]} />
-              </Col>
-              <Col className="footer__block mb-2 mb-sm-0 text-center text-sm-start">
-                <FooterCategoryLinks categoryName="Support" list={[]} />
-              </Col>
-              <Col className="footer__block text-center text-sm-start">
-                <FooterCategoryLinks categoryName="Information" list={[]} />
-              </Col>
-              {/* <Col className="footer__block text-center text-sm-start">
-            <FooterCategoryLinks categoryName="Marketplace" list={categoryList} />
-          </Col> */}
-            </Row>
+          <div className="footer__middle pb-2">
+            <div className="footer__block p-0 text-start">
+              <FooterCategoryLinks categoryName="Home" list={[]} />
+            </div>
+            <div className="footer__block p-0 text-start">
+              <FooterCategoryLinks categoryName="Support" list={[]} />
+            </div>
+            <div className="footer__block p-0 text-start">
+              <FooterCategoryLinks categoryName="Information" list={[]} />
+            </div>
           </div>
         </div>
 

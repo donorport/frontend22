@@ -4,8 +4,8 @@ const Footer = () => {
   return (
     <footer className="main-footer">
       <div className="container-fluid">
-        <div className="row">
-          <div className="col-lg-5">
+        <div className="footer-top">
+          <div className="">
             <div className="footer-heading-wrap">
               <h3>Stay in the loop</h3>
               <p>
@@ -25,7 +25,7 @@ const Footer = () => {
               </button>
             </div>
           </div>
-          <div className="offset-lg-1 col-lg-6">
+          <div className="">
             <div className="footer-heading-wrap">
               <h3>Join the community</h3>
               <div className="social-links-wrap">
@@ -47,12 +47,8 @@ const Footer = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="row footer-top">
-          <div className="col-sm-12 col-lg-4">
+          <div className="">
             <a href="/" className="logo-wrap">
-              {/* <img src="img/logo.svg" alt="" />
-                        Donorport */}
               <Logo />
             </a>
             <p>
@@ -61,7 +57,7 @@ const Footer = () => {
               product needs.
             </p>
           </div>
-          <div className="col-sm-6 col-lg-2">
+          <div className="">
             <span className="footer-title">Home</span>
             <div className="footer-links">
               <a href="#">About Us</a>
@@ -71,7 +67,7 @@ const Footer = () => {
               <a href="#">Ranks</a>
             </div>
           </div>
-          <div className="col-sm-6 col-lg-2">
+          <div className="">
             <span className="footer-title">Support</span>
             <div className="footer-links">
               <a href="#">Apply to Post</a>
@@ -79,7 +75,7 @@ const Footer = () => {
               <a href="#">Partnerships</a>
             </div>
           </div>
-          <div className="col-sm-6 col-lg-2">
+          <div className="">
             <span className="footer-title">Information</span>
             <div className="footer-links">
               <a href="#">Trust &amp; Safety</a>
@@ -87,7 +83,7 @@ const Footer = () => {
               <a href="#">Post Tags</a>
             </div>
           </div>
-          <div className="col-sm-6 col-lg-2">
+          <div className="">
             <span className="footer-title">Marketplace</span>
             <div
               className="footer-links d-flex flex-column flex-wrap"
@@ -108,7 +104,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="row footer-bottom">
+        <div className="footer-bottom">
           <div className="col-md-6">&copy; 2023 Donorport, Inc.</div>
           <div className="col-md-6">
             <div className="footer-bottoms-links">

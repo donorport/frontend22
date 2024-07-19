@@ -51,14 +51,14 @@ const Login = (props) => {
               <a href="/" className="d-flex">
                 <FontAwesomeIcon icon={regular('circle-info')} className="text-info" />
               </a>
-              <span className="lh-1">
+              <p>
                 For information on how Donorport works <a href="/about"> click here.</a>
-              </span>
+              </p>
             </div>
           </div>
         </div>
         <div className="login__modal">
-          <div className="login-form-wrapper">
+          <div className="login-form-wrapper mw-400">
             <div className="login__logo">
               <Logo />
               <Toggle />

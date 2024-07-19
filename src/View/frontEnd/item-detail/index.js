@@ -137,6 +137,10 @@ const ItemDetail = (props) => {
 
           <Col md="5">
             <div className="d-none d-sm-flex project__detail-img mb-3">
+              <div
+                className="item__bg main"
+                style={{ backgroundColor: productDetails?.dominantColor }}
+              ></div>
               <img
                 className="img-fluid"
                 alt=""
@@ -257,7 +261,7 @@ const ItemDetail = (props) => {
                       <Link
                         to={'/project/' + project.projectDetails?.slug}
                         size="lg"
-                        className=" btn btn-info text-white mt-2"
+                        className=" btn btn-info text-white mt-5"
                       >
                         <span className="fs-6">Go to Project</span>
                       </Link>

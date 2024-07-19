@@ -2,10 +2,11 @@
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import helper from '../../../../../Common/Helper';
+import { Button } from 'react-bootstrap';
 import profile from '../../../../../assets/images/avatar.png';
 import './style.scss';
 
-function OrganizationCrowdfundingProjectItem({item}) {
+function OrganizationCrowdfundingProjectItem({ item }) {
   const img =
     item.imageDetails.length > 0
       ? helper.ProjectFullImagePath + item.imageDetails[0].image
@@ -30,9 +31,7 @@ function OrganizationCrowdfundingProjectItem({item}) {
           ></div>
         </div>
         <div className="org__project_item__main pl-12p flex-grow-1">
-          <div className="org__project__item__name mb-3p  ">
-            {item.name}
-          </div>
+          <div className="org__project__item__name mb-3p  ">{item.name}</div>
           <div className="org__project__item__time fw-semibold mb-6p fs-7 text-light">
             {moment(item.created_at).fromNow()}
           </div>
@@ -40,11 +39,10 @@ function OrganizationCrowdfundingProjectItem({item}) {
       </div>
 
       <div className="ms-auto">
-        {/* <Button variant="danger">
-          Go to Project
-        </Button> */}
-        <Link variant="danger" className="btn btn-danger" to={'/project/' + item.slug}>
-          Go to Project
+        <Link to={'/project/' + item.slug}>
+          <Button size="sm" variant="danger" className="btn btn-danger">
+            Go to Project
+          </Button>
         </Link>
       </div>
     </li>

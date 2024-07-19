@@ -116,13 +116,15 @@
   .chat-info-wrap {
     margin-top: 2.3rem;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     gap: 0.5rem;
 
     line-height: 1.3rem;
     font-weight: 400;
-
+    p {
+      line-height: 1.23rem;
+    }
     .bi {
       color: #3a94d4;
     }
@@ -143,7 +145,7 @@
     max-width: 100%;
 
     @include media-breakpoint-up(sm) {
-      width: 325px;
+      // width: 325px;
     }
   }
 

@@ -121,7 +121,7 @@ const ChangePassword = () => {
               Complate below process to Change your password
             </div>
 
-            <Form className="mw-350">
+            <Form className="mw-400">
               <InputGroup>
                 <Form.Control
                   type={!showCPassword ? 'password' : 'text'}
