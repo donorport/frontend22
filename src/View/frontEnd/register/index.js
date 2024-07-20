@@ -63,7 +63,7 @@ const Register = (props) => {
 
             <form className="login__form">
               <h5 className="login-header ">Sign Up</h5>
-              <div className="fs-6 d-sm-flex align-items-center flex-grow-1 lh-md-md text-nowrap">
+              <div className="fs-6 d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 lh-md-md text-nowrap">
                 <FontAwesomeIcon icon={regular('circle-question')} style={{ color: '#5f5df8' }} />
                 &nbsp; Charities&nbsp;
                 <Link to="/apply" className="link d-inline-block">

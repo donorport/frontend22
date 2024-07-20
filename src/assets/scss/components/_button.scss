@@ -8,8 +8,11 @@
 
 .btn-lg {
   padding: 21px 56px;
-  font-size: 0.98rem;
+  font-size: $font-size-base;
   font-weight: 700 !important;
+  @include media-breakpoint-down(sm) {
+    padding: 12px 22px;
+  }
 }
 .btn-md {
   padding: 16px 42px;
@@ -19,7 +22,7 @@
   font-size: 14px;
 }
 .btn-link {
-  color: $neutral-700 !important
+  color: $neutral-700 !important;
 }
 .btn:not(.btn__link-light, .linked__item-link) {
   display: flex;

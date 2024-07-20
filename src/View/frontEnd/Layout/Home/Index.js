@@ -254,7 +254,7 @@ export default function Index(props) {
       <div className="section section--filters d-none">
         {!CampaignAdminAuthToken && (
           <Container className="donate__header d-flex align-items-center" fluid>
-            <div className="donate-section mt-2 p-2 d-sm-flex align-items-center flex-grow-1">
+            <div className="donate-section mt-2 p-2 d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
               <div className="d-flex align-items-center d-sm-inline-bock">
                 <span className="me-1">I want to donate up to</span>
                 <InputGroup className="donate-value-control">
@@ -280,7 +280,7 @@ export default function Index(props) {
               >
                 Add to Cart ({props.cartProductList.length})
               </Button>
-              <div className="fs-6 p-sm-2 p-0 py-2 d-sm-flex align-items-center flex-grow-1 mt-sm-0 mt-2 lh-md-md">
+              <div className="fs-6 p-sm-2 p-0 py-2 d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 mt-sm-0 mt-2 lh-md-md">
                 <FontAwesomeIcon icon={regular('circle-question')} style={{ color: '#5f5df8' }} />
                 &nbsp; How does it work?&nbsp;
                 <Link to="/about" className="link d-inline-block">

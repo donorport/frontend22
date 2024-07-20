@@ -266,19 +266,21 @@ const AddPost = (props) => {
   return (
     <div className="add-post">
       {/* {console.log(location)} */}
-      <div className="d-flex align-items-center flex-grow-1 pb-20p mb-3 border-bottom flex-wrap">
-        <Button
-          variant="link"
-          className="ps-0 me-sm-2 me-1"
-          onClick={() => props.createPost(false)}
-        >
-          <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
-        </Button>
-        {stateData.status !== 1 ? (
-          <div className="lh-1 fs-3 fw-bolder me-sm-3 flex__1">Create Post</div>
-        ) : (
-          <div className="lh-1 fs-3 fw-bolder me-sm-3 flex__1">Edit Post</div>
-        )}
+      <div className="d-flex align-items-center flex-grow-1 gap-2 pb-20p mb-3 border-bottom flex-wrap mt-3 mt-sm-0">
+        <div className="d-flex">
+          <Button
+            variant="link"
+            className="p-0 me-sm-2 me-1"
+            onClick={() => props.createPost(false)}
+          >
+            <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
+          </Button>
+          {stateData.status !== 1 ? (
+            <div className="lh-1 fs-3 fw-bolder me-sm-3 flex__1">Create Post</div>
+          ) : (
+            <div className="lh-1 fs-3 fw-bolder me-sm-3 flex__1">Edit Post</div>
+          )}
+        </div>
 
         <div className="d-flex gap-2 pt-2 pt-sm-0">
           {stateData.status !== 1 && (
@@ -294,7 +296,6 @@ const AddPost = (props) => {
               style={{ opacity: props.loading ? '0.7' : '1' }}
               variant="info"
               size="lg"
-              className="fw-bold fs-6"
               onClick={() => !props.loading && submitProductForm(-1)}
             >
               Unpublish
@@ -1398,7 +1399,6 @@ const SaveCreateButtons = (props) => {
       <Button
         variant="warning"
         size="lg"
-        className="text-white fw-bold fs-6"
         // onClick={() => submitProductForm(-1)}
         onClick={() => props.setModelShow(true)}
       >

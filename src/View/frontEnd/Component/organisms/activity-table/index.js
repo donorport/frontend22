@@ -65,7 +65,7 @@ const ActivityTable = (props) => {
               // console.log(list)
               return (
                 <li className="table__list-item px-2 py-3">
-                  <div className="d-sm-flex align-items-center flex-grow-1">
+                  <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
                     <div className="d-flex align-items-center me-sm-2 flex__1">
                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                         <h6 className="price ">
@@ -157,7 +157,7 @@ const ActivityTable = (props) => {
           )}
 
           {/* <li className="table__list-item p-2">
-            <div className="d-sm-flex align-items-center flex-grow-1">
+            <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
               <div className="d-flex align-items-center me-sm-2 flex__1">
                 <div className="admin__billing-value ms-2 ms-sm-0 me-sm-2">
                   <div className="text-light fs-7">about a year ago</div>
@@ -189,7 +189,7 @@ const ActivityTable = (props) => {
             </div>
           </li>
           <li className="table__list-item p-2">
-            <div className="d-sm-flex align-items-center flex-grow-1">
+            <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
               <div className="d-flex align-items-center me-sm-2 flex__1">
                 <div className="admin__billing-value ms-2 ms-sm-0 me-sm-2">
                   <div className="text-light fs-7">about a year ago</div>

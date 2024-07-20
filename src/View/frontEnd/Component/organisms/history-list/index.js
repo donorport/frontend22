@@ -583,7 +583,7 @@ const PurchaseListItem = ({ order, item }) => {
       <ListItemImg
           size={54}
           style={{ maxWidth: 'auto !important' }}
-          className="me-3 img--nobg mb-0 mb-sm-auto"
+          className="me-0 me-sm-3 img--nobg mb-0 mb-sm-auto"
           imgSrc={helper.CampaignAdminLogoPath + item?.itemDetails?.campaignadminsDetails.logo}
         />
       <div className="order__values d-flex align-items-center py-1">

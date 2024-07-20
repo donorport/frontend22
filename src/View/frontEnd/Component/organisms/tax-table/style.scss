@@ -25,13 +25,12 @@
 }
 .tax__left {
   width: 300px;
-}
-@include media-breakpoint-down(sm) {
-  .tax__left {
+  @include media-breakpoint-up(md) {
     width: 100%;
     max-width: 100%;
-  }
 }
+}
+
 li.table__list-item.table__list-item--tax {
   border-bottom: 1px solid $border-color;
 }

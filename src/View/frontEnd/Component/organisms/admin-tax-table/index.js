@@ -167,7 +167,7 @@ const AdminTaxTable = (props) => {
                       buttonProps={{ disabled: disableHeader }}
                       header={
                         <li className="flex-grow-1 table__list-item px-2 py-3">
-                          <div className="d-sm-flex align-items-center flex-grow-1">
+                          <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
                             <div className="d-flex align-items-center me-sm-2 mb-3 mb-sm-0 pe-2">
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4 text-end text-sm-start">
                                 <h6 className="price ">
@@ -457,7 +457,7 @@ const AdminTaxTable = (props) => {
                             return (
                               <React.Fragment key={k}>
                                 <li className="table__list-item table__list-item--tax py-1">
-                                  <div className="d-flex d-sm-flex align-items-center flex-grow-1 ps-0 ps-sm-1">
+                                  <div className="d-flex d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 ps-0 ps-sm-1">
                                     <div className="d-flex align-items-center mb-1 mb-sm-0 order-1 order-sm-0">
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                                         <h6 className="price ">

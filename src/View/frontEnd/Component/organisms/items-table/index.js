@@ -81,25 +81,31 @@ const ItemsTable = ({
 
               return (
                 <li className="table__list-item px-2 py-3" key={key}>
-                  <div className="d-xl-flex gap-3 align-items-center flex-grow-1">
+                  <div className="d-flex gap-3 align-items-center flex-grow-1">
                     <Button
                       variant="link"
                       onClick={() => onItemClick(key)}
-                      className="user__left d-flex gap-3 align-items-center flex-wrap flex-sm-nowrap me-sm-3 p-0 text-decoration-none text-start fw-normal"
+                      className="user__left flex-wrap-reverse flex-lg-nowrap d-flex justify-content-start align-items-start align-items-lg-center p-0 text-decoration-none text-start fw-normal"
                     >
-                      <div className="order-sm-0 order-1 text-sm-start text-end">
-                        <h6 className="price">
-                          {item.currencySymbol}
-                          {priceFormat(price)}
-                        </h6>
-                        <div className="date text-light fs-7">{moment(item.created_at).fromNow()}</div>
+                      <div className="d-flex align-items-center gap-3">
+                        {' '}
+                        <div>
+                          <h6 className="price">
+                            {item.currencySymbol}
+                            {priceFormat(price)}
+                          </h6>
+                          <div className="date text-light fs-7">
+                            {moment(item.created_at).fromNow()}
+                          </div>
+                        </div>
+                        <div className="position-relative">
+                          <ListItemImg
+                            size={68}
+                            imgSrc={helper.CampaignProductImagePath + item.itemDetails?.image}
+                          />
+                        </div>
                       </div>
-                      <div className="position-relative">
-                        <ListItemImg
-                          size={68}
-                          imgSrc={helper.CampaignProductImagePath + item.itemDetails?.image}
-                        />
-                      </div>
+
                       <div
                         className="flex-grow-1 flex-sm-0 whitespace-normal"
                         style={{ whiteSpace: 'normal' }}
@@ -112,9 +118,9 @@ const ItemsTable = ({
                       </div>
                     </Button>
                     <div className="d-flex align-items-center flex__1">
-                      <div className="d-flex align-items-center justify-content-around flex__1 ms-sm-3 ms-0 mt-2 mt-sm-0">
+                      <div className="d-flex align-items-center justify-content-around flex__1 ms-lg-3 ms-0 mt-2 mt-sm-0">
                         <div
-                          className="d-flex align-items-center progress__wrap me-2 flex-grow-1 gap-2"
+                          className="d-sm-flex d-none align-items-center progress__wrap me-2 flex-grow-1 gap-2"
                           style={{ maxWidth: '250px' }}
                         >
                           {!item.itemDetails?.unlimited && (

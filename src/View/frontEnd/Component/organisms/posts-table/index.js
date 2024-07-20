@@ -154,7 +154,7 @@ const PostsTable = (props) => {
                                 {product.soldout}/{product.quantity}
                               </span>
                             )}
-                            <ProgressBar
+                            {/* <ProgressBar
                               variant={!product.unlimited ? 'success' : 'infinity'}
                               now={
                                 !product.unlimited
@@ -163,7 +163,7 @@ const PostsTable = (props) => {
                               }
                               className="flex__1"
                               style={{ maxWidth: '200px' }}
-                            />
+                            /> */}
                             {!product.unlimited ? (
                               <span className="ms-1 fw-semibold">
                                 {Math.round((product.soldout / product.quantity) * 100)}%
@@ -287,12 +287,7 @@ const ButtonEditProduct = ({ onClick }) => (
 );
 
 const ButtonShowFulfillOrder = ({ onClick }) => (
-  <Button
-    variant="success"
-    className="btn-md fw-bold"
-    style={{ marginRight: '10px' }}
-    onClick={onClick}
-  >
+  <Button variant="success" size="sm" style={{ marginRight: '10px' }} onClick={onClick}>
     Fulfill Order
   </Button>
 );

@@ -1951,7 +1951,7 @@ const AdminPosts = () => {
 const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => {
   return (
     <>
-      <header className="pb-2 pb-sm-0 py-0 py-sm-2 mb-sm-3 w-100 d-sm-flex align-items-center">
+      <header className="gap-2 pb-2 pb-sm-0 py-0 py-sm-2 mb-sm-3 w-100 flex-column flex-lg-row d-sm-flex align-items-start align-items-lg-center">
         <div className="me-sm-2 flex-grow-1">
           <div className="d-flex align-items-center mb-1">
             <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Posts</h1>
@@ -1964,7 +1964,7 @@ const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => 
           </p>
         </div>
         <div className="d-flex gap-2">
-          <span className="d-none d-sm-flex item__total-wrap d-flex ms-3">
+          <span className="d-none d-sm-flex item__total-wrap d-flex ms-0 ms-lg-3">
             <FontAwesomeIcon icon={solid('money-bills-simple')} className=" mr-12p fs-4" />
             <span>{user.currencySymbol}</span>
             {productList && productList.length > 0

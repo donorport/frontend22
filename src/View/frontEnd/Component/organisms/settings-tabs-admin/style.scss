@@ -16,8 +16,10 @@
       .tab__active--indicator {
         display: block;
       }
+      @include media-breakpoint-down(sm) {
+        color: $primary !important;
     }
-
+  }
     &:hover {
       text-decoration: none;
     }

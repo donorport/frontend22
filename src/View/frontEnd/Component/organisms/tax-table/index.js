@@ -122,7 +122,7 @@ const TaxTable = (props) => {
                       buttonProps={{ disabled: disableHeader }}
                       header={
                         <li className="flex-grow-1 table__list-item px-2 py-3">
-                          <div className="d-sm-flex align-items-center flex-grow-1">
+                          <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
                             <div className="tax__left d-flex align-items-center me-sm-2 mb-1 mb-sm-0 pe-2">
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4 text-sm-start text-end">
                                 <h6 className="price ">
@@ -338,7 +338,7 @@ const TaxTable = (props) => {
                             return (
                               <>
                                 <li className="table__list-item table__list-item--tax py-1">
-                                  <div className="d-flex d-sm-flex align-items-center flex-grow-1 ps-0 ps-sm-1">
+                                  <div className="d-flex d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 ps-0 ps-sm-1">
                                     <div className="d-flex align-items-center mb-1 mb-sm-0 order-1 order-sm-0">
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-3 text-sm-start text-end">
                                         <div className="price ">
@@ -420,7 +420,7 @@ const TaxTable = (props) => {
           )}
 
           {/* <li className="table__list-item p-2">
-            <div className="d-sm-flex align-items-center flex-grow-1">
+            <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
               <div className="d-flex align-items-center flex__1 mb-2">
                 <div className="order-2 order-sm-1 ms-2 ms-sm-0 me-sm-2">
                   <div className="text-success ">$10</div>

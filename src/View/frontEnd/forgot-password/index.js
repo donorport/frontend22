@@ -60,7 +60,7 @@ const ForgotPassword = (props) => {
 
             <form className="login__form">
               <div className="login-header ">Forgot Password</div>
-              <div className="fs-6 d-sm-flex align-items-center flex-grow-1 lh-md-md mb-5 text-nowrap">
+              <div className="fs-6 d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 lh-md-md mb-5 text-nowrap">
                 <FontAwesomeIcon
                   className="me-1"
                   icon={regular('circle-question')}
