@@ -2,6 +2,9 @@
   position: relative;
   border-bottom: 3px solid $primary;
   border-radius: 0px;
+  &-item {
+    font-size: $font-size-base;
+  }
 }
 .ladder__ul {
   position: absolute;
@@ -35,7 +38,7 @@
 .ladder__dropdown--selected {
   align-items: center;
   background-color: $secondary-3;
-  border: 1px solid var(--border-input) s;
+  font-size: $font-size-base;
   display: flex;
   padding: 14px 16px;
   cursor: pointer;

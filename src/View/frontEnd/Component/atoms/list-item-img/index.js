@@ -28,7 +28,6 @@ function ListItemImg({
           alt=""
           style={{
             objectFit: 'contain',
-            padding: '12%',
             height: size + 'px',
             width: size + 'px',
             maxWidth: size + 'px',

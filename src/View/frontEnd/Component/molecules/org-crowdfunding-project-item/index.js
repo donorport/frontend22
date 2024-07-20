@@ -32,7 +32,7 @@ function OrganizationCrowdfundingProjectItem({ item }) {
         </div>
         <div className="org__project_item__main pl-12p flex-grow-1">
           <div className="org__project__item__name mb-3p  ">{item.name}</div>
-          <div className="org__project__item__time fw-semibold mb-6p fs-7 text-light">
+          <div className="org__project__item__timefs-6 fw-semibold fs-7 text-light">
             {moment(item.created_at).fromNow()}
           </div>
         </div>

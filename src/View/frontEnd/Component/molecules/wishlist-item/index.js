@@ -36,7 +36,7 @@ function WishlistItem(props) {
             </div>
             {/* <div className="wishlist__item__location">Canada</div> */}
           </div>
-          <div className="wishlist__item__price text-light">
+          <div className="wishlist__item__price price">
             {getCalc.currencySymbol()}
             {priceFormat(price)}
           </div>
@@ -44,6 +44,7 @@ function WishlistItem(props) {
       </div>
       <div className="wishlist__item__remove ms-auto">
         <Button
+          size="sm"
           variant="link"
           className="text-decoration-none"
           onClick={() => props.addProductToWishlist(item.productDetails._id)}

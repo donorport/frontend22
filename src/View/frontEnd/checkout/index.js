@@ -90,7 +90,7 @@ const Checkout = (props) => {
               </span>
             </div>
 
-            <span className="fw-bold fs-4">{props.currencySymbol + priceFormat(total)}</span>
+            <h6>{props.currencySymbol + priceFormat(total)}</h6>
           </div>
 
           <div

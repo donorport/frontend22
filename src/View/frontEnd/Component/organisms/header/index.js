@@ -53,7 +53,7 @@ const Header = ({
 
   return (
     <header className="frontend_pages header">
-      <Container className="d-flex align-items-center" fluid>
+      <Container className="d-flex gap-3 gap-sm-0 justify-content-stretch align-items-stretch align-items-sm-center flex-column flex-sm-row" fluid>
         <Logo />{' '}
         <div className="flex-grow-1 d-flex gap-2 justify-content-end align-items-center">
           {!isMobile && (

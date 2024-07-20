@@ -778,15 +778,14 @@ button.ReactTags__remove {
 }
 
 @include media-breakpoint-down(sm) {
-  .filter__dropdown,
-  .geo__dropdown {
-    overflow: hidden !important;
+  .profile__dropdown {
+    transform: translate(0px, 65px) !important;
   }
-
-  .activity__dropdown,
-  .profile__dropdown,
+  .activity__dropdown {
+    transform: translate(57px, 60px) !important;
+  }
   .cart__dropdown {
-    transform: translatey(70px) !important;
+    transform: translate(103px, 60px) !important;
   }
 }
 

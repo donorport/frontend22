@@ -37,12 +37,12 @@ const LadderMenu = ({ items, activeKey, onChangeFilterOption, loading }) => {
     <ClickAwayListener onClickAway={handleClose}>
       <div className="ladder__menu position-relative" style={{ minWidth: '200px' }}>
         <div className="ladder__dropdown--selected" onClick={() => setActive(true)}>
-          <div className="ladder__selected fw-semibold">
+          <p className="ladder__selected fw-semibold">
             {items[activeKey]}
             {loading && loadingId.indexOf(`loading-${activeKey}`) !== -1 && (
               <CircularProgress className="ms-2" color="inherit" size={12} />
             )}
-          </div>
+          </p>
           <FontAwesomeIcon icon={solid('chevron-down')} className="icon chevron__icon" />
         </div>
 
@@ -53,7 +53,7 @@ const LadderMenu = ({ items, activeKey, onChangeFilterOption, loading }) => {
               onClick={() => handleMenuClick(index, item)}
               key={index}
             >
-              {item}
+              <p> {item}</p>
             </li>
           ))}
         </ul>
@@ -61,7 +61,6 @@ const LadderMenu = ({ items, activeKey, onChangeFilterOption, loading }) => {
     </ClickAwayListener>
   );
 };
-
 
 LadderMenu.defaultProps = defaultProps;
 LadderMenu.propTypes = propTypes;

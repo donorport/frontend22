@@ -12,6 +12,9 @@
 .section.section--hero {
   padding-top: 56px;
   padding-bottom: 24px;
+  @include media-breakpoint-down(sm) {
+    padding-top: 24px;
+  }
 }
 .list {
   grid-column-gap: 24px;

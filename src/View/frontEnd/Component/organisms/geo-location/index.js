@@ -231,10 +231,10 @@ const GeoLocation = (props) => {
                 />
               </InputGroup>
               <div className="geo__distance" id="">
-                <div className="me-1 fs-5">
+                <h6 className="me-1">
                   {/* {objectVal} */}
                   {user.distance === '0 m' ? '50 km' : `${parseInt(user.distance)} km`}
-                </div>
+                </h6>
               </div>
 
               <div className="d-flex align-items-center">

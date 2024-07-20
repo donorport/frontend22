@@ -103,14 +103,14 @@ const Cart = (props) => {
       {cartItem && cartItem.length > 0 ? (
         <div className="pt-20p">
           <div className="pt-20p pb-12p">
-            <ul className="list-unstyled pb-1 border-bottom mb-0">
+            <ul className="list-unstyled d-flex flex-column gap-4 border-bottom mb-0">
               {cartItem.map((item, i) => {
                 // let price = Math.round(item.productDetails?.price + (totalCharge / 100) * item.productDetails?.price)
                 // let price = getCalc.getData(item.productDetails?.price)
 
                 return (
-                  <li className="d-flex flex-wrap flex--sm-nowrap align-items-center py-2" key={i}>
-                    <div className="d-flex align-items-start mb-2 mb-sm-0 flex__1">
+                  <li className="d-flex flex-wrap flex--sm-nowrap align-items-start py-2 border-bottom pb-5" key={i}>
+                    <div className="d-flex align-items-start mb-2 mb-sm-0 flex-grow-1">
                       <ListItemImg
                         size={75}
                         imgSrc={helper.CampaignProductImagePath + item?.productDetails?.image}
@@ -149,7 +149,7 @@ const Cart = (props) => {
                         to={'/organization/' + item?.productDetails?.organizationDetails.slug}
                       ></Link>
 
-                      <span className="cart_controller d-flex align-items-center fw-bold text-subtext flex-grow-1 flex-sm-grow-0">
+                      <span className="cart_controller d-none align-items-center fw-bold text-subtext flex-grow-1 flex-sm-grow-0">
                         {/*<span className="mr-6p d-none d-sm-block">Qty:</span>{' '}*/}
                         <Button
                           variant="link"
@@ -183,8 +183,8 @@ const Cart = (props) => {
                           <FontAwesomeIcon icon={regular('angle-up')} />
                         </Button>
                       </span>
-                      <span
-                        className="fs-5 fw-bold text-end order-1"
+                      <h6
+                        className="price text-end order-1"
                         style={{ minWidth: '90px' }}
                       >
                         {currencySymbol +
@@ -194,7 +194,7 @@ const Cart = (props) => {
                               ? item.productDetails?.displayPrice
                               : item.productDetails?.price) * item.quantity
                           )}
-                      </span>
+                      </h6>
                     </div>
                   </li>
                 );
@@ -203,7 +203,7 @@ const Cart = (props) => {
 
             <div className="d-flex align-items-center pt-3">
               <span className="fw-bolder flex__1">Subtotal:</span>
-              <span className="price ">{currencySymbol + priceFormat(subTotal)}</span>
+              <h6 className="price ">{currencySymbol + priceFormat(subTotal)}</h6>
             </div>
             <div className="d-flex align-items-center py-3 border-bottom">
               <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">

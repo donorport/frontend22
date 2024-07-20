@@ -157,7 +157,7 @@ function ProjectDetailMain(props) {
       />
       {productDetails.organizationId !== '63fe5d48448eff9f0a6412d8' &&
       productDetails.organizationId !== '63fe60f1448eff9f0a6412e6' ? (
-        <div className="d-flex flex-column project__calculate">
+        <div className="d-flex flex-column gap-4 project__calculate">
           {!(isFinish || (productDetails.isFulfilled && !productDetails.unlimited)) && (
             <SubtotalSlider
               currencySymbol={currencySymbol}
@@ -394,7 +394,7 @@ const SubtotalSlider = ({ currencySymbol, price, quantity, maxQuantity, setQuant
         {priceFormat(Number(price * quantity))}
       </h5>
     </div>
-    <div className="d-flex align-items-center fs-5 py-1 mb-3">
+    <div className="d-flex align-items-center fs-5 py-1">
       <div className="project__count d-flex align-items-center justify-content-center mt-3p">1</div>
       <div className="flex-grow-1 mx-2">
         <Slider

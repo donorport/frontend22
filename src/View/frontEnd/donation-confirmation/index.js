@@ -275,7 +275,7 @@ const DonationConfirmPage = () => {
                       <img src={getCardIcon(cardType)} alt="" className="img-fluid" />
                     </div>
                     <div className="order__card fs-7">
-                      <div className=" fw-semibold mb-6p">XXXX XXXX XXXX {lastFourDigits}</div>
+                      <div className="fs-6 fw-semibold">XXXX XXXX XXXX {lastFourDigits}</div>
                       <div className="text-light fw-semibold">
                         <div>
                           Transaction: {moment(doantionDetails.created_at).format('MMMM DD, YYYY')}

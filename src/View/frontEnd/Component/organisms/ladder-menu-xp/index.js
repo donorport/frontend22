@@ -27,7 +27,7 @@ const LadderMenuXp = (props) => {
                 <FontAwesomeIcon icon={solid('arrow-down-long')} className="icon icon--showall" />
               )}
             </div>
-            <span style={{ textTransform: 'capitalize' }}>
+            <span>
               {props.listBy === 'ALL'
                 ? 'Show All'
                 : props.listBy === 'DONATED'

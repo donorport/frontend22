@@ -583,7 +583,7 @@ const PurchaseListItem = ({ order, item }) => {
       <ListItemImg
           size={54}
           style={{ maxWidth: 'auto !important' }}
-          className="me-3 rounded-circle img--nobg mb-0 mb-sm-auto"
+          className="me-3 img--nobg mb-0 mb-sm-auto"
           imgSrc={helper.CampaignAdminLogoPath + item?.itemDetails?.campaignadminsDetails.logo}
         />
       <div className="order__values d-flex align-items-center py-1">
@@ -605,7 +605,7 @@ const OrderListTransaction = ({ createdAt, CardType, last4 }) => {
           <img src={getCardIcon(CardType)} alt="" className="img-fluid" />
         </div>
         <div className="order__card fs-7">
-          <div className="fs-6 fw-semibold mb-6p">XXXX XXXX XXXX {last4}</div>
+          <div className="fs-6fs-6 fw-semibold">XXXX XXXX XXXX {last4}</div>
           <div className="text-light fw-semibold">
             <div>Transaction: {moment(createdAt).format(MOMENT_DATE_FORMAT)}</div>
           </div>
