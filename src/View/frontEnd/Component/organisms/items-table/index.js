@@ -81,7 +81,7 @@ const ItemsTable = ({
 
               return (
                 <li className="table__list-item px-2 py-3" key={key}>
-                  <div className="d-flex gap-3 align-items-center flex-grow-1">
+                  <div className="d-flex gap-3 align-items-start align-items-sm-center flex-grow-1">
                     <Button
                       variant="link"
                       onClick={() => onItemClick(key)}
@@ -118,7 +118,7 @@ const ItemsTable = ({
                       </div>
                     </Button>
                     <div className="d-flex align-items-center flex__1">
-                      <div className="d-flex align-items-center justify-content-around flex__1 ms-lg-3 ms-0 mt-2 mt-sm-0">
+                      <div className="d-flex align-items-center justify-content-around flex__1 ms-lg-3">
                         <div
                           className="d-sm-flex d-none align-items-center progress__wrap me-2 flex-grow-1 gap-2"
                           style={{ maxWidth: '250px' }}

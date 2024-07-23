@@ -184,7 +184,7 @@ const Cart = (props) => {
                         </Button>
                       </span>
                       <h6
-                        className="price text-end order-1"
+                        className="price text-start text-sm-end"
                         style={{ minWidth: '90px' }}
                       >
                         {currencySymbol +
@@ -209,7 +209,7 @@ const Cart = (props) => {
               <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
                 Service Charge:
               </Link>
-              <span className="text-light fw-semibold fs-5">{currencySymbol + platformCost}</span>
+              <span className="text-light fw-semibold">{currencySymbol + platformCost}</span>
             </div>
 
             {/*<div className="d-flex align-items-center py-3 border-bottom">

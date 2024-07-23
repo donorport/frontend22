@@ -141,10 +141,6 @@ const AdminTaxTable = (props) => {
               ) : (
                 <FontAwesomeIcon icon={solid('angle-down')} className="small ml-6p" />
               )}
-              {/* <FontAwesomeIcon
-                icon={solid("angle-up")}
-                className="small ml-6p"
-              /> */}
             </Button>
           </div>
           <Button variant="link" className="btn__sort px-0 text-decoration-none">
@@ -211,60 +207,11 @@ const AdminTaxTable = (props) => {
                                   {item[0].userDetails?.stateDetails?.[0]?.state +
                                     ', ' +
                                     item[0].userDetails?.zip}
-                                  {/* 255 West Baker St. */}
-                                  {/* <br /> Dallas TX, USA 118098 */}
                                 </div>
                               </div>
                             </div>
                             <div className="d-flex align-items-center flex__1 mb-1 mb-sm-0 justify-content-end">
-                              {/* {
-                            item.type === 'Donated' &&
-
-                            <>
-                              <div className="pe-1 p-sm-2 mr-12p">
-                                <img
-                                  loading="lazy"
-                                  width={36}
-                                  src=""
-                                  alt=""
-                                />
-                              </div>
-                              <div>
-                                <div>
-                                  <Button variant="link" className=" px-0 py-3p">
-                                    Donated
-                                  </Button>
-                                </div>
-                 
-                              </div>
-                            </>
-                          } */}
                               {item.length === 1 && (
-                                // <div className="d-flex align-items-center flex__1 mb-1 mb-sm-0">
-                                //   <div className="pe-1 p-sm-2 mr-12p">
-                                //     <img
-                                //       loading="lazy"
-                                //       width={36}
-                                //       src={helper.CampaignProductImagePath + item.orderItemDetails?.productImage}
-                                //       alt=""
-                                //     />
-                                //   </div>
-                                //   <div>
-                                //     <div>
-                                //       <Button variant="link" className=" px-0 py-3p">
-                                //         {item.orderItemDetails?.productName}
-                                //       </Button>
-                                //     </div>
-                                //     <div className="text-light fs-7">
-                                //       <FontAwesomeIcon
-                                //         icon={regular("wallet")}
-                                //         className="mr-3p"
-                                //       />
-                                //       Bought {item.orderItemDetails?.quantity}
-                                //     </div>
-                                //   </div>
-                                // </div>
-
                                 <div className="d-flex align-items-center flex__1 mb-1 mb-sm-0">
                                   <div className="pe-1 p-sm-2 mr-12p">
                                     <img
@@ -282,18 +229,12 @@ const AdminTaxTable = (props) => {
                                   <div>
                                     <div>
                                       <div className="fw-bold fs-6 px-0 py-3p">
-                                        {/* {item.orderItemDetails?.productName} */}
                                         {item[0].type === 'Purchased'
                                           ? item[0].orderItemDetails?.productName
                                           : 'Donation'}
                                       </div>
                                     </div>
                                     <div className="text-light fs-7">
-                                      {/* <FontAwesomeIcon
-                                    icon={regular("wallet")}
-                                    className="mr-3p"
-                                  />
-                                  Bought {item.orderItemDetails?.quantity} */}
                                       {item[0].type === 'Purchased' ? (
                                         <>
                                           <FontAwesomeIcon
@@ -331,9 +272,7 @@ const AdminTaxTable = (props) => {
                                       className="text-success fs-3"
                                     />
                                     <div className="ps-2">
-                                      <div className="file__name mb-3p">
-                                        {item[0].receipt}
-                                      </div>
+                                      <div className="file__name mb-3p">{item[0].receipt}</div>
                                       <div className="date text-light fs-7">
                                         {/* 3 days ago - 1.3 Mb */}
                                         {moment(item[0].updated_at).fromNow()}

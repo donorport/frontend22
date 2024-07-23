@@ -157,7 +157,7 @@ function ActivityItem(props) {
         <div className="ad__activity__main">
           <div className="ad__activity__title">
             {info && infoType !== 'FUNDED' ? (
-              <div className="ad__activity__name">{organizationName}</div>
+              <h6 className="ad__activity__name">{organizationName}</h6>
             ) : (
               <Link
                 to={'/item/' + notification?.productDetails.slug}

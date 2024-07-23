@@ -55,7 +55,7 @@ function FollowingItem(props) {
       <div className="d-flex align-items-center flex-grow-1">
         {data.type === 'PROJECT' && (
           <div className="charity_avatar_cover">
-            <img src={avatar} alt="avatar"/>
+            <img src={avatar} alt="avatar" />
           </div>
         )}
         {data.type !== 'PROJECT' && (
@@ -68,7 +68,7 @@ function FollowingItem(props) {
                 to={'/project/' + data?.projectDetails?.slug}
                 className="ad__activity__name mb-0 text-decoration-none  fw-bold"
               >
-                {data?.projectDetails[0]?.name}
+                <h6> {data?.projectDetails[0]?.name}</h6>
               </Link>
             )}
             {data.type === 'PRODUCT' && (
@@ -84,14 +84,14 @@ function FollowingItem(props) {
                 to={'/organization/' + data?.CampaignAdminDetails?.slug}
                 className="ad__activity__name mb-0 text-decoration-none  fw-bold"
               >
-                {data?.CampaignAdminDetails?.name}
+                <h6> {data?.CampaignAdminDetails?.name}</h6>
               </Link>
             )}
           </div>
         </div>
         <div className="ad__activity__right d-flex align-items-center me-2 text-nowrap">
           <Button
-          size="sm"
+            size="sm"
             variant="link"
             className="btn__link-light p-0 text-decoration-none btn__follow fs-3"
             // onClick={() => setActive(!active)}

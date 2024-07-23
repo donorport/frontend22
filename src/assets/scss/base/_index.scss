@@ -123,6 +123,7 @@ li:last-child:not(.ad__activity__item, .wishlist__item, .table__list-item, .cd__
 .modal-body {
   display: flex;
   flex-direction: column;
+  justify-content: start;
   gap: 1rem;
 }
 .form-group {

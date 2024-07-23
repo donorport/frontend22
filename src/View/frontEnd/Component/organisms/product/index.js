@@ -186,9 +186,9 @@ const Product = (props) => {
     <div className="item">
       <div className="item__wrap">
         <div className="item__bg" style={{ backgroundColor: props.dominantColor }}></div>
-        <div className="item__imgwrap">
+        <Link className="item__imgwrap" to={'/item/' + props.slug} >
           <img alt="" src={helper.CampaignProductFullImagePath + img} className="item__img" />
-        </div>
+        </Link>
         <div className="item__words">
           <div className="text-block">{repeatedText}</div>
         </div>

@@ -37,36 +37,19 @@ export default function Index(props) {
     }
   };
   const columns = [
-    { name: 'Name', selector: (row) => row['name'], sortable: true },
-    { name: 'Email', selector: (row) => row['email'], sortable: true },
+    { name: 'Name', selector: 'name', sortable: true },
+    { name: 'Email', selector: 'email', sortable: true },
     {
       name: 'Country',
-      selector: (row) => (row.countryDetails ? row.countryDetails.currency : ''),
+      selector: 'countryDetails.currency',
       sortable: true
     },
-    // {
-    //     name: "Role",
-    //     cell: (row) => <>
-    //         {/* <span className={row.status === 1 ? "badge badge-success" : "badge badge-danger"}>{row.status === 1 ? 'Active' : 'Inactive'}</span> */}
-    //         <Label
-    //             variant="ghost"
-    //             color={(row.role === 2 && 'info') || 'success'}
-    //         >
-    //             {row.roledetails[0].name}
-    //         </Label>
-    //     </>,
-    //     ignoreRowClick: true,
-    //     allowOverflow: true,
-    // },
     {
       name: 'Applied?',
       cell: (row) => (
-        <>
-          {/* <span className={row.status === 1 ? "badge badge-success" : "badge badge-danger"}>{row.status === 1 ? 'Active' : 'Inactive'}</span> */}
-          <Label variant="ghost" color={(row.status === 1 && 'success') || 'error'}>
-            {row.status === 1 ? 'Active' : 'Inactive'}
-          </Label>
-        </>
+        <Label variant="ghost" color={(row.status === 1 && 'success') || 'error'}>
+          {row.status === 1 ? 'Active' : 'Inactive'}
+        </Label>
       ),
       ignoreRowClick: true,
       allowOverflow: true
@@ -74,12 +57,9 @@ export default function Index(props) {
     {
       name: 'Status',
       cell: (row) => (
-        <>
-          {/* <span className={row.status === 1 ? "badge badge-success" : "badge badge-danger"}>{row.status === 1 ? 'Active' : 'Inactive'}</span> */}
-          <Label variant="ghost" color={(row.otp_status === 1 && 'success') || 'error'}>
-            {row.otp_status === 1 ? 'Active' : 'Inactive'}
-          </Label>
-        </>
+        <Label variant="ghost" color={(row.otp_status === 1 && 'success') || 'error'}>
+          {row.otp_status === 1 ? 'Active' : 'Inactive'}
+        </Label>
       ),
       ignoreRowClick: true,
       allowOverflow: true,
@@ -88,14 +68,12 @@ export default function Index(props) {
     {
       name: 'Bank?',
       cell: (row) => (
-        <>
-          <Label
-            variant="ghost"
-            color={row.bankaccounts && row.bankaccounts.length > 0 ? 'success' : 'error'}
-          >
-            {row.bankaccounts && row.bankaccounts.length > 0 ? 'Active' : 'Inactive'}
-          </Label>
-        </>
+        <Label
+          variant="ghost"
+          color={row.bankaccounts && row.bankaccounts.length > 0 ? 'success' : 'error'}
+        >
+          {row.bankaccounts && row.bankaccounts.length > 0 ? 'Active' : 'Inactive'}
+        </Label>
       ),
       ignoreRowClick: true,
       allowOverflow: true,
@@ -103,22 +81,15 @@ export default function Index(props) {
     },
     {
       name: 'OTP',
-      cell: (row) => (
-        <>
-          {/* <span className={row.status === 1 ? "badge badge-success" : "badge badge-danger"}>{row.status === 1 ? 'Active' : 'Inactive'}</span> */}
-          <Label variant="ghost">{row.otp}</Label>
-        </>
-      ),
+      cell: (row) => <Label variant="ghost">{row.otp}</Label>,
       ignoreRowClick: true,
       allowOverflow: true
     },
     {
-      id: 'created_at',
       name: 'Date',
-      selector: (row) => row['created_at'],
-      cell: (row) => <div>{moment(row.created_at).format('DD MMMM YYYY ')}</div>,
-      sortable: true,
-      accessor: ''
+      selector: 'created_at',
+      cell: (row) => <div>{moment(row.created_at).format('DD MMMM YYYY')}</div>,
+      sortable: true
     },
     {
       name: 'Actions',
@@ -142,9 +113,34 @@ export default function Index(props) {
       ),
       ignoreRowClick: true,
       allowOverflow: true
-      // button: true,
     }
   ];
+
+  const exportToCSV = () => {
+    const csvRows = [];
+    // Get the headers
+    const headers = columns.map((col) => col.name);
+    csvRows.push(headers.join(','));
+
+    // Get the data
+    data.forEach((row) => {
+      const values = columns.map((col) => {
+        const value = row[col.selector] || '';
+        return `"${value.toString().replace(/"/g, '""')}"`; // Escape double quotes
+      });
+      csvRows.push(values.join(','));
+    });
+
+    // Create CSV file and trigger download
+    const csvContent = 'data:text/csv;charset=utf-8,' + csvRows.join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', 'data.csv');
+    document.body.appendChild(link);
+    link.click();
+  };
+
   const data = [];
   if (props.campaignAdminList && props.campaignAdminList.length > 0) {
     props.campaignAdminList.map((user) => {
@@ -175,21 +171,22 @@ export default function Index(props) {
           </Button>
         </Stack>
         <Card>
-          <DataTableExtensions {...tableData}>
-            <DataTable
-              columns={columns}
-              data={data}
-              noHeader
-              defaultSortAsc={false}
-              customStyles={customStyles} // Apply custom styles
-              pagination
-              highlightOnHover
-              defaultSortFieldId="created_at"
-              paginationPerPage={rowsPerPage}
-              paginationRowsPerPageOptions={[10, 20, 50, 100]} // Customize the available options
-              onChangeRowsPerPage={handleChangeRowsPerPage} // Handle rows per page change
-            />
-          </DataTableExtensions>
+          <Button variant="contained" color="primary" onClick={exportToCSV}>
+            Export to CSV
+          </Button>
+          <DataTable
+            columns={columns}
+            data={data}
+            noHeader
+            defaultSortAsc={false}
+            customStyles={customStyles} // Apply custom styles
+            pagination
+            highlightOnHover
+            defaultSortFieldId="created_at"
+            paginationPerPage={rowsPerPage}
+            paginationRowsPerPageOptions={[10, 20, 50, 100]} // Customize the available options
+            onChangeRowsPerPage={handleChangeRowsPerPage} // Handle rows per page change
+          />
         </Card>
       </Container>
     </Page>

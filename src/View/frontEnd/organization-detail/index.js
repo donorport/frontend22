@@ -45,7 +45,7 @@ const OrganizationDetail = (props) => {
           <div className="d-flex align-items-center me-2 text-nowrap">
             {!CampaignAdminAuthToken && (
               <Button
-                size="lg"
+                size="md"
                 className="fw-bold"
                 onClick={() => {
                   setModalShow(true);

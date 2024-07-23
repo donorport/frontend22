@@ -404,12 +404,12 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               </div>
             </div>
 
-            <div className="project__detail-meta d-flex align-items-center text-light">
-              <div className="d-flex align-items-center me-2 text-nowrap">
+            <div className="project__detail-meta d-flex align-items-center gap-2 flex-wrap text-light">
+              <div className="d-flex align-items-center text-nowrap">
                 <FontAwesomeIcon icon={regular('clock')} className="me-1" />
                 {moment(item.itemDetails?.created_at).format('MMMM DD, YYYY')}
               </div>
-              <div className="d-flex align-items-center me-2 text-nowrap">
+              <div className="d-flex align-items-center text-nowrap">
                 <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
                 {address}
               </div>
@@ -418,14 +418,14 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               <p className="page__paragraph">{item.itemDetails?.descriptions}</p>
               <a
                 href={helper.websitePath + '/item/' + item.itemDetails?.slug}
-                className="text-subtext"
+                className="d-flex align-items-center text-subtext"
               >
                 <span className="url__icon me-1">
                   <FontAwesomeIcon icon={regular('square-up-right')} />
                 </span>
-                <span className="fs-5 date__name date__name--url">
+                <p className="text-break lh-1.5">
                   {helper.websitePath + '/item/' + item.itemDetails?.slug}
-                </span>
+                </p>
               </a>
               {item.itemDetails.galleryUrl && (
                 <>
@@ -608,14 +608,14 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
             </div>
           ) : (
             <>
-              <div className="mt-3 d-flex align-items-center">
+              <div className="mt-3 d-flex align-items-start">
                 <div className="type__icon d-flex justify-content-center align-items-center me-1">
-                  <span className="post__badge post__badge--sold fs-3">
+                  <span className="p-3 post__badge post__badge--sold fs-3">
                     <FontAwesomeIcon icon={solid('receipt')} />
                   </span>
                 </div>
                 <div className="ms-1">
-                  <span className="post__title fw-bold lh-1">{item.fulfilDetails[0].receipt}</span>
+                  <span className="fw-bold lh-1">{item.fulfilDetails[0].receipt}</span>
                   <div className="date text-light fs-7">
                     Updated &nbsp;
                     {moment(item.fulfilDetails[0].updated_at).fromNow()}

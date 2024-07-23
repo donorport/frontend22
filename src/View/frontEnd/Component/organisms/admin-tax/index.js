@@ -230,9 +230,9 @@ const AdminTax = () => {
         <div className="me-sm-2 flex-grow-1">
           <div className="d-flex align-items-center mb-1">
             <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Tax Receipts</h1>
-            <span className="d-none d-sm-flex ml-2 ms-2">({totalRecord})</span>
+            <span className="d-none d-sm-flex text-light fs-5 ml-2 ms-2">({totalRecord})</span>
           </div>
-          <p className="d-none d-sm-block">
+          <p className="d-none d-sm-block fs-5 text-light">
             Tax receipts uploaded here will be encrypted and sent directly to the donor's profile
             where they will be able to view & download.
           </p>
@@ -246,7 +246,7 @@ const AdminTax = () => {
         </div>
         {/*  <div className="d-flex align-items-center me-sm-2 flex-grow-1">
           <h1 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Tax</h1>
-          <span className="d-none d-sm-flex ml-2">({totalRecord})</span>
+          <span className="d-none d-sm-flex text-light fs-5 ml-2">({totalRecord})</span>
         </div>
         <div className="ms-sm-auto d-flex">
           {taxList.length > 0 && (

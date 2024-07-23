@@ -143,10 +143,10 @@ const DonateModal = (props) => {
                   </div>
                 </div>
 
-                <span className="ms-auto fs-7">
+                <h6 className="ms-auto">
                   <FontAwesomeIcon icon={solid('up')} className="me-1" />
                   <span className="mr-3p">{selectedValue * 10}</span> XP
-                </span>
+                </h6>
               </div>
             </div>
             {/* <div className="donation__type p-20p">
@@ -366,9 +366,10 @@ const DonateModal = (props) => {
                   </div>
                   <div className="col-lg-3">
                     <div className="checkout__input">
-                      <p>
+                      <label className="pb-2">
                         CVV<span>*</span>
-                      </p>
+                      </label>
+
                       <input
                         type="text"
                         name="cvv"

@@ -59,7 +59,7 @@ function OrganizationDetailMain({
       <div className="d-flex flex-column mb-4 gap-2">
         <div className="d-flex flex-column">
           <h4 className="project__detail-label mb-3p">Organization</h4>
-          <div className="d-flex flex-wrap me-3">
+          <div className="d-flex flex-wrap gap-3">
             <h1
               className="flex-grow-1 project__detail-title  text-capitalize mb-0"
               style={{ flex: 0 }}

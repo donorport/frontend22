@@ -988,6 +988,9 @@ a.MuiListItemButton-root.active:focus {
   width: 337px;
   height: 212px;
   /* opacity: .5; */
+  @include media-breakpoint-down(sm) {
+    width: 90%
+  }
 }
 
 .credit-card .card-company {

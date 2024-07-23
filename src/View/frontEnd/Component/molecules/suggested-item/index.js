@@ -49,7 +49,7 @@ function SuggestedItem({ sold, media, ...otherProps }) {
 
               <a style={{
                 // backgroundColor: "#84c8e8",
-                backgroundColor: sharedProps?.product.categoryDetails.color,
+                backgroundColor: sharedProps?.product.productDetails?.dominantColor,
                 position: 'absolute',
                 left: 'auto',
                 top: '12%',

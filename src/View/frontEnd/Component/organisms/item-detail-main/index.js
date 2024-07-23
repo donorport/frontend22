@@ -233,8 +233,8 @@ const ItemDetailsMain = ({
       </h2>
     </div>
 
-    <div className="project__detail-meta d-flex align-items-center text-light">
-      <div className="d-flex align-items-center me-2 text-nowrap">
+    <div className="project__detail-meta d-flex align-items-center gap-2 text-light flex-wrap">
+      <div className="d-flex align-items-center gap-2 text-nowrap">
         <FontAwesomeIcon icon={regular('clock')} className="me-1" />
         {moment(productDetails?.created_at).format('MMMM DD, YYYY')}
       </div>
@@ -300,7 +300,7 @@ const ItemDetailsMain = ({
       </div>
     </div>
 
-    <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-2">
+    <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-0 mb-sm-2">
       <Link
         size="lg"
         variant="link"
