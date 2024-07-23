@@ -134,7 +134,7 @@ function ActivityItem(props) {
   if (infoType && infoType === 'MEDIA') {
     displayImg = mediaImage;
   }
-  if (infoType && infoType === 'TAX_RECEIPT' || infoType === 'SALES_RECEIPT') {
+  if ((infoType && infoType === 'TAX_RECEIPT') || infoType === 'SALES_RECEIPT') {
     displayImg = uploadimage;
   }
 
@@ -152,9 +152,9 @@ function ActivityItem(props) {
       style={{ background: active ? '$secondary-3' : '$neutral-300' }}
       className="ad__activity__item px-1 py-2 d-flex align-items-center border-bottom"
     >
-      <div className="d-flex align-items-center flex__1">
+      <div className="d-flex gap-2 align-items-center flex__1">
         <ListItemImg size={56} imgSrc={displayImg} />
-        <div className="ad__activity__main px-12p">
+        <div className="ad__activity__main">
           <div className="ad__activity__title">
             {info && infoType !== 'FUNDED' ? (
               <div className="ad__activity__name">{organizationName}</div>
@@ -199,6 +199,7 @@ function ActivityItem(props) {
         </div>
         <div className="ad__activity__right d-flex align-items-center">
           <Button
+            size="sm"
             variant="link"
             className="text-decoration-none"
             onClick={() => props.setWatchNotification(!active, notification._id)}
@@ -213,6 +214,7 @@ function ActivityItem(props) {
       </div>
       <div className="ad__activity__remove ms-auto">
         <Button
+          size="sm"
           variant="link"
           className="btn__link-light text-decoration-none"
           onClick={() => props.removeNotification(notification._id)}

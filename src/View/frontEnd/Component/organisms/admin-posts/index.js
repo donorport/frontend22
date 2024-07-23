@@ -1655,7 +1655,7 @@ const AdminPosts = () => {
         {/* Other dashboard content */}
       </div>
       {(!user.isAccountAdded || !data.taxRate || !data.logo) && isOnboardingVisible && (
-        <div>
+        <div className="mb-5">
           <div className="onboarding--stepper">
             <div className="d-flex">
               <p className="fs-4 fw-semibold">Complete your setup!</p>

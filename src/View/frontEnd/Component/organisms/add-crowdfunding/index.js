@@ -89,7 +89,7 @@ const AddCrowdfunding = (props) => {
           {status !== 1 ? (
             <Button
               variant="warning"
-              size="lg"
+              size="md"
               className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
               onClick={() => submitCrowdfundingForm(-1)}
             >
@@ -98,7 +98,7 @@ const AddCrowdfunding = (props) => {
           ) : (
             <Button
               variant="info"
-              size="lg"
+              size="md"
               className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
               onClick={() => submitCrowdfundingForm(-1)}
             >
@@ -108,7 +108,7 @@ const AddCrowdfunding = (props) => {
           {status !== 1 ? (
             <Button
               variant="info"
-              size="lg"
+              size="md"
               className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
               onClick={() => submitCrowdfundingForm(1)}
             >
@@ -117,7 +117,7 @@ const AddCrowdfunding = (props) => {
           ) : (
             <Button
               variant="success"
-              size="lg"
+              size="md"
               className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
               onClick={() => submitCrowdfundingForm(1)}
             >

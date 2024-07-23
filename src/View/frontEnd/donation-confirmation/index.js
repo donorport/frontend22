@@ -118,7 +118,7 @@ const DonationConfirmPage = () => {
                 {doantionDetails.type === 'PROJECT' ? (
                   <Link
                     to={'/project/' + doantionDetails?.projectDetails?.slug}
-                    className="btn btn-lg fw-bold btn-info my-2 flex-grow-sm-0 flex-grow-1"
+                    className="fs-6 btn btn-lg fw-bold btn-info my-2 flex-grow-sm-0 flex-grow-1"
                   >
                     Go to Project
                   </Link>

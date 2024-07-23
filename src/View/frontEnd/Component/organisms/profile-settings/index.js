@@ -655,7 +655,7 @@ const ProfileSettings = () => {
   return (
     <>
 
-      <div className="d-flex flex-column gap-5 mw-400">
+      <div className="d-flex flex-column gap-5 mw-350">
         <div>
           <h4 className="fw-bolder mb-2">About</h4>
           <div className="text-subtext mb-3 pt-1">This info appears on your organization's page:</div>
@@ -676,12 +676,11 @@ const ProfileSettings = () => {
                 />
               </label>
               {tempImg !== '' || logo !== '' ? (
-                <div className="d-flex justify-content-center col-sm-6 ml-3 note">
+                <div className="d-flex align-items-center justify-content-center col-sm-6 ml-3 note">
                   <img
                     src={tempImg ? tempImg : logo ? helper.CampaignAdminLogoPath + logo : ''}
                     alt="Logo"
-                   
-                    style={{ width: '100px' }}
+                    className="w-100"
                   />
                 </div>
               ) : (

@@ -70,7 +70,7 @@ const Pricing = () => {
                 It is 100% free for charities to create posts and receive funding on Donorport. Each
                 donation goes directly to the organization so they receive every penny they need.
               </div>
-              <div className="note fs-5 mb-3">
+              <p>
                 Donorport includes sales tax in the display price of each post to ensure the charity
                 has the exact amount required to purchase their items. Donorport adds a{' '}
                 {user.platformFee ? <span>{user.platformFee}%</span> : <span>2.79%</span>} service
@@ -79,7 +79,7 @@ const Pricing = () => {
                 <a href="/terms" className="link">
                   Terms of service
                 </a>
-              </div>
+              </p>
               <div className="row py-4 justify-content-center">
                 <div className="col-sm-4 mb-3 mb-md-0">
                   <div className=" text-center h-100">
@@ -141,7 +141,7 @@ const Pricing = () => {
                         <span className="display-4">
                           {(
                             (Number(user?.platformFee) || 2.79) +
-                            (Number(user?.transactionFee) || 2.20)
+                            (Number(user?.transactionFee) || 2.2)
                           ).toFixed(2)}
                           %
                         </span>

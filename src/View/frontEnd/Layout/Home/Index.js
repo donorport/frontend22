@@ -233,11 +233,9 @@ export default function Index(props) {
                   A New Way to<span className="header__alt">Donate.</span>
                 </h1>
               </div>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in
-                eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum
-                nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id
-                rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
+              <p className="text-light">
+                The world's first donation marketplace where you choose how charities spend your
+                money. Charities post things they need, and you provide the funds.
               </p>
               <Link to="/signup">
                 <Button className="mt-3" variant="info">

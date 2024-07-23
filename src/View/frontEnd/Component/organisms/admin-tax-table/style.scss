@@ -8,9 +8,6 @@
     order: 2;
   }
 }
-.file__name {
-  color: $neutral-700
-}
 .admin__tax-table {
   @include media-breakpoint-down(sm) {
     .btn__wrap {

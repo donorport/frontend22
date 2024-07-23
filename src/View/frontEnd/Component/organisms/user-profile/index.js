@@ -740,7 +740,7 @@ const UserProfile = () => {
       <div className="mb-5 mt-5">
         <h4 className="fw-bolder">Account Deactivation</h4>
         <div className="text-subtext mb-3 pt-1">Permanently delete your Donorport account</div>
-        <div className="w-350 mw-100">
+        <div className="mw-100">
           <div className="deactivate">
             <h5>Do you really want to leave us?</h5>
             <ul className="list list--deactivate">

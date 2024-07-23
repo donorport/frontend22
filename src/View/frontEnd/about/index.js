@@ -255,7 +255,7 @@ const About = (props) => {
                   </div>
                 </Col>
                 <Col md="5">
-                  <ul className="list-unstyled fs-5 text-light">
+                  <ul className="list-unstyled text-light">
                     <li className="d-flex align-items-center pt-2">
                       <div className="icon icon--shield">
                         <FontAwesomeIcon

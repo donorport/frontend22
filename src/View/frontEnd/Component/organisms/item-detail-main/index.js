@@ -431,7 +431,10 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
           />
         }
       >
-        Item was already purchased by the organization. Your purchase will cover those costs.
+        <p>
+          {' '}
+          Item was already purchased by the organization. Your purchase will cover those costs.
+        </p>
       </IconText>
     )}
     {productDetails.unlimited && (
@@ -441,7 +444,7 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
           <FontAwesomeIcon icon={solid('infinity')} className="fs-3 text-primary pt-12p pb-12p" />
         }
       >
-        Item is ongoing - there is no fixed quantity.
+        <p>Item is ongoing - there is no fixed quantity.</p>
       </IconText>
     )}
 

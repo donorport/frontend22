@@ -133,7 +133,7 @@ const TaxTable = (props) => {
                                   {moment(item[0].created_at).fromNow()}
                                 </div>
                               </div>
-                              <div className="position-relative d-flex mr-12p">
+                              <div className="position-relative d-flex me-3">
                                 <ListItemImg
                                   size={68}
                                   imgSrc={
@@ -142,7 +142,7 @@ const TaxTable = (props) => {
                                   className="charity_avatar_bg"
                                 />
                               </div>
-                              <div className="text__wrap text-start w-100 w-sm-auto">
+                              <div className="text__wrap text-start w-200 w-sm-auto">
                                 <h6>{item[0].organizationDetails?.name}</h6>
                                 {item.length === 1 && (
                                   <p className="text-light mb-6p">#{item[0].uniqueTransactionId}</p>

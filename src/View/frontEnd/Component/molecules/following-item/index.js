@@ -91,6 +91,7 @@ function FollowingItem(props) {
         </div>
         <div className="ad__activity__right d-flex align-items-center me-2 text-nowrap">
           <Button
+          size="sm"
             variant="link"
             className="btn__link-light p-0 text-decoration-none btn__follow fs-3"
             // onClick={() => setActive(!active)}

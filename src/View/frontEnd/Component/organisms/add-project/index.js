@@ -87,10 +87,10 @@ const AddProject = (props) => {
   return (
     <div className="add__project">
       <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 pb-20p mb-3 border-bottom">
-        <div className="d-flex align-items-start mb-2 mb-sm-0 flex__1">
+        <div className="d-flex align-items-center mb-2 mb-sm-0 flex__1">
           <Button
             variant="link"
-            className="me-sm-2 me-1"
+            className="p-0 me-sm-2 me-1 btn btn-link"
             onClick={() => props.createProject(false)}
           >
             <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
@@ -109,7 +109,7 @@ const AddProject = (props) => {
           {status !== 1 ? (
             <Button
               variant="warning"
-              size="lg"
+              size="md"
               className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
               onClick={() => submitProjectForm(-1)}
             >
@@ -118,7 +118,7 @@ const AddProject = (props) => {
           ) : (
             <Button
               variant="info"
-              size="lg"
+              size="md"
               className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
               onClick={() => submitProjectForm(-1)}
             >
@@ -128,7 +128,7 @@ const AddProject = (props) => {
           {status !== 1 ? (
             <Button
               variant="info"
-              size="lg"
+              size="md"
               className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
               onClick={() => submitProjectForm(1)}
             >
@@ -137,7 +137,7 @@ const AddProject = (props) => {
           ) : (
             <Button
               variant="success"
-              size="lg"
+              size="md"
               className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
               onClick={() => submitProjectForm(1)}
             >

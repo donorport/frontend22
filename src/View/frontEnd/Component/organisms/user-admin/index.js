@@ -172,7 +172,6 @@ const UserAdmin = () => {
 
   return (
     <>
-
       <div className="mw-600">
         <div className="mb-5">
           <div className="d-flex align-items-start">
@@ -185,14 +184,16 @@ const UserAdmin = () => {
             {/* <Button variant="success" className="btn__xs px-2 rounded-pill ms-2 text-uppercase">Active</Button> */}
           </div>
 
-          <div className="activate note">
-            <div className="activate__icon">
-              <FontAwesomeIcon icon={regular('fingerprint')} />
+          <div className="d-flex gap-3 flex-wrap flex-sm-nowrap activate note">
+            <div className="d-flex flex-grow-1">
+              {' '}
+              <div className="d-none d-sm-flex activate__icon">
+                <FontAwesomeIcon icon={regular('fingerprint')} />
+              </div>
+              <div className="activate__code d-flex justify-content-between">{blocks}</div>
             </div>
-            <div className="activate__code">
-              {blocks}
-            </div>
-            <Button variant="info" size="md" className="ms-auto" onClick={() => activateCode()}>
+
+            <Button variant="info" size="md" className="flex-grow-1 flex-grow-sm-0" onClick={() => activateCode()}>
               Activate
             </Button>
           </div>

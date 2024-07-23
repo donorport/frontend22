@@ -109,7 +109,7 @@
     width: 15px;
     height: 15px;
     position: absolute;
-    bottom: -6px;
+    bottom: -30px;
     left: 5px;
     transform: rotate(45deg) scale(1);
     z-index: 0;
@@ -193,7 +193,10 @@
     border-radius: 0.25em;
   }
 }
-
+#category,
+#subcategory  {
+  padding: 1rem 2rem;
+}
 .fulfilling-check-wrap .form-check {
   align-items: flex-start;
   gap: 1rem;

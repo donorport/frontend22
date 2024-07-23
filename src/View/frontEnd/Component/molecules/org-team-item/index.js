@@ -19,25 +19,29 @@ function OrganizationTeamItem(props) {
   let avatar = helper.CampaignAdminLogoPath + member?.campaignadminDetails?.logo;
 
   return (
-    <li className="d-flex flex-wrap org__team__item d-sm-flex align-items-start">
-      <Avatar
-        size={46}
-        avatarUrl={image ? image : AvatarImg}
-        border={0}
-        shadow={false}
-        className={member?.type === 'USER' ? 'donor_avatar_bg' : 'charity_avatar_bg'}
-      />
-      <div className="org__team__item__main pl-20p flex-grow-1">
-        <div className="org__team__item__title pr-12p">
-          <h6 className="org__team__item__name mb-3p  ">{name}</h6>
-          {props.showEmail ? (
-            <div className="org__team__item__location text-light fw-light mb-6p fs-6">{email}</div>
-          ) : (
-            ''
-          )}
-        </div>
+    <li className="d-flex flex-column flex-sm-row gap-2 align-items-start">
+      <div className="d-flex flex-grow-1">
+        {' '}
+        <Avatar
+          size={46}
+          avatarUrl={image ? image : AvatarImg}
+          border={0}
+          shadow={false}
+          className={member?.type === 'USER' ? 'donor_avatar_bg' : 'charity_avatar_bg'}
+        />
+        <div className="org__team__item__main pl-20p flex-grow-1">
+          <div className="org__team__item__title pr-12p">
+            <h6 className="org__team__item__name mb-3p  ">{name}</h6>
+            {props.showEmail ? (
+              <div className="org__team__item__location text-light fw-light mb-6p fs-6">
+                {email}
+              </div>
+            ) : (
+              ''
+            )}
+          </div>
 
-        {/* {member.campaignadminDetails ? (
+          {/* {member.campaignadminDetails ? (
           <div className="fw-semibold org__team__item__price fs-6 text-light mb-1 fs-6">
             {member?.campaignadminDetails?.name}
           </div>
@@ -45,62 +49,67 @@ function OrganizationTeamItem(props) {
           ''
         )} */}
 
-        <div className="org__team__item__price fs-7 text-light">
-          {moment(member?.created_at).format('MMMM DD, YYYY')}
+          <div className="date fs-7 text-light">
+            {moment(member?.created_at).format('MMMM DD, YYYY')}
+          </div>
         </div>
       </div>
-      {props?.isCurrent && (
-        <div>
-          <span className="badge fw-bold fs-6">You</span>
-        </div>
-      )}
-      {props.showContact ? (
-        <Button variant="outline-info" size="sm" className="ms-auto fw-bold">
-          Contact
-        </Button>
-      ) : (
-        ''
-      )}
-      {!member.status && (
-        <span className="badge btn-success fs-6 d-flex align-items-center ms-auto fw-bold me-2">
-          Sent
-        </span>
-      )}
-      &nbsp;
-      {!props.isCurrent && (
-        <Button
-          variant="danger"
-          size="sm"
-          className="ms-auto"
-          onClick={() => props.removeTeamMember(member._id)}
-        >
-          Remove
-        </Button>
-      )}
-      {member.campaignadminDetails ? (
-        <img
-          alt="campaignLogo"
-          style={{
-            objectFit: 'contain',
-            background: '#f8fafd',
-            borderRadius: '50% !important',
-            border: 'unset',
-            height: '36px',
-            width: '36px',
-            marginLeft: '40px'
-          }}
-          src={avatar}
-        />
-      ) : (
-        ''
-      )}
-      {/* {member.campaignadminDetails ? (
+
+      <div className="d-flex ">
+        {' '}
+        {props?.isCurrent && (
+          <div>
+            <span className="badge fw-bold fs-6">You</span>
+          </div>
+        )}
+        {props.showContact ? (
+          <Button variant="outline-info" size="sm" className="ms-auto fw-bold">
+            Contact
+          </Button>
+        ) : (
+          ''
+        )}
+        {!member.status && (
+          <span className="badge btn-success fs-6 d-flex align-items-center ms-auto fw-bold me-2">
+            Sent
+          </span>
+        )}
+        &nbsp;
+        {!props.isCurrent && (
+          <Button
+            variant="danger"
+            size="sm"
+            className="ms-auto"
+            onClick={() => props.removeTeamMember(member._id)}
+          >
+            Remove
+          </Button>
+        )}
+        {member.campaignadminDetails ? (
+          <img
+            alt="campaignLogo"
+            style={{
+              objectFit: 'contain',
+              background: '#f8fafd',
+              borderRadius: '50% !important',
+              border: 'unset',
+              height: '36px',
+              width: '36px',
+              marginLeft: '40px'
+            }}
+            src={avatar}
+          />
+        ) : (
+          ''
+        )}
+        {/* {member.campaignadminDetails ? (
         <div className="fw-semibold org__team__item__price fs-6 mb-1">
           {member?.campaignadminDetails?.name}
         </div>
       ) : (
         ''
       )} */}
+      </div>
     </li>
   );
 }

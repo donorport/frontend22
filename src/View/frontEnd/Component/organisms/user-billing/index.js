@@ -112,7 +112,9 @@ const UserBilling = () => {
         <div className="d-sm-flex align-items-start mb-5 mb-sm-3">
           <div className="flex__1 mb-2">
             <h4 className="fw-bolder">Payment History</h4>
-            <div className="text-subtext mb-3 pt-1">All transactions related to your Admin account</div>
+            <div className="text-subtext mb-3 pt-1">
+              All transactions related to your Admin account
+            </div>
           </div>
           {historyList.length > 0 && (
             <CSVExportBtn
@@ -209,22 +211,13 @@ const UserBilling = () => {
                           </div>
                         </div>
                       </div>
-
-                      <div className="billing__tag">
-                        <div className="billing__payment">
-                          <div className="billing__icon ml-12p mr-12p">
-                            <img
-                              width="26"
-                              height="26"
-                              src={getCardIcon(CardType)}
-                              loading="lazy"
-                              alt=""
-                            />
-                            {/* {cardIcon} */}
-                          </div>
-                          <div className="billing__card fs-7">
-                            <div>{CardType}</div>
-                            <div className="linked__date">{lastFourDigits}</div>
+                      <div className="ms-auto bg-lighter d-flex align-items-center rounded-3">
+                        <div className="order__logo mx-1">
+                          <img src={getCardIcon(CardType)} alt="" className="img-fluid" />
+                        </div>
+                        <div className="order__card fs-7">
+                          <div className="d-flex align-items-center  fw-semibold pe-1">
+                            {lastFourDigits}
                           </div>
                         </div>
                       </div>
@@ -264,22 +257,13 @@ const UserBilling = () => {
                                 </div>
                               </div>
                             </div>
-
-                            <div className="billing__tag">
-                              <div className="billing__payment">
-                                <div className="billing__icon ml-12p mr-12p">
-                                  <img
-                                    width="26"
-                                    height="26"
-                                    src={getCardIcon(CardType)}
-                                    loading="lazy"
-                                    alt=""
-                                  />
-                                  {/* {cardIcon} */}
-                                </div>
-                                <div className="billing__card fs-7">
-                                  <div>{CardType}</div>
-                                  <div className="linked__date">{lastFourDigits}</div>
+                            <div className="ms-auto bg-lighter d-flex align-items-center rounded-3">
+                              <div className="order__logo mx-1">
+                                <img src={getCardIcon(CardType)} alt="" className="img-fluid" />
+                              </div>
+                              <div className="order__card fs-7">
+                                <div className="d-flex align-items-center  fw-semibold pe-1">
+                                  {lastFourDigits}
                                 </div>
                               </div>
                             </div>

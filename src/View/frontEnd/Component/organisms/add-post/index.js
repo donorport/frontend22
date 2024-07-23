@@ -662,29 +662,33 @@ const AddPost = (props) => {
                           </div>
                         </div>
                       </div>
-                      <div className="note note--info mb-1 fs-6">
-                        <span>
-                          Will you be uploading media after you have purchased the items? Posts that
-                          upload pictures / videos of the proceeds tend to get funded quicker.
-                        </span>
-                      </div>
-                      <div className="d-flex note note--info mb-1 fs-6">
-                        {/* <FontAwesomeIcon
+                      <div className="d-flex flex-column gap-2 mt-3">
+                        {' '}
+                        <div className="note note--info mb-1 fs-6">
+                          <span>
+                            Will you be uploading media after you have purchased the items? Posts
+                            that upload pictures / videos of the proceeds tend to get funded
+                            quicker.
+                          </span>
+                        </div>
+                        <div className="d-flex note note--info mb-1 fs-6">
+                          {/* <FontAwesomeIcon
                           className="me-2 fs-3 text-info"
                           icon={solid('paperclip')}
                         /> */}
-                        <img alt="" className="me-3" height="24" src={receipt}></img>
-                        Toggle this if you intend on providing a tax receipt for donations made
-                        toward this post.
-                      </div>
-                      <div className="d-flex note note--info mb-5 fs-6">
-                        <FontAwesomeIcon
-                          className="me-2 fs-3"
-                          color="#947ada"
-                          icon={solid('clock-rotate-left')}
-                        />
-                        Toggle this if you have already purchased these items and are posting to
-                        recouperate the cost.
+                          <img alt="" className="me-3" height="24" src={receipt}></img>
+                          Toggle this if you intend on providing a tax receipt for donations made
+                          toward this post.
+                        </div>
+                        <div className="d-flex note note--info mb-5 fs-6">
+                          <FontAwesomeIcon
+                            className="me-2 fs-3"
+                            color="#947ada"
+                            icon={solid('clock-rotate-left')}
+                          />
+                          Toggle this if you have already purchased these items and are posting to
+                          recouperate the cost.
+                        </div>
                       </div>
                     </div>
 
@@ -1398,7 +1402,7 @@ const SaveCreateButtons = (props) => {
     <>
       <Button
         variant="warning"
-        size="lg"
+        size="md"
         // onClick={() => submitProductForm(-1)}
         onClick={() => props.setModelShow(true)}
       >
@@ -1407,7 +1411,7 @@ const SaveCreateButtons = (props) => {
       <Button
         style={{ opacity: props.loading ? '0.7' : '1' }}
         variant="info"
-        size="lg"
+        size="md"
         className="d-flex align-items-center justify-content-center"
         onClick={() => !props.loading && props.submitProductForm(1, props.selectedProjectList)}
       >

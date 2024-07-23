@@ -166,7 +166,7 @@ const AdminTaxTable = (props) => {
                       hideChevron={disableHeader}
                       buttonProps={{ disabled: disableHeader }}
                       header={
-                        <li className="flex-grow-1 table__list-item px-2 py-3">
+                        <li className="flex-grow-1 table__list-item py-3">
                           <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
                             <div className="d-flex align-items-center me-sm-2 mb-3 mb-sm-0 pe-2">
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4 text-end text-sm-start">

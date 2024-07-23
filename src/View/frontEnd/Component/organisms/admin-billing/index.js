@@ -55,55 +55,50 @@ const AdminBilling = () => {
           let tempObj = {};
           tempObj.date = moment(list.created_at).format('MM/DD/YYYY');
           tempObj.amount =
-            list.type === 'ORDER'
-              ? Number(list.totalPrice) * Number(list.quantity)
-              : list.amount;
-  
+            list.type === 'ORDER' ? Number(list.totalPrice) * Number(list.quantity) : list.amount;
+
           let userName = list.userDetails ? list.userDetails.name : 'DELETED USER';
-          let orderUserName = list.orderDetails ? list.orderDetails.userDetails.name : 'DELETED USER';
+          let orderUserName = list.orderDetails
+            ? list.orderDetails.userDetails.name
+            : 'DELETED USER';
           tempObj.name = list.type === 'ORDER' ? orderUserName : userName;
-  
+
           let userEmail = list.userDetails ? list.userDetails.email : 'DELETED USER';
-          let orderUserEmail = list.orderDetails ? list.orderDetails.userDetails.email : 'DELETED USER';
+          let orderUserEmail = list.orderDetails
+            ? list.orderDetails.userDetails.email
+            : 'DELETED USER';
           tempObj.email = list.type === 'ORDER' ? orderUserEmail : userEmail;
-  
+
           tempObj.description =
             list.type === 'ORDER' ? list.quantity + ' ' + list.productName : 'Donated';
-  
+
           let cardBrand = '';
           let cardLastFour = '';
           let cardId = '';
           if (list.type === 'ORDER') {
             if (list.orderDetails) {
               let orderPaymentResponse = JSON.parse(list.orderDetails.paymentResponse);
-              cardBrand =
-                orderPaymentResponse.data?.payment_method_details?.card?.brand || '';
-              cardLastFour =
-                orderPaymentResponse.data?.payment_method_details?.card?.last4 || '';
-              cardId =
-                orderPaymentResponse.data?.payment_method_details?.card?.id || '';
+              cardBrand = orderPaymentResponse.data?.payment_method_details?.card?.brand || '';
+              cardLastFour = orderPaymentResponse.data?.payment_method_details?.card?.last4 || '';
+              cardId = orderPaymentResponse.data?.payment_method_details?.card?.id || '';
             }
           } else {
             let paymentResponse = JSON.parse(list.paymentResponse);
-            cardBrand =
-              paymentResponse.payment_method_details?.card?.brand || '';
-            cardLastFour =
-              paymentResponse.payment_method_details?.card?.last4 || '';
-            cardId =
-              paymentResponse.payment_method_details?.card?.id || '';
+            cardBrand = paymentResponse.payment_method_details?.card?.brand || '';
+            cardLastFour = paymentResponse.payment_method_details?.card?.last4 || '';
+            cardId = paymentResponse.payment_method_details?.card?.id || '';
           }
-  
+
           tempObj.card = cardBrand;
           tempObj.lastfour = cardLastFour;
           tempObj.id = cardId;
-  
+
           tempAr.push(tempObj);
         });
         setCsvData(tempAr);
       }
     }
   };
-  
 
   useEffect(() => {
     (async () => {
@@ -119,7 +114,6 @@ const AdminBilling = () => {
 
   return (
     <>
-
       <div className="mw-600">
         {/* <div className="mb-5">
           <div className="flex__1 mb-3">
@@ -157,7 +151,9 @@ const AdminBilling = () => {
           <div className="d-sm-flex align-items-start mb-5 mb-sm-3">
             <div className="flex__1 mb-2">
               <h4 className="fw-bolder">Payment History</h4>
-              <div className="text-subtext mb-3 pt-1">All transactions related to your Admin account</div>
+              <div className="text-subtext mb-3 pt-1">
+                All transactions related to your Admin account
+              </div>
             </div>
             {historyList.length > 0 && (
               <CSVExportBtn headers={headers} csvData={csvData} label="Export" prifix="_billing" />
@@ -167,59 +163,61 @@ const AdminBilling = () => {
             </Button> */}
           </div>
           <div className="billing__list mb-3">
-          {historyList.length > 0 ? (
-    historyList.slice(0, loadMore ? historyList.length : 6).map((list, i) => {
-      let amount =
-        list.type === 'ORDER'
-          ? Number(list.totalPrice) * Number(list.quantity)
-          : list.amount;
-      let currencySymbole =
-        list.type === 'ORDER' ? list.orderDetails?.currencySymbol : list.currencySymbol;
-      let date = moment(list.created_at).format('MM/DD/YYYY');
-      let donate =
-        list.type === 'ORDER' ? list.quantity + ' ' + list.productName : 'Donated';
-      let PurchaseIcon =
-        list.type === 'ORDER' ? (
-          <FontAwesomeIcon icon={solid('bag-shopping')} className="mr-3p" />
-        ) : (
-          <FontAwesomeIcon icon={solid('heart')} className="mr-3p" />
-        );
+            {historyList.length > 0 ? (
+              historyList.slice(0, loadMore ? historyList.length : 6).map((list, i) => {
+                let amount =
+                  list.type === 'ORDER'
+                    ? Number(list.totalPrice) * Number(list.quantity)
+                    : list.amount;
+                let currencySymbole =
+                  list.type === 'ORDER' ? list.orderDetails?.currencySymbol : list.currencySymbol;
+                let date = moment(list.created_at).format('MM/DD/YYYY');
+                let donate =
+                  list.type === 'ORDER' ? list.quantity + ' ' + list.productName : 'Donated';
+                let PurchaseIcon =
+                  list.type === 'ORDER' ? (
+                    <FontAwesomeIcon icon={solid('bag-shopping')} className="mr-3p" />
+                  ) : (
+                    <FontAwesomeIcon icon={solid('heart')} className="mr-3p" />
+                  );
 
-      let userName = list.userDetails ? list.userDetails.name : 'DELETED USER';
-      let orderUserName = list.orderDetails ? list.orderDetails.userDetails.name : 'DELETED USER';
+                let userName = list.userDetails ? list.userDetails.name : 'DELETED USER';
+                let orderUserName = list.orderDetails
+                  ? list.orderDetails.userDetails.name
+                  : 'DELETED USER';
 
-      let cardID = '';
-      let image = '';
-      
-      if (list.type === 'ORDER') {
-        if (list.orderDetails && list.orderDetails.userDetails) {
-          let orderPaymentResponse = JSON.parse(list.orderDetails.paymentResponse);
-          cardID = orderPaymentResponse.data?.id || '';
-          image = list.orderDetails.userDetails.image || '';
-        }
-      } else {
-        let paymentResponse = JSON.parse(list.paymentResponse);
-        cardID = paymentResponse.id || '';
-        image = (list.userDetails && list.userDetails.image) || '';
-      }
-      
+                let cardID = '';
+                let image = '';
 
-      let avatar = image ? helper.DonorImagePath + image : profile;
-      let userNameToDisplay = list.type === 'ORDER' ? orderUserName : userName;
+                if (list.type === 'ORDER') {
+                  if (list.orderDetails && list.orderDetails.userDetails) {
+                    let orderPaymentResponse = JSON.parse(list.orderDetails.paymentResponse);
+                    cardID = orderPaymentResponse.data?.id || '';
+                    image = list.orderDetails.userDetails.image || '';
+                  }
+                } else {
+                  let paymentResponse = JSON.parse(list.paymentResponse);
+                  cardID = paymentResponse.id || '';
+                  image = (list.userDetails && list.userDetails.image) || '';
+                }
 
-      let CardType = '';
-      let lastFourDigits = '';
-      if (list.type === 'ORDER') {
-        if (list.orderDetails) {
-          let orderPaymentResponse = JSON.parse(list.orderDetails.paymentResponse);
-          CardType = orderPaymentResponse.data?.payment_method_details?.card?.brand || '';
-          lastFourDigits = orderPaymentResponse.data?.payment_method_details?.card?.last4 || '';
-        }
-      } else {
-        let paymentResponse = JSON.parse(list.paymentResponse);
-        CardType = paymentResponse.payment_method_details?.card?.brand || '';
-        lastFourDigits = paymentResponse.payment_method_details?.card?.last4 || '';
-      }
+                let avatar = image ? helper.DonorImagePath + image : profile;
+                let userNameToDisplay = list.type === 'ORDER' ? orderUserName : userName;
+
+                let CardType = '';
+                let lastFourDigits = '';
+                if (list.type === 'ORDER') {
+                  if (list.orderDetails) {
+                    let orderPaymentResponse = JSON.parse(list.orderDetails.paymentResponse);
+                    CardType = orderPaymentResponse.data?.payment_method_details?.card?.brand || '';
+                    lastFourDigits =
+                      orderPaymentResponse.data?.payment_method_details?.card?.last4 || '';
+                  }
+                } else {
+                  let paymentResponse = JSON.parse(list.paymentResponse);
+                  CardType = paymentResponse.payment_method_details?.card?.brand || '';
+                  lastFourDigits = paymentResponse.payment_method_details?.card?.last4 || '';
+                }
 
                 return (
                   <div className="billing__item p-2 py-3 border-bottom">
@@ -250,14 +248,13 @@ const AdminBilling = () => {
                         </div>
                       </div>
 
-                      <div className="admin__billing__tag">
-                        <div className="billing__payment">
-                          <div className="billing__icon ml-12p mr-12p">
-                            <img width="26" height="26" src={getCardIcon(CardType)} alt="" />
-                          </div>
-                          <div className="billing__card fs-7">
-                            <div style={{ textTransform: 'capitalize' }}>{CardType}</div>
-                            <div className="linked__date">{lastFourDigits}</div>
+                      <div className="ms-auto bg-lighter d-flex align-items-center rounded-3">
+                        <div className="order__logo mx-1">
+                          <img src={getCardIcon(CardType)} alt="" className="img-fluid" />
+                        </div>
+                        <div className="order__card fs-7">
+                          <div className="d-flex align-items-center  fw-semibold pe-1">
+                            {lastFourDigits}
                           </div>
                         </div>
                       </div>

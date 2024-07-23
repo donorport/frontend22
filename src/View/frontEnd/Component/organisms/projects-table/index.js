@@ -150,7 +150,7 @@ const ProjectsTable = (props) => {
                         {project.status === 1 && (
                           <Link
                             variant="link"
-                            className="text-light p-0 fw-normal"
+                            className="fs-6 text-light p-0 fw-normal"
                             to={'/project/' + project.slug}
                           >
                             <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" />{' '}
@@ -197,7 +197,7 @@ const ProjectsTable = (props) => {
                     )}
 
                     <div className="billing__buttons d-flex align-items-center">
-                      <div className="ms-auto">
+                      <div className="d-flex ms-auto">
                         <Button
                           variant="link"
                           className="p-0"
