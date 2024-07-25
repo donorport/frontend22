@@ -202,18 +202,18 @@ const Cart = (props) => {
             </ul>
 
             <div className="d-flex align-items-center pt-3">
-              <span className="fw-bolder flex__1">Subtotal:</span>
+              <span className="fw-bolder flex-grow-1">Subtotal:</span>
               <h6 className="price ">{currencySymbol + priceFormat(subTotal)}</h6>
             </div>
             <div className="d-flex align-items-center py-3 border-bottom">
-              <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
+              <Link to="/pricing" className="fw-semibold fs-7 text-light flex-grow-1">
                 Service Charge:
               </Link>
               <span className="text-light fw-semibold">{currencySymbol + platformCost}</span>
             </div>
 
             {/*<div className="d-flex align-items-center py-3 border-bottom">
-              <span className="fw-bolder flex__1">
+              <span className="fw-bolder flex-grow-1">
                 <img
                   className="img-stripe "
                   src=""
@@ -224,14 +224,14 @@ const Cart = (props) => {
               <span className="price ">{currencySymbol + salesTax}</span>
             </div>*/}
             {/* <div className="d-flex align-items-center py-3 border-bottom">
-              <span className="fw-bolder flex__1">Sales Tax:</span>
+              <span className="fw-bolder flex-grow-1">Sales Tax:</span>
               <span className="fw-bold text-success fs-5">
                 {currencySymbol + priceFormat(salesTax)}
               </span>
             </div> */}
           </div>
           <div className="d-flex align-items-center py-1">
-            <span className="fw-bolder flex__1">Total:</span>
+            <span className="fw-bolder flex-grow-1">Total:</span>
             <span className="fw-bold fs-4">
               {' '}
               {currencySymbol +

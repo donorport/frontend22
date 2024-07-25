@@ -81,7 +81,7 @@ const TaxTable = (props) => {
     <>
       <div className="list__table mb-2 mb-sm-0">
         <div className="list__table-sort d-flex justify-content-sort border-bottom">
-          <div className="flex__1">
+          <div className="flex-grow-1">
             <Button
               variant="link"
               className="btn__sort px-0 text-decoration-none"
@@ -155,7 +155,7 @@ const TaxTable = (props) => {
                             </div> */}
                               </div>
                             </div>
-                            <div className="d-flex align-items-center justify-content-end flex__1 me-3 mb-1 mt-2 mt-sm-0 mb-sm-0">
+                            <div className="d-flex align-items-center justify-content-end flex-grow-1 me-3 mb-1 mt-2 mt-sm-0 mb-sm-0">
                               {/* {
                             item[0].type === 'Donated' &&
 
@@ -179,7 +179,7 @@ const TaxTable = (props) => {
                             </>
                           } */}
                               {item.length === 1 && (
-                                // <div className="d-flex align-items-center flex__1 mb-1 mb-sm-0">
+                                // <div className="d-flex align-items-center flex-grow-1 mb-1 mb-sm-0">
                                 //   <div className="pe-1 p-sm-2 mr-12p">
                                 //     <img
                                 //       loading="lazy"
@@ -353,7 +353,7 @@ const TaxTable = (props) => {
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="d-flex align-items-center justify-content-start flex__1 mb-1 mb-sm-0">
+                                    <div className="d-flex align-items-center justify-content-start flex-grow-1 mb-1 mb-sm-0">
                                       <div className="pe-1 p-sm-2 mr-12p">
                                         <img loading="lazy" width={36} src={Aimg} alt="" />
                                       </div>
@@ -421,23 +421,23 @@ const TaxTable = (props) => {
 
           {/* <li className="table__list-item p-2">
             <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
-              <div className="d-flex align-items-center flex__1 mb-2">
+              <div className="d-flex align-items-center flex-grow-1 mb-2">
                 <div className="order-2 order-sm-1 ms-2 ms-sm-0 me-sm-2">
                   <div className="text-success ">$10</div>
                   <div className="text-light fs-7">11 months ago</div>
                 </div>
-                <div className="order-1 order-sm-2 d-flex align-items-center  flex__1">
+                <div className="order-1 order-sm-2 d-flex align-items-center  flex-grow-1">
                   <div className="position-relative">
                     <ListItemImg imgSrc="" />
                   </div>
-                  <div className="d-sm-flex align-items-center flex__1 ms-2 gap-2">
+                  <div className="d-sm-flex align-items-center flex-grow-1 ms-2 gap-2">
                     <div>
                       <div className="billing__name me-2 mb-6p">
                         Top Donor
                       </div>
                       <div className="text-light">#158329</div>
                     </div>
-                    <span className="text-light fw-semibold flex__1">
+                    <span className="text-light fw-semibold flex-grow-1">
                       <FontAwesomeIcon
                         icon={regular("heart")}
                         className="small me-1"

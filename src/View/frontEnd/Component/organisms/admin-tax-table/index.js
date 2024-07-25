@@ -129,7 +129,7 @@ const AdminTaxTable = (props) => {
     <>
       <div className="admin__tax-table list__table mb-4">
         <div className="list__table-sort d-flex justify-content-sort border-bottom">
-          <div className="flex__1">
+          <div className="flex-grow-1">
             <Button
               variant="link"
               className="btn__sort px-0 text-decoration-none"
@@ -210,9 +210,9 @@ const AdminTaxTable = (props) => {
                                 </div>
                               </div>
                             </div>
-                            <div className="d-flex align-items-center flex__1 mb-1 mb-sm-0 justify-content-end">
+                            <div className="d-flex align-items-center flex-grow-1 mb-1 mb-sm-0 justify-content-end">
                               {item.length === 1 && (
-                                <div className="d-flex align-items-center flex__1 mb-1 mb-sm-0">
+                                <div className="d-flex align-items-center flex-grow-1 mb-1 mb-sm-0">
                                   <div className="pe-1 p-sm-2 mr-12p">
                                     <img
                                       width={36}
@@ -306,7 +306,7 @@ const AdminTaxTable = (props) => {
                                         className="d-flex align-items-center p-2"
                                         onClick={() => viewItem(item[0])}
                                       >
-                                        <span className="fw-bold fs-7 flex__1">View</span>
+                                        <span className="fw-bold fs-7 flex-grow-1">View</span>
                                         <FontAwesomeIcon
                                           icon={solid('magnifying-glass')}
                                           className="ms-1"
@@ -319,7 +319,7 @@ const AdminTaxTable = (props) => {
                                           deleteItem(item[0], i);
                                         }}
                                       >
-                                        <span className="fw-bold fs-7 flex__1">Delete</span>
+                                        <span className="fw-bold fs-7 flex-grow-1">Delete</span>
                                         <FontAwesomeIcon icon={regular('trash')} className="ms-1" />
                                       </Dropdown.Item>
                                     </Dropdown.Menu>
@@ -410,7 +410,7 @@ const AdminTaxTable = (props) => {
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="d-flex align-items-center flex__1 mb-1 mb-sm-0">
+                                    <div className="d-flex align-items-center flex-grow-1 mb-1 mb-sm-0">
                                       <div className="pe-1 p-sm-2 mr-12p">
                                         <img width={36} src={Aimg} alt="" />
                                       </div>

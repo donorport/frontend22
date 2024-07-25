@@ -189,7 +189,7 @@ const DonateModal = (props) => {
                 {selectedValue}
               </span>
               <div className="mt-2 d-flex align-items-center">
-                <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
+                <Link to="/pricing" className="fw-semibold fs-7 text-light flex-grow-1">
                   Service Charge:
                 </Link>
                 <span className="ms-1 fw-semibold text-light fs-7">
@@ -403,7 +403,7 @@ const DonateModal = (props) => {
           <Button
             variant="primary"
             onClick={() => setNext(true)}
-            className="d-flex flex__1 fw-bold justify-content-center fs-6"
+            className="d-flex flex-grow-1 fw-bold justify-content-center fs-6"
             size="lg"
           >
             Next
@@ -415,7 +415,7 @@ const DonateModal = (props) => {
               variant="primary"
               style={{ width: '100%', opacity: props.loading ? '0.7' : '1' }}
               onClick={() => !props.loading && props.donate()}
-              className="d-flex flex__1 fw-bold justify-content-center fs-6"
+              className="d-flex flex-grow-1 fw-bold justify-content-center fs-6"
               size="lg"
             >
               Donate {currencySymbol}

@@ -42,7 +42,7 @@ const SummaryContent = (props) => {
 
               return (
                 <li className="d-flex align-items-start py-3 border-bottom" key={i}>
-                  <div className="d-flex align-items-start mb-2 mb-sm-0 flex__1">
+                  <div className="d-flex align-items-start mb-2 mb-sm-0 flex-grow-1">
                     <div className="position-relative">
                       <ListItemImg
                         size={75}
@@ -101,13 +101,13 @@ const SummaryContent = (props) => {
 
         <div className=" py-3 border-bottom">
           <div className="d-flex align-items-center pb-20p">
-            <span className="fw-bolder flex__1">Subtotal:</span>
+            <span className="fw-bolder flex-grow-1">Subtotal:</span>
             <span className="price ">
               {props.currencySymbol + priceFormat(subtotal)}
             </span>
           </div>
           <div className="d-flex align-items-center pb-20p">
-            <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
+            <Link to="/pricing" className="fw-semibold fs-7 text-light flex-grow-1">
               Service Charge:
             </Link>
             <span className="text-light fw-semibold fs-7">
@@ -115,11 +115,11 @@ const SummaryContent = (props) => {
             </span>
           </div>
           {/*    <div className="d-flex align-items-center pb-20p">
-            <span className="fw-bolder flex__1">Merchant Fee</span>
+            <span className="fw-bolder flex-grow-1">Merchant Fee</span>
             <span className=" text-light">{props.currencySymbol + props.salesTax}</span>
           </div>*/}
           <div className="d-flex align-items-center">
-            <span className="fw-bolder flex__1">XP</span>
+            <span className="fw-bolder flex-grow-1">XP</span>
             <span className="fw-bold text-info">
               {Number(props.xp).toLocaleString('en-US', {
                 maximumFractionDigits: 2
@@ -130,7 +130,7 @@ const SummaryContent = (props) => {
         </div>
       </div>
       <div className="d-flex align-items-center pt-1 pb-2">
-        <span className="fw-bolder flex__1">Total:</span>
+        <span className="fw-bolder flex-grow-1">Total:</span>
         {/* <span className="text-subtext me-2 fs-7">USD</span> */}
         <span className="fw-bold fs-4">
           {/* {props.currencySymbol + priceFormat(total ? total : 0)} */}

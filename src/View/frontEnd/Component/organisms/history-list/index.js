@@ -163,7 +163,7 @@ const HistoryList = ({
     <>
       <div className="list__table mb-2 mb-sm-0">
         <div className="list__table-sort d-flex justify-content-sort border-bottom">
-          <div className="flex__1" style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div className="flex-grow-1" style={{ display: 'flex', justifyContent: 'space-between' }}>
             <Button
               variant="link"
               className="btn__sort px-0 text-decoration-none"
@@ -394,7 +394,7 @@ const DonationListItem = ({ donation, activeList }) => {
                   <span className="ml-6p text-light fs-7">
                     {donation.currency ? donation.currency : 'CAD'}
                   </span>
-                  {/* <span className="ms-2 text-info fw-bold flex__1">{donation?.xp} XP</span> */}
+                  {/* <span className="ms-2 text-info fw-bold flex-grow-1">{donation?.xp} XP</span> */}
                 </span>
                 <Link
                   to={'/organization/' + donation.organizationId?.slug}
@@ -454,7 +454,7 @@ const DonationListItem = ({ donation, activeList }) => {
                   <span className="ml-6p text-light fs-7">
                     {donation.currency ? donation.currency : 'CAD'}
                   </span>
-                  {/* <span className="ms-2 text-info fw-bold flex__1">{donation?.xp} XP</span> */}
+                  {/* <span className="ms-2 text-info fw-bold flex-grow-1">{donation?.xp} XP</span> */}
                 </span>
                 <Link
                   to={'/organization/' + donation.organizationId?.slug}
@@ -536,7 +536,7 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
           </span>
         </div>
         <div className="d-flex align-items-center mb-1">
-          <div className="fw-semibold fs-7 text-light flex__1">Subtotal:</div>
+          <div className="fw-semibold fs-7 text-light flex-grow-1">Subtotal:</div>
           <span className="fw-bold fs-6">
             {order.currencySymbol + parseFloat(order.subtotal).toFixed(2)}
           </span>
@@ -546,7 +546,7 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
       <div className="d-flex flex-column gap-2 mb-3 pt-3 border-top">
         <div className="d-flex justify-content-between">
           {' '}
-          <div className="fw-bold fs-6 text-light flex__1">Total Charge:</div>
+          <div className="fw-bold fs-6 text-light flex-grow-1">Total Charge:</div>
           <h6>{order.currencySymbol + parseFloat(order.total).toFixed(2)}</h6>
         </div>
 
@@ -559,7 +559,7 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
 const PurchaseListItem = ({ order, item }) => {
   return (
     <li className="d-sm-flex align-items-center px-sm-0 py-sm-2 pb-2 border-bottom">
-      <div className="d-flex align-items-start mb-2 mb-sm-0 flex__1">
+      <div className="d-flex align-items-start mb-2 mb-sm-0 flex-grow-1">
         <ListItemImg
           size={68}
           imgSrc={helper.CampaignProductImagePath + item.productImage}
@@ -587,7 +587,7 @@ const PurchaseListItem = ({ order, item }) => {
           imgSrc={helper.CampaignAdminLogoPath + item?.itemDetails?.campaignadminsDetails.logo}
         />
       <div className="order__values d-flex align-items-center py-1">
-        <span className="fs- text-info fw-bold flex__1">{item.xp ? item.xp : 0} xp</span>
+        <span className="fs- text-info fw-bold flex-grow-1">{item.xp ? item.xp : 0} xp</span>
         <span className="fs-5 fw-bold ms-2" style={{ width: '80px', textAlign: 'end' }}>
           {order.currencySymbol ? order.currencySymbol : '$'}
           {priceFormat(Number(item.productPrice * item.quantity))}

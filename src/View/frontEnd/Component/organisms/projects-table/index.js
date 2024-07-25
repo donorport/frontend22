@@ -86,7 +86,7 @@ const ProjectsTable = (props) => {
     <>
       <div className="projects__table list__table mb-2 mb-sm-0">
         <div className="list__table-sort d-flex justify-content-sort border-bottom">
-          <div className="flex__1">
+          <div className="flex-grow-1">
             <Button
               variant="link"
               className="btn__sort px-0 text-decoration-none"
@@ -162,9 +162,9 @@ const ProjectsTable = (props) => {
 
                     {project.status === 1 ? (
                       project.infinity ? (
-                        <div className="d-flex align-items-center flex__1 mb-2 mb-sm-0">
-                          <div className="d-flex align-items-center flex__1 mw-200">
-                            <ProgressBar variant="infinity" now={100} className="flex__1" />
+                        <div className="d-flex align-items-center flex-grow-1 mb-2 mb-sm-0">
+                          <div className="d-flex align-items-center flex-grow-1 mw-200">
+                            <ProgressBar variant="infinity" now={100} className="flex-grow-1" />
                             {/* <span className="ms-1 fw-semibold">Infinite</span> */}
                             <div
                               className="unlimited unlimited--home"
@@ -179,12 +179,12 @@ const ProjectsTable = (props) => {
                           </div>
                         </div>
                       ) : (
-                        <div className="d-flex align-items-center flex__1 mb-2 mb-sm-0">
-                          <div className="d-flex align-items-center flex__1 mw-200">
+                        <div className="d-flex align-items-center flex-grow-1 mb-2 mb-sm-0">
+                          <div className="d-flex align-items-center flex-grow-1 mw-200">
                             <ProgressBar
                               variant="success"
                               now={countProjectProcess(project.productDetails)}
-                              className="flex__1"
+                              className="flex-grow-1"
                             />
                             <span className="ms-1 fw-semibold">
                               {countProjectProcess(project.productDetails)}%
@@ -193,7 +193,7 @@ const ProjectsTable = (props) => {
                         </div>
                       )
                     ) : (
-                      <div className="d-flex align-items-center flex__1 mb-2 mb-sm-0"></div>
+                      <div className="d-flex align-items-center flex-grow-1 mb-2 mb-sm-0"></div>
                     )}
 
                     <div className="billing__buttons d-flex align-items-center">

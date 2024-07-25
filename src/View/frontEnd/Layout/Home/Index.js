@@ -18,7 +18,7 @@ import buoy from '../../../../assets/images/buoy.png';
 import hero from '../../../../assets/images/bg.svg';
 import hero2 from '../../../../assets/images/bgdark.svg';
 import { useSelector } from 'react-redux';
-
+import themeService from "../../../../services/themeService";
 //const title = {
 //color: '#6b68f8'
 //};
@@ -209,7 +209,22 @@ export default function Index(props) {
     }
     setProductsList(products);
   }, [props.productList, props.wishListproductIds.length]);
-  const htmlTheme = document.documentElement.getAttribute('data-theme');
+
+
+  const [htmlTheme, setHtmlTheme] = useState(themeService.getFromStorage() || themeService.detectPreferences());
+
+  useEffect(() => {
+    themeService.init();
+    const handleThemeChange = () => {
+      setHtmlTheme(themeService.getFromStorage());
+    };
+    
+    document.addEventListener('themeChange', handleThemeChange);
+    
+    return () => {
+      document.removeEventListener('themeChange', handleThemeChange);
+    };
+  }, []);
 
   return (
     <>
@@ -380,7 +395,7 @@ export default function Index(props) {
               <div className="mb-1 mb-sm-0 text-nowrap text-end text-sm-start">
                 {props.productList.length} items
               </div>
-              {/* <div className="tag__list d-flex align-items-center flex__1 ms-sm-2 gap-1 mb-2 mb-sm-0 overflow-auto px-sm-0 px-2 mx-sm-0 mx-n2">
+              {/* <div className="tag__list d-flex align-items-center flex-grow-1 ms-sm-2 gap-1 mb-2 mb-sm-0 overflow-auto px-sm-0 px-2 mx-sm-0 mx-n2">
                 {props.seletedCategoryList.length > 0 &&
                   props.categoryList.length > 0 &&
                   props.categoryList.map((c) => {
@@ -400,7 +415,7 @@ export default function Index(props) {
                               <path d={c.icon} fill={c.color}></path>
                             </svg>
                           </span>
-                          <span className="flex__1 ms-1 fs-5 fw-semibold text-subtext text-nowrap">
+                          <span className="flex-grow-1 ms-1 fs-5 fw-semibold text-subtext text-nowrap">
                             {c.name}
                           </span>
                           <Button

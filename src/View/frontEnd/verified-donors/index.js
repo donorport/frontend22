@@ -19,7 +19,7 @@ const VerifiedDonors = () => {
           </div>
           <div className="d-flex align-items-center bg-lighter p-2 rounded-4 mw-400">
             <Avatar size={46} avatarUrl="" border={0} shadow={false} />
-            <div className="ms-3 flex__1">
+            <div className="ms-3 flex-grow-1">
               <div className="d-flex align-items-center mb-3p">
                 <span className="fw-bold ">David Abbott</span>
                 <FontAwesomeIcon icon={solid('badge-check')} className="ml-12p fs-5 text-info" />
@@ -36,26 +36,26 @@ const VerifiedDonors = () => {
           </div>
           <Form className="mw-400">
             <div className="input__wrap d-flex">
-              <label className="input__label flex__1">
+              <label className="input__label flex-grow-1">
                 <input type="text" />
                 <span className="input__span">Name</span>
               </label>
             </div>
             <div className="input__wrap d-flex">
-              <label className="input__label flex__1">
+              <label className="input__label flex-grow-1">
                 <input type="email" />
                 <span className="input__span">Email</span>
               </label>
             </div>
             <div className="input__wrap d-flex">
-              <label className="input__label flex__1">
+              <label className="input__label flex-grow-1">
                 <input type="email" />
                 <span className="input__span">Confirm Email</span>
               </label>
             </div>
 
             <div className="input__wrap d-flex">
-              <label className="input__label flex__1">
+              <label className="input__label flex-grow-1">
                 <textarea rows={5}></textarea>
                 <span className="input__span">Tell us why you want to be verified</span>
               </label>

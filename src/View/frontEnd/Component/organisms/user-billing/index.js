@@ -110,7 +110,7 @@ const UserBilling = () => {
     <>
       <div className="mb-5">
         <div className="d-sm-flex align-items-start mb-5 mb-sm-3">
-          <div className="flex__1 mb-2">
+          <div className="flex-grow-1 mb-2">
             <h4 className="fw-bolder">Payment History</h4>
             <div className="text-subtext mb-3 pt-1">
               All transactions related to your Admin account
@@ -201,7 +201,7 @@ const UserBilling = () => {
                         </div>
                       </div>
 
-                      <div className="billing__details pr-3 ms-sm-2 flex__1">
+                      <div className="billing__details pr-3 ms-sm-2 flex-grow-1">
                         <div className="fw-bold mb-3p">{PurchaseName}</div>
                         <div className="text-subtext fs-7">
                           {PurchaseIcon}
@@ -246,7 +246,7 @@ const UserBilling = () => {
                               </div>
                             </div>
 
-                            <div className="billing__details pr-3 ms-sm-2 flex__1">
+                            <div className="billing__details pr-3 ms-sm-2 flex-grow-1">
                               <div className="fw-bold mb-3p">{o_itm.organizationDetails.name}</div>
                               <div className="text-subtext fs-7">
                                 {PurchaseIcon}

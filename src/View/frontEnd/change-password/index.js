@@ -134,7 +134,7 @@ const ChangePassword = () => {
                 <Button
                   variant="link"
                   onClick={() => toggleCPassword(!showCPassword)}
-                  className=" border-top border-end border-bottom"
+                  className="p-2 border-top border-end border-bottom"
                 >
                   <FontAwesomeIcon
                     icon={solid('eye')}
@@ -160,7 +160,7 @@ const ChangePassword = () => {
                 <Button
                   variant="link"
                   onClick={() => toggleNPassword(!showNPassword)}
-                  className=" border-top border-end border-bottom"
+                  className="p-2 border-top border-end border-bottom"
                 >
                   <FontAwesomeIcon
                     icon={solid('eye')}
@@ -183,7 +183,7 @@ const ChangePassword = () => {
                 <Button
                   variant="link"
                   onClick={() => toggleRNPassword(!showRNPassword)}
-                  className=" border-top border-end border-bottom"
+                  className="p-2 border-top border-end border-bottom"
                 >
                   <FontAwesomeIcon
                     icon={solid('eye')}

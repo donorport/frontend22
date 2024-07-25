@@ -30,7 +30,7 @@ const AddBankModal = (props) => {
             </a>
           </div>
           <div className="input__wrap d-flex">
-            <label className="input__label flex__1">
+            <label className="input__label flex-grow-1">
               <Select
                 className="basic-single"
                 classNamePrefix="select"
@@ -51,7 +51,7 @@ const AddBankModal = (props) => {
           <div>
             {' '}
             <div className="input__wrap d-flex">
-              <label className="input__label flex__1">
+              <label className="input__label flex-grow-1">
                 <input
                   type="email"
                   id="accEmail"
@@ -84,7 +84,7 @@ const AddBankModal = (props) => {
               <>
               <div>               
                  <div className="input__wrap d-flex">
-                  <label className="input__label flex__1">
+                  <label className="input__label flex-grow-1">
                     <input
                       type="text"
                       id="fname"
@@ -113,7 +113,7 @@ const AddBankModal = (props) => {
 
                 <div>
                   <div className="input__wrap d-flex">
-                    <label className="input__label flex__1">
+                    <label className="input__label flex-grow-1">
                       <input
                         type="text"
                         id="lname"
@@ -143,7 +143,7 @@ const AddBankModal = (props) => {
               </>
             ) : (
               <div className="input__wrap d-flex">
-                <label className="input__label flex__1">
+                <label className="input__label flex-grow-1">
                   <input
                     type="text"
                     id="companyName"
@@ -222,11 +222,11 @@ const AddBankModal = (props) => {
           </div>
           <div>
             <div className="input__wrap d-flex">
-              <label className="input__label flex__1">
+              <label className="input__label flex-grow-1">
                 <input type="text" />
                 <span className="input__span">Account Number</span>
               </label>
-              <label className="input__label flex__1">
+              <label className="input__label flex-grow-1">
                 <Select
                   className="basic-single"
                   classNamePrefix="select"
@@ -245,7 +245,7 @@ const AddBankModal = (props) => {
               </label>
             </div>
             <div className="input__wrap d-flex">
-              <label className="input__label flex__1">
+              <label className="input__label flex-grow-1">
                 <input
                   type="email"
                   id="accEmail"
@@ -275,7 +275,7 @@ const AddBankModal = (props) => {
             {props.bankAccount.BusinessType === 'individual' ? (
               <>
                 <div className="input__wrap d-flex">
-                  <label className="input__label flex__1">
+                  <label className="input__label flex-grow-1">
                     <input
                       type="text"
                       id="fname"
@@ -300,7 +300,7 @@ const AddBankModal = (props) => {
                 </div>
 
                 <div className="input__wrap d-flex">
-                  <label className="input__label flex__1">
+                  <label className="input__label flex-grow-1">
                     <input
                       type="text"
                       id="lname"
@@ -326,7 +326,7 @@ const AddBankModal = (props) => {
               </>
             ) : (
               <div className="input__wrap d-flex">
-                <label className="input__label flex__1">
+                <label className="input__label flex-grow-1">
                   <input
                     type="text"
                     id="companyName"
@@ -368,7 +368,7 @@ const AddBankModal = (props) => {
           variant="info"
           // onClick={props.onHide}
           onClick={() => props.addExpressAccount()}
-          className="border-top-left-radius-0 py-20p flex__1 m-0 rounded-0"
+          className="border-top-left-radius-0 py-20p flex-grow-1 m-0 rounded-0"
         >
           Save
         </Button>

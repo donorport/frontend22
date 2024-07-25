@@ -4,7 +4,7 @@ const Input = ({ value = '', onChange, title, name, maxLength, maxInput, placeho
   return (
     <>
       <div className="input__wrap d-flex flex-column">
-        <label className="input__label flex__1">
+        <label className="input__label flex-grow-1">
           <input
             className={error && error[name] ? 'inputerror' : ''}
             name={name}

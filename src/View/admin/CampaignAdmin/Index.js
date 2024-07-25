@@ -121,16 +121,25 @@ export default function Index(props) {
     // Get the headers
     const headers = columns.map((col) => col.name);
     csvRows.push(headers.join(','));
-
+  
     // Get the data
     data.forEach((row) => {
       const values = columns.map((col) => {
-        const value = row[col.selector] || '';
-        return `"${value.toString().replace(/"/g, '""')}"`; // Escape double quotes
+        if (col.selector) {
+          // Handle nested selectors
+          const keys = col.selector.split('.');
+          let value = row;
+          keys.forEach(key => {
+            value = value[key];
+          });
+          return `"${(value || '').toString().replace(/"/g, '""')}"`; // Escape double quotes
+        } else {
+          return '""';
+        }
       });
       csvRows.push(values.join(','));
     });
-
+  
     // Create CSV file and trigger download
     const csvContent = 'data:text/csv;charset=utf-8,' + csvRows.join('\n');
     const encodedUri = encodeURI(csvContent);

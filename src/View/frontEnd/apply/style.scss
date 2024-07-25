@@ -1,18 +1,22 @@
 .select__single-value {
-    font-weight: 600;
-    color: inherit;
-    font-size: $font-size-base;
+  font-weight: 600;
+  color: $neutral-700 !important;
+  font-size: $font-size-base;
+}
+.input__label input,
+.input__label textarea {
+  color: $neutral-700 !important;
+  background-color: $neutral-100;
+}
+.select__control {
+  border-color: $border-color !important;
+}
+.apply__left {
+  min-width: 800px;
+  @include media-breakpoint-down(sm) {
+    min-width: 100%;
   }
-  .input__label input, .input__label textarea {
-    color: inherit !important;
-    background-color: $neutral-100;
-  }
-  .select__control {
-    border-color: $border-color !important;
-  }
-  .apply__left {
-    min-width: 800px;
-  }
-  .apply__content {
-    max-width: 550px
-  }
+}
+.apply__content {
+  max-width: 550px;
+}

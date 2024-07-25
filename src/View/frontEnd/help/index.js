@@ -32,7 +32,7 @@ const Help = () => {
                 >
                   <div className="d-flex flex-grow-1 align-items-center py-3p">
                     <FontAwesomeIcon icon={light('buildings')} className="text-info fs-2 pr-20p" />
-                    <span className="flex__1 fs-4">Donorport</span>
+                    <span className="flex-grow-1 fs-4">Donorport</span>
                     <span className="text-info fs-5">See Articles&nbsp; →</span>
                   </div>
                 </Button>
@@ -47,7 +47,7 @@ const Help = () => {
                       icon={light('circle-user')}
                       className="text-info fs-2 pr-20p"
                     />
-                    <span className="flex__1 fs-4">Accounts & Billing</span>
+                    <span className="flex-grow-1 fs-4">Accounts & Billing</span>
                     <span className="text-info fs-5">See Articles&nbsp; →</span>
                   </div>
                 </Button>
@@ -62,7 +62,7 @@ const Help = () => {
                       icon={light('heart-half-stroke')}
                       className="text-info fs-2 pr-20p"
                     />
-                    <span className="flex__1 fs-4">Non-profits & Charities</span>
+                    <span className="flex-grow-1 fs-4">Non-profits & Charities</span>
                     <span className="text-info fs-5">See Articles&nbsp; →</span>
                   </div>
                 </Button>
@@ -74,7 +74,7 @@ const Help = () => {
                 >
                   <div className="d-flex flex-grow-1 align-items-center py-3p">
                     <FontAwesomeIcon icon={light('bolt')} className="text-info fs-2 pr-20p" />
-                    <span className="flex__1 fs-4">Projects</span>
+                    <span className="flex-grow-1 fs-4">Projects</span>
                     <span className="text-info fs-5">See Articles&nbsp; →</span>
                   </div>
                 </Button>

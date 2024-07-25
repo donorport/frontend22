@@ -573,14 +573,14 @@ const UserProfile = () => {
         <div className="d-flex flex-column mb-5 pb-2 gap-3">
           {' '}
           <div className="input__wrap d-flex">
-            <label className="input__label flex__1">
+            <label className="input__label flex-grow-1">
               <input type="text" name="name" value={name} onChange={(e) => changevalue(e)} />
               <span className="input__span">Name</span>
             </label>
           </div>
           {error && error.name && <p className="error">{error.name}</p>}
           <div className="input__wrap d-flex">
-            <label className="input__label flex__1">
+            <label className="input__label flex-grow-1">
               <input type="text" value={email} disabled />
               <span className="input__span">Email</span>
             </label>
@@ -613,14 +613,14 @@ const UserProfile = () => {
 
         <div className="d-flex flex-column gap-5 mb-3">
           <div className="input__wrap d-flex">
-            <label className="input__label flex__1">
+            <label className="input__label flex-grow-1">
               <input type="text" name="street" value={street} onChange={(e) => changevalue(e)} />
               <span className="input__span">Street Name</span>
             </label>
           </div>
           {error && error.street && <p className="error">{error.street}</p>}
           <div className="input__wrap d-flex">
-            <label className="input__label flex__1">
+            <label className="input__label flex-grow-1">
               {/* <input type="text" value='' /> */}
               {/* {countrySelect.current} */}
               <Select
@@ -642,7 +642,7 @@ const UserProfile = () => {
           </div>
           {error && error.country && <p className="error">{error.country}</p>}
           <div className="input__wrap d-flex">
-            <label className="input__label flex__1">
+            <label className="input__label flex-grow-1">
               {/* <input type="text" value='' /> */}
               <Select
                 className="basic-single"
@@ -660,7 +660,7 @@ const UserProfile = () => {
           </div>
           {error && error.stateId && <p className="error">{error.stateId}</p>}
           <div className="input__wrap d-flex">
-            <label className="input__label flex__1">
+            <label className="input__label flex-grow-1">
               {/*USE THESE FOR CITY SELECT */}
               {/* <Select
               className="basic-single"
@@ -678,7 +678,7 @@ const UserProfile = () => {
           </div>
           {error && error.city && <p className="error">{error.city}</p>}
           <div className="input__wrap d-flex">
-            <label className="input__label flex__1">
+            <label className="input__label flex-grow-1">
               <input type="text" name="zip" value={zip} onChange={(e) => changevalue(e)} />
               <span className="input__span">Zipcode</span>
             </label>

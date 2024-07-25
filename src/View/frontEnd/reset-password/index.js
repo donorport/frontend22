@@ -17,7 +17,7 @@ const ResetPassword = (props) => {
   return (
       <div className="bg-lighter authPage">
         <div className="login">
-          <div className="login__left d-none d-md-flex align-items-center justify-content-center flex__1">
+          <div className="login__left d-none d-md-flex align-items-center justify-content-center flex-grow-1">
             <div className="login__hero">
               <div className="chart-comment-block">
                 <div className="from-me">
@@ -100,7 +100,7 @@ const ResetPassword = (props) => {
                     id="inputPassword"
                   />
 
-                  <Button variant="link" onClick={() => togglePassword(!showPassword)}>
+                  <Button className="p-2" variant="link" onClick={() => togglePassword(!showPassword)}>
                     <FontAwesomeIcon
                       icon={solid('eye')}
                       className={`${showPassword ? 'text-primary' : 'text-light'}`}
@@ -127,7 +127,7 @@ const ResetPassword = (props) => {
                     id="cpassword"
                   />
 
-                  <Button variant="link" onClick={() => toggleCPassword(!showCPassword)}>
+                  <Button className="p-2" variant="link" onClick={() => toggleCPassword(!showCPassword)}>
                     <FontAwesomeIcon
                       icon={solid('eye')}
                       className={`${showCPassword ? 'text-primary' : 'text-light'}`}

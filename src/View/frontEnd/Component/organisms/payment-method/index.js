@@ -937,7 +937,7 @@ const Payments = () => {
                   imgSrc=""
                 />
               </div>
-              <div className=" flex__1 mx-2 text-break">
+              <div className=" flex-grow-1 mx-2 text-break">
                 <div className="accounts__email fw-bold">Ending in 7709</div>
                 <div className="fs-7 mb-3p">Mastercard</div>
                 <div className="fs-7 text-subtext">8 / 2019</div>
@@ -955,7 +955,7 @@ const Payments = () => {
                   imgSrc=""
                 />
               </div>
-              <div className="accounts__email fw-bolder flex__1 mx-2 text-break">
+              <div className="accounts__email fw-bolder flex-grow-1 mx-2 text-break">
                 k************l@gmail.com
               </div>
               <Button variant="link" className="text-danger fs-7">
@@ -978,7 +978,7 @@ const Payments = () => {
           <h4 className="fw-bolder">Tax Rate</h4>
           <div className="text-subtext mb-3 pt-1">What is your regional sales tax?</div>
           <div className="input__wrap mb-3">
-            <label className="input__label flex__1">
+            <label className="input__label flex-grow-1">
               <input
                 type="text"
                 name="taxRate"
@@ -1017,7 +1017,7 @@ const Payments = () => {
             direct deposits from our donors.
           </div>
           <div className="d-flex align-items-center">
-            {/*     <span className="text-subtext flex__1">
+            {/*     <span className="text-subtext flex-grow-1">
               Direct Deposit information for contributions from your donors
             </span>
             <Button variant="info" onClick={() => openModel()}>Add Bank</Button>*/}
@@ -1095,7 +1095,7 @@ const Payments = () => {
                         className="fs-3 text-subtext"
                       />
                     </div>
-                    <div className="flex__1 mx-2 text-break">
+                    <div className="flex-grow-1 mx-2 text-break">
                       {/*  {list.businessName ? (
                         <div
                           className="accounts__email fw-bold"
@@ -1154,7 +1154,7 @@ const Payments = () => {
                     {/* {
                       list.status === 1 ?
 
-                        <div className="flex__1">
+                        <div className="flex-grow-1">
                           <FontAwesomeIcon
                             icon={solid("badge-check")}
                             className="fs-3 text-success"
@@ -1172,7 +1172,7 @@ const Payments = () => {
                           </>
                           :
                           <>
-                            <div className="flex__1">
+                            <div className="flex-grow-1">
                               <FontAwesomeIcon
                                 icon={solid("ban")}
                                 className="fs-3 text-danger"
@@ -1218,7 +1218,7 @@ const Payments = () => {
 
 
           <div className="input__wrap mb-3 mt-3">
-            <label className="input__label flex__1">
+            <label className="input__label flex-grow-1">
               <input type="text" placeholder="EX : 66GdU46mhuFQ" name="paymentLoginId" value={paymentLoginId} className={state.error && state.error.paymentLoginId ? 'inputerror' : ""} onChange={(e) => onChangeTaxRate(e)}
               // onFocu={()=>alert('okk')} 
               onBlur={() => myFunction('paymentLoginId')}
@@ -1231,7 +1231,7 @@ const Payments = () => {
 
 
           <div className="input__wrap mb-3">
-            <label className="input__label flex__1">
+            <label className="input__label flex-grow-1">
               <input type="text" placeholder="EX : 74AZP5Hxr972nPEn" name="TransactionKey" value={TransactionKey} className={state.error && state.error.TransactionKey ? 'inputerror' : ""} onChange={(e) => onChangeTaxRate(e)}
               // onFocu={()=>alert('okk')} 
               onBlur={() => myFunction('TransactionKey')}
@@ -1276,7 +1276,7 @@ const Payments = () => {
                   alt=""
                 />
               </span>
-              <span className="fs-5 fw-semibold text-subtext flex__1">
+              <span className="fs-5 fw-semibold text-subtext flex-grow-1">
                 USD Coin
               </span>
               <ToggleSwitch checked={true} changevalue={() => { }} />
@@ -1289,7 +1289,7 @@ const Payments = () => {
                   alt=""
                 />
               </span>
-              <span className="fs-5 fw-semibold text-subtext flex__1">
+              <span className="fs-5 fw-semibold text-subtext flex-grow-1">
                 Bitcoin
               </span>
               <ToggleSwitch checked={false} changevalue={() => { }} />
@@ -1302,7 +1302,7 @@ const Payments = () => {
                   alt=""
                 />
               </span>
-              <span className="fs-5 fw-semibold text-subtext flex__1">
+              <span className="fs-5 fw-semibold text-subtext flex-grow-1">
                 Ethereum
               </span>
               <ToggleSwitch checked={false} changevalue={() => { }} />

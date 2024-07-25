@@ -1127,7 +1127,7 @@ const AddBankModal = (props) => {
 
         {/* </Modal.Body> */}
         {/* <Modal.Footer className="p-0 border-0 overflow-hidden">
-        <Button variant="info" onClick={props.addBankAccount} className="border-top-left-radius-0 py-20p flex__1 m-0 rounded-0">Save</Button>
+        <Button variant="info" onClick={props.addBankAccount} className="border-top-left-radius-0 py-20p flex-grow-1 m-0 rounded-0">Save</Button>
       </Modal.Footer>
     </Modal> */}
       </Dialog>

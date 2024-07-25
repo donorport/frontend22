@@ -36,7 +36,7 @@ const PostsTable = (props) => {
     <>
       <div className="list__table mb-5">
         <div className="list__table-sort d-flex justify-content-sort border-bottom">
-          <div className="flex__1">
+          <div className="flex-grow-1">
             <Button
               variant="link"
               className="btn__sort px-0 text-decoration-none"
@@ -141,12 +141,12 @@ const PostsTable = (props) => {
                         )}
                       </div>
                     </div>
-                    <div className="d-flex align-items-center flex__1">
+                    <div className="d-flex align-items-center flex-grow-1">
                       {product.status === 1 && (
                         // }
-                        <div className="d-flex align-items-center progress__wrap me-2 flex__1">
+                        <div className="d-flex align-items-center progress__wrap me-2 flex-grow-1">
                           <div
-                            className="d-flex flex__1 align-items-center"
+                            className="d-flex flex-grow-1 align-items-center"
                             style={{ maxWidth: '200px' }}
                           >
                             {!product.unlimited && (
@@ -161,7 +161,7 @@ const PostsTable = (props) => {
                                   ? Math.round((product.soldout / product.quantity) * 100)
                                   : 100
                               }
-                              className="flex__1"
+                              className="flex-grow-1"
                               style={{ maxWidth: '200px' }}
                             /> */}
                             {!product.unlimited ? (
@@ -287,7 +287,7 @@ const ButtonEditProduct = ({ onClick }) => (
 );
 
 const ButtonShowFulfillOrder = ({ onClick }) => (
-  <Button variant="success" size="sm" style={{ marginRight: '10px' }} onClick={onClick}>
+  <Button className="order-1" variant="success" size="sm" style={{ marginRight: '10px' }} onClick={onClick}>
     Fulfill Order
   </Button>
 );

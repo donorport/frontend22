@@ -15,7 +15,7 @@ import SigninController from '../Controller/frontEnd/SigninController';
 import SignupController from '../Controller/frontEnd/SignupController';
 // import HomePage from '../View/frontEnd/Layout/Home/HomePage';
 import LogoOnlyLayout from '../layouts/LogoOnlyLayout';
-
+// import ScrollToTop from '../Controller/frontEnd/ScrollToTop';
 //import Login from '../pages/Login';
 
 // import Router from '../routes';
@@ -144,6 +144,7 @@ export default function MainRoutes() {
         <React.Suspense fallback={<LoadingPage />}>
         */}
           <Routes>
+          <ScrollToTop />
             <Route path="/" element={<AdminDetail />}>
               <Route path="/campaign/:name/dashboard" element={<Payments />} />
               <Route path="/campaign/:name" element={<Payments />} />

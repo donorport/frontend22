@@ -95,8 +95,18 @@ li:last-child:not(.ad__activity__item, .wishlist__item, .table__list-item, .cd__
   background-color: $secondary-5 !important;
   border-color: $border-color !important;
 }
+.select__option--is-focused {
+  background: $secondary-1;
+}
+.select__option--is-selected {
+  background: $secondary-2;
+}
+.select__value-container {
+  padding: 12px
+}
 .select__input-container {
   margin: 0;
+  grid-area: 1 / 3;
   grid-template-columns: auto !important;
 }
 .select__placeholder {

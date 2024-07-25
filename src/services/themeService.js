@@ -3,6 +3,8 @@ const getFromStorage = () => localStorage.getItem('theme');
 const apply = (theme) => {
   document.documentElement.dataset.theme = theme;
   localStorage.setItem('theme', theme);
+  const event = new Event('themeChange');
+  document.dispatchEvent(event);
 };
 
 const detectPreferences = () => {

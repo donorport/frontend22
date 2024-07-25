@@ -181,10 +181,11 @@
     min-height: auto;
     margin: 0;
   }
-
+.policy__input {
+  padding: 12px
+}
   .form-check .form-check-input {
-    min-width: 1.3rem;
-    min-height: 1.3rem;
+
     border: 2px solid #4e8dff;
     cursor: pointer;
   }

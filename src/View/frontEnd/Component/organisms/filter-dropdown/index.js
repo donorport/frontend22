@@ -89,7 +89,7 @@ const FilterDropdown = (props) => {
       <div renderOnMount className="filter__dropdown mobile__dropdown dropdown-top-arrow">
         <div className="filter__dropdown-hd border-bottom">
           <div className="filter__checkboxes d-flex align-items-center">
-            <div className="filter__item d-flex justify-content-center text-center text-light flex__1">
+            <div className="filter__item d-flex justify-content-center text-center text-light flex-grow-1">
               <div className="filter__label d-flex align-items-center fw-bold">Tax Eligible</div>
               <div className="filter__toggle fs-4">
                 <IconToggle
@@ -102,7 +102,7 @@ const FilterDropdown = (props) => {
               </div>
             </div>
 
-            <div className="filter__item d-flex justify-content-center text-center text-light flex__1">
+            <div className="filter__item d-flex justify-content-center text-center text-light flex-grow-1">
               <div className="filter__label d-flex align-items-center fw-bold">Tab</div>
               <div className="filter__toggle fs-4">
                 <IconToggle
@@ -117,7 +117,7 @@ const FilterDropdown = (props) => {
               </div>
             </div>
 
-            <div className="filter__item d-flex justify-content-center text-center text-light flex__1">
+            <div className="filter__item d-flex justify-content-center text-center text-light flex-grow-1">
               <div className="filter__label d-flex align-items-center fw-bold">Ongoing</div>
               <div className="filter__toggle fs-4">
                 <IconToggle

@@ -17,7 +17,7 @@ const Register = (props) => {
   return (
     <div className="d-flex flex-column bg-lighter authPage">
       <div className="login">
-        <div className="login__left d-none d-md-flex align-items-center justify-content-center flex__1">
+        <div className="login__left d-none d-md-flex align-items-center justify-content-center flex-grow-1">
           <div className="login__hero">
             <div className="chart-comment-block">
               <div className="from-me">
@@ -63,7 +63,7 @@ const Register = (props) => {
 
             <form className="login__form">
               <h5 className="login-header ">Sign Up</h5>
-              <div className="fs-6 d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 lh-md-md text-nowrap">
+              <div className="fs-6 d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-1 lh-md-md text-nowrap">
                 <FontAwesomeIcon icon={regular('circle-question')} style={{ color: '#5f5df8' }} />
                 &nbsp; Charities&nbsp;
                 <Link to="/apply" className="link d-inline-block">
@@ -115,7 +115,11 @@ const Register = (props) => {
                     id="inputPassword"
                   />
 
-                  <Button variant="link" onClick={() => togglePassword(!showPassword)}>
+                  <Button
+                    className="p-2"
+                    variant="link"
+                    onClick={() => togglePassword(!showPassword)}
+                  >
                     <FontAwesomeIcon
                       icon={solid('eye')}
                       className={`${showPassword ? 'text-primary' : 'text-light'}`}
@@ -143,6 +147,7 @@ const Register = (props) => {
                   />
 
                   <Button
+                    className="p-2"
                     variant="link"
                     onClick={() => props.setShowCPassword(!props.showCPassword)}
                   >

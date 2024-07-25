@@ -117,11 +117,11 @@ const About = (props) => {
                 <div className="page__circle d-flex align-items-center bg-lighter rounded-circle p-3 justify-content-center">
                   <img src={emoji} className="img-fluid" alt="" />
                 </div>
-                <div className="seperator flex__1"></div>
+                <div className="seperator flex-grow-1"></div>
                 <div className="page__circle d-flex align-items-center bg-lighter rounded-circle p-3 justify-content-center">
                   <img src={logo} className="img-fluid" alt="" />
                 </div>
-                <div className="seperator flex__1"></div>
+                <div className="seperator flex-grow-1"></div>
                 <div className="page__circle d-flex align-items-center bg-lighter rounded-circle p-3 justify-content-center">
                   <img src={building} className="img-fluid" alt="" />
                 </div>
@@ -156,12 +156,11 @@ const About = (props) => {
             </Col>
           </Row>
         </Container>
-        <div className="section--abouthero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5 row row section--cityscape">
+        <div className="section--abouthero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-5 row row section--cityscape">
           <img src={city} className="cityscape" alt="" />
           <Container fluid>
             <Row>
-              <Col md="6" className="pt-5">
-                <div>
+              <Col md="6" className="d-flex flex-column align-items-start pt-5">
                   <div className="about__label d-flex flex-column align-items-start ">
                     How it Works
                   </div>
@@ -170,7 +169,6 @@ const About = (props) => {
                     A simple solution to the charity fundraising problem. Now you can see where your
                     money goes; hand pick from needs posted by hundreds of organizations.
                   </p>
-                </div>
               </Col>
               <Col md="6"></Col>
             </Row>
@@ -182,7 +180,7 @@ const About = (props) => {
                   <img src={box} className="about__step-icon" alt="" />
                 </div>
                 <h4 className="mb-1 fw-bolder  text-center">Charity creates a post</h4>
-                <p className="text-light text-center fs-5">
+                <p className="text-light text-center">
                   An organziation creates a post for products they need.
                 </p>
               </Col>
@@ -191,7 +189,7 @@ const About = (props) => {
                   <img src={donate} className="about__step-icon" alt="" />
                 </div>
                 <h4 className="mb-1 fw-bolder  text-center">Donors provide the funding</h4>
-                <p className="text-light text-center fs-5">
+                <p className="text-light text-center">
                   Donors send funds to pay for the products posted by the organizations.
                 </p>
               </Col>
@@ -200,7 +198,7 @@ const About = (props) => {
                   <img src={bank} className="about__step-icon" alt="" />
                 </div>
                 <h4 className="mb-1 fw-bolder  text-center">Charity buys the products</h4>
-                <p className="text-light text-center fs-5">
+                <p className="text-light text-center">
                   The organizations use the funding provided by the donors to purchase the products.
                 </p>
               </Col>
@@ -246,7 +244,7 @@ const About = (props) => {
                       you all types of content created by our approved non-profits & charities. We
                       approve non-profits.
                     </p>
-                    <p className="fs-5 text-light lh-1.5">
+                    <p className="text-light lh-1.5">
                       To learn more check out our&nbsp;
                       <Link to="/home">
                         partnerships page.
@@ -293,7 +291,7 @@ const About = (props) => {
         <Container fluid>
           <Row className="section--abouthero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-0 pb-sm-5">
             <Col md="6">
-              <div className="d-flex align-items-center justify-content-center pe-sm-5 mb-5">
+              <div className="d-none d-sm-flex align-items-center justify-content-center pe-sm-5 mb-5">
                 <img src={list} className="mw-600 w-100 img-fluid" alt="" />
               </div>
             </Col>
@@ -308,7 +306,7 @@ const About = (props) => {
                   platform so you can view, download, and track all of your receipts for every
                   donation, each year.
                 </p>
-                <ul className="list-unstyled fs-5 text-light">
+                <ul className="list-unstyled text-light">
                   <li className="d-flex align-items-center pt-2">
                     <div className="icon icon--shield">
                       <FontAwesomeIcon

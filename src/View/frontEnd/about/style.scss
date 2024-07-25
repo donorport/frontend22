@@ -60,6 +60,13 @@
   -ms-flex-align: center;
   align-items: center;
   border-radius: 50%;
+  @include media-breakpoint-down(sm) {
+    width: 90px;
+    height: 90px;
+    min-width: 90px;
+    min-height: 90px;
+    padding: 0
+  }
 }
 .bigcircle._2 {
   -webkit-transform: translate(0, 50%);
@@ -93,6 +100,9 @@
 }
 .section--design {
   margin-top: 6%;
+  @include media-breakpoint-down(sm) {
+    margin-top: 0 !important;
+  }
 }
 .section--design:after {
   content: '';

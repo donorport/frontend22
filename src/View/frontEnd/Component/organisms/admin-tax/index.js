@@ -270,7 +270,7 @@ const AdminTax = () => {
         headers={headers}
         activeYear={activeYear}
       />
-      {/* <Button variant="info" size="lg" className='me-2 flex__1'>Download CSV</Button> */}
+      {/* <Button variant="info" size="lg" className='me-2 flex-grow-1'>Download CSV</Button> */}
       {taxList.length > 0 && (
         <div className="mt-5 mb-5 d-flex">
           <CSVExportBtn headers={headers} csvData={csvData} label="Download CSV" prifix="_tax" />

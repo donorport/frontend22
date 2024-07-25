@@ -155,7 +155,7 @@ const Partnership = () => {
                 </div>
                 <div className="d-flex flex-column gap-5">
                   <div className="input__wrap d-flex">
-                    <label className="input__label flex__1">
+                    <label className="input__label flex-grow-1">
                       <input
                         type="text"
                         name="name"
@@ -170,7 +170,7 @@ const Partnership = () => {
                   )}
 
                   <div className="input__wrap d-flex">
-                    <label className="input__label flex__1">
+                    <label className="input__label flex-grow-1">
                       <input
                         type="email"
                         name="email"
@@ -185,7 +185,7 @@ const Partnership = () => {
                   )}
 
                   <div className="input__wrap d-flex">
-                    <label className="input__label flex__1">
+                    <label className="input__label flex-grow-1">
                       <input
                         type="text"
                         name="organization"
@@ -202,7 +202,7 @@ const Partnership = () => {
                   )}
 
                   <div className="input__wrap d-flex">
-                    <label className="input__label flex__1">
+                    <label className="input__label flex-grow-1">
                       <textarea
                         maxLength={250}
                         rows={5}

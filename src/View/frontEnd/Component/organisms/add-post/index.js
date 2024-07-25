@@ -267,7 +267,7 @@ const AddPost = (props) => {
     <div className="add-post">
       {/* {console.log(location)} */}
       <div className="d-flex align-items-center flex-grow-1 gap-2 pb-20p mb-3 border-bottom flex-wrap mt-3 mt-sm-0">
-        <div className="d-flex">
+        <div className="d-flex flex-grow-1">
           <Button
             variant="link"
             className="p-0 me-sm-2 me-1"
@@ -276,9 +276,9 @@ const AddPost = (props) => {
             <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
           </Button>
           {stateData.status !== 1 ? (
-            <div className="lh-1 fs-3 fw-bolder me-sm-3 flex__1">Create Post</div>
+            <div className="lh-1 fs-3 fw-bolder me-sm-3 flex-grow-1">Create Post</div>
           ) : (
-            <div className="lh-1 fs-3 fw-bolder me-sm-3 flex__1">Edit Post</div>
+            <div className="lh-1 fs-3 fw-bolder me-sm-3 flex-grow-1">Edit Post</div>
           )}
         </div>
 
@@ -295,7 +295,7 @@ const AddPost = (props) => {
             <Button
               style={{ opacity: props.loading ? '0.7' : '1' }}
               variant="info"
-              size="lg"
+              size="md"
               onClick={() => !props.loading && submitProductForm(-1)}
             >
               Unpublish
@@ -305,7 +305,7 @@ const AddPost = (props) => {
             <Button
               style={{ opacity: props.loading ? '0.7' : '1' }}
               variant="success"
-              size="lg"
+              size="md"
               className="d-flex align-items-center justify-content-center"
               onClick={() => !props.loading && submitProductForm(1, seletedProjectList)}
             >
@@ -323,7 +323,7 @@ const AddPost = (props) => {
             src=""
           />
         </div>
-        <div className="flex__1 text-light mb-2 text-center text-sm-start">
+        <div className="flex-grow-1 text-light mb-2 text-center text-sm-start">
           <div className="fs-5">This category has a free posting limit of 3.</div>
           <a
             href="/"
@@ -1334,7 +1334,7 @@ const AddPost = (props) => {
           <div className="form-check" style={STYLE_CURSOR_POINTER}>
             <input
               type="checkbox"
-              className="form-check-input"
+              className="form-check-input policy__input m-0"
               name="policy"
               id="policy"
               checked={stateData.policy}

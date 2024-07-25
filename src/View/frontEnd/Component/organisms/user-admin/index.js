@@ -175,7 +175,7 @@ const UserAdmin = () => {
       <div className="mw-600">
         <div className="mb-5">
           <div className="d-flex align-items-start">
-            <div className="flex__1">
+            <div className="flex-grow-1">
               <h4 className="fw-bolder">Administrator Status</h4>
               <div className="text-subtext mb-3 pt-1">
                 Enter the code you received to manage an Organization account
@@ -216,7 +216,7 @@ const UserAdmin = () => {
               />
             </a>
           </div> */}
-              <ul className="d-flex flex-column list-unstyled flex__1 ps-0 gap-4 pt-2">
+              <ul className="d-flex flex-column list-unstyled flex-grow-1 ps-0 gap-4 pt-2">
                 {teamMemberList.length > 0 &&
                   teamMemberList.map((member, i) => {
                     // console.log(member)

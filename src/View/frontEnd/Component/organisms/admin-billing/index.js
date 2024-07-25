@@ -116,7 +116,7 @@ const AdminBilling = () => {
     <>
       <div className="mw-600">
         {/* <div className="mb-5">
-          <div className="flex__1 mb-3">
+          <div className="flex-grow-1 mb-3">
             <h4 className="fw-bolder">Premium Plan</h4>
             <div className="text-subtext">Your current account plan:</div>
           </div>
@@ -127,7 +127,7 @@ const AdminBilling = () => {
         </div> */}
 
         {/* <div className="mb-5">
-          <div className="flex__1 mb-3">
+          <div className="flex-grow-1 mb-3">
             <h4 className="fw-bolder">Payment Schedule</h4>
             <div className="text-subtext">
               Choose how often your unlimited donations are disbursed to your EFT
@@ -149,7 +149,7 @@ const AdminBilling = () => {
 
         <div className="mb-5">
           <div className="d-sm-flex align-items-start mb-5 mb-sm-3">
-            <div className="flex__1 mb-2">
+            <div className="flex-grow-1 mb-2">
               <h4 className="fw-bolder">Payment History</h4>
               <div className="text-subtext mb-3 pt-1">
                 All transactions related to your Admin account
@@ -222,7 +222,7 @@ const AdminBilling = () => {
                 return (
                   <div className="billing__item p-2 py-3 border-bottom">
                     <div className="billing__content d-flex flex-column flex-sm-row justify-content-start align-items-start">
-                      <div className="flex__1 w-100 d-flex d-sm-flex-block align-items-center mb-2 mb-sm-0">
+                      <div className="flex-grow-1 w-100 d-flex d-sm-flex-block align-items-center mb-2 mb-sm-0">
                         <Avatar
                           size={52}
                           avatarUrl={avatar}
@@ -239,7 +239,7 @@ const AdminBilling = () => {
                             {moment(date).format('MMM DD, YYYY')}
                           </div>
                         </div>
-                        <div className="admin__billing__details flex__1 d-flex flex-column align-items-start">
+                        <div className="admin__billing__details flex-grow-1 d-flex flex-column align-items-start">
                           <div className="fw-bold mb-6p">{userName}</div>
                           <div className="text-subtext fs-7">
                             {PurchaseIcon}&nbsp;

@@ -82,7 +82,7 @@ const Checkout = (props) => {
             className="order-summary d-flex d-lg-none p-20p border-bottom"
             onClick={() => showSummary(!summary)}
           >
-            <div className="d-flex align-items-center flex__1">
+            <div className="d-flex align-items-center flex-grow-1">
               <FontAwesomeIcon icon={regular('cart-shopping')} className="me-2" />
               <span>{summary ? 'Hide' : 'Show'} order summary</span>
               <span className={`d-block rotate__icon ms-2 ${summary ? 'rotate-180' : ''}`}>
@@ -167,21 +167,21 @@ const Checkout = (props) => {
             {/* <div className="mb-20p pt-1">
               <div className="ex__checkout d-flex align-items-center flex-column flex-md-row gap-2 p-2 position-relative border rounded-3">
                 <div className="group__label fw-bold">Express Checkout</div>
-                <Button className="btn__checkout rounded-2 flex__1">
+                <Button className="btn__checkout rounded-2 flex-grow-1">
                   <img
                     className="img-fluid"
                     src=""
                     alt=""
                   />
                 </Button>
-                <Button className="btn__checkout rounded-2 google flex__1">
+                <Button className="btn__checkout rounded-2 google flex-grow-1">
                   <img
                     className="img-fluid"
                     src=""
                     alt=""
                   />
                 </Button>
-                <Button className="btn__checkout rounded-2 paypal flex__1">
+                <Button className="btn__checkout rounded-2 paypal flex-grow-1">
                   <img
                     className="img-fluid"
                     src=""
@@ -234,7 +234,7 @@ const Checkout = (props) => {
           */}
             <div className="checkout__block border rounded-3 mb-20p">
               <div className="checkout__block-hd d-sm-flex align-items-center border-bottom">
-                {/* <div className="flex__1 fw-boler fs-5 fw-bold mb-2 mb-sm-0">Credit card</div>*/}
+                {/* <div className="flex-grow-1 fw-boler fs-5 fw-bold mb-2 mb-sm-0">Credit card</div>*/}
                 <div className="checkout__cards d-flex align-items-center rounded-bottom-start-3 rounded-bottom-end-3">
                   <img src={mastercard} alt="" className="checkout__svg" />
                   <img src={visa} alt="" className="checkout__svg" />
@@ -270,7 +270,7 @@ const Checkout = (props) => {
                 </Form.Group>
 
                 <div className="d-sm-flex gap-3 align-items-center">
-                  <Form.Group className="mb-3 flex__1">
+                  <Form.Group className="mb-3 flex-grow-1">
                     <Form.Label for="ccmonth" className="fw-bold  fs-7">
                       Exp Month
                     </Form.Label>
@@ -294,7 +294,7 @@ const Checkout = (props) => {
                       </p>
                     )}
                   </Form.Group>
-                  <Form.Group className="mb-3 flex__1">
+                  <Form.Group className="mb-3 flex-grow-1">
                     <Form.Label className="fw-bold  fs-7">Exp Year</Form.Label>
                     <Form.Control
                       type="text"
@@ -315,7 +315,7 @@ const Checkout = (props) => {
                       </p>
                     )}
                   </Form.Group>
-                  <Form.Group className="mb-3 flex__1">
+                  <Form.Group className="mb-3 flex-grow-1">
                     <Form.Label for="cccvv" className="fw-bold  fs-7">
                       CVC/CCV
                     </Form.Label>

@@ -16,17 +16,17 @@ const Sponsors = () => {
         <div className="password-reset position-relative">
           <Container fluid className="position-relative pb-5 pt-5">
             <h1 className=" fw-bolder mb-6p pt-2">Sponsorships</h1>
-            <div className="fs-5 text-light mw-600">
+            <div className="text-light mw-600">
               Donorport teams up with top brands to promote the platform. Show your customers that
               you care about local communities by sponsoring a category.
             </div>
 
             <div className="d-flex flex-column align-items-start">
-              <div className="d-flex align-items-center mb-5">
+              <div className="d-flex align-items-center my-5">
                 <div className="p-12p rounded bg-lighter me-2">
                   <FontAwesomeIcon icon={solid('rectangle-ad')} className="text-info fs-3" />
                 </div>
-                <div className="sponsor__list d-flex flex-wrap align-items-center flex__1">
+                <div className="sponsor__list d-flex flex-wrap align-items-center flex-grow-1">
                   <div className="sponsor__item mb-2 mb-sm-0">
                     <a href="#" className="sponsor__link">
                       <img src={full} alt="" className="sponsor__logo" />
@@ -35,7 +35,7 @@ const Sponsors = () => {
                 </div>
               </div>
 
-              <p className="fs-5 text-light pt-3 mb-5">
+              <p className="text-light mb-5">
                 By partnering with different suppliers, Donorport is able to expand its reach to
                 serve more communities across the world! Interested in becoming a sponsor on
                 Donorport?

@@ -710,7 +710,7 @@ const ProfileSettings = () => {
           <div className="d-flex flex-column gap-5">
             {' '}
             <div className="input__wrap">
-              <label className="input__label flex__1">
+              <label className="input__label flex-grow-1">
                 <input
                   type="text"
                   name="name"
@@ -733,7 +733,7 @@ const ProfileSettings = () => {
             </div>
             {error && error.name && <p className="error">{error.name}</p>}
             <div className="input__wrap d-flex">
-              <label className="input__label flex__1">
+              <label className="input__label flex-grow-1">
                 <input
                   type="text"
                   name="ein"
@@ -749,14 +749,14 @@ const ProfileSettings = () => {
               <p className="error">{error ? (error.ein ? error.ein : '') : ''}</p>
             )}
             <div className="input__wrap d-flex">
-              <label className="input__label flex__1">
+              <label className="input__label flex-grow-1">
                 <input type="text" name="url" value={url} onChange={(e) => changevalue(e)} />
                 {/* <span className="input__span">Employer Identification Number (EIN)</span> */}
                 <span className="input__span">Website</span>
               </label>
             </div>
             <div className="input__wrap d-flex">
-              <label className="input__label flex__1">
+              <label className="input__label flex-grow-1">
                 {/* <input type="text" value='' /> */}
                 {/* {countrySelect.current} */}
                 <Select
@@ -826,7 +826,7 @@ const ProfileSettings = () => {
               {error && error.mission && <p className="error">{error.mission}</p>}
             </div>
             <div className="input__wrap d-flex">
-              <label className="input__label flex__1">
+              <label className="input__label flex-grow-1">
                 {/* <input type="text" value='' /> */}
                 {/* {countrySelect.current} */}
                 <Select
@@ -847,7 +847,7 @@ const ProfileSettings = () => {
             </div>
             {error && error.country && <p className="error">{error.country}</p>}
             <div className="input__wrap d-flex">
-              <label className="input__label flex__1">
+              <label className="input__label flex-grow-1">
                 {/* <input type="text" value='' /> */}
                 <Select
                   className="basic-single"
@@ -865,7 +865,7 @@ const ProfileSettings = () => {
             </div>
             {error && error.stateId && <p className="error">{error.stateId}</p>}
             {/*   <div className="input__wrap d-flex">
-          <label className="input__label flex__1">
+          <label className="input__label flex-grow-1">
             <Select
               className="basic-single"
               classNamePrefix="select"
@@ -883,7 +883,7 @@ const ProfileSettings = () => {
         {error && error.city && <p className="error">{error.city}</p>}*/}
             {/*USE THESE FOR TEXT ONLY. Getting "Something Went Wrong error" when saving*/}
             <div className="input__wrap d-flex">
-              <label className="input__label flex__1">
+              <label className="input__label flex-grow-1">
                 <input type="text" name="city" value={city} onChange={(e) => changevalue(e)} />
                 <span className="input__span">City</span>
               </label>

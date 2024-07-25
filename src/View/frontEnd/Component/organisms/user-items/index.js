@@ -283,7 +283,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
         >
           <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
         </Button>
-        <div className="d-flex align-items-center  me-sm-3 flex__1">
+        <div className="d-flex align-items-center  me-sm-3 flex-grow-1">
           <div className="item__image-wrap">
             <img
               alt=""
@@ -517,7 +517,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
         </Col>
         <Col md="6" className="my-5 mt-sm-0">
           <div className="d-flex align-items-center mb-3">
-            <div className="flex__1 fs-5">
+            <div className="flex-grow-1 fs-5">
               <div className="fw-bolder mb-6p">Order Number</div>
               {/* <div className="text-subtext">#{item.orderId}</div> */}
               <div className="text-subtext">
@@ -532,7 +532,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
             />
           </div>
           <div className="order__widget mb-3">
-            <div className="d-flex align-items-start bg-lighter p-12p  flex__1 mb-3 rounded-3">
+            <div className="d-flex align-items-start bg-lighter p-12p  flex-grow-1 mb-3 rounded-3">
               <div>
                 <img
                   alt=""
@@ -541,7 +541,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
                   src={helper.CampaignProductImagePath + item.itemDetails?.image}
                 />
               </div>
-              <div className="ms-2 flex__1 fw-bolder">
+              <div className="ms-2 flex-grow-1 fw-bolder">
                 <div className="mb-3p">{item.itemDetails?.headline}</div>
                 <div className="price">
                   {item.currencySymbol ? item.currencySymbol : '$'}
@@ -555,26 +555,26 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
 
             <div className="py-3 border-top border-bottom">
               <div className="d-flex align-items-center fw-bolder mb-20p">
-                <span className="flex__1">Subtotal:</span>
+                <span className="flex-grow-1">Subtotal:</span>
                 <span className="price">
                   {item.currencySymbol ? item.currencySymbol : '$'}
                   {priceFormat(Number(listPrice) * Number(item.quantity))}
                 </span>
               </div>
-              <div className="d-flex align-items-center fw-semibold fs-7 text-light flex__1 fw-bold mb-20p">
-                <span className="flex__1">Service Charge:</span>
+              <div className="d-flex align-items-center fw-semibold fs-7 text-light flex-grow-1 fw-bold mb-20p">
+                <span className="flex-grow-1">Service Charge:</span>
                 <span className="text-light">
                   {item.currencySymbol ? item.currencySymbol : '$'}
                   {priceFormat(Number(transactionFee) * Number(item.quantity))}
                 </span>
               </div>
               <div className="d-flex align-items-center ">
-                <span className="fw-bolder flex__1">XP</span>
+                <span className="fw-bolder flex-grow-1">XP</span>
                 <h6 className="text-info">{item.xp} xp</h6>
               </div>
             </div>
             <div className="d-flex align-items-center pt-3 mb-2">
-              <span className="fw-bolder flex__1">Total:</span>
+              <span className="fw-bolder flex-grow-1">Total:</span>
               <h6 className="price">
                 {item.currencySymbol ? item.currencySymbol : '$'}
                 {priceFormat(Number(purchasedPrice) * Number(item.quantity))}
@@ -636,7 +636,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
                           className="d-flex align-items-center p-2"
                           onClick={() => setShowReceipt(true)}
                         >
-                          <span className="fw-bold fs-7 flex__1">View</span>
+                          <span className="fw-bold fs-7 flex-grow-1">View</span>
                           <FontAwesomeIcon icon={solid('magnifying-glass')} className="ms-1" />
                         </Dropdown.Item>
                       )}
@@ -650,11 +650,11 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
                           )
                         }
                       >
-                        <span className="fw-bold fs-7 flex__1">Download</span>
+                        <span className="fw-bold fs-7 flex-grow-1">Download</span>
                         {/* <a href={helper.FulfilRecieptPath + fulfilProductDetails?.fulfilDetails?.receipt} download
                                     // variant="info"
                                     // target="_blank"
-                                    className="fw-bold fs-7 flex__1"
+                                    className="fw-bold fs-7 flex-grow-1"
                                   >
                                     Download
                                   </a> */}
@@ -662,7 +662,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
                       </Dropdown.Item>
                       {/* <Dropdown.Divider /> */}
                       {/* <Dropdown.Item className="d-flex align-items-center p-2">
-                              <span className="fw-bold fs-7 flex__1">Delete</span>
+                              <span className="fw-bold fs-7 flex-grow-1">Delete</span>
                               <FontAwesomeIcon
                                 icon={regular("trash")}
                                 className="ms-1"

@@ -15,7 +15,7 @@ function Textarea({
   return (
     <>
       <div className="input__wrap d-flex flex-column">
-        <label className="input__label flex__1">
+        <label className="input__label flex-grow-1">
           <textarea
             className={error && error[name] ? 'inputerror' : ''}
             name={name}

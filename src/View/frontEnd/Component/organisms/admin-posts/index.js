@@ -2074,7 +2074,7 @@ const PostDetailsNavigation = ({ closeFulfilForm, fulfilProductDetails }) => {
       >
         <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
       </Button>
-      <div className="d-flex align-items-center  me-sm-3 flex__1">
+      <div className="d-flex align-items-center  me-sm-3 flex-grow-1">
         <div className="item__image-wrap">
           <img
             alt=""
@@ -2298,7 +2298,7 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
 
         <div className="border-bottom">
           <div className="d-flex align-items-center fw-bolder mb-20p">
-            <span className="flex__1">{fulfilProductDetails?.unlimited ? 'Sold' : 'Qty'} :</span>
+            <span className="flex-grow-1">{fulfilProductDetails?.unlimited ? 'Sold' : 'Qty'} :</span>
             <h6>
               {Number(fulfilProductDetails?.unlimited).toLocaleString('en-US', {
                 maximumFractionDigits: 2
@@ -2310,7 +2310,7 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
             </h6>
           </div>
           <div className="d-flex align-items-center pt-1 mb-2">
-            <span className="fw-bolder flex__1">Each:</span>
+            <span className="fw-bolder flex-grow-1">Each:</span>
             <h6>
               {data?.symbol}
               {priceFormat(
@@ -2322,7 +2322,7 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
           </div>
         </div>
         <div className="d-flex align-items-center mb-2">
-          <span className="fw-bolder flex__1">Total:</span>
+          <span className="fw-bolder flex-grow-1">Total:</span>
           <h5>
             {data?.symbol}
             {priceFormat(
@@ -2439,8 +2439,8 @@ const PostDetailsReceiptArea = ({
                       className="d-flex align-items-center p-2"
                       onClick={() => setShowReceipt(true)}
                     >
-                      <span className="fw-bold fs-7 flex__1">View</span>
-                      <FontAwesomeIcon icon={solid('magnifying-glass')} className="ms-1" />
+                      <span className="fw-bold fs-7 flex-grow-1">View</span>
+                      <FontAwesomeIcon icon={solid('magnifying-glass')} className="text-warning ms-1" />
                     </Dropdown.Item>
                   )}
                   <Dropdown.Divider />
@@ -2453,7 +2453,7 @@ const PostDetailsReceiptArea = ({
                       )
                     }
                   >
-                    <span className="fw-bold fs-7 flex__1">Download</span>
+                    <span className="fw-bold fs-7 flex-grow-1">Download</span>
                     <FontAwesomeIcon icon={regular('download')} className="ms-1" />
                   </Dropdown.Item>
                   <Dropdown.Divider />
@@ -2470,8 +2470,8 @@ const PostDetailsReceiptArea = ({
                       )
                     }
                   >
-                    <span className="fw-bold fs-7 flex__1">Delete</span>
-                    <FontAwesomeIcon icon={regular('trash')} className="ms-1" />
+                    <span className="fw-bold fs-7 flex-grow-1">Delete</span>
+                    <FontAwesomeIcon icon={regular('trash')} className="text-danger s-1" />
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>

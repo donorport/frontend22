@@ -68,7 +68,7 @@ const DonationConfirmPage = () => {
       <Page showTags={true} title={'Donation | ' + doantionDetails.uniqueTransactionId}>
         <DefaultLayout>
           <div className="container-fluid d-flex flex-wrap gap-2">
-            <div className="flex__1 d-flex flex-column align-items-sm-center align-items-stretch text-center pb-0 pb-sm-5">
+            <div className="flex-grow-1 d-flex flex-column align-items-sm-center align-items-stretch text-center pb-0 pb-sm-5">
               <div className="d-flex flex-column align-items-center">
                 <div className="boat-container relative mb-3">
                   <div className="absolute boat">
@@ -241,7 +241,7 @@ const DonationConfirmPage = () => {
                       </div>
                     </div>
                     <div className="total__sub d-flex justify-content-between">
-                      <Link to="/pricing" className="fw-semibold fs-7 text-light flex__1">
+                      <Link to="/pricing" className="fw-semibold fs-7 text-light flex-grow-1">
                         Service Charge:
                       </Link>
                       <div className="total__value">

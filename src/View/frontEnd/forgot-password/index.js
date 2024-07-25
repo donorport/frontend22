@@ -15,7 +15,7 @@ const ForgotPassword = (props) => {
   return (
     <div className="bg-lighter authPage">
       <div className="login">
-        <div className="login__left d-none d-md-flex align-items-center justify-content-center flex__1">
+        <div className="login__left d-none d-md-flex align-items-center justify-content-center flex-grow-1">
           <div className="login__hero">
             <div className="chart-comment-block">
               <div className="from-me">
@@ -88,6 +88,7 @@ const ForgotPassword = (props) => {
               <Button
                 style={{ width: '100%', opacity: props.isLoading ? '0.7' : '1' }}
                 size="lg"
+                variant="info"
                 className="fw-bold w-100 mb-4"
                 onClick={() => !props.isLoading && props.sendOtp()}
               >

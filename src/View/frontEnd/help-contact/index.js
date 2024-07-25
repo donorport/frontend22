@@ -43,11 +43,11 @@ const HelpContact = () => {
                     Submit a request
                   </h1>
                   <Form className="pe-sm-5">
-                    <Form.Group className="mb-3 flex__1">
+                    <Form.Group className="mb-3 flex-grow-1">
                       <Form.Label className="fw-semibold  fs-6">Email Address</Form.Label>
                       <Form.Control type="email" size="lg" placeholder="Enter email" />
                     </Form.Group>
-                    <Form.Group className="mb-3 flex__1">
+                    <Form.Group className="mb-3 flex-grow-1">
                       <Form.Label className="fw-semibold  fs-6">
                         Category (optional)
                       </Form.Label>
@@ -59,11 +59,11 @@ const HelpContact = () => {
                         <option value="4">Membership</option>
                       </Form.Select>
                     </Form.Group>
-                    <Form.Group className="mb-3 flex__1">
+                    <Form.Group className="mb-3 flex-grow-1">
                       <Form.Label className="fw-semibold  fs-6">Subject</Form.Label>
                       <Form.Control type="text" size="lg" placeholder="Enter subject" />
                     </Form.Group>
-                    <Form.Group className="mb-3 flex__1">
+                    <Form.Group className="mb-3 flex-grow-1">
                       <Form.Label className="fw-semibold  fs-6">Message</Form.Label>
                       <Form.Control as="textarea" rows={10} placeholder="Enter message" />
                     </Form.Group>

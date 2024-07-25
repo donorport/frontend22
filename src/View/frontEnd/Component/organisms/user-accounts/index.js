@@ -28,7 +28,7 @@ const UserAccounts = () => {
                 imgSrc=""
               />
             </div>
-            <div className="accounts__email fw-bolder flex__1 mx-2 text-break">
+            <div className="accounts__email fw-bolder flex-grow-1 mx-2 text-break">
               {data.email}
             </div>
             <Button variant="link" className="text-danger">
@@ -44,7 +44,7 @@ const UserAccounts = () => {
                 imgSrc={share}
               />
             </div>
-            <div className="accounts__email fw-bold flex__1 mx-2 text-break">
+            <div className="accounts__email fw-bold flex-grow-1 mx-2 text-break">
               {data.email}
             </div>
             {/*<Button variant="link" className="text-danger">
@@ -79,7 +79,7 @@ const UserAccounts = () => {
                 imgSrc=""
               />
             </div>
-            <div className="accounts__email fw-bolder flex__1 mx-2 text-break">
+            <div className="accounts__email fw-bolder flex-grow-1 mx-2 text-break">
               COMING SOON
             </div>
             <Button variant="link" className="text-danger">

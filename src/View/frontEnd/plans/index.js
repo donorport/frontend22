@@ -85,7 +85,7 @@ const Plans = (props) => {
                       {!basicData.prioritySupport && 'No'} Priority Support
                     </li>
                   </ul>
-                  <Button variant="success" className="fs-6 fw-bold flex__1 w-200" size="lg">
+                  <Button variant="success" className="fs-6 fw-bold flex-grow-1 w-200" size="lg">
                     Current
                   </Button>
                 </div>
@@ -136,7 +136,7 @@ const Plans = (props) => {
                       {!proData.prioritySupport && 'No'} Priority Support
                     </li>
                   </ul>
-                  <Button variant="info" className="fs-6 fw-bold flex__1 w-200" size="lg">
+                  <Button variant="info" className="fs-6 fw-bold flex-grow-1 w-200" size="lg">
                     Upgrade to Pro
                   </Button>
                 </div>
@@ -194,7 +194,7 @@ const Plans = (props) => {
                       {!enterpriseData.prioritySupport && 'No'} Priority Support
                     </li>
                   </ul>
-                  <Button variant="info" className="fs-6 fw-bold flex__1 w-200" size="lg">
+                  <Button variant="info" className="fs-6 fw-bold flex-grow-1 w-200" size="lg">
                     Update to Enterprise
                   </Button>
                 </div>
