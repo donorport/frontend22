@@ -143,8 +143,8 @@ export default function MainRoutes() {
           {/*
         <React.Suspense fallback={<LoadingPage />}>
         */}
-          <Routes>
           <ScrollToTop />
+          <Routes>
             <Route path="/" element={<AdminDetail />}>
               <Route path="/campaign/:name/dashboard" element={<Payments />} />
               <Route path="/campaign/:name" element={<Payments />} />
