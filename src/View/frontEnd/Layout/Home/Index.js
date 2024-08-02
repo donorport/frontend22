@@ -14,6 +14,7 @@ import { CircularProgress } from '@mui/material';
 import corrupt from '../../../../assets/images/corrupt.png';
 import receipt from '../../../../assets/images/receipt.svg';
 import coats from '../../../../assets/images/coats.png';
+import coatsDark from '../../../../assets/images/coats(dark).png';
 import buoy from '../../../../assets/images/buoy.png';
 import hero from '../../../../assets/images/bg.svg';
 import hero2 from '../../../../assets/images/bgdark.svg';
@@ -260,7 +261,7 @@ export default function Index(props) {
             </div>
           </div>
           <div className="hero__right d-none d-sm-block">
-            <img alt="" src={coats}></img>
+          <img alt="" src={htmlTheme === 'dark' ? coatsDark : coats}></img>
           </div>
         </div>
       </div>

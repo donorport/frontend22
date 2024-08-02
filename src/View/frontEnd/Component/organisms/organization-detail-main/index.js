@@ -56,7 +56,7 @@ function OrganizationDetailMain({
 
   return (
     <div className="project__detail-main">
-      <div className="d-flex flex-column mb-4 gap-2">
+      <div className="d-flex flex-column gap-3">
         <div className="d-flex flex-column">
           <h4 className="project__detail-label mb-3p">Organization</h4>
           <div className="d-flex flex-wrap gap-3">
@@ -111,7 +111,9 @@ function OrganizationDetailMain({
               </a>
             </div>
           )}
-
+        </div>
+        <div className="d-flex align-items-center">
+          {' '}
           <div className="text-light d-flex align-items-center me-2 text-nowrap">
             <IconToggle
               icon={<FontAwesomeIcon icon={regular('bell')} />}
@@ -127,38 +129,36 @@ function OrganizationDetailMain({
               currUrl={`https://api.donorport.com/organization/${organizationDetails?.slug}`}
             />
           </div>
-        </div>
+          <div className="category__icons d-flex align-items-center order--1 order-sm-0">
+            <Button
+              size="lg"
+              variant="link"
+              className="btn__category text-decoration-none"
+              onClick={() => navigate('/categories/' + organizationDetails?.categoryDetails?.slug)}
+            >
+              <RoundedIcon
+                bgColor={organizationDetails?.categoryDetails?.color}
+                size={16}
+                className="mr-6p"
+                style={{ fontFamily: 'fontAwesome', color: 'white', fontStyle: 'normal' }}
+                // icon={<i style={{ fontStyle: "normal" }} className={organizationDetails?.categoryDetails?.iconDetails?.class}></i>}
+                icon={
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 100 563 512"
+                  >
+                    <path fill="white" d={organizationDetails?.categoryDetails?.icon}></path>{' '}
+                  </svg>
+                }
+              />
+              <span className="fs-6  fw-bold" style={{ textTransform: 'capitalize' }}>
+                {organizationDetails?.categoryDetails?.name}
+              </span>
+            </Button>
 
-        <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-2">
-          <Button
-            size="lg"
-            variant="link"
-            className="btn__category text-decoration-none"
-            onClick={() => navigate('/categories/' + organizationDetails?.categoryDetails?.slug)}
-          >
-            <RoundedIcon
-              bgColor={organizationDetails?.categoryDetails?.color}
-              size={16}
-              className="mr-6p"
-              style={{ fontFamily: 'fontAwesome', color: 'white', fontStyle: 'normal' }}
-              // icon={<i style={{ fontStyle: "normal" }} className={organizationDetails?.categoryDetails?.iconDetails?.class}></i>}
-              icon={
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 100 563 512"
-                >
-                  <path fill="white" d={organizationDetails?.categoryDetails?.icon}></path>{' '}
-                </svg>
-              }
-            />
-            <span className="fs-6  fw-bold" style={{ textTransform: 'capitalize' }}>
-              {organizationDetails?.categoryDetails?.name}
-            </span>
-          </Button>
-
-          {/* <Button
+            {/* <Button
             size="lg"
             variant="link"
             className="btn__category text-decoration-none btn btn-link btn-lg"
@@ -178,9 +178,11 @@ function OrganizationDetailMain({
           >
             <span className="fs-6" style={{ textTransform: "capitalize" }}>{organizationDetails?.countryDetails?.country}</span>
           </Button>*/}
+          </div>
         </div>
-        <div className="d-flex flex-column gap-2">
-          {organizationDetails.promoVideo && (
+
+        {organizationDetails.promoVideo && (
+          <div className="d-flex flex-column gap-2">
             <div className="project-video-wrap">
               <iframe
                 title="organization-promo-video"
@@ -192,34 +194,17 @@ function OrganizationDetailMain({
                 allowFullScreen
               ></iframe>
             </div>
-          )}
 
-          <div>
-            {/* {organizationDetails.images &&
-            Array.isArray(organizationDetails.images) &&
-            organizationDetails.images.length > 0 ? (
-              organizationDetails.images.map((image) => (
-                <div key={image._id}>
-                  <GalleryImg
-                    thumbImgSrc={helper.CampaignAdminGalleryPath + image.image}
-                    bigImgSrc={helper.CampaignAdminGalleryPath + image.image}
-                  />
-                </div>
-              ))
-            ) : (
-              <></>
-            )} */}
-            {organizationDetails?.images &&
-              organizationDetails?.images.length > 0 &&
-              organizationDetails?.images.filter((e) => e.type === 'galleryImage').length > 0 && (
-                <ProjectCrowdfundingGallery
-                  className="mb-3"
-                  title={false}
-                  images={organizationDetails?.images}
-                />
-              )}
+            {organizationDetails.images?.some((e) => e.type === 'galleryImage') && (
+              <ProjectCrowdfundingGallery
+                className="mb-3"
+                title={false}
+                images={organizationDetails.images}
+              />
+            )}
           </div>
-        </div>
+        )}
+
         <div>
           <h4 className="page__blurb fw-bolder">{organizationDetails?.headline}</h4>
           <p className="page__paragraph">{organizationDetails?.description}</p>

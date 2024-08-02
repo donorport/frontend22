@@ -3,21 +3,32 @@ import './style.scss';
 
 const propTypes = {
   imgSrc: PropTypes.string,
-  size: PropTypes.number,
+  size: PropTypes.oneOfType([
+    PropTypes.number, // For single size value
+    PropTypes.arrayOf(PropTypes.number) // For [width, height]
+  ]),
   className: PropTypes.string,
-  iconSize: PropTypes.number
+  icon: PropTypes.element,
 };
+
 const defaultProps = {
-  size: 48
+  size: 48, // Default size for both width and height
 };
 
 function ListItemImg({
   icon,
   imgSrc,
   size,
-  //iconSize,
   className
 }) {
+  // Determine width and height
+  let width, height;
+  if (Array.isArray(size)) {
+    [width, height] = size;
+  } else {
+    width = height = size;
+  }
+
   return (
     <div className={`list__item-img ${className}`}>
       {icon ? (
@@ -28,10 +39,10 @@ function ListItemImg({
           alt=""
           style={{
             objectFit: 'contain',
-            height: size + 'px',
-            width: size + 'px',
-            maxWidth: size + 'px',
-            maxHeight: size + 'px'
+            height: height + 'px',
+            width: width + 'px',
+            maxWidth: width + 'px',
+            maxHeight: height + 'px'
           }}
         />
       )}

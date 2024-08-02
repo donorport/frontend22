@@ -17,8 +17,8 @@
 }
 
 .circle__progress {
-  width: 56px;
-  height: 56px;
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
   position: relative;
   background-color: $secondary-3;
@@ -27,14 +27,13 @@
 .circle__progress-img {
   position: absolute;
   border-radius: 50%;
-  left: calc(50% - 46px / 2);
-  top: calc(50% - 46px / 2);
-  width: 46px;
-  height: 46px;
+  left: 50%;
+  top: 50%;
+  width: 56px;
+  height: 56px;
   background: $secondary-5;
-  text-align: center;
-  display: table;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  transform: translate(-50%, -50%);
 }

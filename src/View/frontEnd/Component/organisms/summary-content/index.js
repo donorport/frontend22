@@ -110,7 +110,7 @@ const SummaryContent = (props) => {
             <Link to="/pricing" className="fw-semibold fs-7 text-light flex-grow-1">
               Service Charge:
             </Link>
-            <span className="text-light fw-semibold fs-7">
+            <span className="text-light fw-semibold fs-6">
               {props.currencySymbol + priceFormat(platformCost)}
             </span>
           </div>

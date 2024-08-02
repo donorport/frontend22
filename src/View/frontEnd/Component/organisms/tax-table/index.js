@@ -123,7 +123,7 @@ const TaxTable = (props) => {
                       header={
                         <li className="flex-grow-1 table__list-item px-2 py-3">
                           <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
-                            <div className="tax__left d-flex align-items-center me-sm-2 mb-1 mb-sm-0 pe-2">
+                            <div className="tax__left d-flex align-items-start me-sm-2 mb-1 mb-sm-0 pe-2">
                               <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4 text-sm-start text-end">
                                 <h6 className="price ">
                                   {item[0].currencySymbol}
@@ -135,7 +135,7 @@ const TaxTable = (props) => {
                               </div>
                               <div className="position-relative d-flex me-3">
                                 <ListItemImg
-                                  size={68}
+                                  size={[68, 46]}
                                   imgSrc={
                                     helper.CampaignAdminLogoPath + item[0].organizationDetails?.logo
                                   }
@@ -228,7 +228,7 @@ const TaxTable = (props) => {
                                           : 'Donation'}
                                       </span>
                                     </div>
-                                    <div className="text-light text-start fs-7">
+                                    <div className="text-nowrap text-light text-start fs-7">
                                       {/* <FontAwesomeIcon
                                     icon={regular("wallet")}
                                     className="mr-3p"

@@ -150,7 +150,7 @@ function ProjectDetailMain(props) {
           </div>
         </div>
 
-        <div className="product__top px-0 mb-1 d-flex align-items-center">
+        <div className="product__top px-0 d-flex align-items-center">
           <div className="d-flex align-items-center w-100">
             <ProgressBar
               variant={projectDetails.infinity ? 'infinity' : 'success'}
@@ -159,7 +159,7 @@ function ProjectDetailMain(props) {
             />
             {projectDetails.infinity ? (
               <span className="tag tag__ongoing tag__rounded fs-9">
-                <FontAwesomeIcon icon={regular('infinity')} />
+                <FontAwesomeIcon className="fs-6 text-secondary" icon={regular('infinity')} />
               </span>
             ) : (
               <span className="text-light">

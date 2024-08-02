@@ -171,15 +171,11 @@ const AddProject = (props) => {
         </div>
       </div>*/}
 
-      <div className="d-flex py-2 border-bottom">
+      <div className="d-flex justify-content-between py-2 border-bottom">
         <h3 className="mb-0 fw-bolder me-2">Project Details</h3>
-        <div className="d-flex align-items-center">
-          <div className="bg-purple text-nowrap fs-8 fw-semibold rounded-3 p-6p text-white">
-            Ongoing Need?
-            <FontAwesomeIcon icon={solid('infinity')} className="ml-3p" />
-          </div>
-        </div>
-        <div className="ms-2">
+        <div className="d-flex gap-2 align-items-center">
+          Ongoing Need?
+          <FontAwesomeIcon icon={solid('infinity')} className="text-secondary" />
           <ToggleSwitch
             id="infinite"
             checked={infinite}
@@ -438,7 +434,7 @@ const AddProject = (props) => {
       <div>
         <div className="products-detial-footer d-flex py-3 py-sm-5 gap-2">
           <Button
-            variant="white"
+            variant="danger"
             size="lg"
             className="fw-bold fs-6 mb-2 mb-sm-0"
             onClick={() => discardProject()}

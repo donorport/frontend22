@@ -6,7 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import ListItemImg from '../../atoms/list-item-img';
 import './style.scss';
 import { makeStyles } from '@material-ui/core/styles';
-
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import helper, { priceFormat } from '../../../../../Common/Helper';
 import receipt from '../../../../../assets/images/receipt.svg';
@@ -143,7 +143,10 @@ const ItemsTable = ({
                             >
                               <div className="tag tag--ongoing _2">
                                 <div className="d-flex icon icon--unlimited">
-                                  <FontAwesomeIcon icon={solid('infinity')} />
+                                  <FontAwesomeIcon
+                                    className="text-secondary"
+                                    icon={solid('infinity')}
+                                  />
                                 </div>
                               </div>
                             </div>
@@ -171,15 +174,17 @@ const ItemsTable = ({
                             />
                           </div>
                         </Button> */}
-                        <ListItemImg
-                          size={68}
-                          style={{ maxWidth: 'auto !important' }}
-                          className="rounded-circle img--nobg mb-0 mb-sm-auto"
-                          imgSrc={
-                            helper.CampaignAdminLogoPath +
-                            item.itemDetails?.organizationDetails?.logo
-                          }
-                        />
+                        <Link to={'/organization/' + item?.itemDetails?.organizationDetails?.slug}>
+                          <ListItemImg
+                            size={[68]}
+                            style={{ maxWidth: 'auto !important' }}
+                            className="rounded-circle img--nobg mb-0 mb-sm-auto"
+                            imgSrc={
+                              helper.CampaignAdminLogoPath +
+                              item.itemDetails?.organizationDetails?.logo
+                            }
+                          />
+                        </Link>
                       </div>
                       {/* <div className="d-none d-sm-flex billing__buttons d-flex align-items-center gap-1">
                         {item.itemDetails?.tax && (

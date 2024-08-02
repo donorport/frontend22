@@ -80,9 +80,9 @@ const HistoryList = ({
   const useStyles = makeStyles(() => ({
     select: {
       width: 'auto',
-      fontWeight: 700,
+      fontWeight: 600,
       fontSize: '14px',
-      fontFamily: 'linotte',
+      fontFamily: 'inherit',
       '&:focus': {
         backgroundColor: 'transparent'
       },
@@ -117,7 +117,7 @@ const HistoryList = ({
       paddingTop: 0,
       paddingBottom: 0,
       '& li': {
-        fontWeight: 700,
+        fontWeight: 600,
         fontSize: '14px',
         paddingTop: 12,
         paddingBottom: 12,
@@ -187,6 +187,9 @@ const HistoryList = ({
                   boxShadow: 'none',
                   '.MuiOutlinedInput-notchedOutline': {
                     border: 0
+                  },
+                  '.MuiMenuItem-root': {
+                    color: 'red'
                   },
                   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                     border: 'none' // Remove border on focus
@@ -418,8 +421,9 @@ const DonationListItem = ({ donation, activeList }) => {
               </div>
             </div>
             <div className="d-flex">
-              <p className="fw-semibold"
-               
+              <p
+                className="fw-semibold"
+
                 // onClick={() => showDetails(donation._id)}
               >
                 {donation?.organizationId?.name} #
@@ -531,7 +535,7 @@ const OrderListActiveList = ({ order, platformCost, CardBrand, last4 }) => {
           <Link to="/pricing" className="fw-semibold fs-7 text-light">
             Service Charge:
           </Link>
-          <span className="ms-auto fw-bold text-lighter fs-6">
+          <span className="ms-auto fw-semibold text-light fs-6">
             {order.currencySymbol + platformCost}
           </span>
         </div>
@@ -581,11 +585,11 @@ const PurchaseListItem = ({ order, item }) => {
         </div>
       </div>
       <ListItemImg
-          size={54}
-          style={{ maxWidth: 'auto !important' }}
-          className="me-0 me-sm-3 img--nobg mb-0 mb-sm-auto"
-          imgSrc={helper.CampaignAdminLogoPath + item?.itemDetails?.campaignadminsDetails.logo}
-        />
+        size={54}
+        style={{ maxWidth: 'auto !important' }}
+        className="me-0 me-sm-3 img--nobg"
+        imgSrc={helper.CampaignAdminLogoPath + item?.itemDetails?.campaignadminsDetails.logo}
+      />
       <div className="order__values d-flex align-items-center py-1">
         <span className="fs- text-info fw-bold flex-grow-1">{item.xp ? item.xp : 0} xp</span>
         <span className="fs-5 fw-bold ms-2" style={{ width: '80px', textAlign: 'end' }}>
@@ -605,7 +609,7 @@ const OrderListTransaction = ({ createdAt, CardType, last4 }) => {
           <img src={getCardIcon(CardType)} alt="" className="img-fluid" />
         </div>
         <div className="order__card fs-7">
-          <div className="fs-6fs-6 fw-semibold">XXXX XXXX XXXX {last4}</div>
+          <div className="fs-6 fw-semibold">XXXX XXXX XXXX {last4}</div>
           <div className="text-light fw-semibold">
             <div>Transaction: {moment(createdAt).format(MOMENT_DATE_FORMAT)}</div>
           </div>

@@ -73,12 +73,7 @@ function OrganizationItem(props) {
         dispatch(setIsUpdateCart(!user.isUpdateCart));
       }}
     >
-      {props.currencySymbol +
-        (totalPrice
-          ? Number(totalPrice).toLocaleString('en-US', {
-              maximumFractionDigits: 2
-            })
-          : 0)}
+      {props.currencySymbol + Math.round(totalPrice)}
     </Button>
   );
 
@@ -110,10 +105,7 @@ function OrganizationItem(props) {
             </a>
             <div className="org__item__main pl-12p flex-grow-1">
               <div className="org__item__title pr-12p">
-                <Link
-                  to={'/item/' + slug}
-                  className="org__item__name mb-3p  d-inline-block "
-                >
+                <Link to={'/item/' + slug} className="org__item__name mb-3p  d-inline-block ">
                   {headline}
                 </Link>
                 <div className="fw-semibold org__item__location mb-3p fs-7">
@@ -180,7 +172,7 @@ function OrganizationItem(props) {
                     {/* <div className="icon icon--unlimited"></div> */}
                     <FontAwesomeIcon
                       icon={solid('infinity')}
-                      className="d-flex icon icon--unlimited"
+                      className="d-flex icon icon--unlimited text-secondary"
                     />
                   </div>
                 ) : (

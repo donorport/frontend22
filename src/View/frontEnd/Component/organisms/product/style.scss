@@ -254,6 +254,7 @@
   left: 0;
 }
 .feature__header {
+  z-index: 99;
   grid-column-gap: 6px;
   grid-row-gap: 6px;
   flex-flow: column;
@@ -266,6 +267,7 @@
   position: relative;
 }
 .feature__img {
+  z-index: 1;
   background-position: 0 0;
   background-repeat: no-repeat;
   background-size: contain;
@@ -295,9 +297,9 @@
   }
 }
 .feature__price {
-  background-color: rgba(36, 72, 228, 0.06);
+  background-color:$secondary-4;
   border-radius: 24px;
-  padding: 0px 12px;
+  padding: 3px 16px;
   font-weight: 500;
 }
 .feature__btn {

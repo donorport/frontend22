@@ -449,7 +449,7 @@ const AdminCrowdfundings = () => {
             <div className="d-flex align-items-center ms-sm-auto justify-content-end text-nowrap">
               <Button
                 variant="info"
-                size="lg"
+                size="md"
                 className="me-2 fw-bold fs-6"
                 onClick={() => openModel()}
               >

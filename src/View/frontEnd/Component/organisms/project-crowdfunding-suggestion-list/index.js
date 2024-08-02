@@ -2,24 +2,31 @@ import React from 'react';
 import ProjectCrowdfundingSuggestionItem from '../../molecules/project-crowdfunding-suggestion-item';
 import './style.scss';
 
-function ProjectCrowdfundingSuggestionList({ list, id, type }) {
-  // Check if 'list' is defined before accessing its length
-  if (!list || list.length === 0) {
-    return null; // or you can return some default content
+function ProjectCrowdfundingSuggestionList({ projectList, projectId, type }) {
+  // Log the received props for debugging
+  console.log('Received projectList:', projectList);
+  console.log('Current projectId:', projectId);
+  console.log('Type:', type);
+
+  // Check if 'projectList' is defined and has items
+  if (!projectList || projectList.length === 0) {
+    return <p>No suggestions available.</p>; // Provide fallback content
   }
 
   return (
     <ul
-      className="suggested__list d-flex align-items-center p-0 mb-0"
+      className="suggested__list d-flex align-items-center gap-3 p-0 mb-0"
       style={{ listStyle: 'none' }}
     >
-      {list.map((each, key) => {
+      {projectList.map((each, key) => {
+        // Log each item for debugging
+        console.log('Processing item:', each);
+
         // Check if 'each' is defined and has an '_id' property
-        if (each && each._id !== id) {
+        if (each && each._id !== projectId) {
           return (
             <ProjectCrowdfundingSuggestionItem
               key={key}
-              className="me-4"
               item={each}
               type={type}
             />

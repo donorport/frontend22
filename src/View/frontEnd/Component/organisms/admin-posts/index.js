@@ -1951,7 +1951,7 @@ const AdminPosts = () => {
 const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => {
   return (
     <>
-      <header className="gap-2 pb-2 pb-sm-0 py-0 py-sm-2 mb-sm-3 w-100 flex-column flex-lg-row d-sm-flex align-items-start align-items-lg-center">
+      <header className="gap-2 pb-2 pb-sm-0 py-0 py-sm-2 mb-sm-3 w-100 flex-column flex-lg-row d-sm-flex align-items-start">
         <div className="me-sm-2 flex-grow-1">
           <div className="d-flex align-items-center mb-1">
             <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Posts</h1>
@@ -1989,7 +1989,7 @@ const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => 
             {/* {user.isAccountAdded && data.taxRate && !data.logo && ( */}
             <Button
               variant="info"
-              size="lg"
+              size="md"
               className="me-2 fw-bold fs-6 text-nowrap"
               onClick={() => createNewPost()}
             >
@@ -2067,7 +2067,7 @@ const PostDetailsNavigation = ({ closeFulfilForm, fulfilProductDetails }) => {
     <div className="d-flex align-items-center flex-grow-1 pb-20p border-bottom">
       <Button
         variant="link"
-        className="ps-0 me-sm-2 me-1"
+        className="p-0 me-sm-2 me-1 btn btn-link"
         onClick={() => {
           closeFulfilForm();
         }}
@@ -2099,7 +2099,7 @@ const PostDetailsNavigation = ({ closeFulfilForm, fulfilProductDetails }) => {
 
       <Link
         variant="link"
-        className="text-light p-0 fw-normal"
+        className="fs-6 text-light p-0 fw-normal"
         to={'/item/' + fulfilProductDetails?.slug}
       >
         <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" /> Go to Post
@@ -2146,7 +2146,8 @@ const PostDetailsMediaColumn = ({
   deleteProductImage,
   fulfilError
 }) => {
-  const videoUrl = fulfilState.videoUrl || fulfilProductDetails.fulfilDetails.video;
+  const videoUrl = fulfilState.videoUrl || (fulfilProductDetails?.fulfilDetails?.video);
+
 
   let videoid = videoUrl ? videoUrl.split('?v=')[1] : '';
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
@@ -2518,7 +2519,7 @@ const PostDetailsTosAndButtons = ({
         <div className="form-check">
           <input
             type="checkbox"
-            className="form-check-input"
+            className="form-check-input policy__input m-0"
             name="fulfilPolicy"
             id="fulfilPolicy"
             checked={fulfilPolicy}
@@ -2527,23 +2528,7 @@ const PostDetailsTosAndButtons = ({
             }}
           />
           <label className="form-check-label" htmlFor="fulfilPolicy">
-            {/* By posting your ad, you are agreeing to our{" "}
-            <a href="#" target="_blank">
-              <strong>terms of use</strong>
-            </a>
-            ,{" "}
-            <a href="#" target="_blank">
-              <strong>privacy policy</strong>
-            </a>{" "}
-            and{" "}
-            <a href="#" target="_blank">
-              <strong>site policies</strong>
-            </a>
-            . Please do not post duplicate ads. You may not edit your post
-            after it has received funding. If you delete your post after it
-            has received donations, the donors will receive a full refund and
-            the post will be closed. */}
-            By fulfilling your order, you are agreeing that you have purchased the product as it was
+            By completing your order, you are agreeing that you have purchased the product as it was
             presented at the time the post was created for the amount of items you requested. The
             sales receipt for your order will be shared with your donors on their order page.
           </label>
@@ -2582,7 +2567,7 @@ const PostDetailsTosAndButtons = ({
         )}
 
         <Button variant="success" size="lg" className="fw-bold fs-6" onClick={() => fulfilOrder()}>
-          {fulfilProductDetails?.isFulfiled ? 'Update' : 'Fulfill Order'}
+          {fulfilProductDetails?.isFulfiled ? 'Update' : 'Complete Order'}
         </Button>
       </div>
     </>

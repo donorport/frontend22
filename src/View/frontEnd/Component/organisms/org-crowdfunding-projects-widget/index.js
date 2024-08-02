@@ -30,11 +30,7 @@ function OrganizationCrowdfundingProjectsWidget({ projectList, organizationDetai
       </ul>
       {!loadMore && projectList.length > 3 && (
         <div className="more__log">
-          <Button
-            variant="info"
-            className="fs-6 pt-12p pb-12p w-100"
-            onClick={() => setLoadMore(true)}
-          >
+          <Button size="md" variant="info" className="fs-6 w-100" onClick={() => setLoadMore(true)}>
             Load More . . .
           </Button>
         </div>

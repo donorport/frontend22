@@ -278,7 +278,7 @@ const UserBilling = () => {
               <div className="more__log">
                 <Button
                   variant="info"
-                  className="fs-6 pt-12p pb-12p w-100"
+                  className="fs-6 w-100"
                   onClick={() => setLoadMore(true)}
                 >
                   Load More . . .

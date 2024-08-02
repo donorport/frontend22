@@ -158,7 +158,7 @@ const Product = (props) => {
       <div className="flex-grow-1 item item--feature">
         <div className="item__wrap">
         <div className="item__bg feature"></div>
-          <div className="feature__header">
+          <div className="feature__header d-flex flex-column gap-2">
             <h4>Top Pick</h4>
             <div className="feature__price">
               <span>{currencySymbol}</span>

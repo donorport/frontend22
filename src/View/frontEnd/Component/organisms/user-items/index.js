@@ -296,6 +296,13 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
             <h2 className="fw-bolder mb-3p">{item.itemDetails?.headline}</h2>
             <div className="fs-6 text-light">{item.itemDetails?.brand}</div>
           </div>
+          {item.itemDetails?.tax && (
+            <span className="d-none d-sm-flex align-items-center gap-1 ms-auto note note--tax">
+              {/* <img alt="" src={receipt}></img> */}
+              <FontAwesomeIcon icon={solid('clock')} className="text-warning" />
+              tax receipt
+            </span>
+          )}
         </div>
 
         <div className="d-none d-sm-flex align-items-center">
@@ -309,7 +316,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               {!item.itemDetails?.unlimited ? (
                 <ProgressBar
                   variant="success"
-                  style={{width: '100px'}}
+                  style={{ width: '100px' }}
                   now={Math.round((item.itemDetails?.soldout / item.itemDetails?.quantity) * 100)}
                   className="flex-grow-1"
                 />
@@ -317,7 +324,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
                 <div className="unlimited unlimited--home" style={{ marginLeft: '10px' }}>
                   <div className="tag tag--ongoing _2">
                     <div className="d-flex icon icon--unlimited">
-                      <FontAwesomeIcon icon={solid('infinity')} />
+                      <FontAwesomeIcon className="text-secondary" icon={solid('infinity')} />
                     </div>
                   </div>
                 </div>
@@ -331,15 +338,6 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
 
             <div className="d-flex gap-2">
               {' '}
-              {item.itemDetails?.tax && (
-                <span
-                  className="d-flex product__type product__type-tax icon icon__solid-900"
-                  style={{ fontSize: 'x-large' }}
-                >
-                  {/* <FontAwesomeIcon icon={solid('paperclip')} /> */}
-                  <img alt="" src={receipt}></img>
-                </span>
-              )}
               {item.itemDetails?.postTag && (
                 <span
                   className="d-flex text-infinity product__type product__type-tax icon icon__solid-900"
@@ -382,7 +380,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
             <div className="unlimited unlimited--home" style={{ marginLeft: '10px' }}>
               <div className="tag tag--ongoing _2">
                 <div className="d-flex icon icon--unlimited">
-                  <FontAwesomeIcon icon={solid('infinity')} />
+                  <FontAwesomeIcon className="text-secondary" icon={solid('infinity')} />
                 </div>
               </div>
             </div>

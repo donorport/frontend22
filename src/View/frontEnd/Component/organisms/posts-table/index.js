@@ -132,7 +132,7 @@ const PostsTable = (props) => {
                         {product.status === 1 && (
                           <Link
                             variant="link"
-                            className="text-light p-0 fw-normal"
+                            className="fs-6 text-light p-0 fw-normal"
                             to={'/item/' + product.slug}
                           >
                             <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" />{' '}
@@ -174,7 +174,7 @@ const PostsTable = (props) => {
                                 style={{ marginLeft: '10px' }}
                               >
                                 <div className="tag tag--ongoing _2">
-                                  <div className="d-flex icon icon--unlimited">
+                                  <div className="d-flex icon icon--unlimited text-secondary">
                                     <FontAwesomeIcon icon={solid('infinity')} />
                                   </div>
                                 </div>
@@ -190,7 +190,7 @@ const PostsTable = (props) => {
                       )}
                     </div>
                     <div className="billing__buttons d-flex align-items-center">
-                      <div className="d-flex ms-auto align-items-center">
+                      <div className="d-flex gap-2 ms-auto align-items-center">
                         {product.isFulfiled ? (
                           product.unlimited ? (
                             <ButtonShowFulfillOrder
@@ -288,7 +288,7 @@ const ButtonEditProduct = ({ onClick }) => (
 
 const ButtonShowFulfillOrder = ({ onClick }) => (
   <Button className="order-1" variant="success" size="sm" style={{ marginRight: '10px' }} onClick={onClick}>
-    Fulfill Order
+    Complete Order
   </Button>
 );
 

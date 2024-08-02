@@ -242,7 +242,7 @@ const AddPost = (props) => {
   const [id2] = useState('brand');
   const [id3] = useState('needheadline');
   const [id4] = useState('description');
-  const [title1] = useState('Headline');
+  const [title1] = useState('Item');
   const [title2] = useState('Brand');
   const [title3] = useState('Need Headline');
   const [title4] = useState('Need Description');
@@ -343,7 +343,7 @@ const AddPost = (props) => {
       <div>
         <Accordion alwaysOpen>
           <AccordionToggle>
-            <h2 className="fs-3 fw-bolder ">Post Location</h2>
+            <h2 className="fs-4 fw-bolder ">Post Location</h2>
           </AccordionToggle>
 
           <Accordion.Collapse className="py-0 py-sm-5">
@@ -421,7 +421,7 @@ const AddPost = (props) => {
           </Accordion.Collapse>
 
           <AccordionToggle>
-            <h2 className="fs-3 fw-bolder ">Product Details</h2>
+            <h2 className="fs-4 fw-bolder ">Product Details</h2>
           </AccordionToggle>
 
           <Accordion.Collapse className="py-0 py-sm-5">
@@ -487,7 +487,7 @@ const AddPost = (props) => {
                         <p className="error">{error ? (error.slug ? error.slug : '') : ''}</p>
                       )}
                     </div>
-                    <div className="d-flex flex-wrap price-group-wrap gap-2 mb-3">
+                    <div className="d-flex flex-wrap price-group-wrap gap-5 mb-3">
                       <div className="d-flex gap-3">
                         <div className="form-group">
                           <label htmlFor="priceInput" className="form__label">
@@ -551,10 +551,10 @@ const AddPost = (props) => {
                         </div>
                       </div>
 
-                      <div className="form-group unlimited-switch-wrap">
-                        <p className="text-nowrap fw-semibold rounded-3 p-6p mb-2">
-                          Toggle if no fixed quantity (
-                          <FontAwesomeIcon icon={solid('infinity')} className="ml-3p" /> )
+                      <div className="d-flex gap-2">
+                        <p className="text-nowrap fw-semibold">
+                          No fixed quantity (
+                          <FontAwesomeIcon icon={solid('infinity')} className="text-secondary ml-3p" /> )?
                         </p>
                         <ToggleSwitch
                           id="unlimited"
@@ -630,7 +630,7 @@ const AddPost = (props) => {
                       <div className="d-flex gap-2">
                         <div className="d-flex align-items-center">
                           {/* <FontAwesomeIcon className="fs-3 text-info" icon={solid('paperclip')} /> */}
-                          <img height="24" src={receipt} alt=""></img>
+                          <img height="32" src={receipt} alt=""></img>
                           <div className="d-flex py-12p px-18p">
                             <ToggleSwitch
                               id="tax"
@@ -676,7 +676,7 @@ const AddPost = (props) => {
                           className="me-2 fs-3 text-info"
                           icon={solid('paperclip')}
                         /> */}
-                          <img alt="" className="me-3" height="24" src={receipt}></img>
+                          <img alt="" className="me-3" height="32" src={receipt}></img>
                           Toggle this if you intend on providing a tax receipt for donations made
                           toward this post.
                         </div>
@@ -1062,7 +1062,7 @@ const AddPost = (props) => {
           </Accordion.Collapse>
 
           <AccordionToggle>
-            <h2 className="fs-3 fw-bolder ">Need Headline</h2>
+            <h2 className="fs-4 fw-bolder ">Need Headline</h2>
           </AccordionToggle>
           <div className="note mw-100 mt-4 mb-5">
             Here is where you tell your donors more about your need for these items. Let them know

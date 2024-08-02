@@ -97,7 +97,7 @@ function CrowdfundingDetailMain({
           </div>
         </div>
 
-        <div className="product__top px-0 mb-1 d-flex align-items-center">
+        <div className="product__top px-0 d-flex align-items-center">
 {/*
 ** WHAT IS NEEDED HERE?? **
 <div className="d-flex align-items-center w-100">

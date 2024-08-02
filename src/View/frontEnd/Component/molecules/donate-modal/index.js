@@ -143,7 +143,7 @@ const DonateModal = (props) => {
                   </div>
                 </div>
 
-                <h6 className="ms-auto">
+                <h6 className="ms-auto text-white">
                   <FontAwesomeIcon icon={solid('up')} className="me-1" />
                   <span className="mr-3p">{selectedValue * 10}</span> XP
                 </h6>

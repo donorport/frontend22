@@ -234,7 +234,7 @@ const ItemDetailsMain = ({
     </div>
 
     <div className="project__detail-meta d-flex align-items-center gap-2 text-light flex-wrap">
-      <div className="d-flex align-items-center gap-2 text-nowrap">
+      <div className="d-flex align-items-center text-nowrap">
         <FontAwesomeIcon icon={regular('clock')} className="me-1" />
         {moment(productDetails?.created_at).format('MMMM DD, YYYY')}
       </div>
@@ -264,7 +264,7 @@ const ItemDetailsMain = ({
           className="page__progress flex-grow-1 me-1"
         />
         {productDetails.unlimited ? (
-          <span className="tag tag--ongoing tag__rounded fs-9">
+          <span className="tag tag--ongoing tag__rounded text-secondary">
             <FontAwesomeIcon icon={regular('infinity')} />
           </span>
         ) : (

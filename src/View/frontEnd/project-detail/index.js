@@ -36,7 +36,7 @@ const ProjectDetail = (props) => {
           />
           <div className="ms-auto d-flex align-items-center">
             {!CampaignAdminAuthToken && (
-              <Button size="lg" className="fw-bold" onClick={() => setModalShow(true)}>
+              <Button size="md" className="fw-bold" onClick={() => setModalShow(true)}>
                 Donate
               </Button>
             )}

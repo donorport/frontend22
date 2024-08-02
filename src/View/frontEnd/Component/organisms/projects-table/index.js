@@ -220,6 +220,7 @@ const ProjectsTable = (props) => {
                         </Button>
                         {project.status === -1 && (
                           <Button
+                            size="md"
                             variant="info"
                             className="fw-bold"
                             onClick={() => props.publishProject(project._id, project)}
@@ -234,9 +235,7 @@ const ProjectsTable = (props) => {
               );
             })
           ) : (
-            <li className="list__table-list p-2 mb-0">
-              No entries to show
-            </li>
+            <li className="list__table-list p-2 mb-0">No entries to show</li>
           )}
         </ul>
         <div

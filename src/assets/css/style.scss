@@ -165,8 +165,9 @@
 
 .react-confirm-alert-button-group > button:last-child {
   border: none;
-  background-color: $secondary;
-  padding: 12px 32px !important;
+  border-radius: 46px;
+  background-color: $primary;
+  // padding: 12px 32px !important;
   color: $neutral-100;
 }
 
@@ -312,7 +313,9 @@
 }
 
 .modal-content {
-  height: 90%;
+  max-height: 90%;
+  // align-items: center;
+  justify-content: center;
   background-color: $secondary-5 !important;
   overflow: auto;
   position: absolute !important;
@@ -1331,7 +1334,6 @@ li.search__tag {
   height: 36px;
   padding: 0;
   border-radius: 50%;
-  color: #be50e2;
   font-size: 21px;
 }
 
