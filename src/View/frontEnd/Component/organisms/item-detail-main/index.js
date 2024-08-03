@@ -451,7 +451,8 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
     {productDetails.tax && (
       <div className="d-flex align-items-center pt-12p pb-12p">
         <div className="list__item-img list__item-img__tax me-2 p-1 border-0">
-          <img alt="" src={receipt}></img>{' '}
+        <FontAwesomeIcon icon={solid('receipt')} className="fs-3 text-primary"/>
+          {/* <img alt="" src={receipt}></img>{' '} */}
         </div>
         <p>These items are tax deductible.</p>
       </div>

@@ -396,7 +396,7 @@ const AdminTaxTable = (props) => {
                             return (
                               <React.Fragment key={k}>
                                 <li className="table__list-item table__list-item--tax py-1">
-                                  <div className="d-flex d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 ps-0 ps-sm-1">
+                                  <div className="d-flex d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row ps-0 ps-sm-1">
                                     <div className="d-flex align-items-center mb-1 mb-sm-0 order-1 order-sm-0">
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                                         <h6 className="price ">

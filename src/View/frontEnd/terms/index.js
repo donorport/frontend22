@@ -12,8 +12,8 @@ const Terms = () => {
           <h1 className=" fw-bolder mb-6p pt-2">Terms of Service</h1>
           <div className="terms">
             <div className="mw-900">
-              <div className="text-subtext_light fs-5 lh-1.5"></div>
-              <div className="fs-5 fw-bolder mb-2 mt-4">DONORPORT LTD.</div>
+              <div className="text-subtext_light  lh-1.5"></div>
+              <div className=" fw-bolder mb-2 mt-4">DONORPORT LTD.</div>
               <p>Terms of Service </p>
               <p>
                 Questions about our terms? Email us at:{' '}
@@ -254,7 +254,7 @@ const Terms = () => {
                 facilities, fuel, energy, labor or materials.{' '}
               </p>
               <p className="fw-bolder">ORGANIZER REQUIREMENTS</p>
-              <ul className="fs-5">
+              <ul>
                 <li>
                   A. An Organizer is required to purchase an item in the number of units set by the
                   Organizer (that does not exceed the advertised number of units available), once
@@ -385,7 +385,7 @@ const Terms = () => {
                 features and services described here. All Donations are subject to a Transaction Fee
                 for each Donation.{' '}
               </p>
-              <ul className="fs-5">
+              <ul className="">
                 <li>
                   A. Chargebacks and Refunds. Occasionally, a Donor may dispute a credit card charge
                   for a Donation through the Services.{' '}
@@ -939,7 +939,7 @@ const Terms = () => {
               </p>
               <p className="fw-bolder">Copyright Agent Contact Information </p>
               <p>Our designated Copyright Agent to receive Notices is: </p>
-              <div className="fs-5 mb-2">
+              <div className=" mb-2">
                 <span className="fw-semibold text-light">Donorport Limited</span>
                 <br></br>
                 <span className="fw-semibold text-light">439 University Avenue, Toronto, ON</span>

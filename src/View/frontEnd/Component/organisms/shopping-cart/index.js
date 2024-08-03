@@ -45,30 +45,26 @@ const ShoppingCart = (props) => {
   });
 
   useEffect(() => {
-    if (props.cartItem.length === 0) {
+    if (!props.cartItem || props.cartItem.length === 0) {
       setState({
         empty: true
       });
     } else {
       let tempPriceArray = [];
       let tempQuantityArray = [];
-
-      props.cartItem.map((item) => {
+  
+      props.cartItem.forEach((item) => {
         let price = item.productDetails?.displayPrice
           ? item.productDetails?.displayPrice
           : item.productDetails?.price;
-
+  
         tempPriceArray.push(price * item.quantity);
         tempQuantityArray.push(item.quantity);
       });
-
-      let sum = tempPriceArray.reduce((a, b) => {
-        return a + b;
-      }, 0);
-      let quantitySum = tempQuantityArray.reduce((a, b) => {
-        return a + b;
-      }, 0);
-
+  
+      let sum = tempPriceArray.reduce((a, b) => a + b, 0);
+      let quantitySum = tempQuantityArray.reduce((a, b) => a + b, 0);
+  
       setState({
         empty: false,
         subTotal: Number(sum),
@@ -76,6 +72,7 @@ const ShoppingCart = (props) => {
       });
     }
   }, [props, calculate, state.totalQuantity]);
+  
 
   const updateCart = (quantity, id, producId, type) => {
     props.updateCartItem(quantity, id, producId, type);

@@ -1,9 +1,9 @@
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Logo from '../../atoms/logo';
 import ShoppingCart from '../shopping-cart';
 import Activity from '../activity';
-import React, { useState, useEffect } from 'react';
 import Toggle from '../toggle';
 import UserSettings from '../user-settings';
 import GeoLocation from '../geo-location';
@@ -49,7 +49,6 @@ const Header = ({
     // Cleanup
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  //console.log(`Header${isHeaderGeo ? "GEO" : ''} component render:`, { isHeaderGeo, location, pathname: location.pathname, pathWords, isPathnameNotCategories });
 
   return (
     <header className="frontend_pages header">
@@ -75,18 +74,10 @@ const Header = ({
               {isHeaderGeo && isPathnameNotCategories && (
                 <GeoLocation productList={productList} wishListproductList={wishListproductList} />
               )}
-              {/* {user.isAccountAdded && (
-            <Tooltip title="Setup complete. You can start receiving donations.">
-              <div className="me-2 fw-bold d-flex align-items-center badge--active text-white bg-secondary fs-6 px-1">
-                <FontAwesomeIcon icon={solid('bolt-lightning')} className="fs-6 me-6pt" />
-                <div className="active__text">Active</div>
-              </div>
-            </Tooltip>
-          )} */}
               {userAuthToken && (
                 <>
                   <ShoppingCart
-                    cartItem={cartItem}
+                    cartItem={Array.isArray(cartItem) ? cartItem : []}
                     removeCartItem={removeCartItem}
                     updateCartItem={updateCartItem}
                   />
@@ -114,6 +105,15 @@ const Header = ({
       </Container>
     </header>
   );
+};
+
+// Set default props to ensure cartItem is always an array
+Header.defaultProps = {
+  cartItem: [],
+  notificationList: [],
+  followedOrganizationList: [],
+  wishListproductList: [],
+  productList: []
 };
 
 export default Header;

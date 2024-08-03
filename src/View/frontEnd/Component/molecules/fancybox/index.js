@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import { Fancybox as NativeFancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox.css";
 
@@ -8,13 +7,18 @@ function Fancybox(props) {
 
   useEffect(() => {
     const opts = props.options || {};
-
+  
     NativeFancybox.bind(delegate, opts);
-
+  
     return () => {
-      NativeFancybox.destroy();
+      try {
+        NativeFancybox.destroy();
+      } catch (error) {
+        console.error("Error during Fancybox destroy:", error);
+      }
     };
-  });
+  }, [delegate, props.options]);
+  
 
   return <>{props.children}</>;
 }

@@ -8,7 +8,7 @@ import "./style.scss";
 const HelpBanner = ({shortBanner=false}) => {
   return (
     <div style={{padding: shortBanner ? '115px 0 45px': '75px 0'}} className="help__banner d-flex flex-column align-items-center justify-content-center px-3 px-sm-0">
-      <InputGroup className="help__search-wrap">
+      <InputGroup className="d-flex align-items-stretch help__search-wrap">
         <InputGroup.Text>
           <FontAwesomeIcon
             icon={regular("magnifying-glass")}
@@ -18,7 +18,7 @@ const HelpBanner = ({shortBanner=false}) => {
         <FormControl placeholder="Search for answers" size="xl" />
         <Button
           variant="link"
-          className=" border-0 text-decoration-none pr-20p fw-normal fs-5"
+          className="text-white border-0 text-decoration-none pr-20p fw-normal fs-5"
           size="xl"
         >
           Search

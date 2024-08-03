@@ -1,7 +1,14 @@
-.note--user {
-  border-radius: 56px;
-  padding: 12px 24px;
-  max-width: 480px;
+.checkout__section {
+  .note--user {
+    border-radius: 56px;
+    padding: 12px 24px;
+    max-width: 480px;
+  }
+}
+.checkout__block {
+  input {
+    padding: 21px
+  }
 }
 .checkout {
   &__page {

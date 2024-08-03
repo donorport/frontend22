@@ -140,8 +140,8 @@ const Cart = (props) => {
                     <div className="d-flex align-items-center flex-grow-sm-0 flex-grow-1 justify-content-start justify-content-sm-end ">
                       {item.productDetails?.tax && (
                         <div className="checkout__tax p-1 d-flex align-items-center justify-content-center order-sm-0 order-1">
-                          {/* <FontAwesomeIcon icon={solid('paperclip')} className="text-primary fs-4" /> */}
-                          <img alt="receipt" height="24" src={receipt}></img>
+                          <FontAwesomeIcon icon={solid('receipt')} className="text-primary fs-4" />
+                          {/* <img alt="receipt" height="24" src={receipt}></img> */}
                         </div>
                       )}
                       <Link
@@ -184,7 +184,7 @@ const Cart = (props) => {
                         </Button>
                       </span>
                       <h6
-                        className="price text-start text-sm-end"
+                        className="text-start text-sm-end"
                         style={{ minWidth: '90px' }}
                       >
                         {currencySymbol +
@@ -203,7 +203,7 @@ const Cart = (props) => {
 
             <div className="d-flex align-items-center pt-3">
               <span className="fw-bolder flex-grow-1">Subtotal:</span>
-              <h6 className="price ">{currencySymbol + priceFormat(subTotal)}</h6>
+              <h6 className="">{currencySymbol + priceFormat(subTotal)}</h6>
             </div>
             <div className="d-flex align-items-center py-3 border-bottom">
               <Link to="/pricing" className="fw-semibold fs-7 text-light flex-grow-1">

@@ -135,7 +135,7 @@ const TaxTable = (props) => {
                               </div>
                               <div className="position-relative d-flex me-3">
                                 <ListItemImg
-                                  size={[68, 46]}
+                                  size={68}
                                   imgSrc={
                                     helper.CampaignAdminLogoPath + item[0].organizationDetails?.logo
                                   }
@@ -155,7 +155,7 @@ const TaxTable = (props) => {
                             </div> */}
                               </div>
                             </div>
-                            <div className="d-flex align-items-center justify-content-end flex-grow-1 me-3 mb-1 mt-2 mt-sm-0 mb-sm-0">
+                            <div className="d-flex align-items-center justify-content-end flex-grow-1 me-3 mb-1 mt-2 mt-sm-0 mb-sm-0 gap-2">
                               {/* {
                             item[0].type === 'Donated' &&
 
@@ -338,7 +338,7 @@ const TaxTable = (props) => {
                             return (
                               <>
                                 <li className="table__list-item table__list-item--tax py-1">
-                                  <div className="d-flex d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 ps-0 ps-sm-1">
+                                  <div className="d-flex d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row ps-0 ps-sm-1">
                                     <div className="d-flex align-items-center mb-1 mb-sm-0 order-1 order-sm-0">
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-3 text-sm-start text-end">
                                         <div className="price ">

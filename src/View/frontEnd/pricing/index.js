@@ -78,7 +78,7 @@ const Pricing = () => {
                 more information, please visit our{' '}
                 <a href="/terms" className="link">
                   Terms of service
-                </a>
+                </a>.
               </p>
               <div className="row py-4 justify-content-center">
                 <div className="col-sm-4 mb-3 mb-md-0">

@@ -78,10 +78,11 @@ const SummaryContent = (props) => {
                   {item.productDetails?.tax && (
                     <div className="checkout__tax d-flex align-items-center justify-content-center">
                       {/* <FontAwesomeIcon icon={solid('paperclip')} className="text-info fs-4" /> */}
-                      <img alt='' src={receipt}></img>
+                      {/* <img alt='' src={receipt}></img> */}
+                      <FontAwesomeIcon icon={solid('receipt')} className="fs-4 text-primary"/>
                     </div>
                   )}
-                  <span className="checkout__subtotal--price text-end mt-6p fw-bold ms-3 fs-5">
+                  <span className="checkout__subtotal--price text-end mt-6p fw-bold fs-5">
                     {props.currencySymbol +
                       // priceFormat(
                       //   props.CalculatedPrice.getData(item.productDetails?.price) * item.quantity
@@ -102,7 +103,7 @@ const SummaryContent = (props) => {
         <div className=" py-3 border-bottom">
           <div className="d-flex align-items-center pb-20p">
             <span className="fw-bolder flex-grow-1">Subtotal:</span>
-            <span className="price ">
+            <span className="">
               {props.currencySymbol + priceFormat(subtotal)}
             </span>
           </div>
@@ -138,9 +139,9 @@ const SummaryContent = (props) => {
         </span>
       </div>
       {cartItem.findIndex((p) => p?.productDetails?.tax) !== -1 ? (
-        <div className="checkout__legend d-flex align-items-center my-3 fs-6 p-2">
-          {/* <FontAwesomeIcon icon={solid('paperclip')} className="fs-4 text-info me-1" /> */}
-          <img alt='' className="me-2" src={receipt}></img>
+        <div className="checkout__legend d-flex gap-1 align-items-start my-3 fs-6 p-2">
+          <FontAwesomeIcon icon={solid('receipt')} className="fs-4 text-info me-1" />
+          {/* <img alt='' className="me-2" src={receipt}></img> */}
           <span>
             You'll receive a tax deductabile receipt for this donation.
           </span>

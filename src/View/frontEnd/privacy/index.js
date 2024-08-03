@@ -534,14 +534,14 @@ const Privacy = () => {
                   and our privacy practices.
                 </p>
                 <p>Please contact us at:</p>
-                <div className="fs-5 mb-2">
-                  <span className="fw-semibold text-light">Donorport Limited</span>
+                <div className="mb-2">
+                  <span className="fw-semibold">Donorport Limited</span>
                   <br></br>
-                  <span className="fw-semibold text-light">439 University Avenue, Toronto, ON</span>
+                  <span className="fw-semibold">439 University Avenue, Toronto, ON</span>
                   <br></br>
-                  <span className="fw-semibold text-light">M5G 1Y8</span>
+                  <span className="fw-semibold">M5G 1Y8</span>
                   <br></br>
-                  <span className="fw-semibold text-light">Canada</span>
+                  <span className="fw-semibold">Canada</span>
                   <br></br>
                   <p>Email: legal@donorport.com</p>
                 </div>

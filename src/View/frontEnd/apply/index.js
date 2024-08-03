@@ -58,7 +58,7 @@ const Apply = (props) => {
                 <Toggle />
               </div>
               <Button
-                className="d-flex d-sm-none ms-auto"
+                className="w-100 w-sm-auto d-flex d-sm-none ms-auto"
                 id="scrollToBottomButton"
                 onClick={handleScrollToBottom}
               >
