@@ -21,11 +21,13 @@
 .organization__cart-btn {
   width: 100%;
   @include media-breakpoint-up(sm) {
-    margin-left: 20px;
     width: auto;
   }
 }
-.input-group-text {
-  background: transparent;
-  border: none;
+.donate-section {
+  .input-group-text {
+    background: $secondary-4;
+    border: 1px solid $border-color;
+    color: $neutral-700;
+  }
 }

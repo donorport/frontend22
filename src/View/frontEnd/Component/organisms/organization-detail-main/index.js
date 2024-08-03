@@ -55,7 +55,7 @@ function OrganizationDetailMain({
   console.log({ organizationDetails });
 
   return (
-    <div className="project__detail-main">
+    <div className="d-flex gap-5 project__detail-main">
       <div className="d-flex flex-column gap-3">
         <div className="d-flex flex-column">
           <h4 className="project__detail-label mb-3p">Organization</h4>
@@ -113,23 +113,7 @@ function OrganizationDetailMain({
           )}
         </div>
         <div className="d-flex align-items-center">
-          {' '}
-          <div className="text-light d-flex align-items-center me-2 text-nowrap">
-            <IconToggle
-              icon={<FontAwesomeIcon icon={regular('bell')} />}
-              checkedIcon={<FontAwesomeIcon icon={solid('bell')} />}
-              ischecked={isFollow}
-              name="organization"
-              onClickFilter={(e) => followToOrganization(e)}
-            />
-            <ShareWidget
-              page="org"
-              text={`Let's help ${organizationDetails?.name} fund their needs on Donorport 🏆 🚀`}
-              pageTitle={organizationDetails?.name}
-              currUrl={`https://api.donorport.com/organization/${organizationDetails?.slug}`}
-            />
-          </div>
-          <div className="category__icons d-flex align-items-center order--1 order-sm-0">
+        <div className="category__icons d-flex align-items-center order--1 order-sm-0">
             <Button
               size="lg"
               variant="link"
@@ -179,6 +163,22 @@ function OrganizationDetailMain({
             <span className="fs-6" style={{ textTransform: "capitalize" }}>{organizationDetails?.countryDetails?.country}</span>
           </Button>*/}
           </div>
+          <div className="text-light d-flex align-items-center me-2 text-nowrap">
+            <IconToggle
+              icon={<FontAwesomeIcon icon={regular('bell')} />}
+              checkedIcon={<FontAwesomeIcon icon={solid('bell')} />}
+              ischecked={isFollow}
+              name="organization"
+              onClickFilter={(e) => followToOrganization(e)}
+            />
+            <ShareWidget
+              page="org"
+              text={`Let's help ${organizationDetails?.name} fund their needs on Donorport 🏆 🚀`}
+              pageTitle={organizationDetails?.name}
+              currUrl={`https://api.donorport.com/organization/${organizationDetails?.slug}`}
+            />
+          </div>
+
         </div>
 
         {organizationDetails.promoVideo && (
@@ -209,7 +209,7 @@ function OrganizationDetailMain({
           <h4 className="page__blurb fw-bolder">{organizationDetails?.headline}</h4>
           <p className="page__paragraph">{organizationDetails?.description}</p>
         </div>
-        <div className="mt-2">
+        <div>
           <span
             variant="link"
             className="text-light text-uppercase text-decoration-none fw-normal px-0 fs-6"
@@ -220,14 +220,15 @@ function OrganizationDetailMain({
           </span>
         </div>
       </div>
-
-      <OrganizationWidget
-        tagTitle="Organization"
-        productDetails={organizationDetails?.productsDetails}
-        addToCart={addToCart}
-        checkItemInCart={checkItemInCart}
-        organizationName={organizationDetails?.name}
-      />
+      <div>
+        <OrganizationWidget
+          tagTitle="Organization"
+          productDetails={organizationDetails?.productsDetails}
+          addToCart={addToCart}
+          checkItemInCart={checkItemInCart}
+          organizationName={organizationDetails?.name}
+        />
+      </div>
     </div>
   );
 }

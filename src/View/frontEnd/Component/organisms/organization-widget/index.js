@@ -475,12 +475,12 @@ function OrganizationWidget(props) {
       {productDetails?.length > 0 ? (
         <div>
           {' '}
-          <div className="d-sm-flex align-items-center mb-1 pb-2 border-bottom">
+          <div className="d-sm-flex gap-2 align-items-center mb-1 pb-2 border-bottom">
             <div
-              className="donate-section d-flex align-items-center flex-grow-1 mb-2 mb-sm-0"
+              className="donate-section d-flex gap-2 align-items-center flex-grow-1 mb-2 mb-sm-0"
               style={{ border: 'unset', background: 'unset' }}
             >
-              <span className="fw-6 me-2">Donate:</span>
+              <span className="">Donate:</span>
 
               {/*<InputGroup className="donate__control">
             <InputGroup.Text>{currencySymbol}</InputGroup.Text>
@@ -504,13 +504,13 @@ function OrganizationWidget(props) {
                   maxLength={6}
                   className="donate-value-input ps-1"
                   value={price}
-                  style={{ height: '36px' }}
+                  // style={{ height: '36px' }}
                   onChange={(e) => onChangeDonatePrice(e)}
                 />
               </InputGroup>
 
-              <div className="d-flex align-items-center ms-auto">
-                <p className="ps-3 fs-7 me-1">Tax?</p>
+              <div className="d-flex gap-1 align-items-center ms-auto">
+                <p className="">Tax?</p>
                 <ToggleSwitch checked={check} changevalue={() => onChangeTax(!check)} />
               </div>
             </div>
@@ -524,7 +524,7 @@ function OrganizationWidget(props) {
               Add to cart ({cartProductList.length})
             </Button>
           </div>
-          <div className="note note__info mb-12p mt-1 lh-1 lh-sm-auto align-items-start">
+          <div className="note note__info mb-2 mt-2 lh-1 lh-sm-auto align-items-start">
             <FontAwesomeIcon icon={regular('circle-info')} className="text-info mr-6p" />
             Item availability will be confirmed at checkout.
           </div>

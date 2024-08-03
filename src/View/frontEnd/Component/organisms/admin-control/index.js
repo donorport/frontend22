@@ -102,13 +102,13 @@ const AdminControl = () => {
             <span className="d-flex pe-2 py-1">
               <ToggleSwitch id="notifications" checked={notifications} name="notifications" changevalue={changevalue} />
             </span>
-            <span className="text-subtext fs-7">Notifications</span>
+            <span className="text-light fs-6">Notifications</span>
           </div>
           <div className="d-flex align-items-center mb-2">
             <span className="d-flex pe-2 py-1">
               <ToggleSwitch id="email" checked={email} name="email" changevalue={changevalue} />
             </span>
-            <span className="text-subtext fs-7">Email</span>
+            <span className="text-light fs-6">Email</span>
           </div>
         </div>
       </div>
@@ -123,19 +123,19 @@ const AdminControl = () => {
             <span className="d-flex pe-2 py-1">
               <ToggleSwitch id="items_are_funded" checked={items_are_funded} name="items_are_funded" changevalue={changevalue} />
             </span>
-            <span className="text-subtext fs-7">Your items are funded</span>
+            <span className="text-light fs-6">Your items are funded</span>
           </div>
           <div className="d-flex align-items-center mb-2">
             <span className="d-flex pe-2 py-1">
               <ToggleSwitch id="you_receive_donation" checked={you_receive_donation} name="you_receive_donation" changevalue={changevalue} />
             </span>
-            <span className="text-subtext fs-7">You receive a donation</span>
+            <span className="text-light fs-6">You receive a donation</span>
           </div>
           <div className="d-flex align-items-center mb-2">
             <span className="d-flex pe-2 py-1">
               <ToggleSwitch id="someone_follows_profile" checked={someone_follows_profile} name="someone_follows_profile" changevalue={changevalue} />
             </span>
-            <span className="text-subtext fs-7">
+            <span className="text-light fs-6">
               Someone follows your profile
             </span>
           </div>
@@ -152,19 +152,19 @@ const AdminControl = () => {
             <span className="d-flex pe-2 py-1">
               <ToggleSwitch id="sales_on_your_post" checked={sales_on_your_post} name="sales_on_your_post" changevalue={changevalue} />
             </span>
-            <span className="text-subtext fs-7">Sales on your posts</span>
+            <span className="text-light fs-6">Sales on your posts</span>
           </div>
           <div className="d-flex align-items-center mb-2">
             <span className="d-flex pe-2 py-1">
               <ToggleSwitch id="your_item_funded" checked={your_item_funded} name="your_item_funded" changevalue={changevalue} />
             </span>
-            <span className="text-subtext fs-7">Your item is 100% funded</span>
+            <span className="text-light fs-6">Your item is 100% funded</span>
           </div>
           <div className="d-flex align-items-center mb-2">
             <span className="d-flex pe-2 py-1">
               <ToggleSwitch id="your_order_ready_to_purchase" checked={your_order_ready_to_purchase} name="your_order_ready_to_purchase" changevalue={changevalue} />
             </span>
-            <span className="text-subtext fs-7">
+            <span className="text-light fs-6">
               Your order is ready for purchase
             </span>
           </div>
@@ -179,7 +179,7 @@ const AdminControl = () => {
             <span className="d-flex pe-2 py-1">
               <ToggleSwitch id="problem_with_your_deposit" checked={problem_with_your_deposit} name="problem_with_your_deposit" changevalue={changevalue} />
             </span>
-            <span className="text-subtext fs-7">There was a problem with your deposit</span>
+            <span className="text-light fs-6">There was a problem with your deposit</span>
           </div>
         </div>
       </div>
@@ -192,7 +192,7 @@ const AdminControl = () => {
             <span className="d-flex pe-2 py-1">
               <ToggleSwitch id="keep_profile_private" checked={keep_profile_private} name="keep_profile_private" changevalue={changevalue} />
             </span>
-            <span className="text-subtext fs-7">Keep profile privte</span>
+            <span className="text-light fs-6">Keep profile privte</span>
           </div>
         </div>
       </div>

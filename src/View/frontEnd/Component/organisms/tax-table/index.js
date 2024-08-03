@@ -123,8 +123,8 @@ const TaxTable = (props) => {
                       header={
                         <li className="flex-grow-1 table__list-item px-2 py-3">
                           <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
-                            <div className="tax__left d-flex align-items-start me-sm-2 mb-1 mb-sm-0 pe-2">
-                              <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4 text-sm-start text-end">
+                            <div className="tax__left d-flex gap-3 align-items-center me-sm-2 mb-1 mb-sm-0 pe-2">
+                              <div className="admin__billing-value text-sm-start text-end">
                                 <h6 className="price ">
                                   {item[0].currencySymbol}
                                   {priceFormat(totalVal(item))}
@@ -133,7 +133,7 @@ const TaxTable = (props) => {
                                   {moment(item[0].created_at).fromNow()}
                                 </div>
                               </div>
-                              <div className="position-relative d-flex me-3">
+                              <div className="position-relative d-flex">
                                 <ListItemImg
                                   size={68}
                                   imgSrc={
@@ -430,7 +430,7 @@ const TaxTable = (props) => {
                   <div className="position-relative">
                     <ListItemImg imgSrc="" />
                   </div>
-                  <div className="d-sm-flex align-items-center flex-grow-1 ms-2 gap-2">
+                  <div className="d-sm-flex align-items-center flex-grow-1 gap-2">
                     <div>
                       <div className="billing__name me-2 mb-6p">
                         Top Donor

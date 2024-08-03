@@ -91,19 +91,19 @@ const UserControl = () => {
             <span className="d-flex p-2">
               <ToggleSwitch id="push" checked={push} name="push" changevalue={changevalue} />
             </span>
-            <span className="text-subtext fs-7">Push Notifications</span>
+            <span className="text-light fs-6">Push Notifications</span>
           </div>
           <div className="d-flex align-items-center mb-2">
             <span className="d-flex p-2">
               <ToggleSwitch id="email" checked={email} name="email" changevalue={changevalue} />
             </span>
-            <span className="text-subtext fs-7">Email Notifications</span>
+            <span className="text-light fs-6">Email Notifications</span>
           </div>
           <div className="d-flex align-items-center mb-2">
             <span className="d-flex p-2">
               <ToggleSwitch id="project" checked={project} name="project" changevalue={changevalue} />
             </span>
-            <span className="text-subtext fs-7">
+            <span className="text-light fs-6">
               Projects / Organizations you Follow
             </span>
           </div>
@@ -112,14 +112,14 @@ const UserControl = () => {
             <span className="d-flex p-2">
               <ToggleSwitch id="order_updates" checked={order_updates} name="order_updates" changevalue={changevalue} />
             </span>
-            <span className="text-subtext fs-7">Order Updates</span>
+            <span className="text-light fs-6">Order Updates</span>
           </div>
 
           <div className="d-flex align-items-center mb-2">
             <span className="d-flex p-2">
               <ToggleSwitch id="media_updates" checked={media_updates} name="media_updates" changevalue={changevalue} />
             </span>
-            <span className="text-subtext fs-7">Media Updates</span>
+            <span className="text-light fs-6">Media Updates</span>
           </div>
         </div>
       </div>
@@ -135,7 +135,7 @@ const UserControl = () => {
               <ToggleSwitch id="hide_sold_items" checked={hide_sold_items} name="hide_sold_items" changevalue={changevalue} />
 
             </span>
-            <span className="text-subtext fs-7">Hide sold items</span>
+            <span className="text-light fs-6">Hide sold items</span>
           </div>
         </div>
       </div>
@@ -149,7 +149,7 @@ const UserControl = () => {
               <ToggleSwitch id="collapse_order_history" checked={collapse_order_history} name="collapse_order_history" changevalue={changevalue} />
 
             </span>
-            <span className="text-subtext fs-7">
+            <span className="text-light fs-6">
               Always collapse Order History
             </span>
           </div>
@@ -158,7 +158,7 @@ const UserControl = () => {
               <ToggleSwitch id="notify_payment_issues" checked={notify_payment_issues} name="notify_payment_issues" changevalue={changevalue} />
 
             </span>
-            <span className="text-subtext fs-7">
+            <span className="text-light fs-6">
               Notify me if there are issues processing a payment
             </span>
           </div>
@@ -167,7 +167,7 @@ const UserControl = () => {
               <ToggleSwitch id="show_only_tax_deductible_items" checked={show_only_tax_deductible_items} name="show_only_tax_deductible_items" changevalue={changevalue} />
 
             </span>
-            <span className="text-subtext fs-7">
+            <span className="text-light fs-6">
               Only show me items that are tax deductible
             </span>
           </div>

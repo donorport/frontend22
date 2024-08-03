@@ -241,7 +241,7 @@ const AdminBilling = () => {
                         </div>
                         <div className="admin__billing__details flex-grow-1 d-flex flex-column align-items-start">
                           <div className="fw-bold mb-6p">{userName}</div>
-                          <div className="text-subtext fs-7">
+                          <div className="text-light fs-6">
                             {PurchaseIcon}&nbsp;
                             {donate}
                           </div>

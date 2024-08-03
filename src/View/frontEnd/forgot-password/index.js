@@ -59,7 +59,7 @@ const ForgotPassword = (props) => {
             </div>
 
             <form className="login__form">
-              <div className="login-header ">Forgot Password</div>
+              <h6 className="login-header ">Forgot Password</h6>
               <div className="fs-6 d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 lh-md-md mb-5 text-nowrap">
                 <FontAwesomeIcon
                   className="me-1"

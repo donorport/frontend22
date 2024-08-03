@@ -158,22 +158,20 @@ const About = (props) => {
         </Container>
         <div className="section--abouthero pt-0 pt-sm-5 mt-0 mt-sm-5 mb-5 pb-5 row row section--cityscape">
           <img src={city} className="cityscape" alt="" />
-          <Container fluid>
+          <Container className="mb-5" fluid>
             <Row>
               <Col md="6" className="d-flex flex-column align-items-start pt-5">
-                  <div className="about__label d-flex flex-column align-items-start ">
-                    How it Works
-                  </div>
-                  <h3 className="fs-1 fw-bolder  pt-3">Transparent</h3>
-                  <p className="text-light mb-3 lh-1.5">
-                    A simple solution to the charity fundraising problem. Now you can see where your
-                    money goes; hand pick from needs posted by hundreds of organizations.
-                  </p>
+                <div className="about__label d-flex flex-column align-items-start ">
+                  How it Works
+                </div>
+                <h3 className="fs-1 fw-bolder  pt-3">Transparent</h3>
+                <p className="text-light mb-3 lh-1.5">
+                  A simple solution to the charity fundraising problem. Now you can see where your
+                  money goes; hand pick from needs posted by hundreds of organizations.
+                </p>
               </Col>
               <Col md="6"></Col>
             </Row>
-          </Container>
-          <Container fluid>
             <Row className="mt-5">
               <Col md="4" className="position-relative mb-5 mb-sm-0">
                 <div className="d-flex justify-content-center mb-2">
@@ -246,9 +244,7 @@ const About = (props) => {
                     </p>
                     <p className="text-light lh-1.5">
                       To learn more check out our&nbsp;
-                      <Link to="/home">
-                        partnerships page.
-                      </Link>
+                      <Link to="/home">partnerships page.</Link>
                     </p>
                   </div>
                 </Col>

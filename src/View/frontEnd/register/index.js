@@ -65,17 +65,20 @@ const Register = (props) => {
               <h5 className="login-header ">Sign Up</h5>
               <div className="fs-6 d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-1 lh-md-md text-nowrap">
                 <FontAwesomeIcon icon={regular('circle-question')} style={{ color: '#5f5df8' }} />
-                &nbsp; Charities&nbsp;
-                <Link to="/apply" className="link d-inline-block">
-                  click here
-                </Link>
-                &nbsp;to create your account.
+                <div>
+                  {' '}
+                  &nbsp; Charities&nbsp;
+                  <Link to="/apply" className="link d-inline-block">
+                    click here
+                  </Link>
+                  &nbsp;to create your account.
+                </div>
               </div>
 
               {stateData.error && stateData.error.country && (
                 <p className="error">{stateData.error.country}</p>
               )}
-              <div className="d-flex flex-column gap-5 mt-3">
+              <div className="d-flex flex-column gap-3 mt-3">
                 {' '}
                 <input
                   type="text"

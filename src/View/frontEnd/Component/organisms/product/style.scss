@@ -297,7 +297,7 @@
   }
 }
 .feature__price {
-  background-color:$secondary-4;
+  background-color: $secondary-4;
   border-radius: 24px;
   padding: 3px 16px;
   font-weight: 500;
@@ -314,4 +314,5 @@
   height: 56px;
   width: 56px;
   font-size: 36px;
+  z-index: 9999;
 }

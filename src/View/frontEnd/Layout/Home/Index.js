@@ -392,7 +392,7 @@ export default function Index(props) {
               </ul>
             </div>
             {/* {user.countrySortName === 'CA' && ( */}
-            <div className="d-sm-flex align-items-center gap-1">
+            <div className="d-sm-flex align-items-center gap-3">
               <div className="mb-1 mb-sm-0 text-nowrap text-end text-sm-start">
                 {props.productList.length} items
               </div>

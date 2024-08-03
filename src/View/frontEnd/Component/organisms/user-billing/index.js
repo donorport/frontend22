@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Button } from 'react-bootstrap';
 import userApi from '../../../../../Api/frontEnd/user';
 import { useState, useEffect } from 'react';
@@ -138,9 +138,9 @@ const UserBilling = () => {
                 let PurchaseType = list.type === 'ORDER' ? 'Bought' : 'Donated';
                 let PurchaseIcon =
                   list.type === 'ORDER' ? (
-                    <FontAwesomeIcon icon={solid('bag-shopping')} className="mr-3p" />
+                    <FontAwesomeIcon icon={regular('bag-shopping')} className="mr-3p" />
                   ) : (
-                    <FontAwesomeIcon icon={solid('heart')} className="mr-3p" />
+                    <FontAwesomeIcon icon={regular('heart')} className="mr-3p" />
                   );
                 let PurchaseName =
                   list.type === 'ORDER'
@@ -203,7 +203,7 @@ const UserBilling = () => {
 
                       <div className="billing__details pr-3 ms-sm-2 flex-grow-1">
                         <div className="fw-bold mb-3p">{PurchaseName}</div>
-                        <div className="text-subtext fs-7">
+                        <div className="text-light fs-6">
                           {PurchaseIcon}
                           {PurchaseType}
                           <div className="d-none d-sm-block order__link text-subtext mt-6p me-3">
@@ -248,7 +248,7 @@ const UserBilling = () => {
 
                             <div className="billing__details pr-3 ms-sm-2 flex-grow-1">
                               <div className="fw-bold mb-3p">{o_itm.organizationDetails.name}</div>
-                              <div className="text-subtext fs-7">
+                              <div className="text-light fs-6">
                                 {PurchaseIcon}
                                 {/* {PurchaseType} */}
                                 {o_itm.quantity} {o_itm.productName}

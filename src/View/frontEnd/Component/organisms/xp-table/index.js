@@ -21,7 +21,7 @@ const XpTable = (props) => {
       case 'DONATED':
         // let Image = data.organizationDetails.logo;
         Res = (
-          <div className="order-1 order-sm-2 d-flex align-items-center  me-sm-3 flex-grow-1">
+          <div className="order-1 order-sm-2 gap-3 d-flex align-items-center  flex-grow-1">
             <div className="position-relative">
               <ListItemImg
                 size={68}
@@ -29,7 +29,7 @@ const XpTable = (props) => {
               />
             </div>
 
-            <div className="d-sm-flex align-items-center flex-grow-1 ms-2 gap-2">
+            <div className="d-sm-flex align-items-center flex-grow-1 gap-2">
               <h6 className="billing__name me-2">{data?.organizationDetails?.name}</h6>
               <span className="text-light fw-semibold flex-grow-1">
                 <FontAwesomeIcon icon={regular('heart')} className="small me-1" />
@@ -49,7 +49,7 @@ const XpTable = (props) => {
       case 'BOUGHT':
         price = data.quantity * data.amount;
         Res = (
-          <div className="order-1 order-sm-2 d-flex align-items-center  me-sm-3 flex-grow-1">
+          <div className="order-1 order-sm-2 gap-3 d-flex align-items-center  flex-grow-1">
             <div className="position-relative">
               <ListItemImg
                 size={68}
@@ -57,7 +57,7 @@ const XpTable = (props) => {
               />
             </div>
 
-            <div className="d-sm-flex align-items-center flex-grow-1 ms-2 gap-2">
+            <div className="d-sm-flex align-items-center flex-grow-1 gap-2">
               <h6 className="billing__name me-2">{data?.productDetails?.headline}</h6>
               <span className="text-light fw-semibold flex-grow-1">
                 <FontAwesomeIcon icon={regular('bag-shopping')} className="small me-1" />
@@ -76,7 +76,7 @@ const XpTable = (props) => {
 
       case 'FOLLOWED':
         Res = (
-          <div className="order-1 order-sm-2 d-flex align-items-center  me-sm-3 flex-grow-1">
+          <div className="order-1 order-sm-2 gap-3 d-flex align-items-center  flex-grow-1">
             <div className="position-relative">
               <ListItemImg
                 size={68}
@@ -84,7 +84,7 @@ const XpTable = (props) => {
               />
             </div>
 
-            <div className="d-sm-flex align-items-center flex-grow-1 ms-2 gap-2">
+            <div className="d-sm-flex align-items-center flex-grow-1 gap-2">
               <h6 className="billing__name me-2">{data?.organizationDetails?.name}</h6>
               <span className="text-light fw-semibold flex-grow-1">
                 <FontAwesomeIcon icon={regular('heart')} className="small me-1" />
@@ -165,12 +165,12 @@ const XpTable = (props) => {
                     </div>
                     {getData(item.type, item.xp, item)}
 
-                    {/* <div className="order-1 order-sm-2 d-flex align-items-center  me-sm-3 flex-grow-1">
+                    {/* <div className="order-1 order-sm-2 gap-3 d-flex align-items-center  flex-grow-1">
                         <div className="position-relative">
                           <ListItemImg imgSrc=" />
                         </div>
 
-                        <div className="d-sm-flex align-items-center flex-grow-1 ms-2 gap-2">
+                        <div className="d-sm-flex align-items-center flex-grow-1 gap-2">
                           <div className="billing__name me-2">Top Donor</div>
                           <span className="text-light fw-semibold flex-grow-1">
                             <FontAwesomeIcon
@@ -194,11 +194,11 @@ const XpTable = (props) => {
             //       <div>90 XP</div>
             //       <div className="text-light fs-7">11 months ago</div>
             //     </div>
-            //     <div className="order-1 order-sm-2 d-flex align-items-center  me-sm-3 flex-grow-1">
+            //     <div className="order-1 order-sm-2 gap-3 d-flex align-items-center  flex-grow-1">
             //       <div className="position-relative">
             //         <ListItemImg imgSrc="" />
             //       </div>
-            //       <div className="d-sm-flex align-items-center flex-grow-1 ms-2 gap-2">
+            //       <div className="d-sm-flex align-items-center flex-grow-1 gap-2">
             //         <div className="billing__name me-2">Social Chain</div>
             //         <span className="text-light fw-semibold flex-grow-1">
             //           <FontAwesomeIcon
@@ -219,11 +219,11 @@ const XpTable = (props) => {
             //       <div>90 XP</div>
             //       <div className="text-light fs-7">11 months ago</div>
             //     </div>
-            //     <div className="order-1 order-sm-2 d-flex align-items-center  me-sm-3 flex-grow-1">
+            //     <div className="order-1 order-sm-2 gap-3 d-flex align-items-center  flex-grow-1">
             //       <div className="position-relative">
             //         <ListItemImg imgSrc="" />
             //       </div>
-            //       <div className="d-sm-flex align-items-center flex-grow-1 ms-2 gap-2">
+            //       <div className="d-sm-flex align-items-center flex-grow-1 gap-2">
             //         <div className="billing__name me-2">Top Donor</div>
             //         <span className="text-light fw-semibold flex-grow-1">
             //           <FontAwesomeIcon

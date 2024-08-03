@@ -54,7 +54,7 @@ ul {
 }
 input {
   font-size: $font-size-base !important;
-  padding: 21px;
+  // padding: 21px;
 }
 label {
   font-size: $font-size-base;
@@ -71,6 +71,7 @@ li:last-child:not(.ad__activity__item, .wishlist__item, .table__list-item, .cd__
 }
 .progress {
   background-color: $progress;
+  height: 1rem !important;
 }
 .link {
   color: #2c4bff !important;
@@ -102,7 +103,7 @@ li:last-child:not(.ad__activity__item, .wishlist__item, .table__list-item, .cd__
   background: $secondary-2;
 }
 .select__value-container {
-  padding: 12px
+  padding: 12px;
 }
 .select__input-container {
   margin: 0;
