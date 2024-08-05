@@ -1088,14 +1088,14 @@ const Payments = () => {
               });
               return (
                 <div className="linked__list--bank d-flex gap-2 flex-column mb-2" key={i}>
-                  <div className="linked__item--bank d-flex align-items-center p-2 border">
+                  <div className="linked__item--bank flex-wrap flex-sm-nowrap d-flex align-items-center p-2 gap-2 border">
                     <div className="accounts__icon p-1 border">
                       <FontAwesomeIcon
                         icon={regular('building-columns')}
                         className="fs-3 text-subtext"
                       />
                     </div>
-                    <div className="flex-grow-1 mx-2 text-break">
+                    <div className="flex-grow-1 text-break">
                       {/*  {list.businessName ? (
                         <div
                           className="accounts__email fw-bold"
@@ -1122,7 +1122,7 @@ const Payments = () => {
                         icon={solid('circle-check')}
                         className="fs-5 text-success ms-1"
                       />
-                      <div className="d-flex linked__account mt-3p">
+                      <div className="d-flex flex-wrap linked__account mt-3p">
                         <span className="linked__transit me-1">⑆</span>
                         <span>{list.routingNumber}</span>
                         <span className="linked__transit mx-1">⑆</span>
@@ -1190,7 +1190,7 @@ const Payments = () => {
                         <FontAwesomeIcon icon={solid('trash')} className="fs-4 text-danger" />
                       </Button>
                     )}*/}
-                    <Button variant="link" className="pe-0" onClick={() => removeBank(list._id)}>
+                    <Button variant="link" className="p-0" onClick={() => removeBank(list._id)}>
                       <FontAwesomeIcon icon={solid('trash')} className="fs-4 text-danger" />
                     </Button>
                   </div>

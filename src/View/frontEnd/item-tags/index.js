@@ -55,8 +55,8 @@ const ItemTags = () => {
                     icon={
                       <FontAwesomeIcon
                         icon={solid('clock-rotate-left')}
-                        color="rgb(148, 122, 218)"
-                        className="fs-2 p-3"
+                        // color="rgb(148, 122, 218)"
+                        className="fs-2 p-3 text-primary"
                       />
                     }
                   />
@@ -110,7 +110,7 @@ const ItemTags = () => {
                     icon={
                       <FontAwesomeIcon
                         icon={solid('infinity')}
-                        className="fs-2 p-3"
+                        className="text-secondary fs-2 p-3"
                       />
                     }
                   />

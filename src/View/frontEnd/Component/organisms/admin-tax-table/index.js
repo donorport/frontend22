@@ -163,9 +163,9 @@ const AdminTaxTable = (props) => {
                       buttonProps={{ disabled: disableHeader }}
                       header={
                         <li className="flex-grow-1 table__list-item py-3">
-                          <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
-                            <div className="d-flex align-items-center me-sm-2 mb-3 mb-sm-0 pe-2">
-                              <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4 text-end text-sm-start">
+                          <div className="flex-wrap d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
+                            <div className="d-flex gap-2 flex-wrap flex-sm-nowrap align-items-center">
+                              <div className="admin__billing-value text-end text-sm-start">
                                 <h6 className="price ">
                                   {item[0].currencySymbol}
                                   {/* {totalVal([...item]).toLocaleString('en-US', {
@@ -187,11 +187,11 @@ const AdminTaxTable = (props) => {
                                   }
                                   border={0}
                                   shadow={false}
-                                  className="mr-12p donor_avatar_bg"
+                                  className="donor_avatar_bg"
                                 />
                               </div>
                               <div
-                                className="text__wrap ms-0 ms-sm-2 user-select-auto fs-7"
+                                className="text__wrap user-select-auto"
                                 style={{ cursor: 'default' }}
                                 onClick={(e) => e.stopPropagation()}
                               >
@@ -210,9 +210,9 @@ const AdminTaxTable = (props) => {
                                 </div>
                               </div>
                             </div>
-                            <div className="d-flex align-items-center flex-grow-1 mb-1 mb-sm-0 justify-content-end">
+                            <div className="d-flex align-items-center flex-grow-1 justify-content-end">
                               {item.length === 1 && (
-                                <div className="d-flex align-items-center flex-grow-1 mb-1 mb-sm-0">
+                                <div className="d-flex align-items-center flex-grow-1">
                                   <div className="pe-1 p-sm-2 mr-12p">
                                     <img
                                       width={36}

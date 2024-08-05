@@ -3,6 +3,9 @@
 }
 
 .rank__list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
   .rank__item:last-child {
     @include media-breakpoint-down(sm) {
       border-bottom: none !important;

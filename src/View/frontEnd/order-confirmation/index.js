@@ -101,7 +101,7 @@ const OrderConfirmPage = () => {
         <DefaultLayout>
     
           <div className="container-fluid d-flex flex-wrap gap-2">
-            <div className="flex-grow-1 d-flex flex-column align-items-sm-center align-items-stretch text-center pb-0 pb-sm-5">
+            <div className="flex-grow-1 d-flex flex-column align-items-sm-center align-items-stretch text-center pb-0 pb-sm-5 gap-2">
               <div className="d-flex flex-column align-items-center">
                 <div className="boat-container relative mb-3">
                   <div className="absolute boat">
@@ -178,7 +178,7 @@ const OrderConfirmPage = () => {
                           <div
                             data-id="product"
                             role="listitem"
-                            className="email__item border-bottom"
+                            className="pb-3 border-bottom"
                             key={i}
                           >
                             <div className="checkout__top d-flex flex-row align-items-start flex-nowrap">
@@ -209,10 +209,6 @@ const OrderConfirmPage = () => {
                                   <div className="text-light mb-1 fs-6">
                                     <div>{itm.itemDetails.brand}</div>
                                   </div>
-                                  <div className="checkout__price flex-row fs-5 fw-bold text-light">
-                                    {orderDetails.currencySymbol}
-                                    {itm.itemDetails.displayPrice}
-                                  </div>
                                 </div>
                               </div>
                               <div className="flex-grow-1 checkout__right d-flex flex-row align-items-center justify-content-between flex-wrap">
@@ -234,10 +230,10 @@ const OrderConfirmPage = () => {
                                   </div>
                                 </div>*/}
                                 </div>
-                                <span className="order__itemtotal price fs-5 fw-bold">
+                                <h6 className="order__itemtotal">
                                   {orderDetails.currencySymbol}
                                   {priceFormat(Number(itm.totalPrice))}
-                                </span>
+                                </h6>
                               </div>
                             </div>
                             {/*   {itm.tax === true && (
@@ -262,13 +258,13 @@ const OrderConfirmPage = () => {
                     <div className="total__sub d-flex justify-content-between">
                       <div className="total__title fw-bolder">Subtotal:</div>
                       <div className="total__value text-light">
-                        <p className="price ">
+                        <h6>
                           {' '}
                           {orderDetails.currencySymbol}
                           {/* {purchasedPriceWithTax(Number(orderDetails.subtotal), Number(orderDetails.appliedTaxPercentage))} */}
                           {/* {orderDetails.subtotal} */}
                           {priceFormat(Number(orderDetails.subtotal))}
-                        </p>
+                        </h6>
                       </div>
                     </div>
                     <div className="total__sub d-flex justify-content-between">
@@ -308,7 +304,7 @@ const OrderConfirmPage = () => {
                     </p>
                   </div> */}
 
-                    <div className="total__sub d-flex justify-content-between mt-3">
+                    <div className="total__sub d-flex justify-content-between my-3">
                       <p className="total__title fw-bolder">XP:</p>
                       <div className="order__xp text-info fw-bold">{orderDetails.xp} xp</div>
                     </div>
@@ -331,12 +327,12 @@ const OrderConfirmPage = () => {
                       <div className="order__wrap">
                         <span className="total__title fs-5 fw-bolder">Total Paid:</span>
                       </div>
-                      <div className=" d-flex align-items-center order__value text-light">
+                      <div className=" d-flex gap-1 align-items-center order__value text-light">
                         {orderDetails.currency}
-                        <span className="fs-4 fw-bold ms-1">
+                        <h5>
                           {orderDetails.currencySymbol}
                           {priceFormat(Number(orderDetails.total))}
-                        </span>
+                        </h5>
                       </div>
                     </div>
                   </div>

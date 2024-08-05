@@ -68,7 +68,7 @@ const DonationConfirmPage = () => {
       <Page showTags={true} title={'Donation | ' + doantionDetails.uniqueTransactionId}>
         <DefaultLayout>
           <div className="container-fluid d-flex flex-wrap gap-2">
-            <div className="flex-grow-1 d-flex flex-column align-items-sm-center align-items-stretch text-center pb-0 pb-sm-5">
+            <div className="flex-grow-1 d-flex flex-column align-items-sm-center align-items-stretch text-center pb-0 pb-sm-5 gap-2">
               <div className="d-flex flex-column align-items-center">
                 <div className="boat-container relative mb-3">
                   <div className="absolute boat">
@@ -219,10 +219,10 @@ const DonationConfirmPage = () => {
                               <div className="checkout__tag d-flex justify-content-center"></div>
                             </div>
                           </div>
-                          <span className="order__itemtotal price fs-5 fw-bold">
+                          <h6 className="order__itemtotal">
                             {doantionDetails?.currencySymbol}
                             {subtotal}
-                          </span>
+                          </h6>
                         </div>
                       </div>
                     </div>
@@ -231,13 +231,13 @@ const DonationConfirmPage = () => {
                     <div className="total__sub d-flex justify-content-between">
                       <div className="total__title fw-bolder">Subtotal:</div>
                       <div className="total__value text-light">
-                        <p className="price ">
+                        <h6>
                           {' '}
                           {doantionDetails.currencySymbol}
                           {/* {purchasedPriceWithTax(Number(orderDetails.subtotal), Number(orderDetails.appliedTaxPercentage))} */}
                           {/* {orderDetails.subtotal} */}
                           {priceFormat(Number(subtotal))}
-                        </p>
+                        </h6>
                       </div>
                     </div>
                     <div className="total__sub d-flex justify-content-between">
@@ -254,7 +254,7 @@ const DonationConfirmPage = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="total__sub d-flex justify-content-between mt-3">
+                    <div className="total__sub d-flex justify-content-between my-3">
                       <p className="total__title fw-bolder">XP:</p>
                       <div className="order__xp text-info fw-bold">
                         {Number(subtotal * 10).toFixed(0)} xp
@@ -288,13 +288,13 @@ const DonationConfirmPage = () => {
                       <div className="order__wrap">
                         <span className="total__title fs-4 fw-bolder">Total Paid:</span>
                       </div>
-                      <div className="order__value text-light d-flex align-items-center">
+                      <div className="order__value gap-1 text-light d-flex align-items-center">
                         {doantionDetails.currency}
-                        <span className="fs-4 fw-bold ms-1">
+                        <h5>
                           {' '}
                           {doantionDetails?.currencySymbol}
                           {Number(doantionDetails.amount)}
-                        </span>
+                        </h5>
                       </div>
                     </div>
                   </div>

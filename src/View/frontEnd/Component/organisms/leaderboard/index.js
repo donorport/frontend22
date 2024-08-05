@@ -165,9 +165,9 @@ const LeaderBoard = () => {
                     ></a>
                     <div className="rank__header ms-3">
                       <h3 className="fw-bolder mb-0">{userData.name}</h3>
-                      <div className="ladder__xp d-flex align-items-center mt-1">
+                      <div className="ladder__xp gap-2 d-flex align-items-center mt-1">
                         {getC.getUserRank(user.xp) !== '' && (
-                          <span className="btn-sm ">{getC.getUserRank(user.xp)}</span>
+                          <span className="p-0 btn-sm ">{getC.getUserRank(user.xp)}</span>
                         )}
                         <div className="ladder__xp ladder__xp--user w-inline-block">
                           <div className="tag tag--xp tag--xp_nobg ms-1 fs-5 text-info">

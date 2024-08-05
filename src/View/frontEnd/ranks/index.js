@@ -101,7 +101,7 @@ const Ranks = () => {
               </Link>
             </div>
 
-            <div className="rank__list mw-800 pb-5 fs-5">
+            <ul className="rank__list mw-800 pb-5 fs-5">
               <li className="rank__item d-sm-flex align-items-center py-4 border-bottom">
                 <div className="xp__btn-wrap mb-2 mb-sm-0">
                   <IconButton
@@ -214,7 +214,7 @@ const Ranks = () => {
                   {Number(fish).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
                 </span>
               </li>
-            </div>
+            </ul>
           </Container>
         </DefaultLayout>
       </Page>

@@ -123,7 +123,6 @@ const AdminAdmin = () => {
 
   return (
     <>
-
       <div className="mw-600">
         <div className="mb-5">
           <h4 className="fw-bolder">Administrators</h4>
@@ -135,19 +134,22 @@ const AdminAdmin = () => {
           <div className="note  mb-2 fs-6">
             You can invite additional team members to have access to and control this account.
           </div>
-          <div className="d-flex align-items-center gap-2 mb-3">
-            <FormControl
-              placeholder="Email"
-              size="lg"
-              value={email}
-              onChange={(e) => onChangeEmail(e)}
-            />
+          <div className="d-flex align-items-center flex-wrap gap-2 mb-3">
+            <div className="flex-grow-1 flex-grow-sm-0">
+              {' '}
+              <FormControl
+                placeholder="Email"
+                size="lg"
+                value={email}
+                onChange={(e) => onChangeEmail(e)}
+              />
+            </div>
 
             <Button
               variant="info"
               disabled={!isValid}
               size="md"
-              className="d-flex fw-bold text-white"
+              className="order-1 order-sm-0 d-flex fw-bold text-white"
               onClick={() => !loading && inviteTeamMember()}
               style={{
                 opacity: loading ? '0.7' : '1'
@@ -156,9 +158,7 @@ const AdminAdmin = () => {
               Invite {loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
             </Button>
 
-            <span className="rounded text-nowrap fw-bold">
-              {3 - teamMemberList.length} remaining
-            </span>
+            <p className="rounded text-nowrap fw-semibold">{3 - teamMemberList.length} remaining</p>
           </div>
 
           {/* <div data-empty="admin" className="note note--error"

@@ -926,7 +926,7 @@ const ProfileSettings = () => {
             </div>
             <div className="d-flex align-items-center flex-wrap gap-2">
               {viewGalleryImages?.length >= MAX_IMAGE_LENGTH ? (
-                <p className="image-upload-wrap mb-3 fs-5">Maximum Images Allowed (5) Reached</p>
+                <p className="image-upload-wrap my-3">Maximum Images Allowed (5) Reached</p>
               ) : (
                 <div
                   className="image-upload-wrap fs-2"

@@ -519,12 +519,11 @@ const AdminProjects = () => {
               </p>
             </div>
 
-            <div className="d-flex align-items-center ms-0 ms-lg-3 justify-content-end text-nowrap">
+            <div className="d-flex align-items-center gap-2 justify-content-stretch justify-content-sm-start text-nowrap flex-wrap flex-sm-nowrap">
               {hasProduct.length > 0 ? (
                 <Button
                   variant="info"
                   size="md"
-                  className="me-2 fw-bold fs-6"
                   onClick={() => openModel()}
                 >
                   Create New
