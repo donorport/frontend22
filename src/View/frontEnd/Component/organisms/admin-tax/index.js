@@ -180,7 +180,7 @@ const AdminTax = () => {
       const currentYear = new Date().getFullYear();
       // WARNING: if no data._id, this will forever show the loading state!
       // BUT if you're on this page, you should have a data._id so it should be fine
-      await getTaxList(pageNo, sortField, order, currentYear);
+      await getTaxList(pageNo, sortField, order, activeYear || currentYear);
       setLoading(false);
     })();
   }, [data._id, update]);

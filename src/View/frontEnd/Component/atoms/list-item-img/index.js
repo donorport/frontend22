@@ -22,11 +22,13 @@ function ListItemImg({
   className
 }) {
   // Determine width and height
-  let width, height;
+  let width;
+  let height;
   if (Array.isArray(size)) {
     [width, height] = size;
   } else {
-    width = height = size;
+    width = size;
+    height = size;
   }
 
   return (
