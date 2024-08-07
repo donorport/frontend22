@@ -279,7 +279,7 @@ const GeoLocation = (props) => {
                     //console.log('map markers:', { loc, groupOfItems });
                     if (groupOfItems.length > 0) {
                       const [lat, lng] = loc.split(',');
-                      console.log('groupOfItems:', groupOfItems); // Add this line to log groupOfItems
+                      // console.log('groupOfItems:', groupOfItems); // Add this line to log groupOfItems
                       return (
                         <Marker
                           key={index}

@@ -24,10 +24,16 @@
     width: auto;
   }
 }
-.donate-section {
+.donate-section,
+.geo_dropdown-top {
   .input-group-text {
     background: $secondary-4;
     border: 1px solid $border-color;
     color: $neutral-700;
+  }
+}
+.geo_dropdown-top {
+  .input-group-text {
+    border: none !important;
   }
 }

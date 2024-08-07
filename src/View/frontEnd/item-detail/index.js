@@ -233,7 +233,7 @@ const ItemDetail = (props) => {
           allProjects.length > 0 &&
           allProjects.map((project, key) => {
             return (
-              <div key={key}>
+              <div>
                 <Row className="py-5 border-top">
                   <Col md="6" className="mb-4 mb-0">
                     <TagTitle>Projects</TagTitle>
@@ -245,8 +245,6 @@ const ItemDetail = (props) => {
                         {project.projectDetails?.projectImages &&
                           project.projectDetails?.projectImages.length > 0 &&
                           project.projectDetails?.projectImages.map((img2, i) => {
-                            // if (img.type === 'moreImage') {
-
                             return (
                               <GalleryImg
                                 key={i}
@@ -254,7 +252,6 @@ const ItemDetail = (props) => {
                                 bigImgSrc={helper.ProjectFullImagePath + img2?.image}
                               />
                             );
-                            // }
                           })}
                       </div>
 

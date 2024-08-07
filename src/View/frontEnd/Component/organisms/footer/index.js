@@ -31,8 +31,8 @@ function Footer() {
     })();
   }, []);
   // Before the problematic span
-  console.log('user:', user);
-  console.log('userData:', userData);
+  // console.log('user:(footer)', user);
+  // console.log('userData:(footer)', userData);
   return (
     <div className="footer">
       <Container className="d-flex flex-column" fluid>

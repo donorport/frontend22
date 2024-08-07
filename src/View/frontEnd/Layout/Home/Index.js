@@ -96,55 +96,55 @@ const ProductsUnavailableLocation = ({ user }) => {
 };
 
 const ProductList = ({ allProps }) => {
-    const [items, setItems] = useState(allProps.productList.slice(0, 12));
-    const [hasMore, setHasMore] = useState(true);
-  
-    const fetchMoreData = () => {
-      if (items.length >= allProps.productList.length) {
-        setHasMore(false);
-        return;
-      }
-      // Fetch next set of data (for example, next 20 items)
-      setTimeout(() => {
-        setItems(items.concat(allProps.productList.slice(items.length, items.length + 12)));
-      }, 1500);
-    };
-  
-    useEffect(() => {
-      setItems(allProps.productList.slice(0, 12));
-    }, allProps.productList);
-    
-    return (
-      <InfiniteScroll
-        dataLength={items.length}
-        next={fetchMoreData}
-        hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
-        endMessage={<p></p>}
-        className="list"
-      >
-        {items.map((item, index) =>
-          item.status === 1 ? (
-            <div className="d-flex flex-column" key={index}>
-              <Product
-                {...item}
-                isFirst={index === 0}
-                addToCart={allProps.addToCart}
-                removeCartItem={allProps.removeCartItem}
-                checkItemInCart={allProps.checkItemInCart}
-                pricingFees={allProps.pricingFees}
-                addProductToWishlist={allProps.addProductToWishlist}
-                wishListproductIds={allProps.wishListproductIds}
-                cartProductIds={allProps.cartProductIds}
-                filters={allProps.filters}
-                t={allProps.productList.length}
-              />
-            </div>
-          ) : null
-        )}
-      </InfiniteScroll>
-    );
+  const [items, setItems] = useState(allProps.productList.slice(0, 12));
+  const [hasMore, setHasMore] = useState(true);
+
+  const fetchMoreData = () => {
+    if (items.length >= allProps.productList.length) {
+      setHasMore(false);
+      return;
+    }
+    // Fetch next set of data (for example, next 20 items)
+    setTimeout(() => {
+      setItems(items.concat(allProps.productList.slice(items.length, items.length + 12)));
+    }, 1500);
   };
+
+  useEffect(() => {
+    setItems(allProps.productList.slice(0, 12));
+  }, allProps.productList);
+
+  return (
+    <InfiniteScroll
+      dataLength={items.length}
+      next={fetchMoreData}
+      hasMore={hasMore}
+      loader={<CircularProgress className="m-auto" color="inherit" size={48} />}
+      endMessage={<p></p>}
+      className="list"
+    >
+      {items.map((item, index) =>
+        item.status === 1 ? (
+          <div className="d-flex flex-column" key={index}>
+            <Product
+              {...item}
+              isFirst={index === 0}
+              addToCart={allProps.addToCart}
+              removeCartItem={allProps.removeCartItem}
+              checkItemInCart={allProps.checkItemInCart}
+              pricingFees={allProps.pricingFees}
+              addProductToWishlist={allProps.addProductToWishlist}
+              wishListproductIds={allProps.wishListproductIds}
+              cartProductIds={allProps.cartProductIds}
+              filters={allProps.filters}
+              t={allProps.productList.length}
+            />
+          </div>
+        ) : null
+      )}
+    </InfiniteScroll>
+  );
+};
 
 const ProductListEmpty = () => (
   <div className="container">
@@ -225,15 +225,6 @@ export default function Index(props) {
     ) : (
       <ProductListEmpty />
     );
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setLoading(false);
-    }, 4000);
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
 
   useEffect(() => {
     if (products && props.productList.length > 0) {
