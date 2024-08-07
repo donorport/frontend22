@@ -110,6 +110,10 @@ const ProductList = ({ allProps }) => {
       }, 1500);
     };
   
+    useEffect(() => {
+      setItems(allProps.productList.slice(0, 12));
+    }, allProps.productList);
+    
     return (
       <InfiniteScroll
         dataLength={items.length}
