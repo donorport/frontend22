@@ -45,6 +45,9 @@ const AdminTax = () => {
     let file = e.target.files[0] ? e.target.files[0] : '';
 
     let fdata = {};
+    let year = 2023;
+    const date = new Date(data.created_at);
+    year = date.getFullYear();
     fdata.image = file;
     fdata.orderId = orderId;
     fdata.email = email;
@@ -52,7 +55,7 @@ const AdminTax = () => {
     fdata.organizationName = data.name;
     fdata.organizationCountryId = data.country_id;
     fdata.userId = userId;
-    fdata.uploadYear = Number(activeYear);
+    fdata.uploadYear = Number(activeYear) || year;
 
     setLoading(true);
     const uploadTax = await organizationApi.organizatationTaxUpload(token, fdata);
@@ -71,12 +74,12 @@ const AdminTax = () => {
     }
   };
 
-  const deleteReceipt = async (userId) => {
+  const deleteReceipt = async (userId, year) => {
     setLoading(true);
     const uploadTax = await organizationApi.organizatationDeleteTaxReceipt(
       token,
       userId,
-      Number(activeYear)
+      Number(activeYear) || year
     );
     if (uploadTax) {
       if (uploadTax.data.success === false) {

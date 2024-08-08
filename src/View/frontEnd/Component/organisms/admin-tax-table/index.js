@@ -108,7 +108,7 @@ const AdminTaxTable = (props) => {
             tempArray.push(`loadingDelete-${index}`);
             setLoadingId([...tempArray]);
             if (props.deleteReceipt) {
-              props.deleteReceipt(item.userDetails?._id);
+              props.deleteReceipt(item.userDetails?._id, item.year);
             }
           }
         }
