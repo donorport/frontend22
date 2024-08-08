@@ -10,7 +10,7 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-columns: 1fr;
   display: grid;
-  .list {
+
     @media screen and (max-width: 991px) {
       grid-template-columns: 1fr 1fr;
     }
@@ -18,7 +18,7 @@
     @media screen and (max-width: 479px) {
       grid-template-columns: 1fr;
     }
-  }
+
 }
 .bgimage {
   opacity: 0.19;

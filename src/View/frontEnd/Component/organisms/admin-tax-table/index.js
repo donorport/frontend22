@@ -283,15 +283,13 @@ const AdminTaxTable = (props) => {
                                       variant="link"
                                       className="no-caret text-decoration-none"
                                     >
-                                      {loadingId.indexOf(`loadingDelete-${i}`) > -1 ? (
-                                        <>
-                                          <CircularProgress
-                                            className="ms-2"
-                                            id={`loadingDelete-${i}`}
-                                            color="inherit"
-                                            size={32}
-                                          />
-                                        </>
+                                      {loadingId.includes(`loading-${i}`) ? (
+                                        <CircularProgress
+                                          className="ms-2"
+                                          id={`loading-${i}`}
+                                          color="inherit"
+                                          size={32}
+                                        />
                                       ) : (
                                         <FontAwesomeIcon
                                           icon={regular('ellipsis-vertical')}
@@ -339,20 +337,35 @@ const AdminTaxTable = (props) => {
                                     size="60"
                                     style={{ position: 'absolute', opacity: '0', width: '80px' }}
                                     onChange={(e) => {
-                                      props.uploadImage(
-                                        e,
-                                        item[0].uniqueTransactionId,
-                                        item[0].userDetails?.email,
-                                        item[0].userDetails?.name,
-                                        item[0].userDetails?._id
-                                      );
                                       let tempArray = [...loadingId];
                                       tempArray.push(`loading-${i}`);
                                       setLoadingId([...tempArray]);
+
+                                      props
+                                        .uploadImage(
+                                          e,
+                                          item[0].uniqueTransactionId,
+                                          item[0].userDetails?.email,
+                                          item[0].userDetails?.name,
+                                          item[0].userDetails?._id
+                                        )
+                                        .then(() => {
+                                          // Remove the loader ID from the array once upload is done
+                                          setLoadingId((prev) =>
+                                            prev.filter((id) => id !== `loading-${i}`)
+                                          );
+                                        })
+                                        .catch((error) => {
+                                          // Handle error case if needed
+                                          console.error('Upload failed: ', error);
+                                          setLoadingId((prev) =>
+                                            prev.filter((id) => id !== `loading-${i}`)
+                                          );
+                                        });
                                     }}
                                   />
                                   Upload
-                                  {props.loading && loadingId.indexOf(`loading-${i}`) > -1 && (
+                                  {loadingId.includes(`loading-${i}`) && (
                                     <CircularProgress
                                       id={`loading-${i}`}
                                       className="ms-2"
