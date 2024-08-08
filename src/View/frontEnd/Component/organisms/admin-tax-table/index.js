@@ -160,7 +160,6 @@ const AdminTaxTable = (props) => {
                     <AccordionItem
                       className="d-flex flex-column px-sm-3 px-1"
                       hideChevron={disableHeader}
-                      buttonProps={{ disabled: disableHeader }}
                       header={
                         <li className="flex-grow-1 table__list-item py-3">
                           <div className="flex-wrap d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
