@@ -157,7 +157,7 @@ const Product = (props) => {
     return (
       <div className="flex-grow-1 item item--feature">
         <div className="item__wrap">
-        <div className="item__bg feature"></div>
+          <div className="item__bg feature"></div>
           <div className="feature__header d-flex flex-column gap-2">
             <h4>Top Pick</h4>
             <div className="feature__price">
@@ -186,7 +186,7 @@ const Product = (props) => {
     <div className="item">
       <div className="item__wrap">
         <div className="item__bg" style={{ backgroundColor: props.dominantColor }}></div>
-        <Link className="item__imgwrap" to={'/item/' + props.slug} >
+        <Link className="item__imgwrap" to={'/item/' + props.slug}>
           <img alt="" src={helper.CampaignProductFullImagePath + img} className="item__img" />
         </Link>
         <div className="item__words">
@@ -198,7 +198,9 @@ const Product = (props) => {
           <Link to={'/item/' + props.slug} className="d-inline-block">
             <h4 className="heading-7">{name}</h4>
           </Link>
-          <div className="text-light">{props.campaignDetails?.name}</div>
+          <Link to={'/organization/' + props.campaignDetails?.slug} className="d-inline-block">
+            <div className="text-light">{props.campaignDetails?.name}</div>
+          </Link>
         </div>
         {cart_btn}
       </div>

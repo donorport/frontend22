@@ -93,6 +93,7 @@ import AdminSettingsTab from '../View/frontEnd/Component/organisms/admin-setting
 import ProfileSettings from '../View/frontEnd/Component/organisms/profile-settings';
 import AdminAdmin from '../View/frontEnd/Component/organisms/admin-admin';
 import AdminBilling from '../View/frontEnd/Component/organisms/admin-billing';
+import ActivationController from 'src/Controller/frontEnd/ActivationController';
 
 // lazy import for admin routes
 const AdminPrivateRoutes = lazy(() => import('./AdminPrivateRoutes'));
@@ -243,6 +244,7 @@ export default function MainRoutes() {
                 <Route exact path="/forgot-password" element={<ForgotPasswordController />} />
                 <Route exact path="/otp/:email" element={<ResetPasswordController />} />
                 <Route exact path="/apply" element={<ApplyOrganizationController />} />
+                <Route exact path="/activate" element={<ActivationController />} />
                 <Route path="/sponsors" element={<Sponsors />} />
                 <Route path="/partnership" element={<Partnership />} />
                 <Route path="/about" element={<AboutController />} />
@@ -293,6 +295,7 @@ export default function MainRoutes() {
               <Route path="/" element={<HomeController />} />
               <Route path="/categories/:slug" element={<CategoryProductsController />} />
               <Route exact path="/apply" element={<ApplyOrganizationController />} />
+              <Route exact path="/activate" element={<ActivationController />} />
               <Route path="/about" element={<AboutController />} />
               <Route path="/xp" element={<Xp />} />
               <Route path="/leaderboard" element={<LeaderBoard />} />

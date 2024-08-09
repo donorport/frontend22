@@ -29,6 +29,9 @@
   left: 0%;
   right: 0%;
   z-index: -99;
+  @include media-breakpoint-down(sm) {
+    position: fixed !important;
+  }
 }
 
 .section.section--hero {

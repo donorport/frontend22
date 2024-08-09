@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -6,43 +5,17 @@ import './style.scss';
 import Select, { components } from 'react-select';
 import CircularProgress from '@mui/material/CircularProgress';
 import Page from '../../../components/Page';
-import apply from '../../../assets/images/apply-iso.svg';
 import Logo from '../Component/atoms/logo';
 import Toggle from '../Component/organisms/toggle';
+import { Link } from 'react-router-dom';
 
 const Apply = (props) => {
   const { error, name, organization, ein, email, confirmEmail, password, cpassword } =
     props.stateData;
-
-  const blocks = props.blocks;
-  const activateCode = props.activateCode;
-  //const selected = props.selected;
-  //const onValueChange = props.onValueChange;
   const changevalue = props.changevalue;
   const applyOrganization = props.apply;
   const countryList = props.countryList;
   const categoryList = props.categoryList;
-  const handleScrollToBottom = () => {
-    window.scrollTo(0, document.documentElement.scrollHeight);
-  };
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-  //     const isAtBottom = scrollTop + clientHeight === scrollHeight;
-  //     // Disable the button if already at the bottom of the page
-  //     const button = document.getElementById('scrollToBottomButton');
-  //     if (button) {
-  //       button.disabled = isAtBottom;
-  //     }
-  //   };
-
-  //   window.addEventListener('scroll', handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, []);
 
   return (
     <Page
@@ -51,26 +24,18 @@ const Apply = (props) => {
     >
       <div className="frontend_pages">
         <div className="container d-flex flex-column flex-sm-row password-reset position-relative p-0">
-          <div className="apply__left p-5 col-sm-6 col-md-5 mw-600 border-sm-end border-bottom border-bottom-0-sm">
+          <div className="apply__left p-5 col-sm-6 col-md-5 mw-600">
             <div className="d-flex flex-column flex-sm-row gap-5 mt-5">
               <div className="d-flex gap-1 align-items-center">
                 <Logo />
                 <Toggle />
               </div>
-              <Button
-                className="w-100 w-sm-auto d-flex d-sm-none ms-auto"
-                id="scrollToBottomButton"
-                onClick={handleScrollToBottom}
-              >
-                <FontAwesomeIcon className="fs-5 me-1" icon={regular('bolt')} />
-                Activate
-              </Button>
             </div>
 
             <div className="apply__content">
               {!props.isApplied ? (
                 <>
-                  <h1 className="pt-5 fw-bolder pt-2 mb-4">Getting Started</h1>
+                  <h1 className="pt-5 mt-5 fw-bolder pt-2 mb-4">Getting Started</h1>
                   {/* <div className="fs-5 text-light mb-4">
                 Activate your account to create your organization's administration page or apply to
                 receive your activation code.
@@ -89,7 +54,7 @@ const Apply = (props) => {
                       provided once your account has been approved.{' '}
                     </p>
                   </div>
-                  <Form className="d-flex flex-column mb-5 pb-5 gap-5 mw-400" autocomplete="off">
+                  <Form className="d-flex flex-column mb-5 pb-5 gap-5" autocomplete="off">
                     {/*    <div className="py-1 d-flex justify-content-between fs-4 mb-3">
                     <RadioToggle
                       outline={true}
@@ -403,112 +368,83 @@ const Apply = (props) => {
                         <CircularProgress className="ms-1" color="inherit" size={12} />
                       )}
                     </Button>
+                    <footer className="mt-auto main-footer w-100">
+                      <div className="container-fluid">
+                        <div className="d-flex gap-3 footer-bottom py-5 fs-6">
+                          <div>&copy; 2024 Donorport, Inc.</div>
+                          <a href="/privacy">Privacy Policy</a>
+                          <a href="/terms">Terms of Service</a>
+                        </div>
+                      </div>
+                    </footer>
                   </Form>{' '}
                 </>
               ) : (
                 <div className="fs-5 mt-5 mb-5 me-5 mw-600">
-                  <div className="note mw-600 fs-5">
-                    <h2>Thank you</h2>
-                    You have successfully applied to post as a charity on Donorport. We will review
-                    your submission and send you an activation code within 72 hours.
-                  </div>
-                  <img
-                    src="https://img.freepik.com/free-vector/cheerful-celebrating-people-with-confetti-flat-illustration_1284-53719.jpg?w=826&t=st=1687139144~exp=1687139744~hmac=567112774119a94df0c41befe9e6aa0af8df002aa9b0bf518005fd09a69ee93c"
-                    className="img-fluid"
-                    alt=""
-                  />
+                  <div className="mt-5 pt-5 mw-600 d-flex flex-column gap-5">
+                    <div className="d-flex flex-column gap-2">
+                      {' '}
+                      <h2>Thank you</h2>
+                      <p>
+                        You have successfully applied to post as a charity on Donorport. We will
+                        review your submission and send you an activation code within 72 hours.
+                      </p>
+                    </div>
+                    <Link to="/">
+                      <Button size="lg">Go to Home</Button>
+                    </Link>
+                  </div>{' '}
                 </div>
               )}
             </div>
           </div>
-          <div
-            className="d-flex flex-column flex-grow-1 bg-lighter gap-5"
-            style={{ padding: '9% 9% 0% 9%' }}
-          >
-            <div>
-              <h2 className="fw-bolder ">Activate</h2>
-              <p className="text-light mb-2 mw-600">
-                Enter your 4 digit activation code in the box below to activate your account.
-              </p>
-              <div className="d-flex gap-5 flex-wrap mt-5 activate mb-1 mw-600">
-                <div className="flex-grow-1 d-flex">
-                  <div className="d-none d-sm-flex activate__icon">
-                    <FontAwesomeIcon className="fs-1 me-3" icon={regular('key')} />
-                  </div>
-                  <div className="activate__code d-flex gap-1 flex-grow-1 justify-content-around">
-                    {blocks}
-                  </div>
-                </div>
 
-                <Button
-                  variant="primary"
-                  size="lg"
-                  className="flex-grow-1 activate__button fw-bold py-2 px-4"
-                  style={{ height: 'auto', borderRadius: '36px' }}
-                  onClick={() => activateCode()}
-                >
-                  Activate
-                </Button>
-              </div>
-            </div>
-
-            {/* <div
-              style={{ marginTop: '15%' }}
-              className="flex-grow-1 d-flex align-items-start justify-content-sm-center"
+          {/* Conditional sibling elements */}
+          {!props.isApplied && (
+            <div
+              className="d-flex flex-column bg-lighter gap-5 border-left"
+              style={{ padding: '9% 9% 0% 9%' }}
             >
-              <img src={apply} className="img-fluid" alt="" />
-            </div> */}
-            <div className="d-flex flex-column gap-1 mt-5">
-              <h3 className="fw-bolder ">Why Donorport?</h3>
-              <div className="d-flex flex-column fee__list d-sm-flex fs-6 text-light">
-                <div>
-                  <div className="d-flex align-items-center my-3">
-                    <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                    <span>Charities keep 100% of the proceeds</span>
+              <div className="d-flex flex-column gap-1 mt-5">
+                <h3 className="fw-bolder ">Why Donorport?</h3>
+                <div className="d-flex flex-column fee__list d-sm-flex fs-6 text-light">
+                  <div>
+                    <div className="d-flex align-items-center my-3">
+                      <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                      <span>Charities keep 100% of the proceeds</span>
+                    </div>
+                    <div className="d-flex align-items-center my-3">
+                      <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                      <span>Manage all of your tax receipts in one place</span>
+                    </div>
+                    <div className="d-flex align-items-center my-3">
+                      <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                      <span>Reach new donors from different markets</span>
+                    </div>
                   </div>
-                  <div className="d-flex align-items-center my-3">
-                    <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                    <span>Manage all of your tax receipts in one place</span>
-                  </div>
-                  <div className="d-flex align-items-center my-3">
-                    <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                    <span>Reach new donors from different markets</span>
-                  </div>
-                </div>
 
-                <div>
-                  <div className="d-flex align-items-center my-3">
-                    <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                    <span>Completely transparent; sales receipts, media, etc.</span>
-                  </div>
-                  <div className="d-flex align-items-center my-3">
-                    <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                    <span>No fees or costs, completely free to receive donations</span>
-                  </div>
-                  <div className="d-flex align-items-center my-3">
-                    <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
-                    <span>24/7 Support for charities and donors</span>
+                  <div>
+                    <div className="d-flex align-items-center my-3">
+                      <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                      <span>Completely transparent; sales receipts, media, etc.</span>
+                    </div>
+                    <div className="d-flex align-items-center my-3">
+                      <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                      <span>No fees or costs, completely free to receive donations</span>
+                    </div>
+                    <div className="d-flex align-items-center my-3">
+                      <FontAwesomeIcon icon={solid('check')} className="fs-4 me-3" />
+                      <span>24/7 Support for charities and donors</span>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div
+                className="bg-lighter position-absolute"
+                style={{ top: '0', left: '100%', width: 'calc(100% - 600px)', height: '100%' }}
+              ></div>
             </div>
-
-            <footer className="mt-auto main-footer w-100">
-              <div className="container-fluid">
-                <div className="d-flex gap-3 footer-bottom py-5 fs-6">
-                  {/* <div>&copy; 2023 Donorport, Inc.</div> */}
-                  <div className="ms-auto d-flex footer-bottoms-links gap-2">
-                    <a href="/privacy">Privacy Policy</a>
-                    <a href="/terms">Terms of Service</a>
-                  </div>
-                </div>
-              </div>
-            </footer>
-          </div>
-          <div
-            className="bg-lighter position-absolute"
-            style={{ top: '0', left: '100%', width: 'calc(100% - 600px)', height: '100%' }}
-          ></div>
+          )}
         </div>
       </div>
     </Page>
@@ -519,7 +455,7 @@ const InputContainer = ({
   type,
   name,
   value,
-  autoComplete = "off",
+  autoComplete = 'off',
   onChange,
   label,
   error,
