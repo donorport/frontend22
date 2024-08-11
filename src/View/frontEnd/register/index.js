@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import Logo from '../Component/atoms/logo';
 import Toggle from '../Component/organisms/toggle';
+import { GOOGLE_CLIENT_ID } from '../../../Common/Helper';
+import { GoogleLogin } from 'react-google-login';
 
 import './style.scss';
 
@@ -206,6 +208,19 @@ const Register = (props) => {
                 Register
                 {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
               </Button>
+
+              <GoogleLogin
+                clientId={GOOGLE_CLIENT_ID}
+                buttonText="Sign up with Google"
+                onSuccess={props.responseGoogle}
+                onFailure={props.responseGoogle}
+                cookiePolicy='single_host_origin'
+                className={`google-login-button ${props.loading ? 'loading' : ''} w-100 mb-4`}
+              >
+                {props.loading && <CircularProgress className="spinner" color="inherit" size={12} />}
+              </GoogleLogin>
+
+
               {/* <Button
                   variant="link"
                   className="text-light w-100 p-0 fw-normal"

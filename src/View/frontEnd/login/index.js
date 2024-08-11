@@ -7,15 +7,13 @@ import { CircularProgress } from '@mui/material';
 import Logo from '../Component/atoms/logo';
 import Toggle from '../Component/organisms/toggle';
 import { GoogleLogin } from 'react-google-login';
+import { GOOGLE_CLIENT_ID } from '../../../Common/Helper';
 
 import './style.scss';
 
 const Login = (props) => {
   let stateData = props.stateData;
-  const responseGoogle = (response) => {
-    // Handle the response from Google Sign-In
-    console.log(response);
-  };
+
   const [showPassword, togglePassword] = useState(false);
   return (
     <div className="d-flex flex-column bg-lighter authPage">
@@ -133,14 +131,6 @@ const Login = (props) => {
                   <span className="fw-bold">Sign in with Google</span>
   </Button>*/}
 
-              {/* <GoogleLogin
-                clientId="842709512025-uab2cipbdmtq5fv2c0fd8asn1crtg1e0.apps.googleusercontent.com"
-                buttonText="Sign in with Google"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy={'single_host_origin'}
-              /> */}
-
               <Button
                 variant="info"
                 className="w-100 mb-4"
@@ -150,6 +140,17 @@ const Login = (props) => {
                 Login
                 {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
               </Button>
+
+              <GoogleLogin
+                clientId={GOOGLE_CLIENT_ID}
+                buttonText="Sign in with Google"
+                onSuccess={props.responseGoogle}
+                onFailure={props.responseGoogle}
+                cookiePolicy='single_host_origin'
+                className={`google-login-button ${props.loading ? 'loading' : ''} w-100 mb-4`}
+              >
+                {props.loading && <CircularProgress className="spinner" color="inherit" size={12} />}
+              </GoogleLogin>
 
               {/* <Button
                   variant="link"

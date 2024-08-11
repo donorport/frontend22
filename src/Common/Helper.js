@@ -16,6 +16,7 @@ if (window.location.hostname === 'localhost') {
 }
 
 const AWS_S3_BUCKET_BASE_URL = 'https://donorport.s3.us-west-2.amazonaws.com/';
+export const GOOGLE_CLIENT_ID = '305365139368-u569e5u05if6viuub3hp7r09515ha6vp.apps.googleusercontent.com';
 
 let helper = {
   ApiUrl: BASE_URL + 'api/',

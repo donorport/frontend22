@@ -8,6 +8,9 @@ import { useNavigate } from 'react-router-dom';
 import Register from '../../View/frontEnd/register';
 //import locationApi from '../../Api/frontEnd/location';
 import Page from '../../components/Page';
+import axios from 'axios';
+import helper from '../../Common/Helper';
+import { useDispatch } from 'react-redux';
 
 const SIGNUP_RULES = {
   name: 'required',
@@ -47,6 +50,7 @@ function SignupController() {
   const navigate = useNavigate();
 
   const { name, email, password } = state;
+  const dispatch = useDispatch();
 
   //const getCountryList = async () => {
   //let tempArray = [];
@@ -144,6 +148,48 @@ function SignupController() {
       });
     }
   };
+  const responseGoogle = async (response) => {
+    setLoading(true);
+  
+    try {
+      const result = await axios.post(`${helper.ApiUrl}auth/google_login`, {
+        tokenId: response.tokenId,
+      });
+  
+      if (!result || !result.data.success) {
+        setLoading(false);
+        ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
+        return;
+      }
+  
+      const userData = result.data.user;
+      const userRole = userData.role === 3 ? 'USER' : 'UNKNOWN_ROLE';
+  
+      if (userRole === 'UNKNOWN_ROLE') {
+        setLoading(false);
+        ToastAlert({ msg: 'User Not Found', msgType: 'error' });
+        return;
+      }
+  
+      localStorage.clear();
+      localStorage.setItem('userAuthToken', result.data.token);
+      localStorage.setItem('userData', JSON.stringify(userData));
+      document.cookie = `userAuthToken=${result.data.token}`;
+  
+      ToastAlert({
+        msg: `Logged in with ${userData.name}`,
+        msgType: 'success'
+      });
+  
+      navigate('/', { replace: true });
+    } catch (error) {
+      ToastAlert({ msg: 'Error during Google Sign-In', msgType: 'error' });
+      console.error('Error during Google Sign-In:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+     
   return (
     <>
       <Page
@@ -154,6 +200,7 @@ function SignupController() {
           stateData={state}
           changevalue={changevalue}
           signUp={signUp}
+          responseGoogle={responseGoogle}
           showPassword={showPassword}
           setShowPassword={setShowPassword}
           showCPassword={showCPassword}
