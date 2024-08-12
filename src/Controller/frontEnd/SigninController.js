@@ -88,84 +88,63 @@ function SigninController() {
           ...state,
           error: formaerrror
         });
-        //setLoading(false);
+  
         const uselogin = await userAuthApi.login(email, password);
-        // console.log(uselogin)
+  
         if (!uselogin) {
           setLoading(false);
           ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
           return;
         }
-
+  
         if (!uselogin.data.success) {
           setLoading(false);
           ToastAlert({ msg: uselogin.data.message, msgType: 'error' });
           return;
         }
-
-        if (
-          !(
-            uselogin.data.roleName === 'USER' ||
-            uselogin.data.roleName === 'CAMPAIGN_ADMIN' ||
-            uselogin.data.roleName === 'TEAM_MEMBER'
-          )
-        ) {
+  
+        if (!(
+          uselogin.data.roleName === 'USER' ||
+          uselogin.data.roleName === 'CAMPAIGN_ADMIN' ||
+          uselogin.data.roleName === 'TEAM_MEMBER'
+        )) {
           setLoading(false);
           ToastAlert({ msg: 'User Not Found', msgType: 'error' });
           return;
         }
-
+  
         if (uselogin.data.roleName === 'CAMPAIGN_ADMIN' && uselogin.data.otp_status !== 1) {
           setLoading(false);
           ToastAlert({ msg: 'Campaign Admin not Active.', msgType: 'error' });
           return;
         }
-
-        localStorage.clear();
-
+  
+        // Preserve the theme-related data
+        const theme = localStorage.getItem('theme');
+  
+        // Clear only user-specific data
+        localStorage.removeItem('userData');
+        localStorage.removeItem('userAuthToken');
+  
         dispatch(setUserRole(uselogin.data.roleName));
-
+  
         if (uselogin.data.roleName === 'CAMPAIGN_ADMIN') {
-          // if(uselogin.data.country_id && uselogin.data.country_id !== "" && uselogin.data.country_id !==0  ){
-          //     dispatch(setUserCountry(uselogin.data.country_id))
-          // }else{
-          //         const userCurrentLocation = await locationApi.getUserCurrentLoaction()
-          //     if (userCurrentLocation) {
-
-          //         let countryName = userCurrentLocation.data.country_name
-          //         if (countryName) {
-
-          //             // get currency by country name
-          //             const getCountryData = await locationApi.currencyByCountry(uselogin.data.accessToken, countryName)
-          //             if (getCountryData) {
-          //                 if (getCountryData.data.success) {
-          //                     // let currencyData = {}
-          //                     // currencyData.currency = getCountryData.data.data.currency
-          //                     // currencyData.currencySymbol = getCountryData.data.data.symbol
-          //                     // dispatch(setCurrency(currencyData))
-          //                     // await convertCurrency(getCountryData.data.data.currency)
-
-          //                     dispatch(setUserCountry(getCountryData.data.data.id))
-
-          //                 }
-          //             }
-          //         }
-          //     }
-          // }
           await checkOrgBankAc(uselogin.data.accessToken);
-          let currencyData = {};
-          currencyData.currency = uselogin.data.currency;
-          currencyData.currencySymbol = uselogin.data.symbol;
+          let currencyData = {
+            currency: uselogin.data.currency,
+            currencySymbol: uselogin.data.symbol
+          };
           dispatch(setCurrency(currencyData));
-
+  
           if (uselogin.data.logo) {
             dispatch(setProfileImage(helper.CampaignAdminLogoPath + uselogin.data.logo));
           } else {
             dispatch(setProfileImage(defaultAvatar));
           }
-
+  
           localStorage.setItem('CampaignAdminAuthToken', uselogin.data.accessToken);
           localStorage.setItem('CampaignAdmin', JSON.stringify(uselogin.data));
+          localStorage.setItem('theme', theme); // Restore theme preference
           navigate('/campaign/' + uselogin.data.slug + '/posts', { replace: true });
         } else {
           if (uselogin.data.image) {
@@ -173,102 +152,23 @@ function SigninController() {
           } else {
             dispatch(setProfileImage(defaultAvatar));
           }
-          // console.log('xp',uselogin.data.xp)
           dispatch(setUserXp(uselogin.data.xp));
-          // await getUserRank(uselogin.data.accessToken)
-
-          // if(uselogin.data.country_id && uselogin.data.country_id !== "" && uselogin.data.country_id !==0  ){
-          //     dispatch(setUserCountry(uselogin.data.country_id))
-          // }else{
-          //         const userCurrentLocation = await locationApi.getUserCurrentLoaction()
-          //     if (userCurrentLocation) {
-
-          //         let countryName = userCurrentLocation.data.country_name
-          //         if (countryName) {
-
-          //             // get currency by country name
-          //             const getCountryData = await locationApi.currencyByCountry(uselogin.data.accessToken, countryName)
-          //             if (getCountryData) {
-          //                 if (getCountryData.data.success) {
-          //                     // let currencyData = {}
-          //                     // currencyData.currency = getCountryData.data.data.currency
-          //                     // currencyData.currencySymbol = getCountryData.data.data.symbol
-          //                     // dispatch(setCurrency(currencyData))
-          //                     // await convertCurrency(getCountryData.data.data.currency)
-
-          //                     dispatch(setUserCountry(getCountryData.data.data.id))
-
-          //                 }
-          //             }
-          //         }
-          //     }
-          // }
-
-          // if user currency is already set
-          if (
-            uselogin.data?.currency &&
-            uselogin.data?.currency !== null &&
-            uselogin.data?.currency !== ''
-          ) {
-            // let currencyData = {}
-            // currencyData.currency = uselogin.data.currency.split('=')[0]
-            // currencyData.currencySymbol = uselogin.data.currency.split('=')[1]
-            // dispatch(setCurrency(currencyData))
-
-            let currencyData = {};
-            currencyData.currency = uselogin.data.currency;
-            currencyData.currencySymbol = uselogin.data.symbol;
-            // dispatch(setCurrency(currencyData))
-            // await convertCurrency(uselogin.data.currency.split('=')[0])
-          } else {
-            //getting user current location(country)
-            // const userCurrentLocation = await locationApi.getUserCurrentLoaction()
-            // if (userCurrentLocation) {
-            //     let countryName = userCurrentLocation.data.country_name
-            //     if (countryName) {
-            //         // get currency by country name
-            //         const getCountryData = await locationApi.currencyByCountry(uselogin.data.accessToken, countryName)
-            //         if (getCountryData) {
-            //             if (getCountryData.data.success) {
-            //                 let currencyData = {}
-            //                 currencyData.currency = getCountryData.data.data.currency
-            //                 currencyData.currencySymbol = getCountryData.data.data.symbol
-            //                 dispatch(setCurrency(currencyData))
-            //                 await convertCurrency(getCountryData.data.data.currency)
-            //             }
-            //         }
-            //     }
-            // }
-          }
-          // if (uselogin.data?.language && uselogin.data?.language !== null) {
-          //     dispatch(setUserLanguage(uselogin.data.language))
-          // }
-
-          // if (uselogin.data.roleName === 'TEAM_MEMBER') {
-          //     localStorage.setItem('teamMemberAuthToken', uselogin.data.accessToken)
-          //     localStorage.setItem('teamMemberData', JSON.stringify(uselogin.data))
-          // } else {
-          //     localStorage.setItem('userAuthToken', uselogin.data.accessToken)
-          //     localStorage.setItem('userData', JSON.stringify(uselogin.data))
-          // }
-
+  
+          let currencyData = {
+            currency: uselogin.data.currency,
+            currencySymbol: uselogin.data.symbol
+          };
           localStorage.setItem('userAuthToken', uselogin.data.accessToken);
-          document.cookie = `userAuthToken=${uselogin.data.accessToken}`;
           localStorage.setItem('userData', JSON.stringify(uselogin.data));
+          localStorage.setItem('theme', theme); // Restore theme preference
           navigate('/', { replace: true });
         }
+        
         ToastAlert({
           msg: uselogin.data.message + ' ' + uselogin.data.name,
           msgType: 'success'
         });
         setLoading(false);
-
-        // localStorage.clear()
-        // localStorage.setItem('userAuthToken', uselogin.data.accessToken)
-        // localStorage.setItem('userData', JSON.stringify(uselogin.data))
-        // navigate('/', { replace: true })
-        // ToastAlert({ msg: uselogin.data.message + " " + uselogin.data.name, msgType: 'success' });
-        // setLoading(false)
       })
       .catch((errors) => {
         setLoading(false);
@@ -280,13 +180,14 @@ function SigninController() {
         } else {
           ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
         }
-
+  
         setstate({
           ...state,
           error: formaerrror
         });
       });
   };
+  
 
   const changevalue = (e) => {
     let value = e.target.value;

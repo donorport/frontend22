@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, div, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid, brands, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
-
-// import IconButton from "@components/molecules/icon-button";
-// import FooterCategoryLinks from "@components/molecules/footer-category-links";
+import { brands, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import IconButton from '../../molecules/icon-button';
 import FooterCategoryLinks from '../../molecules/footer-category-links';
 import { useSelector } from 'react-redux';
 import categoryApi from '../../../../../Api/admin/category';
 import Logo from '../../atoms/logo';
-
 import './style.scss';
 
-function Footer() {
+function Footer({ backgroundClass }) {
   const user = useSelector((state) => state.user);
   const [categoryList, setCategoryList] = useState([]);
   const userData = JSON.parse(localStorage.getItem('userData'));
@@ -24,25 +20,21 @@ function Footer() {
       setCategoryList(categoryList.data.data);
     }
   };
+
   useEffect(() => {
     (async () => {
-      // console.log(user)
       await getCategoryList();
     })();
   }, []);
-  // Before the problematic span
-  // console.log('user:(footer)', user);
-  // console.log('userData:(footer)', userData);
+
   return (
-    <div className="footer">
+    <div className={`footer ${backgroundClass}`}>
       <Container className="d-flex flex-column" fluid>
         <div className="footer__wrap">
-          {' '}
           <div className="footer__block flex-grow-1 logo text-start mb-2 mb-sm-0">
             <Logo />
             <p className="mt-12p">
-              The world's first and largest crowd-funding platform for non-profits
-              &amp;&nbsp;charities.
+              The world's first and largest crowd-funding platform for non-profits &amp; charities.
             </p>
             <div className="mt-3 d-flex gap-2 fs-4">
               <FontAwesomeIcon icon={brands('facebook')} />

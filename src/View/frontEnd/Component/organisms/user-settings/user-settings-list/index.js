@@ -23,8 +23,24 @@ function UserSettingsList(props) {
   }
 
   const logout = () => {
-    // localStorage.clear()
+    // Preserve the theme-related data
+    const theme = localStorage.getItem('theme');
+  
+    // Clear user-specific data but keep theme preference
+    localStorage.removeItem('userData');
+    localStorage.removeItem('userAuthToken');
+    localStorage.removeItem('CampaignAdminAuthToken');
+    localStorage.removeItem('CampaignAdmin');
+  
+    // Dispatch logout action
     dispatch(setLogout());
+  
+    // Restore the theme preference in localStorage
+    if (theme) {
+      localStorage.setItem('theme', theme);
+    }
+  
+    // Redirect to the homepage
     navigate('/');
   };
 

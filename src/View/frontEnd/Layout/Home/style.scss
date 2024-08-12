@@ -1,6 +1,6 @@
-.home {
-  background-color: $neutral-200;
-}
+// .home {
+//   background-color: $neutral-200;
+// }
 .infinite-scroll-component {
   overflow: hidden !important;
   grid-column-gap: 24px;
@@ -24,11 +24,12 @@
   opacity: 0.19;
   height: 900px;
   position: absolute;
+  width: 100%;
   top: 0%;
   bottom: 0%;
   left: 0%;
   right: 0%;
-  z-index: -99;
+  z-index: -9;
   @include media-breakpoint-down(sm) {
     position: fixed !important;
   }

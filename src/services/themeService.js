@@ -9,12 +9,9 @@ const apply = (theme) => {
 
 const detectPreferences = () => {
   const storedTheme = getFromStorage();
-
-  // Check if the user has set a theme preference in localStorage
   if (storedTheme) {
     return storedTheme;
   } else {
-    // Use the user's system preference
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
     return mq.matches ? 'dark' : 'light';
   }
@@ -28,7 +25,6 @@ const toggle = () => {
 
 const init = () => {
   const storedTheme = getFromStorage();
-
   if (storedTheme) {
     apply(storedTheme);
   } else {

@@ -80,17 +80,11 @@ const GeoLocation = (props) => {
       const htmlTheme = document.documentElement.getAttribute('data-theme');
       setMapTheme(htmlTheme === 'dark' ? 'night' : 'day');
     };
-  
-    // Create a MutationObserver to watch for changes in data-theme attribute
+
     const observer = new MutationObserver(handleThemeChange);
-  
-    // Observe changes in the attributes of the HTML element
     observer.observe(document.documentElement, { attributes: true });
-  
-    // Use the HTML data-theme attribute to set the initial map theme
     handleThemeChange();
-  
-    // Cleanup the observer on component unmount
+
     return () => {
       observer.disconnect();
     };

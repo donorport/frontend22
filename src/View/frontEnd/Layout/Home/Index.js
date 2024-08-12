@@ -254,15 +254,15 @@ export default function Index(props) {
     <>
       {/* {loading && <CircularProgress />} */}
       <div className="home">
-        {' '}
-        <HeaderController productList={props.productList} isHeaderGeo={true} />
-        <img
+      <img
           className="bgimage"
           style={{ position: 'absolute', top: '0' }}
           src={htmlTheme === 'dark' ? hero2 : hero}
           alt=""
         />
-        <div className="section section--hero">
+        <HeaderController productList={props.productList} isHeaderGeo={true} />
+
+        <div>        <div className="section section--hero">
           <div className="container">
             <div className="hero"></div>
             <div className="hero__left">
@@ -543,8 +543,9 @@ export default function Index(props) {
               <div className="list"> {productsList}</div>
             </div>
           )}
-        </div>
-        <Footer />
+        </div></div>
+
+        <Footer backgroundClass="home"/>
         {/* {!CampaignAdminAuthToken && user.countrySortName === 'CA' && ( */}˝
       </div>
     </>

@@ -462,21 +462,23 @@ const InputContainer = ({
   placeholder
 }) => (
   <>
-    <div className="input__wrap d-flex">
-      <label className="input__label flex-grow-1">
-        <input
-          autoComplete={autoComplete}
-          type={type ?? 'text'}
-          name={name}
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          className={(error && error?.[name] ? 'inputerror ' : '') + 'input__wrap form-control'}
-        />
-        <span className="input__span">{label}</span>
-      </label>
+    <div className="d-flex flex-column gap-1">
+      <div className="input__wrap d-flex">
+        <label className="input__label flex-grow-1">
+          <input
+            autoComplete={autoComplete}
+            type={type ?? 'text'}
+            name={name}
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+            className={(error && error?.[name] ? 'inputerror ' : '') + 'input__wrap form-control'}
+          />
+          <span className="input__span">{label}</span>
+        </label>
+      </div>
+      {error && error?.[name] && <p className="error">{error[name]}</p>}
     </div>
-    {error && error?.[name] && <p className="error">{error[name]}</p>}
   </>
 );
 
@@ -491,21 +493,23 @@ const CustomInput = (props) => (
 
 const SelectContainer = ({ name, value, options, onChange, label, error, placeholder }) => (
   <>
-    <div className="input__wrap d-flex">
-      <label className="input__label flex-grow-1">
-        <Select
-          className="basic-single"
-          classNamePrefix="select"
-          placeholder={placeholder}
-          value={value}
-          name={`${name}_select`} // Append "_select" to make it unique
-          options={options}
-          onChange={onChange}
-          components={{ Input: CustomInput, IndicatorSeparator: () => null }}
-        />
-      </label>
+    <div className="d-flex flex-column gap-1">
+      <div className="input__wrap d-flex">
+        <label className="input__label flex-grow-1">
+          <Select
+            className="basic-single"
+            classNamePrefix="select"
+            placeholder={placeholder}
+            value={value}
+            name={`${name}_select`} // Append "_select" to make it unique
+            options={options}
+            onChange={onChange}
+            components={{ Input: CustomInput, IndicatorSeparator: () => null }}
+          />
+        </label>
+      </div>
+      {error && error?.[name] && <p className="error">{error[name]}</p>}
     </div>
-    {error && error?.[name] && <p className="error">{error[name]}</p>}
   </>
 );
 

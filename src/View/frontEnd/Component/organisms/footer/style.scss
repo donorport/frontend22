@@ -1,5 +1,7 @@
 .footer {
-  // background-color: $neutral-200;
+  &.home {
+    background-color: $neutral-200;
+  }
   font-size: 16px;
   padding-top: 94px;
   padding-bottom: 112px;

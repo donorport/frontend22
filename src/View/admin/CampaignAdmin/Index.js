@@ -1,23 +1,19 @@
 import {
   Card,
-  //Table,
   Stack,
-  //Avatar,
   Button,
-  //Checkbox,
-  //TableRow,
-  //TableBody,
-  //TableCell,
   Container,
-  Typography
-  //TableContainer,
-  //TablePagination
+  Typography,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel
 } from '@mui/material';
 import plusFill from '@iconify/icons-eva/plus-fill';
 import trash from '@iconify/icons-eva/trash-2-fill';
 import editfill from '@iconify/icons-eva/edit-fill';
 import Label from '../../../components/Label';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Icon } from '@iconify/react';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
@@ -28,19 +24,68 @@ import Page from '../../../components/Page';
 
 export default function Index(props) {
   const [rowsPerPage, setRowsPerPage] = useState(100);
+  const [selectedCountry, setSelectedCountry] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    filterData();
+  }, [props.campaignAdminList, selectedCountry]);
+
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
   };
+
+  const handleCountryChange = (event) => {
+    setSelectedCountry(event.target.value);
+  };
+
+  const filterData = () => {
+    let data = props.campaignAdminList || [];
+
+    // Filter by selected country
+    if (selectedCountry) {
+      data = data.filter((item) => item.countryDetails.currency === selectedCountry);
+    }
+
+    // Sort by created_at date from newest to oldest
+    data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+    setFilteredData(data);
+  };
+
   const customStyles = {
     table: {
       style: { display: 'table', tableLayout: 'fixed', width: '100%' } // Set table layout to fixed and 100% width
     }
   };
+
   const columns = [
     { name: 'Name', selector: 'name', sortable: true },
     { name: 'Email', selector: 'email', sortable: true },
     {
-      name: 'Country',
+      name: (
+        <FormControl fullWidth>
+          <InputLabel id="country-select-label">Country</InputLabel>
+          <Select
+            labelId="country-select-label"
+            value={selectedCountry}
+            onChange={handleCountryChange}
+            displayEmpty
+          >
+            <MenuItem value="">
+              <em>All</em>
+            </MenuItem>
+            {props.campaignAdminList &&
+              [...new Set(props.campaignAdminList.map((item) => item.countryDetails.currency))].map(
+                (country, index) => (
+                  <MenuItem key={index} value={country}>
+                    {country}
+                  </MenuItem>
+                )
+              )}
+          </Select>
+        </FormControl>
+      ),
       selector: 'countryDetails.currency',
       sortable: true
     },
@@ -89,7 +134,8 @@ export default function Index(props) {
       name: 'Date',
       selector: 'created_at',
       cell: (row) => <div>{moment(row.created_at).format('DD MMMM YYYY')}</div>,
-      sortable: true
+      sortable: true,
+      id: 'created_at' // Add id for sorting
     },
     {
       name: 'Actions',
@@ -118,12 +164,13 @@ export default function Index(props) {
 
   const exportToCSV = () => {
     const csvRows = [];
+    
     // Get the headers
     const headers = columns.map((col) => col.name);
     csvRows.push(headers.join(','));
-  
+    
     // Get the data
-    data.forEach((row) => {
+    filteredData.forEach((row) => {
       const values = columns.map((col) => {
         if (col.selector) {
           // Handle nested selectors
@@ -133,6 +180,14 @@ export default function Index(props) {
             value = value[key];
           });
           return `"${(value || '').toString().replace(/"/g, '""')}"`; // Escape double quotes
+        } else if (col.name === 'Applied?') {
+          return row.status === 1 ? '"Active"' : '"Inactive"';
+        } else if (col.name === 'Status') {
+          return row.otp_status === 1 ? '"Active"' : '"Inactive"';
+        } else if (col.name === 'Bank?') {
+          return row.bankaccounts && row.bankaccounts.length > 0 ? '"Active"' : '"Inactive"';
+        } else if (col.name === 'OTP') {
+          return `"${(row.otp || '').toString().replace(/"/g, '""')}"`; // Ensure OTP is treated as a string
         } else {
           return '""';
         }
@@ -149,21 +204,8 @@ export default function Index(props) {
     document.body.appendChild(link);
     link.click();
   };
+  
 
-  const data = [];
-  if (props.campaignAdminList && props.campaignAdminList.length > 0) {
-    props.campaignAdminList.map((user) => {
-      data.push(user);
-    });
-  }
-  // console.log(data);
-
-  const tableData = {
-    columns,
-    data,
-    export: true,
-    print: false
-  };
   return (
     <Page title="Campaign Admin | CMS">
       <Container>
@@ -185,13 +227,13 @@ export default function Index(props) {
           </Button>
           <DataTable
             columns={columns}
-            data={data}
+            data={filteredData}
             noHeader
             defaultSortAsc={false}
             customStyles={customStyles} // Apply custom styles
             pagination
             highlightOnHover
-            defaultSortFieldId="created_at"
+            defaultSortFieldId="created_at" // Sort by created_at by default
             paginationPerPage={rowsPerPage}
             paginationRowsPerPageOptions={[10, 20, 50, 100]} // Customize the available options
             onChangeRowsPerPage={handleChangeRowsPerPage} // Handle rows per page change
