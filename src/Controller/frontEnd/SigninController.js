@@ -260,7 +260,7 @@ function SigninController() {
         msgType: 'success'
       });
     } catch (error) {
-      ToastAlert({ msg: 'Error during Google Sign-In', msgType: 'error' });
+      ToastAlert({ msg: 'Sign in cancelled. Try again', msgType: 'error' });
       console.error('Error during Google Sign-In:', error);
     } finally {
       setLoading(false);
@@ -287,7 +287,7 @@ function SigninController() {
 
             /> */}
       <Page
-        title="Donorport | Login"
+        title="Log in | Donorport"
         description="Login to your Donorport account or singup today"
       >
         <Login

@@ -183,7 +183,7 @@ function SignupController() {
   
       navigate('/', { replace: true });
     } catch (error) {
-      ToastAlert({ msg: 'Error during Google Sign-In', msgType: 'error' });
+      // ToastAlert({ msg: 'Error during Google Sign-In', msgType: 'error' });
       console.error('Error during Google Sign-In:', error);
     } finally {
       setLoading(false);
@@ -193,7 +193,7 @@ function SignupController() {
   return (
     <>
       <Page
-        title="Donorport | Sign Up"
+        title="Sign Up | Donorport"
         description="Create your Donorport account and start helping your community today!"
       >
         <Register

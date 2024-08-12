@@ -91,7 +91,11 @@ const Login = (props) => {
                   id="inputPassword"
                 />
 
-                <Button className="p-2" variant="link" onClick={() => togglePassword(!showPassword)}>
+                <Button
+                  className="p-2"
+                  variant="link"
+                  onClick={() => togglePassword(!showPassword)}
+                >
                   <FontAwesomeIcon
                     icon={solid('eye')}
                     className={`${showPassword ? 'text-primary' : 'text-light'}`}
@@ -130,27 +134,30 @@ const Login = (props) => {
                   />
                   <span className="fw-bold">Sign in with Google</span>
   </Button>*/}
-
-              <Button
-                variant="info"
-                className="w-100 mb-4"
-                style={{ width: '100%', opacity: props.loading ? '0.7' : '1' }}
-                onClick={() => !props.loading && props.signIn()}
-              >
-                Login
-                {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
-              </Button>
-
-              <GoogleLogin
-                clientId={GOOGLE_CLIENT_ID}
-                buttonText="Sign in with Google"
-                onSuccess={props.responseGoogle}
-                onFailure={props.responseGoogle}
-                cookiePolicy='single_host_origin'
-                className={`google-login-button ${props.loading ? 'loading' : ''} w-100 mb-4`}
-              >
-                {props.loading && <CircularProgress className="spinner" color="inherit" size={12} />}
-              </GoogleLogin>
+              <div className="d-flex flex-column gap-2">
+                {' '}
+                <Button
+                  variant="info"
+                  className="w-100"
+                  style={{ width: '100%', opacity: props.loading ? '0.7' : '1' }}
+                  onClick={() => !props.loading && props.signIn()}
+                >
+                  Login
+                  {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+                </Button>
+                <GoogleLogin
+                  clientId={GOOGLE_CLIENT_ID}
+                  buttonText="Sign in"
+                  onSuccess={props.responseGoogle}
+                  onFailure={props.responseGoogle}
+                  cookiePolicy="single_host_origin"
+                  className={`google-login-button ${props.loading ? 'loading' : ''} w-100 mb-4`}
+                >
+                  {props.loading && (
+                    <CircularProgress className="spinner" color="inherit" size={12} />
+                  )}
+                </GoogleLogin>
+              </div>
 
               {/* <Button
                   variant="link"

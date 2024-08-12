@@ -199,27 +199,29 @@ const Register = (props) => {
                   />
                   <span className="fw-bold">Sign Up with Google</span>
               </Button>*/}
-              <Button
-                variant="info"
-                style={{ width: '100%', opacity: props.loading ? '0.7' : '1' }}
-                className="w-100 mb-4 mt-4"
-                onClick={() => !props.loading && props.signUp()}
-              >
-                Register
-                {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
-              </Button>
-
-              <GoogleLogin
-                clientId={GOOGLE_CLIENT_ID}
-                buttonText="Sign up with Google"
-                onSuccess={props.responseGoogle}
-                onFailure={props.responseGoogle}
-                cookiePolicy='single_host_origin'
-                className={`google-login-button ${props.loading ? 'loading' : ''} w-100 mb-4`}
-              >
-                {props.loading && <CircularProgress className="spinner" color="inherit" size={12} />}
-              </GoogleLogin>
-
+              <div className="d-flex flex-column gap-2 pt-5">
+                <Button
+                  variant="info"
+                  style={{ width: '100%', opacity: props.loading ? '0.7' : '1' }}
+                  className="w-100"
+                  onClick={() => !props.loading && props.signUp()}
+                >
+                  Register
+                  {props.loading && <CircularProgress className="ms-2" color="inherit" size={12} />}
+                </Button>
+                <GoogleLogin
+                  clientId={GOOGLE_CLIENT_ID}
+                  buttonText="Sign up"
+                  onSuccess={props.responseGoogle}
+                  onFailure={props.responseGoogle}
+                  cookiePolicy="single_host_origin"
+                  className={`google-login-button ${props.loading ? 'loading' : ''} w-100 mb-4`}
+                >
+                  {props.loading && (
+                    <CircularProgress className="spinner" color="inherit" size={12} />
+                  )}
+                </GoogleLogin>
+              </div>
 
               {/* <Button
                   variant="link"
