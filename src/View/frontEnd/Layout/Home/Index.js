@@ -121,7 +121,7 @@ const ProductList = ({ allProps }) => {
       hasMore={hasMore}
       loader={<CircularProgress className="m-auto" color="inherit" size={48} />}
       endMessage={<p></p>}
-      className="list"
+      className="list mw-100"
     >
       {items.map((item, index) =>
         item.status === 1 ? (
@@ -540,7 +540,7 @@ export default function Index(props) {
             </div>
           ) : (
             <div className="container">
-              <div className="list"> {productsList}</div>
+              <div className="list w-100"> {productsList}</div>
             </div>
           )}
         </div></div>
