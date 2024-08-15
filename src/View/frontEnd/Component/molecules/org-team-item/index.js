@@ -9,10 +9,11 @@ import AvatarImg from '../../../../../assets/images/avatar.png';
 function OrganizationTeamItem(props) {
   const member = props.member;
 
-  let image =
-    member?.type === 'USER'
-      ? helper.DonorImageResizePath + member?.userDetails?.image
-      : helper.CampaignAdminLogoPath + member?.orgDetails?.logo;
+  let image = member?.type === 'USER'
+  ? (member?.userDetails?.image.startsWith('http://') || member?.userDetails?.image.startsWith('https://')
+      ? member?.userDetails?.image
+      : helper.DonorImageResizePath + member?.userDetails?.image)
+  : helper.CampaignAdminLogoPath + member?.orgDetails?.logo;
   let name = member?.type === 'USER' ? member.userDetails?.name : member?.orgDetails?.name;
   let email = member?.type === 'USER' ? member.userDetails?.email : member?.orgDetails?.email;
 

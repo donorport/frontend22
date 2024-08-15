@@ -180,9 +180,10 @@ const AdminTaxTable = (props) => {
                                 <Avatar
                                   size={52}
                                   avatarUrl={
-                                    item[0].userDetails.image
-                                      ? helper.DonorImageResizePath + item[0].userDetails.image
-                                      : AvatarImg
+                                    item[0].userDetails.image &&
+                                    (item[0].userDetails.image.startsWith('http://') || item[0].userDetails.image.startsWith('https://'))
+                                      ? item[0].userDetails.image
+                                      : helper.DonorImageResizePath + (item[0].userDetails.image || '')
                                   }
                                   border={0}
                                   shadow={false}

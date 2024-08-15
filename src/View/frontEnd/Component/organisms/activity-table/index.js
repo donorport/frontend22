@@ -79,9 +79,10 @@ const ActivityTable = (props) => {
                         <Avatar
                           size={52}
                           avatarUrl={
-                            list.userDetails?.image
-                              ? helper.DonorImagePath + list.userDetails?.image
-                              : AvatarImg
+                            list.userDetails?.image &&
+                            (list.userDetails.image.startsWith('http://') || list.userDetails.image.startsWith('https://'))
+                              ? list.userDetails.image
+                              : helper.DonorImagePath + (list.userDetails?.image || '')
                           }
                           border={0}
                           shadow={false}

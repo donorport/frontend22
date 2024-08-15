@@ -554,9 +554,14 @@ const UserProfile = () => {
             {tempImg !== '' || image !== '' || image !== null ? (
               <div className="col-sm-6 ml-3">
                 <img
-                  src={tempImg ? tempImg : image ? helper.DonorImagePath + image : noImg}
+                  src={
+                    tempImg
+                      ? tempImg
+                      : image && !(image.startsWith('http://') || image.startsWith('https://'))
+                        ? helper.DonorImagePath + image
+                        : image || noImg
+                  }
                   alt="user profile"
-                 
                   style={{
                     width: '120px',
                     borderRadius: '9px',

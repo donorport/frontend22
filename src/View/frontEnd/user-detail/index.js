@@ -58,10 +58,11 @@ function UserDetail(props) {
         if (getUserDetails.data.success) {
           // console.log(getUserDetails.data.data)
           setProfileImg(
-            getUserDetails.data.data?.image
-              ? helper.DonorImagePath + getUserDetails.data.data?.image
-              : AvatarImg
-          );
+            getUserDetails.data.data?.image &&
+            (getUserDetails.data.data.image.startsWith('http://') || getUserDetails.data.data.image.startsWith('https://'))
+              ? getUserDetails.data.data.image
+              : helper.DonorImagePath + (getUserDetails.data.data?.image || '')
+          );          
           setData(getUserDetails.data.data);
         } else {
           localStorage.clear();

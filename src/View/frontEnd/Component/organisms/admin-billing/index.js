@@ -201,7 +201,10 @@ const AdminBilling = () => {
                   image = (list.userDetails && list.userDetails.image) || '';
                 }
 
-                let avatar = image ? helper.DonorImagePath + image : profile;
+                let avatar = image && !(image.startsWith('http://') || image.startsWith('https://'))
+                            ? helper.DonorImagePath + image 
+                            : image || profile;
+
                 let userNameToDisplay = list.type === 'ORDER' ? orderUserName : userName;
 
                 let CardType = '';

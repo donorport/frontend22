@@ -71,9 +71,11 @@ const LeaderBoard = () => {
                                   <Avatar
                                     size={46}
                                     avatarUrl={
-                                      person.image
-                                        ? helper.DonorImagePath + person.image
-                                        : AvatarImg
+                                      person.image && (person.image.startsWith('http://') || person.image.startsWith('https://'))
+                                        ? person.image
+                                        : person.image
+                                          ? helper.DonorImagePath + person.image
+                                          : AvatarImg
                                     }
                                     border={0}
                                     shadow={false}

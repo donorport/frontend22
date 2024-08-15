@@ -25,7 +25,10 @@ const defaultProps = {
 const getAvatarImage = (img) => {
   let image;
   if (img && img !== '') {
-    image = helper.DonorImagePath + img;
+    // Check if `img` is a full URL
+    image = (img.startsWith('http://') || img.startsWith('https://'))
+      ? img
+      : helper.DonorImagePath + img;
   } else {
     image = AvatarImg;
   }

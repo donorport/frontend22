@@ -115,7 +115,11 @@ function SigninController() {
           navigate('/campaign/' + uselogin.data.slug + '/posts', { replace: true });
         } else {
           if (uselogin.data.image) {
-            dispatch(setProfileImage(helper.DonorImageResizePath + uselogin.data.image));
+            dispatch(setProfileImage(
+              uselogin.data.image && (uselogin.data.image.startsWith('http://') || uselogin.data.image.startsWith('https://'))
+                ? uselogin.data.image
+                : helper.DonorImageResizePath + uselogin.data.image
+            ));            
           } else {
             dispatch(setProfileImage(defaultAvatar));
           }
@@ -197,7 +201,12 @@ function SigninController() {
         navigate('/campaign/' + userData.slug + '/posts', { replace: true });
       } else {
         if (userData.image) {
-          dispatch(setProfileImage(helper.DonorImageResizePath + userData.image));
+          const profileImageUrl = userData.image.startsWith('http://') || userData.image.startsWith('https://')
+          ? userData.image
+          : helper.DonorImageResizePath + userData.image;
+
+          dispatch(setProfileImage(profileImageUrl));        
+          // dispatch(setProfileImage(helper.DonorImageResizePath + userData.image));
         } else {
           dispatch(setProfileImage(defaultAvatar));
         }
