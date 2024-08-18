@@ -2,11 +2,7 @@ import { Button, Row, Col } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-
-// import { ToggleSwitch, FeedTag, FileUpload } from "@components/atoms";
-
-import ToggleSwitch from '../../atoms/toggle-switch';
-import FeedTag from '../../atoms/feed-tag';
+import FundraisingSlider from '../../atoms/crowdfunding-slider';
 import helper from '../../../../../Common/Helper';
 import noimg from '../../../../../assets/images/noimg1.png';
 import Textarea from '../text-area';
@@ -26,7 +22,6 @@ const STYLES_FileUploadInput = {
 };
 
 const STYLES_ImageUploadWrap = {
-  marginTop: '20px',
   // border: " 4px dashed #3773c6",
   position: 'relative',
   width: '100%'
@@ -70,7 +65,7 @@ const AddCrowdfunding = (props) => {
         <div className="d-flex align-items-start mb-2 mb-sm-0 flex-grow-1">
           <Button
             variant="link"
-            className="me-sm-2 me-1"
+            className="me-sm-2 me-1 p-0"
             onClick={() => props.createCrowdfunding(false)}
           >
             <FontAwesomeIcon icon={solid('angle-left')} className="text-subtext fs-3" />
@@ -93,7 +88,7 @@ const AddCrowdfunding = (props) => {
               className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
               onClick={() => submitCrowdfundingForm(-1)}
             >
-              Save as Draft
+              Save Draft
             </Button>
           ) : (
             <Button
@@ -126,49 +121,11 @@ const AddCrowdfunding = (props) => {
           )}
         </div>
       </div>
-      {/*  <div className="studio__note d-sm-flex align-items-center py-2 px-3 border rounded mb-5">
-        <div className="studio__thumb p-1 mr-20p d-none d-sm-block">
-          <img
-            className="img-fluid"
-            alt=""
-            src=""
-          />
-        </div>
-        <div className="flex-grow-1 text-light mb-2 mb-sm-0 text-center text-sm-start">
-          <div className="fs-5">Your account allows up to 3 crowdfunding campaignss</div>
-          <a
-            href="/"
-            className="studio__url mt-6p d-flex text-light justify-content-center justify-content-sm-start"
-          >
-            <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
-            <div className="fw-semibold fs-7">You have 0 crowdfunding campaigns remaining</div>
-          </a>
-        </div>
-        <div className="d-grid">
-          <Button variant="info" className="btn__upgrade fs-7">
-            Upgrade
-          </Button>
-        </div>
-      </div>*/}
-
-      <div className="d-flex py-2 border-bottom">
-        <h3 className="mb-0 fw-bolder me-2">Fundraiser Details</h3>
-        {/* <div className="d-flex align-items-center">
-          <div className="bg-purple text-nowrap fs-8 fw-semibold rounded-3 p-6p text-white">
-            Ongoing Need?
-            <FontAwesomeIcon icon={solid('infinity')} className="ml-3p" />
-          </div>
-        </div> 
-        <div className="ms-2">
-          <ToggleSwitch
-            id="infinite"
-            checked={infinite}
-            name="infinite"
-            changevalue={props.changevalue}
-          />
-        </div>*/}
+      <FundraisingSlider />
+      <div className="d-flex py-2 border-bottom mb-3">
+        <h4 className="mb-0 fw-bolder me-2">Details</h4>
       </div>
-      <Row className="mw-850 py-0 py-sm-5">
+      <Row className="py-0 py-sm-5 row">
         <Col lg="6">
           <form className="d-flex flex-column profile-detail-form gap-5">
             <div>
@@ -224,57 +181,9 @@ const AddCrowdfunding = (props) => {
         </Col>
         <Col lg="6">
           <form className="video-detail-form">
-            <div className="form-group mb-2">
-              <label htmlFor="videoInput" className="form__label">
-                Pictures & Video (YouTube)
-              </label>
-              <input
-                type="text"
-                className="form-control form-control-lg"
-                // id="videoInput"
-                placeholder="YouTube URL"
-                name="video"
-                id="video"
-                value={video}
-                onChange={(e) => {
-                  props.changevalue(e);
-                }}
-              />
-              {error && error.video && (
-                <p className="error">{error ? (error.video ? error.video : '') : ''}</p>
-              )}
-            </div>
             {/* <div className="project-video-wrap"> */}
-            <div className="project-video-wrap">
-              <iframe
-                title="project-video"
-                key="project-video"
-                width="498"
-                height="280"
-                src={embedlink}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-            {/* <div>
-              <div className="upload-picture-video-block mb-2">
-                <FileUpload />
-                <FileUpload />
-                <FileUpload />
-                <FileUpload />
-                <FileUpload />
-              </div>
-            </div> */}
+
             <div className="d-flex align-items-center flex-wrap gap-2 mb-3">
-              {/* <div className="upload-wrap" style={{ width: "100%" }}>
-                <FontAwesomeIcon
-                  icon={solid("cloud-arrow-up")}
-                  className="icon-cloud"
-                />
-                <label >
-                  <input name='moreImg[]' id='moreImg' type="file" multiple onChange={(e) => { props.changefile(e) }} />
-                </label>
-              </div> */}
               <div
                 className="image-upload-wrap fs-2"
                 style={{
@@ -300,7 +209,7 @@ const AddCrowdfunding = (props) => {
                 />
                 <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
                   <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
-                  <h3 style={{ fontSize: 'inherit' }}>Drag and drop or Select File</h3>
+                  <h3 style={{ fontSize: 'inherit' }}>Select Images</h3>
                 </div>
               </div>
               {error && error.moreImg && (
@@ -341,7 +250,10 @@ const AddCrowdfunding = (props) => {
                         // <img src={img ? img !== "" ? helper.CrowdfundingImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} />
 
                         <div className="img-wrap" key={key}>
-                          <span className="close" onClick={() => props.deleteCrowdfundingImage(img.id)}>
+                          <span
+                            className="close"
+                            onClick={() => props.deleteCrowdfundingImage(img.id)}
+                          >
                             &times;
                           </span>
                           {/* <img
@@ -382,6 +294,37 @@ const AddCrowdfunding = (props) => {
                 <p className="error">{error ? (error.images ? error.images : '') : ''}</p>
               )}
             </div>
+            <div className="d-flex flex-column gap-2 form-group mb-2">
+              <label htmlFor="videoInput" className="form__label">
+                Video (YouTube)
+              </label>
+              <input
+                type="text"
+                className="form-control form-control-lg"
+                // id="videoInput"
+                placeholder="YouTube URL"
+                name="video"
+                id="video"
+                value={video}
+                onChange={(e) => {
+                  props.changevalue(e);
+                }}
+              />
+              <div className="project-video-wrap">
+                <iframe
+                  title="project-video"
+                  key="project-video"
+                  width="498"
+                  height="280"
+                  src={embedlink}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              {error && error.video && (
+                <p className="error">{error ? (error.video ? error.video : '') : ''}</p>
+              )}
+            </div>
           </form>
         </Col>
       </Row>
@@ -389,9 +332,9 @@ const AddCrowdfunding = (props) => {
       <div>
         <div className="products-detial-footer d-flex py-3 py-sm-5 gap-2">
           <Button
-            variant="white"
+            variant="danger"
             size="lg"
-            className="fw-bold fs-6 mb-2 mb-sm-0"
+            className="fw-bold mb-2 mb-sm-0"
             onClick={() => discardCrowdfunding()}
           >
             Discard
@@ -400,7 +343,7 @@ const AddCrowdfunding = (props) => {
             <Button
               variant="info"
               size="lg"
-              className="fw-bold fs-6"
+              className="fw-bold"
               onClick={() => submitCrowdfundingForm(1)}
             >
               {/* {!id ? "Create Crowdfunding" : "Update Crowdfunding"} */} Publish
@@ -409,7 +352,7 @@ const AddCrowdfunding = (props) => {
             <Button
               variant="success"
               size="lg"
-              className="fw-bold fs-6"
+              className="fw-bold"
               onClick={() => submitCrowdfundingForm(1)}
             >
               Save Changes

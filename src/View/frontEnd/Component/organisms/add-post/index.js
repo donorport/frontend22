@@ -264,8 +264,7 @@ const AddPost = (props) => {
   //};
 
   return (
-    <div className="add-post">
-      {/* {console.log(location)} */}
+    <div className="d-flex flex-column gap-5 add-post">
       <div className="d-flex align-items-center flex-grow-1 gap-2 pb-20p mb-3 border-bottom flex-wrap mt-3 mt-sm-0">
         <div className="d-flex flex-grow-1">
           <Button
@@ -315,31 +314,6 @@ const AddPost = (props) => {
           )}
         </div>
       </div>
-      {/* <div className="studio__note d-sm-flex align-items-center py-2 px-3 border rounded mb-5">
-        <div className="studio__thumb p-1 mr-20p d-none d-sm-block">
-          <img
-            className="img-fluid"
-            alt=""
-            src=""
-          />
-        </div>
-        <div className="flex-grow-1 text-light mb-2 text-center text-sm-start">
-          <div className="fs-5">This category has a free posting limit of 3.</div>
-          <a
-            href="/"
-            className="studio__url mt-6p d-flex text-light justify-content-center justify-content-sm-start"
-          >
-            <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
-            <div className="fw-semibold fs-7">You have 3 posts remaining</div>
-          </a>
-        </div>
-        <div className="d-grid">
-          <Button variant="info" className="btn__upgrade fs-7">
-            Upgrade
-          </Button>
-        </div>
-      </div>*/}
-
       <div>
         <Accordion alwaysOpen>
           <AccordionToggle>
@@ -347,19 +321,8 @@ const AddPost = (props) => {
           </AccordionToggle>
 
           <Accordion.Collapse className="py-0 py-sm-5">
-            <Row className="mw-850 ml-5">
+            <Row className="">
               <Col lg="6">
-                {/* <SearchBox accessToken={helper.MapBoxPrimaryKey} /> */}
-                {/* <SearchBox
-                    accessToken={helper.MapBoxPrimaryKey}
-                    options={{
-                      language: 'en',
-                      country: 'US',
-                    }}>
-              
-
-                  </SearchBox> */}
-
                 <MapboxAutocomplete
                   publicKey={helper.MapBoxPrimaryKey}
                   inputClass="form-control search"
@@ -554,7 +517,11 @@ const AddPost = (props) => {
                       <div className="d-flex gap-2">
                         <p className="text-nowrap fw-semibold">
                           No fixed quantity (
-                          <FontAwesomeIcon icon={solid('infinity')} className="text-secondary ml-3p" /> )?
+                          <FontAwesomeIcon
+                            icon={solid('infinity')}
+                            className="text-secondary ml-3p"
+                          />{' '}
+                          )?
                         </p>
                         <ToggleSwitch
                           id="unlimited"
@@ -673,9 +640,9 @@ const AddPost = (props) => {
                         </div>
                         <div className="d-flex note note--info mb-1 fs-6">
                           <FontAwesomeIcon
-                          className="me-2 fs-3 text-info"
-                          icon={solid('receipt')}
-                        />
+                            className="me-2 fs-3 text-info"
+                            icon={solid('receipt')}
+                          />
                           {/* <img alt="" className="me-3" height="32" src={receipt}></img> */}
                           Toggle this if you intend on providing a tax receipt for donations made
                           toward this post.
@@ -971,58 +938,8 @@ const AddPost = (props) => {
                           <p className="error">
                             {error ? (error.moreImg ? error.moreImg : '') : ''}
                           </p>
-                        )}
-
-                        {/* <p className='error'>{stateData.error ? stateData.error.moreImg ? stateData.error.moreImg : "" : ""}</p> */}
-
-                        {/* <div className="upload-wrap">
-                            <img
-                              className="img-fluid"
-                              src="https://i1.wp.com/lanecdr.org/wp-content/uploads/2019/08/placeholder.png?w=1200&ssl=1"
-                              alt="img"
-                            />
-                            <label htmlFor="videoPicture2">
-                              <input id="videoPicture2" type="file" />
-                            </label>
-                          </div>
-                          <div className="upload-wrap">
-                            <FontAwesomeIcon
-                              icon={solid("cloud-arrow-up")}
-                              className="icon-cloud"
-                            />
-                            <label htmlFor="videoPicture3">
-                              <input id="videoPicture3" type="file" />
-                            </label>
-                          </div>
-                          <div className="upload-wrap">
-                            <FontAwesomeIcon
-                              icon={solid("cloud-arrow-up")}
-                              className="icon-cloud"
-                            />
-                            <label htmlFor="videoPicture3">
-                              <input id="videoPicture3" type="file" />
-                            </label>
-                          </div>
-                          <div className="upload-wrap">
-                            <FontAwesomeIcon
-                              icon={solid("cloud-arrow-up")}
-                              className="icon-cloud"
-                            />
-                            <label htmlFor="videoPicture3">
-                              <input id="videoPicture3" type="file" />
-                            </label>
-                          </div> */}
+                        )}                    
                       </div>
-
-                      {/* <div className="d-grid">
-                          <Button
-                            variant="info"
-                            className="fs-7 fw-bold"
-                            size="lg"
-                          >
-                            Upload from File
-                          </Button>
-                        </div> */}
                     </div>
                   </form>
                 </div>
@@ -1259,8 +1176,6 @@ const AddPost = (props) => {
                                               : noimg
                                             : noimg
                                         })`
-                                        // width: '100px',
-                                        // height: '100px'
                                       }}
                                       alt="lk"
                                       data-id="103"
@@ -1277,53 +1192,8 @@ const AddPost = (props) => {
                           {error ? (error.galleryImg ? error.galleryImg : '') : ''}
                         </p>
                       )}
-                      {/* <div className="upload-wrap">
-                          <img src="../img/user2.jpeg" alt="img" />
-                          <FontAwesomeIcon
-                            icon={solid("cloud-arrow-up")}
-                            className="icon-cloud"
-                          />
-                          <label htmlFor="videoPicture2">
-                            <input id="videoPicture2" type="file" />
-                          </label>
-                        </div>
-                        <div className="upload-wrap">
-                          <FontAwesomeIcon
-                            icon={solid("cloud-arrow-up")}
-                            className="icon-cloud"
-                          />
-                          <label htmlFor="videoPicture3">
-                            <input id="videoPicture3" type="file" />
-                          </label>
-                        </div>
-                        <div className="upload-wrap">
-                          <FontAwesomeIcon
-                            icon={solid("cloud-arrow-up")}
-                            className="icon-cloud"
-                          />
-                          <label htmlFor="videoPicture3">
-                            <input id="videoPicture3" type="file" />
-                          </label>
-                        </div>
-                        <div className="upload-wrap">
-                          <FontAwesomeIcon
-                            icon={solid("cloud-arrow-up")}
-                            className="icon-cloud"
-                          />
-                          <label htmlFor="videoPicture3">
-                            <input id="videoPicture3" type="file" />
-                          </label>
-                        </div> */}
+                   
                     </div>
-                    {/* <div className="d-grid">
-                        <Button
-                          variant="info"
-                          className="fs-7 fw-bold"
-                          size="lg"
-                        >
-                          Upload from File
-                        </Button>
-                      </div> */}
                   </div>
                 </form>
               </Col>
@@ -1406,7 +1276,7 @@ const SaveCreateButtons = (props) => {
         // onClick={() => submitProductForm(-1)}
         onClick={() => props.setModelShow(true)}
       >
-        Save as Draft
+        Save Draft
       </Button>
       <Button
         style={{ opacity: props.loading ? '0.7' : '1' }}

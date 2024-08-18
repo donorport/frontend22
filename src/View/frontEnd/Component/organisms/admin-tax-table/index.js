@@ -43,7 +43,7 @@ const AccordionItem = ({ header, hideChevron, disableButton, ...rest }) => (
 
 const AdminTaxTable = (props) => {
   const taxList = props.taxList;
-
+  const activeYear = props.activeYear;
   const [showModal, setShowModal] = useState(false);
   const [loadingId, setLoadingId] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
@@ -181,9 +181,11 @@ const AdminTaxTable = (props) => {
                                   size={52}
                                   avatarUrl={
                                     item[0].userDetails.image &&
-                                    (item[0].userDetails.image.startsWith('http://') || item[0].userDetails.image.startsWith('https://'))
+                                    (item[0].userDetails.image.startsWith('http://') ||
+                                      item[0].userDetails.image.startsWith('https://'))
                                       ? item[0].userDetails.image
-                                      : helper.DonorImageResizePath + (item[0].userDetails.image || '')
+                                      : helper.DonorImageResizePath +
+                                        (item[0].userDetails.image || '')
                                   }
                                   border={0}
                                   shadow={false}
@@ -257,7 +259,7 @@ const AdminTaxTable = (props) => {
                                 </div>
                               )}
 
-                              {item[0].receipt ? (
+                              {item[0].receipt && activeYear !== 'Show All' ? (
                                 <div
                                   className="d-flex align-items-center ms-sm-2 btn__wrap"
                                   onClick={(e) => e.stopPropagation()}
@@ -271,7 +273,7 @@ const AdminTaxTable = (props) => {
                                       icon={solid('file-arrow-up')}
                                       className="text-success fs-3"
                                     />
-                                    <div className="ps-2">
+                                    <div className="d-flec flex-column text-start ps-2">
                                       <div className="file__name mb-3p">{item[0].receipt}</div>
                                       <div className="date text-light fs-7">
                                         {/* 3 days ago - 1.3 Mb */}
@@ -324,57 +326,59 @@ const AdminTaxTable = (props) => {
                                   </Dropdown>
                                 </div>
                               ) : (
-                                <Button
-                                  size="sm"
-                                  onClick={(e) => !props.loading && e.stopPropagation()}
-                                  style={{ opacity: props.loading ? '0.7' : '1' }}
-                                  variant="warning"
-                                  className="d-flex align-items-center ms-auto text-white"
-                                  disabled={props.loading}
-                                >
-                                  <FontAwesomeIcon icon={regular('clock')} className="me-1" />
-                                  <input
-                                    type="file"
-                                    size="60"
-                                    style={{ position: 'absolute', opacity: '0', width: '80px' }}
-                                    onChange={(e) => {
-                                      let tempArray = [...loadingId];
-                                      tempArray.push(`loading-${i}`);
-                                      setLoadingId([...tempArray]);
+                                activeYear !== 'Show All' && (
+                                  <Button
+                                    size="sm"
+                                    onClick={(e) => !props.loading && e.stopPropagation()}
+                                    style={{ opacity: props.loading ? '0.7' : '1' }}
+                                    variant="warning"
+                                    className="d-flex align-items-center ms-auto text-white"
+                                    disabled={props.loading}
+                                  >
+                                    <FontAwesomeIcon icon={regular('clock')} className="me-1" />
+                                    <input
+                                      type="file"
+                                      size="60"
+                                      style={{ position: 'absolute', opacity: '0', width: '80px' }}
+                                      onChange={(e) => {
+                                        let tempArray = [...loadingId];
+                                        tempArray.push(`loading-${i}`);
+                                        setLoadingId([...tempArray]);
 
-                                      props
-                                        .uploadImage(
-                                          e,
-                                          item[0].uniqueTransactionId,
-                                          item[0].userDetails?.email,
-                                          item[0].userDetails?.name,
-                                          item[0].userDetails?._id
-                                        )
-                                        .then(() => {
-                                          // Remove the loader ID from the array once upload is done
-                                          setLoadingId((prev) =>
-                                            prev.filter((id) => id !== `loading-${i}`)
-                                          );
-                                        })
-                                        .catch((error) => {
-                                          // Handle error case if needed
-                                          console.error('Upload failed: ', error);
-                                          setLoadingId((prev) =>
-                                            prev.filter((id) => id !== `loading-${i}`)
-                                          );
-                                        });
-                                    }}
-                                  />
-                                  Upload
-                                  {loadingId.includes(`loading-${i}`) && (
-                                    <CircularProgress
-                                      id={`loading-${i}`}
-                                      className="ms-2"
-                                      color="inherit"
-                                      size={12}
+                                        props
+                                          .uploadImage(
+                                            e,
+                                            item[0].uniqueTransactionId,
+                                            item[0].userDetails?.email,
+                                            item[0].userDetails?.name,
+                                            item[0].userDetails?._id
+                                          )
+                                          .then(() => {
+                                            // Remove the loader ID from the array once upload is done
+                                            setLoadingId((prev) =>
+                                              prev.filter((id) => id !== `loading-${i}`)
+                                            );
+                                          })
+                                          .catch((error) => {
+                                            // Handle error case if needed
+                                            console.error('Upload failed: ', error);
+                                            setLoadingId((prev) =>
+                                              prev.filter((id) => id !== `loading-${i}`)
+                                            );
+                                          });
+                                      }}
                                     />
-                                  )}
-                                </Button>
+                                    Upload
+                                    {loadingId.includes(`loading-${i}`) && (
+                                      <CircularProgress
+                                        id={`loading-${i}`}
+                                        className="ms-2"
+                                        color="inherit"
+                                        size={12}
+                                      />
+                                    )}
+                                  </Button>
+                                )
                               )}
                             </div>
                           </div>

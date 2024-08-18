@@ -225,6 +225,7 @@ const AdminTax = () => {
     await getTaxList(pageNo, sortField, order, v);
     setActiveYear(v);
     setActiveKey(e);
+    console.log('Selected activeKey:', v);
     setLoading(false);
   };
   return (
@@ -259,6 +260,8 @@ const AdminTax = () => {
       </header>
 
       <AdminTaxTable
+        activeYear={activeYear}
+        activeKey={activeKey}
         taxList={taxList}
         uploadImage={uploadImage}
         totalPages={totalPages}
@@ -271,7 +274,6 @@ const AdminTax = () => {
         order={order}
         sortField={sortField}
         headers={headers}
-        activeYear={activeYear}
       />
       {/* <Button variant="info" size="lg" className='me-2 flex-grow-1'>Download CSV</Button> */}
       {taxList.length > 0 && (

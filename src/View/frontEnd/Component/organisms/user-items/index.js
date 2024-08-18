@@ -275,7 +275,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
 
   return (
     <div className={detail.show ? '' : 'd-none'}>
-      <div className="d-flex align-items-center flex-grow-1 pb-20p border-bottom">
+      <div className="d-flex align-items-center flex-grow-1 border-bottom pb-20p">
         <Button
           variant="link"
           className="p-0 me-sm-2 me-1"

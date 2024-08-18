@@ -204,7 +204,13 @@ const AdminPosts = () => {
   // redux get the user
   const user = useSelector((state) => state.user);
 
-  let videoid = fulfilState.videoUrl ? fulfilState.videoUrl.split('?v=')[1].split('&')[0] : '';
+  let videoid = '';
+  if (fulfilState.videoUrl && typeof fulfilState.videoUrl === 'string') {
+    const urlParts = fulfilState.videoUrl.split('?v=');
+    if (urlParts.length > 1) {
+      videoid = urlParts[1].split('&')[0];
+    }
+  }
   //let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
 
   const [tags, setTags] = useState([]);
@@ -1794,7 +1800,7 @@ const AdminPosts = () => {
                       <h4 className="m-0">CREATE A POST</h4>
                     </div>
                   </div>
-                  <p className="mt-3 fs-5">
+                  <p className="mt-3">
                     Congratulations, you're now ready to create your first post!
                   </p>
                   {/* <Button
@@ -1897,26 +1903,7 @@ const AdminPosts = () => {
 
           <PostDetailsNotificationBanner fulfilProductDetails={fulfilProductDetails} />
 
-          <Row className="mw-850 ml-5 pt-5">
-            <Col lg="6">
-              <PostDetailsTransactionSummary
-                fulfilProductDetails={fulfilProductDetails}
-                data={data}
-              />
-
-              <PostDetailsReceiptArea
-                receiptImgName={receiptImgName}
-                fulfilError={fulfilError}
-                changefile={changefile}
-                fulfilProductDetails={fulfilProductDetails}
-                deletedFile={deletedFile}
-                setShowReceipt={setShowReceipt}
-                download={download}
-                deleteFulfilorder={deleteFulfilorder}
-                showReceipt={showReceipt}
-              />
-            </Col>
-
+          <Row>
             <Col lg="6">
               <PostDetailsMediaColumn
                 fulfilState={fulfilState}
@@ -1931,8 +1918,26 @@ const AdminPosts = () => {
                 fulfilError={fulfilError}
               />
             </Col>
-          </Row>
 
+            <Col lg="6">
+              <PostDetailsTransactionSummary
+                fulfilProductDetails={fulfilProductDetails}
+                data={data}
+              />
+              <PostDetailsReceiptArea
+                receiptImgName={receiptImgName}
+                fulfilError={fulfilError}
+                changefile={changefile}
+                fulfilProductDetails={fulfilProductDetails}
+                deletedFile={deletedFile}
+                setShowReceipt={setShowReceipt}
+                download={download}
+                deleteFulfilorder={deleteFulfilorder}
+                showReceipt={showReceipt}
+              />
+            </Col>
+          </Row>
+          <Row></Row>
           <PostDetailsTosAndButtons
             fulfilPolicy={fulfilPolicy}
             changevalue={changevalue}
@@ -2014,8 +2019,8 @@ const ModalSaveAsDraft = ({ modelShow, setModelShow, submitProductForm }) => {
       aria-labelledby="removeModalTwoLabel"
       aria-hidden="true"
       style={{
-        display: modelShow ? 'block' : 'none',
-        background: modelShow ? 'hsl(0deg 0% 100% / 75%)' : ''
+        display: modelShow ? 'block' : 'none'
+        // background: modelShow ? 'hsl(0deg 0% 100% / 75%)' : ''
       }}
     >
       <div className="modal-dialog  modal-dialog-centered">
@@ -2064,7 +2069,7 @@ const ModalSaveAsDraft = ({ modelShow, setModelShow, submitProductForm }) => {
 
 const PostDetailsNavigation = ({ closeFulfilForm, fulfilProductDetails }) => {
   return (
-    <div className="d-flex align-items-center flex-grow-1 pb-20p border-bottom">
+    <div className="d-flex align-items-center flex-grow-1 border-bottom pb-20p">
       <Button
         variant="link"
         className="p-0 me-sm-2 me-1 btn btn-link"
@@ -2110,7 +2115,7 @@ const PostDetailsNavigation = ({ closeFulfilForm, fulfilProductDetails }) => {
 
 const PostDetailsNotificationBanner = ({ fulfilProductDetails }) => {
   return (
-    <div className="empty_state mt-3">
+    <div className="empty_state">
       <div className="note note-info d-flex align-items-center" style={{ maxWidth: '100%' }}>
         {/*<span className="post__badge post__badge--sold me-2 text-primary fs-3">
             <FontAwesomeIcon icon={solid('party-horn')} />
@@ -2146,10 +2151,19 @@ const PostDetailsMediaColumn = ({
   deleteProductImage,
   fulfilError
 }) => {
-  const videoUrl = fulfilState.videoUrl || (fulfilProductDetails?.fulfilDetails?.video);
+  const videoUrl = fulfilState.videoUrl || fulfilProductDetails?.fulfilDetails?.video;
 
+  // redux get the user
+  const user = useSelector((state) => state.user);
 
-  let videoid = videoUrl ? videoUrl.split('?v=')[1] : '';
+  let videoid = '';
+  if (fulfilState.videoUrl && typeof fulfilState.videoUrl === 'string') {
+    const urlParts = fulfilState.videoUrl.split('?v=');
+    if (urlParts.length > 1) {
+      videoid = urlParts[1].split('&')[0];
+    }
+  }
+
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
 
   console.log(`PostDetailsMediaColumn:`, {
@@ -2165,43 +2179,11 @@ const PostDetailsMediaColumn = ({
       <span className="fs-3 fw-bolder ">Media</span>
 
       <form className="video-detail-form mt-3">
-        <div className="form-group mb-3">
-          <label htmlFor="videoUrl" className="form__label mb-3">
-            Video&nbsp;
+        <div>
+          <label htmlFor="videoUrl" className="form__label">
+            Images &nbsp;
             <span className="post-type-text">(optional)</span>
           </label>
-          <input
-            type="text"
-            className="form-control form-control-lg"
-            placeholder="YouTube URL"
-            name="videoUrl"
-            id="videoUrl"
-            value={videoUrl ?? ''}
-            onChange={(e) => {
-              // when this changes, we're changing fulfilState.videoUrl
-              changevalue(e);
-            }}
-          />
-        </div>
-
-        <div className="project-video-wrap mb-5">
-          <iframe
-            title="admin-post-video"
-            key="admin-post-video"
-            width="498"
-            height="280"
-            src={embedlink}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-
-        <label htmlFor="videoUrl" className="form__label">
-          Images &nbsp;
-          <span className="post-type-text">(optional)</span>
-        </label>
-
-        <div>
           <div className="upload-picture-video-block mb-2" style={{ display: 'contents' }}>
             <div
               className="image-upload-wrap fs-2 mb-5"
@@ -2269,6 +2251,37 @@ const PostDetailsMediaColumn = ({
             )}
           </div>
         </div>
+        <div className="d-flex flex-column ">
+          <div className="d-flex flex-column form-group gap-3">
+            <label htmlFor="videoUrl" className="form__label">
+              Video&nbsp;
+              <span className="post-type-text">(optional)</span>
+            </label>
+            <input
+              type="text"
+              className="form-control form-control-lg"
+              placeholder="YouTube URL"
+              name="videoUrl"
+              id="videoUrl"
+              value={videoUrl ?? ''}
+              onChange={(e) => {
+                // when this changes, we're changing fulfilState.videoUrl
+                changevalue(e);
+              }}
+            />
+            <div className="project-video-wrap position-relative">
+              <iframe
+                title="admin-post-video"
+                key="admin-post-video"
+                width="498"
+                height="280"
+                src={embedlink}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
       </form>
     </>
   );
@@ -2299,7 +2312,9 @@ const PostDetailsTransactionSummary = ({ fulfilProductDetails, data }) => {
 
         <div className="border-bottom">
           <div className="d-flex align-items-center fw-bolder mb-20p">
-            <span className="flex-grow-1">{fulfilProductDetails?.unlimited ? 'Sold' : 'Qty'} :</span>
+            <span className="flex-grow-1">
+              {fulfilProductDetails?.unlimited ? 'Sold' : 'Qty'} :
+            </span>
             <h6>
               {Number(fulfilProductDetails?.unlimited).toLocaleString('en-US', {
                 maximumFractionDigits: 2
@@ -2355,7 +2370,7 @@ const PostDetailsReceiptArea = ({
   return (
     <>
       {/* receipt upload label & input */}
-      <label htmlFor="receiptFile" className="form__label mt-3">
+      <label htmlFor="receiptFile" className="form__label">
         Sales Receipt &nbsp;
         <span className="post-type-text" style={{ color: '#dd4646' }}>
           (required)
@@ -2407,17 +2422,17 @@ const PostDetailsReceiptArea = ({
         <>
           <span className="fs-3 fw-bolder ">Sales Receipt</span>
 
-          <div className="my-3 pb-5  d-flex align-item-center">
+          <div className="receipt__item my-3 p-3 d-flex align-item-center">
             <div className="nn d-flex position-relative justify-content-center align-items-center me-2">
               <span className="post__badge post__badge--sold fs-3">
                 <FontAwesomeIcon icon={solid('receipt')} />
               </span>
             </div>
             <div className="ps-2">
-              <span className="post__title fw-semibold">
+              <p className="post__title fw-semibold">
                 {fulfilProductDetails?.fulfilDetails?.receipt}
-              </span>
-              <div className="date fw-semibold">
+              </p>
+              <div className="date text-light">
                 Added &nbsp;
                 {moment(fulfilProductDetails?.fulfilDetails.created_at).fromNow()}
               </div>
@@ -2425,7 +2440,7 @@ const PostDetailsReceiptArea = ({
 
             <div className="ms-auto">
               <Dropdown className="d-flex ms-auto" autoClose="outside">
-                <Dropdown.Toggle variant="link" className="no-caret text-decoration-none">
+                <Dropdown.Toggle variant="link" className="p-1 no-caret text-decoration-none">
                   <FontAwesomeIcon
                     icon={regular('ellipsis-vertical')}
                     className="text-light fs-3"
@@ -2441,7 +2456,10 @@ const PostDetailsReceiptArea = ({
                       onClick={() => setShowReceipt(true)}
                     >
                       <span className="fw-bold fs-7 flex-grow-1">View</span>
-                      <FontAwesomeIcon icon={solid('magnifying-glass')} className="text-warning ms-1" />
+                      <FontAwesomeIcon
+                        icon={solid('magnifying-glass')}
+                        className="text-warning ms-1"
+                      />
                     </Dropdown.Item>
                   )}
                   <Dropdown.Divider />
@@ -2567,7 +2585,7 @@ const PostDetailsTosAndButtons = ({
         )}
 
         <Button variant="success" size="lg" className="fw-bold fs-6" onClick={() => fulfilOrder()}>
-          {fulfilProductDetails?.isFulfiled ? 'Update' : 'Complete Order'}
+          {fulfilProductDetails?.isFulfiled ? 'Update' : 'End Post'}
         </Button>
       </div>
     </>

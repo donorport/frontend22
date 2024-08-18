@@ -113,7 +113,7 @@ const AddProject = (props) => {
               className="text-white fw-bold fs-6 ms-sm-auto btn__draft"
               onClick={() => submitProjectForm(-1)}
             >
-              Save as Draft
+              Save Draft
             </Button>
           ) : (
             <Button
@@ -171,8 +171,8 @@ const AddProject = (props) => {
         </div>
       </div>*/}
 
-      <div className="d-flex justify-content-between py-2 border-bottom">
-        <h3 className="mb-0 fw-bolder me-2">Project Details</h3>
+      <div className="d-flex justify-content-between py-2 mb-5 border-bottom">
+        <h4 className="mb-0 fw-bolder me-2">Details</h4>
         <div className="d-flex gap-2 align-items-center">
           Ongoing Need?
           <FontAwesomeIcon icon={solid('infinity')} className="text-secondary" />
@@ -184,7 +184,7 @@ const AddProject = (props) => {
           />
         </div>
       </div>
-      <Row className="mw-850 py-0 py-sm-5">
+      <Row className="py-0 py-sm-5 row">
         <Col lg="6">
           <form className="d-flex flex-column profile-detail-form gap-5">
             <div>
@@ -402,7 +402,7 @@ const AddProject = (props) => {
         </Col>
       </Row>
 
-      <div className="d-flex py-2 border-bottom mb-4">
+      <div className="d-flex py-2 border-bottom mb-3 mb-4">
         <h3 className="d-flex align-items-center mb-0 fw-bolder me-1">Select Products</h3>
         <span className="d-flex align-items-center text-light me-2">(0)</span>
         {/* <Button variant="info">Create New</Button> */}

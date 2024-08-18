@@ -37,7 +37,8 @@ function CrowdfundingDetailMain({
       data.forEach((project) => {
         let progressPercent = 0;
         if (!project.itemDetails.unlimited) {
-          progressPercent = (Number(project.itemDetails.soldout) / Number(project.itemDetails.quantity)) * 100;
+          progressPercent =
+            (Number(project.itemDetails.soldout) / Number(project.itemDetails.quantity)) * 100;
         }
         allProductPer.push(progressPercent);
       });
@@ -98,7 +99,7 @@ function CrowdfundingDetailMain({
         </div>
 
         <div className="product__top px-0 d-flex align-items-center">
-{/*
+          {/*
 ** WHAT IS NEEDED HERE?? **
 <div className="d-flex align-items-center w-100">
 <ProgressBar
@@ -136,7 +137,6 @@ className="flex-grow-1 me-1"
         </div>
 
         <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-0 mb-sm-2">
-
           <Link
             size="lg"
             variant="link"
@@ -186,9 +186,7 @@ className="flex-grow-1 me-1"
               />
               {/* </div> */}
             </span>
-            <span className="fs-6  fw-bold ms-1">
-              {crowdfundingDetails?.campaignDetails?.name}
-            </span>
+            <span className="fs-6  fw-bold ms-1">{crowdfundingDetails?.campaignDetails?.name}</span>
           </Link>
         </div>
         {/*   <div className="iframe__wrapper">
@@ -231,7 +229,10 @@ className="flex-grow-1 me-1"
           )}
 
           {crowdfundingDetails?.images && crowdfundingDetails?.images.length > 0 && (
-            <ProjectCrowdfundingGallery images={crowdfundingDetails?.images} tagTitle="Crowdfunding" />
+            <ProjectCrowdfundingGallery
+              images={crowdfundingDetails?.images}
+              tagTitle="Crowdfunding"
+            />
           )}
         </div>
         <div>
@@ -242,7 +243,7 @@ className="flex-grow-1 me-1"
       {/* <div className="mb-4">
         <OrganizationTeamWidget tagTitle="Crowdfunding" showEmail={false} showContact />
       </div> */}
-{/*
+      {/*
 ** NOT NEEDED FOR CROWDFUNDING ?? **
 <OrganizationWidget
 tagTitle="Crowdfunding"

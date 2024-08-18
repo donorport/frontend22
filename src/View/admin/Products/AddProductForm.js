@@ -341,9 +341,10 @@ export default function AddProductForm(props) {
                 }}
               />
               {/* <label className="custom-file-label" htmlFor="customFile" style={{ margin: "0px 10px 0px 10px" }}> Choose file </label> */}
-              <p className="error">
-                {stateData.error ? (stateData.error.image ? stateData.error.image : '') : ''}
-              </p>
+              {stateData.error && stateData.error.image && (
+                <p className="error">{stateData.error.image}</p>
+              )}
+
               {props.Img || props.tempImg ? (
                 <img
                   src={
@@ -418,9 +419,9 @@ export default function AddProductForm(props) {
                   : ''}
               </div>
 
-              <p className="error">
-                {stateData.error ? (stateData.error.moreImg ? stateData.error.moreImg : '') : ''}
-              </p>
+              {stateData.error && stateData.error.moreImg && (
+                <p className="error">{stateData.error.moreImg}</p>
+              )}
             </div>
           </div>
 
@@ -573,9 +574,9 @@ export default function AddProductForm(props) {
                     );
                   })}
               </select>
-              <p className="error">
-                {stateData.error ? (stateData.error.category ? stateData.error.category : '') : ''}
-              </p>
+              {stateData.error && stateData.error.category && (
+                <p className="error">{stateData.error.category}</p>
+              )}
             </div>
           </div>
 
@@ -610,13 +611,9 @@ export default function AddProductForm(props) {
                     );
                   })}
               </select>
-              <p className="error">
-                {stateData.error
-                  ? stateData.error.subcategory
-                    ? stateData.error.subcategory
-                    : ''
-                  : ''}
-              </p>
+              {stateData.error && stateData.error.subcategory && (
+                <p className="error">{stateData.error.subcategory}</p>
+              )}
             </div>
           </div>
 
@@ -650,9 +647,9 @@ export default function AddProductForm(props) {
                 clearAll
                 tags={props.tags}
               />
-              <p className="error">
-                {stateData.error ? (stateData.error.tags ? stateData.error.tags : '') : ''}
-              </p>
+              {stateData.error && stateData.error.tags && (
+                <p className="error">{stateData.error.tags}</p>
+              )}
             </div>
           </div>
 
@@ -779,13 +776,9 @@ export default function AddProductForm(props) {
                 style={{ height: '240px', marginBottom: '50px' }}
                 name="description"
               />
-              <p className="error">
-                {stateData.error
-                  ? stateData.error.description
-                    ? stateData.error.description
-                    : ''
-                  : ''}
-              </p>
+              {stateData.error && stateData.error.description && (
+                <p className="error">{stateData.error.description}</p>
+              )}
             </div>
           </div>
 
@@ -843,13 +836,9 @@ export default function AddProductForm(props) {
                   : ''}
               </div>
 
-              <p className="error">
-                {stateData.error
-                  ? stateData.error.galleryImg
-                    ? stateData.error.galleryImg
-                    : ''
-                  : ''}
-              </p>
+              {stateData.error && stateData.error.galleryImg && (
+                <p className="error">{stateData.error.galleryImg}</p>
+              )}
             </div>
           </div>
 

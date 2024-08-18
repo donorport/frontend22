@@ -171,7 +171,7 @@ function AdminDetail() {
                   )}
                 </div>
               </div>
-              <div className="flex-grow-1 tab-content">
+              <div className="d-flex flex-column gap-4 flex-grow-1 tab-content">
                 <Outlet context={[data, setData]} />
               </div>
               {/* <Tab.Content className="flex-grow-1">

@@ -73,15 +73,19 @@ const PostsTable = (props) => {
                   <div className="d-xl-flex align-items-center flex-grow-1">
                     <div className="progress__wrap d-flex align-items-center  me-sm-3">
                       <div className="ms-auto ms-sm-0 me-sm-2 post__value">
-                        {product.status === 1 && (
-                          <h6 className="price ">
+                        {product.isFulfiled ? (
+                          <h6 className="post__status">DONE</h6>
+                        ) : product.status === 1 ? (
+                          <h6 className="price">
                             {organizationDetails.symbol}
                             {priceFormat(
                               product.displayPrice ? product.displayPrice : product.price
                             )}
-                            {/* {product.displayPrice ? product.displayPrice : product.price} */}
                           </h6>
-                        )}
+                        ) : product.status === -1 ? (
+                          <h6 className="post__status">DRAFT</h6>
+                        ) : null}
+
                         <div className="date text-light fs-7">
                           {moment(product.created_at).fromNow()}
                         </div>
@@ -287,14 +291,21 @@ const ButtonEditProduct = ({ onClick }) => (
 );
 
 const ButtonShowFulfillOrder = ({ onClick }) => (
-  <Button className="order-1" variant="success" size="sm" style={{ marginRight: '10px' }} onClick={onClick}>
-    Complete Order
+  <Button
+    className="order-1"
+    variant="secondary"
+    size="sm"
+    style={{ marginRight: '10px' }}
+    onClick={onClick}
+  >
+    End Post
   </Button>
 );
 
 const ButtonShowFulfillOrderArrow = ({ onClick }) => (
-  <Button variant="link" className="p-0" onClick={onClick}>
-    <FontAwesomeIcon icon={solid('square-up-right')} className="text-success fs-2 me-2" />
+  <Button size="sm" variant="primary" onClick={onClick}>
+    {/* <FontAwesomeIcon icon={solid('square-up-right')} className="text-success fs-2 me-2" /> */}
+    View Post
   </Button>
 );
 

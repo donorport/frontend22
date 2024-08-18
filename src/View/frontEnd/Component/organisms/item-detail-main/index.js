@@ -85,23 +85,30 @@ function ProjectDetailMain(props) {
 
   useEffect(() => {
     (async () => {
-      const getLocationByLatLong = await locationApi.getLocationByLatLong(user.lat, user.lng);
-
-      // get user's address, pull out state code
-      const longformAddress = getLocationByLatLong.data.results[0].formatted_address; // "Orphans Green Dog Park, 51 Power St, Toronto, ON M5A 3A6, Canada"
-      const stateCode = longformAddress
-        .split(', ')
-        .reverse() // ["Canada", "ON M5A 3A6", "Toronto", ...]
-        [1] // second item
-        .split(' ')[0]; // first word e.g. "ON"
-
-      // pull out state name so we can use it to filter ads by state
-      const addrComponents = getLocationByLatLong.data.results[0].address_components;
-      const stateName = addrComponents.find((c) => c.short_name === stateCode).long_name; // find the object for the state, and get the long_name by looking up the short_name, e.g. "Ontario"
-
-      setUserAddress(stateName);
+      try {
+        const getLocationByLatLong = await locationApi.getLocationByLatLong(user.lat, user.lng);
+  
+        if (getLocationByLatLong.data.results && getLocationByLatLong.data.results.length > 0) {
+          const longformAddress = getLocationByLatLong.data.results[0].formatted_address || '';
+          const addrComponents = getLocationByLatLong.data.results[0].address_components || [];
+  
+          const stateCode = longformAddress
+            .split(', ')
+            .reverse()[1]
+            .split(' ')[0];
+          
+          const stateName = addrComponents.find((c) => c.short_name === stateCode)?.long_name || '';
+  
+          setUserAddress(stateName);
+        } else {
+          console.error("No results found for location.");
+        }
+      } catch (error) {
+        console.error("Error fetching location data: ", error);
+      }
     })();
   }, [productDetails]);
+  
 
   const onClickFilter = (e) => {
     props.addProductToWishlist(productDetails._id);
