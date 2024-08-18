@@ -46,6 +46,14 @@ const placeholder3 = 'Enter some details about your need';
 const AddCrowdfunding = (props) => {
   const { status, name, headline, video, description, error, infinite } = props.stateData;
 
+  const [sliderValue, setSliderValue] = useState(500);
+
+  // Function to handle changes from the slider
+  const handleSliderChange = (newValue) => {
+    console.log('Slider value changed:', newValue);
+    setSliderValue(newValue);
+  };
+
   let url = video;
   let videoid = url ? url?.split('?v=')[1].split('&')[0] : '';
   let embedlink = url ? 'https://www.youtube.com/embed/' + videoid : '';
@@ -121,7 +129,14 @@ const AddCrowdfunding = (props) => {
           )}
         </div>
       </div>
-      <FundraisingSlider />
+      <FundraisingSlider
+          userId="12345" // Replace with actual userId or prop value
+          value={sliderValue}
+          min={0}
+          max={50000}
+          step={100}
+          onChange={handleSliderChange}
+        />
       <div className="d-flex py-2 border-bottom mb-3">
         <h4 className="mb-0 fw-bolder me-2">Details</h4>
       </div>

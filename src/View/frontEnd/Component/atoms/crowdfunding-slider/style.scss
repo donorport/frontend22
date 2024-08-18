@@ -1,4 +1,13 @@
 .fundraise__price {
-  width: 150px;
+  width: auto;
+  max-width: 225px;
   color: $primary !important;
+  input {
+    color: $neutral-700;
+    font-size: 46px !important;
+  }
+}
+.fundraise__input {
+  color: $neutral-700;
+  font-size: 46px !important;
 }

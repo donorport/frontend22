@@ -34,7 +34,7 @@ console.log('CrowdfundingDetail:', {props});
 
           <div className="ms-auto d-flex align-items-center">
             {!CampaignAdminAuthToken && (
-              <Button size="lg" className="fw-bold" onClick={() => setModalShow(true)}>
+              <Button size="lg" onClick={() => setModalShow(true)}>
                 Donate
               </Button>
             )}
@@ -53,18 +53,9 @@ console.log('CrowdfundingDetail:', {props});
               dCardIcon={props.dCardIcon}
               loading={props.loading}
             />
-            {/* <GrabDropdown /> */}
           </div>
         </div>
       </SuggestionWrapper>
-
-      {/*     <div className="ms-auto d-sm-flex d-none mt-2 flex-column align-items-center px-3">
-        <Button size="lg" className="fw-bold mb-1 w-100" onClick={() => setModalShow(true)}>
-          Donatehhhh
-        </Button>
-        <DonateModal show={modalShow} onHide={() => setModalShow(false)} /> 
-
-      </div>*/}
       <Container fluid className="py-3 py-sm-5">
         <Row>
           <Col md="7" className="mb-4">

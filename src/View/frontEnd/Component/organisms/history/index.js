@@ -50,7 +50,7 @@ function History(props) {
   return (
     <>
       <TagTitle>History</TagTitle>
-      <WidgetTitle href="/log">Purchase Log</WidgetTitle>
+      <WidgetTitle href="/log">Donation Log</WidgetTitle>
 
       <div className="log__wrap">
         <div className="log__recent border-bottom">

@@ -55,6 +55,11 @@ ul {
 input {
   font-size: $font-size-base !important;
   // padding: 21px;
+  }
+
+input::placeholder {
+  color: $placeholder !important; /* Change to your desired color */
+  opacity: 1; /* Ensures full opacity on all browsers */
 }
 label {
   font-size: $font-size-base;

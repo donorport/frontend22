@@ -2,7 +2,7 @@
   display: flex;
   position: relative;
   // margin: 12px 0;
-  
+
   .input__span {
     background-color: $body-bg;
     position: absolute;
@@ -15,7 +15,8 @@
     font-weight: 900;
   }
 
-  input, textarea {
+  input,
+  textarea {
     &:focus + .input__span {
       transform: translatey(-23px);
       outline: none;
@@ -39,7 +40,9 @@
     font-size: $font-size-base;
     transition: transform 0.2s ease;
   }
-
+  textarea {
+    padding-top: 24px;
+  }
   textarea[rows] {
     height: auto;
   }

@@ -50,6 +50,13 @@ const sidebarConfig = [
 
   },
   {
+    title: 'fundraisers',
+    path: '/admin/crowdfundings/',
+    icon: getIcon('hugeicons:crowdfunding'),
+    name: 'FUNDRAISING'
+
+  },
+  {
     title: 'orders',
     path: '/admin/orders/',
     icon: getIcon('eos-icons:products'),
