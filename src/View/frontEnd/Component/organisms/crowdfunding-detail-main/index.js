@@ -188,7 +188,6 @@ function CrowdfundingDetailMain({ crowdfundingDetails, followToCrowdfunding, isF
           step={100}
           onChange={handleSliderChange}
         />
-        <Button size="lg">Donate</Button>
         <div className="iframe__wrapper">
           <iframe
             src={embedlink}
