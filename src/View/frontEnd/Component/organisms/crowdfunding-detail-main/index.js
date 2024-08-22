@@ -8,14 +8,15 @@ import TagTitle from '../../atoms/tag-title';
 import IconToggle from '../../atoms/icon-toggle';
 import moment from 'moment';
 import helper, { convertAddress } from '../../../../../Common/Helper';
-
+import DonateModal from '../../molecules/donate-modal';
 import './style.scss';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 function CrowdfundingDetailMain({ crowdfundingDetails, followToCrowdfunding, isFollow }) {
   const [sliderValue, setSliderValue] = useState(500);
-
+  const [donateAmount, setDonateAmount] = useState(500);
+  const [modalShow, setModalShow] = useState(false);
   // Function to handle changes from the slider
   const handleSliderChange = (newValue) => {
     console.log('Slider value changed:', newValue);
@@ -64,6 +65,10 @@ function CrowdfundingDetailMain({ crowdfundingDetails, followToCrowdfunding, isF
 
     setAddress(newAddress);
   }, [crowdfundingDetails]);
+
+  // function formatNumber(value) {
+  //   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  // }
 
   return (
     <div className="project__detail-main">
@@ -186,7 +191,26 @@ function CrowdfundingDetailMain({ crowdfundingDetails, followToCrowdfunding, isF
           min={0}
           max={5000}
           step={100}
-          onChange={handleSliderChange}
+          onChange={(newAmount) => setDonateAmount(newAmount)}
+        />
+
+        <Button size="lg" onClick={() => setModalShow(true)}>
+          Donate ${donateAmount}
+        </Button>
+
+        <DonateModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          type="crowdfunding"
+          // name={props.crowdfundingDetails.name}
+          selectedValue={donateAmount}
+          setSelectedValue={donateAmount}
+          // stateData={props.stateData}
+          // changevalue={props.changevalue}
+          // cardNumberWithSpace={props.cardNumberWithSpace}
+          // donate={props.donate}
+          // dCardIcon={props.dCardIcon}
+          // loading={props.loading}
         />
         <div className="iframe__wrapper">
           <iframe

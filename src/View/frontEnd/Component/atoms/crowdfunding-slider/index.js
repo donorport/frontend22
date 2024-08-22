@@ -12,23 +12,23 @@ const ThickSlider = styled(Slider)({
     backgroundColor: '#fff',
     border: '2px solid currentColor',
     '&:hover, &.Mui-focusVisible, &.Mui-active': {
-      boxShadow: 'inherit',
-    },
+      boxShadow: 'inherit'
+    }
   },
   '& .MuiSlider-rail': {
     height: 19, // Ensure the rail is also thicker
     backgroundColor: '#2448e4 !important', // Use !important to override any default styles
-    opacity: 0.12,
+    opacity: 0.12
   },
   '& .MuiSlider-track': {
     height: 19, // Ensure the track is also thicker
-    backgroundColor: '#2448e4 !important', // Set track color to match rail
-  },
+    backgroundColor: '#2448e4 !important' // Set track color to match rail
+  }
 });
 
-function formatNumber(value) {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-}
+// function formatNumber(value) {
+//   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+// }
 
 export default function FundraisingSlider({
   userId,
@@ -36,10 +36,9 @@ export default function FundraisingSlider({
   min = 0,
   max = 10000,
   step = 100,
-  onChange: propOnChange,
+  onChange: propOnChange
 }) {
   const [value, setValue] = useState(propValue);
-  const [donateAmount, setDonateAmount] = useState(formatNumber(propValue));
 
   useEffect(() => {
     axios
@@ -47,7 +46,9 @@ export default function FundraisingSlider({
       .then((response) => {
         const amount = response.data.amount || propValue;
         setValue(amount);
-        setDonateAmount(formatNumber(amount));
+        if (propOnChange) {
+          propOnChange(amount);
+        }
       })
       .catch((error) => {
         console.error('There was an error fetching the fundraising amount!', error);
@@ -56,12 +57,10 @@ export default function FundraisingSlider({
 
   useEffect(() => {
     setValue(propValue);
-    setDonateAmount(formatNumber(propValue));
   }, [propValue]);
 
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
-    setDonateAmount(formatNumber(newValue));
     if (propOnChange) {
       propOnChange(newValue);
     }
@@ -70,16 +69,22 @@ export default function FundraisingSlider({
   const handleInputChange = (event) => {
     const rawValue = event.target.value.replace(/,/g, ''); // Remove commas
     setValue(rawValue === '' ? 0 : Number(rawValue));
-    setDonateAmount(formatNumber(rawValue === '' ? 0 : Number(rawValue)));
+    if (propOnChange) {
+      propOnChange(Number(rawValue === '' ? 0 : rawValue));
+    }
   };
 
   const handleBlur = () => {
     if (value < min) {
       setValue(min);
-      setDonateAmount(formatNumber(min));
+      if (propOnChange) {
+        propOnChange(min);
+      }
     } else if (value > max) {
       setValue(max);
-      setDonateAmount(formatNumber(max));
+      if (propOnChange) {
+        propOnChange(max);
+      }
     }
 
     axios.put(`/api/fundraising/${userId}`, { amount: value }).catch((error) => {
@@ -105,7 +110,8 @@ export default function FundraisingSlider({
           <input
             style={{ fontSize: '46px !important' }}
             className="form-control fundriase__input"
-            value={formatNumber(value)}
+            // value={formatNumber(value)}
+            value={value}
             onChange={handleInputChange}
             onBlur={handleBlur}
             step={step}
@@ -116,9 +122,6 @@ export default function FundraisingSlider({
           />
         </div>
       </div>
-      <button className="btn btn-primary donate-button">
-        Donate ${donateAmount}
-      </button>
     </div>
   );
 }
