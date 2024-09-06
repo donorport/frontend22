@@ -502,8 +502,6 @@ const AdminProjects = () => {
 
   return (
     <>
-
-
       {!viewProject ? (
         <div>
           <header className="gap-2 pb-2 pb-sm-0 py-0 py-sm-2 mb-sm-3 w-100 flex-column flex-lg-row d-sm-flex align-items-start">
@@ -520,15 +518,11 @@ const AdminProjects = () => {
             </div>
 
             <div className="d-flex align-items-center gap-2 justify-content-stretch justify-content-sm-start text-nowrap flex-wrap flex-sm-nowrap">
-              {hasProduct.length > 0 ? (
-                <Button
-                  variant="info"
-                  size="md"
-                  onClick={() => openModel()}
-                >
+              {!hasProduct.length == 0 && !loading ? (
+                <Button variant="info" size="md" onClick={() => openModel()}>
                   Create New
                 </Button>
-              ) : null}
+              ) : <div>test</div>}
               <LadderMenuItems listBy={listBy} onChangeDropDown={onChangeDropDown} />
             </div>
           </header>

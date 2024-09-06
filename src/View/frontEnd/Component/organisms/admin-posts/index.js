@@ -1995,7 +1995,7 @@ const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => 
             <Button
               variant="info"
               size="md"
-              className="me-2 fw-bold fs-6 text-nowrap"
+              className="fw-bold fs-6 text-nowrap"
               onClick={() => createNewPost()}
             >
               Create New

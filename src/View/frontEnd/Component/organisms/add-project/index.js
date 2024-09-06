@@ -411,7 +411,7 @@ const AddProject = (props) => {
         </Link> */}
       </div>
       <div className="d-flex flex-wrap mb-3 p-20p border rounded-3">
-        {productList.length > 0 &&
+        {productList.length > 0 ? (
           productList.map((product) => {
             const isAvailable = product.quantity !== product.soldout;
             return (
@@ -426,8 +426,15 @@ const AddProject = (props) => {
                 />
               )
             );
-          })}
+          })
+        ) : (
+          <p>
+            You must first publish some items for them to be added to a project. Try creating some
+            posts!
+          </p>
+        )}
       </div>
+
       {error && error.products && (
         <p className="error">{error ? (error.products ? error.products : '') : ''}</p>
       )}

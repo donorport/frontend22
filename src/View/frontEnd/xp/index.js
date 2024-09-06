@@ -119,45 +119,47 @@ const Xp = () => {
                   </Link>
                 </div>
               </div>
-              <div className="d-flex align-items-center py-12p">
-                <ListItemImg size={64} imgSrc={crown} />
-                <span className="mx-sm-4 mx-2 flex-grow-1">
-                  A top donator + purchased items from every category, and all locations
-                </span>
-                <span className="fw-bold text-info">{topDonator} XP</span>
-              </div>
-              <div className="d-flex align-items-center py-12p">
-                <ListItemImg size={64} imgSrc={list} />
-                <span className="mx-sm-4 mx-2 flex-grow-1">
-                  Have the top donation to an organization over $500
-                </span>
-                <span className="fw-bold text-info">{topDonation} XP</span>
-              </div>
-              <div className="d-flex align-items-center py-12p">
-                <ListItemImg size={64} imgSrc={money} />
-                <span className="mx-sm-4 mx-2 flex-grow-1">For each item you purchase</span>
-                <span className="fw-bold text-info">{forEachItem} XP</span>
-              </div>
-              <div className="d-flex align-items-center py-12p">
-                <ListItemImg size={64} imgSrc={wallet} />
-                <span className="mx-sm-4 mx-2 flex-grow-1">
-                  For each donation to an Organization / Project
-                </span>
-                <span className="fw-bold text-info">{forEachDonation} XP</span>
-              </div>
-              <div className="d-flex align-items-center py-12p">
-                <ListItemImg size={64} imgSrc={share} />
-                <span className="mx-sm-4 mx-2 flex-grow-1">
-                  For each share of an item / Organization / Project via social media
-                </span>
-                <span className="fw-bold text-info">{forEachShare} XP</span>
-              </div>
-              <div className="d-flex align-items-center py-12p">
-                <ListItemImg size={64} imgSrc={social} />
-                <span className="mx-sm-4 mx-2 flex-grow-1">
-                  For each Organization / Project you follow
-                </span>
-                <span className="fw-bold text-info">{forEachOrganization} XP</span>
+              <div className="d-flex flex-column gap-3">
+                <div className="d-flex align-items-center py-12p">
+                  <ListItemImg size={64} imgSrc={crown} />
+                  <span className="mx-sm-4 mx-2 flex-grow-1">
+                    A top donator + purchased items from every category, and all locations
+                  </span>
+                  <span className="fw-bold text-info text-nowrap">{topDonator} XP</span>
+                </div>
+                <div className="d-flex align-items-center py-12p">
+                  <ListItemImg size={64} imgSrc={list} />
+                  <span className="mx-sm-4 mx-2 flex-grow-1">
+                    Have the top donation to an organization over $500
+                  </span>
+                  <span className="fw-bold text-info text-nowrap">{topDonation} XP</span>
+                </div>
+                <div className="d-flex align-items-center py-12p">
+                  <ListItemImg size={64} imgSrc={money} />
+                  <span className="mx-sm-4 mx-2 flex-grow-1">For each item you purchase</span>
+                  <span className="fw-bold text-info text-nowrap">{forEachItem} XP</span>
+                </div>
+                <div className="d-flex align-items-center py-12p">
+                  <ListItemImg size={64} imgSrc={wallet} />
+                  <span className="mx-sm-4 mx-2 flex-grow-1">
+                    For each donation to an Organization / Project
+                  </span>
+                  <span className="fw-bold text-info text-nowrap">{forEachDonation} XP</span>
+                </div>
+                <div className="d-flex align-items-center py-12p">
+                  <ListItemImg size={64} imgSrc={share} />
+                  <span className="mx-sm-4 mx-2 flex-grow-1">
+                    For each share of an item / Organization / Project via social media
+                  </span>
+                  <span className="fw-bold text-info text-nowrap">{forEachShare} XP</span>
+                </div>
+                <div className="d-flex align-items-center py-12p">
+                  <ListItemImg size={64} imgSrc={social} />
+                  <span className="mx-sm-4 mx-2 flex-grow-1">
+                    For each Organization / Project you follow
+                  </span>
+                  <span className="fw-bold text-info text-nowrap">{forEachOrganization} XP</span>
+                </div>
               </div>
             </div>
           </Container>

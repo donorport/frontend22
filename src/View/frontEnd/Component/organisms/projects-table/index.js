@@ -130,7 +130,10 @@ const ProjectsTable = (props) => {
                             {countProjectAmount(project.productDetails)}
                           </h6>
                         )}
-                        <div className="date text-light fs-7">
+                        <div className="post__value date text-light fs-7">
+                          {project.status === -1 ? (
+                            <h6 className="post__status post__status--draft">DRAFT</h6>
+                          ) : null}
                           {moment(project.created_at).fromNow()}
                         </div>
                       </div>

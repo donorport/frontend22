@@ -105,6 +105,7 @@ const Ranks = () => {
               <li className="rank__item d-sm-flex align-items-center py-4 border-bottom">
                 <div className="xp__btn-wrap mb-2 mb-sm-0">
                   <IconButton
+                    size="md"
                     bgColor="#000"
                     className="rounded-pill"
                     icon={<FontAwesomeIcon icon={solid('anchor')} />}
@@ -112,11 +113,11 @@ const Ranks = () => {
                     Captain
                   </IconButton>
                 </div>
-                <div className="mx-sm-4 flex-grow-1 text-light mb-2 mb-sm-0">
+                <p className="mx-sm-4 flex-grow-1 mb-2 mb-sm-0">
                   You have done it. You're the top donor on Donorport. Wear this badge with pride as
                   your contributions have made a major impact in the community
-                </div>
-                <span className="fw-bold text-info">
+                </p>
+                <span className="fw-bold text-info text-nowrap">
                   {Number(captian).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
                 </span>
               </li>
@@ -124,6 +125,7 @@ const Ranks = () => {
               <li className="rank__item d-sm-flex align-items-center py-4 border-bottom">
                 <div className="xp__btn-wrap mb-2 mb-sm-0">
                   <IconButton
+                    size="md"
                     bgColor="#95dbb0"
                     className="rounded-pill"
                     icon={<FontAwesomeIcon icon={solid('ship')} />}
@@ -131,11 +133,11 @@ const Ranks = () => {
                     Admiral
                   </IconButton>
                 </div>
-                <div className="mx-sm-4 flex-grow-1 text-light mb-2 mb-sm-0">
+                <p className="mx-sm-4 flex-grow-1 mb-2 mb-sm-0">
                   The senior donor, you command the fleet. Your contributions are what drive the
                   platform. You should feel proud of this rank
-                </div>
-                <span className="fw-bold text-info">
+                </p>
+                <span className="fw-bold text-info text-nowrap">
                   {Number(admiral).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
                 </span>
               </li>
@@ -143,6 +145,7 @@ const Ranks = () => {
               <li className="rank__item d-sm-flex align-items-center py-4 border-bottom">
                 <div className="xp__btn-wrap mb-2 mb-sm-0">
                   <IconButton
+                    size="md"
                     bgColor="#fc8c63"
                     className="rounded-pill"
                     icon={<FontAwesomeIcon icon={solid('swords')} />}
@@ -150,10 +153,10 @@ const Ranks = () => {
                     Pirate
                   </IconButton>
                 </div>
-                <div className="mx-sm-4 flex-grow-1 text-light  mb-2 mb-sm-0">
+                <p className="mx-sm-4 flex-grow-1 mb-2 mb-sm-0">
                   A master of the ports, you're revered for your efforts
-                </div>
-                <span className="fw-bold text-info">
+                </p>
+                <span className="fw-bold text-info text-nowrap text-nowrap">
                   {Number(pirate).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
                 </span>
               </li>
@@ -161,6 +164,7 @@ const Ranks = () => {
               <li className="rank__item d-sm-flex align-items-center py-4 border-bottom">
                 <div className="xp__btn-wrap mb-2 mb-sm-0">
                   <IconButton
+                    size="md"
                     bgColor="#a278fc"
                     className="rounded-pill"
                     icon={<FontAwesomeIcon icon={solid('narwhal')} />}
@@ -168,11 +172,11 @@ const Ranks = () => {
                     Narwhal
                   </IconButton>
                 </div>
-                <div className="mx-sm-4 flex-grow-1 text-light mb-2 mb-sm-0">
+                <p className="mx-sm-4 flex-grow-1 mb-2 mb-sm-0">
                   Poking your way around the ports, you're admired for your commitment to helping
                   the community
-                </div>
-                <span className="fw-bold text-info">
+                </p>
+                <span className="fw-bold text-info text-nowrap">
                   {Number(narwhal).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
                 </span>
               </li>
@@ -180,6 +184,7 @@ const Ranks = () => {
               <li className="rank__item d-sm-flex align-items-center py-4 border-bottom">
                 <div className="xp__btn-wrap mb-2 mb-sm-0">
                   <IconButton
+                    size="md"
                     bgColor="#78bafc"
                     className="rounded-pill"
                     icon={<FontAwesomeIcon icon={solid('whale')} />}
@@ -187,11 +192,11 @@ const Ranks = () => {
                     Beluga
                   </IconButton>
                 </div>
-                <div className="mx-sm-4 flex-grow-1 text-light mb-2 mb-sm-0">
+                <p className="mx-sm-4 flex-grow-1 mb-2 mb-sm-0">
                   You've made your presence known on Donorport. We hear your calls to help the
                   community
-                </div>
-                <span className="fw-bold text-info">
+                </p>
+                <span className="fw-bold text-info text-nowrap">
                   {Number(beluga).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
                 </span>
               </li>
@@ -199,6 +204,7 @@ const Ranks = () => {
               <li className="rank__item d-sm-flex align-items-center py-4 border-bottom">
                 <div className="xp__btn-wrap mb-2 mb-sm-0">
                   <IconButton
+                    size="md"
                     bgColor="hsla(0, 96.46%, 76.14%, 1.00)"
                     className="rounded-pill "
                     icon={<FontAwesomeIcon icon={solid('fish')} />}
@@ -206,11 +212,11 @@ const Ranks = () => {
                     Fish
                   </IconButton>
                 </div>
-                <div className="mx-sm-4 flex-grow-1 text-light mb-2 mb-sm-0">
+                <p className="mx-sm-4 flex-grow-1 mb-2 mb-sm-0">
                   There are plenty of fish in the sea but without you, there wouldn't be anything to
                   fish for
-                </div>
-                <span className="fw-bold text-info">
+                </p>
+                <span className="fw-bold text-info text-nowrap">
                   {Number(fish).toLocaleString('en-US', { maximumFractionDigits: 2 })} XP
                 </span>
               </li>

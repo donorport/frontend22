@@ -11,7 +11,7 @@ export const ButtonContent = styled.div`
     props.size === "md" &&
     `
     height: 20px;
-    width: 20px;
+    // width: 20px;
     `}
 
 ${(props) =>

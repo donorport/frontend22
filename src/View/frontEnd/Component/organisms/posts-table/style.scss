@@ -3,6 +3,9 @@
 .post__value {
   min-width: 60px;
   max-width: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px
 }
 .project--btn {
   background: unset;
@@ -19,7 +22,16 @@
   }
 }
 .post__status {
-  background: $secondary-5;
-  // padding: 12px 6px !important;
-  border-radius: 12px
+  // background: $secondary-5;
+  font-size: 12px !important;
+  padding: 6px 3px !important;
+  border-radius: 6px;
+  color: $neutral-dark;
+  text-align: center;
+}
+.post__status--draft {
+  background: rgb(255, 214, 66);
+}
+.post__status--done {
+  background: rgb(43, 219, 93);
 }

@@ -74,7 +74,7 @@ const PostsTable = (props) => {
                     <div className="progress__wrap d-flex align-items-center  me-sm-3">
                       <div className="ms-auto ms-sm-0 me-sm-2 post__value">
                         {product.isFulfiled ? (
-                          <h6 className="post__status">DONE</h6>
+                          <h6 className="post__status post__status--done">DONE</h6>
                         ) : product.status === 1 ? (
                           <h6 className="price">
                             {organizationDetails.symbol}
@@ -83,7 +83,7 @@ const PostsTable = (props) => {
                             )}
                           </h6>
                         ) : product.status === -1 ? (
-                          <h6 className="post__status">DRAFT</h6>
+                          <h6 className="post__status post__status--draft">DRAFT</h6>
                         ) : null}
 
                         <div className="date text-light fs-7">
