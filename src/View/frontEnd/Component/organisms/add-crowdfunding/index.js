@@ -44,18 +44,18 @@ const title3 = 'Description';
 const placeholder3 = 'Enter some details about your need';
 
 const AddCrowdfunding = (props) => {
-  const { status, name, headline, video, description, error, infinite } = props.stateData;
+  const { id, updateGoal, goal, status, name, headline, video, description, error, infinite } = props.stateData;
 
   const [sliderValue, setSliderValue] = useState(500);
 
   // Function to handle changes from the slider
   const handleSliderChange = (newValue) => {
-    console.log('Slider value changed:', newValue);
+    props.updateGoal(newValue)
     setSliderValue(newValue);
   };
 
   let url = video;
-  let videoid = url ? url?.split('?v=')[1].split('&')[0] : '';
+  let videoid = url ? url?.split('?v=')[1] ? url?.split('?v=')[1].split('&')[0] : '' : '';
   let embedlink = url ? 'https://www.youtube.com/embed/' + videoid : '';
 
   let tempImages = props.tempImages;
@@ -130,9 +130,10 @@ const AddCrowdfunding = (props) => {
         </div>
       </div>
       <FundraisingSlider
-          userId="12345" // Replace with actual userId or prop value
-          value={sliderValue}
+          userId={id}
+          value={goal}
           min={0}
+          name={goal}
           max={50000}
           step={100}
           onChange={handleSliderChange}

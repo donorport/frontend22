@@ -41,11 +41,12 @@ const AdminCrowdfundings = () => {
     video: '',
     description: '',
     infinite: false,
+    goal: '',
     error: [],
     images: []
   });
 
-  const { id, name, headline, video, description, images, infinite } = state;
+  const { id, name, headline, goal, video, description, images, infinite } = state;
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalRecord, setTotalRecord] = useState(0);
@@ -93,6 +94,7 @@ const AdminCrowdfundings = () => {
       video: '',
       description: '',
       infinite: false,
+      goal: '',
       error: [],
       images: []
     });
@@ -194,6 +196,7 @@ const AdminCrowdfundings = () => {
         formData.video = video;
         formData.description = description;
         formData.infinity = infinite;
+        formData.goal = goal;
         formData.organizationId = data._id;
         formData.organizationCountryId = data.country_id;
         formData.status = s;
@@ -301,6 +304,7 @@ const AdminCrowdfundings = () => {
               setLoading(false);
               setUpdate(!update);
               ToastAlert({ msg: deleteCrowdfundingApiResults.data.message, msgType: 'success' });
+              window.location.reload();
             }
           }
         }
@@ -328,6 +332,7 @@ const AdminCrowdfundings = () => {
         status: crowdfundingData.status,
         headline: crowdfundingData.headline,
         name: crowdfundingData.name,
+        goal: crowdfundingData.goal,
         description: crowdfundingData.description,
         video: crowdfundingData.video,
         infinite: crowdfundingData.infinity
@@ -353,6 +358,13 @@ const AdminCrowdfundings = () => {
   const discardCrowdfunding = () => {
     setIsCreateCrowdfunding(false);
     resetForm();
+  };
+
+  const updateGoal = (value) => {
+    setstate({
+      ...state,
+      goal: value
+    });    
   };
 
   const publishCrowdfunding = async (id, crowdfundingData) => {
@@ -485,6 +497,7 @@ const AdminCrowdfundings = () => {
           changefile={changefile}
           submitCrowdfundingForm={submitCrowdfundingForm}
           discardCrowdfunding={discardCrowdfunding}
+          updateGoal={updateGoal}
           slug={data.slug}
           deleteCrowdfundingImage={deleteCrowdfundingImage}
           removeTempImages={removeTempImages}

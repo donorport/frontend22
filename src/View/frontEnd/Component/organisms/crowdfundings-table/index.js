@@ -1,3 +1,4 @@
+
 import { Button, ProgressBar } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -165,7 +166,7 @@ const CrowdfundingListItem = ({
             {crowdfunding.status === 1 && (
               <h6 className="price ">
                 {data?.symbol}
-                {countCrowdfundingAmount(crowdfunding?.productDetails || [])}
+                {crowdfunding?.goal}
               </h6>
             )}
             <div className="date text-light fs-7">{moment(crowdfunding.created_at).fromNow()}</div>

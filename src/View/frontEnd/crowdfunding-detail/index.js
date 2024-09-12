@@ -32,7 +32,7 @@ console.log('CrowdfundingDetail:', {props});
             type="crowdfunding"
           />
 
-          {/* <div className="ms-auto d-flex align-items-center">
+         <div className="ms-auto d-flex align-items-center">
             {!CampaignAdminAuthToken && (
               <Button size="lg" onClick={() => setModalShow(true)}>
                 Donate
@@ -53,7 +53,7 @@ console.log('CrowdfundingDetail:', {props});
               dCardIcon={props.dCardIcon}
               loading={props.loading}
             />
-          </div> */}
+          </div>
         </div>
       </SuggestionWrapper>
       <Container fluid className="py-3 py-sm-5">
@@ -66,6 +66,12 @@ console.log('CrowdfundingDetail:', {props});
               checkItemInCart={props.checkItemInCart}
               followToCrowdfunding={props.followToCrowdfunding}
               isFollow={props.isFollow}
+              stateData={props.stateData}
+              changevalue={props.changevalue}
+              cardNumberWithSpace={props.cardNumberWithSpace}
+              donate={props.donate}
+              dCardIcon={props.dCardIcon}
+              loading={props.loading}    
             />
           </Col>
           <Col md="5">

@@ -31,6 +31,7 @@ function crowdfunding() {
     data.append('name', cdata.name);
     data.append('headline', cdata.headline);
     data.append('description', cdata.description);
+    data.append('goal', cdata.goal);
     data.append('video', cdata.video);
     data.append('status', cdata.status);
     data.append('infinity', cdata.infinity);
@@ -92,6 +93,7 @@ function crowdfunding() {
     data.append('description', cdata.description);
     data.append('video', cdata.video);
     data.append('status', cdata.status);
+    data.append('goal', cdata.goal);
     data.append('infinity', cdata.infinity);
     data.append('organizationId', cdata.organizationId);
 

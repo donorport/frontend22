@@ -13,7 +13,8 @@ import './style.scss';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-function CrowdfundingDetailMain({ crowdfundingDetails, followToCrowdfunding, isFollow }) {
+function CrowdfundingDetailMain({ crowdfundingDetails, stateData, changevalue, cardNumberWithSpace, donate, dCardIcon, loading, followToCrowdfunding, isFollow }) {
+
   const [sliderValue, setSliderValue] = useState(500);
   const [donateAmount, setDonateAmount] = useState(500);
   const [modalShow, setModalShow] = useState(false);
@@ -24,7 +25,7 @@ function CrowdfundingDetailMain({ crowdfundingDetails, followToCrowdfunding, isF
   };
   const video = crowdfundingDetails?.video;
 
-  const videoid = video ? video.split('?v=')[1].split('&')[0] : '';
+  const videoid = video ? video.split('?v=')[1] ? video.split('?v=')[1].split('&')[0] : '' : '';
   const embedlink = video ? 'https://www.youtube.com/embed/' + videoid : '';
 
   const [address, setAddress] = useState('');
@@ -186,7 +187,7 @@ function CrowdfundingDetailMain({ crowdfundingDetails, followToCrowdfunding, isF
           </p>
         </div>
         <FundraisingSlider
-          userId="12345" // Replace with actual userId or prop value
+          userId={crowdfundingDetails?._id}
           value={sliderValue}
           min={0}
           max={5000}
@@ -202,15 +203,15 @@ function CrowdfundingDetailMain({ crowdfundingDetails, followToCrowdfunding, isF
           show={modalShow}
           onHide={() => setModalShow(false)}
           type="crowdfunding"
-          // name={props.crowdfundingDetails.name}
+          name={crowdfundingDetails.name}
           selectedValue={donateAmount}
           setSelectedValue={donateAmount}
-          // stateData={props.stateData}
-          // changevalue={props.changevalue}
-          // cardNumberWithSpace={props.cardNumberWithSpace}
-          // donate={props.donate}
-          // dCardIcon={props.dCardIcon}
-          // loading={props.loading}
+          stateData={stateData}
+          changevalue={changevalue}
+          cardNumberWithSpace={cardNumberWithSpace}
+          donate={donate}
+          dCardIcon={dCardIcon}
+          loading={loading}
         />
         <div className="iframe__wrapper">
           <iframe
