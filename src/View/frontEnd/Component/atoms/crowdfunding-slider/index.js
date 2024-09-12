@@ -42,7 +42,7 @@ export default function FundraisingSlider({
 
   useEffect(() => {
     axios
-      .get(`/api/fundraising/${userId}`)
+      .get(`/api/crowdfunding/${userId}`)
       .then((response) => {
         const amount = response.data.amount || propValue;
         setValue(amount);
@@ -87,7 +87,7 @@ export default function FundraisingSlider({
       }
     }
 
-    axios.put(`/api/fundraising/${userId}`, { amount: value }).catch((error) => {
+    axios.put(`/api/crowdfunding/${userId}`, { amount: value }).catch((error) => {
       console.error('There was an error updating the fundraising amount!', error);
     });
   };

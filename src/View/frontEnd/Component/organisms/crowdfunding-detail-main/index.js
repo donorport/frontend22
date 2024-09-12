@@ -96,7 +96,7 @@ function CrowdfundingDetailMain({ crowdfundingDetails, stateData, changevalue, c
         <div className="d-flex flex-column">
           <h5 className="project__detail-sublabel mb-0 fw-bolder">Charity</h5>
           <div className="project__detail-subtitle fw-bold">Goal</div>
-          <h1>$5,000</h1>
+          <h1>${crowdfundingDetails.goal}</h1>
           <div className="product__top px-0 d-flex align-items-center">
             <div className="d-flex align-items-center w-100">
               <ProgressBar
