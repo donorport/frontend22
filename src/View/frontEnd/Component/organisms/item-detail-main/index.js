@@ -87,28 +87,24 @@ function ProjectDetailMain(props) {
     (async () => {
       try {
         const getLocationByLatLong = await locationApi.getLocationByLatLong(user.lat, user.lng);
-  
+
         if (getLocationByLatLong.data.results && getLocationByLatLong.data.results.length > 0) {
           const longformAddress = getLocationByLatLong.data.results[0].formatted_address || '';
           const addrComponents = getLocationByLatLong.data.results[0].address_components || [];
-  
-          const stateCode = longformAddress
-            .split(', ')
-            .reverse()[1]
-            .split(' ')[0];
-          
+
+          const stateCode = longformAddress.split(', ').reverse()[1].split(' ')[0];
+
           const stateName = addrComponents.find((c) => c.short_name === stateCode)?.long_name || '';
-  
+
           setUserAddress(stateName);
         } else {
-          console.error("No results found for location.");
+          console.error('No results found for location.');
         }
       } catch (error) {
-        console.error("Error fetching location data: ", error);
+        console.error('Error fetching location data: ', error);
       }
     })();
   }, [productDetails]);
-  
 
   const onClickFilter = (e) => {
     props.addProductToWishlist(productDetails._id);
@@ -226,18 +222,28 @@ const ItemDetailsMain = ({
   per
 }) => (
   <div className="d-flex flex-column gap-2">
-    <div className="mb-1">
+    <div className="d-flex">
       {' '}
-      <h4 className="project__detail-label mb-3p">Item</h4>
-      <h1 className="project__detail-title " style={{ textTransform: 'capitalize' }}>
-        {productDetails?.headline}
-      </h1>
-      <h5 className="project__detail-sublabel mb-0 fw-bolder">Product</h5>
-      <div className="project__detail-subtitle fw-bold">{productDetails?.brand} ™</div>
-      <h2 className="project__detail-price price m-0">
-        {currencySymbol}
-        {priceFormat(price)}
-      </h2>
+      <div className="flex-grow-1 mb-1">
+        {' '}
+        <h4 className="project__detail-label mb-3p">Item</h4>
+        <h1 className="project__detail-title " style={{ textTransform: 'capitalize' }}>
+          {productDetails?.headline}
+        </h1>
+        <h5 className="project__detail-sublabel mb-0 fw-bolder">Product</h5>
+        <div className="project__detail-subtitle fw-bold">{productDetails?.brand} ™</div>
+        <h2 className="project__detail-price price m-0">
+          {currencySymbol}
+          {priceFormat(price)}
+        </h2>
+      </div>{' '}
+      <div className="justify-content-end page__logo page__logo--org">
+        <img
+          alt=""
+          style={{ width: 'auto', maxHeight: '90%', maxWidth: '90%' }}
+          src={helper.CampaignAdminLogoPath + productDetails?.campaignDetails?.logo}
+        />
+      </div>
     </div>
 
     <div className="project__detail-meta d-flex align-items-center gap-2 text-light flex-wrap">
@@ -307,7 +313,7 @@ const ItemDetailsMain = ({
       </div>
     </div>
 
-    <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-0 mb-sm-2">
+    {/* <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-0 mb-sm-2">
       <Link
         size="lg"
         variant="link"
@@ -350,7 +356,7 @@ const ItemDetailsMain = ({
           {productDetails?.campaignDetails?.name}
         </span>
       </Link>
-    </div>
+    </div> */}
     <div>
       <div className="note d-sm-none project__detail-img mb-3">
         <img
@@ -373,7 +379,7 @@ const ItemDetailsMain = ({
           ></iframe>
         </div>
       )}
-      <h4 className="page__blurb fw-bolder">{productDetails.needheadline}</h4>
+      <h4 className="mt-5 page__blurb fw-bolder">{productDetails.needheadline}</h4>
       <p className="page__paragraph">
         {productDetails?.description?.replace(/<\/?[^>]+(>|$)/g, '')}
       </p>
@@ -458,7 +464,7 @@ const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) =
     {productDetails.tax && (
       <div className="d-flex align-items-center pt-12p pb-12p">
         <div className="list__item-img list__item-img__tax me-2 p-1 border-0">
-        <FontAwesomeIcon icon={solid('receipt')} className="fs-3 text-primary"/>
+          <FontAwesomeIcon icon={solid('receipt')} className="fs-3 text-primary" />
           {/* <img alt="" src={receipt}></img>{' '} */}
         </div>
         <p>These items are tax deductible.</p>

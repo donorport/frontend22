@@ -112,16 +112,17 @@ const ItemDetail = (props) => {
   return (
     <>
       <HeaderController />
-      <SuggestionWrapper>
+      {/* <SuggestionWrapper>
         <SuggestedList
           itemTag="product"
           productList={productListByCountry}
           productId={productDetails?._id}
           productDetails={productDetails}
         />
-      </SuggestionWrapper>
-      <Container fluid className="py-3 py-sm-5">
-        <Row className="gap-md-0 gap-3">
+      </SuggestionWrapper> */}
+      <Container fluid className="pt-0 pt-sm-5">
+        <Row className="ps-0 ps-sm-3 position-relative pt-5 gap-md-0 gap-3">
+        <div className="d-none d-sm-flex detailshero"></div>
           <Col md="7">
             <ItemDetailMain
               progress={70}
@@ -137,10 +138,10 @@ const ItemDetail = (props) => {
 
           <Col md="5">
             <div className="d-none d-sm-flex project__detail-img mb-3">
-              <div
+              {/* <div
                 className="item__bg main"
                 style={{ backgroundColor: productDetails?.dominantColor }}
-              ></div>
+              ></div> */}
               <img
                 className="img-fluid"
                 alt=""

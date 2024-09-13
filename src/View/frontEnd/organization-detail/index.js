@@ -35,7 +35,7 @@ const OrganizationDetail = (props) => {
   return (
     <>
       <HeaderController />
-      <SuggestionWrapper>
+      {/* <SuggestionWrapper>
         <div className="suggested__list d-flex align-items-center container-fluid p-0 mb-0">
           <SuggestedList
             organizationList={organizationListByCountry}
@@ -70,9 +70,10 @@ const OrganizationDetail = (props) => {
             />
           </div>
         </div>
-      </SuggestionWrapper>
-      <Container fluid className="pt-3 pt-sm-5">
-        <Row className="gap-md-0 gap-3">
+      </SuggestionWrapper> */}
+      <Container fluid className="pt-0 pt-sm-3">
+        <Row className="ps-0 ps-sm-3 position-relative pt-5 gap-md-0 gap-3">
+        <div className="d-none d-sm-flex detailshero"></div>
           <Col md="7">
             <OrganizationDetailMain
               followToOrganization={props.followToOrganization}
@@ -86,10 +87,8 @@ const OrganizationDetail = (props) => {
             <History list={props.purchasedItemList} donationList={props.donationList} />
           </Col>
         </Row>
-      </Container>
-      {projectList ? (
-        <Container fluid>
-          <Row className="py-5">
+        {projectList ? (
+          <Row className="ps-3 py-5">
             <Col md="6" className="mb-4 mb-0" style={{ maxWidth: '545px' }}>
               <OrganizationCrowdfundingProjectsWidget
                 projectList={projectList}
@@ -98,8 +97,8 @@ const OrganizationDetail = (props) => {
             </Col>
             <Col md="6"></Col>
           </Row>
-        </Container>
-      ) : null}
+        ) : null}
+      </Container>
 
       <Footer />
     </>

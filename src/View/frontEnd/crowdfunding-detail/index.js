@@ -20,11 +20,11 @@ const CrowdfundingDetail = (props) => {
   const [modalShow, setModalShow] = useState(false);
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
 
-console.log('CrowdfundingDetail:', {props});
+  console.log('CrowdfundingDetail:', { props });
   return (
     <>
-      <HeaderController/>
-      <SuggestionWrapper>
+      <HeaderController />
+      {/* <SuggestionWrapper>
         <div className="d-flex container-fluid">
           <ProjectCrowdfundingSuggestionList
             list={props.crowdfundingList}
@@ -55,9 +55,10 @@ console.log('CrowdfundingDetail:', {props});
             />
           </div>
         </div>
-      </SuggestionWrapper>
-      <Container fluid className="py-3 py-sm-5">
-        <Row>
+      </SuggestionWrapper> */}
+      <Container fluid className="pt-0 pt-sm-3">
+        <Row className="position-relative pt-5 ps-0 ps-sm-3 gap-md-0 gap-3">
+          <div className="detailshero"></div>
           <Col md="7" className="mb-4">
             <CrowdfundingDetailMain
               progress={70}
@@ -71,7 +72,7 @@ console.log('CrowdfundingDetail:', {props});
               cardNumberWithSpace={props.cardNumberWithSpace}
               donate={props.donate}
               dCardIcon={props.dCardIcon}
-              loading={props.loading}    
+              loading={props.loading}
             />
           </Col>
           <Col md="5">

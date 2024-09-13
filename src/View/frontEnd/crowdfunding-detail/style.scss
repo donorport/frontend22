@@ -21,3 +21,15 @@
   justify-content: center;
   flex: 0 0 auto;
 }
+.detailshero {
+  position: absolute;
+  right: 0;
+  left: 0;
+  width: 100%;
+  top: 0;
+  height: 400px;
+  background: $secondary-3;
+  padding: 3rem;
+  border-radius: 3rem;
+  z-index: -1
+}
