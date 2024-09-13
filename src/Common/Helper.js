@@ -28,8 +28,8 @@ let helper = {
   ProjectImagePath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/project/resize/',
   ProjectFullImagePath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/project/',
 
-  CrowdfundingImagePath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/crowdfunding/resize/',
-  CrowdfundingFullImagePath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/crowdfunding/',
+  CrowdfundingImagePath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/project/resize/',
+  CrowdfundingFullImagePath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/project/',
 
   CampaignProductFullImagePath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/product/',
   DonorImagePath: AWS_S3_BUCKET_BASE_URL + 'images/donor/',

@@ -243,7 +243,7 @@ function CrowdfundingDetailMain({ crowdfundingDetails, stateData, changevalue, c
           {crowdfundingDetails?.images && crowdfundingDetails?.images.length > 0 && (
             <ProjectCrowdfundingGallery
               images={crowdfundingDetails?.images}
-              tagTitle="Crowdfunding"
+              tagTitle="Project"
             />
           )}
         </div>
