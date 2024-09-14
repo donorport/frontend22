@@ -121,7 +121,7 @@ const ItemDetail = (props) => {
         />
       </SuggestionWrapper> */}
       <Container fluid className="pt-0 pt-sm-5">
-        <Row className="ps-0 ps-sm-3 position-relative pt-5 gap-md-0 gap-3">
+        <Row className="ps-0 ps-sm-3 position-relative pt-5 gap-md-0 gap-3 mb-5">
         <div className="d-none d-sm-flex detailshero"></div>
           <Col md="7">
             <ItemDetailMain
@@ -235,7 +235,7 @@ const ItemDetail = (props) => {
           allProjects.map((project, key) => {
             return (
               <div>
-                <Row className="py-5 border-top">
+                <Row className="ps-0 ps-sm-3 py-5 border-top">
                   <Col md="6" className="mb-4 mb-0">
                     <TagTitle>Projects</TagTitle>
 
@@ -271,7 +271,7 @@ const ItemDetail = (props) => {
           })}
         {/* {console.log(productDetails)} */}
         {similerProductsCount > 0 && (
-          <Row className="py-5 border-top">
+          <Row className="ps-0 ps-sm-3 py-5 border-top">
             <Col md="6" className="mb-4 mb-0">
               <SimilarItems
                 productDetails={productDetails}

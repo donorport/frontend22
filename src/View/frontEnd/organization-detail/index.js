@@ -71,7 +71,7 @@ const OrganizationDetail = (props) => {
           </div>
         </div>
       </SuggestionWrapper> */}
-      <Container fluid className="pt-0 pt-sm-3">
+      <Container fluid className="pt-0 pt-sm-5">
         <Row className="ps-0 ps-sm-3 position-relative pt-5 gap-md-0 gap-3">
         <div className="d-none d-sm-flex detailshero"></div>
           <Col md="7">

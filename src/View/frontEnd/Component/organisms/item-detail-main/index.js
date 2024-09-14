@@ -222,7 +222,7 @@ const ItemDetailsMain = ({
   per
 }) => (
   <div className="d-flex flex-column gap-2">
-    <div className="d-flex">
+    <div className="d-flex gap-4">
       {' '}
       <div className="flex-grow-1 mb-1">
         {' '}
@@ -237,13 +237,16 @@ const ItemDetailsMain = ({
           {priceFormat(price)}
         </h2>
       </div>{' '}
-      <div className="justify-content-end page__logo page__logo--org">
+      <Link
+        to={'/organization/' + productDetails?.campaignDetails?.slug}
+        className="justify-content-end page__logo page__logo--org"
+      >
         <img
           alt=""
           style={{ width: 'auto', maxHeight: '90%', maxWidth: '90%' }}
           src={helper.CampaignAdminLogoPath + productDetails?.campaignDetails?.logo}
         />
-      </div>
+      </Link>
     </div>
 
     <div className="project__detail-meta d-flex align-items-center gap-2 text-light flex-wrap">

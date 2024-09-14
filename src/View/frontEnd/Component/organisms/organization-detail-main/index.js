@@ -205,7 +205,7 @@ function OrganizationDetailMain({
           </div>
         )}
 
-        <div>
+        <div className="mt-2">
           <h4 className="page__blurb fw-bolder">{organizationDetails?.headline}</h4>
           <p className="page__paragraph">{organizationDetails?.description}</p>
         </div>

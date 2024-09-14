@@ -13,8 +13,17 @@ import './style.scss';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-function CrowdfundingDetailMain({ crowdfundingDetails, stateData, changevalue, cardNumberWithSpace, donate, dCardIcon, loading, followToCrowdfunding, isFollow }) {
-
+function CrowdfundingDetailMain({
+  crowdfundingDetails,
+  stateData,
+  changevalue,
+  cardNumberWithSpace,
+  donate,
+  dCardIcon,
+  loading,
+  followToCrowdfunding,
+  isFollow
+}) {
   const [sliderValue, setSliderValue] = useState(500);
   const [donateAmount, setDonateAmount] = useState(500);
   const [modalShow, setModalShow] = useState(false);
@@ -25,7 +34,7 @@ function CrowdfundingDetailMain({ crowdfundingDetails, stateData, changevalue, c
   };
   const video = crowdfundingDetails?.video;
 
-  const videoid = video ? video.split('?v=')[1] ? video.split('?v=')[1].split('&')[0] : '' : '';
+  const videoid = video ? (video.split('?v=')[1] ? video.split('?v=')[1].split('&')[0] : '') : '';
   const embedlink = video ? 'https://www.youtube.com/embed/' + videoid : '';
 
   const [address, setAddress] = useState('');
@@ -74,24 +83,34 @@ function CrowdfundingDetailMain({ crowdfundingDetails, stateData, changevalue, c
   return (
     <div className="project__detail-main">
       <div className="d-flex flex-column mb-4 gap-2">
-        <div className="d-flex align-items-center mb-1">
-          <div>
-            <TagTitle>Fundraiser</TagTitle>
-            <h1 className="project__detail-title">
-              {crowdfundingDetails?.name ? crowdfundingDetails.name : 'Utility Vehicle'}
-            </h1>
-            <div className="project__detail-meta d-flex align-items-center flex-wrap text-light">
-              <div className="d-flex align-items-center me-2 text-nowrap">
-                <FontAwesomeIcon icon={regular('clock')} className="me-1" />
-                {/* December 27, 2018 */}{' '}
-                {moment(crowdfundingDetails.created_at).format('MMMM DD , YYYY')}
-              </div>
-              <div className="d-flex align-items-center me-2 text-nowrap">
-                <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
-                {address}
+        <div className="d-flex gap-5">
+          {' '}
+          <div className="d-flex align-items-center mb-1">
+            <div>
+              <TagTitle>Fundraiser</TagTitle>
+              <h1 className="project__detail-title">
+                {crowdfundingDetails?.name ? crowdfundingDetails.name : 'Utility Vehicle'}
+              </h1>
+              <div className="project__detail-meta d-flex align-items-center flex-wrap text-light">
+                <div className="d-flex align-items-center me-2 text-nowrap">
+                  <FontAwesomeIcon icon={regular('clock')} className="me-1" />
+                  {/* December 27, 2018 */}{' '}
+                  {moment(crowdfundingDetails.created_at).format('MMMM DD , YYYY')}
+                </div>
+                <div className="d-flex align-items-center me-2 text-nowrap">
+                  <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
+                  {address}
+                </div>
               </div>
             </div>
-          </div>
+          </div>{' '}
+          <Link to={'/organization/' + crowdfundingDetails?.campaignDetails?.slug}>
+            <img
+              alt=""
+              style={{ width: 'auto', maxHeight: '90%', maxWidth: '90%' }}
+              src={helper.CampaignAdminLogoPath + crowdfundingDetails?.campaignDetails?.logo}
+            ></img>
+          </Link>
         </div>
         <div className="d-flex flex-column">
           <h5 className="project__detail-sublabel mb-0 fw-bolder">Charity</h5>
@@ -131,7 +150,7 @@ function CrowdfundingDetailMain({ crowdfundingDetails, stateData, changevalue, c
               />
             </div>
           </div>
-          <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-0 mb-sm-2">
+          {/* <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-0 mb-sm-2">
             <Link
               size="lg"
               variant="link"
@@ -162,23 +181,20 @@ function CrowdfundingDetailMain({ crowdfundingDetails, stateData, changevalue, c
               to={'/organization/' + crowdfundingDetails?.campaignDetails?.slug}
             >
               <span className="d-flex align-items-center icon__category">
-                {/* <CategoryIcon /> */}
-                {/* <div className="page__logo page__logo--org ms-auto" > */}
                 <img
                   alt=""
                   style={{ width: 'auto', maxHeight: '90%', maxWidth: '90%' }}
                   src={helper.CampaignAdminLogoPath + crowdfundingDetails?.campaignDetails?.logo}
                 />
-                {/* </div> */}
               </span>
               <span className="fs-6  fw-bold ms-1">
                 {crowdfundingDetails?.campaignDetails?.name}
               </span>
             </Link>
-          </div>
+          </div> */}
         </div>
         <div>
-          <h4 className="page__blurb fw-bolder">
+          <h4 className="mt-3 page__blurb fw-bolder">
             {crowdfundingDetails.headline || 'Default Headline'}
           </h4>
           <p className="page__paragraph">
@@ -241,10 +257,7 @@ function CrowdfundingDetailMain({ crowdfundingDetails, stateData, changevalue, c
           )}
 
           {crowdfundingDetails?.images && crowdfundingDetails?.images.length > 0 && (
-            <ProjectCrowdfundingGallery
-              images={crowdfundingDetails?.images}
-              tagTitle="Project"
-            />
+            <ProjectCrowdfundingGallery images={crowdfundingDetails?.images} tagTitle="Project" />
           )}
         </div>
       </div>
