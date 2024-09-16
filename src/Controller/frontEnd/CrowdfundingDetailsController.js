@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import CrowdfundingDetail from '../../View/frontEnd/crowdfunding-detail';
@@ -19,16 +20,14 @@ import {
 const DONATE_VALIDATION_RULES = {
   //name: 'required',
   cardNumber: 'required|number',
-  month: 'required',
-  year: 'required',
+  ccexpdate: 'required',
   cvv: 'required|number'
 };
 const DONATE_VALIDATION_MESSAGES = {
   // 'name.required': 'Card holder name is required.',
   'cardNumber.required': 'Card number is required.',
   'cardNumber.number': 'Card number can not be string.',
-  'month.required': 'Month is required.',
-  'year.required': 'Year number is required.',
+  'ccexpdate.required': 'Expire Date is required.',
   'cvv.required': 'CVV is required.',
   'cvv.number': 'CVV can not be string.'
 };
@@ -72,13 +71,14 @@ export default function CrowdfundingDetailsController() {
     country: '',
     zip: '',
     line1: '',
+    ccexpdate: '',
     cardNumber: '',
     month: '',
     year: '',
     cvv: '',
     error: []
   });
-  const { cardNumber, month, year, cvv } = state;
+  const { cardNumber, ccexpdate, month, year, cvv } = state;
 
   const [cardNumberWithSpace, setCardNumberWithSpace] = useState('');
 
@@ -93,6 +93,7 @@ export default function CrowdfundingDetailsController() {
 
   const handleChangeValue = async (e) => {
     let value = e.target.value;
+
     if (e.target.name === 'cardNumber') {
       let cardVal = value
         .replace(/[^\dA-Z]/g, '')
@@ -170,7 +171,7 @@ export default function CrowdfundingDetailsController() {
       navigate('/signin');
       return;
     }
-
+    debugger
     validateAll(state, DONATE_VALIDATION_RULES, DONATE_VALIDATION_MESSAGES)
       .then(async () => {
         setLoading(true);
@@ -190,8 +191,8 @@ export default function CrowdfundingDetailsController() {
         data.country = user.countryName;
         data.amount = grandTotal;
         data.cardNumber = cardNumber;
-        data.cardExpMonth = month;
-        data.cardExpYear = year;
+        data.cardExpMonth = ccexpdate.split("/")[0];
+        data.cardExpYear = ccexpdate.split("/")[1];
         data.cardCVC = cvv;
         data.postalCode = user.zip;
         data.currency = user.currency;
@@ -225,6 +226,7 @@ export default function CrowdfundingDetailsController() {
         // navigate('/donate/' + donateToProject.data.donationId)
       })
       .catch((errors) => {
+        debugger
         //setLoading(false);
         const formaerrror = {};
         if (errors.length) {

@@ -239,15 +239,25 @@ const DonateModal = (props) => {
                   </label>
                   <input
                     type="text"
-                    name="ccnumber"
+                    name="cardNumber"
                     id="ccnumber"
                     className="form-control"
                     maxLength={16}
                     required
-                    onChange={props.cardNumberInput}
-                    value={props.cardNumber}
+                    onChange={(e) => {
+                      props.changevalue(e);
+                    }}
+                    value={stateData.cardNumber ? stateData.cardNumber : ''}
                   />
-                  <div className="field_error">{props.cardNumberError}</div>
+                  {stateData.error.cardNumber && (
+                    <p className="error">
+                      {stateData.error
+                        ? stateData.error.cardNumber
+                          ? stateData.error.cardNumber
+                          : ''
+                        : ''}
+                    </p>
+                  )}
                 </div>
 
                 <div className="checkout__input">
@@ -261,11 +271,19 @@ const DonateModal = (props) => {
                     className="form-control"
                     placeholder="MM/YY"
                     maxLength={5}
-                    onChange={props.cardExpiryInput}
-                    value={props.cardExpiry}
+                    onChange={(e) => props.changevalue(e)}
+                    value={stateData.ccexpdate ? stateData.ccexpdate : ''}
                     required
                   />
-                  <div className="field_error">{props.cardExpiryError}</div>
+                  {stateData.error.ccexpdate && (
+                        <p className="error">
+                          {stateData.error
+                            ? stateData.error.ccexpdate
+                              ? stateData.error.ccexpdate
+                              : ''
+                            : ''}
+                        </p>
+                      )}
                 </div>
 
                 <div className="checkout__input">
@@ -274,16 +292,22 @@ const DonateModal = (props) => {
                   </label>
                   <input
                     type="text"
-                    name="cvc"
+                    name="cvv"
                     autoComplete="cc-csc"
                     id="cvc"
                     maxLength={3}
-                    className="form-control"
-                    onChange={props.cardCvcInput}
-                    value={props.cardCvc}
+                    value={stateData.cvv ? stateData.cvv : ''}
+                    className={
+                      stateData.error.cvv ? 'inputerror form-control ' : 'form-control '
+                    }
+                    onChange={(e) => props.changevalue(e)}
                     required
                   />
-                  <div className="field_error">{props.cardCvcError}</div>
+                  {stateData.error.cvv && (
+                      <p className="error">
+                        {stateData.error ? (stateData.error.cvv ? stateData.error.cvv : '') : ''}
+                      </p>
+                  )}
                 </div>
 
                 <Button
