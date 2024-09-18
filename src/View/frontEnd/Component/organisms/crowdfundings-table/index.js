@@ -1,4 +1,3 @@
-
 import { Button, ProgressBar } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -99,7 +98,7 @@ const CrowdfundingsTable = (props) => {
         className="list-unstyled mb-0 list__table-list"
         style={{
           //maxHeight: crowdfundingList.length > 1 ? '550px' : '',
-          minHeight: crowdfundingList.length > 1 ? '550px' : ''
+          // minHeight: crowdfundingList.length > 1 ? '550px' : ''
         }}
       >
         {crowdfundingList.length > 0 ? (
@@ -119,9 +118,7 @@ const CrowdfundingsTable = (props) => {
             );
           })
         ) : (
-          <li className="list__table-list p-2 mb-0">
-            No entries to show
-          </li>
+          <li className="list__table-list p-2 mb-0">No entries to show</li>
         )}
       </ul>
       <div
@@ -163,6 +160,9 @@ const CrowdfundingListItem = ({
       <div className="d-xl-flex align-items-center flex-grow-1">
         <div className="billing__main d-flex align-items-center  me-sm-3 mb-2">
           <div className="ms-auto ms-sm-0 me-sm-2 post__value">
+            {crowdfunding.status === -1 ? (
+              <h6 className="post__status post__status--draft">DRAFT</h6>
+            ) : null}
             {crowdfunding.status === 1 && (
               <h6 className="price ">
                 {data?.symbol}
@@ -191,67 +191,50 @@ const CrowdfundingListItem = ({
                 to={'/crowdfunding/' + crowdfunding.slug}
               >
                 <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" /> Go to
-                Crowdfunding Campaign
+                Fundraiser
               </Link>
             )}
           </div>
         </div>
 
         {crowdfunding.status === 1 ? (
-          crowdfunding.infinity ? (
-            <div className="d-flex align-items-center flex-grow-1 mb-2 mb-sm-0">
-              <div className="d-flex align-items-center flex-grow-1 mw-200">
-                <ProgressBar variant="infinity" now={100} className="flex-grow-1" />
-                {/* <span className="ms-1 fw-semibold">Infinite</span> */}
-                <div className="unlimited unlimited--home" style={{ marginLeft: '10px' }}>
-                  <div className="tag tag--ongoing _2">
-                    <div className="d-flex icon icon--unlimited">
-                      <FontAwesomeIcon icon={solid('infinity')} />
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div className="d-flex align-items-center flex-grow-1 mb-2 mb-sm-0">
+            <div className="d-flex align-items-center flex-grow-1 mw-200">
+              <ProgressBar
+                variant="success"
+                now={countCrowdfundingProgress(crowdfunding?.productDetails || [])}
+                className="flex-grow-1"
+              />
+              <span className="ms-1 fw-semibold">
+                {countCrowdfundingProgress(crowdfunding?.productDetails || [])}%
+              </span>
             </div>
-          ) : (
-            <div className="d-flex align-items-center flex-grow-1 mb-2 mb-sm-0">
-              <div className="d-flex align-items-center flex-grow-1 mw-200">
-                <ProgressBar
-                  variant="success"
-                  now={countCrowdfundingProgress(crowdfunding?.productDetails || [])}
-                  className="flex-grow-1"
-                />
-                <span className="ms-1 fw-semibold">
-                  {countCrowdfundingProgress(crowdfunding?.productDetails || [])}%
-                </span>
-              </div>
-            </div>
-          )
+          </div>
         ) : (
           <div className="d-flex align-items-center flex-grow-1 mb-2 mb-sm-0"></div>
         )}
 
         <div className="billing__buttons d-flex align-items-center">
-          <div className="ms-auto">
-            <Button variant="link" className="p-0" onClick={() => editCrowdfunding(crowdfunding)}>
-              <FontAwesomeIcon icon={solid('edit')} className="text-warning fs-2 me-2" />
-            </Button>
+          <Button variant="link" className="p-0" onClick={() => editCrowdfunding(crowdfunding)}>
+            <FontAwesomeIcon icon={solid('edit')} className="text-warning fs-2 me-2" />
+          </Button>
+          <Button
+            variant="link"
+            className="p-0"
+            onClick={() => deleteCrowdfunding(crowdfunding._id)}
+          >
+            <FontAwesomeIcon icon={solid('trash')} className="text-danger fs-2 me-2" />
+          </Button>
+          {crowdfunding.status === -1 && (
             <Button
-              variant="link"
-              className="p-0"
-              onClick={() => deleteCrowdfunding(crowdfunding._id)}
+              variant="info"
+              size="md"
+              className="fw-bold"
+              onClick={() => publishCrowdfunding(crowdfunding._id, crowdfunding)}
             >
-              <FontAwesomeIcon icon={solid('trash')} className="text-danger fs-2 me-2" />
+              Publish
             </Button>
-            {crowdfunding.status === -1 && (
-              <Button
-                variant="info"
-                className="fw-bold"
-                onClick={() => publishCrowdfunding(crowdfunding._id, crowdfunding)}
-              >
-                Publish
-              </Button>
-            )}
-          </div>
+          )}
         </div>
       </div>
     </li>

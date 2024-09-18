@@ -203,7 +203,7 @@ const UserItemsTableView = ({
             Check in on the items you donated to. Click on the title of the item to view the post
             details and see follow-up media and view sales and tax receipt file uploads.
           </p>
-          <div className="d-flex flex-wrap gap-2 fw-semibold mt-5 pb-3 pt-sm-0">
+          <div className="d-flex flex-wrap gap-2 fw-semibold mt-5 pt-sm-0">
             <span>
               {/* <img alt="" className="me-1" style={{ height: '21px' }} src={clock}></img> */}
               <FontAwesomeIcon icon={solid('infinity')} className="fs-5 me-1 text-secondary" />

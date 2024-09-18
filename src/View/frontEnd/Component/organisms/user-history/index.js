@@ -257,7 +257,7 @@ const UserHistory = () => {
             View your order history by transaction. See the transaction details for all of the items
             you donated to.
           </p>
-          <div className="d-flex flex-wrap gap-2 fw-semibold mt-5 pb-3 pt-sm-0">
+          <div className="d-flex flex-wrap gap-2 fw-semibold mt-5 pt-sm-0">
         <span>
           {' '}
           <img alt="" className="me-1" style={{ height: '21px' }} src={coin}></img>

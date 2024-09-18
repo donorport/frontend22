@@ -108,7 +108,7 @@ function CrowdfundingDetailMain({
             <div className="d-flex align-items-center w-100">
               <ProgressBar
                 variant={crowdfundingDetails.infinity ? 'infinity' : 'success'}
-                now={Math.max(25, countCrowdfundingProcess(donationList))}
+                now={Math.max(5, countCrowdfundingProcess(donationList))}
                 className="flex-grow-1 me-1"
               />
               {crowdfundingDetails.infinity ? (

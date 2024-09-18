@@ -494,12 +494,13 @@ const DonationListItem = ({ donation, activeList }) => {
               {moment(donation.created_at).format(MOMENT_DATE_FORMAT)}
             </div>
             <div className="d-flex mt-2">
-              {' '}
               <Link
                 to={'/project/' + donation.projectDetails?.slug}
                 className="fw-semibold bg-lighter px-1 py-1 rounded-3"
               >
-                Project: {donation.projectDetails?.name}
+                {donation.type === 'CROWDFUNDING'
+                  ? `Fundraiser: ${donation.projectDetails?.name}`
+                  : `Project: ${donation.projectDetails?.name}`}
               </Link>
             </div>
           </div>

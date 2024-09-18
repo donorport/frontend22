@@ -193,7 +193,7 @@ const UserTax = () => {
             the table below represent the amount paid to the charity less any non-deductible service
             charges. Transaction & Platform fees are not tax deductible.
           </p>
-          <div className="d-flex flex-wrap gap-2 fw-semibold mt-5 pb-3 pt-sm-0">
+          <div className="d-flex flex-wrap gap-2 fw-semibold mt-5 pt-sm-0">
             <span>
               {/* <img alt="" className="me-1" style={{ height: '21px' }} src={clock}></img> */}
               <FontAwesomeIcon icon={solid('clock')} className="fs-5 me-1 text-warning" />
@@ -211,7 +211,7 @@ const UserTax = () => {
         </div>
       </header>
 
-      <div className="fs-5 fw-bolder d-flex align-items-center gap-1 mb-2">
+      <div className="fs-5 fw-bolder d-flex align-items-center gap-1">
         <span className="fs-7 text-light fw-bolder flex-grow-1">DONATION HISTORY</span>
         <div className="fs-6 text-light fw-semibold d-flex align-items-center gap-1 mb-2 justify-content-end">
           taxable amount:

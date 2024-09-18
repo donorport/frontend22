@@ -67,7 +67,7 @@ const DonationConfirmPage = () => {
       />
       <Page showTags={true} title={'Donation | ' + doantionDetails.uniqueTransactionId}>
         <DefaultLayout>
-          <div className="container-fluid d-flex flex-wrap gap-2">
+          <div className="container-fluid d-flex gap-2">
             <div className="flex-grow-1 d-flex flex-column align-items-sm-center align-items-stretch text-center pb-0 pb-sm-5 gap-2">
               <div className="d-flex flex-column align-items-center">
                 <div className="boat-container relative mb-3">
