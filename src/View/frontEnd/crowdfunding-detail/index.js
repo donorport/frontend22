@@ -68,11 +68,14 @@ const CrowdfundingDetail = (props) => {
               followToCrowdfunding={props.followToCrowdfunding}
               isFollow={props.isFollow}
               stateData={props.stateData}
+              selectedValue={props.selectedValue}
+              setSelectedValue={props.setSelectedValue}
               changevalue={props.changevalue}
               cardNumberWithSpace={props.cardNumberWithSpace}
               donate={props.donate}
               dCardIcon={props.dCardIcon}
               loading={props.loading}
+              donationList={props.donationList}
             />
           </Col>
           <Col md="5">

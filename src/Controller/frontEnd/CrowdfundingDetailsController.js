@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import CrowdfundingDetail from '../../View/frontEnd/crowdfunding-detail';
@@ -171,7 +170,6 @@ export default function CrowdfundingDetailsController() {
       navigate('/signin');
       return;
     }
-    debugger
     validateAll(state, DONATE_VALIDATION_RULES, DONATE_VALIDATION_MESSAGES)
       .then(async () => {
         setLoading(true);
@@ -197,7 +195,7 @@ export default function CrowdfundingDetailsController() {
         data.postalCode = user.zip;
         data.currency = user.currency || "CAD";
         data.currencySymbol = user.currencySymbol;
-        data.projectId = crowdfundingDetails._id;
+        data.crowdfundingId = crowdfundingDetails._id;
         data.organizationId = crowdfundingDetails?.campaignDetails?._id;
         data.organizationLogo =
           helper.CampaignAdminLogoPath + crowdfundingDetails?.campaignDetails?.logo;
@@ -226,7 +224,6 @@ export default function CrowdfundingDetailsController() {
         // navigate('/donate/' + donateToProject.data.donationId)
       })
       .catch((errors) => {
-        debugger
         //setLoading(false);
         const formaerrror = {};
         if (errors.length) {

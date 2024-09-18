@@ -21,16 +21,20 @@ function CrowdfundingDetailMain({
   donate,
   dCardIcon,
   loading,
+  donationList,
+  selectedValue,
+  setSelectedValue,
   followToCrowdfunding,
   isFollow
 }) {
-  const [sliderValue, setSliderValue] = useState(500);
-  const [donateAmount, setDonateAmount] = useState(500);
+  const [sliderValue, setSliderValue] = useState(selectedValue);
+  const [donateAmount, setDonateAmount] = useState(selectedValue);
   const [modalShow, setModalShow] = useState(false);
   // Function to handle changes from the slider
   const handleSliderChange = (newValue) => {
     console.log('Slider value changed:', newValue);
     setSliderValue(newValue);
+    setSelectedValue(newValue)
   };
   const video = crowdfundingDetails?.video;
 
@@ -40,26 +44,10 @@ function CrowdfundingDetailMain({
   const [address, setAddress] = useState('');
 
   const countCrowdfundingProcess = (data) => {
-    let allProductPer = [];
+    let totalAmount = data.reduce((acc, obj) => acc + obj.amount, 0);
+    let goal = parseFloat(crowdfundingDetails.goal);
 
-    let per = 0;
-
-    if (data?.length > 0) {
-      data.forEach((project) => {
-        let progressPercent = 0;
-        if (!project.itemDetails.unlimited) {
-          progressPercent =
-            (Number(project.itemDetails.soldout) / Number(project.itemDetails.quantity)) * 100;
-        }
-        allProductPer.push(progressPercent);
-      });
-
-      const total = allProductPer.reduce((partialSum, a) => partialSum + a, 0);
-      per = total / allProductPer.length;
-      per = Math.round(per);
-    }
-
-    return Math.round(per);
+    return Math.round((totalAmount / goal * 100));
   };
 
   const setState = crowdfundingDetails.campaignDetails?.state_id;
@@ -120,7 +108,7 @@ function CrowdfundingDetailMain({
             <div className="d-flex align-items-center w-100">
               <ProgressBar
                 variant={crowdfundingDetails.infinity ? 'infinity' : 'success'}
-                now={Math.max(25, countCrowdfundingProcess(crowdfundingDetails.productDetails))}
+                now={Math.max(25, countCrowdfundingProcess(donationList))}
                 className="flex-grow-1 me-1"
               />
               {crowdfundingDetails.infinity ? (
@@ -129,7 +117,7 @@ function CrowdfundingDetailMain({
                 </span>
               ) : (
                 <span className="text-light">
-                  {countCrowdfundingProcess(crowdfundingDetails.productDetails)}%
+                  {countCrowdfundingProcess(donationList)}%
                 </span>
               )}
             </div>
@@ -208,7 +196,10 @@ function CrowdfundingDetailMain({
           min={0}
           max={5000}
           step={100}
-          onChange={(newAmount) => setDonateAmount(newAmount)}
+          onChange={(newAmount) => { 
+            setDonateAmount(newAmount)
+            setSelectedValue(newAmount)
+          }}
         />
 
         <Button size="lg" onClick={() => setModalShow(true)}>

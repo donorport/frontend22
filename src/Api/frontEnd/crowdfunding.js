@@ -67,7 +67,7 @@ const subpath = `crowdfunding`;
         mode: 'no-cors'
       },
       data: {
-        projectId: projectId
+        crowdfundingId: projectId
       }
     });
 
