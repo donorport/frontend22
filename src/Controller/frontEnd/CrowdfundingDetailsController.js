@@ -195,7 +195,7 @@ export default function CrowdfundingDetailsController() {
         data.cardExpYear = ccexpdate.split("/")[1];
         data.cardCVC = cvv;
         data.postalCode = user.zip;
-        data.currency = user.currency;
+        data.currency = user.currency || "CAD";
         data.currencySymbol = user.currencySymbol;
         data.projectId = crowdfundingDetails._id;
         data.organizationId = crowdfundingDetails?.campaignDetails?._id;
