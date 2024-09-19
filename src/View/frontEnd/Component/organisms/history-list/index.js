@@ -495,11 +495,11 @@ const DonationListItem = ({ donation, activeList }) => {
             </div>
             <div className="d-flex mt-2">
               <Link
-                to={'/project/' + donation.projectDetails?.slug}
+                to={donation.type === 'CROWDFUNDING' ? '/crowdfunding/' + donation.crowdfundingDetails?.slug : '/project/' + donation.projectDetails?.slug}
                 className="fw-semibold bg-lighter px-1 py-1 rounded-3"
               >
                 {donation.type === 'CROWDFUNDING'
-                  ? `Fundraiser: ${donation.projectDetails?.name}`
+                  ? `Fundraiser: ${donation.crowdfundingDetails?.name}`
                   : `Project: ${donation.projectDetails?.name}`}
               </Link>
             </div>
