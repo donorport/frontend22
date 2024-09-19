@@ -58,7 +58,9 @@ const UserBilling = () => {
               list.type === 'ORDER'
                 ? 'Debited'
                 : list.type === 'PROJECT'
-                ? list.projectDetails.name
+                ? list.projectDetails?.name
+                : list.type === 'CROWDFUNDING'
+                ? list.crowdfundingDetails?.name
                 : list.organizationDetails.name;
             tempObj.card =
               list.type === 'ORDER'
@@ -146,8 +148,10 @@ const UserBilling = () => {
                   list.type === 'ORDER'
                     ? 'Debited'
                     : list.type === 'PROJECT'
-                    ? list.projectDetails.name
-                    : list.organizationDetails.name;
+                    ? list.projectDetails?.name
+                    : list.type === 'CROWDFUNDING'
+                    ? list.crowdfundingDetails?.name
+                    : list.organizationDetails?.name;
                 let TransactionId = list.uniqueTransactionId
                   ? list.uniqueTransactionId
                   : list.transactionId;
