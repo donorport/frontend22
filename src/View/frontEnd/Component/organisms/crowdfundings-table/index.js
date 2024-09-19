@@ -21,25 +21,10 @@ const CrowdfundingsTable = (props) => {
   let crowdfundingList = props.crowdfundingList;
 
   // probably needs to take the list of donations, instead of products
-  const countCrowdfundingProgress = (productDetails) => {
-    let allProductPer = [];
-
-    let per = 0;
-
-    if (productDetails?.length > 0) {
-      allProductPer = productDetails.map((p) => {
-        if (p.itemDetails.unlimited) {
-          return 0;
-        }
-
-        return (Number(p.itemDetails.soldout) / Number(p.itemDetails.quantity)) * 100;
-      });
-
-      const total = allProductPer.reduce((partialSum, a) => partialSum + a, 0);
-      per = total / allProductPer.length;
-    }
-
-    return Math.round(per);
+  const countCrowdfundingProgress = (data, _goal) => {
+    let totalAmount = data.reduce((acc, obj) => acc + obj.amount, 0);
+    let goal = parseFloat(_goal);
+    return Math.round((totalAmount / goal * 100));  
   };
 
   // probably needs to take the list of donations, instead of products
@@ -202,11 +187,11 @@ const CrowdfundingListItem = ({
             <div className="d-flex align-items-center flex-grow-1 mw-200">
               <ProgressBar
                 variant="success"
-                now={countCrowdfundingProgress(crowdfunding?.productDetails || [])}
+                now={countCrowdfundingProgress(crowdfunding?.donationsHistory || [], crowdfunding?.goal || 0)}
                 className="flex-grow-1"
               />
               <span className="ms-1 fw-semibold">
-                {countCrowdfundingProgress(crowdfunding?.productDetails || [])}%
+                {countCrowdfundingProgress(crowdfunding?.donationsHistory || [], crowdfunding?.goal || 0)}%
               </span>
             </div>
           </div>
