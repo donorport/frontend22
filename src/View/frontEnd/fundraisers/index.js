@@ -1,57 +1,53 @@
 import './style.scss';
 import { Button, ProgressBar, Container } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import Avatar from '../Component/atoms/avatar';
-import moment from 'moment';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 import helper from '../../../Common/Helper';
 import { Link } from 'react-router-dom';
 import profile from '../../../assets/images/avatar.png';
 import crowdfundingApi from '../../../Api/admin/crowdfunding';
 import { useState, useEffect } from 'react';
-
+import { useSelector } from 'react-redux';
 import DefaultLayout from '../Component/templates/default-layout';
 
 const Fundraisers = (props) => {
+  const user = useSelector((state) => state.user);
   const [crowdfundingList, setCrowdfundingList] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
 
-  // Fetch the crowdfunding list when component mounts
-  useEffect(() => {
-    getCrowdfundingList(1); // Assuming the first page is loaded initially
-  }, []);
+  const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
+  const userAuthToken = localStorage.getItem('userAuthToken');
+  const userData = JSON.parse(localStorage.getItem('userData'));
+  const token = userAuthToken || CampaignAdminAuthToken;
 
-  const getCrowdfundingList = async (page) => {
-    try {
-      let formData = {
-        organizationId: props.organizationId, // Make sure this is available in props
-        pageNo: page,
-        sortField: 'created_at',
-        sortType: 'desc',
-        filter: true,
-        type: 'crowdfunding'
-      };
-
-      const response = await crowdfundingApi.listByOrganization(props.token, formData);
-
-      if (response.data.success) {
-        setCrowdfundingList(response.data.data);
-        setTotalPages(response.data.totalPages); // For pagination if required
-      }
-    } catch (error) {
-      console.error('Error fetching crowdfunding list: ', error);
+  const getAllCrowdfundingList = async () => {
+    const data = {
+      userCountry: user.countryId
+    };
+    const getCrowdfundingList = await crowdfundingApi.list(token, data);
+    console.log({ getCrowdfundingList });
+    if (getCrowdfundingList.data.success === true) {
+      setCrowdfundingList(getCrowdfundingList.data.data);
     }
   };
+
+  useEffect(() => {
+    if (user.countryId) {
+      getAllCrowdfundingList();
+    }
+  }, [user.countryId]);
+
+  // Filter crowdfunding list to only include those with status 1
+  const filteredCrowdfundingList = crowdfundingList.filter(
+    (crowdfunding) => crowdfunding.status === 1
+  );
 
   return (
     <DefaultLayout>
       <Container fluid className="position-relative pb-5 pt-3">
         <div className="projects__table list__table mb-2 mb-sm-0">
           <ul className="list-unstyled mb-0 list__table-list">
-            {crowdfundingList.length > 0 ? (
-              crowdfundingList.map((crowdfunding, key) => (
+            {filteredCrowdfundingList.length > 0 ? (
+              filteredCrowdfundingList.map((crowdfunding, key) => (
                 <CrowdfundingListItem key={key} crowdfunding={crowdfunding} />
               ))
             ) : (
@@ -82,6 +78,12 @@ const CrowdfundingListItem = ({ crowdfunding }) => {
           <div className="ms-2">
             <div className="fw-bolder fs-5 mb-3p">{crowdfunding.name}</div>
           </div>
+          <Link
+            to={'/crowdfunding/' + crowdfunding.slug}
+            className="cd__cart__name text-decoration-none"
+          >
+            Go to fundraiser
+          </Link>
         </div>
       </div>
     </li>
