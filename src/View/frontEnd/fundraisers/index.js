@@ -9,14 +9,11 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import DefaultLayout from '../Component/templates/default-layout';
 
-const Fundraisers = (props) => {
+const Fundraisers = () => {
   const user = useSelector((state) => state.user);
   const [crowdfundingList, setCrowdfundingList] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
-
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const userAuthToken = localStorage.getItem('userAuthToken');
-  const userData = JSON.parse(localStorage.getItem('userData'));
   const token = userAuthToken || CampaignAdminAuthToken;
 
   const getAllCrowdfundingList = async () => {
@@ -44,8 +41,8 @@ const Fundraisers = (props) => {
   return (
     <DefaultLayout>
       <Container fluid className="position-relative pb-5 pt-3">
-        <div className="projects__table list__table mb-2 mb-sm-0">
-          <ul className="list-unstyled mb-0 list__table-list">
+        <div className="mb-2 mb-sm-0">
+          <ul className="fundraiser__grid">
             {filteredCrowdfundingList.length > 0 ? (
               filteredCrowdfundingList.map((crowdfunding, key) => (
                 <CrowdfundingListItem key={key} crowdfunding={crowdfunding} />
@@ -61,31 +58,50 @@ const Fundraisers = (props) => {
 };
 
 const CrowdfundingListItem = ({ crowdfunding }) => {
+  // probably needs to take the list of donations, instead of products
+  const countCrowdfundingProgress = (donations, goal) => {
+    if (!goal || goal === 0) return 0; // If goal is 0 or undefined, return 0%
+
+    const totalAmount = donations.reduce((acc, donation) => acc + donation.amount, 0);
+    const progress = (totalAmount / goal) * 100;
+    return Math.round(progress); // Return rounded progress percentage
+  };
+
   return (
-    <li className="table__list-item px-2 py-3">
-      <div className="d-xl-flex align-items-center flex-grow-1">
-        <div className="billing__main d-flex align-items-center me-sm-3 mb-2">
-          <Avatar
-            size={62}
-            border={0}
-            shadow={false}
-            avatarUrl={
-              crowdfunding.imageDetails?.length > 0
-                ? helper.CrowdfundingImagePath + crowdfunding.imageDetails[0].image
-                : profile
-            }
-          />
-          <div className="ms-2">
-            <div className="fw-bolder fs-5 mb-3p">{crowdfunding.name}</div>
-          </div>
-          <Link
-            to={'/crowdfunding/' + crowdfunding.slug}
-            className="cd__cart__name text-decoration-none"
-          >
-            Go to fundraiser
-          </Link>
-        </div>
+    <li className="d-flex flex-column align-items-center justify-content-center px-2 py-3">
+      <Avatar
+        size={62}
+        border={0}
+        shadow={false}
+        avatarUrl={
+          crowdfunding.imageDetails?.length > 0
+            ? helper.CrowdfundingImagePath + crowdfunding.imageDetails[0].image
+            : profile
+        }
+      />
+      <div className="ms-2">
+        <div className="fw-bolder fs-5 mb-3p">{crowdfunding.name}</div>
       </div>
+      <div className="d-flex align-items-center flex-grow-1 mw-200">
+        <ProgressBar
+          variant="success"
+          now={countCrowdfundingProgress(
+            crowdfunding?.donationsHistory || [],
+            crowdfunding?.goal || 0
+          )}
+          className="flex-grow-1"
+        />
+        <span className="ms-1 fw-semibold">
+          {countCrowdfundingProgress(crowdfunding?.donationsHistory || [], crowdfunding?.goal || 0)}
+          %
+        </span>
+      </div>
+      <Link
+        to={'/crowdfunding/' + crowdfunding.slug}
+        className="cd__cart__name text-decoration-none"
+      >
+        Go to fundraiser
+      </Link>
     </li>
   );
 };
