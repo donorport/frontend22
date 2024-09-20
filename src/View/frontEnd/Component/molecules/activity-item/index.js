@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-
 import { Button } from 'react-bootstrap';
 import ListItemImg from '../../atoms/list-item-img';
 import helper from '../../../../../Common/Helper';
@@ -11,100 +10,37 @@ import download from '../../../../../assets/images/download.svg';
 import camera from '../../../../../assets/images/camera.svg';
 
 function ActivityItem(props) {
-  // const countProjectProcess = (data) => {
-  //   // console.log(data)
-  //   let totalQArray = []
-  //   let soldOutQArray = []
-  //   let per = 0
+  // Use active state from the notification's watched value
+  const [active, setActive] = useState(props.notification.userNotificationDetails?.watched || false);
 
-  //   if (data.length > 0) {
-  //     data.map((p, i) => {
-  //       // console.log(p.itemDetails)
-  //       totalQArray.push(Number(p.itemDetails.quantity))
-  //       soldOutQArray.push(Number(p.itemDetails.soldout))
-  //     })
+  const toggleNotification = async () => {
+    const newActiveState = !active;
+    try {
+      // Call the backend to toggle watched/unwatched state
+      await props.setWatchNotification(
+        newActiveState,
+        props.notification._id,
+        newActiveState ? 'watched' : 'unwatched'
+      );
+      setActive(newActiveState);
 
-  //     const total = totalQArray.reduce((partialSum, a) => partialSum + a, 0);
-  //     const soldout = soldOutQArray.reduce((partialSum, a) => partialSum + a, 0);
+      console.log(`Notification ${props.notification._id} is now ${newActiveState ? 'watched' : 'unwatched'}`);
 
-  //     per = soldout / total * 100
-  //   } else {
-  //     per = 0;
-
-  //   }
-  //   return Math.round(per);
-
-  // }
-  // const countProjectProcess = (data) => {
-  //   // console.log(data)
-  //   let totalQArray = []
-  //   let soldOutQArray = []
-  //   let per = 0
-
-  //   if (data?.length > 0) {
-  //     data.map((p, i) => {
-  //       // console.log(p.itemDetails)
-  //       if (!p.itemDetails.unlimited) {
-  //         totalQArray.push(Number(p.itemDetails.quantity))
-  //         soldOutQArray.push(Number(p.itemDetails.soldout))
-  //       }
-
-  //     })
-
-  //     const total = totalQArray.reduce((partialSum, a) => partialSum + a, 0);
-  //     const soldout = soldOutQArray.reduce((partialSum, a) => partialSum + a, 0);
-  //     if (soldout === 0 || total === 0) {
-  //       per = 0
-  //     } else {
-  //       per = Number(soldout) / Number(total) * 100
-  //     }
-
-  //   } else {
-  //     per = 0;
-
-  //   }
-  //   return Math.round(per);
-
-  // }
-  //const CampaignAdmin = JSON.parse(localStorage.getItem('CampaignAdmin'));
-  //const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
-  //const userAuthToken = localStorage.getItem('userAuthToken');
-  //const token = userAuthToken ? userAuthToken : CampaignAdminAuthToken;
-
-  let userData = props.userData;
-  let newSlug;
-  if (userData) {
-    newSlug = userData.name.split(/\s/).join('');
-  } else {
-    newSlug = '';
-  }
-  const countProjectProcess = (data) => {
-    let allProductPer = [];
-
-    let per = 0;
-
-    if (data?.length > 0) {
-      data.map((p) => {
-        if (!p.itemDetails.unlimited) {
-          let itm = (Number(p.itemDetails.soldout) / Number(p.itemDetails.quantity)) * 100;
-          allProductPer.push(itm);
-        } else {
-          allProductPer.push(0);
-        }
-      });
-
-      const total = allProductPer.reduce((partialSum, a) => partialSum + a, 0);
-      per = total / allProductPer.length;
-      per = Math.round(per);
-    } else {
-      per = 0;
+      // Notify parent component (Activity) to check if all notifications are read/unread
+      if (props.onNotificationUpdate) {
+        props.onNotificationUpdate(); // Call the function if it's provided
+      }
+    } catch (error) {
+      console.error("Error toggling notification:", error);
     }
-    return Math.round(per);
   };
 
-  const [active, setActive] = useState(false);
+  useEffect(() => {
+    // Update the local active state when the parent passes a new watched state
+    setActive(props.notification.userNotificationDetails?.watched || false);
+  }, [props.notification.userNotificationDetails?.watched]);
+
   let notification = props.notification;
-  // console.log(notification)
   let name =
     notification.type === 'PRODUCT'
       ? notification?.productDetails?.headline
@@ -115,37 +51,22 @@ function ActivityItem(props) {
       : helper.CampaignAdminLogoPath + notification?.campaignadminDetails?.logo;
   let organizationName = notification?.campaignadminDetails?.name;
 
-  // let watched = notification.watched
-  let watched = notification?.userNotificationDetails?.watched
-    ? notification?.userNotificationDetails?.watched
-    : false;
-
+  let watched = notification?.userNotificationDetails?.watched || false;
   let date = notification.created_at;
-
   let info = notification.info;
   let infoType = notification.infoType;
   let mediaImage = camera;
-  let uploadimage = download;
+  let uploadImage = download;
 
   let orgLogo = helper.CampaignAdminLogoPath + notification?.campaignadminDetails?.logo;
-
   let displayImg = notification.type === 'PRODUCT' && infoType === 'FUNDED' ? image : orgLogo;
 
   if (infoType && infoType === 'MEDIA') {
     displayImg = mediaImage;
   }
-  if ((infoType && infoType === 'TAX_RECEIPT') || infoType === 'SALES_RECEIPT') {
-    displayImg = uploadimage;
+  if (infoType === 'TAX_RECEIPT' || infoType === 'SALES_RECEIPT') {
+    displayImg = uploadImage;
   }
-
-  useEffect(() => {
-    // if(notification?.userNotificationDetails){
-
-    // }else{
-
-    // }
-    setActive(watched);
-  }, [watched]);
 
   return (
     <li
@@ -160,14 +81,13 @@ function ActivityItem(props) {
               <h6 className="ad__activity__name">{organizationName}</h6>
             ) : (
               <Link
-                to={'/item/' + notification?.productDetails.slug}
-                className=" fw-bold fs-6 ad__activity__sub-name"
+                to={'/item/' + notification?.productDetails?.slug}
+                className="fw-bold fs-6 ad__activity__sub-name"
               >
                 {name}
               </Link>
             )}
 
-            {/* <div className="ad__activity__name">{ notification.type}</div> */}
             {info ? (
               <div className="fs-7 ad__activity__sub-name mt-3p fw-semibold">{info}</div>
             ) : (
@@ -176,21 +96,9 @@ function ActivityItem(props) {
               </div>
             )}
 
-            {/*  {infoType === 'TAX_RECEIPT' ? (
-              <Link
-                to={'/user/' + newSlug + '/tax/'}
-                className="fs-7 ad__activity__sub-name mt-3p fw-semibold"
-                style={{ border: '1px solid' }}
-              >
-                {info}
-              </Link>
-            ) : (
-              <div className="fs-7 ad__activity__sub-name mt-3p fw-semibold">{organizationName}</div>
-            )}*/}
-
             {notification.type === 'PROJECT' && infoType !== 'FUNDED' && !info && (
               <div className="ad__activity__title fs-7">
-                {countProjectProcess(notification.productDetails)}% Funded
+                {notification?.projectDetails?.fundingPercentage}% Funded
               </div>
             )}
 
@@ -202,7 +110,7 @@ function ActivityItem(props) {
             size="sm"
             variant="link"
             className="text-decoration-none"
-            onClick={() => props.setWatchNotification(!active, notification._id)}
+            onClick={toggleNotification}
           >
             {!active ? (
               <FontAwesomeIcon icon={solid('circle')} />

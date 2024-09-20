@@ -39,6 +39,21 @@ const DonateModal = (props) => {
     setColor(clr);
   };
 
+  const handleExpiryDateChange = (e) => {
+    let input = e.target.value.replace(/\D/g, ''); // Remove any non-digit characters
+    if (input.length > 2) {
+      input = input.substring(0, 2) + '/' + input.substring(2, 4); // Add slash after MM
+    }
+
+    // Update the state with the formatted value
+    props.changevalue({
+      target: {
+        name: e.target.name,
+        value: input
+      }
+    });
+  };
+
   return (
     <Modal {...props} size="md" aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header className="bg-primary text-white justify-content-center pt-1 pb-2 mb-3">
@@ -271,19 +286,19 @@ const DonateModal = (props) => {
                     className="form-control"
                     placeholder="MM/YY"
                     maxLength={5}
-                    onChange={(e) => props.changevalue(e)}
+                    onChange={(e) => handleExpiryDateChange(e)}
                     value={stateData.ccexpdate ? stateData.ccexpdate : ''}
                     required
                   />
                   {stateData.error.ccexpdate && (
-                        <p className="error">
-                          {stateData.error
-                            ? stateData.error.ccexpdate
-                              ? stateData.error.ccexpdate
-                              : ''
-                            : ''}
-                        </p>
-                      )}
+                    <p className="error">
+                      {stateData.error
+                        ? stateData.error.ccexpdate
+                          ? stateData.error.ccexpdate
+                          : ''
+                        : ''}
+                    </p>
+                  )}
                 </div>
 
                 <div className="checkout__input">
@@ -297,16 +312,14 @@ const DonateModal = (props) => {
                     id="cvc"
                     maxLength={3}
                     value={stateData.cvv ? stateData.cvv : ''}
-                    className={
-                      stateData.error.cvv ? 'inputerror form-control ' : 'form-control '
-                    }
+                    className={stateData.error.cvv ? 'inputerror form-control ' : 'form-control '}
                     onChange={(e) => props.changevalue(e)}
                     required
                   />
                   {stateData.error.cvv && (
-                      <p className="error">
-                        {stateData.error ? (stateData.error.cvv ? stateData.error.cvv : '') : ''}
-                      </p>
+                    <p className="error">
+                      {stateData.error ? (stateData.error.cvv ? stateData.error.cvv : '') : ''}
+                    </p>
                   )}
                 </div>
 

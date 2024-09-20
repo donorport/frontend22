@@ -4,8 +4,9 @@ import ActivityList from './activity-list';
 import FollowingList from './following-list';
 import NotificationSettings from '../../molecules/notification-settings';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { light, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import CircularProgress from '@mui/material/CircularProgress';
+import axios from 'axios';
 
 import './style.scss';
 
@@ -15,106 +16,77 @@ const Activity = (props) => {
     empty: false,
     following: false,
     settings: false,
-    allRead: false
+    allRead: false,
   });
   const [allNotificationList, setAllNotificationList] = useState([]);
+  const [notificationList, setNotificationList] = useState([]);
 
-  const moreClick = () => {
-    setState({ ...state, following: true });
-  };
-
-  const goBack = () => {
-    setState({ ...state, following: false, settings: false });
-  };
-
-  const showSettings = () => {
-    setState({ ...state, settings: true });
-  };
-
-  const markNotification = async () => {
-    // setState({ ...state, allRead: !state.allRead });
-    setLoading(true);
-    await props.notificationMarkAsRead(!state.allRead, allNotificationList);
-  };
-
-  const ActivityButton = React.forwardRef(({ children, onClick }, ref) => {
-    return (
-      <Button
-        ref={ref}
-        variant="link"
-        onClick={(e) => {
-          e.preventDefault();
-          onClick(e);
-        }}
-        className="position-relative p-0 icon__btn text-decoration-none"
-      >
-        {children}
-      </Button>
-    );
-  });
-  // let len = !props.notificationList.filter(e => e?.userNotificationDetails) ? props.notificationList :
-  // props.notificationList.filter(e => e?.userNotificationDetails?.removed === false)
-  // console.log(props.notificationList)
-  // console.log(props.notificationList.find(e => e.userNotificationDetails.removed === true))
-  // console.log(props.notificationList.filter(e => e.userNotificationDetails.removed === true).length)
   useEffect(() => {
-    // console.log(props.notificationList)
+    // Assuming you fetch the notification list from props or an API
     if (props.notificationList.length > 0) {
-      let n_id = [];
-      let temprray = [];
-
-      props.notificationList.map((notification, i) => {
-        let isRemoved = notification?.userNotificationDetails?.removed
-          ? notification?.userNotificationDetails?.removed
-          : false;
-        if (!isRemoved) {
-          n_id.push(notification._id);
-          temprray.push(notification);
-        }
-      });
-      setLoading(false);
-      setAllNotificationList(n_id);
-      // console.log(temprray.filter(e => e.userNotificationDetails?.watched).length)
-
-      // if (temprray.filter(e => e.userNotificationDetails?.watched === true)) {
-      if (temprray.length > 0) {
-        if (temprray.filter((e) => e.userNotificationDetails?.watched).length === temprray.length) {
-          setState({ ...state, allRead: true });
-        } else {
-          setState({ ...state, allRead: false });
-        }
-      } else {
-        setState({ ...state, allRead: true });
-      }
-      // console.log('watched',temprray.filter(e => e.userNotificationDetails?.watched).length )
-      // console.log('all',temprray.length )
+      const tempList = props.notificationList.filter(
+        (notification) => !notification?.userNotificationDetails?.removed
+      );
+      setNotificationList(tempList);
+      const allWatched = tempList.every(
+        (notification) => notification.userNotificationDetails?.watched
+      );
+      setState((prevState) => ({ ...prevState, allRead: allWatched }));
+      setAllNotificationList(tempList.map((notification) => notification._id));
     } else {
-      setState({ ...state, allRead: true });
+      setNotificationList([]);
     }
-
-    // let isRemoved = props.notificationList.filter(e => e.userNotificationDetails.removed === true)
-    // console.log(props.notificationList.filter(e => e?.userNotificationDetails?.removed===true && e?.userNotificationDetails?.watched===false ).length)
-    // if (props.notificationList.filter(e => e.userNotificationDetails.watched === true).length === isRemoved.length) {
-    //   setState({ ...state, allRead: true });
-    // } else {
-    //   setState({ ...state, allRead: false });
-
-    // }
   }, [props.notificationList]);
+
+  const markAllNotifications = async (isRead) => {
+    setLoading(true);
+    try {
+      const response = await axios.post('/api/notification/read', {
+        isRead,
+        allNotificationList, // Send the array of notification IDs
+      });
+
+      // Update the notification list in state with the updated data from backend
+      setNotificationList(response.data.notifications);
+
+      // Update the "allRead" state based on the action performed
+      setState((prevState) => ({ ...prevState, allRead: isRead }));
+    } catch (error) {
+      console.error('Error marking all notifications:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const toggleMarkAll = () => {
+    const newReadState = !state.allRead;
+    markAllNotifications(newReadState);
+  };
+
+  const ActivityButton = React.forwardRef(({ children, onClick }, ref) => (
+    <Button
+      ref={ref}
+      variant="link"
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+      className="position-relative p-0 icon__btn text-decoration-none"
+    >
+      {children}
+    </Button>
+  ));
 
   return (
     <>
       <Dropdown className="d-flex" autoClose="outside">
         <Dropdown.Toggle as={ActivityButton} id="dropdown-custom-components">
-          {
-            // props.notificationList.filter(e => e?.userNotificationDetails?.removed === false).length > 0 &&
-            !state.allRead && (
-              <div
-                className="c__badge"
-                style={{ width: '12px', height: '12px', background: '#cb6f74' }}
-              ></div>
-            )
-          }
+          {!state.allRead && (
+            <div
+              className="c__badge"
+              style={{ width: '12px', height: '12px', background: '#cb6f74' }}
+            ></div>
+          )}
           <span className="icon activity-icon d-flex align-items-center">
             <FontAwesomeIcon icon={solid('bell')} />
           </span>
@@ -130,30 +102,22 @@ const Activity = (props) => {
                 <Button
                   variant="link"
                   className="btn__link-light px-6p text-decoration-none"
-                  onClick={() => goBack()}
+                  onClick={() => setState((prevState) => ({ ...prevState, following: false, settings: false }))}
                 >
-                  {/* <i className="fa-solid fa-chevron-left"></i> */}
                   <FontAwesomeIcon icon={solid('chevron-left')} />
                 </Button>
               ) : (
                 ''
               )}
 
-              <div>
-                {state.following
-                  ? 'Following'
-                  : state.settings
-                  ? 'Notification Settings'
-                  : 'Activity'}
-              </div>
+              <div>{state.following ? 'Following' : state.settings ? 'Notification Settings' : 'Activity'}</div>
 
               {!(state.following || state.settings) ? (
                 <Button
                   variant="link"
                   className="ms-auto view__more-activity btn__link-light px-6p fs-4 text-decoration-none"
-                  onClick={() => moreClick()}
+                  onClick={() => setState((prevState) => ({ ...prevState, following: true }))}
                 >
-                  {/* <i className="fa-regular fa-ellipsis-stroke-vertical"></i> */}
                   <FontAwesomeIcon icon={solid('ellipsis-stroke-vertical')} />
                 </Button>
               ) : (
@@ -167,19 +131,11 @@ const Activity = (props) => {
                   <Button
                     variant="link"
                     className="px-0 btn__link-light mark__feed text-decoration-none"
-                    onClick={() => !loading && markNotification()}
+                    onClick={toggleMarkAll}
                   >
                     {state.allRead ? 'Mark all unread' : 'Mark all read'}
                     {loading && <CircularProgress className="ms-1" color="inherit" size={10} />}
                   </Button>
-
-                  {/*   <Button
-                    variant="link"
-                    className="btn__link-light activity__settings ms-auto px-0"
-                    onClick={() => showSettings()}
-                  >
-                    <FontAwesomeIcon icon={solid('gear')} />
-                  </Button>*/}
                 </div>
               ) : (
                 ''
@@ -195,13 +151,12 @@ const Activity = (props) => {
                 <NotificationSettings />
               ) : (
                 <ActivityList
-                  notificationList={props.notificationList}
+                  notificationList={notificationList}
                   setWatchNotification={props.setWatchNotification}
                   removeNotification={props.removeNotification}
                 />
               )}
             </div>
-
             <div className="activity__dropdown-footer border-top"></div>
           </div>
         </Dropdown.Menu>

@@ -162,7 +162,7 @@ const DonationConfirmPage = () => {
                   <div role="list" className="d-flex flex-column gap-5 my-5">
                     <div data-id="product" role="listitem" className="pb-3 border-bottom">
                       <div className="checkout__top d-flex align-items-center flex-row flex-nowrap">
-                        <div className="checkout__left d-flex flex-row align-items-center">
+                        <div className="checkout__left flex-grow-1 d-flex flex-row align-items-center">
                           <div className="checkout__thumb position-relative d-flex align-items-center justify-content-center">
                             <div className="checkout__img d-flex justify-content-center align-items-center">
                               <div className="checkout__img d-flex align-items-center justify-content-center">

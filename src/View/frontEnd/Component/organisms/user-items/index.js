@@ -108,17 +108,12 @@ const UserItems = () => {
   return (
     <>
       {!initialLoading && data.city_id == null && data.country_id == null && data.street == null && (
-        <div className="onboarding d-flex flex-column mw-100 p-5 border rounded-3">
-          <div className="d-flex align-items-start">
-            <div className="flex-grow-1">
-              <h3>Getting Started</h3>
-              <span className="fs-5">Follow these steps to complete your account setup.</span>
-            </div>
-          </div>
-
-          <div className="flex-wrap flex-lg-nowrap my-2 d-flex gap-2 p2 mw-100">
+        <div className="onboarding d-flex flex-column mw-100 p-5 border rounded-3 gap-2">
+          <h3>Getting Started</h3>
+          <span className="fs-5">Follow these steps to complete your account setup.</span>
+          <div className="flex-wrap flex-lg-nowrap d-flex gap-2 mw-100">
             <div className=" rounded-3 d-flex flex-grow-1 border p-5">
-              <div className="d-flex flex-column justify-content-start align-items-start">
+              <div className="d-flex flex-column justify-content-start align-items-start gap-2">
                 <div className="d-flex align-items-center">
                   <FontAwesomeIcon
                     icon={solid('user')}
@@ -191,7 +186,7 @@ const UserItemsTableView = ({
 }) => {
   console.log('UserItemsTableView rerender');
   return (
-    <div>
+    <>
       <header className=" w-100 d-none d-sm-flex align-items-start">
         <div className="me-sm-2 flex-grow-1">
           <div className="d-flex align-items-center">
@@ -242,7 +237,7 @@ const UserItemsTableView = ({
         sortField={sortField}
         orderItemList={orderItemList}
       />
-    </div>
+    </>
   );
 };
 

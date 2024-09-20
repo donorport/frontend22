@@ -1656,10 +1656,9 @@ const AdminPosts = () => {
 
   return (
     <>
-      <div>
-        {/* <DismissibleBanner message="We have updated our payment provider information. Please " /> */}
-        {/* Other dashboard content */}
-      </div>
+      {/* <div>
+        <DismissibleBanner message="We have updated our payment provider information. Please " />
+      </div> */}
       {(!user.isAccountAdded || !data.taxRate || !data.logo) && isOnboardingVisible && (
         <div className="mb-5">
           <div className="onboarding--stepper">
@@ -1727,24 +1726,20 @@ const AdminPosts = () => {
             </div>
           </div>
 
-          <div className="onboarding d-flex flex-column mw-100 p-5 border rounded-3">
-            <div className="d-flex align-items-start">
-              <div className="flex-grow-1">
-                <h3>Getting Started</h3>
-                <span className="fs-5">Follow these steps before creating your first post.</span>
-              </div>
-              {/* <Button variant="link" className="m-0 p-0 fs-3">
+          <div className="onboarding d-flex flex-column mw-100 p-5 border rounded-3 gap-2">
+            <h3>Getting Started</h3>
+            <span className="fs-5">Follow these steps before creating your first post.</span>
+            {/* <Button variant="link" className="m-0 p-0 fs-3">
                 <FontAwesomeIcon
                   icon={solid('circle-xmark')}
                   className="fs-3 me-1"
                   onClick={hideOnboarding}
                 />
               </Button> */}
-            </div>
 
-            <div className="flex-wrap flex-lg-nowrap my-2 d-flex gap-2 p2 mw-100">
+            <div className="flex-wrap flex-lg-nowrap d-flex gap-2 mw-100">
               <div className=" rounded-3 d-flex flex-grow-1 border p-5">
-                <div className="d-flex flex-column justify-content-start align-items-start">
+                <div className="d-flex flex-column justify-content-start align-items-start gap-2">
                   <div className="d-flex align-items-center">
                     <FontAwesomeIcon
                       icon={solid('user')}
@@ -1754,7 +1749,7 @@ const AdminPosts = () => {
                       <h4 className="m-0">BUILD PROFILE</h4>
                     </div>
                   </div>
-                  <p className="mt-3 fs-5">
+                  <p className="fs-5">
                     Add your charity logo, location, mission statement and more.
                   </p>
                   <Link
@@ -1768,7 +1763,7 @@ const AdminPosts = () => {
                 </div>
               </div>
               <div className="note rounded-3 d-flex flex-grow-1 border p-5">
-                <div className="d-flex flex-column justify-content-start align-items-start">
+                <div className="d-flex flex-column justify-content-start align-items-start gap-2">
                   <div className="d-flex align-items-center">
                     <FontAwesomeIcon
                       icon={solid('building-columns')}
@@ -1778,7 +1773,7 @@ const AdminPosts = () => {
                       <h4 className="m-0">ADD BANK</h4>
                     </div>
                   </div>
-                  <p className="mt-3 fs-5">Link your bank and set your sales tax rate.</p>
+                  <p className="fs-5">Link your bank and set your sales tax rate.</p>
                   <Link
                     variant="link"
                     className="text-light p-0 fw-normal fs-5"
@@ -1790,7 +1785,7 @@ const AdminPosts = () => {
                 </div>
               </div>
               <div className=" rounded-3 d-flex flex-grow-1 border p-5">
-                <div className="d-flex flex-column justify-content-start align-items-start">
+                <div className="d-flex flex-column justify-content-start align-items-start gap-2">
                   <div className="d-flex align-items-center">
                     <FontAwesomeIcon
                       icon={solid('wand-magic-sparkles')}
@@ -1800,7 +1795,7 @@ const AdminPosts = () => {
                       <h4 className="m-0">CREATE A POST</h4>
                     </div>
                   </div>
-                  <p className="mt-3">
+                  <p className="fs-5">
                     Congratulations, you're now ready to create your first post!
                   </p>
                   {/* <Button
@@ -1825,7 +1820,7 @@ const AdminPosts = () => {
 
       {/* this shows the posts table e.g. when no item is selected (no viewPost) */}
       {!viewPost ? (
-        <div>
+        <>
           <PostsTableHeader
             totalRecord={totalRecord}
             user={user}
@@ -1850,7 +1845,7 @@ const AdminPosts = () => {
             organizationDetails={data}
             showFulfillOrder={showFulfillOrder}
           />
-        </div>
+        </>
       ) : !fulfil ? (
         <>
           {/* adding a new product */}
@@ -1956,56 +1951,72 @@ const AdminPosts = () => {
 const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => {
   return (
     <>
-      <header className="gap-2 pb-2 pb-sm-0 py-0 py-sm-2 mb-sm-3 w-100 flex-column flex-lg-row d-sm-flex align-items-start">
-        <div className="me-sm-2 flex-grow-1">
-          <div className="d-flex align-items-center mb-1">
-            <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Posts</h1>
-            <span className="d-none d-sm-flex ml-2 ms-2">({totalRecord})</span>
+      <div className="d-flex flex-column gap-2">
+        {' '}
+        <header className="gap-2 w-100 flex-column flex-lg-row d-sm-flex align-items-start">
+          <div className="me-sm-2 flex-grow-1">
+            <div className="d-flex align-items-center mb-1">
+              <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Posts</h1>
+              <span className="d-none d-sm-flex ml-2 ms-2">({totalRecord})</span>
+            </div>
+            <p className="d-none d-sm-block">
+              Create posts for items you need to operate your charity. Get creative, post for things
+              you want, not always what you need. Products between $25-$100 are the most appealing
+              to donors.
+            </p>
           </div>
-          <p className="d-none d-sm-block">
-            Create posts for items you need to operate your charity. Get creative, post for things
-            you want, not always what you need. Products between $25-$100 are the most appealing to
-            donors.
-          </p>
-        </div>
-        <div className="d-flex gap-2">
-          <span className="d-none d-sm-flex item__total-wrap d-flex ms-0 ms-lg-3">
-            <FontAwesomeIcon icon={solid('money-bills-simple')} className=" mr-12p fs-4" />
-            <span>{user.currencySymbol}</span>
-            {productList && productList.length > 0
-              ? productList
-                  .reduce(
-                    (previousTotal, current) =>
-                      previousTotal + Number(current.displayPrice * current.soldout),
-                    0
-                  )
-                  .toLocaleString('en-US', {
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2
-                  })
-              : 0}
-          </span>
-          {/* {!user.isAccountAdded && isOnboardingVisible && (
+          <div className="d-flex gap-2">
+            <span className="d-none d-sm-flex item__total-wrap d-flex ms-0 ms-lg-3">
+              <FontAwesomeIcon icon={solid('money-bills-simple')} className=" mr-12p fs-4" />
+              <span>{user.currencySymbol}</span>
+              {productList && productList.length > 0
+                ? productList
+                    .reduce(
+                      (previousTotal, current) =>
+                        previousTotal + Number(current.displayPrice * current.soldout),
+                      0
+                    )
+                    .toLocaleString('en-US', {
+                      maximumFractionDigits: 2,
+                      minimumFractionDigits: 2
+                    })
+                : 0}
+            </span>
+            {/* {!user.isAccountAdded && isOnboardingVisible && (
           <Button className="btn  border-0 text-light" onClick={showOnboarding}>
             Getting Started <FontAwesomeIcon icon={solid('wand-magic-sparkles')} className="ms-1" />
           </Button>
         )} */}
-          <div className="d-flex align-items-center ms-sm-auto justify-content-end">
-            {/* {user.isAccountAdded && data.taxRate && !data.logo && ( */}
-            <Button
-              variant="info"
-              size="md"
-              className="fw-bold fs-6 text-nowrap"
-              onClick={() => createNewPost()}
-            >
-              Create New
-            </Button>
-            {/* )} */}
+            <div className="d-flex align-items-center ms-sm-auto justify-content-end w-100">
+              {/* {user.isAccountAdded && data.taxRate && !data.logo && ( */}
+              <Button
+                variant="info"
+                size="md"
+                className="fw-bold fs-6 text-nowrap w-100"
+                onClick={() => createNewPost()}
+              >
+                Create New
+              </Button>
+              {/* )} */}
 
-            {/* <LadderMenuItems /> */}
+              {/* <LadderMenuItems /> */}
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
+        {productList.length > 0 && (
+  <div className="d-none d-sm-flex flex-wrap gap-2 fw-semibold">
+    <span>
+      <FontAwesomeIcon icon={solid('infinity')} className="fs-5 me-1 text-secondary" />
+      no fixed quantity
+    </span>
+    <span>
+      <FontAwesomeIcon icon={solid('bolt')} className="fs-5 me-1 text-primary" />
+      linked to a project
+    </span>
+  </div>
+)}
+
+      </div>
     </>
   );
 };

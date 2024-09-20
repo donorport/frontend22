@@ -154,7 +154,7 @@ const PostsTable = (props) => {
                             style={{ maxWidth: '200px' }}
                           >
                             {!product.unlimited && (
-                              <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-sm-1 fw-bold text-light">
+                              <span className="qty__tag pl-9p pb-3p pr-9p pt-3p me-sm-1 fw-semibold">
                                 {product.soldout}/{product.quantity}
                               </span>
                             )}
@@ -193,7 +193,7 @@ const PostsTable = (props) => {
                         </div>
                       )}
                     </div>
-                    <div className="billing__buttons d-flex align-items-center">
+                    <div className="mt-5 mt-sm-0 billing__buttons d-flex align-items-center">
                       <div className="d-flex gap-2 ms-auto align-items-center">
                         {product.isFulfiled ? (
                           product.unlimited ? (

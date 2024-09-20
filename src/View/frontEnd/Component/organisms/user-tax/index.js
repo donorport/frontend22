@@ -1,4 +1,4 @@
-// import { LadderMenu, TaxTable } from "@components/organisms";
+
 import { useState, useEffect } from 'react';
 import LadderMenu from '../ladder-menu';
 import TaxTable from '../tax-table';
@@ -33,14 +33,13 @@ const UserTax = () => {
     { label: 'Date', key: 'date' },
     { label: 'Amount', key: 'amount' },
     { label: 'Transaction Id', key: 'TransactionId' },
-    // { label: "Type", key: "type" },
     { label: 'Products', key: 'products' }
   ];
+
   const getProductsName = (products) => {
     let pr = '';
     if (products.length > 0) {
       products.map((p, i) => {
-        // pr += i + 1 + ') ' + p.orderItemDetails?.productName + ' '
         if (p.type === 'Purchased') {
           pr += i + 1 + ') ' + p.orderItemDetails?.productName + ' ';
         } else {
@@ -56,7 +55,6 @@ const UserTax = () => {
     let sum;
     if (data.length > 0) {
       data.map((i, k) => {
-        //tempSub.push(i.amount);
         if (i.type === 'Purchased') {
           tempSub.push(i.orderItemDetails?.totalPrice);
         } else {
@@ -64,7 +62,6 @@ const UserTax = () => {
         }
       });
       sum = tempSub.reduce(function (a, b) {
-        // return parseInt(a) + parseInt(b);
         return a + b;
       }, 0);
     } else {
@@ -84,7 +81,6 @@ const UserTax = () => {
 
     const getTaxDataList = await userApi.userTaxlist(userAuthToken, formData);
     if (getTaxDataList.data.success) {
-      // console.log(getTaxDataList.data.data_temp)
       setTaxList(getTaxDataList.data.data);
       setTotalPages(getTaxDataList.data.totalPages);
       setTotalRecord(getTaxDataList.data.totalRecord);
@@ -92,20 +88,13 @@ const UserTax = () => {
       if (getTaxDataList.data.allData.length > 0) {
         let tempAr = [];
         getTaxDataList.data.allData.map((v, k) => {
-          console.log(v);
           let tempobj = {};
           tempobj.date = moment(v.created_at).format('DD MMMM YY');
           tempobj.amount = v[0].currencySymbol + totalVal(v);
           tempobj.TransactionId = v[0].uniqueTransactionId
             ? v[0].uniqueTransactionId
             : v[0].orderId;
-          // tempobj.type = v.type
-          // if (v.type === 'Purchased') {
           tempobj.products = getProductsName(v);
-
-          // } else {
-          //   tempobj.products = ' - '
-          // }
           tempAr.push(tempobj);
         });
         setCsvData(tempAr);
@@ -122,7 +111,7 @@ const UserTax = () => {
     (async () => {
       await getTaxDataList(pageNo, sortField, order, currentYear);
     })();
-  }, [data._id, currentYear]); 
+  }, [data._id, currentYear]);
 
   const handleClick = async (e, v) => {
     setPageNo(Number(v));
@@ -135,6 +124,7 @@ const UserTax = () => {
     setOrder(sortOrder);
     await getTaxDataList(pageNo, accessor, sortOrder, activeYear);
   };
+
   const onChangeFilterOption = async (e, v) => {
     setLoading(true);
     await getTaxDataList(pageNo, sortField, order, v);
@@ -143,30 +133,24 @@ const UserTax = () => {
     setLoading(false);
   };
 
-  //let platformCost = ((orderDetails.platformFees / 100) * Number(all)).toFixed(2);
-
   const countProjectAmount = (data) => {
-    // console.log(data)
     let totalQArray = [];
-    let soldOutQArray = [];
     let per = 0;
 
     if (data?.length > 0) {
       data?.map((p, i) => {
         p?.map((p1, i1) => {
-          let productTotal = p1.orderItemDetails?.totalPrice;
-          let donationTotal = (p1.amount - 0.3) / 1.0499;
-          let taxableProduct = priceFormat(Number(productTotal));
-          let taxableDonation = priceFormat(Number(donationTotal));
+          if (p1?.orderItemDetails?.totalPrice || p1?.amount) {
+            let productTotal = p1?.orderItemDetails?.totalPrice || 0;
+            let donationTotal = p1.amount || 0;
+            let taxableProduct = Number(productTotal);
+            let taxableDonation = Number(donationTotal);
 
-          //totalQArray.push(Number(p1.amount));
-
-          if (p1.currency === userData.currency) {
-            totalQArray.push(p1.type === 'Purchased' ? taxableProduct : taxableDonation);
+            if (p1.currency === userData.currency) {
+              totalQArray.push(p1.type === 'Purchased' ? taxableProduct : taxableDonation);
+            }
           }
         });
-
-        // console.log(p.itemDetails)
       });
 
       const total = totalQArray.reduce(
@@ -183,19 +167,17 @@ const UserTax = () => {
 
   return (
     <>
-
-      <header className="py-sm-2 pb-2 w-100 d-sm-flex flex-column flex-lg-row align-items-start gap-2">
+      <header className="w-100 d-sm-flex flex-column flex-lg-row align-items-start gap-2">
         <div className="me-sm-2 flex-grow-1">
           <h1 className="d-sm-flex page__title fs-3 fw-bolder">Annual Tax Receipts</h1>
           <p className="d-sm-block">
             View your order history and download your tax receipts here. Your files will be
             available for download once they have been uploaded by the charity. The values listed in
             the table below represent the amount paid to the charity less any non-deductible service
-            charges. Transaction & Platform fees are not tax deductible.
+            charges. Transaction fees are not tax deductible.
           </p>
           <div className="d-flex flex-wrap gap-2 fw-semibold mt-5 pt-sm-0">
             <span>
-              {/* <img alt="" className="me-1" style={{ height: '21px' }} src={clock}></img> */}
               <FontAwesomeIcon icon={solid('clock')} className="fs-5 me-1 text-warning" />
               The charity has yet to upload your tax document
             </span>
@@ -213,7 +195,7 @@ const UserTax = () => {
 
       <div className="fs-5 fw-bolder d-flex align-items-center gap-1">
         <span className="fs-7 text-light fw-bolder flex-grow-1">DONATION HISTORY</span>
-        <div className="fs-6 text-light fw-semibold d-flex align-items-center gap-1 mb-2 justify-content-end">
+        <div className="fs-6 text-light fw-semibold d-flex align-items-center gap-1 justify-content-end">
           taxable amount:
           <h5 className="price ">
             {userData.symbol}
@@ -223,14 +205,6 @@ const UserTax = () => {
           </h5>
           <small className="fs-5 text-light">{userData.currency} </small>{' '}
         </div>
-        {/* Total:
-        <span className="text-success fs-4">
-          {userData.symbol}
-          {countProjectAmount(all).toLocaleString('en-US', {
-            maximumFractionDigits: 2
-          })}
-        </span>
-        <small className="fs-5 text-light">{userData.currency} </small>{' '}*/}
       </div>
 
       <TaxTable

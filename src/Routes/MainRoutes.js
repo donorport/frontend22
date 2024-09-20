@@ -69,6 +69,7 @@ import HelpCategory from '../View/frontEnd/help-category';
 import HelpArticle from '../View/frontEnd/help-article';
 import HelpContact from '../View/frontEnd/help-contact';
 import Trust from '../View/frontEnd/trust';
+import Fundraisers from '../View/frontEnd/fundraisers';
 import PlansController from '../Controller/frontEnd/PlansController';
 //import VerifiedDonors from '../View/frontEnd/verified-donors';
 import Terms from '../View/frontEnd/terms';
@@ -186,6 +187,7 @@ export default function MainRoutes() {
 
             <Route path="/help" element={<Help />} />
             <Route path="/trust" element={<Trust />} />
+            <Route path="/fundraisers" element={<Fundraisers />} />
             <Route path="/plans" element={<PlansController />} />
             <Route path="/help-category" element={<HelpCategory />} />
             <Route path="/help-article" element={<HelpArticle />} />
@@ -238,7 +240,11 @@ export default function MainRoutes() {
                 />
                 <Route exact path="/item/:name" element={<ItemDetailsController />} />
                 <Route exact path="/project/:name" element={<ProjectDetailsController />} />
-                <Route exact path="/crowdfunding/:name" element={<CrowdfundingDetailsController />} />
+                <Route
+                  exact
+                  path="/crowdfunding/:name"
+                  element={<CrowdfundingDetailsController />}
+                />
                 <Route exact path="/signin" element={<SigninController />} />
                 <Route exact path="/signup" element={<SignupController />} />
                 <Route exact path="/forgot-password" element={<ForgotPasswordController />} />
@@ -255,6 +261,7 @@ export default function MainRoutes() {
                 <Route path="/landing" element={<Landing />} />
                 <Route path="/ranks" element={<Ranks />} />
                 <Route path="/trust" element={<Trust />} />
+                <Route path="/fundraisers" element={<Fundraisers />} />
                 <Route path="/xp" element={<Xp />} />
                 <Route path="/help" element={<Help />} />
                 <Route path="/help-category" element={<HelpCategory />} />
@@ -268,7 +275,6 @@ export default function MainRoutes() {
             </>
           )
         ))}
-
 
       {/*
         admin logged in
@@ -303,6 +309,7 @@ export default function MainRoutes() {
               <Route path="/sponsors" element={<Sponsors />} />
               <Route path="/help" element={<Help />} />
               <Route path="/trust" element={<Trust />} />
+              <Route path="/fundraisers" element={<Fundraisers />} />
               <Route path="/help-category" element={<HelpCategory />} />
               <Route path="/help-article" element={<HelpArticle />} />
               <Route path="/help-contact" element={<HelpContact />} />

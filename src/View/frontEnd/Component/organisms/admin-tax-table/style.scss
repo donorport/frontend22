@@ -9,6 +9,11 @@
   }
 }
 .admin__tax-table {
+  .btn__wrap {
+    background: $secondary-5;
+    border-radius: 46px;
+    padding: 0 21px
+  }
   @include media-breakpoint-down(sm) {
     .btn__wrap {
       flex: 1;

@@ -74,11 +74,13 @@ function SigninController() {
           return;
         }
 
-        if (!(
-          uselogin.data.roleName === 'USER' ||
-          uselogin.data.roleName === 'CAMPAIGN_ADMIN' ||
-          uselogin.data.roleName === 'TEAM_MEMBER'
-        )) {
+        if (
+          !(
+            uselogin.data.roleName === 'USER' ||
+            uselogin.data.roleName === 'CAMPAIGN_ADMIN' ||
+            uselogin.data.roleName === 'TEAM_MEMBER'
+          )
+        ) {
           setLoginLoading(false);
           ToastAlert({ msg: 'User Not Found', msgType: 'error' });
           return;
@@ -115,11 +117,15 @@ function SigninController() {
           navigate('/campaign/' + uselogin.data.slug + '/posts', { replace: true });
         } else {
           if (uselogin.data.image) {
-            dispatch(setProfileImage(
-              uselogin.data.image && (uselogin.data.image.startsWith('http://') || uselogin.data.image.startsWith('https://'))
-                ? uselogin.data.image
-                : helper.DonorImageResizePath + uselogin.data.image
-            ));            
+            dispatch(
+              setProfileImage(
+                uselogin.data.image &&
+                  (uselogin.data.image.startsWith('http://') ||
+                    uselogin.data.image.startsWith('https://'))
+                  ? uselogin.data.image
+                  : helper.DonorImageResizePath + uselogin.data.image
+              )
+            );
           } else {
             dispatch(setProfileImage(defaultAvatar));
           }
@@ -132,7 +138,17 @@ function SigninController() {
           localStorage.setItem('userAuthToken', uselogin.data.accessToken);
           localStorage.setItem('userData', JSON.stringify(uselogin.data));
           localStorage.setItem('theme', theme);
-          navigate('/', { replace: true });
+          // Navigate based on role
+          if (uselogin.data.roleName === 'USER') {
+            const userName = uselogin.data.name.replace(/\s+/g, ''); // Replace spaces with %20
+            navigate('/user/' + userName + '/items', { replace: true });
+          } else if (uselogin.data.roleName === 'TEAM_MEMBER') {
+            navigate('/user/' + uselogin.data.slug + '/items', { replace: true });
+          } else {
+            navigate('/', { replace: true }); // Default fallback for other roles
+          }
+
+          // navigate('/', { replace: true });
         }
 
         ToastAlert({
@@ -164,7 +180,7 @@ function SigninController() {
 
     try {
       const result = await axios.post(`${helper.ApiUrl}auth/google_login`, {
-        tokenId: response.tokenId,
+        tokenId: response.tokenId
       });
 
       if (!result || !result.data.success) {
@@ -201,12 +217,12 @@ function SigninController() {
         navigate('/campaign/' + userData.slug + '/posts', { replace: true });
       } else {
         if (userData.image) {
-          const profileImageUrl = userData.image.startsWith('http://') || userData.image.startsWith('https://')
-          ? userData.image
-          : helper.DonorImageResizePath + userData.image;
+          const profileImageUrl =
+            userData.image.startsWith('http://') || userData.image.startsWith('https://')
+              ? userData.image
+              : helper.DonorImageResizePath + userData.image;
 
-          dispatch(setProfileImage(profileImageUrl));        
-          // dispatch(setProfileImage(helper.DonorImageResizePath + userData.image));
+          dispatch(setProfileImage(profileImageUrl));
         } else {
           dispatch(setProfileImage(defaultAvatar));
         }
@@ -220,7 +236,10 @@ function SigninController() {
         localStorage.setItem('userAuthToken', result.data.token);
         document.cookie = `userAuthToken=${result.data.token}`;
         localStorage.setItem('userData', JSON.stringify(userData));
-        navigate('/', { replace: true });
+
+        // Remove spaces from userData.name for USER navigation
+        const userName = userData.name.replace(/\s+/g, ''); // Remove all spaces
+        navigate('/user/' + userName + '/items', { replace: true });
       }
 
       ToastAlert({
@@ -243,10 +262,7 @@ function SigninController() {
   };
 
   return (
-    <Page
-      title="Log in | Donorport"
-      description="Login to your Donorport account or signup today"
-    >
+    <Page title="Log in | Donorport" description="Login to your Donorport account or signup today">
       <Login
         signIn={signIn}
         responseGoogle={responseGoogle}

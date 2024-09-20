@@ -503,8 +503,8 @@ const AdminProjects = () => {
   return (
     <>
       {!viewProject ? (
-        <div>
-          <header className="gap-2 pb-2 pb-sm-0 py-0 py-sm-2 mb-sm-3 w-100 flex-column flex-lg-row d-sm-flex align-items-start">
+        <>
+          <header className="gap-2 w-100 flex-column flex-lg-row d-sm-flex align-items-start">
             <div className="me-sm-2 flex-grow-1">
               <div className="d-flex align-items-center mb-1">
                 <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Projects</h1>
@@ -522,19 +522,22 @@ const AdminProjects = () => {
                 <Button variant="info" size="md" onClick={() => openModel()}>
                   Create New
                 </Button>
-              ) : <div>test</div>}
+              ) : null}
               <LadderMenuItems listBy={listBy} onChangeDropDown={onChangeDropDown} />
             </div>
           </header>
-          {/* {!hasProduct.length > 0 && !loading ? (
-            <div className="test mb-3 note fs-6 mw-100">
+          {/* {hasProduct.length == 0 && !loading ? (
+              <div className="test mb-3 note fs-6 mw-100">you must first add your bank details before creating a project</div>
+            ) : null} */}
+          {!hasProduct.length > 0 && !loading ? (
+            <div className="test note fs-6 mw-100">
               In order to create a project, you'll first need to post some items.{' '}
               <Link to={'/campaign/' + data.slug + '/posts'} className="link">
                 Click here
               </Link>{' '}
               to create your first item.
             </div>
-          ) : null} */}
+          ) : null}
           {hasProduct.length < 0 ? (
             <div className="test mb-3 note fs-6 mw-100">
               In order to create a project, you'll first need to post some items.{' '}
@@ -560,7 +563,7 @@ const AdminProjects = () => {
               data={data}
             />
           )}
-        </div>
+        </>
       ) : (
         <AddProject
           createProject={createProject}

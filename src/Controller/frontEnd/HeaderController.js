@@ -14,6 +14,8 @@ import userAuthApi from '../../Api/frontEnd/auth';
 import notificationApi from '../../Api/frontEnd/notification';
 import followApi from '../../Api/frontEnd/follow';
 import adminCampaignApi from '../../Api/admin/adminCampaign';
+import axios from 'axios';
+
 // eslint-disable-next-line import/no-unresolved
 import moment from 'moment';
 
@@ -380,17 +382,19 @@ export default function HeaderController({ productList, isHeaderGeo = false }) {
     navigate('/campaign/' + slug + '/posts', { state: { type: 'temp' } }, { replace: true });
   };
 
-  const setWatchNotification = async (watched, id) => {
-    let data = {};
-    data.watched = watched;
-    data.type = 'watched';
-    data.id = id;
-    const setWatch = await notificationApi.setWatch(userAuthToken, data);
-
-    if (!setWatch || !setWatch.data.success) return;
-
-    await getNotificationList();
+  const setWatchNotification = async (watched, id, type) => {
+    try {
+      await axios.post('/api/notifications/setWatchNotification', {
+        watched,
+        id,
+        type, // should be 'watched' or 'unwatched'
+      });
+      // Update the local state or refetch notifications if needed
+    } catch (error) {
+      console.error("Error updating notification:", error);
+    }
   };
+  
 
   const removeNotification = async (id) => {
     let data = {};
@@ -404,7 +408,7 @@ export default function HeaderController({ productList, isHeaderGeo = false }) {
     await getNotificationList();
   };
 
-  const notificationMarkAsRead = async (isRead, allNotificationList) => {
+  const markAsRead = async (isRead, allNotificationList) => {
     let data = {};
     data.isRead = isRead;
     data.allNotificationList = allNotificationList;
@@ -439,7 +443,7 @@ export default function HeaderController({ productList, isHeaderGeo = false }) {
         removeNotification={removeNotification}
         followedOrganizationList={followedOrganizationList}
         followToOrganization={followToOrganization}
-        notificationMarkAsRead={notificationMarkAsRead}
+        markAsRead={markAsRead}
         removeFollowedOrganization={removeFollowedOrganization}
         isHeaderGeo={isHeaderGeo}
       />

@@ -250,12 +250,12 @@ const UserHistory = () => {
       <header className=" w-100 d-none d-sm-flex align-items-start">
         <div className="me-sm-2 flex-grow-1">
           <div className="d-flex align-items-center">
-            <h4 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Order History</h4>{' '}
+            <h4 className="d-none d-sm-flex page__title mb-0 fs-3 fw-bolder me-2">Donation History</h4>{' '}
             <span className="d-none d-sm-flex ml-2">({totalRecord})</span>
           </div>
           <p className="d-sm-block">
             View your order history by transaction. See the transaction details for all of the items
-            you donated to.
+            you donated to. All prices include transaction fees.
           </p>
           <div className="d-flex flex-wrap gap-2 fw-semibold mt-5 pt-sm-0">
         <span>

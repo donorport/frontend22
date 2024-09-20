@@ -162,8 +162,8 @@ const AdminTaxTable = (props) => {
                       hideChevron={disableHeader}
                       header={
                         <li className="flex-grow-1 table__list-item py-3">
-                          <div className="flex-wrap d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
-                            <div className="d-flex gap-2 flex-wrap flex-sm-nowrap align-items-center">
+                          <div className="d-flex flex-wrap align-items-start align-items-lg-center flex-grow-1 gap-sm-0 gap-5">
+                            <div className="d-flex gap-2 flex-wrap flex-grow-1 flex-sm-nowrap align-items-center">
                               <div className="admin__billing-value text-end text-sm-start">
                                 <h6 className="price ">
                                   {item[0].currencySymbol}
@@ -193,15 +193,13 @@ const AdminTaxTable = (props) => {
                                 />
                               </div>
                               <div
-                                className="text__wrap user-select-auto"
-                                style={{ cursor: 'default' }}
+                                className="text__wrap user-select-auto d-flex flex-column gap-1"
+                                style={{ cursor: 'default', width: '200px' }}
                                 onClick={(e) => e.stopPropagation()}
                               >
                                 <h6>{item[0].userDetails?.name}</h6>
-                                <div className="text-light mb-1 fs-6">
-                                  {item[0].userDetails?.email}
-                                </div>
-                                <div className="text-light fs-7">
+                                <div className="text-light fs-6">
+                                  {item[0].userDetails?.email}{' '}
                                   {item[0].userDetails?.street +
                                     ', ' +
                                     item[0].userDetails?.city_id}
@@ -212,9 +210,9 @@ const AdminTaxTable = (props) => {
                                 </div>
                               </div>
                             </div>
-                            <div className="d-flex align-items-center flex-grow-1 justify-content-end">
+                            <div className="d-flex align-items-center flex-grow-1 gap-3 justify-content-between justify-content-sm-end">
                               {item.length === 1 && (
-                                <div className="d-flex align-items-center flex-grow-1">
+                                <div className="d-flex align-items-center flex-grow-1 justify-content-start">
                                   <div className="pe-1 p-sm-2 mr-12p">
                                     <img
                                       width={36}
@@ -271,20 +269,19 @@ const AdminTaxTable = (props) => {
                                   >
                                     <FontAwesomeIcon
                                       icon={solid('file-arrow-up')}
-                                      className="text-success fs-3"
+                                      className="text-primary fs-3"
                                     />
-                                    <div className="d-flec flex-column text-start ps-2">
+                                    <div className="d-flex flex-column text-start ps-2">
                                       <div className="file__name mb-3p">{item[0].receipt}</div>
-                                      <div className="date text-light fs-7">
-                                        {/* 3 days ago - 1.3 Mb */}
+                                      <p className="date fs-7 fw-light">
                                         {moment(item[0].updated_at).fromNow()}
-                                      </div>
+                                      </p>
                                     </div>
                                   </Button>
                                   <Dropdown className="d-flex ms-auto" autoClose="outside">
                                     <Dropdown.Toggle
                                       variant="link"
-                                      className="no-caret text-decoration-none"
+                                      className="no-caret text-decoration-none p-2"
                                     >
                                       {loadingId.includes(`loading-${i}`) ? (
                                         <CircularProgress
@@ -413,7 +410,7 @@ const AdminTaxTable = (props) => {
                             return (
                               <React.Fragment key={k}>
                                 <li className="table__list-item table__list-item--tax py-1">
-                                  <div className="d-flex d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row ps-0 ps-sm-1">
+                                  <div className="d-flex flex-wrap d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-row ps-0 ps-sm-1">
                                     <div className="d-flex align-items-center mb-1 mb-sm-0 order-1 order-sm-0">
                                       <div className="admin__billing-value ms-2 ms-sm-0 me-sm-4">
                                         <h6 className="price ">

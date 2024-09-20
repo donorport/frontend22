@@ -73,7 +73,7 @@ const UserXp = () => {
 
   return (
     <>
-      <header className="py-sm-2 pb-2 mb-3 w-100 d-sm-flex align-items-center d-none">
+      <header className="w-100 d-sm-flex align-items-center d-none">
         <div className="d-flex align-items-center me-sm-2 flex-grow-1 flex-wrap">
           <h4 className="d-none d-sm-flex page__title mb-0fw-bolder me-2">My XP</h4>
           <Avatar

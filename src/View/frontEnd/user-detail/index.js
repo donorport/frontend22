@@ -56,13 +56,14 @@ function UserDetail(props) {
       const getUserDetails = await userApi.getUserDetails(userAuthToken);
       if (getUserDetails) {
         if (getUserDetails.data.success) {
-          // console.log(getUserDetails.data.data)
           setProfileImg(
             getUserDetails.data.data?.image &&
             (getUserDetails.data.data.image.startsWith('http://') || getUserDetails.data.data.image.startsWith('https://'))
               ? getUserDetails.data.data.image
-              : helper.DonorImagePath + (getUserDetails.data.data?.image || '')
-          );          
+              : getUserDetails.data.data?.image
+                ? helper.DonorImagePath + getUserDetails.data.data.image
+                : AvatarImg // Fallback to AvatarImg if no image is provided
+          );
           setData(getUserDetails.data.data);
         } else {
           localStorage.clear();
@@ -72,12 +73,13 @@ function UserDetail(props) {
         localStorage.clear();
         navigate('/');
       }
-
+  
       setLoading(false);
     })();
-    // console.log(location.pathname.split('/')[3])
+  
     setSelectedTabKey(location.pathname.split('/')[3]);
   }, [user.isUpdateUserDetails]);
+  
 
   return (
     <Page title={'Donorport | ' + data?.name}>

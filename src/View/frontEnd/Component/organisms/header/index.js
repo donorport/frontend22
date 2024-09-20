@@ -18,7 +18,7 @@ const Header = ({
   setWatchNotification,
   removeNotification,
   followedOrganizationList,
-  notificationMarkAsRead,
+  markAsRead,
   followToOrganization,
   removeFollowedOrganization,
   wishListproductList,
@@ -87,7 +87,7 @@ const Header = ({
                     setWatchNotification={setWatchNotification}
                     removeNotification={removeNotification}
                     followedOrganizationList={followedOrganizationList}
-                    notificationMarkAsRead={notificationMarkAsRead}
+                    markAsRead={markAsRead}
                     followToOrganization={followToOrganization}
                     removeFollowedOrganization={removeFollowedOrganization}
                   />

@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import LadderMenuItems from '../ladder-menu-items';
 import CrowdfundingsTable from '../crowdfundings-table';
@@ -20,7 +22,6 @@ const AdminCrowdfundings = () => {
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   const tempCampaignAdminAuthToken = localStorage.getItem('tempCampaignAdminAuthToken');
   const type = localStorage.getItem('type');
-
   const token = type
     ? type === 'temp'
       ? tempCampaignAdminAuthToken
@@ -99,8 +100,31 @@ const AdminCrowdfundings = () => {
       images: []
     });
   };
-
+  // redux get the user
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
   const openModel = () => {
+    // Check if the user has added their bank account
+    if (!user.isAccountAdded) {
+      let path = '/campaign/' + data.slug + '/settings/payments';
+      navigate(path);
+      ToastAlert({
+        msg: 'You need to add a Bank Account before creating a new crowdfunding campaign.',
+        msgType: 'error'
+      });
+      return;
+    }
+
+    // Check if the tax rate is set
+    if (!data.taxRate) {
+      ToastAlert({
+        msg: 'Please set the tax rate before creating a new crowdfunding campaign.',
+        msgType: 'error'
+      });
+      return;
+    }
+
+    // If both checks pass, proceed to open the model for creating a new crowdfunding campaign
     setIsCreateCrowdfunding(true);
     resetForm();
   };
@@ -364,7 +388,7 @@ const AdminCrowdfundings = () => {
     setstate({
       ...state,
       goal: value
-    });    
+    });
   };
 
   const publishCrowdfunding = async (id, crowdfundingData) => {
@@ -442,11 +466,9 @@ const AdminCrowdfundings = () => {
   console.log({ isCreateCrowdfunding });
   return (
     <>
-
-
       {!isCreateCrowdfunding ? (
-        <div>
-          <header className="py-sm-2 mb-2 w-100 d-sm-flex align-items-center">
+        <>
+          <header className="w-100 d-sm-flex align-items-center">
             <div className="me-sm-2 flex-grow-1">
               <div className="d-flex align-items-center mb-1">
                 <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder mb-0">Fundraisers</h1>
@@ -486,7 +508,7 @@ const AdminCrowdfundings = () => {
             sortField={sortField}
             data={data}
           />
-        </div>
+        </>
       ) : (
         <AddCrowdfunding
           createCrowdfunding={setIsCreateCrowdfunding}

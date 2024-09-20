@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import helper, { getCookie, setCookie, deleteCookie } from '../../../../../Common/Helper';
 import ToastAlert from '../../../../../Common/ToastAlert';
 import { useSelector } from 'react-redux';
-import removeImg from '../../../../../assets/images/remove-link.svg';
+import paperplane from '../../../../../assets/images/paper-plane.png';
 import { CircularProgress } from '@mui/material';
 
 function LinkedOrg(props) {
@@ -183,7 +183,7 @@ function LinkedOrg(props) {
       <div style={{ display: modelShow ? 'block' : 'none' }}>
         <div className=" py-5 text-center border-bottom">
           <div className="remove-img-wrap">
-            <img src={removeImg} alt="remove link" style={{ width: '70px', marginBottom: '0px' }} />
+            <img src={paperplane} alt="remove link" style={{ width: '70px', marginBottom: '0px' }} />
           </div>
           <h5 className="modal-title mb-3" id="removeModalTwoLabel">
             Unlink Organization ?
@@ -262,7 +262,7 @@ function LinkedOrg(props) {
           ) : (
             <div className="empty__block pt-5">
               <div className="empty__cart mb-2">
-                <img src={removeImg} alt="" width="90%" />
+                <img src={paperplane} alt="" width="90%" />
               </div>
               <h6 className="no__items-found">You have no linked organizations.</h6>
               <span className="mt-1" style={{ maxWidth: '225px' }}>
