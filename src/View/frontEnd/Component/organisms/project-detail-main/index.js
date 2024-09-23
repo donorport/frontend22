@@ -83,7 +83,6 @@ function ProjectDetailMain(props) {
 
   const countProjectProcess = (data) => {
     let allProductPer = [];
-
     let per = 0;
 
     if (data?.length > 0) {
@@ -102,7 +101,9 @@ function ProjectDetailMain(props) {
     } else {
       per = 0;
     }
-    return Math.round(per);
+
+    // Ensure that the progress is at least 15% if it's 0
+    return per === 0 ? 15 : per;
   };
 
   // const setState = projectDetails.campaignDetails?.state_id;
@@ -123,12 +124,19 @@ function ProjectDetailMain(props) {
 
   return (
     <div className="project__detail-main">
-      <div className="d-flex flex-column mb-4 gap-2">
+      <div className="d-flex flex-column mb-3 gap-2">
         <div className="d-flex align-items-center mb-1">
           <div>
             <TagTitle>Project</TagTitle>
             <h1 className="project__detail-title ">{projectDetails.name}</h1>
           </div>
+          <Link to={'/organization/' + projectDetails?.campaignDetails?.slug}>
+            <img
+              alt=""
+              style={{ width: 'auto', maxHeight: '90%', maxWidth: '90%' }}
+              src={helper.CampaignAdminLogoPath + projectDetails?.campaignDetails?.logo}
+            ></img>
+          </Link>
           {/* <div className="page__logo page__logo--org ms-auto">
             <img
               alt=""
@@ -143,118 +151,16 @@ function ProjectDetailMain(props) {
 
         <div className="project__detail-meta d-flex align-items-center flex-wrap text-light">
           <div className="d-flex align-items-center me-2 text-nowrap">
-            <FontAwesomeIcon icon={regular('clock')} className="me-1" />
-            {/* December 27, 2018 */} {moment(projectDetails.created_at).format('MMMM DD , YYYY')}
-          </div>
-          <div className="d-flex align-items-center me-2 text-nowrap">
             <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
             {/* {`${addyList[0]} ${addyList[1]} ${countryToAlpha2(addyList[2])}`} */}
             {address}
           </div>
-        </div>
-
-        <div className="product__top px-0 d-flex align-items-center">
-          <div className="d-flex align-items-center w-100">
-            <ProgressBar
-              variant={projectDetails.infinity ? 'infinity' : 'success'}
-              now={countProjectProcess(projectDetails.productDetails)}
-              className="flex-grow-1 me-1"
-            />
-            {projectDetails.infinity ? (
-              <span className="tag tag__ongoing tag__rounded fs-9">
-                <FontAwesomeIcon className="fs-6 text-secondary" icon={regular('infinity')} />
-              </span>
-            ) : (
-              <span className="text-light">
-                {countProjectProcess(projectDetails.productDetails)}%
-              </span>
-            )}
-          </div>
-          <div className="text-light d-flex align-items-center ms-3">
-            <IconToggle
-              icon={<FontAwesomeIcon icon={regular('bell')} />}
-              checkedIcon={<FontAwesomeIcon icon={solid('bell')} />}
-              onClickFilter={(e) => props.followToProject(e)}
-              name="Project"
-              ischecked={props.isFollow}
-            />
-
-            <ShareWidget
-              page="project"
-              text={`Help ${projectDetails?.campaignDetails?.name} fund their project: ${projectDetails?.name} on Donorport! 📈👀`}
-              pageTitle={projectDetails?.name}
-              currUrl={`https://api.donorport.com/project/${projectDetails?.slug}`}
-            />
+          <div className="d-flex align-items-center me-2 text-nowrap">
+            <FontAwesomeIcon icon={regular('clock')} className="me-1" />
+            {/* December 27, 2018 */} {moment(projectDetails.created_at).format('MMMM DD , YYYY')}
           </div>
         </div>
 
-        <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-0 mb-sm-2">
-          {/*} <Button
-            size="lg"
-            variant="link"
-            className="btn__category text-decoration-none btn btn-link btn-lg"
-          >
-            <RoundedIcon
-              bgColor="#c13e40"
-              size={16}
-              className="mr-6p"
-              icon={<FontAwesomeIcon icon={solid("briefcase-medical")} />}
-            />
-            <span className="fs-6  fw-bold">Shelter</span>
-            </Button>*/}
-
-          <Link
-            size="lg"
-            variant="link"
-            className="btn__category text-decoration-none btn btn-link btn-lg"
-            to={'/categories/' + projectDetails?.campaignDetails?.categoryDetails?.slug}
-          >
-            <span className="d-flex align-items-center icon__category">
-              {/* <img
-                alt=""
-                className="img-fluid"
-                src=""
-              /> */}
-              {/* <img
-                alt=""
-                className="img-fluid"
-                src={
-                  projectDetails?.campaignDetails?.logo
-                    ? helper.CampaignAdminLogoPath + projectDetails?.campaignDetails?.logo
-                    : noImg
-                }
-              /> */}
-
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 640 512">
-                <path
-                  d={projectDetails?.campaignDetails?.categoryDetails?.icon}
-                  fill={projectDetails?.campaignDetails?.categoryDetails?.color}
-                ></path>{' '}
-              </svg>
-            </span>
-            <span className="fs-6  fw-bold ms-1">
-              {projectDetails?.campaignDetails?.categoryDetails?.name}
-            </span>
-          </Link>
-          <Link
-            size="lg"
-            variant="link"
-            className="btn__category text-decoration-none btn btn-link btn-lg"
-            to={'/organization/' + projectDetails?.campaignDetails?.slug}
-          >
-            <span className="d-flex align-items-center icon__category">
-              {/* <CategoryIcon /> */}
-              {/* <div className="page__logo page__logo--org ms-auto" > */}
-              <img
-                alt=""
-                style={{ width: 'auto', maxHeight: '90%', maxWidth: '90%' }}
-                src={helper.CampaignAdminLogoPath + projectDetails?.campaignDetails?.logo}
-              />
-              {/* </div> */}
-            </span>
-            <span className="fs-6  fw-bold ms-1">{projectDetails?.campaignDetails?.name}</span>
-          </Link>
-        </div>
         {/*   <div className="iframe__wrapper">
           {/* <iframe
             className="embedly-embed"
@@ -301,7 +207,77 @@ function ProjectDetailMain(props) {
               tagTitle="Project"
             />
           )}
+
+          <div className="product__top px-0 d-flex align-items-center">
+            <div className="d-flex align-items-center w-100">
+              <ProgressBar
+                variant={projectDetails.infinity ? 'infinity' : 'success'}
+                now={countProjectProcess(projectDetails.productDetails)}
+                className="flex-grow-1 me-1"
+              />
+              {projectDetails.infinity ? (
+                <span className="tag tag__ongoing tag__rounded fs-9">
+                  <FontAwesomeIcon className="fs-6 text-secondary" icon={regular('infinity')} />
+                </span>
+              ) : (
+                <span className="text-light">
+                  {countProjectProcess(projectDetails.productDetails)}%
+                </span>
+              )}
+            </div>
+            <div className="text-light d-flex align-items-center ms-3">
+              <IconToggle
+                icon={<FontAwesomeIcon icon={regular('bell')} />}
+                checkedIcon={<FontAwesomeIcon icon={solid('bell')} />}
+                onClickFilter={(e) => props.followToProject(e)}
+                name="Project"
+                ischecked={props.isFollow}
+              />
+
+              {/* <ShareWidget
+                page="project"
+                text={`Help ${projectDetails?.campaignDetails?.name} fund their project: ${projectDetails?.name} on Donorport! 📈👀`}
+                pageTitle={projectDetails?.name}
+                currUrl={`https://api.donorport.com/project/${projectDetails?.slug}`}
+              /> */}
+            </div>
+          </div>
         </div>
+        {/* <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-0 mb-sm-2">
+          <Link
+            size="lg"
+            variant="link"
+            className="btn__category text-decoration-none btn btn-link btn-lg"
+            to={'/categories/' + projectDetails?.campaignDetails?.categoryDetails?.slug}
+          >
+            <span className="d-flex align-items-center icon__category">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 640 512">
+                <path
+                  d={projectDetails?.campaignDetails?.categoryDetails?.icon}
+                  fill={projectDetails?.campaignDetails?.categoryDetails?.color}
+                ></path>{' '}
+              </svg>
+            </span>
+            <span className="fs-6  fw-bold ms-1">
+              {projectDetails?.campaignDetails?.categoryDetails?.name}
+            </span>
+          </Link>
+          <Link
+            size="lg"
+            variant="link"
+            className="btn__category text-decoration-none btn btn-link btn-lg"
+            to={'/organization/' + projectDetails?.campaignDetails?.slug}
+          >
+            <span className="d-flex align-items-center icon__category">
+              <img
+                alt=""
+                style={{ width: 'auto', maxHeight: '90%', maxWidth: '90%' }}
+                src={helper.CampaignAdminLogoPath + projectDetails?.campaignDetails?.logo}
+              />
+            </span>
+            <span className="fs-6  fw-bold ms-1">{projectDetails?.campaignDetails?.name}</span>
+          </Link>
+        </div> */}
         <div>
           <h4 className="page__blurb fw-bolder">{projectDetails.headline}</h4>
           <p className="page__paragraph">{projectDetails.description}</p>
@@ -331,6 +307,14 @@ function ProjectDetailMain(props) {
           loading={props.loading}
         />
       </div> */}
+      <div className="d-flex flex-column align-items-start gap-1 justify-content-start mb-5">
+        <p>project admininstrator:</p>
+        <div className="associated-user fw-semibold align-items-center d-flex gap-1 py-2 px-2 pe-3 rounded-5">
+          <FontAwesomeIcon icon={solid('user')} className="me-1" />
+          <span>{projectDetails?.campaignDetails?.organizationUserName}</span>
+        </div>
+      </div>
+
       <OrganizationWidget
         tagTitle="Project"
         productDetails={projectDetails.productDetails}

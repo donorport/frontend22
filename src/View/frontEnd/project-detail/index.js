@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 // third party
 import { Col, Container, Row, Button } from 'react-bootstrap';
+import ShareWidget from '../Component/organisms/share-widget';
 
 // app specific
 // import Header from '../Component/organisms/header';
@@ -90,7 +91,13 @@ const ProjectDetail = (props) => {
             projectList={props.projectList}
             projectId={props.projectDetails?._id}
           />  */}
-        <div className="ms-auto d-flex align-items-center">
+        <div className="ms-auto d-flex align-items-center gap-2 mb-5">
+          <ShareWidget
+            page="project"
+            text={`Help ${props.projectDetails?.campaignDetails?.name} fund their project: ${props.projectDetails?.name} on Donorport! 📈👀`}
+            pageTitle={props.projectDetails?.name}
+            currUrl={`https://api.donorport.com/project/${props.projectDetails?.slug}`}
+          />
             {!CampaignAdminAuthToken && (
               <Button size="md" className="fw-bold" onClick={() => setModalShow(true)}>
                 Donate

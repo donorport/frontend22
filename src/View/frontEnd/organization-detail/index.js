@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Col, Container, Row, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-
+import ShareWidget from '../Component/organisms/share-widget';
 import Footer from '../Component/organisms/footer';
 import OrganizationDetailMain from '../Component/organisms/organization-detail-main';
 import History from '../Component/organisms/history';
@@ -85,7 +85,13 @@ const OrganizationDetail = (props) => {
           </Col>
           <Col md="5">
             <div className="d-flex container-fluid">
-              <div className="ms-auto d-flex align-items-center">
+              <div className="ms-auto d-flex align-items-center gap-2 mb-5">
+              <ShareWidget
+              page="org"
+              text={`Let's help ${organizationDetails?.name} fund their needs on Donorport 🏆 🚀`}
+              pageTitle={organizationDetails?.name}
+              currUrl={`https://api.donorport.com/organization/${organizationDetails?.slug}`}
+            />
                 {!CampaignAdminAuthToken && (
                   <Button
                     size="md"

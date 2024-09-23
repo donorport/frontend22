@@ -15,4 +15,15 @@
       grid-template-columns: repeat(1, 1fr); /* 1 column for small screens */
     }
   }
-  
+  .fundraise__img {
+    border-radius: 0;
+    box-shadow: none;
+    display: block;
+    height: auto;
+    margin: 0;
+    -o-object-fit: cover;
+    object-fit: cover;
+    order: 1;
+    width: 100%;
+    transition: transform .3s ease;
+  }

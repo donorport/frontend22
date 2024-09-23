@@ -263,6 +263,38 @@ const AddPost = (props) => {
   //return <div className="banner">Loading...</div>;
   //};
 
+  const [isDragOver, setIsDragOver] = useState(false);
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsDragOver(false);
+  };
+
+  const IMAGE_UPLOAD_WRAP_STYLES = {
+    marginTop: '20px',
+    position: 'relative',
+    width: '100%',
+    borderRadius: '9px',
+    border: isDragOver ? '2px solid blue' : '2px dashed rgba(62, 170, 255, 0.58)',
+    fontSize: '60px',
+    transition: 'border 0.3s ease-in-out'
+  };
+
+  const FILE_UPLOAD_INPUT_STYLES = {
+    position: 'absolute',
+    margin: 0,
+    padding: 0,
+    width: '100%',
+    height: '100%',
+    outline: 'none',
+    opacity: 0,
+    cursor: 'pointer'
+  };
+
   return (
     <div className="d-flex flex-column gap-5 add-post">
       <div className="d-flex align-items-center flex-grow-1 gap-2 pb-20p mb-3 border-bottom flex-wrap mt-3 mt-sm-0">
@@ -815,13 +847,9 @@ const AddPost = (props) => {
 
                         <div
                           className="image-upload-wrap fs-2"
-                          style={{
-                            ...STYLES_imageUploadWrap,
-                            // backgroundColor: '#e5f4ff',
-                            borderRadius: '9px',
-                            border: '2px dashed rgba(62, 170, 255, 0.58)',
-                            fontSize: '60px'
-                          }}
+                          style={IMAGE_UPLOAD_WRAP_STYLES}
+                          onDragOver={handleDragOver}
+                          onDragLeave={handleDragLeave}
                         >
                           <input
                             className="file-upload-input"
@@ -833,7 +861,7 @@ const AddPost = (props) => {
                             accept=".jpg,.gif,.png, .svg"
                             multiple
                             onChange={(e) => changefile(e)}
-                            style={STYLES_fileUploadInput}
+                            style={FILE_UPLOAD_INPUT_STYLES}
                           />
                           <div
                             className="drag-text"
@@ -938,7 +966,7 @@ const AddPost = (props) => {
                           <p className="error">
                             {error ? (error.moreImg ? error.moreImg : '') : ''}
                           </p>
-                        )}                    
+                        )}
                       </div>
                     </div>
                   </form>
@@ -1086,13 +1114,9 @@ const AddPost = (props) => {
 
                       <div
                         className="image-upload-wrap fs-2"
-                        style={{
-                          ...STYLES_imageUploadWrap,
-                          // backgroundColor: '#e5f4ff',
-                          borderRadius: '9px',
-                          border: '2px dashed rgba(62, 170, 255, 0.58)',
-                          fontSize: '60px'
-                        }}
+                        style={IMAGE_UPLOAD_WRAP_STYLES}
+                        onDragOver={handleDragOver}
+                        onDragLeave={handleDragLeave}
                       >
                         <input
                           className="file-upload-input"
@@ -1104,8 +1128,7 @@ const AddPost = (props) => {
                           onChange={(e) => {
                             changefile(e);
                           }}
-                          style={STYLES_fileUploadInput}
-                          title=" "
+                          style={FILE_UPLOAD_INPUT_STYLES}
                         />
                         <div className="drag-text" style={{ textAlign: 'center', padding: '70px' }}>
                           <FontAwesomeIcon icon={solid('cloud-arrow-up')} className="icon-cloud" />
@@ -1192,7 +1215,6 @@ const AddPost = (props) => {
                           {error ? (error.galleryImg ? error.galleryImg : '') : ''}
                         </p>
                       )}
-                   
                     </div>
                   </div>
                 </form>

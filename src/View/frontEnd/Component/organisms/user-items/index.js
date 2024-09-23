@@ -389,7 +389,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
             <div className="mb-3">
               <h4 className="project__detail-label mb-3p">Item</h4>
               <h1 className="project__detail-title">{item.itemDetails?.headline}</h1>
-              <h5 className="project__detail-sublabel mb-0">Product</h5>
+              <h5 className="project__detail-sublabel mb-2">Product</h5>
               <div className="project__detail-subtitle fw-bold">{item.itemDetails?.brand} ™</div>
               <div className="project__detail-price fs-2 price">
                 {item.currencySymbol}

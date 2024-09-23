@@ -8,6 +8,7 @@ import crowdfundingApi from '../../../Api/admin/crowdfunding';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import DefaultLayout from '../Component/templates/default-layout';
+import Page from '../../../components/Page';
 
 const Fundraisers = () => {
   const user = useSelector((state) => state.user);
@@ -21,45 +22,46 @@ const Fundraisers = () => {
       // Fetch the crowdfunding list with no token or data requirements
       const getCrowdfundingList = await crowdfundingApi.list(); // No token or data needed
       console.log({ getCrowdfundingList });
-  
+
       // Check if the API call was successful and set the list
       if (getCrowdfundingList.data.success === true) {
         setCrowdfundingList(getCrowdfundingList.data.data);
       } else {
-        console.error("Failed to fetch crowdfunding list");
+        console.error('Failed to fetch crowdfunding list');
       }
     } catch (error) {
-      console.error("Error fetching crowdfunding list:", error);
+      console.error('Error fetching crowdfunding list:', error);
     }
   };
-  
+
   useEffect(() => {
     // Call the function when the component is mounted
     getAllCrowdfundingList();
   }, []);
-  
+
   // Filter crowdfunding list to only include those with status 1
   const filteredCrowdfundingList = crowdfundingList.filter(
     (crowdfunding) => crowdfunding.status === 1
   );
-  
 
   return (
-    <DefaultLayout>
-      <Container fluid className="position-relative pb-5 pt-3">
-        <div className="mb-2 mb-sm-0">
-          <ul className="fundraiser__grid">
-            {filteredCrowdfundingList.length > 0 ? (
-              filteredCrowdfundingList.map((crowdfunding, key) => (
-                <CrowdfundingListItem key={key} crowdfunding={crowdfunding} />
-              ))
-            ) : (
-              <li className="list__table-list p-2 mb-0">No entries to show</li>
-            )}
-          </ul>
-        </div>
-      </Container>
-    </DefaultLayout>
+    <Page title="Donorport | Fundraisers">
+      <DefaultLayout>
+        <Container fluid className="position-relative pb-5 pt-3">
+          <div className="mb-2 mb-sm-0">
+            <ul className="fundraiser__grid">
+              {filteredCrowdfundingList.length > 0 ? (
+                filteredCrowdfundingList.map((crowdfunding, key) => (
+                  <CrowdfundingListItem key={key} crowdfunding={crowdfunding} />
+                ))
+              ) : (
+                <li className="list__table-list p-2 mb-0">No entries to show</li>
+              )}
+            </ul>
+          </div>
+        </Container>
+      </DefaultLayout>
+    </Page>
   );
 };
 
@@ -74,17 +76,19 @@ const CrowdfundingListItem = ({ crowdfunding }) => {
   };
 
   return (
-    <li className="d-flex flex-column align-items-center justify-content-center px-2 py-3">
-      <Avatar
-        size={62}
-        border={0}
-        shadow={false}
-        avatarUrl={
-          crowdfunding.imageDetails?.length > 0
-            ? helper.CrowdfundingImagePath + crowdfunding.imageDetails[0].image
-            : profile
-        }
-      />
+    <li className="d-flex flex-column align-items-center justify-content-center px-2 py-3 border rounded-5">
+      <div className="relative">
+        {' '}
+        <img
+          className="fundraise__img"
+          src={
+            crowdfunding.imageDetails?.length > 0
+              ? helper.CrowdfundingImagePath + crowdfunding.imageDetails[0].image
+              : profile
+          }
+        />
+      </div>
+
       <div className="ms-2">
         <div className="fw-bolder fs-5 mb-3p">{crowdfunding.name}</div>
       </div>
@@ -102,9 +106,21 @@ const CrowdfundingListItem = ({ crowdfunding }) => {
           %
         </span>
       </div>
+      <p>{crowdfunding?.description}</p>
+      <div class="form-grid-raised">
+        <div class="form-grid-raised__details">
+          <span class="amount">{}</span>
+          <span class="goal">${crowdfunding?.goal}</span>{' '}
+        </div>
+
+        <div class="form-grid-raised__details">
+          <span class="amount form-grid-raised__details_donations">X</span>
+          <span class="goal">donations </span>
+        </div>
+      </div>
       <Link
         to={'/crowdfunding/' + crowdfunding.slug}
-        className="cd__cart__name text-decoration-none"
+        className="btn btn-primary btn-md cd__cart__name text-decoration-none"
       >
         Go to fundraiser
       </Link>

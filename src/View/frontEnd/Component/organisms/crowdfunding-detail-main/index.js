@@ -73,23 +73,12 @@ function CrowdfundingDetailMain({
       <div className="d-flex flex-column mb-4 gap-2">
         <div className="d-flex gap-5">
           {' '}
-          <div className="d-flex align-items-center mb-1">
+          <div className="d-flex align-items-center flex-grow-1 mb-1">
             <div>
               <TagTitle>Fundraiser</TagTitle>
               <h1 className="project__detail-title">
-                {crowdfundingDetails?.name ? crowdfundingDetails.name : 'Utility Vehicle'}
+                {crowdfundingDetails?.name ? crowdfundingDetails.name : 'Name'}
               </h1>
-              <div className="project__detail-meta d-flex align-items-center flex-wrap text-light">
-                <div className="d-flex align-items-center me-2 text-nowrap">
-                  <FontAwesomeIcon icon={regular('clock')} className="me-1" />
-                  {/* December 27, 2018 */}{' '}
-                  {moment(crowdfundingDetails.created_at).format('MMMM DD , YYYY')}
-                </div>
-                <div className="d-flex align-items-center me-2 text-nowrap">
-                  <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
-                  {address}
-                </div>
-              </div>
             </div>
           </div>{' '}
           <Link to={'/organization/' + crowdfundingDetails?.campaignDetails?.slug}>
@@ -100,9 +89,22 @@ function CrowdfundingDetailMain({
             ></img>
           </Link>
         </div>
+        <div className="project__detail-meta d-flex align-items-center flex-wrap text-light">
+                <div className="d-flex align-items-center me-2 text-nowrap">
+                  <FontAwesomeIcon icon={regular('clock')} className="me-1" />
+                  {moment(crowdfundingDetails.created_at).format('MMMM DD , YYYY')}
+                </div>
+                <div className="d-flex align-items-center me-2 text-nowrap">
+                  <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
+                  {address}
+                </div>
+              </div>
+        {crowdfundingDetails?.images && crowdfundingDetails?.images.length > 0 && (
+            <ProjectCrowdfundingGallery images={crowdfundingDetails?.images} tagTitle="Project" />
+          )}
         <div className="d-flex flex-column">
-          <h5 className="project__detail-sublabel mb-0 fw-bolder">Charity</h5>
-          <div className="project__detail-subtitle fw-bold">Goal</div>
+          <h5 className="project__detail-sublabel fw-bolder">Fundraiser Goal</h5>
+          {/* <div className="project__detail-subtitle fw-bold">Goal</div> */}
           <h1>${crowdfundingDetails.goal}</h1>
           <div className="product__top px-0 d-flex align-items-center">
             <div className="d-flex align-items-center w-100">
@@ -130,12 +132,12 @@ function CrowdfundingDetailMain({
                 ischecked={isFollow}
               />
 
-              <ShareWidget
+              {/* <ShareWidget
                 page="project"
                 text={`Help ${crowdfundingDetails?.campaignDetails?.name} fund their project: ${crowdfundingDetails?.name} on Donorport! 📈👀`}
                 pageTitle={crowdfundingDetails?.name}
                 currUrl={`https://api.donorport.com/crowdfunding/${crowdfundingDetails?.slug}`}
-              />
+              /> */}
             </div>
           </div>
           {/* <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-0 mb-sm-2">
@@ -189,6 +191,7 @@ function CrowdfundingDetailMain({
             {crowdfundingDetails.description ||
               'Default description goes here. Provide details about your crowdfunding campaign.'}
           </p>
+          
         </div>
         <FundraisingSlider
           userId={crowdfundingDetails?._id}
@@ -220,7 +223,7 @@ function CrowdfundingDetailMain({
           dCardIcon={dCardIcon}
           loading={loading}
         />
-        <div className="iframe__wrapper">
+        {/* <div className="iframe__wrapper">
           <iframe
             src={embedlink}
             title="YouTube video player"
@@ -231,7 +234,7 @@ function CrowdfundingDetailMain({
             allow="autoplay; fullscreen"
             allowFullScreen
           ></iframe>
-        </div>
+        </div> */}
         <div className="d-flex flex-column gap-2">
           {video && (
             <div className="project-video-wrap">
@@ -245,10 +248,6 @@ function CrowdfundingDetailMain({
                 allowFullScreen
               ></iframe>
             </div>
-          )}
-
-          {crowdfundingDetails?.images && crowdfundingDetails?.images.length > 0 && (
-            <ProjectCrowdfundingGallery images={crowdfundingDetails?.images} tagTitle="Project" />
           )}
         </div>
       </div>

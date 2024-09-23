@@ -58,7 +58,7 @@ function OrganizationDetailMain({
     <div className="d-flex gap-5 project__detail-main">
       <div className="d-flex flex-column gap-3">
         <div className="d-flex flex-column">
-          <h4 className="project__detail-label mb-3p">Organization</h4>
+          <h4 className="project__detail-sublabel mb-2">Organization</h4>
           <div className="d-flex flex-wrap gap-3">
             <h1
               className="flex-grow-1 project__detail-title  text-capitalize mb-0"
@@ -112,7 +112,32 @@ function OrganizationDetailMain({
             </div>
           )}
         </div>
-        <div className="d-flex align-items-center">
+
+
+        {organizationDetails.promoVideo && (
+          <div className="d-flex flex-column gap-2">
+            <div className="project-video-wrap">
+              <iframe
+                title="organization-promo-video"
+                key="organization-promo-video"
+                width="498"
+                height="280"
+                src={embedlink}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        )}
+
+        {organizationDetails.images?.some((e) => e.type === 'galleryImage') && (
+          <ProjectCrowdfundingGallery
+            className=""
+            title={false}
+            images={organizationDetails.images}
+          />
+        )}
+                <div className="d-flex align-items-center">
           <div className="category__icons d-flex align-items-center order--1 order-sm-0">
             <Button
               size="lg"
@@ -171,38 +196,14 @@ function OrganizationDetailMain({
               name="organization"
               onClickFilter={(e) => followToOrganization(e)}
             />
-            <ShareWidget
+            {/* <ShareWidget
               page="org"
               text={`Let's help ${organizationDetails?.name} fund their needs on Donorport 🏆 🚀`}
               pageTitle={organizationDetails?.name}
               currUrl={`https://api.donorport.com/organization/${organizationDetails?.slug}`}
-            />
+            /> */}
           </div>
         </div>
-
-        {organizationDetails.promoVideo && (
-          <div className="d-flex flex-column gap-2">
-            <div className="project-video-wrap">
-              <iframe
-                title="organization-promo-video"
-                key="organization-promo-video"
-                width="498"
-                height="280"
-                src={embedlink}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
-        )}
-
-        {organizationDetails.images?.some((e) => e.type === 'galleryImage') && (
-          <ProjectCrowdfundingGallery
-            className=""
-            title={false}
-            images={organizationDetails.images}
-          />
-        )}
         <div className="mt-2">
           <h4 className="page__blurb fw-bolder">{organizationDetails?.headline}</h4>
           <p className="page__paragraph">{organizationDetails?.description}</p>

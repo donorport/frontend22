@@ -28,52 +28,10 @@ import Box from '@mui/material/Box';
 import Input from '../input';
 import Textarea from '../text-area';
 
-const IMAGE_UPLOAD_WRAP_STYLES = {
-  marginTop: '20px',
-  position: 'relative',
-  width: '100%'
-};
-const FILE_UPLOAD_INPUT_STYLES = {
-  position: 'absolute',
-  margin: 0,
-  padding: 0,
-  width: '100%',
-  height: '100%',
-  outline: 'none',
-  opacity: 0,
-  cursor: 'pointer'
-};
-
-const VALID_GALLARY_IMAGE_EXTENSIONS = ['jpg', 'png', 'jpeg', 'gif'];
-const VALID_MAIN_IMAGE_FILE_EXTENSIONS = ['jpg', 'png', 'jpeg', 'svg'];
-
-const UPDATE_PROFILE_VALIDATION_RULES = {
-  name: 'required',
-  headline: 'required',
-  // mission: 'required',
-  //promoVideo: "required",
-  //city: 'required',
-  stateId: 'required',
-  country: 'required',
-  category: 'required',
-  ein: 'required'
-};
-
-const UPDATE_PROFILE_VALIDATION_MESSAGES = {
-  'name.required': 'Organization Name is Required.',
-  'headline.required': 'Headline is Required.',
-  'mission.required': 'Mission is Required.',
-  'promoVideo.required': 'Promo Video is Required.',
-  'ein.required': 'Charity Registration Number is Required.',
-  'stateId.required': 'State is Required.',
-  'city.required': 'City is Required.',
-  'country.required': 'Country is Required.',
-  'category.required': 'Category is Required.'
-};
-
 const ProfileSettings = () => {
   let timeoutId;
   const user = useSelector((state) => state.user);
+  const [isDragOver, setIsDragOver] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [data, setData] = useOutletContext();
@@ -137,6 +95,53 @@ const ProfileSettings = () => {
     url,
     error
   } = state;
+
+  const IMAGE_UPLOAD_WRAP_STYLES = {
+    marginTop: '20px',
+    position: 'relative',
+    width: '100%',
+    borderRadius: '9px',
+    border: isDragOver ? '2px solid blue' : '2px dashed rgba(62, 170, 255, 0.58)',
+    fontSize: '60px',
+    transition: 'border 0.3s ease-in-out'
+  };
+  const FILE_UPLOAD_INPUT_STYLES = {
+    position: 'absolute',
+    margin: 0,
+    padding: 0,
+    width: '100%',
+    height: '100%',
+    outline: 'none',
+    opacity: 0,
+    cursor: 'pointer'
+  };
+
+  const VALID_GALLARY_IMAGE_EXTENSIONS = ['jpg', 'png', 'jpeg', 'gif'];
+  const VALID_MAIN_IMAGE_FILE_EXTENSIONS = ['jpg', 'png', 'jpeg', 'svg'];
+
+  const UPDATE_PROFILE_VALIDATION_RULES = {
+    name: 'required',
+    headline: 'required',
+    // mission: 'required',
+    //promoVideo: "required",
+    //city: 'required',
+    stateId: 'required',
+    country: 'required',
+    category: 'required',
+    ein: 'required'
+  };
+
+  const UPDATE_PROFILE_VALIDATION_MESSAGES = {
+    'name.required': 'Organization Name is Required.',
+    'headline.required': 'Headline is Required.',
+    'mission.required': 'Mission is Required.',
+    'promoVideo.required': 'Promo Video is Required.',
+    'ein.required': 'Charity Registration Number is Required.',
+    'stateId.required': 'State is Required.',
+    'city.required': 'City is Required.',
+    'country.required': 'Country is Required.',
+    'category.required': 'Category is Required.'
+  };
 
   const MAX_IMAGE_LENGTH = helper.MAX_IMAGE_LENGTH;
 
@@ -211,6 +216,39 @@ const ProfileSettings = () => {
       }
     }
   }, [token]);
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsDragOver(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    const files = Array.from(e.dataTransfer.files); // Get the files from the drop event
+    if (files && files.length > 0) {
+      let mImgtempArry = [];
+      let tempMainFileArry = [];
+      for (let i = 0; i < files.length; i++) {
+        let extension = files[i].name.substr(files[i].name.lastIndexOf('.') + 1);
+        if (['jpg', 'png', 'jpeg', 'gif'].includes(extension)) {
+          // VALID_GALLARY_IMAGE_EXTENSIONS
+          tempMainFileArry.push(files[i]);
+          mImgtempArry.push(URL.createObjectURL(files[i]));
+        }
+      }
+      let oldG = [...galleryImages];
+      let combined = oldG.concat(tempMainFileArry);
+      setGalleryImages(combined);
+      let showImages = [...viewGalleryImages];
+      let showCombined = showImages.concat(mImgtempArry);
+      setViewGalleryImages(showCombined);
+    }
+  };
 
   const onChangeCountry = async (e) => {
     setDefaultCountry(e);
@@ -654,13 +692,14 @@ const ProfileSettings = () => {
 
   return (
     <>
-
       <div className="d-flex flex-column gap-5 mw-350">
         <div>
           <h4 className="fw-bolder mb-2">About</h4>
-          <div className="text-subtext mb-3 pt-1">This info appears on your organization's page:</div>
+          <div className="text-subtext mb-3 pt-1">
+            This info appears on your organization's page:
+          </div>
           <div className="ml-3 mb-5">
-            <div className="d-flex gap-2">
+            <div className="d-flex gap-2 align-items-start">
               <label className="filelabel col-sm-3 py-5">
                 <i className="fa fa-paperclip "></i>
                 <span className="title">Logo</span>
@@ -893,7 +932,9 @@ const ProfileSettings = () => {
         </div>
         <div>
           <h4 className="fw-bolder">Promo Video</h4>
-          <div className="text-subtext mb-3 pt-1">This video appears on your organization's page:</div>
+          <div className="text-subtext mb-3 pt-1">
+            This video appears on your organization's page:
+          </div>
           <div className="input__wrap mb-3">
             <Input
               id={id3}
@@ -930,13 +971,10 @@ const ProfileSettings = () => {
               ) : (
                 <div
                   className="image-upload-wrap fs-2"
-                  style={{
-                    ...IMAGE_UPLOAD_WRAP_STYLES,
-                    // backgroundColor: '#e5f4ff',
-                    borderRadius: '9px',
-                    border: '2px dashed rgba(62, 170, 255, 0.58)',
-                    fontSize: '60px'
-                  }}
+                  style={IMAGE_UPLOAD_WRAP_STYLES}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
                 >
                   <input
                     className="file-upload-input"

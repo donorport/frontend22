@@ -1,5 +1,9 @@
 .billing__value {
   text-align: end;
+  line-height: .75rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem
 }
 .icon--bg {
   width: 19px;

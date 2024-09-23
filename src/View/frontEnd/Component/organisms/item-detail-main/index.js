@@ -230,7 +230,7 @@ const ItemDetailsMain = ({
         <h1 className="project__detail-title " style={{ textTransform: 'capitalize' }}>
           {productDetails?.headline}
         </h1>
-        <h5 className="project__detail-sublabel mb-0 fw-bolder">Product</h5>
+        <h5 className="project__detail-sublabel mb-2 fw-bolder">Product</h5>
         <div className="project__detail-subtitle fw-bold">{productDetails?.brand} ™</div>
         <h2 className="project__detail-price price m-0">
           {currencySymbol}
