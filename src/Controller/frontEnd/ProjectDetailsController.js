@@ -19,16 +19,14 @@ import {
 const DONATE_VALIDATION_RULES = {
   //name: 'required',
   cardNumber: 'required|number',
-  month: 'required',
-  year: 'required',
+  ccexpdate: 'required',
   cvv: 'required|number'
 };
 const DONATE_VALIDATION_MESSAGES = {
   // 'name.required': 'Card holder name is required.',
   'cardNumber.required': 'Card number is required.',
   'cardNumber.number': 'Card number can not be string.',
-  'month.required': 'Month is required.',
-  'year.required': 'Year number is required.',
+  'ccexpdate.required': 'Expire Date is required.',
   'cvv.required': 'CVV is required.',
   'cvv.number': 'CVV can not be string.'
 };
@@ -71,6 +69,7 @@ export default function ProjectDetailsController() {
     city: '',
     country: '',
     zip: '',
+    ccexpdate: '',
     line1: '',
     cardNumber: '',
     month: '',
@@ -78,7 +77,7 @@ export default function ProjectDetailsController() {
     cvv: '',
     error: []
   });
-  const { cardNumber, month, year, cvv } = state;
+  const { cardNumber, month, ccexpdate, year, cvv } = state;
 
   const [cardNumberWithSpace, setCardNumberWithSpace] = useState('');
 
@@ -191,7 +190,6 @@ export default function ProjectDetailsController() {
       navigate('/signin');
       return;
     }
-
     validateAll(state, DONATE_VALIDATION_RULES, DONATE_VALIDATION_MESSAGES)
       .then(async () => {
         setLoading(true);
@@ -211,8 +209,8 @@ export default function ProjectDetailsController() {
         data.country = user.countryName;
         data.amount = grandTotal;
         data.cardNumber = cardNumber;
-        data.cardExpMonth = month;
-        data.cardExpYear = year;
+        data.cardExpMonth = ccexpdate.split("/")[0];
+        data.cardExpYear = ccexpdate.split("/")[1];
         data.cardCVC = cvv;
         data.postalCode = user.zip;
         data.currency = user.currency;
