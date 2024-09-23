@@ -10,7 +10,11 @@ import { setUserXp } from '../../user/user.action';
 import helper, { GetCardTypeByNumber, getCardIcon } from '../../Common/Helper';
 import followApi from '../../Api/frontEnd/follow';
 import Page from '../../components/Page';
-import { calculatePlatformCost, calculateGrandTotal, DONATION_XP_PER_DOLLAR  } from '../../constants/constants';
+import {
+  calculatePlatformCost,
+  calculateGrandTotal,
+  DONATION_XP_PER_DOLLAR
+} from '../../constants/constants';
 
 const DONATE_VALIDATION_RULES = {
   //name: 'required',
@@ -349,18 +353,17 @@ export default function ProjectDetailsController() {
           projectList={projectList}
           addToCart={addToCart}
           checkItemInCart={checkItemInCart}
-          purchasedItemList={purchasedItemList}
-          selectedValue={selectedValue}
-          setSelectedValue={setSelectedValue}
-          stateData={state}
-          cardNumberWithSpace={cardNumberWithSpace}
-          changevalue={changevalue}
-          donate={donate}
-          donationList={donationList}
           followToProject={followToProject}
           isFollow={isFollow}
+          selectedValue={selectedValue} // Pass selectedValue here
+          setSelectedValue={setSelectedValue} // Pass setSelectedValue here
+          stateData={state}
+          cardNumberWithSpace={cardNumberWithSpace}
+          donate={donate}
+          donationList={donationList}
           dCardIcon={dCardIcon}
           loading={loading}
+          changevalue={changevalue}  // Pass changevalue here
         />
       </Page>
     </>

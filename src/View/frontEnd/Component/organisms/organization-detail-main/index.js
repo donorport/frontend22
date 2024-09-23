@@ -113,7 +113,7 @@ function OrganizationDetailMain({
           )}
         </div>
         <div className="d-flex align-items-center">
-        <div className="category__icons d-flex align-items-center order--1 order-sm-0">
+          <div className="category__icons d-flex align-items-center order--1 order-sm-0">
             <Button
               size="lg"
               variant="link"
@@ -178,7 +178,6 @@ function OrganizationDetailMain({
               currUrl={`https://api.donorport.com/organization/${organizationDetails?.slug}`}
             />
           </div>
-
         </div>
 
         {organizationDetails.promoVideo && (
@@ -194,17 +193,16 @@ function OrganizationDetailMain({
                 allowFullScreen
               ></iframe>
             </div>
-
-            {organizationDetails.images?.some((e) => e.type === 'galleryImage') && (
-              <ProjectCrowdfundingGallery
-                className="mb-3"
-                title={false}
-                images={organizationDetails.images}
-              />
-            )}
           </div>
         )}
 
+        {organizationDetails.images?.some((e) => e.type === 'galleryImage') && (
+          <ProjectCrowdfundingGallery
+            className=""
+            title={false}
+            images={organizationDetails.images}
+          />
+        )}
         <div className="mt-2">
           <h4 className="page__blurb fw-bolder">{organizationDetails?.headline}</h4>
           <p className="page__paragraph">{organizationDetails?.description}</p>

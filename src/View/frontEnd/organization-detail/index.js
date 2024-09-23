@@ -73,7 +73,7 @@ const OrganizationDetail = (props) => {
       </SuggestionWrapper> */}
       <Container fluid className="pt-0 pt-sm-5">
         <Row className="ps-0 ps-sm-3 position-relative pt-5 gap-md-0 gap-3">
-        <div className="d-none d-sm-flex detailshero"></div>
+          <div className="d-none d-sm-flex detailshero"></div>
           <Col md="7">
             <OrganizationDetailMain
               followToOrganization={props.followToOrganization}
@@ -84,6 +84,35 @@ const OrganizationDetail = (props) => {
             />
           </Col>
           <Col md="5">
+            <div className="d-flex container-fluid">
+              <div className="ms-auto d-flex align-items-center">
+                {!CampaignAdminAuthToken && (
+                  <Button
+                    size="md"
+                    className="fw-bold"
+                    onClick={() => {
+                      setModalShow(true);
+                    }}
+                  >
+                    Donate
+                  </Button>
+                )}
+                <DonateModal
+                  show={modalShow}
+                  type="organization"
+                  onHide={() => setModalShow(false)}
+                  organizationDetails={organizationDetails}
+                  stateData={props.stateData}
+                  changevalue={props.changevalue}
+                  cardNumberWithSpace={props.cardNumberWithSpace}
+                  donate={props.donate}
+                  selectedValue={props.selectedValue}
+                  setSelectedValue={props.setSelectedValue}
+                  dCardIcon={props.dCardIcon}
+                  loading={props.loading}
+                />
+              </div>
+            </div>
             <History list={props.purchasedItemList} donationList={props.donationList} />
           </Col>
         </Row>

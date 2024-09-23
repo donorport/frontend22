@@ -141,7 +141,7 @@ li:last-child:not(.ad__activity__item, .wishlist__item, .table__list-item, .cd__
   flex-direction: column;
   justify-content: start;
   gap: 1rem;
-  overflow: scroll;
+  overflow: auto;
 }
 .form-group {
   max-width: 100%;

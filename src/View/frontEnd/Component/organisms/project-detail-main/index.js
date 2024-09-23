@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { ProgressBar } from 'react-bootstrap';
-
+import { Button } from 'react-bootstrap';
 import ShareWidget from '../share-widget';
 import OrganizationWidget from '../organization-widget';
 import ProjectCrowdfundingGallery from '../project-crowdfunding-gallery';
@@ -9,6 +9,7 @@ import TagTitle from '../../atoms/tag-title';
 import IconToggle from '../../atoms/icon-toggle';
 import moment from 'moment';
 import helper, { convertAddress } from '../../../../../Common/Helper';
+import DonateModal from '../../molecules/donate-modal';
 
 import './style.scss';
 import { Link } from 'react-router-dom';
@@ -16,6 +17,8 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 function ProjectDetailMain(props) {
+  const [modalShow, setModalShow] = useState(false);
+  const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
   let projectDetails = props.projectDetails;
   // let productDetails = props.productDetails;
   let video = projectDetails?.video;
@@ -249,9 +252,7 @@ function ProjectDetailMain(props) {
               />
               {/* </div> */}
             </span>
-            <span className="fs-6  fw-bold ms-1">
-              {projectDetails?.campaignDetails?.name}
-            </span>
+            <span className="fs-6  fw-bold ms-1">{projectDetails?.campaignDetails?.name}</span>
           </Link>
         </div>
         {/*   <div className="iframe__wrapper">
@@ -308,6 +309,27 @@ function ProjectDetailMain(props) {
       </div>
       {/* <div className="mb-4">
         <OrganizationTeamWidget tagTitle="Project" showEmail={false} showContact />
+      </div> */}
+      {/* <div className="d-flex align-items-center">
+        {!CampaignAdminAuthToken && (
+          <Button size="lg˝" className="fw-bold" onClick={() => setModalShow(true)}>
+            Donate to {projectDetails?.name}
+          </Button>
+        )}
+        <DonateModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          type="project"
+          projectDetails={props.projectDetails}
+          selectedValue={props.selectedValue}
+          setSelectedValue={props.setSelectedValue}
+          stateData={props.stateData}
+          changevalue={props.changevalue}
+          cardNumberWithSpace={props.cardNumberWithSpace}
+          donate={props.donate}
+          dCardIcon={props.dCardIcon}
+          loading={props.loading}
+        />
       </div> */}
       <OrganizationWidget
         tagTitle="Project"

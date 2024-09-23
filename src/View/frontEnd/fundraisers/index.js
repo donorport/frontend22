@@ -17,26 +17,32 @@ const Fundraisers = () => {
   const token = userAuthToken || CampaignAdminAuthToken;
 
   const getAllCrowdfundingList = async () => {
-    const data = {
-      userCountry: user.countryId
-    };
-    const getCrowdfundingList = await crowdfundingApi.list(token, data);
-    console.log({ getCrowdfundingList });
-    if (getCrowdfundingList.data.success === true) {
-      setCrowdfundingList(getCrowdfundingList.data.data);
+    try {
+      // Fetch the crowdfunding list with no token or data requirements
+      const getCrowdfundingList = await crowdfundingApi.list(); // No token or data needed
+      console.log({ getCrowdfundingList });
+  
+      // Check if the API call was successful and set the list
+      if (getCrowdfundingList.data.success === true) {
+        setCrowdfundingList(getCrowdfundingList.data.data);
+      } else {
+        console.error("Failed to fetch crowdfunding list");
+      }
+    } catch (error) {
+      console.error("Error fetching crowdfunding list:", error);
     }
   };
-
+  
   useEffect(() => {
-    if (user.countryId) {
-      getAllCrowdfundingList();
-    }
-  }, [user.countryId]);
-
+    // Call the function when the component is mounted
+    getAllCrowdfundingList();
+  }, []);
+  
   // Filter crowdfunding list to only include those with status 1
   const filteredCrowdfundingList = crowdfundingList.filter(
     (crowdfunding) => crowdfunding.status === 1
   );
+  
 
   return (
     <DefaultLayout>
