@@ -108,8 +108,8 @@ function ProjectDetailMain(props) {
 
   useEffect(() => {
     if (projectDetails?.name) {
-      let newaddress = projectDetails?.campaignDetails.address
-        ? convertAddress(projectDetails?.campaignDetails.address)
+      let newaddress = projectDetails?.address
+        ? convertAddress(projectDetails?.address)
         : '';
       if (!newaddress) {
         newaddress = projectDetails?.productDetails[0]?.itemDetails?.address
@@ -152,13 +152,13 @@ function ProjectDetailMain(props) {
 
         <div className="project__detail-meta d-flex align-items-center flex-wrap text-light">
           <div className="d-flex align-items-center me-2 text-nowrap">
+            <div className="d-flex align-items-center me-2 text-nowrap">
+              <FontAwesomeIcon icon={regular('clock')} className="me-1" />
+              {/* December 27, 2018 */} {moment(projectDetails.created_at).format('MMMM DD , YYYY')}
+            </div>
             <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
             {/* {`${addyList[0]} ${addyList[1]} ${countryToAlpha2(addyList[2])}`} */}
             {address}
-          </div>
-          <div className="d-flex align-items-center me-2 text-nowrap">
-            <FontAwesomeIcon icon={regular('clock')} className="me-1" />
-            {/* December 27, 2018 */} {moment(projectDetails.created_at).format('MMMM DD , YYYY')}
           </div>
         </div>
 

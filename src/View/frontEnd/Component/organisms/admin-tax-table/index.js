@@ -163,7 +163,7 @@ const AdminTaxTable = (props) => {
                       header={
                         <li className="flex-grow-1 table__list-item py-3">
                           <div className="d-flex flex-wrap align-items-start align-items-lg-center flex-grow-1 gap-sm-0 gap-5">
-                            <div className="d-flex gap-2 flex-wrap flex-grow-1 flex-sm-nowrap align-items-center">
+                            <div className="d-flex gap-2 flex-wrap flex-grow-1 flex-sm-nowrap align-items-start">
                               <div className="admin__billing-value text-end text-sm-start">
                                 <h6 className="price ">
                                   {item[0].currencySymbol}

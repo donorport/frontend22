@@ -79,7 +79,7 @@ const CrowdfundingDetail = (props) => {
             />
           </Col>
           <Col md="5">
-            <div className="ms-auto d-flex align-items-center gap-2 mb-5">
+            <div className="ms-auto d-none d-sm-flex align-items-center gap-2 mb-5">
               <div className="ms-auto">
                 {' '}
                 <ShareWidget

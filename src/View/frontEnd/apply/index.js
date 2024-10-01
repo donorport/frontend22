@@ -402,7 +402,7 @@ const Apply = (props) => {
           {/* Conditional sibling elements */}
           {!props.isApplied && (
             <div
-              className="d-flex flex-column bg-lighter gap-5 border-left"
+              className="d-none d-lg-flex flex-column bg-lighter gap-5 border-left"
               style={{ padding: '9% 9% 0% 9%' }}
             >
               <div className="d-flex flex-column gap-1 mt-5">

@@ -606,7 +606,7 @@ const UserProfile = () => {
         </div>*/}
       </div>
 
-      <div>
+      <div className="d-flex flex-column gap-3">
         <div className="d-flex flex-column mb-3">
           <h4 className="fw-bolder">Address</h4>
           <div className="text-subtext mb-3 pt-1">For invoices & tax receipts</div>

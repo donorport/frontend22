@@ -122,7 +122,7 @@ const TaxTable = (props) => {
                       buttonProps={{ disabled: disableHeader }}
                       header={
                         <li className="flex-grow-1 table__list-item px-2 py-3">
-                          <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
+                          <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 flex-wrap">
                             <div className="tax__left d-flex gap-3 align-items-center me-sm-2 mb-1 mb-sm-0 pe-2">
                               <div className="admin__billing-value text-sm-start text-end">
                                 <h6 className="price ">
@@ -155,7 +155,7 @@ const TaxTable = (props) => {
                             </div> */}
                               </div>
                             </div>
-                            <div className="d-flex align-items-center justify-content-end flex-grow-1 me-3 mb-1 mt-2 mt-sm-0 mb-sm-0 gap-2">
+                            <div className="ms-auto d-flex align-items-center justify-content-end me-3 mb-1 mt-2 mt-sm-0 mb-sm-0 gap-2">
                               {/* {
                             item[0].type === 'Donated' &&
 
@@ -420,7 +420,7 @@ const TaxTable = (props) => {
           )}
 
           {/* <li className="table__list-item p-2">
-            <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2">
+            <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 flex-wrap">
               <div className="d-flex align-items-center flex-grow-1 mb-2">
                 <div className="order-2 order-sm-1 ms-2 ms-sm-0 me-sm-2">
                   <div className="text-success ">$10</div>

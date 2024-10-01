@@ -827,7 +827,7 @@ const AddPost = (props) => {
                         </div>
                       </Box>
                     )}
-                    <div>
+                    {/* <div>
                       <div className="project-title-optional">
                         <div className="form__label">
                           More of Product
@@ -835,16 +835,6 @@ const AddPost = (props) => {
                         </div>
                       </div>
                       <div className="d-flex align-items-center flex-wrap gap-2 mb-3">
-                        {/* <div className="upload-wrap" style={{ width: "100%" }}>
-                            <FontAwesomeIcon
-                              icon={solid("cloud-arrow-up")}
-                              className="icon-cloud"
-                            />
-                            <label >
-                              <input name='moreImg[]' id='moreImg' type="file" accept=".jpg,.gif,.png" multiple onChange={(e) => { changefile(e) }} />
-                            </label>
-                          </div> */}
-
                         <div
                           className="image-upload-wrap fs-2"
                           style={IMAGE_UPLOAD_WRAP_STYLES}
@@ -886,11 +876,6 @@ const AddPost = (props) => {
                                   >
                                     &times;
                                   </span>
-                                  {/* <img
-                                      src={img ? img : noimg}
-                                      alt="lk"
-                                      style={{ width: '100px', height: '100px' }}
-                                    />*/}
                                   <div
                                     className="gallery__img"
                                     style={{
@@ -911,8 +896,6 @@ const AddPost = (props) => {
                             ? moreImages.map((img, key) => {
                                 return (
                                   <React.Fragment key={key}>
-                                    {/* <img src={img ? img !== "" ? helper.CampaignProductImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} />
-                                    <span> X</span> */}
                                     <div className="img-wrap">
                                       <span
                                         className="close"
@@ -937,26 +920,6 @@ const AddPost = (props) => {
                                         data-id="103"
                                       ></div>
                                     </div>
-                                    {/*  <div className="img-wrap">
-                                        <span
-                                          className="close"
-                                          onClick={() => props.deleteProductImage(img.id, 'More')}
-                                        >
-                                          &times;
-                                        </span>
-                                        <img
-                                          src={
-                                            img.img
-                                              ? img.img !== ''
-                                                ? helper.CampaignProductImagePath + img.img
-                                                : noimg
-                                              : noimg
-                                          }
-                                          alt="lk"
-                                          style={{ width: '100px', height: '100px' }}
-                                          data-id="103"
-                                        />
-                                      </div>*/}
                                   </React.Fragment>
                                 );
                               })
@@ -968,7 +931,7 @@ const AddPost = (props) => {
                           </p>
                         )}
                       </div>
-                    </div>
+                    </div> */}
                   </form>
                 </div>
               </Row>

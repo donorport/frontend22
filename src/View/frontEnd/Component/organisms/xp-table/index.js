@@ -157,7 +157,7 @@ const XpTable = (props) => {
                 <li className="table__list-item px-2 py-3">
                   <div className="d-flex align-items-center flex-grow-1">
                     <div
-                      className="order-2 order-sm-1 me-2 text-sm-start text-end"
+                      className="order-2 order-sm-1 text-sm-start text-end"
                       style={{ width: '65px' }}
                     >
                       <h6 className="text-info">{item.xp}XP</h6>

@@ -369,6 +369,30 @@ const ItemDetailsMain = ({
         </span>
       </Link>
     </div> */}
+    {embedlink && (
+      <div className="project-video-wrap mb-2">
+        <iframe
+          title="product-details-video"
+          key="product-details-video"
+          width="498"
+          height="280"
+          src={embedlink}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </div>
+    )}
+    {productDetails?.productImages &&
+      productDetails?.productImages.length > 0 &&
+      productDetails?.productImages.filter((e) => e.type === 'galleryImage').length > 0 && (
+        <div>
+          <ProjectCrowdfundingGallery
+            title={true}
+            tagTitle="Products"
+            images={productDetails?.productImages}
+          />
+        </div>
+      )}
     <div>
       <div className="note d-sm-none project__detail-img mb-3">
         <img
@@ -378,34 +402,17 @@ const ItemDetailsMain = ({
         />
         <div className="item__bg" style={{ backgroundColor: productDetails?.dominantColor }}></div>
       </div>
-      {embedlink && (
-        <div className="project-video-wrap mb-2">
-          <iframe
-            title="product-details-video"
-            key="product-details-video"
-            width="498"
-            height="280"
-            src={embedlink}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-      )}
-      <h4 className="mt-5 page__blurb fw-bolder">{productDetails.needheadline}</h4>
+      <h4 className="page__blurb fw-bolder">{productDetails.needheadline}</h4>
       <p className="page__paragraph">
         {productDetails?.description?.replace(/<\/?[^>]+(>|$)/g, '')}
       </p>
-      {productDetails?.productImages &&
-        productDetails?.productImages.length > 0 &&
-        productDetails?.productImages.filter((e) => e.type === 'galleryImage').length > 0 && (
-          <div className="mt-2">
-            <ProjectCrowdfundingGallery
-              title={true}
-              tagTitle="Products"
-              images={productDetails?.productImages}
-            />
-          </div>
-        )}
+      <div className="mt-3 d-flex flex-column align-items-start gap-1 justify-content-start">
+        <p>Admininstrator:</p>
+        <div className="associated-user fw-semibold align-items-center d-flex gap-1 py-2 px-2 pe-3 rounded-5">
+          <FontAwesomeIcon icon={solid('user')} className="me-1" />
+          <span>{productDetails?.campaignDetails?.organizationUserName}</span>
+        </div>
+      </div>
     </div>
   </div>
 );
@@ -443,7 +450,6 @@ const SubtotalSlider = ({ currencySymbol, price, quantity, maxQuantity, setQuant
     </div>
   </>
 );
-
 const UnfinishedSection = ({ productDetails, allStateAds, user, userAddress }) => (
   <div className="product__badge fs-5">
     {productDetails.postTag && (

@@ -18,8 +18,8 @@ function ProjectCrowdfundingGallery({title = false, className, tagTitle, images}
     <div className={`${className}`}>
       {title ? (
         <>
-          <TagTitle>Need</TagTitle>
-          <WidgetTitle>Gallery</WidgetTitle>
+          {/* <TagTitle>Need</TagTitle>
+          <WidgetTitle>Gallery</WidgetTitle> */}
         </>
       ) : (
         ''

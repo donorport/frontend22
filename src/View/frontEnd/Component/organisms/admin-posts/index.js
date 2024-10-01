@@ -2051,7 +2051,7 @@ const ModalSaveAsDraft = ({ modelShow, setModelShow, submitProductForm }) => {
             >
               Save Draft?
             </h5>
-            <p>You can view your drafts on the Admin page under Studio</p>
+            <p>You can edit your drafts later</p>
           </div>
           <div className="modal-footer" style={{ background: '#f8fafd' }}>
             <button

@@ -91,7 +91,7 @@ const ProjectDetail = (props) => {
             projectList={props.projectList}
             projectId={props.projectDetails?._id}
           />  */}
-              <div className="ms-auto d-flex align-items-center gap-2 mb-5">
+              <div className="ms-auto d-none d-sm-flex align-items-center gap-2 mb-5">
                 <ShareWidget
                   page="project"
                   text={`Help ${props.projectDetails?.campaignDetails?.name} fund their project: ${props.projectDetails?.name} on Donorport! 📈👀`}

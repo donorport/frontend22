@@ -154,7 +154,7 @@ const AddCrowdfunding = (props) => {
 
   return (
     <div className="add__project">
-      <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 pb-20p mb-3 border-bottom">
+      <div className="d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 flex-wrap pb-20p mb-3 border-bottom">
         <div className="d-flex align-items-start mb-2 mb-sm-0 flex-grow-1">
           <Button
             variant="link"

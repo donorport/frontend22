@@ -188,11 +188,11 @@ const UserBilling = () => {
 
                 return list.type !== 'ORDER' ? (
                   <div className="billing__item p-2 mb-3 border-bottom">
-                    <div className="billing__content d-flex align-items-center">
+                    <div className="billing__content d-flex align-items-start">
                       <div className="billing__bottom">
                         <div className="billing__value text-start">
                           <h6 className="text-danger  mb-3p">
-                            - {currencySymbole}
+                            {currencySymbole}
                             {Number(amount).toFixed(2)}
                           </h6>
 
@@ -233,11 +233,11 @@ const UserBilling = () => {
                       // console.log(o_itm)
                       return (
                         <div className="billing__item p-2 mb-3 border-bottom">
-                          <div className="billing__content d-flex align-items-center">
+                          <div className="billing__content d-flex align-items-start">
                             <div className="billing__bottom">
                               <div className="billing__value text-start">
                                 <h6 className="text-danger  mb-3p">
-                                  - {currencySymbole}
+                                  {currencySymbole}
                                   {Number(o_itm.productPrice * o_itm.quantity).toFixed(2)}
                                 </h6>
 
@@ -280,11 +280,7 @@ const UserBilling = () => {
 
             {!loadMore && historyList.length > 2 && (
               <div className="more__log">
-                <Button
-                  variant="info"
-                  className="fs-6 w-100"
-                  onClick={() => setLoadMore(true)}
-                >
+                <Button variant="info" className="fs-6 w-100" onClick={() => setLoadMore(true)}>
                   Load More . . .
                 </Button>
               </div>

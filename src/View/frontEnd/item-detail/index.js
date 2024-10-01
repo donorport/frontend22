@@ -139,7 +139,7 @@ const ItemDetail = (props) => {
 
           <Col md="5">
             <div className="d-none d-sm-flex container-fluid">
-              <div className="ms-auto d-flex align-items-center gap-2 mb-5">
+              <div className="ms-auto d-none d-sm-flex align-items-center gap-2 mb-5">
                 <ShareWidget
                   page="item"
                   text={`Help ${productDetails?.campaignDetails?.name} give away ${productDetails?.headline} on Donorport 🎉🎁`}
@@ -172,7 +172,7 @@ const ItemDetail = (props) => {
                 ''
               )}
             </div>
-            {productDetails?.productImages && productDetails?.productImages.length > 0 && (
+            {/* {productDetails?.productImages && productDetails?.productImages.length > 0 && (
               <div className="gallery__container mb-4" style={{ maxWidth: '400px' }}>
                 {productDetails?.productImages &&
                   productDetails?.productImages.length > 0 &&
@@ -190,7 +190,7 @@ const ItemDetail = (props) => {
                     return null; // Ensure to have a return statement for all cases
                   })}
               </div>
-            )}
+            )} */}
 
             <History list={props.purchasedItemList} />
           </Col>

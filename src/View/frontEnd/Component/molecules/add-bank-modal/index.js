@@ -174,7 +174,7 @@ const AddBankModal = (props) => {
 
           <div className="d-flex align-items-center">
             <Button
-              size="lg"
+              size="md"
               className="d-flex"
               style={{
                 opacity: bankloading ? '0.7' : '1'
