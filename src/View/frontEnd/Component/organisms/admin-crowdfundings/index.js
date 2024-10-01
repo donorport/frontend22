@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import LadderMenuItems from '../ladder-menu-items';
 import CrowdfundingsTable from '../crowdfundings-table';
@@ -10,7 +9,7 @@ import ToastAlert from '../../../../../Common/ToastAlert';
 import { confirmAlert } from 'react-confirm-alert';
 import crowdfundingApi from '../../../../../Api/admin/crowdfunding';
 // import { Outlet, useOutletContext } from 'react-router-dom';
-import { Link, useOutletContext } from 'react-router-dom';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import helper from '../../../../../Common/Helper';
 import './style.scss';
 
@@ -41,13 +40,16 @@ const AdminCrowdfundings = () => {
     headline: '',
     video: '',
     description: '',
+    address: '',
+    lat: '',
+    lng: '',
     infinite: false,
     goal: '',
     error: [],
     images: []
   });
 
-  const { id, name, headline, goal, video, description, images, infinite } = state;
+  const { id, name, headline, goal, video, description, address, lat, lng, images, infinite } = state;
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalRecord, setTotalRecord] = useState(0);
@@ -94,6 +96,9 @@ const AdminCrowdfundings = () => {
       headline: '',
       video: '',
       description: '',
+      address: '',
+      lat: '',
+      lng: '',      
       infinite: false,
       goal: '',
       error: [],
@@ -219,6 +224,9 @@ const AdminCrowdfundings = () => {
         formData.headline = headline;
         formData.video = video;
         formData.description = description;
+        formData.address = address;
+        formData.lat = lat;
+        formData.lng = lng;
         formData.infinity = infinite;
         formData.goal = goal;
         formData.organizationId = data._id;
@@ -358,6 +366,9 @@ const AdminCrowdfundings = () => {
         name: crowdfundingData.name,
         goal: crowdfundingData.goal,
         description: crowdfundingData.description,
+        address: crowdfundingData.address,
+        lat: crowdfundingData.lat,
+        lng: crowdfundingData.lng,
         video: crowdfundingData.video,
         infinite: crowdfundingData.infinity
       });
@@ -521,6 +532,8 @@ const AdminCrowdfundings = () => {
           discardCrowdfunding={discardCrowdfunding}
           updateGoal={updateGoal}
           slug={data.slug}
+          setstate={setstate}
+          data={data}
           deleteCrowdfundingImage={deleteCrowdfundingImage}
           removeTempImages={removeTempImages}
         />

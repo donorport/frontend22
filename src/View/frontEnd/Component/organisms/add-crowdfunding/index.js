@@ -1,14 +1,40 @@
-import { Button, Row, Col } from 'react-bootstrap';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import FundraisingSlider from '../../atoms/crowdfunding-slider';
 import helper from '../../../../../Common/Helper';
 import noimg from '../../../../../assets/images/noimg1.png';
 import Textarea from '../text-area';
 import Input from '../input';
+import { useSelector } from 'react-redux';
 import './style.scss';
+import {
+  Button,
+  Accordion,
+  AccordionContext,
+  //useAccordionButton,
+  Card,
+  Col,
+  Row
+} from 'react-bootstrap';
+import MapboxAutocomplete from 'react-mapbox-autocomplete';
+import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+
 //import { Link } from 'react-router-dom';
+
+const Map = ReactMapboxGl({
+  accessToken: helper.MapBoxPrimaryKey
+});
+
+
+const STYLES_mapStyles = {
+  londonCycle: 'mapbox://styles/mapbox/light-v9',
+  light: 'mapbox://styles/mapbox/light-v9',
+  dark: 'mapbox://styles/mapbox/dark-v9',
+  basic: 'mapbox://styles/mapbox/basic-v9',
+  outdoor: 'mapbox://styles/mapbox/outdoors-v10'
+};
 
 const STYLES_FileUploadInput = {
   position: 'absolute',
@@ -43,8 +69,27 @@ const max250 = 250;
 const title3 = 'Description';
 const placeholder3 = 'Enter some details about your need';
 
+function AccordionToggle({ children, eventKey, callback }) {
+  const { activeEventKey } = useContext(AccordionContext);
+  // window.scrollTo(0, 0);
+
+  const isCurrentEventKey = activeEventKey === eventKey;
+
+  return (
+    <div className="accordion__btn">
+      <div className="d-flex aling-items-center">
+        {children}
+        <FontAwesomeIcon
+          icon={solid('angle-right')}
+          className={`accordion__icon ms-2 fs-4 ${isCurrentEventKey ? 'rotate-90' : ''}`}
+        />
+      </div>
+    </div>
+  );
+}
+
 const AddCrowdfunding = (props) => {
-  const { id, updateGoal, goal, status, name, headline, video, description, error, infinite } = props.stateData;
+  const { id, updateGoal, goal, status, address, lat, lng, name, headline, video, description, error, infinite } = props.stateData;
 
   const [sliderValue, setSliderValue] = useState(500);
 
@@ -66,6 +111,46 @@ const AddCrowdfunding = (props) => {
   const change = async (e) => {
     props.changevalue(e);
   };
+  const user = useSelector((state) => state.user);
+  const [location, setLocation] = useState({
+    organizationLocation: '',
+    locationName: '',
+    lat: user.lat,
+    lng: user.lng
+  });
+
+  const sugg = (result, lat, lng) => {
+    console.log('add-post fn sugg:', { result, lat, lng });
+    props.setstate({
+      ...props.stateData,
+      address: result,
+      lat: lat,
+      lng: lng
+    });
+
+    setLocation({
+      ...location,
+      locationName: result,
+      lat: lat,
+      lng: lng
+    });
+  };
+
+
+  useEffect(() => {
+    // console.log(user)
+    // console.log(props.data)
+    // console.log(lat, lng)
+    
+    setLocation({
+      ...location,
+      organizationLocation: props.data.iso2,
+      locationName: address ? address : "Canada",
+      lat: lat ? Number(lat) : 0,
+      lng: lng ? Number(lng) : 0
+    });
+  }, [props.stateData]);
+
 
   return (
     <div className="add__project">
@@ -129,15 +214,81 @@ const AddCrowdfunding = (props) => {
           )}
         </div>
       </div>
+
+      <AccordionToggle>
+        <h2 className="fs-4 fw-bolder ">Post Location</h2>
+      </AccordionToggle>
+
+      <Accordion.Collapse className="py-0 py-sm-5">
+        <Row className="">
+          <Col lg="6">
+            <MapboxAutocomplete
+              publicKey={helper.MapBoxPrimaryKey}
+              inputClass="form-control search"
+              query={location.locationName}
+              defaultValue={location.locationName}
+              onSuggestionSelect={sugg}
+              country={location.organizationLocation}
+              resetSearch={false}
+            />
+
+            <div className="post-location-wrap">
+              <div className="px-3 py-20p bg-lighter rounded-3 my-20p">
+                <div className="d-flex align-items-center">
+                  <div className="icon-wrap mr-20p">
+                    <FontAwesomeIcon
+                      icon={solid('location-dot')}
+                      className="fs-3 text-primary"
+                    />
+                  </div>
+                  <div className="info-wrap">
+                    <div className="fs-6 mb-3p">Your post will be posted in</div>
+                    <h3 className="mb-0 fs-4 fw-bolder">{location.locationName}</h3>
+                  </div>
+                </div>
+              </div>
+              {error && error.address && (
+                <p className="error">{error ? (error.address ? error.address : '') : ''}</p>
+              )}
+              <div className="note note--clear">
+                <span>
+                  Not the city you want to post in? Try using the search bar to choose another
+                  location.
+                </span>
+              </div>
+            </div>
+          </Col>
+          <Col lg="6">
+            <Map
+              style={STYLES_mapStyles.outdoor}
+              // onMove={false}
+              zoom={[12]}
+              containerStyle={{
+                height: '300px',
+                width: '400px'
+              }}
+              center={[location.lng, location.lat]}
+            >
+              <Layer type="symbol" id="marker" layout={{ 'icon-image': 'custom-marker' }}>
+                <Feature coordinates={[location.lng, location.lat]} />
+              </Layer>
+
+              {/* <Marker coordinates={[72.6563128, 23.0001899]} anchor="bottom">
+          <h1>marker</h1>
+        </Marker> */}
+            </Map>
+          </Col>
+        </Row>
+      </Accordion.Collapse>
       <FundraisingSlider
-          userId={id}
-          value={goal}
-          min={0}
-          name={goal}
-          max={50000}
-          step={100}
-          onChange={handleSliderChange}
-        />
+        userId={id}
+        value={goal}
+        min={0}
+        name={goal}
+        max={50000}
+        step={100}
+        onChange={handleSliderChange}
+      />
       <div className="d-flex py-2 border-bottom mb-3">
         <h4 className="mb-0 fw-bolder me-2">Details</h4>
       </div>
@@ -262,17 +413,17 @@ const AddCrowdfunding = (props) => {
                 )}
                 {crowdfundingImages?.length
                   ? crowdfundingImages.map((img, key) => {
-                      return (
-                        // <img src={img ? img !== "" ? helper.CrowdfundingImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} />
+                    return (
+                      // <img src={img ? img !== "" ? helper.CrowdfundingImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} />
 
-                        <div className="img-wrap" key={key}>
-                          <span
-                            className="close"
-                            onClick={() => props.deleteCrowdfundingImage(img.id)}
-                          >
-                            &times;
-                          </span>
-                          {/* <img
+                      <div className="img-wrap" key={key}>
+                        <span
+                          className="close"
+                          onClick={() => props.deleteCrowdfundingImage(img.id)}
+                        >
+                          &times;
+                        </span>
+                        {/* <img
                             src={
                               img.img
                                 ? img.img !== ''
@@ -284,25 +435,24 @@ const AddCrowdfunding = (props) => {
                             style={{ width: '100px', height: '100px' }}
                             data-id="103"
                           />*/}
-                          <div
-                            className="gallery__img"
-                            style={{
-                              backgroundImage: `url(${
-                                img.img
-                                  ? img.img !== ''
-                                    ? helper.CrowdfundingImagePath + img.img
-                                    : noimg
+                        <div
+                          className="gallery__img"
+                          style={{
+                            backgroundImage: `url(${img.img
+                                ? img.img !== ''
+                                  ? helper.CrowdfundingImagePath + img.img
                                   : noimg
+                                : noimg
                               })`
-                              // width: '100px',
-                              // height: '100px'
-                            }}
-                            alt="lk"
-                            data-id="103"
-                          ></div>
-                        </div>
-                      );
-                    })
+                            // width: '100px',
+                            // height: '100px'
+                          }}
+                          alt="lk"
+                          data-id="103"
+                        ></div>
+                      </div>
+                    );
+                  })
                   : ''}
               </div>
 
