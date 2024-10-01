@@ -1,8 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { ProgressBar } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
-import ShareWidget from '../share-widget';
 import OrganizationWidget from '../organization-widget';
 import ProjectCrowdfundingGallery from '../project-crowdfunding-gallery';
 import TagTitle from '../../atoms/tag-title';

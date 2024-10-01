@@ -88,6 +88,7 @@ const CrowdfundingListItem = ({ crowdfunding, countCrowdfundingProgress }) => {
     <li className="d-flex flex-column align-items-center justify-content-center px-2 py-3 border rounded-5">
       <div className="relative">
         <img
+          alt=""
           className="fundraise__img"
           src={
             crowdfunding.imageDetails?.length > 0
