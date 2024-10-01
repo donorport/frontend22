@@ -85,7 +85,7 @@ const ItemsTable = ({
                     <Button
                       variant="link"
                       onClick={() => onItemClick(key)}
-                      className="gap-0 gap-sm-3 user__left flex-wrap-reverse flex-lg-nowrap d-flex justify-content-start align-items-start align-items-lg-center p-0 text-decoration-none text-start fw-normal"
+                      className="gap-0 gap-sm-3 user__left flex-grow-1 flex-wrap-reverse flex-lg-nowrap d-flex justify-content-start align-items-start align-items-lg-center p-0 text-decoration-none text-start fw-normal"
                     >
                       <div className="d-flex align-items-center gap-3">
                         {' '}
@@ -114,7 +114,10 @@ const ItemsTable = ({
                           {/* <span>{item.quantity}</span> */}
                           {item.itemDetails?.headline}
                         </h6>
-                        <div className="fs-6 text-light">{item.itemDetails?.brand}</div>
+                        <Link className="fs-6 text-light" to={'/organization/' + item?.itemDetails?.organizationDetails?.slug}>
+                          {item.itemDetails?.organizationDetails?.name}
+                        </Link>
+                        {/* <div className="fs-6 text-light">{item.itemDetails?.organizationDetails?.name}</div> */}
                       </div>
                     </Button>
                     <div className="d-flex align-items-center flex-grow-1">
@@ -174,7 +177,7 @@ const ItemsTable = ({
                             />
                           </div>
                         </Button> */}
-                        <Link to={'/organization/' + item?.itemDetails?.organizationDetails?.slug}>
+                        {/* <Link to={'/organization/' + item?.itemDetails?.organizationDetails?.slug}>
                           <ListItemImg
                             size={[68]}
                             style={{ maxWidth: 'auto !important' }}
@@ -184,7 +187,7 @@ const ItemsTable = ({
                               item.itemDetails?.organizationDetails?.logo
                             }
                           />
-                        </Link>
+                        </Link> */}
                       </div>
                       {/* <div className="d-none d-sm-flex billing__buttons d-flex align-items-center gap-1">
                         {item.itemDetails?.tax && (

@@ -34,7 +34,7 @@ function CrowdfundingDetailMain({
   const handleSliderChange = (newValue) => {
     console.log('Slider value changed:', newValue);
     setSliderValue(newValue);
-    setSelectedValue(newValue)
+    setSelectedValue(newValue);
   };
   const video = crowdfundingDetails?.video;
 
@@ -47,7 +47,7 @@ function CrowdfundingDetailMain({
     let totalAmount = data.reduce((acc, obj) => acc + obj.amount, 0);
     let goal = parseFloat(crowdfundingDetails.goal);
 
-    return Math.round((totalAmount / goal * 100));
+    return Math.round((totalAmount / goal) * 100);
   };
 
   const setState = crowdfundingDetails.campaignDetails?.state_id;
@@ -57,8 +57,8 @@ function CrowdfundingDetailMain({
       return;
     }
 
-    let newAddress = crowdfundingDetails?.campaignDetails?.address
-      ? convertAddress(crowdfundingDetails.campaignDetails.address)
+    let newAddress = crowdfundingDetails?.address
+      ? convertAddress(crowdfundingDetails?.address)
       : 'Canada';
 
     setAddress(newAddress);
@@ -90,18 +90,15 @@ function CrowdfundingDetailMain({
           </Link>
         </div>
         <div className="project__detail-meta d-flex align-items-center flex-wrap text-light">
-                <div className="d-flex align-items-center me-2 text-nowrap">
-                  <FontAwesomeIcon icon={regular('clock')} className="me-1" />
-                  {moment(crowdfundingDetails.created_at).format('MMMM DD , YYYY')}
-                </div>
-                <div className="d-flex align-items-center me-2 text-nowrap">
-                  <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
-                  {address}
-                </div>
-              </div>
-        {crowdfundingDetails?.images && crowdfundingDetails?.images.length > 0 && (
-            <ProjectCrowdfundingGallery images={crowdfundingDetails?.images} tagTitle="Project" />
-          )}
+          <div className="d-flex align-items-center me-2 text-nowrap">
+            <FontAwesomeIcon icon={regular('clock')} className="me-1" />
+            {moment(crowdfundingDetails.created_at).format('MMMM DD , YYYY')}
+          </div>
+          <div className="d-flex align-items-center me-2 text-nowrap">
+            <FontAwesomeIcon icon={regular('circle-location-arrow')} className="me-1" />
+            {address}
+          </div>
+        </div>
         <div className="d-flex flex-column">
           <h5 className="project__detail-sublabel fw-bolder">Fundraiser Goal</h5>
           {/* <div className="project__detail-subtitle fw-bold">Goal</div> */}
@@ -118,9 +115,7 @@ function CrowdfundingDetailMain({
                   <FontAwesomeIcon icon={regular('infinity')} />
                 </span>
               ) : (
-                <span className="text-light">
-                  {countCrowdfundingProcess(donationList)}%
-                </span>
+                <span className="text-light">{countCrowdfundingProcess(donationList)}%</span>
               )}
             </div>
             <div className="text-light d-flex align-items-center ms-3">
@@ -183,15 +178,30 @@ function CrowdfundingDetailMain({
             </Link>
           </div> */}
         </div>
+        {video && (
+          <div className="project-video-wrap">
+            <iframe
+              title="project-details-video"
+              key="project-details-video"
+              width="498"
+              height="280"
+              src={embedlink}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
+        {crowdfundingDetails?.images && crowdfundingDetails?.images.length > 0 && (
+          <ProjectCrowdfundingGallery images={crowdfundingDetails?.images} tagTitle="Project" />
+        )}
         <div>
-          <h4 className="mt-3 page__blurb fw-bolder">
+          <h4 className="page__blurb fw-bolder">
             {crowdfundingDetails.headline || 'Default Headline'}
           </h4>
           <p className="page__paragraph">
             {crowdfundingDetails.description ||
               'Default description goes here. Provide details about your crowdfunding campaign.'}
           </p>
-          
         </div>
         <FundraisingSlider
           userId={crowdfundingDetails?._id}
@@ -199,9 +209,9 @@ function CrowdfundingDetailMain({
           min={0}
           max={5000}
           step={100}
-          onChange={(newAmount) => { 
-            setDonateAmount(newAmount)
-            setSelectedValue(newAmount)
+          onChange={(newAmount) => {
+            setDonateAmount(newAmount);
+            setSelectedValue(newAmount);
           }}
         />
 
@@ -235,21 +245,6 @@ function CrowdfundingDetailMain({
             allowFullScreen
           ></iframe>
         </div> */}
-        <div className="d-flex flex-column gap-2">
-          {video && (
-            <div className="project-video-wrap">
-              <iframe
-                title="project-details-video"
-                key="project-details-video"
-                width="498"
-                height="280"
-                src={embedlink}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          )}
-        </div>
       </div>
     </div>
   );

@@ -686,7 +686,7 @@ const ProfileSettings = () => {
   const rows = 5;
   // const placeholder2 = 'Ex: Christmas Drive';
 
-  const id3 = 'promovideo';
+  const id3 = 'promoVideo';
   const title3 = 'YouTube URL';
   // const placeholder3 = 'YouTube URL';
 

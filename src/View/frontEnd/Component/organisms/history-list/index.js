@@ -578,20 +578,20 @@ const PurchaseListItem = ({ order, item }) => {
           >
             {item.quantity} {item.itemDetails?.headline}
           </Link>
-          <div className="fs-6 text-light mb-3p">{item.itemDetails?.brand}</div>
+          <div className="fs-6 text-light mb-3p">{item.itemDetails?.campaignadminsDetails?.name}</div>
           <h6 className="price">
             {order.currencySymbol ? order.currencySymbol : '$'}{' '}
             {priceFormat(Number(item.productPrice))}
           </h6>
         </div>
       </div>
-      <ListItemImg
+      {/* <ListItemImg
         size={54}
         style={{ maxWidth: 'auto !important' }}
         className="me-0 me-sm-3 img--nobg"
         imgSrc={helper.CampaignAdminLogoPath + item?.itemDetails?.campaignadminsDetails.logo}
-      />
-      <div className="order__values d-flex align-items-center py-1">
+      /> */}
+      <div className="order__values flex-column gap-2 d-flex align-items-end py-1">
         <span className="fs- text-info fw-bold flex-grow-1">{item.xp ? item.xp : 0} xp</span>
         <span className="fs-5 fw-bold ms-2" style={{ width: '80px', textAlign: 'end' }}>
           {order.currencySymbol ? order.currencySymbol : '$'}

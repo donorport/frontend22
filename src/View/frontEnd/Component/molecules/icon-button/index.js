@@ -39,11 +39,11 @@ const IconButton = ({
     >
       <ButtonContent
         size={size}
-        className="d-flex align-items-center btn__content"
+        className="d-flex align-items-center justify-content-center gap-1 btn__content"
       >
         <span
           className={`icon__wrap d-flex align-items-center ${
-            children ? "me-1" : ""
+            children ? "" : ""
           }`}
         >
           {icon}

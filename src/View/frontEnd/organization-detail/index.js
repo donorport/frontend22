@@ -85,13 +85,13 @@ const OrganizationDetail = (props) => {
           </Col>
           <Col md="5">
             <div className="d-flex container-fluid">
-              <div className="ms-auto d-flex align-items-center gap-2 mb-5">
-              <ShareWidget
-              page="org"
-              text={`Let's help ${organizationDetails?.name} fund their needs on Donorport 🏆 🚀`}
-              pageTitle={organizationDetails?.name}
-              currUrl={`https://api.donorport.com/organization/${organizationDetails?.slug}`}
-            />
+              <div className="ms-auto d-none d-sm-flex align-items-center gap-2 mb-5">
+                <ShareWidget
+                  page="org"
+                  text={`Let's help ${organizationDetails?.name} fund their needs on Donorport 🏆 🚀`}
+                  pageTitle={organizationDetails?.name}
+                  currUrl={`https://api.donorport.com/organization/${organizationDetails?.slug}`}
+                />
                 {!CampaignAdminAuthToken && (
                   <Button
                     size="md"
@@ -123,7 +123,7 @@ const OrganizationDetail = (props) => {
           </Col>
         </Row>
         {projectList ? (
-          <Row className="ps-3 py-5">
+          <Row className="ps-0 ps-sm-3 py-5">
             <Col md="6" className="mb-4 mb-0" style={{ maxWidth: '545px' }}>
               <OrganizationCrowdfundingProjectsWidget
                 projectList={projectList}

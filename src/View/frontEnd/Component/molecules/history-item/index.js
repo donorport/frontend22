@@ -71,7 +71,7 @@ function HistoryItem({ active, ...otherProps }) {
       }`}
     >
       <div className="d-flex gap-2 align-items-sm-center align-items-start w-100">
-        <div className="d-flex">
+        <div className="d-flex flex-grow-1">
           <Avatar
             size={46}
             avatarUrl={getAvatarImage(avatar)}
@@ -125,7 +125,7 @@ function HistoryItem({ active, ...otherProps }) {
           </div>
         </div>
 
-        <span className="btn-sm ms-auto p-0 me-sm-0 me-2">{getC.getUserRank(xp)}</span>
+        <span className="">{getC.getUserRank(xp)}</span>
 
         <div className="billing__value text-end">
           <div className="fs-5 fw-bold text-success mb-3p">

@@ -66,11 +66,7 @@ function ShareWidget({ page, text, pageTitle, currUrl }) {
         <FontAwesomeIcon className="me-0 me-sm-1" icon={regular('share')} /> Share
       </Button>
       {/*FOR MOBILE: launches Navigator on mobile devices*/}
-      <Button
-        size="md"
-        onClick={() => onClickShare()}
-        className="ms-1 d-flex d-sm-none px-2 py-1 text-white fw-semibold fs-6"
-      >
+      <Button size="sm" onClick={() => onClickShare()} className="ms-1 d-flex d-sm-none text-white">
         <FontAwesomeIcon className="ms-0 ms-sm-1" icon={regular('share')} />
       </Button>
 

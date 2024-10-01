@@ -44,6 +44,15 @@ const Fundraisers = () => {
     (crowdfunding) => crowdfunding.status === 1
   );
 
+  // Reusing the working countCrowdfundingProgress from CrowdfundingsTable
+  const countCrowdfundingProgress = (donations, goal) => {
+    if (!goal || goal === 0) return 0; // If goal is 0 or undefined, return 0%
+
+    const totalAmount = donations.reduce((acc, donation) => acc + donation.amount, 0);
+    const progress = (totalAmount / goal) * 100;
+    return Math.round(progress); // Return rounded progress percentage
+  };
+
   return (
     <Page title="Donorport | Fundraisers">
       <DefaultLayout>
@@ -52,7 +61,11 @@ const Fundraisers = () => {
             <ul className="fundraiser__grid">
               {filteredCrowdfundingList.length > 0 ? (
                 filteredCrowdfundingList.map((crowdfunding, key) => (
-                  <CrowdfundingListItem key={key} crowdfunding={crowdfunding} />
+                  <CrowdfundingListItem
+                    key={key}
+                    crowdfunding={crowdfunding}
+                    countCrowdfundingProgress={countCrowdfundingProgress}
+                  />
                 ))
               ) : (
                 <li className="list__table-list p-2 mb-0">No entries to show</li>
@@ -65,20 +78,15 @@ const Fundraisers = () => {
   );
 };
 
-const CrowdfundingListItem = ({ crowdfunding }) => {
-  // probably needs to take the list of donations, instead of products
-  const countCrowdfundingProgress = (donations, goal) => {
-    if (!goal || goal === 0) return 0; // If goal is 0 or undefined, return 0%
+const CrowdfundingListItem = ({ crowdfunding, countCrowdfundingProgress }) => {
+  console.log("Crowdfunding Item:", crowdfunding); // Log crowdfunding data
 
-    const totalAmount = donations.reduce((acc, donation) => acc + donation.amount, 0);
-    const progress = (totalAmount / goal) * 100;
-    return Math.round(progress); // Return rounded progress percentage
-  };
-
+  // Log donationsHistory and goal for debugging
+  console.log("Donations History:", crowdfunding?.donationsHistory || []);
+  console.log("Goal:", crowdfunding?.goal || 0);
   return (
     <li className="d-flex flex-column align-items-center justify-content-center px-2 py-3 border rounded-5">
       <div className="relative">
-        {' '}
         <img
           className="fundraise__img"
           src={
@@ -107,15 +115,13 @@ const CrowdfundingListItem = ({ crowdfunding }) => {
         </span>
       </div>
       <p>{crowdfunding?.description}</p>
-      <div class="form-grid-raised">
-        <div class="form-grid-raised__details">
-          <span class="amount">{}</span>
-          <span class="goal">${crowdfunding?.goal}</span>{' '}
+      <div className="form-grid-raised">
+        <div className="form-grid-raised__details">
+          <span className="amount">${crowdfunding?.goal}</span>{' '}
         </div>
 
-        <div class="form-grid-raised__details">
-          <span class="amount form-grid-raised__details_donations">X</span>
-          <span class="goal">donations </span>
+        <div className="form-grid-raised__details">
+          <span className="goal">donations</span>
         </div>
       </div>
       <Link

@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'; // Only import React once
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-
 // import { IconToggle, RoundedIcon, TagTitle } from "../../Component";
 import IconToggle from '../../atoms/icon-toggle';
 import RoundedIcon from '../../atoms/rounded-icon';
@@ -19,16 +18,25 @@ import './style.scss';
 //import { GalleryImg } from '../../atoms';
 import verified from '../../../../../assets/images/verified.png';
 import ProjectCrowdfundingGallery from '../project-crowdfunding-gallery';
+import DonateModal from '../../molecules/donate-modal';
 
 function OrganizationDetailMain({
   checkItemInCart,
   addToCart,
   organizationDetails,
   isFollow,
-  followToOrganization
+  followToOrganization,
+  stateData, // Access stateData from parent component
+  changevalue, // Access changevalue from parent component
+  cardNumberWithSpace, // Access cardNumberWithSpace from parent component
+  donate, // Access donate function from parent component
+  selectedValue, // Access selectedValue from parent component
+  setSelectedValue, // Access setSelectedValue from parent component
+  dCardIcon, // Access dCardIcon from parent component
+  loading // Access loading state from parent component
 }) {
   console.log('iFrame, OrganizationDetailMain');
-
+  const [modalShow, setModalShow] = useState(false);
   /*let videoid = organizationDetails.promoVideo
     ? organizationDetails.promoVideo.split('?v=')[1]
     : '';
@@ -53,6 +61,8 @@ function OrganizationDetailMain({
 
   let address = setAddress ? convertAddress(setAddress) : '';
   console.log({ organizationDetails });
+
+  const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
 
   return (
     <div className="d-flex gap-5 project__detail-main">
@@ -113,7 +123,6 @@ function OrganizationDetailMain({
           )}
         </div>
 
-
         {organizationDetails.promoVideo && (
           <div className="d-flex flex-column gap-2">
             <div className="project-video-wrap">
@@ -137,7 +146,7 @@ function OrganizationDetailMain({
             images={organizationDetails.images}
           />
         )}
-                <div className="d-flex align-items-center">
+        <div className="d-flex align-items-center gap-2">
           <div className="category__icons d-flex align-items-center order--1 order-sm-0">
             <Button
               size="lg"
@@ -188,7 +197,7 @@ function OrganizationDetailMain({
             <span className="fs-6" style={{ textTransform: "capitalize" }}>{organizationDetails?.countryDetails?.country}</span>
           </Button>*/}
           </div>
-          <div className="text-light d-flex align-items-center me-2 text-nowrap">
+          <div className="text-light d-flex align-items-center me-2 text-nowrap gap-1">
             <IconToggle
               icon={<FontAwesomeIcon icon={regular('bell')} />}
               checkedIcon={<FontAwesomeIcon icon={solid('bell')} />}
@@ -202,9 +211,42 @@ function OrganizationDetailMain({
               pageTitle={organizationDetails?.name}
               currUrl={`https://api.donorport.com/organization/${organizationDetails?.slug}`}
             /> */}
+            <div className="ms-auto d-flex d-sm-none align-items-center">
+              {!CampaignAdminAuthToken && (
+                <Button
+                  size="sm"
+                  className="fw-bold"
+                  onClick={() => {
+                    setModalShow(true);
+                  }}
+                >
+                  Donate
+                </Button>
+              )}
+              <ShareWidget
+                page="org"
+                text={`Let's help ${organizationDetails?.name} fund their needs on Donorport 🏆 🚀`}
+                pageTitle={organizationDetails?.name}
+                currUrl={`https://api.donorport.com/organization/${organizationDetails?.slug}`}
+              />
+              <DonateModal
+                show={modalShow}
+                type="organization"
+                onHide={() => setModalShow(false)}
+                organizationDetails={organizationDetails} // Pass organization details
+                stateData={stateData} // Pass stateData prop
+                changevalue={changevalue} // Pass changevalue function
+                cardNumberWithSpace={cardNumberWithSpace} // Pass formatted card number
+                donate={donate} // Pass donate function
+                selectedValue={selectedValue} // Pass selected value
+                setSelectedValue={setSelectedValue} // Pass setter for selected value
+                dCardIcon={dCardIcon} // Pass credit card icon
+                loading={loading} // Pass loading state
+              />
+            </div>
           </div>
         </div>
-        <div className="mt-2">
+        <div className="">
           <h4 className="page__blurb fw-bolder">{organizationDetails?.headline}</h4>
           <p className="page__paragraph">{organizationDetails?.description}</p>
         </div>
@@ -217,6 +259,13 @@ function OrganizationDetailMain({
             <FontAwesomeIcon className="me-1" icon={solid('building')} />
             RN {organizationDetails?.ein}
           </span>
+        </div>
+      </div>
+      <div className="d-flex flex-column align-items-start gap-1 justify-content-start mb-5">
+        <p>organization admininstrator:</p>
+        <div className="associated-user fw-semibold align-items-center d-flex gap-1 py-2 px-2 pe-3 rounded-5">
+          <FontAwesomeIcon icon={solid('user')} className="me-1" />
+          <span>{organizationDetails?.organizationUserName}</span>
         </div>
       </div>
       <div>

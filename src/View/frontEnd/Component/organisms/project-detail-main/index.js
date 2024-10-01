@@ -125,10 +125,13 @@ function ProjectDetailMain(props) {
   return (
     <div className="project__detail-main">
       <div className="d-flex flex-column mb-3 gap-2">
-        <div className="d-flex align-items-center mb-1">
-          <div>
-            <TagTitle>Project</TagTitle>
-            <h1 className="project__detail-title ">{projectDetails.name}</h1>
+        <div className="d-flex align-items-center mb-1 gap-3">
+          <div className="d-flex align-items-center flex-grow-1 mb-1">
+            <div>
+              {' '}
+              <TagTitle>Project</TagTitle>
+              <h1 className="project__detail-title ">{projectDetails.name}</h1>
+            </div>
           </div>
           <Link to={'/organization/' + projectDetails?.campaignDetails?.slug}>
             <img
@@ -186,28 +189,6 @@ function ProjectDetailMain(props) {
 
         </div>*/}
         <div className="d-flex flex-column gap-2">
-          {video && (
-            <div className="project-video-wrap">
-              <iframe
-                title="project-details-video"
-                key="project-details-video"
-                width="498"
-                height="280"
-                src={embedlink}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          )}
-
-          {projectDetails?.images && projectDetails?.images.length > 0 && (
-            <ProjectCrowdfundingGallery
-              title={false}
-              images={projectDetails?.images}
-              tagTitle="Project"
-            />
-          )}
-
           <div className="product__top px-0 d-flex align-items-center">
             <div className="d-flex align-items-center w-100">
               <ProgressBar
@@ -242,6 +223,27 @@ function ProjectDetailMain(props) {
               /> */}
             </div>
           </div>
+          {video && (
+            <div className="project-video-wrap">
+              <iframe
+                title="project-details-video"
+                key="project-details-video"
+                width="498"
+                height="280"
+                src={embedlink}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          )}
+
+          {projectDetails?.images && projectDetails?.images.length > 0 && (
+            <ProjectCrowdfundingGallery
+              title={false}
+              images={projectDetails?.images}
+              tagTitle="Project"
+            />
+          )}
         </div>
         {/* <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-0 mb-sm-2">
           <Link

@@ -67,7 +67,7 @@ const ProjectDetail = (props) => {
       </div>*/}
       <Container fluid className="pt-0 pt-sm-5">
         <Row className="ps-0 ps-sm-3 position-relative pt-5 gap-md-0 gap-3">
-          <div className="detailshero"></div>
+          <div className="d-none d-sm-flex detailshero"></div>
           <Col md="7" className="mb-4">
             <ProjectDetailMain
               projectDetails={props.projectDetails}
@@ -86,39 +86,39 @@ const ProjectDetail = (props) => {
             />
           </Col>
           <Col md="5">
-          <div className="d-flex container-fluid">
-          {/* <ProjectCrowdfundingSuggestionList
+            <div className="d-flex container-fluid">
+              {/* <ProjectCrowdfundingSuggestionList
             projectList={props.projectList}
             projectId={props.projectDetails?._id}
           />  */}
-        <div className="ms-auto d-flex align-items-center gap-2 mb-5">
-          <ShareWidget
-            page="project"
-            text={`Help ${props.projectDetails?.campaignDetails?.name} fund their project: ${props.projectDetails?.name} on Donorport! 📈👀`}
-            pageTitle={props.projectDetails?.name}
-            currUrl={`https://api.donorport.com/project/${props.projectDetails?.slug}`}
-          />
-            {!CampaignAdminAuthToken && (
-              <Button size="md" className="fw-bold" onClick={() => setModalShow(true)}>
-                Donate
-              </Button>
-            )}
-            <DonateModal
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-              type="project"
-              projectDetails={props.projectDetails}
-              selectedValue={props.selectedValue}
-              setSelectedValue={props.setSelectedValue}
-              stateData={props.stateData}
-              changevalue={props.changevalue}
-              cardNumberWithSpace={props.cardNumberWithSpace}
-              donate={props.donate}
-              dCardIcon={props.dCardIcon}
-              loading={props.loading}
-            />
-          </div>
-        </div>
+              <div className="ms-auto d-flex align-items-center gap-2 mb-5">
+                <ShareWidget
+                  page="project"
+                  text={`Help ${props.projectDetails?.campaignDetails?.name} fund their project: ${props.projectDetails?.name} on Donorport! 📈👀`}
+                  pageTitle={props.projectDetails?.name}
+                  currUrl={`https://api.donorport.com/project/${props.projectDetails?.slug}`}
+                />
+                {!CampaignAdminAuthToken && (
+                  <Button size="md" className="fw-bold" onClick={() => setModalShow(true)}>
+                    Donate
+                  </Button>
+                )}
+                <DonateModal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                  type="project"
+                  projectDetails={props.projectDetails}
+                  selectedValue={props.selectedValue}
+                  setSelectedValue={props.setSelectedValue}
+                  stateData={props.stateData}
+                  changevalue={props.changevalue}
+                  cardNumberWithSpace={props.cardNumberWithSpace}
+                  donate={props.donate}
+                  dCardIcon={props.dCardIcon}
+                  loading={props.loading}
+                />
+              </div>
+            </div>
             <History
               tagTitle="Activity"
               title="User Log"

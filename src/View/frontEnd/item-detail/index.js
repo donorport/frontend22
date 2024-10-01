@@ -33,6 +33,7 @@ import WidgetTitle from '../Component/atoms/widget-title';
 import TagTitle from '../Component/atoms/tag-title';
 import { useSelector } from 'react-redux';
 import funded from '../../../assets/images/funded-badge.png';
+import ShareWidget from '../Component/organisms/share-widget';
 // style
 import './style.scss';
 import HeaderController from '../../../Controller/frontEnd/HeaderController';
@@ -122,7 +123,7 @@ const ItemDetail = (props) => {
       </SuggestionWrapper> */}
       <Container fluid className="pt-0 pt-sm-5">
         <Row className="ps-0 ps-sm-3 position-relative pt-5 gap-md-0 gap-3 mb-5">
-        <div className="d-none d-sm-flex detailshero"></div>
+          <div className="d-none d-sm-flex detailshero"></div>
           <Col md="7">
             <ItemDetailMain
               progress={70}
@@ -137,6 +138,17 @@ const ItemDetail = (props) => {
           </Col>
 
           <Col md="5">
+            <div className="d-none d-sm-flex container-fluid">
+              <div className="ms-auto d-flex align-items-center gap-2 mb-5">
+                <ShareWidget
+                  page="item"
+                  text={`Help ${productDetails?.campaignDetails?.name} give away ${productDetails?.headline} on Donorport 🎉🎁`}
+                  pageTitle={productDetails?.headline}
+                  currUrl={`https://api.donorport.com/item/${productDetails?.slug}`}
+                />
+              </div>
+            </div>
+
             <div className="d-none d-sm-flex project__detail-img mb-3">
               {/* <div
                 className="item__bg main"

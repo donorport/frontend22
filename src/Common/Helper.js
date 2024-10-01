@@ -16,7 +16,8 @@ if (window.location.hostname === 'localhost') {
 }
 
 const AWS_S3_BUCKET_BASE_URL = 'https://donorport.s3.us-west-2.amazonaws.com/';
-export const GOOGLE_CLIENT_ID = '305365139368-u569e5u05if6viuub3hp7r09515ha6vp.apps.googleusercontent.com';
+export const GOOGLE_CLIENT_ID =
+  '305365139368-u569e5u05if6viuub3hp7r09515ha6vp.apps.googleusercontent.com';
 
 let helper = {
   ApiUrl: BASE_URL + 'api/',
@@ -274,7 +275,7 @@ const getUserRank_inner = (setting, UserXp) => {
       className="rounded-pill rounded-pill--xp fs-6 fs-sm-7"
       icon={<FontAwesomeIcon size={24} icon={props.icon} />}
     >
-      {props.name}
+      <span className="d-none d-md-inline">{props.name}</span>
     </IconButton>
   );
 };

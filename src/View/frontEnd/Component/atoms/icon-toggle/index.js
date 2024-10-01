@@ -36,7 +36,7 @@ function IconToggle(props) {
               src={checkedIconSrc}
               alt={name}
               // width={24}
-              height={21}
+              height={24}
             />
           )
         ) : (
@@ -47,7 +47,7 @@ function IconToggle(props) {
               src={iconSrc}
               alt={name}
               // width={21}
-              height={21}
+              height={24}
             />
           )
         )}

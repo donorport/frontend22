@@ -307,12 +307,21 @@ const ItemDetailsMain = ({
           ischecked={isFollow}
         />
 
-        <ShareWidget
+        {/* <ShareWidget
           page="item"
           text={`Help ${productDetails?.campaignDetails?.name} give away ${productDetails?.headline} on Donorport 🎉🎁`}
           pageTitle={productDetails?.headline}
           currUrl={`https://api.donorport.com/item/${productDetails?.slug}`}
-        />
+        /> */}
+
+        <div className="ms-auto d-flex d-sm-none align-items-center">
+          <ShareWidget
+            page="item"
+            text={`Help ${productDetails?.campaignDetails?.name} give away ${productDetails?.headline} on Donorport 🎉🎁`}
+            pageTitle={productDetails?.headline}
+            currUrl={`https://api.donorport.com/item/${productDetails?.slug}`}
+          />
+        </div>
       </div>
     </div>
 
