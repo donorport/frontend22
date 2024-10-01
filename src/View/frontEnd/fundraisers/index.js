@@ -80,6 +80,7 @@ const CrowdfundingListItem = ({ crowdfunding }) => {
       <div className="relative">
         {' '}
         <img
+          alt=""
           className="fundraise__img"
           src={
             crowdfunding.imageDetails?.length > 0
@@ -107,15 +108,15 @@ const CrowdfundingListItem = ({ crowdfunding }) => {
         </span>
       </div>
       <p>{crowdfunding?.description}</p>
-      <div class="form-grid-raised">
-        <div class="form-grid-raised__details">
-          <span class="amount">{}</span>
-          <span class="goal">${crowdfunding?.goal}</span>{' '}
+      <div className="form-grid-raised">
+        <div className="form-grid-raised__details">
+          <span className="amount">{}</span>
+          <span className="goal">${crowdfunding?.goal}</span>{' '}
         </div>
 
-        <div class="form-grid-raised__details">
-          <span class="amount form-grid-raised__details_donations">X</span>
-          <span class="goal">donations </span>
+        <div className="form-grid-raised__details">
+          <span className="amount form-grid-raised__details_donations">X</span>
+          <span className="goal">donations </span>
         </div>
       </div>
       <Link
