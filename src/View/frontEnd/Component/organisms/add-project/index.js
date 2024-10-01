@@ -1,7 +1,6 @@
-import { Button, Row, Col } from 'react-bootstrap';
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 // import { ToggleSwitch, FeedTag, FileUpload } from "@components/atoms";
 
@@ -12,7 +11,33 @@ import noimg from '../../../../../assets/images/noimg1.png';
 import Textarea from '../text-area';
 import Input from '../input';
 import './style.scss';
+import { useSelector } from 'react-redux';
+import {
+  Button,
+  Accordion,
+  AccordionContext,
+  //useAccordionButton,
+  Card,
+  Col,
+  Row
+} from 'react-bootstrap';
+import MapboxAutocomplete from 'react-mapbox-autocomplete';
+import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+
 //import { Link } from 'react-router-dom';
+
+const Map = ReactMapboxGl({
+  accessToken: helper.MapBoxPrimaryKey
+});
+const STYLES_mapStyles = {
+  londonCycle: 'mapbox://styles/mapbox/light-v9',
+  light: 'mapbox://styles/mapbox/light-v9',
+  dark: 'mapbox://styles/mapbox/dark-v9',
+  basic: 'mapbox://styles/mapbox/basic-v9',
+  outdoor: 'mapbox://styles/mapbox/outdoors-v10'
+};
+
 
 const STYLES_FileUploadInput = {
   position: 'absolute',
@@ -48,8 +73,25 @@ const max250 = 250;
 const title3 = 'Description';
 const placeholder3 = 'Enter some details about your need';
 
+function AccordionToggle({ children, eventKey, callback }) {
+  const { activeEventKey } = useContext(AccordionContext);
+  // window.scrollTo(0, 0);
+  const isCurrentEventKey = activeEventKey === eventKey;
+  return (
+    <div className="accordion__btn">
+      <div className="d-flex aling-items-center">
+        {children}
+        <FontAwesomeIcon
+          icon={solid('angle-right')}
+          className={`accordion__icon ms-2 fs-4 ${isCurrentEventKey ? 'rotate-90' : ''}`}
+        />
+      </div>
+    </div>
+  );
+}
+
 const AddProject = (props) => {
-  const { status, name, headline, video, description, error, infinite } = props.stateData;
+  const { id, updateGoal, goal, status, address, lat, lng, name, headline, video, description, error, infinite } = props.stateData;
 
   let url = video;
   let videoid = url ? url?.split('?v=')[1].split('&')[0] : '';
@@ -62,6 +104,43 @@ const AddProject = (props) => {
   let onSelectProduct = props.onSelectProduct;
   let submitProjectForm = props.submitProjectForm;
   let discardProject = props.discardProject;
+
+  const user = useSelector((state) => state.user);
+  const [location, setLocation] = useState({
+    organizationLocation: '',
+    locationName: '',
+    lat: user.lat,
+    lng: user.lng
+  });
+  const sugg = (result, lat, lng) => {
+    console.log('add-post fn sugg:', { result, lat, lng });
+    props.setstate({
+      ...props.stateData,
+      address: result,
+      lat: lat,
+      lng: lng
+    });
+    setLocation({
+      ...location,
+      locationName: result,
+      lat: lat,
+      lng: lng
+    });
+  };
+  useEffect(() => {
+    // console.log(user)
+    // console.log(props.data)
+    // console.log(lat, lng)
+    
+    setLocation({
+      ...location,
+      organizationLocation: props.data.iso2,
+      locationName: address ? address : "Canada",
+      lat: lat ? Number(lat) : 0,
+      lng: lng ? Number(lng) : 0
+    });
+  }, [props.stateData]);
+
 
   console.log({ productList });
   //const [id1] = useState('name');
@@ -170,6 +249,70 @@ const AddProject = (props) => {
           </Button>
         </div>
       </div>*/}
+
+
+<AccordionToggle>
+        <h2 className="fs-4 fw-bolder ">Post Location</h2>
+      </AccordionToggle>
+      <Accordion.Collapse className="py-0 py-sm-5">
+        <Row className="">
+          <Col lg="6">
+            <MapboxAutocomplete
+              publicKey={helper.MapBoxPrimaryKey}
+              inputClass="form-control search"
+              query={location.locationName}
+              defaultValue={location.locationName}
+              onSuggestionSelect={sugg}
+              country={location.organizationLocation}
+              resetSearch={false}
+            />
+            <div className="post-location-wrap">
+              <div className="px-3 py-20p bg-lighter rounded-3 my-20p">
+                <div className="d-flex align-items-center">
+                  <div className="icon-wrap mr-20p">
+                    <FontAwesomeIcon
+                      icon={solid('location-dot')}
+                      className="fs-3 text-primary"
+                    />
+                  </div>
+                  <div className="info-wrap">
+                    <div className="fs-6 mb-3p">Your post will be posted in</div>
+                    <h3 className="mb-0 fs-4 fw-bolder">{location.locationName}</h3>
+                  </div>
+                </div>
+              </div>
+              {error && error.address && (
+                <p className="error">{error ? (error.address ? error.address : '') : ''}</p>
+              )}
+              <div className="note note--clear">
+                <span>
+                  Not the city you want to post in? Try using the search bar to choose another
+                  location.
+                </span>
+              </div>
+            </div>
+          </Col>
+          <Col lg="6">
+            <Map
+              style={STYLES_mapStyles.outdoor}
+              // onMove={false}
+              zoom={[12]}
+              containerStyle={{
+                height: '300px',
+                width: '400px'
+              }}
+              center={[location.lng, location.lat]}
+            >
+              <Layer type="symbol" id="marker" layout={{ 'icon-image': 'custom-marker' }}>
+                <Feature coordinates={[location.lng, location.lat]} />
+              </Layer>
+              {/* <Marker coordinates={[72.6563128, 23.0001899]} anchor="bottom">
+          <h1>marker</h1>
+        </Marker> */}
+            </Map>
+          </Col>
+        </Row>
+      </Accordion.Collapse>
 
       <div className="d-flex justify-content-between py-2 mb-5 border-bottom">
         <h4 className="mb-0 fw-bolder me-2">Details</h4>

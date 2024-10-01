@@ -9,7 +9,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import projectApi from '../../../../../Api/admin/project';
 import productApi from '../../../../../Api/admin/product';
 // import { Outlet, useOutletContext } from 'react-router-dom';
-import { Link, useOutletContext } from 'react-router-dom';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import helper from '../../../../../Common/Helper';
 import './style.scss';
 
@@ -42,12 +42,16 @@ const AdminProjects = () => {
     headline: '',
     video: '',
     description: '',
+    address: '',
+    lat: '',
+    lng: '',
     infinite: false,
     error: [],
     images: []
   });
 
-  const { id, name, headline, video, description, images, infinite } = state;
+  const { id, name, headline, video, description, address, lat, lng, images, infinite } = state;
+
   const validExtensions = ['jpg', 'png', 'jpeg'];
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -124,6 +128,9 @@ const AdminProjects = () => {
       headline: '',
       video: '',
       description: '',
+      address: '',
+      lat: '',
+      lng: '',
       infinite: false,
       error: [],
       images: []
@@ -249,6 +256,9 @@ const AdminProjects = () => {
         formData.headline = headline;
         formData.video = video;
         formData.description = description;
+        formData.address = address;
+        formData.lat = lat;
+        formData.lng = lng;
         formData.products = seletedProductList;
         formData.infinity = infinite;
         formData.organizationId = data._id;
@@ -386,6 +396,9 @@ const AdminProjects = () => {
         headline: projectData.headline,
         name: projectData.name,
         description: projectData.description,
+        address: projectData.address,
+        lat: projectData.lat,
+        lng: projectData.lng,        
         video: projectData.video,
         infinite: projectData.infinity
       });
@@ -518,7 +531,7 @@ const AdminProjects = () => {
             </div>
 
             <div className="d-flex align-items-center gap-2 justify-content-stretch justify-content-sm-start text-nowrap flex-wrap flex-sm-nowrap">
-              {!hasProduct.length == 0 && !loading ? (
+              {!hasProduct.length === 0 && !loading ? (
                 <Button variant="info" size="md" onClick={() => openModel()}>
                   Create New
                 </Button>
@@ -578,6 +591,8 @@ const AdminProjects = () => {
           submitProjectForm={submitProjectForm}
           discardProject={discardProject}
           slug={data.slug}
+          setstate={setstate}
+          data={data}
           deleteProjectImage={deleteProjectImage}
           removeTempImages={removeTempImages}
         />

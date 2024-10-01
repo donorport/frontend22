@@ -33,6 +33,9 @@ function project() {
     data.append('name', cdata.name);
     data.append('headline', cdata.headline);
     data.append('description', cdata.description);
+    data.append('address', cdata.address);
+    data.append('lat', cdata.lat);
+    data.append('lng', cdata.lng);    
     data.append('video', cdata.video);
     data.append('status', cdata.status);
     data.append('infinity', cdata.infinity);
@@ -98,6 +101,9 @@ function project() {
     data.append('name', cdata.name);
     data.append('headline', cdata.headline);
     data.append('description', cdata.description);
+    data.append('address', cdata.address);
+    data.append('lat', cdata.lat);
+    data.append('lng', cdata.lng);    
     data.append('video', cdata.video);
     data.append('status', cdata.status);
     data.append('infinity', cdata.infinity);
