@@ -13,7 +13,7 @@ import './style.scss';
 
 const DonateModal = (props) => {
   const [color, setColor] = useState('#5ac7b5');
-  const [next, setNext] = useState(false);
+  const [next, setNext] = useState(props.type === 'crowdfunding'); // Skip step 1 if crowdfunding
   const [showPaymentForm, setShowPaymentForm] = useState(false);
 
   const stateData = props.stateData;
@@ -83,27 +83,25 @@ const DonateModal = (props) => {
         </Button>
       </Modal.Header>
       <Modal.Body>
-        {/* Step 1: Select Donation Amount */}
-        {!next && (
+        {/* Step 1: Select Donation Amount - Hidden for crowdfunding */}
+        {!next && type !== 'crowdfunding' && (
           <>
-            {type !== 'crowdfunding' && (
-              <div className="donation__options mb-2">
-                <div className="donation__radio d-flex flex-wrap p-6 fs-4">
-                  {['5', '25', '50', '100', '250'].map((value, idx) => (
-                    <div className="option__item" key={idx}>
-                      <input
-                        type="radio"
-                        value={value}
-                        name="donation"
-                        checked={selectedValue === Number(value)}
-                        onChange={(e) => onValueChange(['#63b2ea', '#5ac7b5', '#7abed8', '#f3a648', '#dc6d6d'][idx], e)}
-                      />
-                      <label>{currencySymbol}{value}</label>
-                    </div>
-                  ))}
-                </div>
+            <div className="donation__options mb-2">
+              <div className="donation__radio d-flex flex-wrap p-6 fs-4">
+                {['5', '25', '50', '100', '250'].map((value, idx) => (
+                  <div className="option__item" key={idx}>
+                    <input
+                      type="radio"
+                      value={value}
+                      name="donation"
+                      checked={selectedValue === Number(value)}
+                      onChange={(e) => onValueChange(['#63b2ea', '#5ac7b5', '#7abed8', '#f3a648', '#dc6d6d'][idx], e)}
+                    />
+                    <label>{currencySymbol}{value}</label>
+                  </div>
+                ))}
               </div>
-            )}
+            </div>
             <div className="avatar__wrap p-12p" style={{ backgroundColor: color }}>
               <div className="d-flex align-items-center w-100 fs-6 fw-bold text-white">
                 <Avatar avatarUrl={user.profileImage} border={0} shadow={false} size={45} />
@@ -240,7 +238,7 @@ const DonateModal = (props) => {
       </Modal.Body>
 
       <Modal.Footer className="border-0 overflow-hidden justify-content-center mb-3">
-        {!next && !showPaymentForm && (
+        {!next && !showPaymentForm && type !== 'crowdfunding' && (
           <Button variant="primary" onClick={goToNextStep} className="d-flex flex-grow-1 fw-bold justify-content-center fs-6" size="lg">
             Next
             <FontAwesomeIcon icon={solid('arrow-right')} className="ms-1" />

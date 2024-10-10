@@ -11,7 +11,7 @@ const UserSettingsTab = () => {
 
   return (
     <>
-      <header className="w-100 d-sm-flex flex-column flex-lg-row align-items-start gap-2 d-none">
+      <header className="w-100 d-flex flex-column flex-lg-row align-items-start gap-2 d-none">
         <div className="me-sm-2 flex-grow-1">
           <h1 className="d-none d-sm-flex page__title fs-3 fw-bolder">Settings</h1>
         </div>

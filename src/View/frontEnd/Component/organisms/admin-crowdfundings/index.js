@@ -49,7 +49,8 @@ const AdminCrowdfundings = () => {
     images: []
   });
 
-  const { id, name, headline, goal, video, description, address, lat, lng, images, infinite } = state;
+  const { id, name, headline, goal, video, description, address, lat, lng, images, infinite } =
+    state;
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalRecord, setTotalRecord] = useState(0);
@@ -98,7 +99,7 @@ const AdminCrowdfundings = () => {
       description: '',
       address: '',
       lat: '',
-      lng: '',      
+      lng: '',
       infinite: false,
       goal: '',
       error: [],
@@ -492,18 +493,29 @@ const AdminCrowdfundings = () => {
             </div>
 
             <div className="d-flex align-items-center ms-sm-auto justify-content-end text-nowrap">
-              <Button
-                variant="info"
-                size="md"
-                className="me-2 fw-bold fs-6"
-                onClick={() => openModel()}
-              >
-                Create New
-              </Button>
+              {user.isAccountAdded && (
+                <Button
+                  variant="info"
+                  size="md"
+                  className="me-2 fw-bold"
+                  onClick={() => openModel()}
+                >
+                  Create New
+                </Button>
+              )}
+
               <LadderMenuItems listBy={listBy} onChangeDropDown={onChangeDropDown} />
             </div>
           </header>
-
+          {!user.isAccountAdded && (
+            <div className="test note fs-6 mw-100">
+              In order to create a fundraiser, you'll first need to add your bank account.{' '}
+              <Link to={'/campaign/' + data.slug + '/settings/payments'} className="link">
+                Click here
+              </Link>{' '}
+              to add your bank details
+            </div>
+          )}
           <CrowdfundingsTable
             crowdfundingList={crowdfundingList}
             editCrowdfunding={editCrowdfunding}

@@ -24,7 +24,7 @@ const CrowdfundingsTable = (props) => {
   const countCrowdfundingProgress = (data, _goal) => {
     let totalAmount = data.reduce((acc, obj) => acc + obj.amount, 0);
     let goal = parseFloat(_goal);
-    return Math.round((totalAmount / goal * 100));  
+    return Math.round((totalAmount / goal) * 100);
   };
 
   // probably needs to take the list of donations, instead of products
@@ -81,10 +81,12 @@ const CrowdfundingsTable = (props) => {
       </div>
       <ul
         className="list-unstyled mb-0 list__table-list"
-        style={{
-          //maxHeight: crowdfundingList.length > 1 ? '550px' : '',
-          // minHeight: crowdfundingList.length > 1 ? '550px' : ''
-        }}
+        style={
+          {
+            //maxHeight: crowdfundingList.length > 1 ? '550px' : '',
+            // minHeight: crowdfundingList.length > 1 ? '550px' : ''
+          }
+        }
       >
         {crowdfundingList.length > 0 ? (
           crowdfundingList.map((crowdfunding, key) => {
@@ -139,6 +141,9 @@ const CrowdfundingListItem = ({
   deleteCrowdfunding,
   publishCrowdfunding
 }) => {
+  const formattedGoal = crowdfunding?.goal
+    ? Number(crowdfunding.goal).toLocaleString() // Convert to number and apply formatting
+    : '0'; // Default to '0' if goal is not available
   console.log('CrowdfundingListItem:', { crowdfunding, imageDetails: crowdfunding.imageDetails });
   return (
     <li className="table__list-item px-2 py-3">
@@ -151,7 +156,7 @@ const CrowdfundingListItem = ({
             {crowdfunding.status === 1 && (
               <h6 className="price ">
                 {data?.symbol}
-                {crowdfunding?.goal}
+                {formattedGoal}
               </h6>
             )}
             <div className="date text-light fs-7">{moment(crowdfunding.created_at).fromNow()}</div>
@@ -166,13 +171,19 @@ const CrowdfundingListItem = ({
                 : profile
             }
           />
-          <div className="ms-2">
+          <div className="d-flex flex-column ms-2">
             <div className="fw-bolder fs-5 mb-3p">{crowdfunding.name}</div>
-
+            <span className="d-flex gap-1 align-items-center">
+              {/* <FontAwesomeIcon icon={regular('bullseye')} className="" /> */}
+              <span>
+                {data?.symbol}
+                {formattedGoal}
+              </span>
+            </span>
             {crowdfunding.status === 1 && (
               <Link
                 variant="link"
-                className="text-light p-0 fw-normal"
+                className="mt-1 text-light p-0 fw-normal"
                 to={'/crowdfunding/' + crowdfunding.slug}
               >
                 <FontAwesomeIcon icon={regular('square-up-right')} className="me-1" /> Go to
@@ -187,11 +198,18 @@ const CrowdfundingListItem = ({
             <div className="d-flex align-items-center flex-grow-1 mw-200">
               <ProgressBar
                 variant="success"
-                now={countCrowdfundingProgress(crowdfunding?.donationsHistory || [], crowdfunding?.goal || 0)}
+                now={countCrowdfundingProgress(
+                  crowdfunding?.donationsHistory || [],
+                  crowdfunding?.goal || 0
+                )}
                 className="flex-grow-1"
               />
               <span className="ms-1 fw-semibold">
-                {countCrowdfundingProgress(crowdfunding?.donationsHistory || [], crowdfunding?.goal || 0)}%
+                {countCrowdfundingProgress(
+                  crowdfunding?.donationsHistory || [],
+                  crowdfunding?.goal || 0
+                )}
+                %
               </span>
             </div>
           </div>

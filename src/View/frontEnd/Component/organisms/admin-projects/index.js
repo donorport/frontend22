@@ -531,7 +531,7 @@ const AdminProjects = () => {
             </div>
 
             <div className="d-flex align-items-center gap-2 justify-content-stretch justify-content-sm-start text-nowrap flex-wrap flex-sm-nowrap">
-              {!hasProduct.length === 0 && !loading ? (
+              {!hasProduct.length == 0 && !loading ? (
                 <Button variant="info" size="md" onClick={() => openModel()}>
                   Create New
                 </Button>

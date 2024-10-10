@@ -10,7 +10,8 @@ import {
   ActivityIcon,
   TaxIcon,
   ProjectIcon,
-  SettingsIcon
+  SettingsIcon,
+  CrowdfundingIcon
 } from '../Component/organisms/admin-tabs/tab-icons';
 import './style.scss';
 import helper from '../../../Common/Helper';
@@ -127,6 +128,7 @@ function AdminDetail() {
                           {selectedTabKey === 'tax' ? <TaxIcon active={true} /> : ''}
                           {selectedTabKey === 'project' ? <ProjectIcon active={true} /> : ''}
                           {selectedTabKey === 'settings' ? <SettingsIcon active={true} /> : ''}
+                          {selectedTabKey === 'crowdfunding' ? <CrowdfundingIcon active={true} /> : ''}
                         </span>
                         <span className="tab__text text-capitalize">{selectedTabKey}</span>
                         <span className="d-flex align-items-center ms-auto">
@@ -171,7 +173,7 @@ function AdminDetail() {
                   )}
                 </div>
               </div>
-              <div className="d-flex flex-column gap-4 flex-grow-1 tab-content">
+              <div className="d-flex flex-column gap-4 flex-grow-1 tab-content mt-3 mt-sm-0">
                 <Outlet context={[data, setData]} />
               </div>
               {/* <Tab.Content className="flex-grow-1">

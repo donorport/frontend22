@@ -99,7 +99,7 @@ const CrowdfundingListItem = ({ crowdfunding, countCrowdfundingProgress }) => {
       </div>
 
       <div className="ms-2">
-        <div className="fw-bolder fs-5 mb-3p">{crowdfunding.name}</div>
+        <div className="fw-bolder fs-5 mb-3p">{crowdfunding?.name}</div>
       </div>
       <div className="d-flex align-items-center flex-grow-1 mw-200">
         <ProgressBar

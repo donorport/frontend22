@@ -60,7 +60,7 @@ const CrowdfundingIcon = ({ active }) => {
   const icon = active ? (
     <FontAwesomeIcon icon={solid("circle-dollar")} />
   ) : (
-    <FontAwesomeIcon icon={light("circle-dollar")} />
+    <FontAwesomeIcon icon={regular("circle-dollar")} />
   );
   return icon;
 };

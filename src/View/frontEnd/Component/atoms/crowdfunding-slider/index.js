@@ -1,60 +1,75 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { styled } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
 import axios from 'axios';
+import debounce from 'lodash.debounce';
 import './style.scss';
 
+// Utility function to format the number with commas
+const formatNumberWithCommas = (value) => {
+  if (typeof value !== 'number') return value;
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
+
+// Utility function to strip commas and return a number
+const stripCommas = (value) => {
+  return Number(value.toString().replace(/,/g, '')); // Remove commas and return as a number
+};
+
 const ThickSlider = styled(Slider)({
-  height: 19, // Increase the track height to make it thicker
+  height: 19,
   '& .MuiSlider-thumb': {
-    width: 36, // Increase the thumb size
-    height: 36, // Increase the thumb size
+    width: 36,
+    height: 36,
     backgroundColor: '#fff',
     border: '2px solid currentColor',
     '&:hover, &.Mui-focusVisible, &.Mui-active': {
-      boxShadow: 'inherit'
-    }
+      boxShadow: 'inherit',
+    },
   },
   '& .MuiSlider-rail': {
-    height: 19, // Ensure the rail is also thicker
-    backgroundColor: '#2448e4 !important', // Use !important to override any default styles
-    opacity: 0.12
+    height: 19,
+    backgroundColor: '#2448e4 !important',
+    opacity: 0.12,
   },
   '& .MuiSlider-track': {
-    height: 19, // Ensure the track is also thicker
-    backgroundColor: '#2448e4 !important' // Set track color to match rail
-  }
+    height: 19,
+    backgroundColor: '#2448e4 !important',
+  },
 });
-
-// function formatNumber(value) {
-//   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-// }
 
 export default function FundraisingSlider({
   userId,
-  value: propValue = 500,
+  value: propValue = 500, // Default starting value
   min = 0,
   max = 10000,
   step = 100,
-  onChange: propOnChange
+  onChange: propOnChange,
 }) {
-  const [value, setValue] = useState(propValue);
+  const [value, setValue] = useState(propValue); // Initial state value is set to propValue
 
+  // Fetch data on mount
   useEffect(() => {
     axios
       .get(`/api/crowdfunding/${userId}`)
       .then((response) => {
-        const amount = response.data.amount || propValue;
-        setValue(amount);
-        if (propOnChange) {
-          propOnChange(amount);
+        const amount = response.data.amount;
+        if (typeof amount === 'number' && amount >= min && amount <= max) {
+          setValue(amount);
+          if (propOnChange) {
+            propOnChange(amount);
+          }
+        } else {
+          setValue(propValue); // Default to 500 if response is not a valid number
         }
       })
       .catch((error) => {
         console.error('There was an error fetching the fundraising amount!', error);
+        setValue(propValue); // Fallback to default if error occurs
       });
-  }, [userId, propValue]);
+  }, [userId, propValue, min, max, propOnChange]);
 
+  // Sync propValue with state if it changes
   useEffect(() => {
     setValue(propValue);
   }, [propValue]);
@@ -67,12 +82,25 @@ export default function FundraisingSlider({
   };
 
   const handleInputChange = (event) => {
-    const rawValue = event.target.value.replace(/,/g, ''); // Remove commas
-    setValue(rawValue === '' ? 0 : Number(rawValue));
+    const rawValue = event.target.value.replace(/,/g, ''); // Remove commas for internal logic
+    const numericValue = rawValue === '' ? 0 : Number(rawValue);
+    setValue(numericValue); // Set the state as a number without commas
     if (propOnChange) {
-      propOnChange(Number(rawValue === '' ? 0 : rawValue));
+      propOnChange(numericValue);
     }
   };
+
+  const debouncedUpdateAmount = useCallback(
+    debounce((amount) => {
+      const numericAmount = stripCommas(amount); // Ensure no commas before making API call
+      axios
+        .put(`/api/crowdfunding/${userId}`, { amount: numericAmount })
+        .catch((error) => {
+          console.error('There was an error updating the fundraising amount!', error);
+        });
+    }, 300),
+    [userId]
+  );
 
   const handleBlur = () => {
     if (value < min) {
@@ -86,10 +114,8 @@ export default function FundraisingSlider({
         propOnChange(max);
       }
     }
-
-    axios.put(`/api/crowdfunding/${userId}`, { amount: value }).catch((error) => {
-      console.error('There was an error updating the fundraising amount!', error);
-    });
+    // Ensure no commas are sent in the API request
+    debouncedUpdateAmount(value);
   };
 
   return (
@@ -110,8 +136,7 @@ export default function FundraisingSlider({
           <input
             style={{ fontSize: '46px !important' }}
             className="form-control fundriase__input"
-            // value={formatNumber(value)}
-            value={value}
+            value={formatNumberWithCommas(value)} // Display value with commas
             onChange={handleInputChange}
             onBlur={handleBlur}
             step={step}

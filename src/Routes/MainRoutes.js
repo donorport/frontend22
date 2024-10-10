@@ -240,11 +240,7 @@ export default function MainRoutes() {
                 />
                 <Route exact path="/item/:name" element={<ItemDetailsController />} />
                 <Route exact path="/project/:name" element={<ProjectDetailsController />} />
-                <Route
-                  exact
-                  path="/crowdfunding/:name"
-                  element={<CrowdfundingDetailsController />}
-                />
+                <Route exact path="/crowdfunding/:name" element={<CrowdfundingDetailsController />} />
                 <Route exact path="/signin" element={<SigninController />} />
                 <Route exact path="/signup" element={<SignupController />} />
                 <Route exact path="/forgot-password" element={<ForgotPasswordController />} />
@@ -275,6 +271,7 @@ export default function MainRoutes() {
             </>
           )
         ))}
+
 
       {/*
         admin logged in
