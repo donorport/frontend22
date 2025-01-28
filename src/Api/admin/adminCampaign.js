@@ -579,6 +579,23 @@ function adminCampaign() {
     });
   };
 
+  const transferCampaignAdminAccount = async (authToken, data) => {
+    return axios({
+      method: 'post',
+      url: `${helper.ApiUrl}campaign_admin/transfer-account`,
+      responseType: 'json',
+      headers: {
+        'x-access-token': authToken,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        withCredentials: true,
+        mode: 'no-cors'
+      },
+      data: data
+    });
+  }
+
   return {
     list,
     add,
@@ -605,7 +622,8 @@ function adminCampaign() {
     makeAccountPrimary,
     chekOrganizationAccount,
     addAccountDetails,
-    getPrimaryBankAccount
+    getPrimaryBankAccount,
+    transferCampaignAdminAccount
   };
 }
 const adminCampaignApi = adminCampaign();

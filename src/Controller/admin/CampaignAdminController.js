@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 //import FrontLoader from "../../Common/FrontLoader"
 import { validateAll } from 'indicative/validator';
 import ToastAlert from '../../Common/ToastAlert';
@@ -123,6 +123,7 @@ function CampaignAdminController() {
     id: '',
     name: '',
     email: '',
+    newEmail: '',
     password: '',
     logo: '',
     description: '',
@@ -148,6 +149,7 @@ function CampaignAdminController() {
   const {
     name,
     email,
+    newEmail,
     promoVideo,
     slug,
     password,
@@ -184,6 +186,7 @@ function CampaignAdminController() {
       id: '',
       name: '',
       email: '',
+      newEmail: '',
       password: '',
       logo: '',
       description: '',
@@ -574,7 +577,18 @@ function CampaignAdminController() {
           slug: organizationNameVar
         });
       }
-    } else {
+    } else if (e.target.name === 'newEmail') {
+     
+      setState(state => ({
+        ...state,
+        newEmail: value,
+        error: {
+          ...(state.error || {}),
+          newEmail: null
+        }
+      }))
+    }
+     else {
       if (e.target.name === 'amount') {
         value = e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, '');
       }
@@ -676,6 +690,56 @@ function CampaignAdminController() {
     }
   };
 
+  const transferAccount = useCallback((newEmail) => {
+    validateAll({ newEmail: newEmail }, { newEmail: 'email' }, { 'newEmail.email': 'Please enter a valid email.' }).then(() => {
+        confirmAlert({
+          title: '',
+          message: `Are you sure to transfer the account to ${newEmail} ?`,
+          buttons: [
+            {
+              label: 'No'
+            },
+            {
+              label: 'Yes',
+              onClick: async () => {
+                setLoading(true);
+                setTimeout(() => {
+                  setLoading(false);
+                }, 2000);
+                try {
+                  await adminCampaignApi.transferCampaignAdminAccount(adminAuthToken, {
+                    campaignAdminId: state.id,
+                    newEmail
+                  });
+                  ToastAlert({ msg: 'Account transfer was successful', msgType: 'success' });
+                  
+                } catch(err) {
+                  ToastAlert({ msg: err?.response?.data?.message || 'Something went wrong!', msgType: 'error' });
+                }
+                setLoading(false);
+                setModal(false);
+                resetForm();
+              }
+            }
+          ]
+        })
+    }).catch((errors) => {
+      const formaerrror = {};
+      if (errors.length) {
+        errors.forEach((element) => {
+          formaerrror[element.field] = element.message;
+        });
+      }
+      setState({
+        ...state,
+        error: {
+          ...(state.error || {}),
+          newEmail: formaerrror['newEmail']
+        }
+      });
+    });
+  }, [state, setLoading, state.id])
+
   return (
     <>
 
@@ -687,13 +751,14 @@ function CampaignAdminController() {
         addCampaignAdmin={addCampaignAdmin}
         updateCampaignAdmin={updateCampaignAdmin}
         changefile={changefile}
+        transferAccount={transferAccount}
         tempImg={tempImg}
         Img={Img}
         categoryList={categoryList}
         countryList={countryList}
         stateList={stateList}
         cityList={cityList}
-        transferAccount={transferAccount} // Pass the function here
+        loading={loading}
       />
       <Index
         campaignAdminList={campaignAdminList}
