@@ -3,6 +3,9 @@ import { Modal } from 'react-bootstrap';
 import { Button } from '@mui/material';
 import helper from '../../../Common/Helper';
 import noimg from '../../../assets/images/noimg1.png';
+import './style.scss'
+import { LoadingButton } from '@mui/lab';
+
 
 export default function CampaignAdminForm(props) {
   let stateData = props.stateData;
@@ -162,7 +165,6 @@ export default function CampaignAdminForm(props) {
                   props.changevalue(e);
                 }}
               />
-
               {stateData.error && stateData.error.ein && (
                 <p className="error">
                   {stateData.error ? (stateData.error.ein ? stateData.error.ein : '') : ''}
@@ -219,6 +221,36 @@ export default function CampaignAdminForm(props) {
               )}
             </div>
           </div>
+
+          <div className="form-group row">
+            <label htmlFor="newEmail" className="col-sm-2 col-form-label">
+              New Email
+            </label>
+            <div className="col-sm-10 position-relative">
+              <input
+                type="email"
+                disabled={!stateData?.id}
+                className="form-control "
+                id="newEmail"
+                name="newEmail"
+                value={stateData.newEmail}
+                onChange={(e) => {
+                  props.changevalue(e);
+                }}
+              />
+
+              <LoadingButton loading={props.loading} variant="btnWarning" className="btnDanger transfer-account-btn" onClick={() => {props.transferAccount(stateData.newEmail)}} disabled={props.loading || !stateData?.newEmail || stateData.error?.newEmail}>
+                Transfer Account
+              </LoadingButton>
+
+              {stateData.error && stateData.error.newEmail && (
+                <p className="error">
+                  {stateData.error ? (stateData.error.newEmail ? stateData.error.newEmail : '') : ''}
+                </p>
+              )}
+            </div>
+          </div>
+
           <div className="form-group row">
             <label htmlFor="password" className="col-sm-2 col-form-label">
               Password

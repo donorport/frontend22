@@ -94,7 +94,8 @@ import AdminSettingsTab from '../View/frontEnd/Component/organisms/admin-setting
 import ProfileSettings from '../View/frontEnd/Component/organisms/profile-settings';
 import AdminAdmin from '../View/frontEnd/Component/organisms/admin-admin';
 import AdminBilling from '../View/frontEnd/Component/organisms/admin-billing';
-import ActivationController from 'src/Controller/frontEnd/ActivationController';
+import ActivationController from '../Controller/frontEnd/ActivationController';
+
 
 // lazy import for admin routes
 const AdminPrivateRoutes = lazy(() => import('./AdminPrivateRoutes'));

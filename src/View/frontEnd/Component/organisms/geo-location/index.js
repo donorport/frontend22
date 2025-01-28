@@ -227,7 +227,7 @@ const GeoLocation = (props) => {
               <div className="geo__distance" id="">
                 <h6 className="me-1">
                   {/* {objectVal} */}
-                  {user.distance === '0 m' ? '50 km' : `${parseInt(user.distance)} km`}
+                  {user.distance === '0 m' ? '50 km' : `${parseInt(user.distance, 10)} km`}
                 </h6>
               </div>
 

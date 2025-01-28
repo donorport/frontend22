@@ -1,3 +1,13 @@
 .rdt_TableBody {
     background-color: red;
 }
+.transfer-account-btn {
+    position: absolute!important;
+    top: 3px;
+    right: calc(var(--bs-gutter-x)* 0.5 + 0px);
+
+    &:disabled{
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}

@@ -34,6 +34,7 @@ export default function OtpForm() {
     return string.split(search).join(replace);
   }
   let decEmail = replaceAll(params.email, 'DONORPORT', '/');
+  //TODO[!important]: use token instead of exposing key in frontend part
   let bytes = CryptoJS.AES.decrypt(decEmail, 'my-secret-key@123');
   let decryptedData = bytes.toString(CryptoJS.enc.Utf8);
 
@@ -42,7 +43,6 @@ export default function OtpForm() {
   const LoginSchema = Yup.object().shape({
     otp: Yup.string().required('Otp is required')
   });
-
   useEffect(() => {
     localStorage.clear();
     if (!params.email) {
