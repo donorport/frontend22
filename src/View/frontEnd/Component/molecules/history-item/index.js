@@ -125,7 +125,7 @@ function HistoryItem({ active, ...otherProps }) {
           </div>
         </div>
 
-        <span className="">{getC.getUserRank(xp)}</span>
+        {/* <span className="">{getC.getUserRank(xp)}</span> */}
 
         <div className="billing__value text-end">
           <div className="fs-5 fw-bold text-success mb-3p">

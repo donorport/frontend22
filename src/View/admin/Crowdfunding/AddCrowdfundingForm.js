@@ -22,10 +22,8 @@ const CROWDFUNDING_VARIANT_STYLES = {
   fontSize: '14px',
   color: '#00ab55',
   textTransform: 'uppercase',
-  // cursor: "pointer",
   marginRight: '10px',
   display: 'inline-block',
-  // marginBottom: 0,
   border: '1px solid #9fbcc1',
   padding: '1px 28px 0px',
   borderRadius: '7px',
@@ -35,10 +33,20 @@ const CROWDFUNDING_VARIANT_STYLES = {
 export default function AddCrowdfundingForm(props) {
   console.log('iFrame, AddCrowdfundingForm');
   let stateData = props.stateData;
-  // const adminData = JSON.parse(localStorage.getItem('adminData'));
-  let url = stateData.video;
-  let id = url ? url.split('?v=')[1].split('&')[0] : '';
-  // let embedlink = 'https://www.youtube.com/embed/' + id;
+
+  // Construct the crowdfunding page URL based on the name slug
+  const generateSlug = (name) => {
+    return name
+      ? name
+          .toLowerCase()
+          .replace(/[^a-z0-9!]+/g, '-') // Keep exclamation marks
+          .replace(/^-|-$/g, '') // Trim leading or trailing hyphens
+      : '';
+  };
+
+  const crowdfundingPageUrl = stateData?.name
+    ? `${window.location.origin}/crowdfunding/${generateSlug(stateData.name)}`
+    : '';
 
   return (
     <>
@@ -58,7 +66,29 @@ export default function AddCrowdfundingForm(props) {
 
         <Modal.Body>
           <div className="form-group row">
-            <label className="col-form-label col-sm-2 ">Organization</label>
+            <label className="col-form-label col-sm-2">Crowdfunding Page URL</label>
+            <div className="col-sm-10">
+              <input
+                type="text"
+                className="form-control"
+                value={crowdfundingPageUrl}
+                readOnly
+              />
+              {crowdfundingPageUrl && (
+                <a
+                  href={crowdfundingPageUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ marginTop: '10px', display: 'inline-block' }}
+                >
+                  View Crowdfunding Page
+                </a>
+              )}
+            </div>
+          </div>
+
+          <div className="form-group row">
+            <label className="col-form-label col-sm-2">Organization</label>
             <div className="col-sm-10">
               <select
                 className="form-control"
@@ -94,11 +124,7 @@ export default function AddCrowdfundingForm(props) {
 
               {stateData.error && stateData.error.organization && (
                 <p className="error">
-                  {stateData.error
-                    ? stateData.error.organization
-                      ? stateData.error.organization
-                      : ''
-                    : ''}
+                  {stateData.error?.organization || ''}
                 </p>
               )}
             </div>
@@ -228,9 +254,6 @@ export default function AddCrowdfundingForm(props) {
                     ></iframe>
                   </div>
                 )
-
-                // <iframe className='mt-4' width="400" height="200" title="myFrame" src={embedlink} frameBorder="0" allowFullScreen=""></iframe>
-                // <iframe id="video1" width="520" title="myFrame" height="360" src={stateData.video} frameBorder="0" allowtransparency="true" ></iframe>
               }
 
               {stateData.error && stateData.error.video && (
@@ -258,7 +281,6 @@ export default function AddCrowdfundingForm(props) {
                   props.changefile(e);
                 }}
               />
-              {/* <label className="custom-file-label" htmlFor="customFile" style={{ margin: "0px 10px 0px 10px" }}> Choose files </label> */}
               <div className="grid w-100">
                 {props.tempImages?.length
                   ? props.tempImages.map((img, key) => {
@@ -268,8 +290,6 @@ export default function AddCrowdfundingForm(props) {
                           className="gallery__img"
                           style={{
                             backgroundImage: `url(${img ? img : noimg})`
-                            // width: '100px',
-                            // height: '100px'
                           }}
                           alt="lk"
                         ></div>
@@ -284,7 +304,6 @@ export default function AddCrowdfundingForm(props) {
                             img ? (img !== '' ? helper.CrowdfundingImagePath + img : noimg) : noimg
                           }
                           alt="lk"
-                          // style={{ width: '100px', height: '100px' }}
                         />
                       );
                     })
@@ -308,7 +327,6 @@ export default function AddCrowdfundingForm(props) {
             Save
           </Button>
         </Modal.Footer>
-
       </Modal>
     </>
   );

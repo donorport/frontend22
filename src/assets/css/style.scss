@@ -965,10 +965,7 @@ a.MuiListItemButton-root.active:focus {
 }
 
 .sold--item {
-  bottom: -50% !important;
-  top: 50%;
   position: absolute !important;
-  right: 50% !important;
   // -webkit-transform: translate(50%, -50%) !important;
   // -ms-transform: translate(50%, -50%) !important;
   width: 90% !important;

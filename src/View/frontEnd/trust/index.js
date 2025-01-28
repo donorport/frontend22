@@ -9,8 +9,18 @@ import phone from '../../../assets/images/support.svg';
 import './style.scss';
 
 const Trust = () => {
+  // Define the meta tags you want to pass to the Page component
+  const pageTitle = 'Donorport | Trust';
+  const pageDescription =
+    'Donorport is built on trust within each community. We hand-pick our charities and non-profits from the most respoected in the community';
+  const pageUrl = window.location.href;
+
   return (
-    <Page title="Donorport | Trust" description="Donorport is built on trust within each community. We hand-pick our charities and non-profits from the most respoected in the community"
+    <Page
+      title={pageTitle}
+      description={pageDescription}
+      url={pageUrl}
+      showTags={true} // This ensures that meta tags are included
     >
       <DefaultLayout>
         <div className="password-reset position-relative">

@@ -27,7 +27,6 @@ const Map = ReactMapboxGl({
   accessToken: helper.MapBoxPrimaryKey
 });
 
-
 const STYLES_mapStyles = {
   londonCycle: 'mapbox://styles/mapbox/light-v9',
   light: 'mapbox://styles/mapbox/light-v9',
@@ -89,18 +88,32 @@ function AccordionToggle({ children, eventKey, callback }) {
 }
 
 const AddCrowdfunding = (props) => {
-  const { id, updateGoal, goal, status, address, lat, lng, name, headline, video, description, error, infinite } = props.stateData;
+  const {
+    id,
+    updateGoal,
+    goal,
+    status,
+    address,
+    lat,
+    lng,
+    name,
+    headline,
+    video,
+    description,
+    error,
+    infinite
+  } = props.stateData;
 
   const [sliderValue, setSliderValue] = useState(500);
 
   // Function to handle changes from the slider
   const handleSliderChange = (newValue) => {
-    props.updateGoal(newValue)
+    props.updateGoal(newValue);
     setSliderValue(newValue);
   };
 
   let url = video;
-  let videoid = url ? url?.split('?v=')[1] ? url?.split('?v=')[1].split('&')[0] : '' : '';
+  let videoid = url ? (url?.split('?v=')[1] ? url?.split('?v=')[1].split('&')[0] : '') : '';
   let embedlink = url ? 'https://www.youtube.com/embed/' + videoid : '';
 
   let tempImages = props.tempImages;
@@ -136,21 +149,19 @@ const AddCrowdfunding = (props) => {
     });
   };
 
-
   useEffect(() => {
     // console.log(user)
     // console.log(props.data)
     // console.log(lat, lng)
-    
+
     setLocation({
       ...location,
       organizationLocation: props.data.iso2,
-      locationName: address ? address : "Canada",
+      locationName: address ? address : 'Canada',
       lat: lat ? Number(lat) : 0,
       lng: lng ? Number(lng) : 0
     });
   }, [props.stateData]);
-
 
   return (
     <div className="add__project">
@@ -236,10 +247,7 @@ const AddCrowdfunding = (props) => {
               <div className="px-3 py-20p bg-lighter rounded-3 my-20p">
                 <div className="d-flex align-items-center">
                   <div className="icon-wrap mr-20p">
-                    <FontAwesomeIcon
-                      icon={solid('location-dot')}
-                      className="fs-3 text-primary"
-                    />
+                    <FontAwesomeIcon icon={solid('location-dot')} className="fs-3 text-primary" />
                   </div>
                   <div className="info-wrap">
                     <div className="fs-6 mb-3p">Your post will be posted in</div>
@@ -280,6 +288,9 @@ const AddCrowdfunding = (props) => {
           </Col>
         </Row>
       </Accordion.Collapse>
+      <div className="d-flex py-2 border-bottom mb-3">
+        <h4 className="mb-0 fw-bolder me-2">Goal</h4>
+      </div>
       <FundraisingSlider
         userId={id}
         value={goal}
@@ -413,17 +424,17 @@ const AddCrowdfunding = (props) => {
                 )}
                 {crowdfundingImages?.length
                   ? crowdfundingImages.map((img, key) => {
-                    return (
-                      // <img src={img ? img !== "" ? helper.CrowdfundingImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} />
+                      return (
+                        // <img src={img ? img !== "" ? helper.CrowdfundingImagePath + img : noimg : noimg} alt="lk" style={{ width: "100px", height: "100px" }} />
 
-                      <div className="img-wrap" key={key}>
-                        <span
-                          className="close"
-                          onClick={() => props.deleteCrowdfundingImage(img.id)}
-                        >
-                          &times;
-                        </span>
-                        {/* <img
+                        <div className="img-wrap" key={key}>
+                          <span
+                            className="close"
+                            onClick={() => props.deleteCrowdfundingImage(img.id)}
+                          >
+                            &times;
+                          </span>
+                          {/* <img
                             src={
                               img.img
                                 ? img.img !== ''
@@ -435,24 +446,25 @@ const AddCrowdfunding = (props) => {
                             style={{ width: '100px', height: '100px' }}
                             data-id="103"
                           />*/}
-                        <div
-                          className="gallery__img"
-                          style={{
-                            backgroundImage: `url(${img.img
-                                ? img.img !== ''
-                                  ? helper.CrowdfundingImagePath + img.img
+                          <div
+                            className="gallery__img"
+                            style={{
+                              backgroundImage: `url(${
+                                img.img
+                                  ? img.img !== ''
+                                    ? helper.CrowdfundingImagePath + img.img
+                                    : noimg
                                   : noimg
-                                : noimg
                               })`
-                            // width: '100px',
-                            // height: '100px'
-                          }}
-                          alt="lk"
-                          data-id="103"
-                        ></div>
-                      </div>
-                    );
-                  })
+                              // width: '100px',
+                              // height: '100px'
+                            }}
+                            alt="lk"
+                            data-id="103"
+                          ></div>
+                        </div>
+                      );
+                    })
                   : ''}
               </div>
 

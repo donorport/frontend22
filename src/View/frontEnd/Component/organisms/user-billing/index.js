@@ -192,7 +192,7 @@ const UserBilling = () => {
                       <div className="billing__bottom">
                         <div className="billing__value text-start">
                           <h6 className="text-danger  mb-3p">
-                            {currencySymbole}
+                            {currencySymbole || '$'}
                             {Number(amount).toFixed(2)}
                           </h6>
 
@@ -237,7 +237,7 @@ const UserBilling = () => {
                             <div className="billing__bottom">
                               <div className="billing__value text-start">
                                 <h6 className="text-danger  mb-3p">
-                                  {currencySymbole}
+                                  {currencySymbole || '$'}
                                   {Number(o_itm.productPrice * o_itm.quantity).toFixed(2)}
                                 </h6>
 

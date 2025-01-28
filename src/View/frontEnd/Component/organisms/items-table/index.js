@@ -87,9 +87,9 @@ const ItemsTable = ({
                       onClick={() => onItemClick(key)}
                       className="gap-0 gap-sm-3 user__left flex-grow-1 flex-wrap-reverse flex-lg-nowrap d-flex justify-content-start align-items-start align-items-lg-center p-0 text-decoration-none text-start fw-normal"
                     >
-                      <div className="d-flex align-items-center gap-3">
+                      <div className="d-flex flex-grow-1 align-items-center gap-3">
                         {' '}
-                        <div>
+                        <div className="flex-grow-1">
                           <h6 className="price">
                             {item.currencySymbol}
                             {priceFormat(price)}
@@ -107,7 +107,7 @@ const ItemsTable = ({
                       </div>
 
                       <div
-                        className="flex-grow-1 flex-sm-0 whitespace-normal"
+                        className="flex-grow-1 flex-sm-0 whitespace-normal w-300"
                         style={{ whiteSpace: 'normal' }}
                       >
                         <h6 className="d-flex gap-1 mb-3p">

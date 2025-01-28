@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { ProgressBar, Button } from 'react-bootstrap';
@@ -11,7 +12,6 @@ import helper, { convertAddress } from '../../../../../Common/Helper';
 import DonateModal from '../../molecules/donate-modal';
 import './style.scss';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 
 function CrowdfundingDetailMain({
   crowdfundingDetails,
@@ -25,54 +25,46 @@ function CrowdfundingDetailMain({
   selectedValue,
   setSelectedValue,
   followToCrowdfunding,
-  isFollow
+  isFollow,
 }) {
-  const [sliderValue, setSliderValue] = useState(selectedValue);
-  const [donateAmount, setDonateAmount] = useState(selectedValue);
+  const [sliderValue, setSliderValue] = useState(selectedValue || 0); // Sync state with selectedValue
+  const [donateAmount, setDonateAmount] = useState(selectedValue || 0);
   const [modalShow, setModalShow] = useState(false);
-  // Function to handle changes from the slider
-  const handleSliderChange = (newValue) => {
-    console.log('Slider value changed:', newValue);
-    setSliderValue(newValue);
-    setSelectedValue(newValue);
-  };
-  const video = crowdfundingDetails?.video;
 
+  const video = crowdfundingDetails?.video;
   const videoid = video ? (video.split('?v=')[1] ? video.split('?v=')[1].split('&')[0] : '') : '';
-  const embedlink = video ? 'https://www.youtube.com/embed/' + videoid : '';
+  const embedlink = video ? `https://www.youtube.com/embed/${videoid}` : '';
 
   const [address, setAddress] = useState('');
+  const goal = parseFloat(crowdfundingDetails?.goal || 0);
 
   const countCrowdfundingProcess = (data) => {
-    let totalAmount = data.reduce((acc, obj) => acc + obj.amount, 0);
-    let goal = parseFloat(crowdfundingDetails.goal);
-
-    return Math.round((totalAmount / goal) * 100);
+    const totalAmount = data.reduce((acc, obj) => acc + obj.amount, 0);
+    return goal > 0 ? Math.round((totalAmount / goal) * 100) : 0;
   };
-
-  const setState = crowdfundingDetails.campaignDetails?.state_id;
-
+// Utility function to format numbers with commas
+const formatNumberWithCommas = (value) => {
+  if (isNaN(value)) return value; // Handle non-number values
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
   useEffect(() => {
-    if (!crowdfundingDetails?.name) {
-      return;
+    if (crowdfundingDetails?.address) {
+      setAddress(convertAddress(crowdfundingDetails?.address));
+    } else {
+      setAddress('Canada');
     }
-
-    let newAddress = crowdfundingDetails?.address
-      ? convertAddress(crowdfundingDetails?.address)
-      : 'Canada';
-
-    setAddress(newAddress);
   }, [crowdfundingDetails]);
 
-  // function formatNumber(value) {
-  //   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  // }
+  const handleSliderChange = (newValue) => {
+    setSliderValue(newValue);
+    setDonateAmount(newValue);
+    setSelectedValue(newValue);
+  };
 
   return (
     <div className="project__detail-main">
       <div className="d-flex flex-column mb-4 gap-2">
         <div className="d-flex gap-5">
-          {' '}
           <div className="d-flex align-items-center flex-grow-1 mb-1">
             <div>
               <TagTitle>Fundraiser</TagTitle>
@@ -80,13 +72,13 @@ function CrowdfundingDetailMain({
                 {crowdfundingDetails?.name ? crowdfundingDetails.name : 'Name'}
               </h1>
             </div>
-          </div>{' '}
-          <Link to={'/organization/' + crowdfundingDetails?.campaignDetails?.slug}>
+          </div>
+          <Link to={`/organization/${crowdfundingDetails?.campaignDetails?.slug}`}>
             <img
               alt=""
               style={{ width: 'auto', maxHeight: '90%', maxWidth: '90%' }}
-              src={helper.CampaignAdminLogoPath + crowdfundingDetails?.campaignDetails?.logo}
-            ></img>
+              src={`${helper.CampaignAdminLogoPath}${crowdfundingDetails?.campaignDetails?.logo}`}
+            />
           </Link>
         </div>
         <div className="project__detail-meta d-flex align-items-center flex-wrap text-light">
@@ -100,9 +92,9 @@ function CrowdfundingDetailMain({
           </div>
         </div>
         <div className="d-flex flex-column">
-          <h5 className="project__detail-sublabel fw-bolder">Fundraiser Goal</h5>
-          {/* <div className="project__detail-subtitle fw-bold">Goal</div> */}
-          <h1>${crowdfundingDetails.goal}</h1>
+          <h5 className="project__detail-sublabel fw-bolder mt-3">Fundraiser Goal</h5>
+          <h1>${formatNumberWithCommas(crowdfundingDetails.goal)}</h1>
+
           <div className="product__top px-0 d-flex align-items-center">
             <div className="d-flex align-items-center w-100">
               <ProgressBar
@@ -126,57 +118,8 @@ function CrowdfundingDetailMain({
                 name="Crowdfunding"
                 ischecked={isFollow}
               />
-
-              {/* <ShareWidget
-                page="project"
-                text={`Help ${crowdfundingDetails?.campaignDetails?.name} fund their project: ${crowdfundingDetails?.name} on Donorport! 📈👀`}
-                pageTitle={crowdfundingDetails?.name}
-                currUrl={`https://api.donorport.com/crowdfunding/${crowdfundingDetails?.slug}`}
-              /> */}
             </div>
           </div>
-          {/* <div className="category__icons d-flex align-items-center order--1 order-sm-0 mb-0 mb-sm-2">
-            <Link
-              size="lg"
-              variant="link"
-              className="btn__category text-decoration-none btn btn-link btn-lg"
-              to={'/categories/' + crowdfundingDetails?.campaignDetails?.categoryDetails?.slug}
-            >
-              <span className="d-flex align-items-center icon__category">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 640 512"
-                >
-                  <path
-                    d={crowdfundingDetails?.campaignDetails?.categoryDetails?.icon}
-                    fill={crowdfundingDetails?.campaignDetails?.categoryDetails?.color}
-                  ></path>{' '}
-                </svg>
-              </span>
-              <span className="fs-6  fw-bold ms-1">
-                {crowdfundingDetails?.campaignDetails?.categoryDetails?.name}
-              </span>
-            </Link>
-            <Link
-              size="lg"
-              variant="link"
-              className="btn__category text-decoration-none btn btn-link btn-lg"
-              to={'/organization/' + crowdfundingDetails?.campaignDetails?.slug}
-            >
-              <span className="d-flex align-items-center icon__category">
-                <img
-                  alt=""
-                  style={{ width: 'auto', maxHeight: '90%', maxWidth: '90%' }}
-                  src={helper.CampaignAdminLogoPath + crowdfundingDetails?.campaignDetails?.logo}
-                />
-              </span>
-              <span className="fs-6  fw-bold ms-1">
-                {crowdfundingDetails?.campaignDetails?.name}
-              </span>
-            </Link>
-          </div> */}
         </div>
         {video && (
           <div className="project-video-wrap">
@@ -209,23 +152,18 @@ function CrowdfundingDetailMain({
           min={0}
           max={5000}
           step={100}
-          onChange={(newAmount) => {
-            setDonateAmount(newAmount);
-            setSelectedValue(newAmount);
-          }}
+          onChange={handleSliderChange}
         />
-
         <Button size="lg" onClick={() => setModalShow(true)}>
           Donate ${donateAmount}
         </Button>
-
         <DonateModal
           show={modalShow}
           onHide={() => setModalShow(false)}
           type="crowdfunding"
           name={crowdfundingDetails.name}
           selectedValue={donateAmount}
-          setSelectedValue={donateAmount}
+          setSelectedValue={setSelectedValue}
           stateData={stateData}
           changevalue={changevalue}
           cardNumberWithSpace={cardNumberWithSpace}
@@ -233,18 +171,6 @@ function CrowdfundingDetailMain({
           dCardIcon={dCardIcon}
           loading={loading}
         />
-        {/* <div className="iframe__wrapper">
-          <iframe
-            src={embedlink}
-            title="YouTube video player"
-            width="854"
-            height="480"
-            scrolling="no"
-            frameBorder="0"
-            allow="autoplay; fullscreen"
-            allowFullScreen
-          ></iframe>
-        </div> */}
       </div>
     </div>
   );

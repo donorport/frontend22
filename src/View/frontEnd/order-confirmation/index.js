@@ -128,7 +128,7 @@ const OrderConfirmPage = () => {
                 </div>
                 <h1 className="fs-1 fw-bolder">Order Completed</h1>
                 <span className="fs-3">Order #{orderDetails.uniqueTransactionId}</span>
-                <p className="col-sm-6 email__note fs-5 mt-1 text-justify text-sm-center">
+                <p className="col-sm-6 email__note w-100 fs-5 mt-1 text-justify text-sm-center">
                   Thank you for choosing Donorport ♥ <br></br>
                   <br></br>
                   The organization(s) have received your donation and will purchase the items on

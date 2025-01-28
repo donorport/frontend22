@@ -108,7 +108,7 @@ const UserItems = () => {
   return (
     <>
       {!initialLoading && data.city_id == null && data.country_id == null && data.street == null && (
-        <div className="onboarding d-flex flex-column mw-100 p-5 border rounded-3 gap-2">
+        <div className="onboarding d-flex flex-column mw-100 p-2 p-sm-5 border rounded-3 gap-2">
           <h3>Getting Started</h3>
           <span className="fs-5">Follow these steps to complete your account setup.</span>
           <div className="flex-wrap flex-lg-nowrap d-flex gap-2 mw-100">

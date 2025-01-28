@@ -33,6 +33,7 @@ import crypto3 from '../../../assets/images/crypto3.svg';
 import Page from '../../../components/Page';
 
 import './style.scss';
+import { Logo } from '../Component/atoms';
 
 const About = (props) => {
   // console.log(props.campaignAdminList)
@@ -42,10 +43,20 @@ const About = (props) => {
   let videoid = video ? video.split('?v=')[1].split('&')[0] : '';
   let embedlink = video ? 'https://www.youtube.com/embed/' + videoid : '';
 
+  // Define the meta tags you want to pass to the Page component
+  const pageTitle = 'Donorport | About Us';
+  const pageDescription =
+    'Donate directly to the needs of the organization and help them fund all of their material needs.';
+  const pageImg = logo; // Replace with the actual image URL for social sharing
+  const pageUrl = window.location.href;
+
   return (
     <Page
-      title="Donorport | About Us"
-      description="Donate directly to the needs of the organization and help them fund all of their material needs."
+      title={pageTitle}
+      description={pageDescription}
+      img={pageImg}
+      url={pageUrl}
+      showTags={true} // This ensures that meta tags are included
     >
       <DefaultLayout className="about">
         <div className="section--abouthero section--design">

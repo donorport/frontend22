@@ -17,10 +17,18 @@ const Apply = (props) => {
   const countryList = props.countryList;
   const categoryList = props.categoryList;
 
+    // Define the meta tags you want to pass to the Page component
+    const pageTitle = 'Donorport | Apply';
+    const pageDescription =
+      'Apply to post on Donorport!';
+    const pageUrl = window.location.href;
+
   return (
     <Page
-      title="Donorport | Apply"
-      description="Create you charity account. For more information about the application process please naviagte to the About Us page"
+      title={pageTitle}
+      description={pageDescription}
+      url={pageUrl}
+      showTags={true} // This ensures that meta tags are included
     >
       <div className="frontend_pages">
         <div className="container d-flex flex-column flex-sm-row password-reset position-relative p-0">

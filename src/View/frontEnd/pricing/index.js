@@ -56,10 +56,18 @@ const Pricing = () => {
     fontSize: 'xx-large',
     fontWeight: 700
   };
+
+  // Define the meta tags you want to pass to the Page component
+  const pageTitle = 'Donorport | Pricing';
+  const pageDescription = 'Learn how Donorport manages opearation fees.';
+  const pageUrl = window.location.href;
+
   return (
     <Page
-      title="Donorport | Pricing"
-      description="Platform Fee: 2.99%; Merchant Fees: 2.9%. + $0.30 per item donated"
+      title={pageTitle}
+      description={pageDescription}
+      url={pageUrl}
+      showTags={true} // This ensures that meta tags are included
     >
       <DefaultLayout>
         <div className="password-reset position-relative">
@@ -78,12 +86,13 @@ const Pricing = () => {
                 more information, please visit our{' '}
                 <a href="/terms" className="link">
                   Terms of service
-                </a>.
+                </a>
+                .
               </p>
               <div className="row py-4 justify-content-center">
                 <div className="col-sm-4 mb-3 mb-md-0">
                   <div className=" text-center h-100">
-                    <div className="card-body d-flex flex-column">
+                    <div className="d-flex flex-column">
                       <div className="mb-4">
                         <h5>Platform Fee</h5>
                         {user.platformFee ? (
@@ -109,7 +118,7 @@ const Pricing = () => {
 
                 <div className="col-sm-4 mb-3 mb-md-0">
                   <div className=" text-center h-100">
-                    <div className="card-body d-flex flex-column">
+                    <div className="d-flex flex-column">
                       <div className="mb-4">
                         <h5>Merchant Fees</h5>
                         {user.transactionFee ? (
@@ -133,7 +142,7 @@ const Pricing = () => {
 
                 <div className="col-sm-3 mb-3 mb-md-0">
                   <div className=" text-center h-100">
-                    <div className="card-body d-flex flex-column">
+                    <div className="d-flex flex-column">
                       <div className="mb-4">
                         <h5>Total</h5>
                         {/* <span className="display-4">{isNaN(totalFees) ? 0 : totalFees.toFixed(1)}%</span> */}

@@ -126,7 +126,7 @@ const TaxTable = (props) => {
                             <div className="tax__left d-flex gap-3 align-items-center me-sm-2 mb-1 mb-sm-0 pe-2">
                               <div className="admin__billing-value text-sm-start text-end">
                                 <h6 className="price ">
-                                  {item[0].currencySymbol}
+                                  {item[0].currencySymbol || '$'}
                                   {priceFormat(totalVal(item))}
                                 </h6>
                                 <div className="date text-light fs-7">

@@ -14,8 +14,11 @@ import { setUserXp } from '../../user/user.action';
 import helper, { GetCardTypeByNumber, getCardIcon } from '../../Common/Helper';
 import followApi from '../../Api/frontEnd/follow';
 import Page from '../../components/Page';
-import { calculatePlatformCost, calculateGrandTotal, DONATION_XP_PER_DOLLAR } from '../../constants/constants';
-
+import {
+  calculatePlatformCost,
+  calculateGrandTotal,
+  DONATION_XP_PER_DOLLAR
+} from '../../constants/constants';
 
 const DONATE_VALIDATION_RULES = {
   //name: 'required',
@@ -219,8 +222,8 @@ export default function OrganizationDetailsController() {
           data.country = user.countryName;
           data.amount = grandTotal;
           data.cardNumber = cardNumber;
-          data.cardExpMonth = ccexpdate.split("/")[0];
-          data.cardExpYear = ccexpdate.split("/")[1];
+          data.cardExpMonth = ccexpdate.split('/')[0];
+          data.cardExpYear = ccexpdate.split('/')[1];
           data.cardCVC = cvv;
           data.postalCode = user.zip;
           data.currency = user.currency;
@@ -354,10 +357,22 @@ export default function OrganizationDetailsController() {
 
   return (
     <>
-      <Page
-        // showTags={false}
+      {/* <Page
         title={'Donorport | ' + organizationDetails?.name}
         description={organizationDetails?.description}
+      > */}
+      <Page
+        title={`Help ${organizationDetails?.name} on Donorport`}
+        description={
+          organizationDetails?.description || 'Support this amazing organization and their cause.'
+        }
+        // img={
+        //   organizationDetails?.logo
+        //     ? `${helper.CampaignAdminLogoPath + organizationDetails.logo}`
+        //     : 'https://your-default-image.com/default-image.jpg'
+        // }
+        url={`https://api.donorport.com/organization/${organizationDetails?.slug}`}
+        showTags
       >
         <OrganizationDetail
           organizationDetails={organizationDetails}

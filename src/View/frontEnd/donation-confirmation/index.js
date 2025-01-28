@@ -97,7 +97,7 @@ const DonationConfirmPage = () => {
               <h1 className="fs-1 fw-bolder">Donation Completed</h1>
               <span className="fs-3">Order #{doantionDetails?.uniqueTransactionId}</span>
 
-              <p className="col-sm-6 email__note fs-5 mt-1 text-justify text-sm-center">
+              <p className="col-sm-6 email__note w-100 fs-5 mt-1 text-justify text-sm-center">
                 Thank you for choosing Donorport ♥<br></br>
                 <br></br>
                 The organization has received your donation for{' '}
@@ -220,7 +220,7 @@ const DonationConfirmPage = () => {
                             </div>
                           </div>
                           <h6 className="order__itemtotal">
-                            {doantionDetails?.currencySymbol}
+                            {doantionDetails?.currencySymbol || '$'}
                             {subtotal}
                           </h6>
                         </div>
@@ -233,7 +233,7 @@ const DonationConfirmPage = () => {
                       <div className="total__value text-light">
                         <h6>
                           {' '}
-                          {doantionDetails.currencySymbol}
+                          {doantionDetails?.currencySymbol || '$'}
                           {/* {purchasedPriceWithTax(Number(orderDetails.subtotal), Number(orderDetails.appliedTaxPercentage))} */}
                           {/* {orderDetails.subtotal} */}
                           {priceFormat(Number(subtotal))}
@@ -247,7 +247,7 @@ const DonationConfirmPage = () => {
                       <div className="total__value">
                         <p className="fw-semibold text-light fs-7">
                           {' '}
-                          {doantionDetails.currencySymbol}
+                          {doantionDetails?.currencySymbol || '$'}
                           {/* {purchasedPriceWithTax(Number(orderDetails.subtotal), Number(orderDetails.appliedTaxPercentage))} */}
                           {/* {orderDetails.subtotal} */}
                           {priceFormat(Number(platformCost))}
@@ -292,7 +292,7 @@ const DonationConfirmPage = () => {
                         {doantionDetails.currency}
                         <h5>
                           {' '}
-                          {doantionDetails?.currencySymbol}
+                          {doantionDetails?.currencySymbol || '$'}
                           {Number(doantionDetails.amount)}
                         </h5>
                       </div>

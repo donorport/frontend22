@@ -268,7 +268,41 @@ function CampaignAdminController() {
       });
     }
   };
-
+  const transferAccount = async (adminId, newEmail, tempPassword) => {
+    try {
+      console.log('Transfer Account Data:', { adminId, newEmail, tempPassword });
+  
+      const response = await fetch('/api/auth/transfer-account', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${adminAuthToken}`, // Ensure the token is valid
+        },
+        body: JSON.stringify({
+          adminId,
+          newEmail,
+          tempPassword,
+        }),
+      });
+  
+      console.log('Transfer Account Response Status:', response.status);
+  
+      const result = await response.json();
+      console.log('Transfer Account Response:', result);
+  
+      if (result.success) {
+        ToastAlert({ msg: 'Account transferred successfully!', msgType: 'success' });
+        setUpdate(!update); // Trigger data refresh
+        setModal(false); // Close the modal
+      } else {
+        ToastAlert({ msg: result.message || 'Failed to transfer account', msgType: 'error' });
+      }
+    } catch (error) {
+      console.error('Error transferring account:', error);
+      ToastAlert({ msg: 'Failed to transfer account. Please try again.', msgType: 'error' });
+    }
+  };
+  
   const addCampaignAdmin = () => {
     validateAll(state, ADD_CAMPAIGN_ADMIN_RULES, ADD_CAMPAIGN_ADMIN_VALIDATION_MESSAGES)
       .then(async () => {
@@ -659,6 +693,7 @@ function CampaignAdminController() {
         countryList={countryList}
         stateList={stateList}
         cityList={cityList}
+        transferAccount={transferAccount} // Pass the function here
       />
       <Index
         campaignAdminList={campaignAdminList}

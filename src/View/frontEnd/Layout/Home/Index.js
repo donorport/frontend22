@@ -254,174 +254,182 @@ export default function Index(props) {
     <>
       {/* {loading && <CircularProgress />} */}
       <div className="home">
-      <img
+        <img
           className="bgimage"
           style={{ position: 'absolute', top: '0' }}
           src={htmlTheme === 'dark' ? hero2 : hero}
           alt=""
         />
         <HeaderController productList={props.productList} isHeaderGeo={true} />
-
-        <div>        <div className="section section--hero">
-          <div className="container">
-            <div className="hero"></div>
-            <div className="hero__left">
-              <div className="hero__heading">
-                <div className="hero__title">
-                  <h1 className="hero__header">
-                    A New Way to<span className="header__alt">Donate.</span>
-                  </h1>
+        <div>
+          {' '}
+          <div className="section section--hero">
+            <div className="container">
+              <div className="hero"></div>
+              <div className="hero__left">
+                <div className="hero__heading">
+                  <div className="hero__title">
+                    <h1 className="hero__header">
+                      A New Way to<span className="header__alt">Donate.</span>
+                    </h1>
+                  </div>
+                  <p className="text-light">
+                    The world's first donation marketplace where you choose how charities spend your
+                    money. Charities post things they need, and you provide the funds.
+                  </p>
+                  <Link to="/signup">
+                    <Button className="mt-3" variant="info">
+                      Start Donating
+                    </Button>
+                  </Link>
+                  <div className="mt-5 d-flex align-items-center gap-1">
+                    <h6>Scroll Down</h6>
+                    <FontAwesomeIcon icon={solid('chevrons-down')} />
+                  </div>
                 </div>
-                <p className="text-light">
-                  The world's first donation marketplace where you choose how charities spend your
-                  money. Charities post things they need, and you provide the funds.
-                </p>
-                <Link to="/signup">
-                  <Button className="mt-3" variant="info">
-                    Start Donating
-                  </Button>
-                </Link>
               </div>
-            </div>
-            <div className="hero__right d-none d-sm-block">
-              <img alt="" src={htmlTheme === 'dark' ? coatsDark : coats}></img>
+              <div className="hero__right d-none d-sm-block">
+                <img alt="" src={htmlTheme === 'dark' ? coatsDark : coats}></img>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="section section--filters d-none">
-          {!CampaignAdminAuthToken && (
-            <Container className="donate__header d-flex align-items-center" fluid>
-              <div className="donate-section mt-2 p-2 d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 flex-wrap">
-                <div className="d-flex align-items-center d-sm-inline-bock">
-                  <span className="me-1">I want to donate up to</span>
-                  <InputGroup className="donate-value-control">
-                    <InputGroup.Text id="btnGroupAddon" className="donate-value-symbol">
-                      {currencySymbol}
-                    </InputGroup.Text>
-                    <FormControl
-                      type="text"
-                      placeholder="0"
-                      maxLength={4}
-                      className="donate-value-input ps-1"
-                      value={props.price}
-                      onChange={(e) => props.onChangeDonatePrice(e)}
+          <div className="section section--filters d-none">
+            {!CampaignAdminAuthToken && (
+              <Container className="donate__header d-flex align-items-center" fluid>
+                <div className="donate-section mt-2 p-2 d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 flex-wrap">
+                  <div className="d-flex align-items-center d-sm-inline-bock">
+                    <span className="me-1">I want to donate up to</span>
+                    <InputGroup className="donate-value-control">
+                      <InputGroup.Text id="btnGroupAddon" className="donate-value-symbol">
+                        {currencySymbol}
+                      </InputGroup.Text>
+                      <FormControl
+                        type="text"
+                        placeholder="0"
+                        maxLength={4}
+                        className="donate-value-input ps-1"
+                        value={props.price}
+                        onChange={(e) => props.onChangeDonatePrice(e)}
+                      />
+                    </InputGroup>
+                    <span className="d-none d-sm-inline-block mx-1 me-0">to these items:</span>
+                  </div>
+                  <Button
+                    variant="outline-primary"
+                    style={{ border: '2px solid' }}
+                    className="btn__cart ms-sm-1 mt-2 mt-sm-0"
+                    onClick={() => props.onClickAddToCart()}
+                  >
+                    Add to Cart ({props.cartProductList.length})
+                  </Button>
+                  <div className="fs-6 p-sm-2 p-0 py-2 d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 flex-wrap mt-sm-0 mt-2 lh-md-md">
+                    <FontAwesomeIcon
+                      icon={regular('circle-question')}
+                      style={{ color: '#5f5df8' }}
                     />
-                  </InputGroup>
-                  <span className="d-none d-sm-inline-block mx-1 me-0">to these items:</span>
+                    &nbsp; How does it work?&nbsp;
+                    <Link to="/about" className="link d-inline-block">
+                      learn more.
+                    </Link>
+                    &nbsp; Charities,&nbsp;
+                    <Link to="/apply" className="link d-inline-block">
+                      click here
+                    </Link>
+                    &nbsp;to create your account or check our&nbsp;
+                    <Link to="/help" className="link d-inline-block">
+                      FAQ
+                    </Link>
+                    &nbsp;page.
+                  </div>
                 </div>
-                <Button
-                  variant="outline-primary"
-                  style={{ border: '2px solid' }}
-                  className="btn__cart ms-sm-1 mt-2 mt-sm-0"
-                  onClick={() => props.onClickAddToCart()}
-                >
-                  Add to Cart ({props.cartProductList.length})
-                </Button>
-                <div className="fs-6 p-sm-2 p-0 py-2 d-sm-flex align-items-start align-items-lg-center flex-grow-1 flex-column flex-lg-row gap-2 flex-wrap mt-sm-0 mt-2 lh-md-md">
-                  <FontAwesomeIcon icon={regular('circle-question')} style={{ color: '#5f5df8' }} />
-                  &nbsp; How does it work?&nbsp;
-                  <Link to="/about" className="link d-inline-block">
-                    learn more.
-                  </Link>
-                  &nbsp; Charities,&nbsp;
-                  <Link to="/apply" className="link d-inline-block">
-                    click here
-                  </Link>
-                  &nbsp;to create your account or check our&nbsp;
-                  <Link to="/help" className="link d-inline-block">
-                    FAQ
-                  </Link>
-                  &nbsp;page.
-                </div>
-              </div>
-            </Container>
-          )}
-          <div className="d-flex">Categories</div>
-          <Container
-            className="d-flex flex-column flex-sm-row align-items-center mw-400"
-            fluid
-            style={{ minHeight: '90px' }}
-          >
-            <FilterDropdown
-              organizationList={props.organizationList}
-              categoryList={props.categoryList}
-              seletedCategoryList={props.seletedCategoryList}
-              onSelectCategory={props.onSelectCategory}
-              setfilters={props.setfilters}
-              filters={props.filters}
-              onClickFilter={props.onClickFilter}
-              onChangePriceSlider={props.onChangePriceSlider}
-              module={module}
-              categoryDetails={props.categoryDetails}
-              prodctFilterData={props.prodctFilterData}
-            />
-            {/* {user.countrySortName === 'CA' && ( */}
-            {/* )} */}
+              </Container>
+            )}
+            <div className="d-flex">Categories</div>
+            <Container
+              className="d-flex flex-column flex-sm-row align-items-center mw-400"
+              fluid
+              style={{ minHeight: '90px' }}
+            >
+              <FilterDropdown
+                organizationList={props.organizationList}
+                categoryList={props.categoryList}
+                seletedCategoryList={props.seletedCategoryList}
+                onSelectCategory={props.onSelectCategory}
+                setfilters={props.setfilters}
+                filters={props.filters}
+                onClickFilter={props.onClickFilter}
+                onChangePriceSlider={props.onChangePriceSlider}
+                module={module}
+                categoryDetails={props.categoryDetails}
+                prodctFilterData={props.prodctFilterData}
+              />
+              {/* {user.countrySortName === 'CA' && ( */}
+              {/* )} */}
 
-            <div className="grab__info ms-auto d-none align-items-center order-2 order-sm-3">
-              <Button variant="link" className="p-1 fs-5 d-none d-sm-block">
-                {/* <FontAwesomeIcon
+              <div className="grab__info ms-auto d-none align-items-center order-2 order-sm-3">
+                <Button variant="link" className="p-1 fs-5 d-none d-sm-block">
+                  {/* <FontAwesomeIcon
               icon={regular("circle-question")}
               className="text-info"
             /> */}
-              </Button>
-              <div className="grab__dropdown-wrap ms-sm-2 mb-2 mb-sm-0">
-                {/* <GrabDropdown /> */}
-              </div>
-            </div>
-          </Container>
-        </div>
-        <div className="section section--colored">
-          <div className="filter__search-wrap my-1 my-sm-0 order-3 order-sm-2"></div>
-          <Container fluid>
-            <div className="d-flex pb-5 flex-column flex-sm-row">
-              {' '}
-              <div className="search__container">
-                <ul
-                  className="ps-0 ps-sm-2"
-                  style={{ display: 'flex', listStyle: 'none', marginBottom: 'unset' }}
-                >
-                  {props.searchTag.length > 0 &&
-                    props.searchTag.map((tag, i) => {
-                      return (
-                        <li
-                          key={i}
-                          className="search__tag"
-                          onClick={() => props.deSelectTag(tag.tag)}
-                          style={{ backgroundColor: tag.color, marginRight: '10px' }}
-                        >
-                          <span>{tag.tag}</span>
-                          <a href="javascript:void(0)">x</a>
-                        </li>
-                      );
-                    })}
-
-                  <li className="d-flex align-items-center">
-                    <InputGroup className="input-group__alpha">
-                      <InputGroup.Text>
-                        <FontAwesomeIcon
-                          icon={regular('magnifying-glass')}
-                          className="zoom__icon fs-5"
-                        />
-                      </InputGroup.Text>
-                      <FormControl
-                        placeholder="Search"
-                        value={props.filters.search}
-                        onChange={(e) => props.onSearchProduct(e, 'onchange')}
-                        onKeyDown={(e) => props.onSearchProduct(e, 'keydown')}
-                        style={{ zIndex: '9' }}
-                      />
-                      <span id="suggestion">{props.suggestionTag}</span>
-                    </InputGroup>
-                  </li>
-                </ul>
-              </div>
-              {/* {user.countrySortName === 'CA' && ( */}
-              <div className="d-sm-flex align-items-center gap-3">
-                <div className="mb-1 mb-sm-0 text-nowrap text-end text-sm-start">
-                  {props.productList.length} items
+                </Button>
+                <div className="grab__dropdown-wrap ms-sm-2 mb-2 mb-sm-0">
+                  {/* <GrabDropdown /> */}
                 </div>
-                {/* <div className="tag__list d-flex align-items-center flex-grow-1 ms-sm-2 gap-1 mb-2 mb-sm-0 overflow-auto px-sm-0 px-2 mx-sm-0 mx-n2">
+              </div>
+            </Container>
+          </div>
+          <div className="section section--colored">
+            <div className="filter__search-wrap my-1 my-sm-0 order-3 order-sm-2"></div>
+            <Container fluid>
+              <div className="d-flex pb-5 flex-column flex-sm-row">
+                {' '}
+                <div className="search__container">
+                  <ul
+                    className="ps-0 ps-sm-2"
+                    style={{ display: 'flex', listStyle: 'none', marginBottom: 'unset' }}
+                  >
+                    {props.searchTag.length > 0 &&
+                      props.searchTag.map((tag, i) => {
+                        return (
+                          <li
+                            key={i}
+                            className="search__tag"
+                            onClick={() => props.deSelectTag(tag.tag)}
+                            style={{ backgroundColor: tag.color, marginRight: '10px' }}
+                          >
+                            <span>{tag.tag}</span>
+                            <a href="javascript:void(0)">x</a>
+                          </li>
+                        );
+                      })}
+
+                    <li className="d-flex align-items-center">
+                      <InputGroup className="input-group__alpha">
+                        <InputGroup.Text>
+                          <FontAwesomeIcon
+                            icon={regular('magnifying-glass')}
+                            className="zoom__icon fs-5"
+                          />
+                        </InputGroup.Text>
+                        <FormControl
+                          placeholder="Search"
+                          value={props.filters.search}
+                          onChange={(e) => props.onSearchProduct(e, 'onchange')}
+                          onKeyDown={(e) => props.onSearchProduct(e, 'keydown')}
+                          style={{ zIndex: '9' }}
+                        />
+                        <span id="suggestion">{props.suggestionTag}</span>
+                      </InputGroup>
+                    </li>
+                  </ul>
+                </div>
+                {/* {user.countrySortName === 'CA' && ( */}
+                <div className="d-sm-flex align-items-center gap-3">
+                  <div className="mb-1 mb-sm-0 text-nowrap text-end text-sm-start">
+                    {props.productList.length} items
+                  </div>
+                  {/* <div className="tag__list d-flex align-items-center flex-grow-1 ms-sm-2 gap-1 mb-2 mb-sm-0 overflow-auto px-sm-0 px-2 mx-sm-0 mx-n2">
                 {props.seletedCategoryList.length > 0 &&
                   props.categoryList.length > 0 &&
                   props.categoryList.map((c) => {
@@ -523,29 +531,29 @@ export default function Index(props) {
                 )}
               </div> */}
 
-                <div>
-                  <LadderMenu
-                    items={items}
-                    activeKey={selectedKey}
-                    // setSelectedKey={setSelectedKey}
-                    onChangeFilterOption={props.onChangeFilterOption}
-                  />
+                  <div>
+                    <LadderMenu
+                      items={items}
+                      activeKey={selectedKey}
+                      // setSelectedKey={setSelectedKey}
+                      onChangeFilterOption={props.onChangeFilterOption}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </Container>
-          {loading ? (
-            <div className="mt-5 d-flex justify-content-center">
-              <CircularProgress />
-            </div>
-          ) : (
-            <div className="container">
-              <div className="list w-100"> {productsList}</div>
-            </div>
-          )}
-        </div></div>
-
-        <Footer backgroundClass="home"/>
+            </Container>
+            {loading ? (
+              <div className="mt-5 d-flex justify-content-center">
+                <CircularProgress />
+              </div>
+            ) : (
+              <div className="container">
+                <div className="list w-100"> {productsList}</div>
+              </div>
+            )}
+          </div>
+        </div>
+        <Footer backgroundClass="home" />
         {/* {!CampaignAdminAuthToken && user.countrySortName === 'CA' && ( */}˝
       </div>
     </>

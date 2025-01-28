@@ -3,6 +3,7 @@ import { Modal } from 'react-bootstrap';
 import { Button } from '@mui/material';
 import helper from '../../../Common/Helper';
 import noimg from '../../../assets/images/noimg1.png';
+import axios from 'axios';
 
 export default function CampaignAdminForm(props) {
   let stateData = props.stateData;
@@ -10,6 +11,51 @@ export default function CampaignAdminForm(props) {
   let videoid = stateData.promoVideo ? stateData.promoVideo?.split('?v=')[1].split('&')[0] : '';
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
 
+  const transferAccount = async (authToken, formData) => {
+    let res = {};
+    try {
+      await axios({
+        method: 'post',
+        url: `${helper.ApiUrl}auth/transfer-account`, // Adjust the API URL as needed
+        responseType: 'json',
+        headers: {
+          'x-access-token': authToken,
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': 'true',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+          withCredentials: true,
+          mode: 'no-cors'
+        },
+        data: formData
+      }).then((response) => {
+        res = response.data;
+      });
+    } catch (error) {
+      console.error('Error transferring account:', error);
+      res = { success: false, message: 'An error occurred during the transfer.' };
+    }
+    return res;
+  };
+  
+
+  const handleTransferAccount = async () => {
+    const authToken = localStorage.getItem('adminAuthToken'); // Replace with the correct source of the token
+    const formData = {
+      adminId: stateData.id,
+      newEmail: stateData.email,
+      tempPassword: '123456'
+    };
+  
+    const result = await transferAccount(authToken, formData);
+  
+    if (result.success) {
+      alert('Account transferred successfully!');
+    } else {
+      alert(result.message || 'Failed to transfer account.');
+    }
+  };
+  
+  
   // console.log(stateData)
   return (
     <>
@@ -74,6 +120,54 @@ export default function CampaignAdminForm(props) {
               )}
             </div>
           </div>
+          {/* Add Transfer Account Fields */}
+          {stateData?.id && (
+            <>
+              <div className="form-group row">
+                <label htmlFor="newEmail" className="col-sm-2 col-form-label">
+                  New Email
+                </label>
+                <div className="col-sm-10">
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="newEmail"
+                    name="newEmail"
+                    value={stateData.newEmail || ''}
+                    onChange={(e) => props.changevalue(e)}
+                  />
+                  {stateData.error && stateData.error.newEmail && (
+                    <p className="error">{stateData.error.newEmail}</p>
+                  )}
+                </div>
+              </div>
+              <div className="form-group row">
+                <label htmlFor="tempPassword" className="col-sm-2 col-form-label">
+                  Temporary Password
+                </label>
+                <div className="col-sm-10">
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="tempPassword"
+                    name="tempPassword"
+                    value={stateData.tempPassword || ''}
+                    onChange={(e) => props.changevalue(e)}
+                  />
+                  {stateData.error && stateData.error.tempPassword && (
+                    <p className="error">{stateData.error.tempPassword}</p>
+                  )}
+                </div>
+              </div>
+              <div className="form-group row">
+                <div className="col-sm-10 offset-sm-2">
+                  <Button variant="contained" onClick={handleTransferAccount}>
+                    Transfer Account
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
           <div className="form-group row">
             <label className="col-form-label col-sm-2" htmlFor="inputstock">
               Logo

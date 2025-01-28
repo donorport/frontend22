@@ -1669,11 +1669,11 @@ const AdminPosts = () => {
             <div className="counter fs-5 mb-2">
               {numCompletedSteps} of {steps.length}
             </div>
-            <div className="d-flex gap-2 stepper fs-5 mb-3">
+            <div className="d-flex flex-column flex-sm-row gap-2 stepper fs-5 mb-3">
               {steps.map((step, index) => (
                 <div className="d-flex flex-grow-1 flex-column mb-3" key={index}>
                   <div
-                    className={`d-flex flex-grow-1 step__indicator py-1 ${
+                    className={`d-none d-sm-flex flex-grow-1 step__indicator py-1 ${
                       step.isComplete ? 'bg-secondary' : 'bg-lighter'
                     }`}
                     style={
@@ -1726,7 +1726,7 @@ const AdminPosts = () => {
             </div>
           </div>
 
-          <div className="onboarding d-flex flex-column mw-100 p-5 border rounded-3 gap-2">
+          <div className="onboarding d-flex flex-column mw-100 p-2 p-sm-5 border rounded-3 gap-2">
             <h3>Getting Started</h3>
             <span className="fs-5">Follow these steps before creating your first post.</span>
             {/* <Button variant="link" className="m-0 p-0 fs-3">
@@ -2545,7 +2545,7 @@ const PostDetailsTosAndButtons = ({
   return (
     <>
       <div className="fulfilling-check-wrap py-4">
-        <div className="form-check">
+        <div className="form-check p-0">
           <input
             type="checkbox"
             className="form-check-input policy__input m-0"

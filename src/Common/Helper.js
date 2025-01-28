@@ -272,7 +272,7 @@ const getUserRank_inner = (setting, UserXp) => {
   ) : (
     <IconButton
       bgColor={props.bgColor}
-      className="rounded-pill rounded-pill--xp fs-6 fs-sm-7"
+      className="rounded-pill rounded-pill--xp fs-7 fs-sm-7"
       icon={<FontAwesomeIcon size={24} icon={props.icon} />}
     >
       <span className="d-none d-md-inline">{props.name}</span>

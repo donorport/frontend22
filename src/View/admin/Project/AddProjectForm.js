@@ -17,14 +17,13 @@ const productv = {
   height: '100%',
   width: '100%'
 };
-let variantStyle = {
+
+const variantStyle = {
   fontSize: '14px',
   color: '#00ab55',
   textTransform: 'uppercase',
-  // cursor: "pointer",
   marginRight: '10px',
   display: 'inline-block',
-  // marginBottom: 0,
   border: '1px solid #9fbcc1',
   padding: '1px 28px 0px',
   borderRadius: '7px',
@@ -34,12 +33,20 @@ let variantStyle = {
 export default function AddProjectForm(props) {
   console.log('iFrame, AddProjectForm');
   let stateData = props.stateData;
-  const adminData = JSON.parse(localStorage.getItem('adminData'));
-  let url = stateData.video;
-  let id = url ? url.split('?v=')[1].split('&')[0] : '';
-  let embedlink = 'https://www.youtube.com/embed/' + id;
 
-  // console.log('stateData',stateData)
+  // Construct the project page URL based on the name slug
+  const generateSlug = (name) => {
+    return name
+      ? name
+          .toLowerCase()
+          .replace(/[^a-z0-9!]+/g, '-') // Keep exclamation marks
+          .replace(/^-|-$/g, '') // Trim leading or trailing hyphens
+      : '';
+  };
+
+  const projectPageUrl = stateData?.name
+    ? `${window.location.origin}/projects/${generateSlug(stateData.name)}`
+    : '';
 
   return (
     <>
@@ -56,9 +63,32 @@ export default function AddProjectForm(props) {
             {stateData?.id ? 'Update Project' : 'Add Project'}
           </Modal.Title>
         </Modal.Header>
+
         <Modal.Body>
           <div className="form-group row">
-            <label className="col-form-label col-sm-2 ">Organization</label>
+            <label className="col-form-label col-sm-2">Project Page URL</label>
+            <div className="col-sm-10">
+              <input
+                type="text"
+                className="form-control"
+                value={projectPageUrl}
+                readOnly
+              />
+              {projectPageUrl && (
+                <a
+                  href={projectPageUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ marginTop: '10px', display: 'inline-block' }}
+                >
+                  View Project Page
+                </a>
+              )}
+            </div>
+          </div>
+
+          <div className="form-group row">
+            <label className="col-form-label col-sm-2">Organization</label>
             <div className="col-sm-10">
               <select
                 className="form-control"
@@ -73,10 +103,10 @@ export default function AddProjectForm(props) {
                 </option>
                 {props.campaignAdminList.length > 0 &&
                   props.campaignAdminList.map((admin, i) => {
-                    // console.log(admin)
-                    let obj = {};
-                    obj.id = admin._id;
-                    obj.country_id = admin.country_id;
+                    let obj = {
+                      id: admin._id,
+                      country_id: admin.country_id
+                    };
 
                     return (
                       admin.status === 1 && (
@@ -213,24 +243,19 @@ export default function AddProjectForm(props) {
                   props.changevalue(e);
                 }}
               />
-              {
-                stateData.video && (
-                  <div className="project-video-wrap">
-                    <iframe
-                      title="project-video"
-                      key="project-video"
-                      width="498"
-                      height="280"
-                      src={stateData.video}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                )
-
-                // <iframe className='mt-4' width="400" height="200" title="myFrame" src={embedlink} frameBorder="0" allowFullScreen=""></iframe>
-                // <iframe id="video1" width="520" title="myFrame" height="360" src={stateData.video} frameBorder="0" allowtransparency="true" ></iframe>
-              }
+              {stateData.video && (
+                <div className="project-video-wrap">
+                  <iframe
+                    title="project-video"
+                    key="project-video"
+                    width="498"
+                    height="280"
+                    src={stateData.video}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              )}
 
               {stateData.error && stateData.error.video && (
                 <p className="error">
@@ -257,17 +282,15 @@ export default function AddProjectForm(props) {
                   props.changefile(e);
                 }}
               />
-              {/* <label className="custom-file-label" htmlFor="customFile" style={{ margin: "0px 10px 0px 10px" }}> Choose files </label> */}
               <div className="grid w-100">
                 {props.tempImages?.length
                   ? props.tempImages.map((img, key) => {
                       return (
                         <div
+                          key={key}
                           className="gallery__img"
                           style={{
                             backgroundImage: `url(${img ? img : noimg})`
-                            // width: '100px',
-                            // height: '100px'
                           }}
                           alt="lk"
                         ></div>
@@ -277,9 +300,11 @@ export default function AddProjectForm(props) {
                   ? props.projectImages.map((img, key) => {
                       return (
                         <img
-                          src={img ? (img !== '' ? helper.ProjectImagePath + img : noimg) : noimg}
+                          key={key}
+                          src={
+                            img ? (img !== '' ? helper.ProjectImagePath + img : noimg) : noimg
+                          }
                           alt="lk"
-                          // style={{ width: '100px', height: '100px' }}
                         />
                       );
                     })
@@ -292,55 +317,8 @@ export default function AddProjectForm(props) {
               )}
             </div>
           </div>
-
-          <div className="form-group row">
-            <label className="col-form-label col-sm-2 ">Products</label>
-            <div className="col-sm-10">
-              {props.productList && props.productList.length > 0 ? (
-                props.productList.map((Product, i) => {
-                  return (
-                    <>
-                      <p
-                        style={{
-                          ...variantStyle,
-                          position: 'relative',
-                          backgroundColor: props.seletedProductList.includes(Product._id)
-                            ? '#00ab55'
-                            : 'white',
-                          color: props.seletedProductList.includes(Product._id)
-                            ? 'white'
-                            : '#00ab55'
-                        }}
-                        key={i}
-                      >
-                        <input
-                          type="checkbox"
-                          id={Product._id}
-                          checked={props.seletedProductList.includes(Product._id)}
-                          style={productv}
-                          name={'Product_' + i}
-                          onClick={(e) => props.onSelectProduct(e)}
-                        />
-                        {Product.headline}
-                      </p>
-                    </>
-                  );
-                })
-              ) : (
-                <h6>Product Not Found</h6>
-              )}
-              {stateData.error && stateData.error.products && (
-                <p className="error">
-                  {stateData.error
-                    ? stateData.error.products
-                      ? stateData.error.products
-                      : ''
-                    : ''}
-                </p>
-              )}
-            </div>
-          </div>
         </Modal.Body>
+
         <Modal.Footer>
           <Button variant="btnWarning" className="btnDanger" onClick={() => props.setModal(false)}>
             Close
