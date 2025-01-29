@@ -268,6 +268,8 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
   let lastFourDigits = JSON.parse(item.paymentResponse).data?.payment_method_details?.card?.last4;
   // console.log(purchasedPrice)
 
+  let donorportSearchParams = btoa(JSON.stringify({amount: priceFormat(Number(purchasedPrice) * Number(item.quantity)).toString()}));
+
   return (
     <div className={detail.show ? '' : 'd-none'}>
       <div className="d-flex align-items-center flex-grow-1 border-bottom pb-20p">
@@ -521,7 +523,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               page="useritem"
               text={`I just donated ${item.itemDetails?.headline} on Donorport! 🎉🚀👏`}
               pageTitle={item.itemDetails?.headline}
-              currUrl={`https://api.donorport.com/item/${item.itemDetails?.slug}`}
+              currUrl={`https://api.donorport.com/item/${item.itemDetails?.slug}?donorportdata=${donorportSearchParams}`}
             />
           </div>
           <div className="order__widget mb-3">

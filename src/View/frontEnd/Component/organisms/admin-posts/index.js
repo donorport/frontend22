@@ -55,6 +55,7 @@ const DEFAULT_EMPTY_STATE = {
   postTag: false,
   media: false,
   policy: false,
+  taxExempt: false,
   galleryImg: []
 };
 
@@ -188,7 +189,8 @@ const AdminPosts = () => {
     lng,
     policy,
     media,
-    displayPrice
+    displayPrice,
+    taxExempt,
   } = state;
 
   const [fulfilState, setFulfilState] = useState(DEFAULT_FULFIL_STATE);
@@ -433,10 +435,16 @@ const AdminPosts = () => {
           quantity: '',
           [e.target.name]: value
         });
-      } else if (e.target.name === 'price') {
+      } else if (e.target.name === 'price' || e.target.name === 'taxExempt') {
         // console.log(priceWithOrganizationTax(Number(value), Number(data.taxRate)))
-
-        let display = priceWithOrganizationTax(Number(value), Number(data.taxRate));
+        const taxExempt =   e.target.name === 'taxExempt' ? e.target.checked : state.taxExempt;
+        let display = 0;
+        if (e.target.name === 'taxExempt') {
+          value = taxExempt;
+          display = taxExempt ? state.price : priceWithOrganizationTax(Number(state.price), Number(data.taxRate));
+        } else {
+          display = taxExempt ? priceWithOrganizationTax(Number(value), 0) :  priceWithOrganizationTax(Number(value),Number(data.taxRate));
+        }
         // console.log(display)
         setstate({
           ...state,

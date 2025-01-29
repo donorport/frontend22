@@ -1,0 +1,39 @@
+.org__fundraiser__ {
+  &item__main {
+    flex: 1;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &item__name {
+    line-height: 1rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+}
+
+.circle__progress {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  position: relative;
+  background-color: $secondary-3;
+}
+
+.circle__progress-img {
+  position: absolute;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  width: 56px;
+  height: 56px;
+  background: $secondary-5;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: translate(-50%, -50%);
+}

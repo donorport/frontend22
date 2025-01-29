@@ -14,11 +14,13 @@ import DonateModal from '../Component/molecules/donate-modal';
 import HeaderController from '../../../Controller/frontEnd/HeaderController';
 
 import './style.scss';
+import OrganizationCrowdfundingFundraisersWidget from '../Component/organisms/org-fundraisersWidget';
 
 const OrganizationDetail = (props) => {
   const user = useSelector((state) => state.user);
   let organizationDetails = props.organizationDetails;
   let projectList = props.projectList;
+  let fundraisersList = props.fundraisersList;
   const [modalShow, setModalShow] = useState(false);
   const [organizationListByCountry, setOrganizationListByCountry] = useState([]);
 
@@ -127,6 +129,18 @@ const OrganizationDetail = (props) => {
             <Col md="6" className="mb-4 mb-0" style={{ maxWidth: '545px' }}>
               <OrganizationCrowdfundingProjectsWidget
                 projectList={projectList}
+                organizationDetails={organizationDetails}
+              />
+            </Col>
+            <Col md="6"></Col>
+          </Row>
+        ) : null}
+
+        {fundraisersList ? (
+          <Row className="ps-0 ps-sm-3 pt-0 pb-5">
+            <Col md="6" className="mb-4 mb-0" style={{ maxWidth: '545px' }}>
+              <OrganizationCrowdfundingFundraisersWidget
+                crowedFundingList={fundraisersList}
                 organizationDetails={organizationDetails}
               />
             </Col>

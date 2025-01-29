@@ -155,7 +155,8 @@ const AddPost = (props) => {
     lat,
     lng,
     media,
-    displayPrice
+    displayPrice,
+    taxExempt
   } = props.stateData;
   console.log('Initial tax from stateData:', initialTax);
   const [tax, setTax] = useState(true);
@@ -559,6 +560,17 @@ const AddPost = (props) => {
                           id="unlimited"
                           checked={unlimited}
                           name="unlimited"
+                          changevalue={changevalue}
+                        />
+                      </div>
+                      <div className="d-flex gap-2">
+                        <p className="text-nowrap fw-semibold">
+                          Tax Exempt
+                        </p>
+                        <ToggleSwitch
+                          id="taxExempt"
+                          checked={taxExempt}
+                          name="taxExempt"
                           changevalue={changevalue}
                         />
                       </div>

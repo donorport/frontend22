@@ -19,6 +19,8 @@ import {
   calculateGrandTotal,
   DONATION_XP_PER_DOLLAR
 } from '../../constants/constants';
+import crowdfundingApi from '../../Api/admin/crowdfunding';
+
 
 const DONATE_VALIDATION_RULES = {
   //name: 'required',
@@ -45,6 +47,7 @@ export default function OrganizationDetailsController() {
   const navigate = useNavigate();
   const [organizationDetails, setOrganizationDetails] = useState({});
   const [projectList, setProjectList] = useState([]);
+  const [fundraisersList, setFundraisersList] = useState([]);
   const [purchasedItemList, setPurchasedItemList] = useState([]);
   const user = useSelector((state) => state.user);
   //const [serviceCharge, setServiceCharge] = useState(0);
@@ -123,6 +126,23 @@ export default function OrganizationDetailsController() {
       const getProjectList = await projectApi.projectListByOrganization(token, formData);
       if (getProjectList.data.success) {
         setProjectList(getProjectList.data.data);
+      }
+    },
+    [token]
+  );
+
+  const orgFundRaiserList = useCallback(
+    async (orgId) => {
+      let formData = {};
+      formData.filter = false;
+      formData.sortField = 'created_at';
+      formData.sortType = 'asc';
+      formData.organizationId = orgId;
+      formData.type = 'crowdfunding';
+
+      const response = await crowdfundingApi.listByOrganization(token, formData);
+      if (response.data.success) {
+        setFundraisersList(response.data.data);
       }
     },
     [token]
@@ -302,6 +322,7 @@ export default function OrganizationDetailsController() {
           await orgProjectList(orgdata._id);
           await getPurchasedItems(orgdata._id);
           await getDonationList(orgdata._id);
+          await orgFundRaiserList(orgdata._id);
           if (userAuthToken) {
             await checkUserFollow(orgdata._id);
           }
@@ -377,6 +398,7 @@ export default function OrganizationDetailsController() {
         <OrganizationDetail
           organizationDetails={organizationDetails}
           projectList={projectList}
+          fundraisersList={fundraisersList}
           organizationList={organizationList}
           addToCart={addToCart}
           checkItemInCart={checkItemInCart}

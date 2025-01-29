@@ -1,0 +1,28 @@
+// .note__info {
+//   background-color: $neutral-100;
+//   color: $neutral-700;
+  
+//   display: flex;
+//   max-width: 100%;
+//   padding: 16px 20px;
+//   align-items: center;
+//   list-style-type: none;
+// }
+
+// .form-control.donate__control {
+//     background: $neutral-100;
+//     border-color: $border-color;
+//     max-width: 105px;
+//     margin: 0 10px;
+// }
+
+// .organization__cart-btn {
+//   width: 100%;
+//   @include media-breakpoint-up(sm) {
+//     width: auto;
+//   }
+// }
+.fundraiser__grid {
+  display: block!important;
+  padding: 0;
+}
