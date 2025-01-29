@@ -1,6 +1,6 @@
 import Index from '../../View/frontEnd/Layout/Home/Index';
 import productApi from '../../Api/frontEnd/product';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import ToastAlert from '../../Common/ToastAlert';
 import cartApi from '../../Api/frontEnd/cart';
 // import adminCampaignApi from '../../Api/admin/adminCampaign';
@@ -24,6 +24,7 @@ import wishlistApi from '../../Api/frontEnd/wishlist';
 import { useNavigate } from 'react-router-dom';
 import { getDistance } from 'geolib';
 import Page from '../../components/Page';
+import { debounce } from 'lodash';
 
 export default function HomeController() {
   const [productList, setProductList] = useState([]);
@@ -39,6 +40,7 @@ export default function HomeController() {
   const [suggestionTag, setSuggestionTag] = useState('');
   const [resultTags, setresultTags] = useState([]);
   const [tempProductList, setTempProductList] = useState([]);
+  const [searchValue, setSearchValue] = useState('')
 
   const navigate = useNavigate();
   // const adminAuthToken = localStorage.getItem('adminAuthToken');
@@ -461,6 +463,8 @@ export default function HomeController() {
             };
             productTagsArray.push(tempObj);
           });
+          productTagsArray.push(p.campaignDetails?.name);
+          
         });
         productTagsArray = productTagsArray.filter(
           (value, index, self) => index === self.findIndex((t) => t.tag === value.tag)
@@ -534,6 +538,7 @@ export default function HomeController() {
                     productTagsArray.push(tempObj);
                   })
                 );
+                productTagsArray.push({tag: p.campaignDetails?.name?.toLowerCase(), color: '', idOrganization: p.campaignDetails?._id});
               })
             );
             productTagsArray = productTagsArray.filter(
@@ -953,7 +958,10 @@ export default function HomeController() {
     try {
       let data = {};
 
-      data.search = search_product;
+      const realTag = search_product.filter((value) => productTags.find((t) => t.tag === value)?.idOrganization == null);
+      const organizationTags = search_product.map(value => productTags.find((t) => t.tag === value)?.idOrganization).filter((value) => value);
+      data.search = realTag;
+      data.searchOrganization = organizationTags;
 
       data.categoryId = seletedCategoryList;
 
@@ -1340,6 +1348,10 @@ export default function HomeController() {
     }
   };
 
+  const onSearchKeyUp = debounce(async (e) => {
+    setSearchValue(e.target.value.trim()?.toLowerCase());
+  }, 1000)
+
   return (
     <>
       {/* {console.log(user)} */}
@@ -1351,6 +1363,7 @@ export default function HomeController() {
       >
         <Index
           productList={productList}
+          showTopPick={true}
           addToCart={addToCart}
           removeCartItem={removeCartItem}
           checkItemInCart={checkItemInCart}
@@ -1382,6 +1395,7 @@ export default function HomeController() {
           deSelectTag={deSelectTag}
           suggestionTag={suggestionTag}
           prodctFilterData={prodctFilterData}
+          onSearchKeyUp={onSearchKeyUp}
         />
       </Page>
     </>

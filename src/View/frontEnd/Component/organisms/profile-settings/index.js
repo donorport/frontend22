@@ -67,6 +67,7 @@ const ProfileSettings = () => {
     logo: '',
     slug: '',
     name: '',
+    organizationUserName: '',
     ein: '',
     headline: '',
     mission: '',
@@ -81,6 +82,7 @@ const ProfileSettings = () => {
   });
 
   const {
+    organizationUserName,
     name,
     slug,
     headline,
@@ -121,6 +123,7 @@ const ProfileSettings = () => {
 
   const UPDATE_PROFILE_VALIDATION_RULES = {
     name: 'required',
+    organizationUserName: "required",
     headline: 'required',
     // mission: 'required',
     //promoVideo: "required",
@@ -432,6 +435,7 @@ const ProfileSettings = () => {
         ...s,
         slug: data.slug,
         name: data.name,
+        organizationUserName: data.organizationUserName,
         mission: data.description,
         headline: data.headline,
         promoVideo: data.promoVideo,
@@ -527,6 +531,7 @@ const ProfileSettings = () => {
         });
         let fdata = {};
         fdata.name = name;
+        fdata.organizationUserName = organizationUserName;
         fdata.description = mission;
         fdata.headline = headline;
         fdata.promoVideo = promoVideo;
@@ -591,7 +596,7 @@ const ProfileSettings = () => {
         });
         setErrors(errors.map((error) => error.message));
       });
-  };
+  }; 
 
   const deleteAccount = (id) => {
     confirmAlert({
@@ -769,8 +774,25 @@ const ProfileSettings = () => {
                   Profile
                 </Link>
               </div>
+
+              
             </div>
             {error && error.name && <p className="error">{error.name}</p>}
+
+            <div className="input__wrap d-flex">
+              <label className="input__label flex-grow-1">
+                <input
+                  type="text"
+                  name="organizationUserName"
+                  value={organizationUserName}
+                  onChange={(e) => changevalue(e)}
+                  className={error && error?.organizationUserName ? 'inputerror' : ''}
+                />
+                <span className="input__span">Administrator's Name</span>
+              </label>
+            </div>
+            {error && error.organizationUserName && <p className="error">{error.organizationUserName}</p>}
+
             <div className="input__wrap d-flex">
               <label className="input__label flex-grow-1">
                 <input

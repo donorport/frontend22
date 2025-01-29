@@ -271,6 +271,7 @@ function adminCampaign() {
       }
     }
     data.append('name', cdata.name);
+    data.append('organizationUserName', cdata.organizationUserName);
     data.append('description', cdata.description);
     data.append('headline', cdata.headline);
     data.append('promoVideo', cdata.promoVideo);
