@@ -280,6 +280,53 @@ const getUserRank_inner = (setting, UserXp) => {
   );
 };
 
+const getUserRankLabelRule = (setting, UserXp) => {
+  const CAPTAIN = setting?.captian !== '' ? Number(setting.captian) : 100000;
+  const ADMIRAL = setting?.admiral !== '' ? Number(setting.admiral) : 10000;
+  const PIRATE = setting?.pirate !== '' ? Number(setting.pirate) : 5000;
+  const NARWHAL = setting?.narwhal !== '' ? Number(setting.narwhal) : 2500;
+  const BELUGA = setting?.beluga !== '' ? Number(setting.beluga) : 1000;
+  const FISH = setting?.fish !== '' ? Number(setting.fish) : 500;
+
+  let props = null;
+
+  switch (true) {
+    // case UserXp < fish:
+    //   props = null;
+    //   break;
+
+    case UserXp >= FISH && UserXp < BELUGA:
+      props = 'Fish';
+      break;
+
+    case UserXp >= BELUGA && UserXp < NARWHAL:
+      props = 'Beluga';
+      break;
+
+    case UserXp >= NARWHAL && UserXp < PIRATE:
+      props = 'Narwhal';
+      break;
+
+    case UserXp >= PIRATE && UserXp <= ADMIRAL:
+      props = 'Pirate';
+      break;
+
+    case UserXp > ADMIRAL && UserXp < CAPTAIN:
+      props = 'Admiral';
+      break;
+
+    case UserXp >= CAPTAIN:
+      props = 'Captain';
+      break;
+
+    default:
+      props = '';
+      break;
+  }
+
+  return props;
+};
+
 export function getCalculatedPrice() {
   const user = useSelector((state) => state.user);
   const setting = useSelector((state) => state.setting);
@@ -298,6 +345,7 @@ export function getCalculatedPrice() {
   const getTaxValueOfPrice = (amount) => getTaxValueOfPrice_inner(user, amount);
 
   const getUserRank = (UserXp) => getUserRank_inner(setting, UserXp);
+  const getUserRankLabel = (UserXp) => getUserRankLabelRule(setting, UserXp);
 
   return {
     getData,
@@ -306,7 +354,8 @@ export function getCalculatedPrice() {
     priceWithTax,
     getUserRank,
     calculateSalesTax,
-    getTaxValueOfPrice
+    getTaxValueOfPrice,
+    getUserRankLabel
   };
 }
 

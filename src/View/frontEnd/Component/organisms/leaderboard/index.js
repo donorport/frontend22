@@ -5,9 +5,10 @@ import Avatar from '../../atoms/avatar';
 import helper, { getCalculatedPrice } from '../../../../../Common/Helper';
 import { useSelector } from 'react-redux';
 import userApi from '../../../../../Api/frontEnd/user';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import AvatarImg from '../../../../../assets/images/avatar.png';
 import Page from '../../../../../components/Page';
+import ShareWidget from '../share-widget';
 
 const LeaderBoard = () => {
   const getC = getCalculatedPrice();
@@ -35,6 +36,17 @@ const LeaderBoard = () => {
       setLoading(false);
     })();
   }, [user.countryId]);
+
+    const currUrlToken = useMemo(() => {
+      if (user) {
+        let rank = getC.getUserRankLabel(Number(user.xp));
+  
+        console.log('data', `${rank}-${user.xp || ""}`);
+  
+        return `${rank}-${user.xp || ""}`;
+      }
+      return btoa("{}");
+    }, [getC, user])
 
   return (
     <>
@@ -180,6 +192,16 @@ const LeaderBoard = () => {
                       </div>
                     </div>
                   </div>
+                  <div className="mt-3"></div>
+                  <div className="mt-3">
+                    <ShareWidget
+                        page="leaderboard"
+                        text={`I'm up to ${user.xp} XP on Donorport! 🚀🚀🚀`}
+                        pageTitle={user.xp}
+                        currUrl={`https://api.donorport.com/leaderboard/${currUrlToken}`}
+                    />
+                  </div>
+                  
                   {/* <div className="rank__bottom">
                                     <div className="rank__stats">
                                         <div className="rank__list rank__list--leaderboard">

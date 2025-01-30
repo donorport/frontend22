@@ -23,7 +23,7 @@ function ShareWidget({ page, text, pageTitle, currUrl }) {
   const [copySuccess, setCopySuccess] = useState('Copy Link');
   const location = useLocation();
   const [currentPageLink, setCurrentPageLink] = useState('');
-
+  
   function copyToClipboard() {
     navigator.clipboard.writeText(currentPageLink);
     setCopySuccess('Copied!');

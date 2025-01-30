@@ -6,7 +6,7 @@ import LadderMenuXp from '../ladder-menu-xp';
 import XpTable from '../xp-table';
 import Avatar from '../../atoms/avatar';
 import { useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import userApi from '../../../../../Api/frontEnd/user';
 import helper, { getCalculatedPrice } from '../../../../../Common/Helper';
@@ -71,6 +71,17 @@ const UserXp = () => {
     seturlIcon(url);
   };
 
+  const currUrlToken = useMemo(() => {
+    if (user) {
+      let rank = getC.getUserRankLabel(Number(user.xp));
+
+      console.log('data', `${rank}-${user.xp || ""}`);
+
+      return `${rank}-${user.xp || ""}`;
+    }
+    return btoa("{}");
+  }, [getC, user])
+
   return (
     <>
       <header className="w-100 d-sm-flex align-items-center d-none">
@@ -99,10 +110,10 @@ const UserXp = () => {
             {Number(user.xp).toLocaleString('en-US', { maximumFractionDigits: 2 })} xp
           </a>
           <ShareWidget
-            page="userxp"
+            page="leaderboard"
             text={`I'm up to ${user.xp} XP on Donorport! 🚀🚀🚀`}
             pageTitle={user.xp}
-            currUrl="https://www.donorport.com/leaderboard"
+            currUrl={`https://api.donorport.com/leaderboard/${currUrlToken}`}
           />
         </div>
         <div className="ms-sm-auto">
