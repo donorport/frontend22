@@ -21,6 +21,7 @@ const CrowdfundingDetail = (props) => {
   const CampaignAdminAuthToken = localStorage.getItem('CampaignAdminAuthToken');
 
   console.log('CrowdfundingDetail:', { props });
+
   return (
     <>
       <HeaderController />
@@ -86,7 +87,7 @@ const CrowdfundingDetail = (props) => {
                   page="project"
                   text={`Help ${props.crowdfundingDetails?.campaignDetails?.name} fund their project: ${props.crowdfundingDetails?.name} on Donorport! 📈👀`}
                   pageTitle={props.crowdfundingDetails?.name}
-                  currUrl={`https://api.donorport.com/crowdfunding/${props.crowdfundingDetails?.slug}`}
+                  currUrl={`https://api.donorport.com/fundraiser/${props.crowdfundingDetails?.slug}`}
                 />
               </div>
             </div>

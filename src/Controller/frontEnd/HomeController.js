@@ -25,6 +25,7 @@ import { useNavigate } from 'react-router-dom';
 import { getDistance } from 'geolib';
 import Page from '../../components/Page';
 import { debounce } from 'lodash';
+import FrontLoader from '../../Common/FrontLoader';
 
 export default function HomeController() {
   const [productList, setProductList] = useState([]);
@@ -826,6 +827,7 @@ export default function HomeController() {
         homeadvertisementList
       });
       console.log('request position useEffect');
+      setLoading(true);
 
       // Check if countryId exists
       if (!user.countryId) {
@@ -906,15 +908,15 @@ export default function HomeController() {
       } else {
         console.log('~~ countryId EXISTS, filtering products');
         // We have the country, so filter the products
-        setLoading(true);
         await filterProduct(lowPrice, HighPrice, resultTags, user.countryId);
-        setLoading(false);
       }
 
       console.log('(advertisement starts, building ad lists)', {
         countryAdvertisementList,
         homeadvertisementList
       });
+      setLoading(false);
+
 
       // Now filter the advertisement list
       let arr = [];
@@ -988,8 +990,10 @@ export default function HomeController() {
 
       data.HighPrice = high_price;
       data.lowPrice = low_price;
-
+      setLoading(true);
       const getFilteredProductList = await productApi.productFilter(token, data);
+      setLoading(false);
+
       if (getFilteredProductList.data.success === true) {
         // console.log(getFilteredProductList.data.data)
         setProductList(getFilteredProductList.data.data);
@@ -1356,7 +1360,6 @@ export default function HomeController() {
     <>
       {/* {console.log(user)} */}
 
-      {/*<FrontLoader loading={loading} /> */}
       <Page
         title="Donorport | Home"
         description="The world's first and largest crowd-funding platform for non-profits & charities. Donate directly to the needs of the organization and help them fund all of their material needs"
@@ -1396,6 +1399,7 @@ export default function HomeController() {
           suggestionTag={suggestionTag}
           prodctFilterData={prodctFilterData}
           onSearchKeyUp={onSearchKeyUp}
+          loading={loading}
         />
       </Page>
     </>

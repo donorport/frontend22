@@ -231,7 +231,7 @@ export default function Index(props) {
       setLoading(false);
     }
     setProductsList(products);
-  }, [props.productList, props.wishListproductIds.length]);
+  }, [props.productList, props.wishListproductIds.length, props.loading]);
 
   const [htmlTheme, setHtmlTheme] = useState(
     themeService.getFromStorage() || themeService.detectPreferences()
@@ -542,7 +542,7 @@ export default function Index(props) {
                 </div>
               </div>
             </Container>
-            {loading ? (
+            {loading || props.loading ? (
               <div className="mt-5 d-flex justify-content-center">
                 <CircularProgress />
               </div>
