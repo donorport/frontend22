@@ -108,24 +108,24 @@ const DonationConfirmPage = () => {
                 donation helps others.
               </p>
 
-              <div className="d-flex align-items-center justify-content-center gap-3">
+              <div className="d-flex align-items-center flex-wrap justify-content-center mt-3 gap-2 gap-sm-3">
                 <Link
                   to="/"
-                  className="btn btn-lg fw-bold btn-primary my-2 flex-grow-sm-0 flex-grow-1"
+                  className="btn btn-lg fw-bold btn-primary flex-grow-sm-0 flex-grow-1"
                 >
                   Back To Home
                 </Link>
                 {doantionDetails.type === 'PROJECT' ? (
                   <Link
                     to={'/project/' + doantionDetails?.projectDetails?.slug}
-                    className="fs-6 btn btn-lg fw-bold btn-info my-2 flex-grow-sm-0 flex-grow-1"
+                    className="fs-6 btn btn-lg fw-bold btn-info flex-grow-sm-0 flex-grow-1"
                   >
                     Go to Project
                   </Link>
                 ) : (
                   <Link
                     to={'/user/' + newSlug + '/items'}
-                    className="btn btn-lg fw-bold btn-info my-2 flex-grow-sm-0 flex-grow-1"
+                    className="btn btn-lg fw-bold btn-info flex-grow-sm-0 flex-grow-1"
                   >
                     Go to Profile
                   </Link>

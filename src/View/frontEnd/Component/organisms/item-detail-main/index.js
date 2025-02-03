@@ -226,11 +226,11 @@ const ItemDetailsMain = ({
       {' '}
       <div className="flex-grow-1 mb-1">
         {' '}
-        <h4 className="project__detail-label mb-3p">Item</h4>
+        <h4 className="project__detail-label mb-2">Item</h4>
         <h1 className="project__detail-title " style={{ textTransform: 'capitalize' }}>
           {productDetails?.headline}
         </h1>
-        <h5 className="project__detail-sublabel mb-2 fw-bolder">Product</h5>
+        <h5 className="project__detail-sublabel mt-2 fw-bolder">Product</h5>
         <div className="project__detail-subtitle fw-bold">{productDetails?.brand} ™</div>
         <h2 className="project__detail-price price m-0">
           {currencySymbol}

@@ -389,7 +389,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
         <Col md="6">
           <div className="d-flex flex-column project__detail-main me-sm-3 gap-1">
             <div className="mb-3">
-              <h4 className="project__detail-label mb-3p">Item</h4>
+              <h4 className="project__detail-label mb-2">Item</h4>
               <h1 className="project__detail-title">{item.itemDetails?.headline}</h1>
               <h5 className="project__detail-sublabel mb-2">Product</h5>
               <div className="project__detail-subtitle fw-bold">{item.itemDetails?.brand} ™</div>
@@ -413,7 +413,7 @@ const UserItemsDetailView = ({ item, detail, setDetail, setShowReceipt, showRece
               <p className="page__paragraph">{item.itemDetails?.descriptions}</p>
               <a
                 href={helper.websitePath + '/item/' + item.itemDetails?.slug}
-                className="d-flex align-items-center text-subtext"
+                className="d-flex align-items-start text-subtext"
               >
                 <span className="url__icon me-1">
                   <FontAwesomeIcon icon={regular('square-up-right')} />
