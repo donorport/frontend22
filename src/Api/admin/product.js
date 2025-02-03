@@ -172,7 +172,8 @@ function product() {
     if (cdata.image) {
       data.append('image', cdata.image);
     }
-    data.append('slug', cdata.productSlug);
+    // Slug shouln't be updated
+    // data.append('slug', cdata.productSlug);
     data.append('organizationId', cdata.organizationId);
     data.append('price', cdata.price);
     data.append('displayPrice', cdata.displayPrice);

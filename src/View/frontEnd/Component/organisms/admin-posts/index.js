@@ -397,7 +397,7 @@ const AdminPosts = () => {
         });
       }
     } else if (e.target.name === 'headline') {
-      let productNameVar = value.toLowerCase();
+      let productNameVar = value.toLowerCase()?.trim();
       productNameVar = productNameVar.replace(/\s+/g, '-');
       setstate({
         ...state,
