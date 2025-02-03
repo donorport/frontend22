@@ -165,8 +165,9 @@ const Product = (props) => {
               <span>{Math.round(props.displayPrice)}</span>
             </div>
           </div>
-          <img alt="" src={helper.CampaignProductFullImagePath + img} className="feature__img" />
           <Link to={'/item/' + props.slug}>
+            <img alt="" src={helper.CampaignProductFullImagePath + img} className="feature__img" />
+
             <Button variant="primary" className="feature__btn">
               <FontAwesomeIcon className="fs-4" icon={solid('arrow-up-right-from-square')} />
             </Button>

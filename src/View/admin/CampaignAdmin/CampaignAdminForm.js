@@ -1,18 +1,21 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 import { Button } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 import helper from '../../../Common/Helper';
 import noimg from '../../../assets/images/noimg1.png';
-import './style.scss'
-import { LoadingButton } from '@mui/lab';
-
+import './style.scss';
+import axios from 'axios';
 
 export default function CampaignAdminForm(props) {
   let stateData = props.stateData;
 
-  let videoid = stateData.promoVideo ? stateData.promoVideo?.split('?v=')[1].split('&')[0] : '';
+  let videoid = stateData.promoVideo
+    ? stateData.promoVideo?.split('?v=')[1].split('&')[0]
+    : '';
   let embedlink = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
 
+  // Example transfer account request (adjust to match your API endpoint)
   const transferAccount = async (authToken, formData) => {
     let res = {};
     try {
@@ -38,7 +41,6 @@ export default function CampaignAdminForm(props) {
     }
     return res;
   };
-  
 
   const handleTransferAccount = async () => {
     const authToken = localStorage.getItem('adminAuthToken'); // Replace with the correct source of the token
@@ -56,9 +58,7 @@ export default function CampaignAdminForm(props) {
       alert(result.message || 'Failed to transfer account.');
     }
   };
-  
-  
-  // console.log(stateData)
+
   return (
     <>
       <Modal
@@ -74,8 +74,13 @@ export default function CampaignAdminForm(props) {
             {stateData?.id ? 'Update Campaign Admin' : 'Add Campaign Admin'}
           </Modal.Title>
         </Modal.Header>
+
         <Modal.Footer>
-          <Button variant="btnWarning" className="btnDanger" onClick={() => props.setModal(false)}>
+          <Button
+            variant="btnWarning"
+            className="btnDanger"
+            onClick={() => props.setModal(false)}
+          >
             Close
           </Button>
           &nbsp;
@@ -89,6 +94,7 @@ export default function CampaignAdminForm(props) {
             </Button>
           )}
         </Modal.Footer>
+
         <Modal.Body>
           <div className="form-group row">
             <label className="col-form-label col-sm-2 ">Status</label>
@@ -114,15 +120,13 @@ export default function CampaignAdminForm(props) {
                   Inactive
                 </option>
               </select>
-
               {stateData.error && stateData.error.status && (
-                <p className="error">
-                  {stateData.error ? (stateData.error.status ? stateData.error.status : '') : ''}
-                </p>
+                <p className="error">{stateData.error.status}</p>
               )}
             </div>
           </div>
-          {/* Add Transfer Account Fields */}
+
+          {/* Transfer Account Fields (visible only if updating an existing admin) */}
           {stateData?.id && (
             <>
               <div className="form-group row">
@@ -170,8 +174,9 @@ export default function CampaignAdminForm(props) {
               </div>
             </>
           )}
+
           <div className="form-group row">
-            <label className="col-form-label col-sm-2" htmlFor="inputstock">
+            <label className="col-form-label col-sm-2" htmlFor="logo">
               Logo
             </label>
             <div className="col-sm-10">
@@ -180,7 +185,7 @@ export default function CampaignAdminForm(props) {
                 className={
                   stateData.error.logo
                     ? 'inputerror custom-file-input form-control'
-                    : ' custom-file-input form-control'
+                    : 'custom-file-input form-control'
                 }
                 id="logo"
                 accept="image/*"
@@ -193,13 +198,11 @@ export default function CampaignAdminForm(props) {
                 htmlFor="customFile"
                 style={{ margin: '0px 10px 0px 10px' }}
               >
-                {' '}
-                Choose file{' '}
+                Choose file
               </label>
               <p className="error">
-                {stateData.error ? (stateData.error.logo ? stateData.error.logo : '') : ''}
+                {stateData.error && stateData.error.logo ? stateData.error.logo : ''}
               </p>
-              {/* <img src={props.Img ? props.Img : props.tempImg ? props.tempImg !== "" ? helper.CampaignAdminLogoPath + props.tempImg :  noimg  : noimg } alt="logo"  style={{width:"100px"}}/> */}
               {props.Img || props.tempImg ? (
                 <img
                   src={
@@ -211,7 +214,7 @@ export default function CampaignAdminForm(props) {
                         : noimg
                       : noimg
                   }
-                  alt="lk"
+                  alt="logo"
                   style={{ width: '100px', height: '100px' }}
                 />
               ) : (
@@ -227,7 +230,7 @@ export default function CampaignAdminForm(props) {
             <div className="col-sm-10">
               <input
                 type="text"
-                className="form-control "
+                className="form-control"
                 name="name"
                 id="name"
                 value={stateData.name}
@@ -235,22 +238,20 @@ export default function CampaignAdminForm(props) {
                   props.changevalue(e);
                 }}
               />
-
               {stateData.error && stateData.error.name && (
-                <p className="error">
-                  {stateData.error ? (stateData.error.name ? stateData.error.name : '') : ''}
-                </p>
+                <p className="error">{stateData.error.name}</p>
               )}
             </div>
           </div>
+
           <div className="form-group row">
-            <label htmlFor="name" className="col-sm-2 col-form-label">
-              ein
+            <label htmlFor="ein" className="col-sm-2 col-form-label">
+              EIN
             </label>
             <div className="col-sm-10">
               <input
                 type="text"
-                className="form-control "
+                className="form-control"
                 name="ein"
                 id="ein"
                 value={stateData.ein}
@@ -259,22 +260,20 @@ export default function CampaignAdminForm(props) {
                 }}
               />
               {stateData.error && stateData.error.ein && (
-                <p className="error">
-                  {stateData.error ? (stateData.error.ein ? stateData.error.ein : '') : ''}
-                </p>
+                <p className="error">{stateData.error.ein}</p>
               )}
             </div>
           </div>
 
+          {/* Updated Slug section with URL preview */}
           <div className="form-group row">
-            <label htmlFor="name" className="col-sm-2 col-form-label">
+            <label htmlFor="slug" className="col-sm-2 col-form-label">
               Slug
             </label>
             <div className="col-sm-10">
-              {/* <input type="text" className="form-control " disabled={stateData?.id ? true : false} name='slug' id="slug" value={stateData.slug} onChange={(e) => { props.changevalue(e) }} /> */}
               <input
                 type="text"
-                className="form-control "
+                className="form-control"
                 name="slug"
                 id="slug"
                 value={stateData.slug}
@@ -282,10 +281,14 @@ export default function CampaignAdminForm(props) {
                   props.changevalue(e);
                 }}
               />
-              {stateData.error && stateData.error.slug && (
-                <p className="error">
-                  {stateData.error ? (stateData.error.slug ? stateData.error.slug : '') : ''}
+              {/* Display the slug-based URL below the input */}
+              {stateData.slug && (
+                <p className="mt-2" style={{ fontSize: '0.9rem', color: '#555' }}>
+                  {`www.donorport.com/organization/${stateData.slug}`}
                 </p>
+              )}
+              {stateData.error && stateData.error.slug && (
+                <p className="error">{stateData.error.slug}</p>
               )}
             </div>
           </div>
@@ -297,8 +300,8 @@ export default function CampaignAdminForm(props) {
             <div className="col-sm-10">
               <input
                 type="email"
-                disabled={stateData ? (stateData.id ? true : false) : false}
-                className="form-control "
+                disabled={stateData.id ? true : false}
+                className="form-control"
                 id="email"
                 name="email"
                 value={stateData.email}
@@ -306,11 +309,8 @@ export default function CampaignAdminForm(props) {
                   props.changevalue(e);
                 }}
               />
-
               {stateData.error && stateData.error.email && (
-                <p className="error">
-                  {stateData.error ? (stateData.error.email ? stateData.error.email : '') : ''}
-                </p>
+                <p className="error">{stateData.error.email}</p>
               )}
             </div>
           </div>
@@ -323,7 +323,7 @@ export default function CampaignAdminForm(props) {
               <input
                 type="email"
                 disabled={!stateData?.id}
-                className="form-control "
+                className="form-control"
                 id="newEmail"
                 name="newEmail"
                 value={stateData.newEmail}
@@ -331,15 +331,23 @@ export default function CampaignAdminForm(props) {
                   props.changevalue(e);
                 }}
               />
-
-              <LoadingButton loading={props.loading} variant="btnWarning" className="btnDanger transfer-account-btn" onClick={() => {props.transferAccount(stateData.newEmail)}} disabled={props.loading || !stateData?.newEmail || stateData.error?.newEmail}>
+              <LoadingButton
+                loading={props.loading}
+                variant="btnWarning"
+                className="btnDanger transfer-account-btn"
+                onClick={() => {
+                  props.transferAccount(stateData.newEmail);
+                }}
+                disabled={
+                  props.loading ||
+                  !stateData?.newEmail ||
+                  stateData.error?.newEmail
+                }
+              >
                 Transfer Account
               </LoadingButton>
-
               {stateData.error && stateData.error.newEmail && (
-                <p className="error">
-                  {stateData.error ? (stateData.error.newEmail ? stateData.error.newEmail : '') : ''}
-                </p>
+                <p className="error">{stateData.error.newEmail}</p>
               )}
             </div>
           </div>
@@ -359,20 +367,14 @@ export default function CampaignAdminForm(props) {
                   props.changevalue(e);
                 }}
               />
-
               {stateData.error && stateData.error.password && (
-                <p className="error">
-                  {stateData.error
-                    ? stateData.error.password
-                      ? stateData.error.password
-                      : ''
-                    : ''}
-                </p>
+                <p className="error">{stateData.error.password}</p>
               )}
             </div>
           </div>
+
           <div className="form-group row">
-            <label htmlFor="name" className="col-sm-2 col-form-label">
+            <label htmlFor="description" className="col-sm-2 col-form-label">
               Description
             </label>
             <div className="col-sm-10">
@@ -381,28 +383,19 @@ export default function CampaignAdminForm(props) {
                 id="description"
                 name="description"
                 rows="4"
+                value={stateData.description}
                 onChange={(e) => {
                   props.changevalue(e);
                 }}
-              >
-                {stateData.description}
-              </textarea>
-
+              />
               {stateData.error && stateData.error.description && (
-                <p className="error">
-                  {stateData.error
-                    ? stateData.error.description
-                      ? stateData.error.description
-                      : ''
-                    : ''}
-                </p>
+                <p className="error">{stateData.error.description}</p>
               )}
             </div>
           </div>
-          {/* promoVideo: req.body.promoVideo,
-                headline: req.body.headline, */}
+
           <div className="form-group row">
-            <label htmlFor="name" className="col-sm-2 col-form-label">
+            <label htmlFor="headline" className="col-sm-2 col-form-label">
               Headline
             </label>
             <div className="col-sm-10">
@@ -411,33 +404,25 @@ export default function CampaignAdminForm(props) {
                 id="headline"
                 name="headline"
                 rows="4"
+                value={stateData.headline}
                 onChange={(e) => {
                   props.changevalue(e);
                 }}
-              >
-                {stateData.headline}
-              </textarea>
-
+              />
               {stateData.error && stateData.error.headline && (
-                <p className="error">
-                  {stateData.error
-                    ? stateData.error.headline
-                      ? stateData.error.headline
-                      : ''
-                    : ''}
-                </p>
+                <p className="error">{stateData.error.headline}</p>
               )}
             </div>
           </div>
 
           <div className="form-group row">
-            <label htmlFor="name" className="col-sm-2 col-form-label">
+            <label htmlFor="promoVideo" className="col-sm-2 col-form-label">
               Promo Video
             </label>
             <div className="col-sm-10">
               <input
                 type="text"
-                className="form-control "
+                className="form-control"
                 name="promoVideo"
                 id="promoVideo"
                 value={stateData.promoVideo}
@@ -453,30 +438,23 @@ export default function CampaignAdminForm(props) {
                   title="myFrame"
                   src={embedlink}
                   frameBorder="0"
-                  allowFullScreen=""
-                ></iframe>
+                  allowFullScreen
+                />
               )}
-
               {stateData.error && stateData.error.promoVideo && (
-                <p className="error">
-                  {stateData.error
-                    ? stateData.error.promoVideo
-                      ? stateData.error.promoVideo
-                      : ''
-                    : ''}
-                </p>
+                <p className="error">{stateData.error.promoVideo}</p>
               )}
             </div>
           </div>
 
           <div className="form-group row">
-            <label htmlFor="name" className="col-sm-2 col-form-label">
+            <label htmlFor="twitter" className="col-sm-2 col-form-label">
               Twitter
             </label>
             <div className="col-sm-10">
               <input
                 type="text"
-                className="form-control "
+                className="form-control"
                 name="twitter"
                 id="twitter"
                 value={stateData.twitter}
@@ -484,23 +462,20 @@ export default function CampaignAdminForm(props) {
                   props.changevalue(e);
                 }}
               />
-
               {stateData.error && stateData.error.twitter && (
-                <p className="error">
-                  {stateData.error ? (stateData.error.twitter ? stateData.error.twitter : '') : ''}
-                </p>
+                <p className="error">{stateData.error.twitter}</p>
               )}
             </div>
           </div>
 
           <div className="form-group row">
-            <label htmlFor="name" className="col-sm-2 col-form-label">
+            <label htmlFor="facebook" className="col-sm-2 col-form-label">
               Facebook
             </label>
             <div className="col-sm-10">
               <input
                 type="text"
-                className="form-control "
+                className="form-control"
                 name="facebook"
                 id="facebook"
                 value={stateData.facebook}
@@ -508,26 +483,20 @@ export default function CampaignAdminForm(props) {
                   props.changevalue(e);
                 }}
               />
-
               {stateData.error && stateData.error.facebook && (
-                <p className="error">
-                  {stateData.error
-                    ? stateData.error.facebook
-                      ? stateData.error.facebook
-                      : ''
-                    : ''}
-                </p>
+                <p className="error">{stateData.error.facebook}</p>
               )}
             </div>
           </div>
+
           <div className="form-group row">
-            <label htmlFor="name" className="col-sm-2 col-form-label">
+            <label htmlFor="linkedin" className="col-sm-2 col-form-label">
               Linkedin
             </label>
             <div className="col-sm-10">
               <input
                 type="text"
-                className="form-control "
+                className="form-control"
                 name="linkedin"
                 id="linkedin"
                 value={stateData.linkedin}
@@ -535,26 +504,20 @@ export default function CampaignAdminForm(props) {
                   props.changevalue(e);
                 }}
               />
-
               {stateData.error && stateData.error.linkedin && (
-                <p className="error">
-                  {stateData.error
-                    ? stateData.error.linkedin
-                      ? stateData.error.linkedin
-                      : ''
-                    : ''}
-                </p>
+                <p className="error">{stateData.error.linkedin}</p>
               )}
             </div>
           </div>
+
           <div className="form-group row">
-            <label htmlFor="name" className="col-sm-2 col-form-label">
+            <label htmlFor="url" className="col-sm-2 col-form-label">
               Website
             </label>
             <div className="col-sm-10">
               <input
                 type="text"
-                className="form-control "
+                className="form-control"
                 name="url"
                 id="url"
                 value={stateData.url}
@@ -562,22 +525,20 @@ export default function CampaignAdminForm(props) {
                   props.changevalue(e);
                 }}
               />
-
               {stateData.error && stateData.error.url && (
-                <p className="error">
-                  {stateData.error ? (stateData.error.url ? stateData.error.url : '') : ''}
-                </p>
+                <p className="error">{stateData.error.url}</p>
               )}
             </div>
           </div>
+
           <div className="form-group row">
-            <label htmlFor="name" className="col-sm-2 col-form-label">
+            <label htmlFor="address" className="col-sm-2 col-form-label">
               Building Address
             </label>
             <div className="col-sm-10">
               <input
                 type="text"
-                className="form-control "
+                className="form-control"
                 name="address"
                 id="address"
                 value={stateData.address}
@@ -585,16 +546,14 @@ export default function CampaignAdminForm(props) {
                   props.changevalue(e);
                 }}
               />
-
               {stateData.error && stateData.error.address && (
-                <p className="error">
-                  {stateData.error ? (stateData.error.address ? stateData.error.address : '') : ''}
-                </p>
+                <p className="error">{stateData.error.address}</p>
               )}
             </div>
           </div>
+
           <div className="form-group row">
-            <label className="col-form-label col-sm-2 ">Category</label>
+            <label className="col-form-label col-sm-2">Category</label>
             <div className="col-sm-10">
               <select
                 className="form-control"
@@ -609,7 +568,9 @@ export default function CampaignAdminForm(props) {
                 </option>
                 {props.categoryList.length > 0 &&
                   props.categoryList
-                    .sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }))
+                    .sort((a, b) =>
+                      a.name.localeCompare(b.name, 'es', { sensitivity: 'base' })
+                    )
                     .map(
                       (cat) =>
                         cat.status === 1 && (
@@ -624,12 +585,15 @@ export default function CampaignAdminForm(props) {
                     )}
               </select>
               <p className="error">
-                {stateData.error ? (stateData.error.category ? stateData.error.category : '') : ''}
+                {stateData.error && stateData.error.category
+                  ? stateData.error.category
+                  : ''}
               </p>
             </div>
           </div>
+
           <div className="form-group row">
-            <label className="col-form-label col-sm-2 ">Country</label>
+            <label className="col-form-label col-sm-2">Country</label>
             <div className="col-sm-10">
               <select
                 className="form-control"
@@ -644,7 +608,6 @@ export default function CampaignAdminForm(props) {
                 </option>
                 {props.countryList.length > 0 &&
                   props.countryList.map((country) => (
-                    // country.status === 1 &&
                     <option
                       key={country.id}
                       value={country.id}
@@ -655,12 +618,15 @@ export default function CampaignAdminForm(props) {
                   ))}
               </select>
               <p className="error">
-                {stateData.error ? (stateData.error.country ? stateData.error.country : '') : ''}
+                {stateData.error && stateData.error.country
+                  ? stateData.error.country
+                  : ''}
               </p>
             </div>
           </div>
+
           <div className="form-group row">
-            <label className="col-form-label col-sm-2 ">State</label>
+            <label className="col-form-label col-sm-2">State</label>
             <div className="col-sm-10">
               <select
                 className="form-control"
@@ -688,12 +654,15 @@ export default function CampaignAdminForm(props) {
                   )}
               </select>
               <p className="error">
-                {stateData.error ? (stateData.error.stateid ? stateData.error.stateid : '') : ''}
+                {stateData.error && stateData.error.stateid
+                  ? stateData.error.stateid
+                  : ''}
               </p>
             </div>
           </div>
+
           <div className="form-group row">
-            <label className="col-form-label col-sm-2 ">City</label>
+            <label className="col-form-label col-sm-2">City</label>
             <div className="col-sm-10">
               <select
                 className="form-control"
@@ -708,15 +677,19 @@ export default function CampaignAdminForm(props) {
                 </option>
                 {props.cityList.length > 0 &&
                   props.cityList.map((city) => (
-                    // city.status === 1 &&
-                    // <option value={city.id} selected={stateData.city === city.id}>{city.city}</option>
-                    <option value={city._id.id} selected={stateData.city === city._id.id}>
+                    <option
+                      key={city._id.id}
+                      value={city._id.id}
+                      selected={stateData.city === city._id.id}
+                    >
                       {city._id.city}
                     </option>
                   ))}
               </select>
               <p className="error">
-                {stateData.error ? (stateData.error.city ? stateData.error.city : '') : ''}
+                {stateData.error && stateData.error.city
+                  ? stateData.error.city
+                  : ''}
               </p>
             </div>
           </div>

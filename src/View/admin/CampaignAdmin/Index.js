@@ -44,24 +44,55 @@ export default function Index(props) {
 
     // Filter by selected country
     if (selectedCountry) {
-      data = data.filter((item) => item.countryDetails.currency === selectedCountry);
+      data = data.filter((item) => item.countryDetails?.currency === selectedCountry);
     }
 
-    // Sort by created_at date from newest to oldest
+    // Sort by created_at (newest first)
     data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-
     setFilteredData(data);
   };
 
+  // Custom table styles for wrapping in other columns
   const customStyles = {
     table: {
-      style: { display: 'table', tableLayout: 'fixed', width: '100%' } // Set table layout to fixed and 100% width
+      style: {
+        tableLayout: 'auto', // let columns auto-size rather than fixed
+        width: '100%'
+      }
+    },
+    headCells: {
+      style: {
+        whiteSpace: 'nowrap'
+      }
+    },
+    cells: {
+      style: {
+        whiteSpace: 'normal',
+        wordWrap: 'break-word'
+      }
     }
   };
 
   const columns = [
-    { name: 'Name', selector: 'name', sortable: true },
-    { name: 'Email', selector: 'email', sortable: true },
+    {
+      name: 'Name',
+      selector: 'name',
+      sortable: true,
+      wrap: true,
+      minWidth: '150px'
+    },
+    {
+      name: 'Email',
+      selector: 'email',
+      sortable: true
+    },
+    {
+      name: 'Organization User Name',
+      selector: 'organizationUserName',
+      sortable: true,
+      wrap: true,
+      minWidth: '160px'
+    },
     {
       name: (
         <FormControl fullWidth>
@@ -76,7 +107,7 @@ export default function Index(props) {
               <em>All</em>
             </MenuItem>
             {props.campaignAdminList &&
-              [...new Set(props.campaignAdminList.map((item) => item.countryDetails.currency))].map(
+              [...new Set(props.campaignAdminList.map((item) => item.countryDetails?.currency))].map(
                 (country, index) => (
                   <MenuItem key={index} value={country}>
                     {country}
@@ -86,7 +117,7 @@ export default function Index(props) {
           </Select>
         </FormControl>
       ),
-      selector: 'countryDetails.currency',
+      selector: (row) => row.countryDetails?.currency || '',
       sortable: true
     },
     {
@@ -97,7 +128,13 @@ export default function Index(props) {
         </Label>
       ),
       ignoreRowClick: true,
-      allowOverflow: true
+      allowOverflow: true,
+      // Restrict width so the label fits exactly
+      style: {
+        width: '80px',
+        minWidth: '80px'
+      },
+      wrap: false
     },
     {
       name: 'Status',
@@ -122,7 +159,13 @@ export default function Index(props) {
       ),
       ignoreRowClick: true,
       allowOverflow: true,
-      sortable: true
+      sortable: true,
+      // Restrict width here as well
+      style: {
+        width: '80px',
+        minWidth: '80px'
+      },
+      wrap: false
     },
     {
       name: 'OTP',
@@ -135,7 +178,7 @@ export default function Index(props) {
       selector: 'created_at',
       cell: (row) => <div>{moment(row.created_at).format('DD MMMM YYYY')}</div>,
       sortable: true,
-      id: 'created_at' // Add id for sorting
+      id: 'created_at'
     },
     {
       name: 'Actions',
@@ -143,7 +186,7 @@ export default function Index(props) {
         <>
           <button
             className="btn btn-danger btn-sm"
-            onClick={(e) => props.deleteCampaignAdmin(row._id)}
+            onClick={() => props.deleteCampaignAdmin(row._id)}
           >
             <Icon icon={trash} />
           </button>
@@ -165,36 +208,46 @@ export default function Index(props) {
   const exportToCSV = () => {
     const csvRows = [];
     
-    // Get the headers
-    const headers = columns.map((col) => col.name);
+    // Get headers
+    const headers = columns.map((col) =>
+      typeof col.name === 'string' ? col.name : 'Country'
+    );
     csvRows.push(headers.join(','));
-    
-    // Get the data
+
+    // Get data rows
     filteredData.forEach((row) => {
       const values = columns.map((col) => {
-        if (col.selector) {
+        if (typeof col.selector === 'function') {
+          const val = col.selector(row);
+          return `"${(val || '').toString().replace(/"/g, '""')}"`;
+        } else if (typeof col.selector === 'string') {
           // Handle nested selectors
           const keys = col.selector.split('.');
           let value = row;
-          keys.forEach(key => {
-            value = value[key];
+          keys.forEach((key) => {
+            value = value?.[key];
           });
-          return `"${(value || '').toString().replace(/"/g, '""')}"`; // Escape double quotes
-        } else if (col.name === 'Applied?') {
-          return row.status === 1 ? '"Active"' : '"Inactive"';
-        } else if (col.name === 'Status') {
-          return row.otp_status === 1 ? '"Active"' : '"Inactive"';
-        } else if (col.name === 'Bank?') {
-          return row.bankaccounts && row.bankaccounts.length > 0 ? '"Active"' : '"Inactive"';
-        } else if (col.name === 'OTP') {
-          return `"${(row.otp || '').toString().replace(/"/g, '""')}"`; // Ensure OTP is treated as a string
-        } else {
-          return '""';
+          return `"${(value || '').toString().replace(/"/g, '""')}"`;
+        }
+        // Handle columns without direct selector
+        switch (col.name) {
+          case 'Applied?':
+            return row.status === 1 ? '"Active"' : '"Inactive"';
+          case 'Status':
+            return row.otp_status === 1 ? '"Active"' : '"Inactive"';
+          case 'Bank?':
+            return row.bankaccounts && row.bankaccounts.length > 0 ? '"Active"' : '"Inactive"';
+          case 'OTP':
+            return `"${(row.otp || '').toString().replace(/"/g, '""')}"`;
+          case 'Date':
+            return `"${moment(row.created_at).format('DD MMMM YYYY')}"`;
+          default:
+            return '""';
         }
       });
       csvRows.push(values.join(','));
     });
-  
+
     // Create CSV file and trigger download
     const csvContent = 'data:text/csv;charset=utf-8,' + csvRows.join('\n');
     const encodedUri = encodeURI(csvContent);
@@ -204,7 +257,12 @@ export default function Index(props) {
     document.body.appendChild(link);
     link.click();
   };
-  
+
+  // Prepare data for DataTableExtensions
+  const tableData = {
+    columns,
+    data: filteredData
+  };
 
   return (
     <Page title="Campaign Admin | CMS">
@@ -225,19 +283,23 @@ export default function Index(props) {
           <Button variant="contained" color="primary" onClick={exportToCSV}>
             Export to CSV
           </Button>
-          <DataTable
-            columns={columns}
-            data={filteredData}
-            noHeader
-            defaultSortAsc={false}
-            customStyles={customStyles} // Apply custom styles
-            pagination
-            highlightOnHover
-            defaultSortFieldId="created_at" // Sort by created_at by default
-            paginationPerPage={rowsPerPage}
-            paginationRowsPerPageOptions={[10, 20, 50, 100]} // Customize the available options
-            onChangeRowsPerPage={handleChangeRowsPerPage} // Handle rows per page change
-          />
+
+          <DataTableExtensions
+            {...tableData}
+            draggableColumns={{ enabled: true }} // If you want columns draggable
+          >
+            <DataTable
+              noHeader
+              defaultSortAsc={false}
+              customStyles={customStyles}
+              highlightOnHover
+              defaultSortFieldId="created_at"
+              pagination
+              paginationPerPage={rowsPerPage}
+              paginationRowsPerPageOptions={[10, 20, 50, 100]}
+              onChangeRowsPerPage={handleChangeRowsPerPage}
+            />
+          </DataTableExtensions>
         </Card>
       </Container>
     </Page>

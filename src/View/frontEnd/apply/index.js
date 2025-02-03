@@ -379,7 +379,7 @@ const Apply = (props) => {
                     <footer className="mt-auto main-footer w-100">
                       <div className="container-fluid">
                         <div className="d-flex gap-3 footer-bottom py-5 fs-6">
-                          <div>&copy; 2024 Donorport, Inc.</div>
+                          <div>&copy; 2025 Donorport, Inc.</div>
                           <a href="/privacy">Privacy Policy</a>
                           <a href="/terms">Terms of Service</a>
                         </div>
