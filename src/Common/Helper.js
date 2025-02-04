@@ -50,8 +50,9 @@ let helper = {
   FulfilRecieptPath: AWS_S3_BUCKET_BASE_URL + 'images/campaign/product/fulfil/receipt/',
 
   MapBoxPrimaryKey:
-    'pk.eyJ1IjoibW9vZmF3c2F3IiwiYSI6ImNpem4yZGtpcDAyZTYycW83azdlZnJkbmcifQ.PbOw8hTUeOgWWGw8WEuUYg',
-
+    // 'pk.eyJ1IjoibW9vZmF3c2F3IiwiYSI6ImNpem4yZGtpcDAyZTYycW83azdlZnJkbmcifQ.PbOw8hTUeOgWWGw8WEuUYg',
+    // 'pk.eyJ1IjoibW9vZmF3c2F3IiwiYSI6ImNtNnB6NnNkZjFsMXUybnE0MmpnOTluaTQifQ.Nf5GJWdZPSTlid_w1baIGA',
+    'pk.eyJ1IjoibW9vZmF3c2F3IiwiYSI6ImNtNnFud2NkczFqeHAyanF3aDJnZ3FlNmQifQ.0QLdTX-9Q_FpGz7asPnDmg',
   MAX_IMAGE_LENGTH: 5
 
   //Kyle's Mapbox key: pk.eyJ1IjoibW9vZmF3c2F3IiwiYSI6ImNpem4yZGtpcDAyZTYycW83azdlZnJkbmcifQ.PbOw8hTUeOgWWGw8WEuUYg
