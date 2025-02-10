@@ -382,7 +382,9 @@ export function isIframe(url) {
   return url.indexOf('<iframe') === 0;
 }
 
-const EMAIL_REGEX_FORMAT = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+// const EMAIL_REGEX_FORMAT = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const EMAIL_REGEX_FORMAT = /^[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+
 export function isValidEmail(email) {
   return email.match(EMAIL_REGEX_FORMAT);
 }

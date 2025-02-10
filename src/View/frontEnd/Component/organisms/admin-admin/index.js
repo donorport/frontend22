@@ -149,7 +149,7 @@ const AdminAdmin = () => {
               variant="info"
               disabled={!isValid}
               size="md"
-              className="order-1 order-sm-0 d-flex fw-bold text-white"
+              className={(isValid ? '' : 'opacity-50' ) + " order-1 order-sm-0 d-flex fw-bold text-white"}
               onClick={() => !loading && inviteTeamMember()}
               style={{
                 opacity: loading ? '0.7' : '1'

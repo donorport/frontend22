@@ -10,7 +10,7 @@ function OrganizationTeamItem(props) {
   const member = props.member;
 
   let image = member?.type === 'USER'
-  ? (member?.userDetails?.image.startsWith('http://') || member?.userDetails?.image.startsWith('https://')
+  ? (member?.userDetails?.image?.startsWith('http://') || member?.userDetails?.image?.startsWith('https://')
       ? member?.userDetails?.image
       : helper.DonorImageResizePath + member?.userDetails?.image)
   : helper.CampaignAdminLogoPath + member?.orgDetails?.logo;

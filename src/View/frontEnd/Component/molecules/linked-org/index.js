@@ -283,7 +283,7 @@ function LinkedOrg(props) {
           {teamMemberList.length > 0 &&
             teamMemberList.map((member, i) => {
               let image = member.type === 'USER'
-                ? (member?.userDetails?.image.startsWith('http://') || member?.userDetails?.image.startsWith('https://')
+                ? (member?.userDetails?.image?.startsWith('http://') || member?.userDetails?.image?.startsWith('https://')
                     ? member?.userDetails?.image
                     : helper.DonorImageResizePath + member?.userDetails?.image)
                 : helper.CampaignAdminLogoPath + member?.orgDetails?.logo;
