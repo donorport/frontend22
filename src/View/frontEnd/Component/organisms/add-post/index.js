@@ -28,7 +28,6 @@ import Textarea from '../text-area';
 import Input from '../input';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
-import MapBoxAutocompleteV2 from '../../../../../components/map-box-autocomplete-v2/MapBoxAutocompleteV2';
 
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default; // eslint-disable-line
 
@@ -357,17 +356,14 @@ const AddPost = (props) => {
           <Accordion.Collapse className="py-0 py-sm-5">
             <Row className="">
               <Col lg="6">
-                {/* <MapboxAutocomplete
-                 
-                /> */}
-                <MapBoxAutocompleteV2
-                  // publicKey={helper.MapBoxPrimaryKey}
-                  // inputClass="form-control search"
-                  // query={location.locationName}
-                  // defaultValue={location.locationName}
-                  // onSuggestionSelect={sugg}
-                  // country={location.organizationLocation}
-                  // resetSearch={false}
+                <MapboxAutocomplete
+                  publicKey={helper.MapBoxPrimaryKey}
+                  inputClass="form-control search"
+                  query={location.locationName}
+                  defaultValue={location.locationName}
+                  onSuggestionSelect={sugg}
+                  country={location.organizationLocation}
+                  resetSearch={false}
                 />
 
                 <div className="post-location-wrap">
