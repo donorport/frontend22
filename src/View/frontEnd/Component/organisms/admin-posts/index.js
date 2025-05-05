@@ -25,6 +25,7 @@ import pencil from '../../../../../assets/images/pencil.svg';
 import trophy from '../../../../../assets/images/trophy.svg';
 import { CircularProgress } from '@mui/material';
 import DismissibleBanner from '../../molecules/dismissible-banner';
+import SuperDropdown from './SuperDropdown';
 
 const VALID_IMAGE_FILE_EXTENSIONS = ['jpg', 'png', 'jpeg', 'svg'];
 const DEFAULT_EMPTY_STATE = {
@@ -190,7 +191,7 @@ const AdminPosts = () => {
     policy,
     media,
     displayPrice,
-    taxExempt,
+    taxExempt
   } = state;
 
   const [fulfilState, setFulfilState] = useState(DEFAULT_FULFIL_STATE);
@@ -437,13 +438,17 @@ const AdminPosts = () => {
         });
       } else if (e.target.name === 'price' || e.target.name === 'taxExempt') {
         // console.log(priceWithOrganizationTax(Number(value), Number(data.taxRate)))
-        const taxExempt =   e.target.name === 'taxExempt' ? e.target.checked : state.taxExempt;
+        const taxExempt = e.target.name === 'taxExempt' ? e.target.checked : state.taxExempt;
         let display = 0;
         if (e.target.name === 'taxExempt') {
           value = taxExempt;
-          display = taxExempt ? state.price : priceWithOrganizationTax(Number(state.price), Number(data.taxRate));
+          display = taxExempt
+            ? state.price
+            : priceWithOrganizationTax(Number(state.price), Number(data.taxRate));
         } else {
-          display = taxExempt ? priceWithOrganizationTax(Number(value), 0) :  priceWithOrganizationTax(Number(value),Number(data.taxRate));
+          display = taxExempt
+            ? priceWithOrganizationTax(Number(value), 0)
+            : priceWithOrganizationTax(Number(value), Number(data.taxRate));
         }
         // console.log(display)
         setstate({
@@ -1661,12 +1666,13 @@ const AdminPosts = () => {
         <CircularProgress />
       </div>
     );
-
+  // todo: eto no mila miasa ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   return (
     <>
       {/* <div>
         <DismissibleBanner message="We have updated our payment provider information. Please " />
       </div> */}
+      <SuperDropdown />
       {(!user.isAccountAdded || !data.taxRate || !data.logo) && isOnboardingVisible && (
         <div className="mb-5">
           <div className="onboarding--stepper">
@@ -2012,18 +2018,17 @@ const PostsTableHeader = ({ totalRecord, user, productList, createNewPost }) => 
           </div>
         </header>
         {productList.length > 0 && (
-  <div className="d-none d-sm-flex flex-wrap gap-2 fw-semibold">
-    <span>
-      <FontAwesomeIcon icon={solid('infinity')} className="fs-5 me-1 text-secondary" />
-      no fixed quantity
-    </span>
-    <span>
-      <FontAwesomeIcon icon={solid('bolt')} className="fs-5 me-1 text-primary" />
-      linked to a project
-    </span>
-  </div>
-)}
-
+          <div className="d-none d-sm-flex flex-wrap gap-2 fw-semibold">
+            <span>
+              <FontAwesomeIcon icon={solid('infinity')} className="fs-5 me-1 text-secondary" />
+              no fixed quantity
+            </span>
+            <span>
+              <FontAwesomeIcon icon={solid('bolt')} className="fs-5 me-1 text-primary" />
+              linked to a project
+            </span>
+          </div>
+        )}
       </div>
     </>
   );

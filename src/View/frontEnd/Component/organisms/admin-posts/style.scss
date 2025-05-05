@@ -45,3 +45,109 @@
   overflow: hidden;
   white-space: nowrap;
 }
+
+// SuperDropdown styling
+.super-dropdown {
+  position: relative;
+  font-family: inherit;
+  
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #15202b;
+    border: 1px solid #5f5df8;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    
+    &:hover {
+      border-color: lighten(#5f5df8, 10%);
+      box-shadow: 0 0 5px rgba(95, 93, 248, 0.4);
+    }
+  }
+  
+  &__selected {
+    display: flex;
+    align-items: center;
+  }
+  
+  &__placeholder {
+    color: #8899a6;
+  }
+  
+  &__arrow {
+    color: #5f5df8;
+    font-size: 12px;
+    transition: transform 0.2s ease;
+    margin-left: 10px;
+    
+    &.open {
+      transform: rotate(180deg);
+    }
+  }
+  
+  &__image-wrap {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+    border: 2px solid #5f5df8;
+  }
+  
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  &__name {
+    color: #ffffff;
+    font-weight: 500;
+  }
+  
+  &__menu {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background-color: #15202b;
+    border: 1px solid #5f5df8;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    max-height: 250px;
+    overflow-y: auto;
+    
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: #5f5df8;
+      border-radius: 3px;
+    }
+  }
+  
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    
+    &:hover {
+      background-color: rgba(95, 93, 248, 0.1);
+    }
+    
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba(95, 93, 248, 0.2);
+    }
+  }
+}
