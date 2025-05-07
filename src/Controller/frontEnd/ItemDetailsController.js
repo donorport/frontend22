@@ -201,6 +201,7 @@ export default function ItemDetailsController() {
         } else {
           if (!token) {
             localStorage.setItem('AnonymousUserId', addItemToCart.data.data.userId)
+            navigate('/checkout-no-session');
           }
           dispatch(setIsUpdateCart(!user.isUpdateCart));
         }
