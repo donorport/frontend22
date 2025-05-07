@@ -27,6 +27,28 @@ function cart() {
         return res;
     }
 
+    const addAnonymous = async (authToken, data) => {
+
+        let res = {};
+        await axios({
+            method: 'Post',
+            url: `${helper.ApiUrl}cart/anonymous/add`,
+            responseType: 'json',
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                'Access-Control-Allow-Credentials': 'true',
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+                withCredentials: true,
+                mode: 'no-cors',
+            },
+            data: data
+
+        }).then((response) => {
+            res = response
+        });
+        return res;
+    }
+
     const list = async (authToken) => {
         let res = {};
         await axios({
@@ -39,6 +61,27 @@ function cart() {
                 'Access-Control-Allow-Credentials': 'true',
                 "Access-Control-Allow-Headers": "Content-Type, Authorization",
                 withCredentials: true,
+                mode: 'no-cors',
+            },
+
+        }).then((response) => {
+            res = response
+        });
+        return res;
+    }
+
+    
+    const listAnonymous = async (userId) => {
+        let res = {};
+        await axios({
+            method: 'get',
+            url: `${helper.ApiUrl}cart/anonymous/${userId}`,
+            responseType: 'json',
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                'Access-Control-Allow-Credentials': 'true',
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+                withCredentials: false,
                 mode: 'no-cors',
             },
 
@@ -192,6 +235,7 @@ function cart() {
         return res;
     }
 
+
     return {
         add,
         list,
@@ -200,7 +244,9 @@ function cart() {
         removeCartProduct,
         checkItemInCart,
         clearCart,
-        addMultiple
+        addMultiple,
+        addAnonymous,
+        listAnonymous,
     }
 }
 const cartApi = cart();

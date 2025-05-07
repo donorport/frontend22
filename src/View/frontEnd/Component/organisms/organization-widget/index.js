@@ -460,7 +460,24 @@ function OrganizationWidget(props) {
         }
       }
     } else {
-      navigate('/signin');
+      let data = {};
+      let tempArray = [];
+      cartProductList.map((itm) => {
+        let tempobj = {};
+        if (tempArray.some((e) => e.productId === itm)) {
+          let objIndex = tempArray.findIndex((obj) => obj.productId === itm);
+          tempArray[objIndex].qty += 1;
+        } else {
+          tempobj.productId = itm;
+          tempobj.qty = 1;
+          tempArray.push(tempobj);
+        }
+      });
+
+      data.productIds = tempArray;
+      localStorage.setItem('USER-CART',  JSON.stringify(data));
+
+      // navigate('/signin');
     }
     setCheck(false);
   };

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import cartApi from '../../Api/frontEnd/cart';
 import authApi from '../../Api/admin/auth';
 import ToastAlert from '../../Common/ToastAlert';
-import Checkout from '../../View/frontEnd/checkout';
+import CheckoutNoSession from '../../View/frontEnd/checkout/checkout-without-signin';
 import orderApi from '../../Api/frontEnd/order';
 import { validateAll } from 'indicative/validator';
 import settingApi from '../../Api/admin/setting';
@@ -16,7 +16,11 @@ import { setUserXp } from '../../user/user.action';
 import Page from '../../components/Page';
 import { calculatePlatformCost, calculateGrandTotal } from '../../constants/constants';
 
-export default function CheckoutController() {
+const userPlatformFees = 2.79;
+const userTransactionFees = 2.2;
+const userPlatformCost = 0;
+ 
+export default function CheckoutControllerWithoutSignin() {
   const [cartItem, setCartItem] = useState([]);
   const userAuthToken = localStorage.getItem('userAuthToken');
   const [loading, setLoading] = useState(false);
@@ -39,29 +43,15 @@ export default function CheckoutController() {
   //}
   //};
 
-  const user = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.user);
 
-  const userData = JSON.parse(localStorage.getItem('userData'));
-  console.log('USERS', user, userData)
+  // const userData = JSON.parse(localStorage.getItem('userData'));
   // const [pricingFees, setPricingFees] = useState({
   //     platformFee: 0,
   //     transactionFee: 0,
 
   // })
   // const { platformFee, transactionFee } = pricingFees
-
-  const getSettingsValue = async () => {
-    const getSettingsValue = await settingApi.list(userAuthToken, ['forEachItem']);
-    if (getSettingsValue.data.data.length > 0) {
-      let data = {};
-
-      getSettingsValue.data.data.map((d) => {
-        data[d.name] = d.value;
-      });
-      // console.log(data.forEachItem)
-      setXpForeEachItem(Number(data.forEachItem));
-    }
-  };
 
   //const params = useParams();
   const navigate = useNavigate();
@@ -90,20 +80,13 @@ export default function CheckoutController() {
     cardExpYear,
     cardCVC,
     country,
-    zip
+    zip,
+    email
   } = state;
 
   useEffect(() => {
     (async () => {
-      setLoading(true);
-      if (userAuthToken) {
-        const verifyUser = await authApi.verifyToken(userAuthToken);
-        if (!verifyUser.data.success) {
-          localStorage.clear();
-          navigate('/login');
-        }
-      }
-      await getSettingsValue();
+ 
       // const getSettingsValue = await settingApi.list(userAuthToken, Object.keys(pricingFees));
 
       // if (getSettingsValue.data.success) {
@@ -120,7 +103,12 @@ export default function CheckoutController() {
 
       // }
 
-      const getCartList = await cartApi.list(userAuthToken);
+      const userId = localStorage.getItem('AnonymousUserId');
+      // const productIds = Object.keys(carts.reduce((p, current) => ({[current.productId]: true}), {}));
+      // cartApi
+      const getCartList = await cartApi.listAnonymous(userId);
+      console.log('Cart list', getCartList);
+    
       if (getCartList.data.success === true) {
         setCartItem(getCartList.data.data);
         // console.log(getCartList.data.data)
@@ -167,7 +155,7 @@ export default function CheckoutController() {
       }
       setLoading(false);
     })();
-  }, [update, user.transactionFee, user.platformFee, xpForeEachItem]);
+  }, [update, xpForeEachItem]);
   console.log(total);
   const pay = async () => {
     // if (cartItem.find(e => e.productDetails.tax === true)) {
@@ -212,14 +200,16 @@ export default function CheckoutController() {
       cardNumber: 'required',
       cardExpMonth: 'required',
       cardExpYear: 'required',
-      cardCVC: 'required'
+      cardCVC: 'required',
+      email: 'required'
     };
 
     const message = {
       'cardNumber.required': 'Required.',
       'cardExpMonth.required': 'Required.',
       'cardExpYear.required': 'Required.',
-      'cardCVC.required': 'Required.'
+      'cardCVC.required': 'Required.',
+      'email.required': "Required.",
     };
     validateAll(state, rules, message)
       .then(async () => {
@@ -230,8 +220,8 @@ export default function CheckoutController() {
         });
 
         let data = {};
-        data.name = userData.name;
-        data.email = userData.email;
+        data.name = "Guest User";
+        data.email = email;
         data.city = city;
         data.state = stateName;
         data.line1 = line1;
@@ -245,7 +235,7 @@ export default function CheckoutController() {
         data.cardCVC = cardCVC;
         data.postalCode = zip;
         data.phone = phone;
-        data.currency = user.currency;
+        data.currency = 'CAD';
         data.chargesArray = chargesArray;
         data.subtotal = subtotal;
         data.serviceCharge = serviceCharge;
@@ -264,7 +254,8 @@ export default function CheckoutController() {
           data.p_ids = p_ids;
         }
 
-        const payment = await orderApi.payment(userAuthToken, data);
+        const userId = localStorage.getItem('AnonymousUserId');
+        const payment = await orderApi.paymentAnonymous(userId, data);
         if (payment) {
           if (!payment.data.success) {
             setLoading(false);
@@ -303,20 +294,20 @@ export default function CheckoutController() {
                 productDetails.push(tempObj);
               });
             }
-            orderDetails.email = userData.email;
-            orderDetails.name = userData.name;
-            orderDetails.currency = user.currency;
-            orderDetails.currencySymbol = user.currencySymbol;
+            orderDetails.email = email;
+            orderDetails.name = "Guest User"
+            orderDetails.currency = 'CAD';
+            orderDetails.currencySymbol = '$';
             orderDetails.transactionId = payment.data.data.id;
             orderDetails.paymentResponse = JSON.stringify(payment.data);
             orderDetails.appliedTaxPercentage =
-              Number(user.platformFee) + Number(user.transactionFee);
-            orderDetails.platformFees = user.platformFee;
-            orderDetails.platformCost = (user.platformFee / 100) * Number(subtotal);
-            orderDetails.transactionFees = user.transactionFee;
+              userPlatformFees + userTransactionFees
+            orderDetails.platformFees = userPlatformFees
+            orderDetails.platformCost = (userPlatformFees / 100) * Number(subtotal);
+            orderDetails.transactionFees = userTransactionFees;
             orderDetails.subtotal = subtotal;
             orderDetails.total = total;
-            orderDetails.grandTotal = Number(user.platformCost) + Number(subtotal);
+            orderDetails.grandTotal = Number(userPlatformCost) + Number(subtotal);
             orderDetails.transactionStatus = payment.data.data.status;
             orderDetails.products = productDetails;
             orderDetails.xpToadd = xp;
@@ -336,7 +327,7 @@ export default function CheckoutController() {
               ToastAlert({ msg: saveOrderDetails.data.message, msgType: 'error' });
             } else {
               // await getUserRank()
-              dispatch(setUserXp(user.xp + xp));
+              dispatch(setUserXp(0 + xp));
               const clearCart = await cartApi.clearCart(userAuthToken);
               if (clearCart.data.success) {
                 navigate('/order/' + saveOrderDetails.data.orderId);
@@ -372,7 +363,7 @@ export default function CheckoutController() {
   };
 
   const changevalue = (e) => {
-    let value = e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, '');
+    let value = e.target.name === "email" ? e.target.value : e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, '');
     setstate({
       ...state,
       [e.target.name]: value
@@ -402,7 +393,7 @@ export default function CheckoutController() {
       {/* {console.log(cartItem)} */}
 
       <Page title="Donorport | Checkout ">
-        <Checkout
+        <CheckoutNoSession
           cartItem={cartItem}
           total={total}
           stateData={state}
@@ -413,8 +404,8 @@ export default function CheckoutController() {
           currencySymbol={currencySymbol}
           xp={xp}
           subtotal={subtotal}
-          transactionFee={user.transactionFee}
-          platformFee={user.platformFee}
+          transactionFee={userTransactionFees}
+          platformFee={userPlatformFees}
           isLoading={loading}
         />
       </Page>

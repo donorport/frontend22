@@ -188,25 +188,29 @@ export default function ItemDetailsController() {
   };
 
   const addToCart = async (id, quantity) => {
-    if (token) {
+    // if (token) {
       setLoading(true);
       let data = {};
       data.productId = id;
       data.quantity = quantity === undefined ? 1 : quantity;
 
-      const addItemToCart = await cartApi.add(userAuthToken, data);
+      const addItemToCart = await (token ? cartApi.add(userAuthToken, data) : cartApi.addAnonymous(null, data));
       if (addItemToCart) {
         if (!addItemToCart.data.success) {
           ToastAlert({ msg: addItemToCart.data.message, msgType: 'error' });
         } else {
+          if (!token) {
+            localStorage.setItem('AnonymousUserId', addItemToCart.data.data.userId)
+          }
           dispatch(setIsUpdateCart(!user.isUpdateCart));
         }
       } else {
         ToastAlert({ msg: 'Something went wrong', msgType: 'error' });
       }
-    } else {
-      navigate('/signin');
-    }
+    // } else {
+  
+    //   navigate('/signin');
+    // }
   };
 
   const removeCartItem = async (id) => {

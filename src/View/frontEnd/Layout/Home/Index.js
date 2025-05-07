@@ -218,7 +218,7 @@ export default function Index(props) {
   const user = useSelector((state) => state.user);
 
   const products =
-    user.countrySortName !== 'CA' ? (
+    false ? (
       <ProductsUnavailableLocation user={user} />
     ) : props.productList && props.productList.length > 0 ? (
       <ProductList allProps={props} />

@@ -25,6 +25,27 @@ function order() {
         });
         return res;
     }
+    const paymentAnonymous = async (userId, data) => {
+        let res = {};
+        await axios({
+            method: 'post',
+            url: `${helper.ApiUrl}pay/anonymous/${userId}`,
+            responseType: 'json',
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                'Access-Control-Allow-Credentials': 'true',
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+                withCredentials: true,
+                mode: 'no-cors',
+            },
+            data: data
+
+
+        }).then((response) => {
+            res = response
+        });
+        return res;
+    }
 
     const saveOrderDetails = async (authToken, data) => {
         let res = {};
@@ -77,6 +98,7 @@ function order() {
 
     return {
         payment,
+        paymentAnonymous,
         saveOrderDetails,
         getOrderDetails
 

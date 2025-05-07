@@ -37,6 +37,7 @@ import CrowdfundingDetailsController from '../Controller/frontEnd/CrowdfundingDe
 //import CampaignAdminLayout from './CampaignAdminLayout';
 import CartController from '../Controller/frontEnd/CartController';
 import CheckoutController from '../Controller/frontEnd/CheckoutController';
+import CheckoutControllerWithoutSignin from '../Controller/frontEnd/CheckoutControllerWithoutSignin';
 import ThankYou from '../View/frontEnd/ThankYou';
 //import AdminDashboard from '../View/frontEnd/Component/organisms/admin-dashboard';
 //import AdminControl from '../View/frontEnd/Component/organisms/admin-control';
@@ -267,6 +268,7 @@ export default function MainRoutes() {
                 {/* <Route path="/verified" element={<VerifiedDonors />} /> */}
                 <Route path="/item-tags" element={<ItemTags />} />
                 <Route path="/pricing" element={<Pricing />} />
+                <Route path="/checkout-no-session" element={<CheckoutControllerWithoutSignin />} />
                 <Route exact path="*" element={<SigninController />} />
               </Routes>
             </>
