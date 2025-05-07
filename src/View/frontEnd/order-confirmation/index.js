@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import orderApi from '../../../Api/frontEnd/order';
+import downloadInvoice from '../../../Api/frontEnd/invoice';
 import DefaultLayout from '../Component/templates/default-layout';
 import ListItemImg from '../Component/atoms/list-item-img';
 import helper, { priceFormat, getCalculatedPrice, getCardIcon } from '../../../Common/Helper';
@@ -12,7 +13,7 @@ import './style.scss';
 const OrderConfirmPage = () => {
   const params = useParams();
   const navigate = useNavigate();
-
+  const invoiceButtonRef = useRef(null); 
   const userAuthToken = localStorage.getItem('userAuthToken');
   const [orderDetails, setOrderDetails] = useState({});
   const [loading, setLoading] = useState(false);
@@ -99,7 +100,6 @@ const OrderConfirmPage = () => {
     <>
       <Page showTags={true} title={'Order | ' + orderDetails.uniqueTransactionId}>
         <DefaultLayout>
-    
           <div className="container-fluid d-flex flex-wrap gap-2">
             <div className="flex-grow-1 d-flex flex-column align-items-sm-center align-items-stretch text-center pb-0 pb-sm-5 gap-2">
               <div className="d-flex flex-column align-items-center">
@@ -149,6 +149,16 @@ const OrderConfirmPage = () => {
                   >
                     Go to Order
                   </Link>
+
+                  <button
+                    ref={invoiceButtonRef}
+                    className="btn btn-lg fw-bold btn-secondary my-2 flex-grow-sm-0 flex-grow-1"
+                    onClick={() =>
+                      downloadInvoice('order', orderDetails._id, invoiceButtonRef.current)
+                    }
+                  >
+                    Download Invoice
+                  </button>
                 </div>
               </div>
             </div>

@@ -15,7 +15,7 @@ import categoryApi from '../../Api/admin/category';
 //   backgroundColor: '#f8fafd'
 // };
 
-const APPLY_rules = {
+export const APPLY_rules = {
   name: 'required',
   organization: 'required',
   ein: 'required',
@@ -27,7 +27,7 @@ const APPLY_rules = {
   category: 'required'
 };
 
-const APPLY_message = {
+export const APPLY_message = {
   'name.required': 'Name is required.',
   'organization.required': 'Organization is required.',
   'ein.required': 'Charity Registration Number is required.',
@@ -67,16 +67,16 @@ export default function ApplyOrganizationController() {
     category: '',
     error: []
   });
-
+  
   const { name, organization, ein, email, password, country, category } = state;
-
+  
   useEffect(() => {
     (async () => {
       await getCountryList();
       await getCategoryList();
     })();
   }, []);
-
+  
   const onChangeCountry = (e) => {
     setstate({
       ...state,
@@ -84,7 +84,7 @@ export default function ApplyOrganizationController() {
     });
     setDefaultCountry(e);
   };
-
+  
   const onChangeCategory = (e) => {
     setstate({
       ...state,
@@ -92,7 +92,7 @@ export default function ApplyOrganizationController() {
     });
     setDefaultCategory(e);
   };
-
+  
   const getCategoryList = async () => {
     const getCategoryList = await categoryApi.listCategory();
     if (getCategoryList.data.success === true) {
@@ -128,7 +128,7 @@ export default function ApplyOrganizationController() {
       }
     }
   };
-
+  
   const resetForm = () => {
     setstate({
       ...state,
@@ -151,19 +151,19 @@ export default function ApplyOrganizationController() {
     let value = e.target.value;
 
     // if (e.target.name === 'ein') {
-    //     value = e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, "");
-    // }
-    setstate({
-      ...state,
-      [e.target.name]: value
-    });
-  };
-
-  const onValueChange = (e) => {
-    setSelected(e.target.name);
-  };
-
-  const elemRefs = [];
+      //     value = e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, "");
+      // }
+      setstate({
+        ...state,
+        [e.target.name]: value
+      });
+    };
+    
+    const onValueChange = (e) => {
+      setSelected(e.target.name);
+    };
+    
+    const elemRefs = [];
 
   const autoTab = (e, i) => {
     setCookie(e.target.name, e.target.value.replace(/[^\d.]|\.(?=.*\.)/g, ''), 1);

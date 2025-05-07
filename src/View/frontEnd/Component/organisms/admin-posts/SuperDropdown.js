@@ -1,12 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 import './style.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'; // Import solid icons
 import isSuperAdmin from '../../../../../Api/admin/superAdmin';
 import getAllOrganizations from '../../../../../Api/admin/getAllOrganizations';
 import switchCharity from '../../../../../Api/admin/switchCharity';
 import defaultAvatar from '../../../../../assets/images/avatar.png';
 import Avatar from '../../atoms/avatar';
 import helper from '../../../../../Common/Helper';
+import { Button } from 'react-bootstrap';
+import CreateCharityModal from './CreateCharityModal';
 
 const SuperDropdown = ({ placeholder = 'Select organization' }) => {
   const [isSuper, setIsSuper] = useState(false);
@@ -14,6 +17,7 @@ const SuperDropdown = ({ placeholder = 'Select organization' }) => {
   const [selectedOrg, setSelectedOrg] = useState(null);
   const [organizations, setOrganizations] = useState([]);
   const dropdownRef = useRef(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   useEffect(() => {
     const fetchUserRole = async () => {
@@ -41,10 +45,6 @@ const SuperDropdown = ({ placeholder = 'Select organization' }) => {
   }, []);
 
   useEffect(() => {
-    console.log('org:', organizations);
-  }, [organizations]);
-
-  useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -65,8 +65,20 @@ const SuperDropdown = ({ placeholder = 'Select organization' }) => {
     setSelectedOrg(org);
     const token = await switchCharity(org._id);
     localStorage.setItem('charityToken', token);
-    console.log(token);
     setIsOpen(false);
+  };
+
+  const handleCreateSuccess = async () => {
+    // Refresh organization list
+    const updatedOrganizations = await getAllOrganizations();
+    setOrganizations(
+      updatedOrganizations.map((org) => {
+        if (org.image) {
+          org.image = helper.CampaignAdminLogoPath + org.image;
+        }
+        return org;
+      })
+    );
   };
 
   return (
@@ -89,13 +101,19 @@ const SuperDropdown = ({ placeholder = 'Select organization' }) => {
               <span className="super-dropdown__placeholder">{placeholder}</span>
             )}
             <FontAwesomeIcon
-              icon="fa-solid fa-triangle"
-              className={`super-dropdown__arrow ${isOpen ? 'open' : ''}`}
+              icon={solid('triangle')}
+              className={`super-dropdown__arrow ${isOpen ? '' : 'closed'}`}
             />
           </div>
 
           {isOpen && (
             <div className="super-dropdown__menu">
+              <div className="super-dropdown__create-new">
+                <Button variant="primary" size="sm" onClick={() => setShowCreateModal(true)}>
+                  <FontAwesomeIcon icon={solid('plus')} className="me-1" />
+                  Create New Charity
+                </Button>
+              </div>
               {organizations.length > 0 &&
                 organizations.map((org) => (
                   <div
@@ -108,7 +126,6 @@ const SuperDropdown = ({ placeholder = 'Select organization' }) => {
                         avatarUrl={org.image}
                         className={org ? 'donor_avatar_bg' : 'charity_avatar_bg'}
                       />
-                      {/* <img src={org.image} alt={org.name} className="super-dropdown__image" /> */}
                     </div>
                     <span className="super-dropdown__name">{org.name}</span>
                   </div>
@@ -117,6 +134,13 @@ const SuperDropdown = ({ placeholder = 'Select organization' }) => {
           )}
         </div>
       )}
+
+      {/* Use the CreateCharityModal component */}
+      <CreateCharityModal
+        show={showCreateModal}
+        onHide={() => setShowCreateModal(false)}
+        onSuccess={handleCreateSuccess}
+      />
     </>
   );
 };
