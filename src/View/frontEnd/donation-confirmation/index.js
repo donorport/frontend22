@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
 import helper, { priceFormat, getCardIcon } from '../../../Common/Helper';
 import DefaultLayout from '../Component/templates/default-layout';
@@ -11,11 +11,13 @@ import moment from 'moment';
 import Seo from '../../../components/SEO';
 
 import { calculatePlatformCost, calculateSubtotal } from '../../../constants/constants';
+import downloadInvoice from '../../../Api/frontEnd/invoice';
 
 const DonationConfirmPage = () => {
   const params = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  const receiptButtonRef = useRef(null); 
   const userAuthToken = localStorage.getItem('userAuthToken');
   const [doantionDetails, setDonationDetails] = useState({});
   const [loading, setLoading] = useState(false);
@@ -109,10 +111,7 @@ const DonationConfirmPage = () => {
               </p>
 
               <div className="d-flex align-items-center flex-wrap justify-content-center mt-3 gap-2 gap-sm-3">
-                <Link
-                  to="/"
-                  className="btn btn-lg fw-bold btn-primary flex-grow-sm-0 flex-grow-1"
-                >
+                <Link to="/" className="btn btn-lg fw-bold btn-primary flex-grow-sm-0 flex-grow-1">
                   Back To Home
                 </Link>
                 {doantionDetails.type === 'PROJECT' ? (
@@ -130,6 +129,16 @@ const DonationConfirmPage = () => {
                     Go to Profile
                   </Link>
                 )}
+
+                <button
+                  ref={receiptButtonRef}
+                  className="btn btn-lg fw-bold btn-secondary flex-grow-sm-0 flex-grow-1"
+                  onClick={() =>
+                    downloadInvoice('donation', doantionDetails._id, receiptButtonRef.current)
+                  }
+                >
+                  Download Receipt
+                </button>
               </div>
             </div>
             <div className="d-none d-lg-flex mx-3 border-end"></div>

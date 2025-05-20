@@ -50,104 +50,145 @@
 .super-dropdown {
   position: relative;
   font-family: inherit;
-  
   &__toggle {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #15202b;
-    border: 1px solid #5f5df8;
-    border-radius: 8px;
-    padding: 10px 15px;
+    background-color: $input;
+    border: 2px solid $border-color;
+    border-radius: $border-radius;
+    padding: $input-btn-padding-y $input-btn-padding-x;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-    
+
     &:hover {
-      border-color: lighten(#5f5df8, 10%);
-      box-shadow: 0 0 5px rgba(95, 93, 248, 0.4);
+      border-color: $primary;
+      box-shadow: 0 0 5px rgba($primary, 0.4);
     }
   }
-  
+
   &__selected {
     display: flex;
     align-items: center;
   }
-  
+
   &__placeholder {
-    color: #8899a6;
+    color: $placeholder;
   }
-  
+
   &__arrow {
-    color: #5f5df8;
+    color: $primary;
     font-size: 12px;
     transition: transform 0.2s ease;
     margin-left: 10px;
-    
-    &.open {
+
+    &.closed {
       transform: rotate(180deg);
     }
   }
-  
+
   &__image-wrap {
     width: 32px;
     height: 32px;
     border-radius: 50%;
     overflow: hidden;
     margin-right: 10px;
-    border: 2px solid #5f5df8;
+    border: 2px solid $secondary;
   }
-  
+
   &__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  
+
   &__name {
-    color: #ffffff;
-    font-weight: 500;
+    color: $neutral-700;
+    font-weight: $font-weight-semibold;
   }
-  
+
   &__menu {
     position: absolute;
     top: calc(100% + 5px);
     left: 0;
     right: 0;
-    background-color: #15202b;
-    border: 1px solid #5f5df8;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: $input;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    box-shadow: $dropdown-box-shadow;
     z-index: 10;
     max-height: 250px;
     overflow-y: auto;
-    
+
     &::-webkit-scrollbar {
       width: 6px;
     }
-    
+
     &::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.1);
+      background: $secondary-3;
     }
-    
+
     &::-webkit-scrollbar-thumb {
-      background: #5f5df8;
+      background: $primary;
       border-radius: 3px;
     }
   }
-  
+
   &__item {
     display: flex;
     align-items: center;
-    padding: 10px 15px;
+    padding: $dropdown-item-padding-y $dropdown-item-padding-x;
     cursor: pointer;
     transition: background-color 0.2s;
-    
+
     &:hover {
-      background-color: rgba(95, 93, 248, 0.1);
+      background-color: $dropdown-link-hover-bg;
     }
-    
+
     &:not(:last-child) {
-      border-bottom: 1px solid rgba(95, 93, 248, 0.2);
+      border-bottom: 1px solid $border-color;
     }
   }
+
+  &__create-new {
+    border-bottom: 1px solid $border-color;
+
+    .btn {
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      width: 100%;
+      border-radius: 0%;
+      padding: 10px 0;
+
+      svg {
+        font-size: 0.75rem;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+// Custom scrollbar for CreateCharityModal
+.create-charity-modal {
+  .modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $secondary-3;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $primary;
+      border-radius: 3px;
+    }
+  }
+
 }
